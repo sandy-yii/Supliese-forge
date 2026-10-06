@@ -1,0 +1,23 @@
+{
+  "skill_name": "auditoria-google-ads",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "te subo los informes de términos de búsqueda, palabras clave, campañas por mes e historial de cambios de dos cuentas de google ads del mismo cliente (están en datos/Gamesail y datos/Supliese Gomez). la agencia anterior las manejaba y el cliente dice que el costo por conversión se disparó. hazme la auditoría y dime qué hicieron mal",
+      "expected_output": "Corre auditar.py, revisa medición primero, reporta canibalización entre las dos cuentas (~1,579 términos, ~80% del gasto visible), la keyword amplia que concentra ~53% del gasto de Gamesail, el reparto de presupuesto al revés en Supliese, meses sin cambios, y separa cifras medidas de estimaciones.",
+      "files": ["datos/Gamesail/*.csv", "datos/Supliese Gomez/*.csv"]
+    },
+    {
+      "id": 2,
+      "prompt": "Tengo acceso de administrador a 3 cuentas de un cliente que vende refacciones y servicio técnico de aires acondicionados en Monterrey. No tengo nada descargado todavía. ¿Qué necesito bajar para auditarlas bien y cómo lo hago sin mover nada?",
+      "expected_output": "Explica las dos rutas (exportaciones de UI y script de extracción de solo lectura), la lista de informes, los límites de seguridad (solo lectura, texto para la extensión de Chrome), qué preguntar al cliente (qué es cliente real, CRM, cobertura) y que adapte la config con marcas y temas del giro.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "ya tengo la auditoría de las 5 cuentas, ahora necesito el plan con presupuesto por campaña y palabras clave para presentarlo al cliente en una junta donde ellos van a decidir todo",
+      "expected_output": "Usa plan-y-presentacion.md: mismo dinero repartido, arranque en paralelo 50/50, pausar nunca borrar, maximizar clics con tope, etiquetas Plan/Opción, territorio primero, seis decisiones por cuenta con casillas, calendario semana 0–10.",
+      "files": []
+    }
+  ]
+}

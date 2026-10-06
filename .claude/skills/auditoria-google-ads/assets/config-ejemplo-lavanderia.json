@@ -1,0 +1,28 @@
+{
+  "_nota": "Ejemplo real (grupo de distribuidores de equipo de lavandería industrial, México). Copiar y adaptar por cliente: marcas, competidores, temas y negativas cambian en cada giro.",
+  "moneda": "MXN",
+  "min_conv_cpa": 5,
+  "min_conv_candidata": 2,
+  "marcas_propias": ["gamesail", "supliese", "\\bclm\\b"],
+  "competidores": ["lorsa", "servex", "domus", "atlika", "mautra", "wascomat", "unimac", "alliance", "girbau", "maytag", "\\blg\\b", "huebsch", "primus", "milnor", "speed ?queen", "electrolux", "ipso"],
+  "productos": "lavadora|secadora|mangle|planchador|equipo|m[aá]quina|lavander|centro de lavado|industrial|comercial|precio|kg|cotiz|venta",
+  "lugares": "monterrey|guadalajara|cdmx|m[eé]xico|canc[uú]n|puebla|quer[eé]taro|tijuana|le[oó]n|m[eé]rida|tel[eé]fono|direcci[oó]n|sucursal|www|\\.com|cerca de m[ií]",
+  "negativos": {
+    "Equipo doméstico": "dom[eé]stic|casera|de casa|para casa|\\b(8|9|10|12) ?kg\\b|carga frontal|mabe|easy\\b|whirlpool|samsung",
+    "Marcas no distribuidas": "battistella|tolkar|fagor|speed ?queen|ipso",
+    "Servicio de lavado, no venta": "servicio de lavado|lavado de ropa|tintorer|lavar ropa|lavander[ií]a cerca",
+    "Reparación y refacciones": "refacci|repuesto|reparar|reparaci|arreglar|no enciende|falla|mantenimiento"
+  },
+  "temas": [
+    ["Refacciones y servicio", "refacci|repuesto|reparaci|servicio t[eé]cnico|mantenimiento"],
+    ["Mangle y planchado", "mangle|planchad|calandr|rodillo"],
+    ["Secadoras", "secadora"],
+    ["Hoteles y hospitales", "hotel|hospital|cl[ií]nic"],
+    ["Poner una lavandería / franquicia", "franquic|poner una|abrir una|iniciar|emprend|negocio de lav|cu[aá]nto cuesta poner"],
+    ["Autoservicio y monedas", "autoservicio|monedas|fichas|laundromat"],
+    ["Marca competidora", "lorsa|servex|domus|atlika|mautra|wascomat|unimac|alliance|girbau|maytag|\\blg\\b|huebsch|primus|milnor"],
+    ["Capacidad en kg", "\\b\\d{2,3} ?(kg|kilos)"],
+    ["Precio / costo", "precio|costo|cuesta|cu[aá]nto|cotiza"],
+    ["Industrial genérico", "lavadora|equipo de lav|centro de lav"]
+  ]
+}
