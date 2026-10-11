@@ -1,0 +1,125 @@
+/**
+ * Atelback · Crear campañas de arranque — Girbau (860-582-6837)
+ * Generado por campanas/generar.py a partir de campanas/plan.py. No se edita a mano: se cambia el plan y se regenera.
+ *
+ * QUÉ HACE: crea campañas nuevas de Búsqueda EN PAUSA, con sus grupos, palabras clave, anuncios, negativas,
+ * ubicación e idioma, y una lista de negativas compartida. Todo va en una sola operación: si algo falla,
+ * no se crea nada. NO modifica, pausa, activa ni borra nada que ya exista en la cuenta.
+ *
+ * CÓMO SE USA (dentro de la cuenta 860-582-6837, no en el MCC):
+ *   1. Herramientas > Acciones masivas > Scripts > "+" > pegar este archivo completo.
+ *   2. Autorizar.
+ *   3. VISTA PREVIA. Si el registro termina en "VISTA PREVIA SIN ERRORES", dar EJECUTAR.
+ *   4. Revisar las campañas creadas. Se activan solo con el OK del cliente.
+ */
+
+// Ubicación: 2484 = México completo. Si la cuenta cubre solo algunos estados, reemplazar por sus IDs
+// (Herramientas > Ubicaciones, o la lista de geoTargetConstants de Google Ads).
+var UBICACIONES = [2484];
+// Idioma: 1003 = español.
+var IDIOMAS = [1003];
+// La página de destino de esta cuenta todavía no está confirmada si esto es true: el script se detiene.
+var URL_PENDIENTE = false;
+
+var PLAN = {"cuenta": "860-582-6837", "nombre": "Girbau", "url": "https://girbauoccidente.com/", "lista": {"nombre": "AB · Negativas de la cuenta", "kw": [["lavadora industrial", "EXACT"], ["lavadoras industriales", "EXACT"], ["lavadora industrial precio", "EXACT"], ["lavadoras industriales precio", "EXACT"], ["precio lavadora industrial", "EXACT"], ["lavadora industrial 12 kg", "EXACT"], ["lavadora industrial 14 kg", "EXACT"], ["lavadora industrial 30 kg", "EXACT"], ["lavadora industrial 30 kg precio", "EXACT"], ["refacciones", "BROAD"], ["refacción", "BROAD"], ["refaccion", "BROAD"], ["partes", "BROAD"], ["repuestos", "BROAD"], ["franquicia", "BROAD"], ["franquicias", "BROAD"], ["poner una lavandería", "PHRASE"], ["poner una lavanderia", "PHRASE"], ["lorsa", "BROAD"], ["wascomat", "BROAD"], ["unimac", "BROAD"], ["maytag", "BROAD"], ["alliance", "BROAD"], ["speed queen", "PHRASE"], ["primus", "BROAD"], ["electrolux", "BROAD"], ["lg", "BROAD"], ["gamesail", "BROAD"], ["clm", "BROAD"], ["supliese", "BROAD"], ["quick laundry", "PHRASE"], ["empleo", "BROAD"], ["curso", "BROAD"], ["cursos", "BROAD"], ["manual", "BROAD"], ["pdf", "BROAD"], ["usada", "BROAD"], ["usadas", "BROAD"], ["renta", "BROAD"]]}, "campanas": [{"nombre": "AB · Marca Girbau", "diario": 49, "cpc": 10, "negativas": [], "grupos": [{"nombre": "Girbau", "kw": [["girbau", "EXACT"], ["lavadoras girbau", "PHRASE"], ["girbau méxico", "PHRASE"], ["distribuidor girbau", "PHRASE"], ["girbau occidente", "PHRASE"]], "h": ["Girbau Occidente", "Distribuidor Girbau", "Lavadoras Girbau", "Nueva Girbau Smart Plus", "Lavadoras de 12 y 14 kg", "Secadoras y Mangles Girbau", "Girbau", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Lavadoras, secadoras y mangles Girbau. Cotiza hoy con un asesor.", "Conoce la nueva Girbau Smart Plus y las lavadoras de 12 y 14 kg.", "Equipo Girbau para lavanderías, hoteles y hospitales. Te ayudamos a elegir."], "p": ["girbau", "equipo"]}]}, {"nombre": "AB · Girbau Smart Plus", "diario": 22, "cpc": 10, "negativas": [], "grupos": [{"nombre": "Smart Plus", "kw": [["girbau smart plus", "PHRASE"], ["smart plus girbau", "PHRASE"], ["lavadora girbau smart plus", "PHRASE"]], "h": ["Girbau Smart Plus", "Nueva Girbau Smart Plus", "Lavadora Smart Plus", "Distribuidor Girbau", "Conoce el Nuevo Modelo", "Girbau", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Conoce la nueva Girbau Smart Plus. Cotiza hoy con un asesor.", "Te explicamos el nuevo modelo y te ayudamos a elegir la capacidad.", "Equipo Girbau para lavanderías, hoteles y hospitales."], "p": ["smart-plus", "girbau"]}]}, {"nombre": "AB · Girbau por capacidad y sector", "diario": 27, "cpc": 10, "negativas": [], "grupos": [{"nombre": "Capacidad", "kw": [["lavadora girbau 12 kg", "PHRASE"], ["lavadora girbau 14 kg", "PHRASE"], ["girbau 12 kg", "PHRASE"], ["girbau 14 kg", "PHRASE"], ["secadora girbau", "PHRASE"], ["lavadora industrial girbau", "PHRASE"]], "h": ["Lavadora Girbau 12 kg", "Lavadora Girbau 14 kg", "Lavadoras de 12 y 14 kg", "Secadoras Girbau", "Distribuidor Girbau", "Te Ayudamos a Elegir", "Girbau", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Lavadoras Girbau de 12 y 14 kg y secadoras Girbau. Cotiza hoy con un asesor.", "Te ayudamos a elegir la capacidad según los kilos de ropa que lavas al día.", "Equipo Girbau para lavanderías, hoteles y hospitales."], "p": ["girbau", "capacidad"]}, {"nombre": "Sector", "kw": [["lavadora girbau para hotel", "PHRASE"], ["mangle girbau", "PHRASE"], ["girbau para lavandería", "PHRASE"]], "h": ["Girbau para Hoteles", "Mangles Girbau", "Girbau para Lavanderías", "Distribuidor Girbau", "Te Ayudamos a Elegir", "Girbau", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Lavadoras, secadoras y mangles Girbau para hoteles y lavanderías. Cotiza hoy.", "Te ayudamos a elegir el equipo Girbau para tu operación."], "p": ["girbau", "sector"]}]}, {"nombre": "AB · Servicio técnico Girbau", "diario": 11, "cpc": 10, "negativas": [], "grupos": [{"nombre": "Servicio técnico", "kw": [["servicio técnico girbau", "PHRASE"], ["técnico girbau", "PHRASE"], ["reparación girbau", "PHRASE"], ["mantenimiento girbau", "PHRASE"]], "h": ["Servicio Técnico Girbau", "Técnicos Girbau", "Mantenimiento Girbau", "Distribuidor Girbau", "Agenda tu Servicio", "Girbau", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Servicio técnico y mantenimiento para equipo Girbau. Agenda hoy.", "Técnicos para lavadoras, secadoras y mangles Girbau."], "p": ["servicio", "girbau"]}]}]};
+
+function main() {
+  var cid = AdsApp.currentAccount().getCustomerId();
+  if (cid !== PLAN.cuenta) {
+    throw new Error('Este script es para la cuenta ' + PLAN.cuenta + ' y se está corriendo en ' + cid + '. No se creó nada.');
+  }
+  if (URL_PENDIENTE) {
+    throw new Error('Falta la página de destino: reemplaza PLAN.url por la URL real y pon URL_PENDIENTE = false. No se creó nada.');
+  }
+  var c = cid.replace(/-/g, '');
+
+  var choques = [];
+  var nombres = {};
+  PLAN.campanas.forEach(function (k) { nombres[k.nombre] = true; });
+  var it = AdsApp.search("SELECT campaign.name FROM campaign WHERE campaign.status != 'REMOVED'");
+  while (it.hasNext()) {
+    var n = it.next().campaign.name;
+    if (nombres[n]) choques.push('campaña «' + n + '»');
+  }
+  var it2 = AdsApp.search("SELECT shared_set.name FROM shared_set WHERE shared_set.status = 'ENABLED'");
+  while (it2.hasNext()) {
+    var s = it2.next().sharedSet.name;
+    if (s === PLAN.lista.nombre) choques.push('lista «' + s + '»');
+  }
+  if (choques.length) {
+    throw new Error('Ya existen: ' + choques.join(', ') + '. No se creó nada, para no duplicar.');
+  }
+
+  var siguiente = -1;
+  function temporal(tipo) { return 'customers/' + c + '/' + tipo + '/' + (siguiente--); }
+  function micros(pesos) { return String(Math.round(pesos * 1000000)); }
+
+  var ops = [];
+  var lista = temporal('sharedSets');
+  ops.push({ sharedSetOperation: { create: { resourceName: lista, name: PLAN.lista.nombre, type: 'NEGATIVE_KEYWORDS' } } });
+  PLAN.lista.kw.forEach(function (k) {
+    ops.push({ sharedCriterionOperation: { create: { sharedSet: lista, keyword: { text: k[0], matchType: k[1] } } } });
+  });
+
+  var resumen = [];
+  PLAN.campanas.forEach(function (k) {
+    var presupuesto = temporal('campaignBudgets');
+    ops.push({ campaignBudgetOperation: { create: {
+      resourceName: presupuesto, name: k.nombre + ' · presupuesto', amountMicros: micros(k.diario),
+      deliveryMethod: 'STANDARD', explicitlyShared: false } } });
+    var campana = temporal('campaigns');
+    ops.push({ campaignOperation: { create: {
+      resourceName: campana, name: k.nombre, status: 'PAUSED', advertisingChannelType: 'SEARCH',
+      campaignBudget: presupuesto,
+      targetSpend: { cpcBidCeilingMicros: micros(k.cpc) },
+      networkSettings: { targetGoogleSearch: true, targetSearchNetwork: false, targetContentNetwork: false,
+                         targetPartnerSearchNetwork: false },
+      geoTargetTypeSetting: { positiveGeoTargetType: 'PRESENCE', negativeGeoTargetType: 'PRESENCE' },
+      containsEuPoliticalAdvertising: 'DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING' } } });
+    UBICACIONES.forEach(function (u) {
+      ops.push({ campaignCriterionOperation: { create: { campaign: campana, location: { geoTargetConstant: 'geoTargetConstants/' + u } } } });
+    });
+    IDIOMAS.forEach(function (l) {
+      ops.push({ campaignCriterionOperation: { create: { campaign: campana, language: { languageConstant: 'languageConstants/' + l } } } });
+    });
+    ops.push({ campaignSharedSetOperation: { create: { campaign: campana, sharedSet: lista } } });
+    k.negativas.forEach(function (n) {
+      ops.push({ campaignCriterionOperation: { create: { campaign: campana, negative: true, keyword: { text: n[0], matchType: n[1] } } } });
+    });
+    var palabras = 0;
+    k.grupos.forEach(function (g) {
+      var grupo = temporal('adGroups');
+      ops.push({ adGroupOperation: { create: { resourceName: grupo, campaign: campana, name: g.nombre, status: 'ENABLED', type: 'SEARCH_STANDARD' } } });
+      g.kw.forEach(function (w) {
+        ops.push({ adGroupCriterionOperation: { create: { adGroup: grupo, status: 'ENABLED', keyword: { text: w[0], matchType: w[1] } } } });
+        palabras++;
+      });
+      ops.push({ adGroupAdOperation: { create: { adGroup: grupo, status: 'ENABLED', ad: {
+        finalUrls: [PLAN.url],
+        responsiveSearchAd: {
+          headlines: g.h.map(function (t) { return { text: t }; }),
+          descriptions: g.d.map(function (t) { return { text: t }; }),
+          path1: g.p[0], path2: g.p[1] } } } } });
+    });
+    resumen.push(k.nombre + ' · $' + k.diario + '/día de arranque · tope CPC $' + k.cpc + ' · ' + k.grupos.length + ' grupos · ' + palabras + ' palabras clave');
+  });
+
+  Logger.log(PLAN.nombre + ': ' + ops.length + ' operaciones.');
+  var resultados = AdsApp.mutateAll(ops, { partialFailure: false });
+  var errores = [];
+  resultados.forEach(function (r, i) {
+    if (!r.isSuccessful()) {
+      errores.push('#' + i + ' ' + JSON.stringify(ops[i]).substring(0, 300) + ' → ' + r.getErrorMessages().join('; '));
+    }
+  });
+  if (errores.length) {
+    errores.forEach(function (e) { Logger.log(e); });
+    throw new Error(errores.length + ' operaciones con error. No se creó nada. Revisa el registro.');
+  }
+  resumen.forEach(function (r) { Logger.log(r); });
+  if (AdsApp.getExecutionInfo().isPreview()) {
+    Logger.log('VISTA PREVIA SIN ERRORES. Para crear las campañas (en pausa), da EJECUTAR.');
+  } else {
+    Logger.log('CREADO. Todas las campañas quedaron EN PAUSA. Se activan solo con el OK del cliente.');
+  }
+}

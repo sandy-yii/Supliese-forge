@@ -1,0 +1,125 @@
+/**
+ * Atelback · Crear campañas de arranque — Gamesail (645-094-0317)
+ * Generado por campanas/generar.py a partir de campanas/plan.py. No se edita a mano: se cambia el plan y se regenera.
+ *
+ * QUÉ HACE: crea campañas nuevas de Búsqueda EN PAUSA, con sus grupos, palabras clave, anuncios, negativas,
+ * ubicación e idioma, y una lista de negativas compartida. Todo va en una sola operación: si algo falla,
+ * no se crea nada. NO modifica, pausa, activa ni borra nada que ya exista en la cuenta.
+ *
+ * CÓMO SE USA (dentro de la cuenta 645-094-0317, no en el MCC):
+ *   1. Herramientas > Acciones masivas > Scripts > "+" > pegar este archivo completo.
+ *   2. Autorizar.
+ *   3. VISTA PREVIA. Si el registro termina en "VISTA PREVIA SIN ERRORES", dar EJECUTAR.
+ *   4. Revisar las campañas creadas. Se activan solo con el OK del cliente.
+ */
+
+// Ubicación: 2484 = México completo. Si la cuenta cubre solo algunos estados, reemplazar por sus IDs
+// (Herramientas > Ubicaciones, o la lista de geoTargetConstants de Google Ads).
+var UBICACIONES = [2484];
+// Idioma: 1003 = español.
+var IDIOMAS = [1003];
+// La página de destino de esta cuenta todavía no está confirmada si esto es true: el script se detiene.
+var URL_PENDIENTE = false;
+
+var PLAN = {"cuenta": "645-094-0317", "nombre": "Gamesail", "url": "https://gamesail.mx/", "lista": {"nombre": "AB · Negativas de la cuenta", "kw": [["doméstica", "BROAD"], ["domestica", "BROAD"], ["domésticas", "BROAD"], ["domesticas", "BROAD"], ["casera", "BROAD"], ["caseras", "BROAD"], ["para casa", "PHRASE"], ["de casa", "PHRASE"], ["carga frontal", "PHRASE"], ["mabe", "BROAD"], ["easy", "BROAD"], ["samsung", "BROAD"], ["whirlpool", "BROAD"], ["lg", "BROAD"], ["8 kg", "PHRASE"], ["9 kg", "PHRASE"], ["10 kg", "PHRASE"], ["12 kg", "PHRASE"], ["battistella", "BROAD"], ["tolkar", "BROAD"], ["fagor", "BROAD"], ["speed queen", "PHRASE"], ["ipso", "BROAD"], ["alliance", "BROAD"], ["girbau", "BROAD"], ["maytag", "BROAD"], ["huebsch", "BROAD"], ["milnor", "BROAD"], ["tintorería", "BROAD"], ["tintoreria", "BROAD"], ["tintorerías", "BROAD"], ["tintorerias", "BROAD"], ["cerca de mí", "PHRASE"], ["cerca de mi", "PHRASE"], ["usada", "BROAD"], ["usadas", "BROAD"], ["usado", "BROAD"], ["usados", "BROAD"], ["seminueva", "BROAD"], ["seminuevas", "BROAD"], ["segunda mano", "PHRASE"], ["remate", "BROAD"], ["renta", "BROAD"], ["alquiler", "BROAD"], ["arrendamiento", "BROAD"], ["empleo", "BROAD"], ["vacante", "BROAD"], ["vacantes", "BROAD"], ["curso", "BROAD"], ["cursos", "BROAD"], ["manual", "BROAD"], ["pdf", "BROAD"], ["cómo hacer", "PHRASE"], ["como hacer", "PHRASE"], ["refacciones", "BROAD"], ["refacción", "BROAD"], ["refaccion", "BROAD"], ["partes", "BROAD"], ["repuestos", "BROAD"], ["reparación", "BROAD"], ["reparacion", "BROAD"], ["mantenimiento", "BROAD"], ["servicio", "BROAD"], ["técnico", "BROAD"], ["tecnico", "BROAD"], ["poner una lavandería", "PHRASE"], ["poner una lavanderia", "PHRASE"], ["abrir una lavandería", "PHRASE"], ["abrir una lavanderia", "PHRASE"], ["negocio de lavandería", "PHRASE"], ["negocio de lavanderia", "PHRASE"], ["franquicia", "BROAD"], ["franquicias", "BROAD"], ["autoservicio", "BROAD"], ["monedas", "BROAD"], ["semi industrial", "PHRASE"], ["semi industriales", "PHRASE"], ["semindustrial", "BROAD"], ["supliese", "BROAD"], ["quick laundry", "PHRASE"], ["túnel", "BROAD"], ["tunel", "BROAD"], ["clm", "BROAD"], ["40 kg", "PHRASE"], ["40 kilos", "PHRASE"], ["45 kg", "PHRASE"], ["45 kilos", "PHRASE"], ["60 kg", "PHRASE"], ["60 kilos", "PHRASE"], ["lavadora industrial 100 kg", "PHRASE"], ["lavadoras industriales 100 kg", "PHRASE"], ["lavadora de 100 kilos", "PHRASE"], ["lavadoras de 100 kilos", "PHRASE"], ["lavandería hotelera", "EXACT"], ["lavanderia hotelera", "EXACT"], ["lavandería para hospital", "PHRASE"], ["lavanderia para hospital", "PHRASE"], ["lavandería institucional", "PHRASE"], ["lavanderia institucional", "PHRASE"], ["mangle industrial", "EXACT"], ["mangle de planchado", "PHRASE"], ["planchadora de rodillo", "PHRASE"], ["autos", "BROAD"], ["carros", "BROAD"], ["coches", "BROAD"], ["autolavado", "BROAD"], ["car wash", "PHRASE"], ["carwash", "BROAD"], ["vehículos", "BROAD"], ["vehiculos", "BROAD"]]}, "campanas": [{"nombre": "AB · Lavadoras para ropa y sábanas", "diario": 97, "cpc": 14, "negativas": [], "grupos": [{"nombre": "Lavadoras industriales para ropa", "kw": [["lavadoras industriales", "EXACT"], ["lavadora industrial para ropa", "EXACT"], ["lavadora industrial para ropa", "PHRASE"], ["lavadoras industriales de ropa", "PHRASE"], ["lavadora industrial de ropa", "PHRASE"], ["lavadoras y secadoras industriales", "PHRASE"]], "h": ["Lavadoras Industriales", "Lavadoras para Ropa", "Para Ropa, Sábanas y Blancos", "Lavadoras de 20 a 50 kg", "Lavado de Ropa en Volumen", "Lavadoras y Secadoras", "Para Hoteles y Hospitales", "Te Ayudamos a Elegir", "Equipo Gamesail", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Lavadoras industriales para ropa y sábanas, de 20 a 50 kg. Cotiza hoy con un asesor.", "Equipo Gamesail para lavar ropa, sábanas y blancos en volumen. Te ayudamos a elegir.", "Lavadoras y secadoras industriales para hoteles, hospitales y lavanderías de ropa.", "Solicita tu cotización y elige la capacidad que necesita tu operación."], "p": ["lavadoras", "ropa"]}, {"nombre": "Lavadoras para sábanas", "kw": [["lavadora industrial para sábanas", "PHRASE"], ["lavadoras para sábanas", "PHRASE"], ["lavadora de sábanas industrial", "PHRASE"], ["lavadora industrial para blancos", "PHRASE"]], "h": ["Lavadoras para Sábanas", "Lavadora Industrial Sábanas", "Sábanas, Toallas y Blancos", "Lavadoras de 20 a 50 kg", "Lavado de Blancos en Volumen", "Para Hoteles y Hospitales", "Lavadoras y Secadoras", "Te Ayudamos a Elegir", "Equipo Gamesail", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Lavadoras industriales para sábanas, toallas y blancos. Cotiza hoy con un asesor.", "Equipo Gamesail para lavar blancos en volumen, de 20 a 50 kg. Te ayudamos a elegir.", "Ideal para hoteles, hospitales y lavanderías que procesan sábanas todos los días.", "Solicita tu cotización y elige la capacidad que necesita tu operación."], "p": ["lavadoras", "sabanas"]}]}, {"nombre": "AB · Lavadoras por capacidad y precio", "diario": 58, "cpc": 12, "negativas": [], "grupos": [{"nombre": "Lavadoras por capacidad", "kw": [["lavadora industrial 20 kg precio", "EXACT"], ["lavadora industrial 30 kg precio", "EXACT"], ["lavadora industrial 50 kg precio", "EXACT"], ["lavadora industrial 20 kg", "PHRASE"], ["lavadora industrial 30 kg", "PHRASE"], ["lavadora industrial 50 kg", "PHRASE"], ["lavadoras industriales precio", "PHRASE"], ["centro de lavado industrial", "PHRASE"]], "h": ["Lavadoras de 20, 30 y 50 kg", "Lavadora Industrial 20 kg", "Lavadora Industrial 30 kg", "Lavadora Industrial 50 kg", "Precios de Lavadoras", "Cotiza por Capacidad", "Para Ropa y Sábanas", "Elige la Capacidad Ideal", "Equipo Gamesail", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Lavadoras industriales de 20, 30 y 50 kg para ropa y sábanas. Pide el precio hoy.", "Te ayudamos a elegir la capacidad según los kilos de ropa que lavas al día.", "Equipo Gamesail para lavanderías, hoteles y hospitales. Cotiza con un asesor.", "Solicita tu cotización con la capacidad que necesitas y recibe precio por equipo."], "p": ["lavadoras", "capacidad"]}]}, {"nombre": "AB · Secadoras industriales", "diario": 58, "cpc": 14, "negativas": [], "grupos": [{"nombre": "Secadoras para ropa", "kw": [["secadoras industriales de ropa", "PHRASE"], ["secadoras industriales", "PHRASE"], ["secadora industrial de ropa", "EXACT"], ["secadora industrial para ropa", "PHRASE"], ["secadora industrial para sábanas", "PHRASE"]], "h": ["Secadoras Industriales", "Secadoras para Ropa", "Secadoras de 50 a 200 kg", "Para Ropa, Sábanas y Blancos", "Secadoras para Sábanas", "Para Hoteles y Hospitales", "Lavadoras y Secadoras", "Te Ayudamos a Elegir", "Equipo Gamesail", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Secadoras industriales para ropa y sábanas de 50, 100, 130 y 200 kg. Cotiza hoy.", "Equipo Gamesail para secar ropa y blancos en volumen. Te ayudamos a elegir.", "Secadoras para hoteles, hospitales y lavanderías de ropa. Habla con un asesor.", "Solicita tu cotización y elige la capacidad que necesita tu operación."], "p": ["secadoras", "ropa"]}, {"nombre": "Secadoras por capacidad", "kw": [["secadora industrial 50 kg", "PHRASE"], ["secadora industrial 100 kg", "PHRASE"], ["secadora industrial 130 kg", "PHRASE"], ["secadora industrial 200 kg", "PHRASE"], ["secadora de 100 kilos", "PHRASE"], ["secadora de 200 kilos", "PHRASE"], ["secadora industrial 30 kg", "PHRASE"]], "h": ["Secadoras de 50 a 200 kg", "Secadora Industrial 50 kg", "Secadora Industrial 100 kg", "Secadora Industrial 130 kg", "Secadora Industrial 200 kg", "Secadoras para Ropa", "Cotiza por Capacidad", "Elige la Capacidad Ideal", "Equipo Gamesail", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Secadoras industriales de 50, 100, 130 y 200 kg para ropa y sábanas. Pide precio.", "Te ayudamos a elegir la capacidad según los kilos de ropa que secas al día.", "Equipo Gamesail para lavanderías, hoteles y hospitales. Cotiza con un asesor.", "Solicita tu cotización con la capacidad que necesitas y recibe precio por equipo."], "p": ["secadoras", "capacidad"]}]}, {"nombre": "AB · Hoteles y hospitales", "diario": 39, "cpc": 16, "negativas": [], "grupos": [{"nombre": "Hoteles", "kw": [["lavadora industrial para hotel", "PHRASE"], ["lavadoras para lavandería hotelera", "PHRASE"], ["secadoras para lavandería hotelera", "PHRASE"], ["secadora industrial para hotel", "PHRASE"], ["equipo para lavandería hotelera", "PHRASE"]], "h": ["Lavadoras para Hoteles", "Lavandería Hotelera", "Secadoras para Hoteles", "Para Sábanas y Toallas", "Lavado de Blancos en Volumen", "Lavadoras de 20 a 50 kg", "Secadoras de 50 a 200 kg", "Te Ayudamos a Elegir", "Equipo Gamesail", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Lavadoras y secadoras industriales para la lavandería de tu hotel. Cotiza hoy.", "Equipo Gamesail para sábanas, toallas y blancos en volumen. Te ayudamos a elegir.", "Lavadoras de 20 a 50 kg y secadoras de 50 a 200 kg para hoteles de cualquier tamaño.", "Solicita tu cotización y habla con un asesor sobre la operación de tu hotel."], "p": ["hoteles", "lavanderia"]}, {"nombre": "Hospitales", "kw": [["lavadora industrial para hospital", "PHRASE"], ["lavadoras para hospitales", "PHRASE"], ["secadora industrial para hospital", "PHRASE"]], "h": ["Lavadoras para Hospitales", "Secadoras para Hospitales", "Para Sábanas y Batas", "Lavado de Blancos en Volumen", "Lavadoras de 20 a 50 kg", "Secadoras de 50 a 200 kg", "Te Ayudamos a Elegir", "Equipo Gamesail", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Lavadoras y secadoras industriales para la lavandería de tu hospital. Cotiza hoy.", "Equipo Gamesail para sábanas, batas y blancos en volumen. Te ayudamos a elegir.", "Lavadoras de 20 a 50 kg y secadoras de 50 a 200 kg para hospitales y clínicas.", "Solicita tu cotización y habla con un asesor sobre tu operación."], "p": ["hospitales", "lavadoras"]}]}, {"nombre": "AB · Mangles y planchado", "diario": 26, "cpc": 16, "negativas": [], "grupos": [{"nombre": "Mangles", "kw": [["mangle planchador", "PHRASE"], ["dobladora de ropa industrial", "PHRASE"], ["calandria industrial", "PHRASE"], ["mangle para sábanas", "PHRASE"]], "h": ["Mangle Planchador", "Mangles para Sábanas", "Dobladora de Ropa Industrial", "Calandria Industrial", "Planchado de Blancos", "Para Hoteles y Hospitales", "Te Ayudamos a Elegir", "Equipo Gamesail", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Mangles planchadores y dobladoras para sábanas y blancos. Cotiza hoy con un asesor.", "Equipo Gamesail para planchar y doblar ropa en volumen. Te ayudamos a elegir.", "Para hoteles, hospitales y lavanderías que planchan sábanas todos los días.", "Solicita tu cotización y elige el equipo que necesita tu operación."], "p": ["mangles", "planchado"]}]}, {"nombre": "AB · Competencia depurada", "diario": 23, "cpc": 10, "negativas": [["teléfono", "BROAD"], ["telefono", "BROAD"], ["dirección", "BROAD"], ["direccion", "BROAD"], ["sucursal", "BROAD"], ["sucursales", "BROAD"], ["ubicación", "BROAD"], ["ubicacion", "BROAD"], ["horario", "BROAD"], ["contacto", "BROAD"], ["www", "BROAD"], ["guadalajara", "BROAD"], ["monterrey", "BROAD"], ["cdmx", "BROAD"], ["puebla", "BROAD"], ["querétaro", "BROAD"], ["queretaro", "BROAD"]], "grupos": [{"nombre": "Marcas de la competencia", "kw": [["atlika lavadoras industriales", "EXACT"], ["lavadora industrial atlika", "EXACT"], ["servex lavadoras", "EXACT"], ["lavadora industrial servex", "EXACT"], ["domus lavadora industrial", "EXACT"], ["wascomat lavadora industrial", "EXACT"], ["lorsa lavadora industrial", "EXACT"], ["unimac lavadora industrial", "EXACT"], ["primus lavadora industrial", "EXACT"]], "h": ["Lavadoras Industriales", "Compara Antes de Comprar", "Lavadoras para Ropa", "Lavadoras de 20 a 50 kg", "Secadoras de 50 a 200 kg", "Para Ropa, Sábanas y Blancos", "Te Ayudamos a Elegir", "Equipo Gamesail", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Compara opciones antes de comprar. Lavadoras industriales para ropa y sábanas.", "Equipo Gamesail de 20 a 50 kg y secadoras de 50 a 200 kg. Cotiza hoy con un asesor.", "Lavadoras y secadoras industriales para hoteles, hospitales y lavanderías.", "Solicita tu cotización y compara precio y capacidad con lo que ya viste."], "p": ["lavadoras", "cotiza"]}]}, {"nombre": "AB · Marca Gamesail", "diario": 23, "cpc": 8, "negativas": [], "grupos": [{"nombre": "Gamesail", "kw": [["gamesail", "EXACT"], ["gamesail méxico", "PHRASE"], ["gamesail lavadoras industriales", "EXACT"]], "h": ["Gamesail México", "Lavadoras Industriales", "Secadoras Industriales", "Lavadoras de 20 a 50 kg", "Secadoras de 50 a 200 kg", "Para Ropa, Sábanas y Blancos", "Sitio Oficial Gamesail", "Equipo Gamesail", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Lavadoras y secadoras industriales Gamesail para ropa y sábanas. Cotiza hoy.", "Lavadoras de 20 a 50 kg y secadoras de 50 a 200 kg. Habla con un asesor.", "Equipo para hoteles, hospitales y lavanderías de ropa. Te ayudamos a elegir.", "Solicita tu cotización y elige la capacidad que necesita tu operación."], "p": ["gamesail", "equipo"]}, {"nombre": "Lavadoras Gamesail", "kw": [["lavadoras gamesail", "PHRASE"], ["lavadora gamesail", "PHRASE"]], "h": ["Lavadoras Gamesail", "Lavadora Industrial Gamesail", "Lavadoras de 20 a 50 kg", "Para Ropa, Sábanas y Blancos", "Sitio Oficial Gamesail", "Te Ayudamos a Elegir", "Equipo Gamesail", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Lavadoras industriales Gamesail de 20 a 50 kg para ropa y sábanas. Cotiza hoy.", "Elige la capacidad según los kilos de ropa que lavas al día. Habla con un asesor.", "Para hoteles, hospitales y lavanderías de ropa. Solicita tu cotización."], "p": ["lavadoras", "gamesail"]}, {"nombre": "Secadoras Gamesail", "kw": [["secadoras gamesail", "PHRASE"], ["secadora gamesail", "PHRASE"]], "h": ["Secadoras Gamesail", "Secadora Industrial Gamesail", "Secadoras de 50 a 200 kg", "Para Ropa, Sábanas y Blancos", "Sitio Oficial Gamesail", "Te Ayudamos a Elegir", "Equipo Gamesail", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Secadoras industriales Gamesail de 50, 100, 130 y 200 kg. Cotiza hoy.", "Elige la capacidad según los kilos de ropa que secas al día. Habla con un asesor.", "Para hoteles, hospitales y lavanderías de ropa. Solicita tu cotización."], "p": ["secadoras", "gamesail"]}]}]};
+
+function main() {
+  var cid = AdsApp.currentAccount().getCustomerId();
+  if (cid !== PLAN.cuenta) {
+    throw new Error('Este script es para la cuenta ' + PLAN.cuenta + ' y se está corriendo en ' + cid + '. No se creó nada.');
+  }
+  if (URL_PENDIENTE) {
+    throw new Error('Falta la página de destino: reemplaza PLAN.url por la URL real y pon URL_PENDIENTE = false. No se creó nada.');
+  }
+  var c = cid.replace(/-/g, '');
+
+  var choques = [];
+  var nombres = {};
+  PLAN.campanas.forEach(function (k) { nombres[k.nombre] = true; });
+  var it = AdsApp.search("SELECT campaign.name FROM campaign WHERE campaign.status != 'REMOVED'");
+  while (it.hasNext()) {
+    var n = it.next().campaign.name;
+    if (nombres[n]) choques.push('campaña «' + n + '»');
+  }
+  var it2 = AdsApp.search("SELECT shared_set.name FROM shared_set WHERE shared_set.status = 'ENABLED'");
+  while (it2.hasNext()) {
+    var s = it2.next().sharedSet.name;
+    if (s === PLAN.lista.nombre) choques.push('lista «' + s + '»');
+  }
+  if (choques.length) {
+    throw new Error('Ya existen: ' + choques.join(', ') + '. No se creó nada, para no duplicar.');
+  }
+
+  var siguiente = -1;
+  function temporal(tipo) { return 'customers/' + c + '/' + tipo + '/' + (siguiente--); }
+  function micros(pesos) { return String(Math.round(pesos * 1000000)); }
+
+  var ops = [];
+  var lista = temporal('sharedSets');
+  ops.push({ sharedSetOperation: { create: { resourceName: lista, name: PLAN.lista.nombre, type: 'NEGATIVE_KEYWORDS' } } });
+  PLAN.lista.kw.forEach(function (k) {
+    ops.push({ sharedCriterionOperation: { create: { sharedSet: lista, keyword: { text: k[0], matchType: k[1] } } } });
+  });
+
+  var resumen = [];
+  PLAN.campanas.forEach(function (k) {
+    var presupuesto = temporal('campaignBudgets');
+    ops.push({ campaignBudgetOperation: { create: {
+      resourceName: presupuesto, name: k.nombre + ' · presupuesto', amountMicros: micros(k.diario),
+      deliveryMethod: 'STANDARD', explicitlyShared: false } } });
+    var campana = temporal('campaigns');
+    ops.push({ campaignOperation: { create: {
+      resourceName: campana, name: k.nombre, status: 'PAUSED', advertisingChannelType: 'SEARCH',
+      campaignBudget: presupuesto,
+      targetSpend: { cpcBidCeilingMicros: micros(k.cpc) },
+      networkSettings: { targetGoogleSearch: true, targetSearchNetwork: false, targetContentNetwork: false,
+                         targetPartnerSearchNetwork: false },
+      geoTargetTypeSetting: { positiveGeoTargetType: 'PRESENCE', negativeGeoTargetType: 'PRESENCE' },
+      containsEuPoliticalAdvertising: 'DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING' } } });
+    UBICACIONES.forEach(function (u) {
+      ops.push({ campaignCriterionOperation: { create: { campaign: campana, location: { geoTargetConstant: 'geoTargetConstants/' + u } } } });
+    });
+    IDIOMAS.forEach(function (l) {
+      ops.push({ campaignCriterionOperation: { create: { campaign: campana, language: { languageConstant: 'languageConstants/' + l } } } });
+    });
+    ops.push({ campaignSharedSetOperation: { create: { campaign: campana, sharedSet: lista } } });
+    k.negativas.forEach(function (n) {
+      ops.push({ campaignCriterionOperation: { create: { campaign: campana, negative: true, keyword: { text: n[0], matchType: n[1] } } } });
+    });
+    var palabras = 0;
+    k.grupos.forEach(function (g) {
+      var grupo = temporal('adGroups');
+      ops.push({ adGroupOperation: { create: { resourceName: grupo, campaign: campana, name: g.nombre, status: 'ENABLED', type: 'SEARCH_STANDARD' } } });
+      g.kw.forEach(function (w) {
+        ops.push({ adGroupCriterionOperation: { create: { adGroup: grupo, status: 'ENABLED', keyword: { text: w[0], matchType: w[1] } } } });
+        palabras++;
+      });
+      ops.push({ adGroupAdOperation: { create: { adGroup: grupo, status: 'ENABLED', ad: {
+        finalUrls: [PLAN.url],
+        responsiveSearchAd: {
+          headlines: g.h.map(function (t) { return { text: t }; }),
+          descriptions: g.d.map(function (t) { return { text: t }; }),
+          path1: g.p[0], path2: g.p[1] } } } } });
+    });
+    resumen.push(k.nombre + ' · $' + k.diario + '/día de arranque · tope CPC $' + k.cpc + ' · ' + k.grupos.length + ' grupos · ' + palabras + ' palabras clave');
+  });
+
+  Logger.log(PLAN.nombre + ': ' + ops.length + ' operaciones.');
+  var resultados = AdsApp.mutateAll(ops, { partialFailure: false });
+  var errores = [];
+  resultados.forEach(function (r, i) {
+    if (!r.isSuccessful()) {
+      errores.push('#' + i + ' ' + JSON.stringify(ops[i]).substring(0, 300) + ' → ' + r.getErrorMessages().join('; '));
+    }
+  });
+  if (errores.length) {
+    errores.forEach(function (e) { Logger.log(e); });
+    throw new Error(errores.length + ' operaciones con error. No se creó nada. Revisa el registro.');
+  }
+  resumen.forEach(function (r) { Logger.log(r); });
+  if (AdsApp.getExecutionInfo().isPreview()) {
+    Logger.log('VISTA PREVIA SIN ERRORES. Para crear las campañas (en pausa), da EJECUTAR.');
+  } else {
+    Logger.log('CREADO. Todas las campañas quedaron EN PAUSA. Se activan solo con el OK del cliente.');
+  }
+}
