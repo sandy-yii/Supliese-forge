@@ -2,7 +2,7 @@
 
 Cuenta 993-525-8739 · presupuesto mensual $18,700 · Alta capacidad, lavandería hotelera e institucional completa, túnel de lavado para ropa, mangles, 20 a 45 kg.
 
-**Página de destino:** https://clmmexico.com/ — por confirmar antes de ejecutar
+**Página de destino:** https://clmmexico.com/
 
 **Configuración de todas las campañas:**
 

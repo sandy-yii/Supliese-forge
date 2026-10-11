@@ -18,8 +18,8 @@
 var UBICACIONES = [2484];
 // Idioma: 1003 = español.
 var IDIOMAS = [1003];
-// La página de destino de esta cuenta todavía no está confirmada si esto es true: el script se detiene.
-var URL_PENDIENTE = {{PENDIENTE}};
+// Si es true, la página de destino se copia de los anuncios actuales de la cuenta (la que más anuncios usan).
+var COPIAR_URL = {{COPIAR_URL}};
 
 var PLAN = {{PLAN}};
 
@@ -28,9 +28,10 @@ function main() {
   if (cid !== PLAN.cuenta) {
     throw new Error('Este script es para la cuenta ' + PLAN.cuenta + ' y se está corriendo en ' + cid + '. No se creó nada.');
   }
-  if (URL_PENDIENTE) {
-    throw new Error('Falta la página de destino: reemplaza PLAN.url por la URL real y pon URL_PENDIENTE = false. No se creó nada.');
+  if (COPIAR_URL) {
+    PLAN.url = urlDeAnunciosActuales();
   }
+  Logger.log('Página de destino: ' + PLAN.url);
   var c = cid.replace(/-/g, '');
 
   var choques = [];
@@ -122,4 +123,19 @@ function main() {
   } else {
     Logger.log('CREADO. Todas las campañas quedaron EN PAUSA. Se activan solo con el OK del cliente.');
   }
+}
+
+function urlDeAnunciosActuales() {
+  var cuenta = {};
+  var it = AdsApp.search("SELECT ad_group_ad.ad.final_urls FROM ad_group_ad " +
+                         "WHERE ad_group_ad.status != 'REMOVED' AND campaign.status != 'REMOVED'");
+  while (it.hasNext()) {
+    (it.next().adGroupAd.ad.finalUrls || []).forEach(function (u) { cuenta[u] = (cuenta[u] || 0) + 1; });
+  }
+  var urls = Object.keys(cuenta).sort(function (a, b) { return cuenta[b] - cuenta[a]; });
+  if (!urls.length) {
+    throw new Error('No encontré anuncios con página de destino en la cuenta. No se creó nada.');
+  }
+  urls.forEach(function (u) { Logger.log('  en anuncios actuales: ' + u + ' (' + cuenta[u] + ' anuncios)'); });
+  return urls[0];
 }

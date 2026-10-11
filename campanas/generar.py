@@ -176,7 +176,7 @@ def js(p):
     with open(os.path.join(AQUI, 'plantilla-script.js'), encoding='utf-8') as f:
         plantilla = f.read()
     return (plantilla.replace('{{NOMBRE}}', c['nombre']).replace('{{ID}}', c['id'])
-            .replace('{{PENDIENTE}}', 'true' if 'PENDIENTE' in c['url'] else 'false')
+            .replace('{{COPIAR_URL}}', 'true' if c['url'] == 'COPIAR_DE_ANUNCIOS' else 'false')
             .replace('{{PLAN}}', datos))
 
 
@@ -188,7 +188,8 @@ def ficha(p):
     c = p['c']
     o = ['# %s · campañas de arranque' % c['nombre'], '',
          'Cuenta %s · presupuesto mensual %s · %s' % (c['id'], pesos(c['mensual']), c['nota']), '',
-         '**Página de destino:** %s%s' % (c['url'], ' — por confirmar antes de ejecutar' if c.get('url_confirmar') else ''),
+         '**Página de destino:** %s' % ('se copia de los anuncios actuales de la cuenta (la más usada); '
+                                        'el registro de la vista previa dice cuál es' if c['url'] == 'COPIAR_DE_ANUNCIOS' else c['url']),
          '', '**Configuración de todas las campañas:**', '',
          '- Red de Búsqueda solamente: sin socios de búsqueda ni Display.',
          '- México, solo personas que están en la zona (no "interesadas").',

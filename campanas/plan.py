@@ -13,7 +13,7 @@ CUENTAS = {}
 # ---------------------------------------------------------------- Gamesail
 CUENTAS['gamesail'] = dict(
     nombre='Gamesail', id='645-094-0317', mensual=19700,
-    url='https://gamesail.mx/', url_confirmar=True,
+    url='https://gamesail.mx/',
     nota='Cuenta nueva. Equipo industrial: lavadoras para ropa y sábanas, capacidades, secadoras, hoteles y hospitales, mangles.',
     comunes=['Equipo Gamesail', 'Cotiza con un Asesor', 'Solicita tu Cotización'],
     negativas={
@@ -189,7 +189,7 @@ CUENTAS['gamesail'] = dict(
 # ---------------------------------------------------------------- Quick Laundry (cuenta Supliese Gómez)
 CUENTAS['quick-laundry'] = dict(
     nombre='Quick Laundry (cuenta Supliese Gómez)', id='256-397-2201', mensual=12000,
-    url='https://supliese.com/landing/', url_confirmar=True,
+    url='https://supliese.com/landing/',
     nota='Marca nueva Quick Laundry en los anuncios; se sigue pujando por «supliese». Negocio de lavandería: equipo comercial, emprendimiento y autoservicio.',
     comunes=['Quick Laundry', 'Cotiza con un Asesor', 'Solicita tu Cotización'],
     negativas={
@@ -313,7 +313,7 @@ CUENTAS['quick-laundry'] = dict(
 # ---------------------------------------------------------------- CLM
 CUENTAS['clm'] = dict(
     nombre='CLM', id='993-525-8739', mensual=18700,
-    url='https://clmmexico.com/', url_confirmar=True,
+    url='https://clmmexico.com/',
     nota='Alta capacidad, lavandería hotelera e institucional completa, túnel de lavado para ropa, mangles, 20 a 45 kg.',
     comunes=['CLM México', 'Cotiza con un Asesor', 'Solicita tu Cotización'],
     negativas={
@@ -431,7 +431,7 @@ CUENTAS['clm'] = dict(
 # ---------------------------------------------------------------- Servicio para Lavandería
 CUENTAS['servicio'] = dict(
     nombre='Servicio para Lavandería', id='265-909-2662', mensual=8200,
-    url='https://PENDIENTE-copiar-de-los-anuncios-actuales/', url_confirmar=True,
+    url='COPIAR_DE_ANUNCIOS',
     nota='Servicio técnico, reparación y mantenimiento industrial. Refacciones solo Girbau y Gamesail.',
     comunes=['Servicio Técnico Industrial', 'Agenda tu Servicio', 'Habla con un Técnico'],
     negativas={
@@ -552,7 +552,7 @@ CUENTAS['servicio'] = dict(
 # ---------------------------------------------------------------- Girbau
 CUENTAS['girbau'] = dict(
     nombre='Girbau', id='860-582-6837', mensual=6600,
-    url='https://girbauoccidente.com/', url_confirmar=True,
+    url='https://girbauoccidente.com/',
     nota='Solo búsquedas con la marca Girbau. Nuevo modelo Smart Plus y capacidades de 12 y 14 kg.',
     comunes=['Girbau', 'Cotiza con un Asesor', 'Solicita tu Cotización'],
     negativas={

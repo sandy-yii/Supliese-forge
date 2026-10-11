@@ -57,7 +57,7 @@ Cada cuenta carga como negativas las búsquedas de las otras. `salida/cruces.md`
 
 ## Cómo se ejecuta cada cuenta
 
-1. Confirmar la página de destino y la zona de la cuenta (ver la ficha).
+1. Revisar la zona de la cuenta en la ficha. Las páginas de destino son las actuales; la de Servicio para Lavandería la copia el script de los anuncios actuales y la muestra en el registro.
 2. Dentro de la cuenta, no en el MCC: Herramientas > Acciones masivas > Scripts > «+».
 3. Pegar `crear-campanas.js` y autorizar.
 4. Correr la **vista previa**: no crea nada. Si termina en «VISTA PREVIA SIN ERRORES», dar **Ejecutar**.
@@ -80,6 +80,6 @@ Detalles del script:
 - El script no se ha corrido en una cuenta real. Se probó con una simulación de Google Ads:
   - genera bien las operaciones;
   - se detiene si se corre en la cuenta equivocada;
-  - se detiene si falta la página de destino.
+  - en Servicio, copia la página de destino de los anuncios actuales.
 - La vista previa en la cuenta es la prueba real.
 - Los topes de CPC salen del CPC promedio de Gamesail (~$8) y Supliese (~$5). En CLM, Servicio y Girbau son estimados: se ajustan la primera semana con el CPC real.

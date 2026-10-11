@@ -18,8 +18,8 @@
 var UBICACIONES = [2484];
 // Idioma: 1003 = español.
 var IDIOMAS = [1003];
-// La página de destino de esta cuenta todavía no está confirmada si esto es true: el script se detiene.
-var URL_PENDIENTE = false;
+// Si es true, la página de destino se copia de los anuncios actuales de la cuenta (la que más anuncios usan).
+var COPIAR_URL = false;
 
 var PLAN = {"cuenta": "860-582-6837", "nombre": "Girbau", "url": "https://girbauoccidente.com/", "lista": {"nombre": "AB · Negativas de la cuenta", "kw": [["lavadora industrial", "EXACT"], ["lavadoras industriales", "EXACT"], ["lavadora industrial precio", "EXACT"], ["lavadoras industriales precio", "EXACT"], ["precio lavadora industrial", "EXACT"], ["lavadora industrial 12 kg", "EXACT"], ["lavadora industrial 14 kg", "EXACT"], ["lavadora industrial 30 kg", "EXACT"], ["lavadora industrial 30 kg precio", "EXACT"], ["refacciones", "BROAD"], ["refacción", "BROAD"], ["refaccion", "BROAD"], ["partes", "BROAD"], ["repuestos", "BROAD"], ["franquicia", "BROAD"], ["franquicias", "BROAD"], ["poner una lavandería", "PHRASE"], ["poner una lavanderia", "PHRASE"], ["lorsa", "BROAD"], ["wascomat", "BROAD"], ["unimac", "BROAD"], ["maytag", "BROAD"], ["alliance", "BROAD"], ["speed queen", "PHRASE"], ["primus", "BROAD"], ["electrolux", "BROAD"], ["lg", "BROAD"], ["gamesail", "BROAD"], ["clm", "BROAD"], ["supliese", "BROAD"], ["quick laundry", "PHRASE"], ["empleo", "BROAD"], ["curso", "BROAD"], ["cursos", "BROAD"], ["manual", "BROAD"], ["pdf", "BROAD"], ["usada", "BROAD"], ["usadas", "BROAD"], ["renta", "BROAD"]]}, "campanas": [{"nombre": "AB · Marca Girbau", "diario": 49, "cpc": 10, "negativas": [], "grupos": [{"nombre": "Girbau", "kw": [["girbau", "EXACT"], ["lavadoras girbau", "PHRASE"], ["girbau méxico", "PHRASE"], ["distribuidor girbau", "PHRASE"], ["girbau occidente", "PHRASE"]], "h": ["Girbau Occidente", "Distribuidor Girbau", "Lavadoras Girbau", "Nueva Girbau Smart Plus", "Lavadoras de 12 y 14 kg", "Secadoras y Mangles Girbau", "Girbau", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Lavadoras, secadoras y mangles Girbau. Cotiza hoy con un asesor.", "Conoce la nueva Girbau Smart Plus y las lavadoras de 12 y 14 kg.", "Equipo Girbau para lavanderías, hoteles y hospitales. Te ayudamos a elegir."], "p": ["girbau", "equipo"]}]}, {"nombre": "AB · Girbau Smart Plus", "diario": 22, "cpc": 10, "negativas": [], "grupos": [{"nombre": "Smart Plus", "kw": [["girbau smart plus", "PHRASE"], ["smart plus girbau", "PHRASE"], ["lavadora girbau smart plus", "PHRASE"]], "h": ["Girbau Smart Plus", "Nueva Girbau Smart Plus", "Lavadora Smart Plus", "Distribuidor Girbau", "Conoce el Nuevo Modelo", "Girbau", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Conoce la nueva Girbau Smart Plus. Cotiza hoy con un asesor.", "Te explicamos el nuevo modelo y te ayudamos a elegir la capacidad.", "Equipo Girbau para lavanderías, hoteles y hospitales."], "p": ["smart-plus", "girbau"]}]}, {"nombre": "AB · Girbau por capacidad y sector", "diario": 27, "cpc": 10, "negativas": [], "grupos": [{"nombre": "Capacidad", "kw": [["lavadora girbau 12 kg", "PHRASE"], ["lavadora girbau 14 kg", "PHRASE"], ["girbau 12 kg", "PHRASE"], ["girbau 14 kg", "PHRASE"], ["secadora girbau", "PHRASE"], ["lavadora industrial girbau", "PHRASE"]], "h": ["Lavadora Girbau 12 kg", "Lavadora Girbau 14 kg", "Lavadoras de 12 y 14 kg", "Secadoras Girbau", "Distribuidor Girbau", "Te Ayudamos a Elegir", "Girbau", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Lavadoras Girbau de 12 y 14 kg y secadoras Girbau. Cotiza hoy con un asesor.", "Te ayudamos a elegir la capacidad según los kilos de ropa que lavas al día.", "Equipo Girbau para lavanderías, hoteles y hospitales."], "p": ["girbau", "capacidad"]}, {"nombre": "Sector", "kw": [["lavadora girbau para hotel", "PHRASE"], ["mangle girbau", "PHRASE"], ["girbau para lavandería", "PHRASE"]], "h": ["Girbau para Hoteles", "Mangles Girbau", "Girbau para Lavanderías", "Distribuidor Girbau", "Te Ayudamos a Elegir", "Girbau", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Lavadoras, secadoras y mangles Girbau para hoteles y lavanderías. Cotiza hoy.", "Te ayudamos a elegir el equipo Girbau para tu operación."], "p": ["girbau", "sector"]}]}, {"nombre": "AB · Servicio técnico Girbau", "diario": 11, "cpc": 10, "negativas": [], "grupos": [{"nombre": "Servicio técnico", "kw": [["servicio técnico girbau", "PHRASE"], ["técnico girbau", "PHRASE"], ["reparación girbau", "PHRASE"], ["mantenimiento girbau", "PHRASE"]], "h": ["Servicio Técnico Girbau", "Técnicos Girbau", "Mantenimiento Girbau", "Distribuidor Girbau", "Agenda tu Servicio", "Girbau", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Servicio técnico y mantenimiento para equipo Girbau. Agenda hoy.", "Técnicos para lavadoras, secadoras y mangles Girbau."], "p": ["servicio", "girbau"]}]}]};
 
@@ -28,9 +28,10 @@ function main() {
   if (cid !== PLAN.cuenta) {
     throw new Error('Este script es para la cuenta ' + PLAN.cuenta + ' y se está corriendo en ' + cid + '. No se creó nada.');
   }
-  if (URL_PENDIENTE) {
-    throw new Error('Falta la página de destino: reemplaza PLAN.url por la URL real y pon URL_PENDIENTE = false. No se creó nada.');
+  if (COPIAR_URL) {
+    PLAN.url = urlDeAnunciosActuales();
   }
+  Logger.log('Página de destino: ' + PLAN.url);
   var c = cid.replace(/-/g, '');
 
   var choques = [];
@@ -122,4 +123,19 @@ function main() {
   } else {
     Logger.log('CREADO. Todas las campañas quedaron EN PAUSA. Se activan solo con el OK del cliente.');
   }
+}
+
+function urlDeAnunciosActuales() {
+  var cuenta = {};
+  var it = AdsApp.search("SELECT ad_group_ad.ad.final_urls FROM ad_group_ad " +
+                         "WHERE ad_group_ad.status != 'REMOVED' AND campaign.status != 'REMOVED'");
+  while (it.hasNext()) {
+    (it.next().adGroupAd.ad.finalUrls || []).forEach(function (u) { cuenta[u] = (cuenta[u] || 0) + 1; });
+  }
+  var urls = Object.keys(cuenta).sort(function (a, b) { return cuenta[b] - cuenta[a]; });
+  if (!urls.length) {
+    throw new Error('No encontré anuncios con página de destino en la cuenta. No se creó nada.');
+  }
+  urls.forEach(function (u) { Logger.log('  en anuncios actuales: ' + u + ' (' + cuenta[u] + ' anuncios)'); });
+  return urls[0];
 }
