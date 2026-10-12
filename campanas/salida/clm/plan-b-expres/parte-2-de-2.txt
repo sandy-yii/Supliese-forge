@@ -1,0 +1,35 @@
+PARTE 2 de 2 · cuenta CLM (993-525-8739)
+Mismas reglas de la Parte 1: hazlo a mano, no toques nada existente, fecha de inicio hoy (la que trae por defecto), sin fecha de fin, "Habilitada" al publicarla, y la configuración del PASO 2 (solo Búsqueda, México con "Presencia", solo español, maximizar clics con límite de CPC, lista "AB · Negativas de la cuenta").
+
+CAMPAÑA 1 de 1: AB · Alta capacidad 60 kg o más
+Presupuesto diario: $92 MXN · Límite de CPC: $18 MXN
+
+  Grupo de anuncios: Lavadoras de alta capacidad
+  Palabras clave:
+  "lavadoras de 100 kilos"
+  "lavadora industrial 100 kg"
+  "lavadora industrial 60 kg"
+  "lavadoras de alta capacidad"
+  "lavadora industrial de alta capacidad"
+  Anuncio adaptable de búsqueda:
+  URL final: https://clmmexico.com/
+  Ruta: alta / capacidad
+  Títulos:
+  - Lavadoras de Alta Capacidad
+  - Lavadora Industrial 100 kg
+  - Lavadora Industrial 60 kg
+  - De 60 kg en Adelante
+  - Lavandería Industrial
+  - Proyectos de Lavandería
+  - Te Ayudamos a Elegir
+  - CLM México
+  - Cotiza con un Asesor
+  - Solicita tu Cotización
+  Descripciones:
+  - Lavadoras industriales de alta capacidad, de 60 kg en adelante. Cotiza hoy.
+  - Equipo CLM para lavanderías industriales, hoteles y hospitales de gran volumen.
+  - Te ayudamos a dimensionar la lavandería según los kilos que procesas al día.
+  - Solicita tu cotización y habla con un asesor sobre tu proyecto.
+
+AL TERMINAR ESTA CAMPAÑA: dime su estado (debe decir "Habilitada"), su presupuesto, cuántos grupos, palabras clave y anuncios tiene, y si algún anuncio o palabra clave quedó "Rechazado" o "Limitado" y por qué. No actives nada más.
+Es la última parte: dame también la lista de todas las campañas que creaste en esta cuenta, con su estado.

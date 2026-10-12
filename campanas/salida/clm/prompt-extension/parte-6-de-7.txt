@@ -1,5 +1,5 @@
 PARTE 6 de 7 · cuenta CLM (993-525-8739)
-Mismas reglas de la Parte 1: hazlo a mano, no toques nada existente, fecha de inicio 2026-12-31, "En pausa" en cuanto la publiques, y la configuración del PASO 2 (solo Búsqueda, México con "Presencia", solo español, maximizar clics con límite de CPC, lista "AB · Negativas de la cuenta").
+Mismas reglas de la Parte 1: hazlo a mano, no toques nada existente, fecha de inicio 2026-12-31, "En pausa" al publicarla, y la configuración del PASO 2 (solo Búsqueda, México con "Presencia", solo español, maximizar clics con límite de CPC, lista "AB · Negativas de la cuenta").
 
 CAMPAÑA 5 de 6: AB · Túnel de lavado
 Presupuesto diario: $31 MXN · Límite de CPC: $30 MXN
@@ -33,5 +33,5 @@ Presupuesto diario: $31 MXN · Límite de CPC: $30 MXN
   - Te ayudamos a dimensionar el túnel según los kilos de ropa que procesas al día.
   - Solicita tu cotización y habla con un asesor sobre tu proyecto.
 
-AL TERMINAR ESTA CAMPAÑA: dime su estado (debe decir "En pausa"), su presupuesto, cuántos grupos, palabras clave y anuncios tiene, y si algún anuncio o palabra clave quedó "Rechazado" o "Limitado" y por qué. No actives nada.
+AL TERMINAR ESTA CAMPAÑA: dime su estado (debe decir "En pausa"), su presupuesto, cuántos grupos, palabras clave y anuncios tiene, y si algún anuncio o palabra clave quedó "Rechazado" o "Limitado" y por qué. No actives nada más.
 Luego espera la Parte 7.

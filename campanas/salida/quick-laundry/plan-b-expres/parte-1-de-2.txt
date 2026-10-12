@@ -1,0 +1,99 @@
+PLAN B EXPRÉS: esta campaña sale ACTIVA HOY. Úsalo solo si ya diste el OK para activar esta cuenta.
+
+Vas a crear campañas nuevas de Búsqueda en Google Ads, en la cuenta Quick Laundry (cuenta Supliese Gómez) (256-397-2201). Trabaja en una pestaña nueva.
+
+REGLAS (no negociables):
+- Hazlo todo a mano en la interfaz de Google Ads, clic por clic. No uses Scripts, Google Ads Editor, cargas masivas ni hojas de cálculo: la cuenta no puede autorizar scripts.
+- No modifiques, pauses, actives, borres ni edites absolutamente nada de lo que ya existe en la cuenta: campañas, anuncios, palabras clave, presupuestos, listas, configuración ni facturación. Solo puedes CREAR lo que está en estas instrucciones.
+- Antes de empezar, confirma que el número de cuenta arriba a la derecha sea 256-397-2201. Si no lo es, detente y pregúntame.
+- La campaña nueva SÍ sale hoy: deja la fecha de inicio de hoy y, al publicarla, déjala "Habilitada". No actives nada más.
+- Si Google ofrece crear recursos automáticamente, AI Max, expansión de URL final, concordancia amplia en toda la campaña, recomendaciones o "aplicar sugerencias": recházalo o déjalo apagado.
+- Si algo te pide confirmar un cambio distinto a crear lo de estas instrucciones, o aparece un error que no entiendes, detente y pregúntame.
+- Copia los textos exactamente como están, con acentos. No inventes ni cambies títulos, descripciones ni palabras clave.
+- Las palabras clave se pegan tal cual, una por línea: [texto] es concordancia exacta y "texto" es concordancia de frase.
+
+PASO 1 · Lista de palabras clave negativas:
+Herramientas > Biblioteca compartida > Listas de exclusión (o "Listas de palabras clave negativas") > "+". Nombre: "AB · Negativas de la cuenta". Pega estas palabras, una por línea:
+
+franquicia
+franquicias
+franchise
+franquiciatario
+hotel
+hoteles
+hotelera
+hospital
+hospitales
+clínica
+clinica
+mangle
+mangles
+planchadora
+dobladora
+calandria
+gamesail
+"50 kg"
+"50 kilos"
+"100 kg"
+"100 kilos"
+"130 kg"
+"200 kg"
+túnel
+tunel
+clm
+"60 kg"
+girbau
+refacciones
+refacción
+refaccion
+partes
+repuestos
+reparación
+reparacion
+mantenimiento
+servicio
+lavax
+"lava 1"
+aquamatic
+5asec
+"cerca de mí"
+"cerca de mi"
+usada
+usadas
+usado
+usados
+seminueva
+seminuevas
+remate
+renta
+alquiler
+empleo
+vacante
+vacantes
+curso
+cursos
+pdf
+manual
+gratis
+"para casa"
+doméstica
+domestica
+domésticas
+domesticas
+mabe
+samsung
+whirlpool
+"carga frontal"
+
+PASO 2 · Crear cada campaña. Para cada una:
+- Nueva campaña > "Crear una campaña sin la orientación de un objetivo" > Búsqueda.
+- Nombre: el que se indica abajo.
+- Redes: quita "Red de Búsqueda de socios" y "Red de Display".
+- Ubicaciones: México. En "Opciones de ubicación", elige "Presencia: personas que están o que suelen estar en tus ubicaciones incluidas" (no "Presencia o interés").
+- Idioma: solo español (si aparece inglés u otro, quítalo).
+- Fechas: inicio hoy (la que trae por defecto), sin fecha de fin.
+- Presupuesto diario y puja: el que se indica. Puja: "Clics" (maximizar clics) con "Límite máximo de oferta de CPC".
+- Grupos de anuncios: crea los que se indican, cada uno con sus palabras clave y un anuncio adaptable de búsqueda con sus títulos, descripciones y rutas. URL final: https://supliese.com/landing/
+- Al terminar, publica, deja la campaña "Habilitada" y en Palabras clave > Palabras clave negativas: agrega la lista "AB · Negativas de la cuenta" y, si se indican, las negativas propias de la campaña.
+
+En esta parte haz solo el PASO 1. NO crees campañas todavía: te mando la campaña en la Parte 2. Cuando termines, dime qué hiciste y espera la Parte 2.

@@ -235,22 +235,32 @@ def ficha(p):
 INICIO = '2026-12-31'
 
 
-def prompt(p):
+def prompt(p, expres=False):
     """Instrucciones para la extensión Claude in Chrome: crear las campañas a mano en la interfaz de Google Ads.
 
     Se entregan en partes (reglas y lista de negativas, y luego una campaña por parte), porque un texto largo
-    se corta al pegarlo en la extensión."""
+    se corta al pegarlo en la extensión.
+
+    Con expres=True es el plan B: solo la campaña con más presupuesto de la cuenta, y sale habilitada hoy."""
     c = p['c']
+    campanas = [max(p['campanas'], key=lambda k: k['pct'])] if expres else p['campanas']
+    if expres:
+        estado, fecha = 'Habilitada', 'hoy (la que trae por defecto), sin fecha de fin'
+    else:
+        estado, fecha = 'En pausa', INICIO
     copiar = c['url'] == 'COPIAR_DE_ANUNCIOS'
     url = 'LA PÁGINA DE DESTINO QUE ANOTASTE EN EL PASO 0' if copiar else c['url']
     zona = c.get('ubicacion_de')
-    o = ['Vas a crear campañas nuevas de Búsqueda en Google Ads, en la cuenta %s (%s). Trabaja en una pestaña nueva.' % (c['nombre'], c['id']),
+    o = ['PLAN B EXPRÉS: esta campaña sale ACTIVA HOY. Úsalo solo si ya diste el OK para activar esta cuenta.', ''] if expres else []
+    o += ['Vas a crear campañas nuevas de Búsqueda en Google Ads, en la cuenta %s (%s). Trabaja en una pestaña nueva.' % (c['nombre'], c['id']),
          '',
          'REGLAS (no negociables):',
          '- Hazlo todo a mano en la interfaz de Google Ads, clic por clic. No uses Scripts, Google Ads Editor, cargas masivas ni hojas de cálculo: la cuenta no puede autorizar scripts.',
          '- No modifiques, pauses, actives, borres ni edites absolutamente nada de lo que ya existe en la cuenta: campañas, anuncios, palabras clave, presupuestos, listas, configuración ni facturación. Solo puedes CREAR lo que está en estas instrucciones.',
          '- Antes de empezar, confirma que el número de cuenta arriba a la derecha sea %s. Si no lo es, detente y pregúntame.' % c['id'],
-         '- Ninguna campaña nueva debe quedar activa. En cada una pon como fecha de inicio el %s y, en cuanto la publiques, cámbiala a "En pausa".' % INICIO,
+         ('- La campaña nueva SÍ sale hoy: deja la fecha de inicio de hoy y, al publicarla, déjala "Habilitada". No actives nada más.'
+          if expres else
+          '- Ninguna campaña nueva debe quedar activa. En cada una pon como fecha de inicio el %s y, en cuanto la publiques, cámbiala a "En pausa".' % INICIO),
          '- Si Google ofrece crear recursos automáticamente, AI Max, expansión de URL final, concordancia amplia en toda la campaña, recomendaciones o "aplicar sugerencias": recházalo o déjalo apagado.',
          '- Si algo te pide confirmar un cambio distinto a crear lo de estas instrucciones, o aparece un error que no entiendes, detente y pregúntame.',
          '- Copia los textos exactamente como están, con acentos. No inventes ni cambies títulos, descripciones ni palabras clave.',
@@ -271,21 +281,24 @@ def prompt(p):
           '- Redes: quita "Red de Búsqueda de socios" y "Red de Display".',
           '- Ubicaciones: %s. En "Opciones de ubicación", elige "Presencia: personas que están o que suelen estar en tus ubicaciones incluidas" (no "Presencia o interés").' % ('las que anotaste en el PASO 0' if zona else 'México'),
           '- Idioma: solo español (si aparece inglés u otro, quítalo).',
-          '- Fechas: inicio %s.' % INICIO,
+          '- Fechas: inicio %s.' % fecha,
           '- Presupuesto diario y puja: el que se indica. Puja: "Clics" (maximizar clics) con "Límite máximo de oferta de CPC".',
           '- Grupos de anuncios: crea los que se indican, cada uno con sus palabras clave y un anuncio adaptable de búsqueda con sus títulos, descripciones y rutas. URL final: %s' % url,
-          '- Al terminar, publica, pon la campaña "En pausa" y en Palabras clave > Palabras clave negativas: agrega la lista "%sNegativas de la cuenta" y, si se indican, las negativas propias de la campaña.' % PREFIJO,
+          '- Al terminar, publica, deja la campaña "%s" y en Palabras clave' % estado + ' > Palabras clave negativas: agrega la lista "%sNegativas de la cuenta" y, si se indican, las negativas propias de la campaña.' % PREFIJO,
           '',
-          'En esta parte haz solo %sel PASO 1. NO crees campañas todavía: te mando cada campaña en un mensaje aparte (Parte 2 a Parte %d). '
-          'Cuando termines, dime qué hiciste y espera la Parte 2.' % ('el PASO 0 y ' if (copiar or zona) else '', len(p['campanas']) + 1)]
+          'En esta parte haz solo %sel PASO 1. NO crees campañas todavía: %s '
+          'Cuando termines, dime qué hiciste y espera la Parte 2.' % (
+              'el PASO 0 y ' if (copiar or zona) else '',
+              'te mando la campaña en la Parte 2.' if len(campanas) == 1 else
+              'te mando cada campaña en un mensaje aparte (Parte 2 a Parte %d).' % (len(campanas) + 1))]
     partes = ['\n'.join(o) + '\n']
-    for i, k in enumerate(p['campanas'], 1):
-        o = ['PARTE %d de %d · cuenta %s (%s)' % (i + 1, len(p['campanas']) + 1, c['nombre'], c['id']),
-             'Mismas reglas de la Parte 1: hazlo a mano, no toques nada existente, fecha de inicio %s, "En pausa" en cuanto la publiques, '
+    for i, k in enumerate(campanas, 1):
+        o = ['PARTE %d de %d · cuenta %s (%s)' % (i + 1, len(campanas) + 1, c['nombre'], c['id']),
+             'Mismas reglas de la Parte 1: hazlo a mano, no toques nada existente, fecha de inicio %s, "%s" al publicarla, '
              'y la configuración del PASO 2 (solo Búsqueda, %s con "Presencia", solo español, maximizar clics con límite de CPC, lista "%sNegativas de la cuenta").'
-             % (INICIO, 'las ubicaciones del PASO 0' if zona else 'México', PREFIJO),
+             % (fecha, estado, 'las ubicaciones del PASO 0' if zona else 'México', PREFIJO),
              '',
-             'CAMPAÑA %d de %d: %s' % (i, len(p['campanas']), k['nombre']),
+             'CAMPAÑA %d de %d: %s' % (i, len(campanas), k['nombre']),
               'Presupuesto diario: $%d MXN · Límite de CPC: $%d MXN' % (k['arranque'], k['cpc'])]
         if k['negativas']:
             o += ['Negativas propias de esta campaña (además de la lista):'] + [escribir(*n) for n in k['negativas']]
@@ -293,9 +306,9 @@ def prompt(p):
             o += ['', '  Grupo de anuncios: %s' % g['nombre'], '  Palabras clave:'] + ['  ' + escribir(*kw) for kw in g['kw']]
             o += ['  Anuncio adaptable de búsqueda:', '  URL final: %s' % url, '  Ruta: %s / %s' % tuple(g['p']), '  Títulos:']
             o += ['  - ' + h for h in g['h']] + ['  Descripciones:'] + ['  - ' + d for d in g['d']]
-        o += ['', 'AL TERMINAR ESTA CAMPAÑA: dime su estado (debe decir "En pausa"), su presupuesto, cuántos grupos, palabras clave y anuncios '
-                  'tiene, y si algún anuncio o palabra clave quedó "Rechazado" o "Limitado" y por qué. No actives nada.']
-        if i < len(p['campanas']):
+        o += ['', 'AL TERMINAR ESTA CAMPAÑA: dime su estado (debe decir "%s"), su presupuesto, cuántos grupos, palabras clave y anuncios '
+                  'tiene, y si algún anuncio o palabra clave quedó "Rechazado" o "Limitado" y por qué. No actives nada más.' % estado]
+        if i < len(campanas):
             o.append('Luego espera la Parte %d.' % (i + 2))
         else:
             o.append('Es la última parte: dame también la lista de todas las campañas que creaste en esta cuenta, con su estado.')
@@ -323,6 +336,12 @@ def main():
         partes = prompt(p)
         for i, texto in enumerate(partes, 1):
             with open(os.path.join(carpeta_prompt, 'parte-%d-de-%d.txt' % (i, len(partes))), 'w', encoding='utf-8') as f:
+                f.write(texto)
+        carpeta_expres = os.path.join(carpeta, 'plan-b-expres')
+        shutil.rmtree(carpeta_expres, ignore_errors=True)
+        os.makedirs(carpeta_expres)
+        for i, texto in enumerate(prompt(p, expres=True), 1):
+            with open(os.path.join(carpeta_expres, 'parte-%d-de-2.txt' % i), 'w', encoding='utf-8') as f:
                 f.write(texto)
         for e in p['errores']:
             print('ERROR', p['c']['nombre'], '·', e)

@@ -1,0 +1,140 @@
+PLAN B EXPRÉS: esta campaña sale ACTIVA HOY. Úsalo solo si ya diste el OK para activar esta cuenta.
+
+Vas a crear campañas nuevas de Búsqueda en Google Ads, en la cuenta Gamesail (645-094-0317). Trabaja en una pestaña nueva.
+
+REGLAS (no negociables):
+- Hazlo todo a mano en la interfaz de Google Ads, clic por clic. No uses Scripts, Google Ads Editor, cargas masivas ni hojas de cálculo: la cuenta no puede autorizar scripts.
+- No modifiques, pauses, actives, borres ni edites absolutamente nada de lo que ya existe en la cuenta: campañas, anuncios, palabras clave, presupuestos, listas, configuración ni facturación. Solo puedes CREAR lo que está en estas instrucciones.
+- Antes de empezar, confirma que el número de cuenta arriba a la derecha sea 645-094-0317. Si no lo es, detente y pregúntame.
+- La campaña nueva SÍ sale hoy: deja la fecha de inicio de hoy y, al publicarla, déjala "Habilitada". No actives nada más.
+- Si Google ofrece crear recursos automáticamente, AI Max, expansión de URL final, concordancia amplia en toda la campaña, recomendaciones o "aplicar sugerencias": recházalo o déjalo apagado.
+- Si algo te pide confirmar un cambio distinto a crear lo de estas instrucciones, o aparece un error que no entiendes, detente y pregúntame.
+- Copia los textos exactamente como están, con acentos. No inventes ni cambies títulos, descripciones ni palabras clave.
+- Las palabras clave se pegan tal cual, una por línea: [texto] es concordancia exacta y "texto" es concordancia de frase.
+
+PASO 1 · Lista de palabras clave negativas:
+Herramientas > Biblioteca compartida > Listas de exclusión (o "Listas de palabras clave negativas") > "+". Nombre: "AB · Negativas de la cuenta". Pega estas palabras, una por línea:
+
+doméstica
+domestica
+domésticas
+domesticas
+casera
+caseras
+"para casa"
+"de casa"
+"carga frontal"
+mabe
+easy
+samsung
+whirlpool
+lg
+"8 kg"
+"9 kg"
+"10 kg"
+"12 kg"
+battistella
+tolkar
+fagor
+"speed queen"
+ipso
+alliance
+girbau
+maytag
+huebsch
+milnor
+tintorería
+tintoreria
+tintorerías
+tintorerias
+"cerca de mí"
+"cerca de mi"
+usada
+usadas
+usado
+usados
+seminueva
+seminuevas
+"segunda mano"
+remate
+renta
+alquiler
+arrendamiento
+empleo
+vacante
+vacantes
+curso
+cursos
+manual
+pdf
+"cómo hacer"
+"como hacer"
+refacciones
+refacción
+refaccion
+partes
+repuestos
+reparación
+reparacion
+mantenimiento
+servicio
+técnico
+tecnico
+"poner una lavandería"
+"poner una lavanderia"
+"abrir una lavandería"
+"abrir una lavanderia"
+"negocio de lavandería"
+"negocio de lavanderia"
+franquicia
+franquicias
+autoservicio
+monedas
+"semi industrial"
+"semi industriales"
+semindustrial
+supliese
+"quick laundry"
+túnel
+tunel
+clm
+"40 kg"
+"40 kilos"
+"45 kg"
+"45 kilos"
+"60 kg"
+"60 kilos"
+"lavadora industrial 100 kg"
+"lavadoras industriales 100 kg"
+"lavadora de 100 kilos"
+"lavadoras de 100 kilos"
+[lavandería hotelera]
+[lavanderia hotelera]
+"lavandería para hospital"
+"lavanderia para hospital"
+"lavandería institucional"
+"lavanderia institucional"
+[mangle industrial]
+"mangle de planchado"
+"planchadora de rodillo"
+autos
+carros
+coches
+autolavado
+"car wash"
+carwash
+vehículos
+vehiculos
+
+PASO 2 · Crear cada campaña. Para cada una:
+- Nueva campaña > "Crear una campaña sin la orientación de un objetivo" > Búsqueda.
+- Nombre: el que se indica abajo.
+- Redes: quita "Red de Búsqueda de socios" y "Red de Display".
+- Ubicaciones: México. En "Opciones de ubicación", elige "Presencia: personas que están o que suelen estar en tus ubicaciones incluidas" (no "Presencia o interés").
+- Idioma: solo español (si aparece inglés u otro, quítalo).
+- Fechas: inicio hoy (la que trae por defecto), sin fecha de fin.
+- Presupuesto diario y puja: el que se indica. Puja: "Clics" (maximizar clics) con "Límite máximo de oferta de CPC".
+- Grupos de anuncios: crea los que se indican, cada uno con sus palabras clave y un anuncio adaptable de búsqueda con sus títulos, descripciones y rutas. URL final: https://gamesail.mx/
+- Al terminar, publica, deja la campaña "Habilitada" y en Palabras clave > Palabras clave negativas: agrega la lista "AB · Negativas de la cuenta" y, si se indican, las negativas propias de la campaña.
+
+En esta parte haz solo el PASO 1. NO crees campañas todavía: te mando la campaña en la Parte 2. Cuando termines, dime qué hiciste y espera la Parte 2.

@@ -1,0 +1,64 @@
+PARTE 2 de 2 · cuenta Gamesail (645-094-0317)
+Mismas reglas de la Parte 1: hazlo a mano, no toques nada existente, fecha de inicio hoy (la que trae por defecto), sin fecha de fin, "Habilitada" al publicarla, y la configuración del PASO 2 (solo Búsqueda, México con "Presencia", solo español, maximizar clics con límite de CPC, lista "AB · Negativas de la cuenta").
+
+CAMPAÑA 1 de 1: AB · Lavadoras para ropa y sábanas
+Presupuesto diario: $97 MXN · Límite de CPC: $14 MXN
+
+  Grupo de anuncios: Lavadoras industriales para ropa
+  Palabras clave:
+  [lavadoras industriales]
+  [lavadora industrial para ropa]
+  "lavadora industrial para ropa"
+  "lavadoras industriales de ropa"
+  "lavadora industrial de ropa"
+  "lavadoras y secadoras industriales"
+  Anuncio adaptable de búsqueda:
+  URL final: https://gamesail.mx/
+  Ruta: lavadoras / ropa
+  Títulos:
+  - Lavadoras Industriales
+  - Lavadoras para Ropa
+  - Para Ropa, Sábanas y Blancos
+  - Lavadoras de 20 a 50 kg
+  - Lavado de Ropa en Volumen
+  - Lavadoras y Secadoras
+  - Para Hoteles y Hospitales
+  - Te Ayudamos a Elegir
+  - Equipo Gamesail
+  - Cotiza con un Asesor
+  - Solicita tu Cotización
+  Descripciones:
+  - Lavadoras industriales para ropa y sábanas, de 20 a 50 kg. Cotiza hoy con un asesor.
+  - Equipo Gamesail para lavar ropa, sábanas y blancos en volumen. Te ayudamos a elegir.
+  - Lavadoras y secadoras industriales para hoteles, hospitales y lavanderías de ropa.
+  - Solicita tu cotización y elige la capacidad que necesita tu operación.
+
+  Grupo de anuncios: Lavadoras para sábanas
+  Palabras clave:
+  "lavadora industrial para sábanas"
+  "lavadoras para sábanas"
+  "lavadora de sábanas industrial"
+  "lavadora industrial para blancos"
+  Anuncio adaptable de búsqueda:
+  URL final: https://gamesail.mx/
+  Ruta: lavadoras / sabanas
+  Títulos:
+  - Lavadoras para Sábanas
+  - Lavadora Industrial Sábanas
+  - Sábanas, Toallas y Blancos
+  - Lavadoras de 20 a 50 kg
+  - Lavado de Blancos en Volumen
+  - Para Hoteles y Hospitales
+  - Lavadoras y Secadoras
+  - Te Ayudamos a Elegir
+  - Equipo Gamesail
+  - Cotiza con un Asesor
+  - Solicita tu Cotización
+  Descripciones:
+  - Lavadoras industriales para sábanas, toallas y blancos. Cotiza hoy con un asesor.
+  - Equipo Gamesail para lavar blancos en volumen, de 20 a 50 kg. Te ayudamos a elegir.
+  - Ideal para hoteles, hospitales y lavanderías que procesan sábanas todos los días.
+  - Solicita tu cotización y elige la capacidad que necesita tu operación.
+
+AL TERMINAR ESTA CAMPAÑA: dime su estado (debe decir "Habilitada"), su presupuesto, cuántos grupos, palabras clave y anuncios tiene, y si algún anuncio o palabra clave quedó "Rechazado" o "Limitado" y por qué. No actives nada más.
+Es la última parte: dame también la lista de todas las campañas que creaste en esta cuenta, con su estado.

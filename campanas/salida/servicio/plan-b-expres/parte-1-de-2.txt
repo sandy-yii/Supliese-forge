@@ -1,0 +1,75 @@
+PLAN B EXPRÉS: esta campaña sale ACTIVA HOY. Úsalo solo si ya diste el OK para activar esta cuenta.
+
+Vas a crear campañas nuevas de Búsqueda en Google Ads, en la cuenta Servicio para Lavandería (265-909-2662). Trabaja en una pestaña nueva.
+
+REGLAS (no negociables):
+- Hazlo todo a mano en la interfaz de Google Ads, clic por clic. No uses Scripts, Google Ads Editor, cargas masivas ni hojas de cálculo: la cuenta no puede autorizar scripts.
+- No modifiques, pauses, actives, borres ni edites absolutamente nada de lo que ya existe en la cuenta: campañas, anuncios, palabras clave, presupuestos, listas, configuración ni facturación. Solo puedes CREAR lo que está en estas instrucciones.
+- Antes de empezar, confirma que el número de cuenta arriba a la derecha sea 265-909-2662. Si no lo es, detente y pregúntame.
+- La campaña nueva SÍ sale hoy: deja la fecha de inicio de hoy y, al publicarla, déjala "Habilitada". No actives nada más.
+- Si Google ofrece crear recursos automáticamente, AI Max, expansión de URL final, concordancia amplia en toda la campaña, recomendaciones o "aplicar sugerencias": recházalo o déjalo apagado.
+- Si algo te pide confirmar un cambio distinto a crear lo de estas instrucciones, o aparece un error que no entiendes, detente y pregúntame.
+- Copia los textos exactamente como están, con acentos. No inventes ni cambies títulos, descripciones ni palabras clave.
+- Las palabras clave se pegan tal cual, una por línea: [texto] es concordancia exacta y "texto" es concordancia de frase.
+
+PASO 0 · Página de destino (solo leer):
+Ve a Campañas > Anuncios, mira la columna o el detalle de "URL final" de los anuncios actuales y anota la que más se repite. No edites ningún anuncio. Dime cuál anotaste y úsala en todos los anuncios nuevos.
+
+PASO 1 · Lista de palabras clave negativas:
+Herramientas > Biblioteca compartida > Listas de exclusión (o "Listas de palabras clave negativas") > "+". Nombre: "AB · Negativas de la cuenta". Pega estas palabras, una por línea:
+
+"partes para lavadora industrial"
+"partes para lavadoras industriales"
+"refacciones para lavadora industrial"
+"refacciones para lavadoras industriales"
+"refacciones para secadora industrial"
+"refacciones para secadoras industriales"
+"refacciones lavandería industrial"
+"refacciones lavanderia industrial"
+curso
+cursos
+tutorial
+"cómo reparar"
+"como reparar"
+diagrama
+diagramas
+pdf
+manual
+manuales
+mabe
+samsung
+whirlpool
+lg
+easy
+"de casa"
+"para casa"
+doméstica
+domestica
+domésticas
+domesticas
+"carga frontal"
+vacante
+vacantes
+empleo
+trabajo
+sueldo
+franquicia
+franquicias
+"poner una lavandería"
+"poner una lavanderia"
+supliese
+"quick laundry"
+clm
+
+PASO 2 · Crear cada campaña. Para cada una:
+- Nueva campaña > "Crear una campaña sin la orientación de un objetivo" > Búsqueda.
+- Nombre: el que se indica abajo.
+- Redes: quita "Red de Búsqueda de socios" y "Red de Display".
+- Ubicaciones: México. En "Opciones de ubicación", elige "Presencia: personas que están o que suelen estar en tus ubicaciones incluidas" (no "Presencia o interés").
+- Idioma: solo español (si aparece inglés u otro, quítalo).
+- Fechas: inicio hoy (la que trae por defecto), sin fecha de fin.
+- Presupuesto diario y puja: el que se indica. Puja: "Clics" (maximizar clics) con "Límite máximo de oferta de CPC".
+- Grupos de anuncios: crea los que se indican, cada uno con sus palabras clave y un anuncio adaptable de búsqueda con sus títulos, descripciones y rutas. URL final: LA PÁGINA DE DESTINO QUE ANOTASTE EN EL PASO 0
+- Al terminar, publica, deja la campaña "Habilitada" y en Palabras clave > Palabras clave negativas: agrega la lista "AB · Negativas de la cuenta" y, si se indican, las negativas propias de la campaña.
+
+En esta parte haz solo el PASO 0 y el PASO 1. NO crees campañas todavía: te mando la campaña en la Parte 2. Cuando termines, dime qué hiciste y espera la Parte 2.

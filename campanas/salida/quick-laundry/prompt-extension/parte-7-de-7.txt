@@ -1,5 +1,5 @@
 PARTE 7 de 7 · cuenta Quick Laundry (cuenta Supliese Gómez) (256-397-2201)
-Mismas reglas de la Parte 1: hazlo a mano, no toques nada existente, fecha de inicio 2026-12-31, "En pausa" en cuanto la publiques, y la configuración del PASO 2 (solo Búsqueda, México con "Presencia", solo español, maximizar clics con límite de CPC, lista "AB · Negativas de la cuenta").
+Mismas reglas de la Parte 1: hazlo a mano, no toques nada existente, fecha de inicio 2026-12-31, "En pausa" al publicarla, y la configuración del PASO 2 (solo Búsqueda, México con "Presencia", solo español, maximizar clics con límite de CPC, lista "AB · Negativas de la cuenta").
 
 CAMPAÑA 6 de 6: AB · Marca Quick Laundry
 Presupuesto diario: $10 MXN · Límite de CPC: $6 MXN
@@ -56,5 +56,5 @@ horarios
   - Lavadoras y secadoras comerciales para abrir o equipar tu lavandería.
   - Solicita tu cotización y recibe precio del equipo que necesita tu lavandería.
 
-AL TERMINAR ESTA CAMPAÑA: dime su estado (debe decir "En pausa"), su presupuesto, cuántos grupos, palabras clave y anuncios tiene, y si algún anuncio o palabra clave quedó "Rechazado" o "Limitado" y por qué. No actives nada.
+AL TERMINAR ESTA CAMPAÑA: dime su estado (debe decir "En pausa"), su presupuesto, cuántos grupos, palabras clave y anuncios tiene, y si algún anuncio o palabra clave quedó "Rechazado" o "Limitado" y por qué. No actives nada más.
 Es la última parte: dame también la lista de todas las campañas que creaste en esta cuenta, con su estado.

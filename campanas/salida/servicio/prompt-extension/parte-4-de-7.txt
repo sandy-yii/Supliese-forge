@@ -1,5 +1,5 @@
 PARTE 4 de 7 · cuenta Servicio para Lavandería (265-909-2662)
-Mismas reglas de la Parte 1: hazlo a mano, no toques nada existente, fecha de inicio 2026-12-31, "En pausa" en cuanto la publiques, y la configuración del PASO 2 (solo Búsqueda, México con "Presencia", solo español, maximizar clics con límite de CPC, lista "AB · Negativas de la cuenta").
+Mismas reglas de la Parte 1: hazlo a mano, no toques nada existente, fecha de inicio 2026-12-31, "En pausa" al publicarla, y la configuración del PASO 2 (solo Búsqueda, México con "Presencia", solo español, maximizar clics con límite de CPC, lista "AB · Negativas de la cuenta").
 
 CAMPAÑA 3 de 6: AB · Refacciones Girbau y Gamesail
 Presupuesto diario: $16 MXN · Límite de CPC: $12 MXN
@@ -52,5 +52,5 @@ Presupuesto diario: $16 MXN · Límite de CPC: $12 MXN
   - Te ayudamos a identificar la pieza y la instalamos con nuestros técnicos.
   - Envíanos el modelo de tu equipo y recibe cotización de la refacción.
 
-AL TERMINAR ESTA CAMPAÑA: dime su estado (debe decir "En pausa"), su presupuesto, cuántos grupos, palabras clave y anuncios tiene, y si algún anuncio o palabra clave quedó "Rechazado" o "Limitado" y por qué. No actives nada.
+AL TERMINAR ESTA CAMPAÑA: dime su estado (debe decir "En pausa"), su presupuesto, cuántos grupos, palabras clave y anuncios tiene, y si algún anuncio o palabra clave quedó "Rechazado" o "Limitado" y por qué. No actives nada más.
 Luego espera la Parte 5.
