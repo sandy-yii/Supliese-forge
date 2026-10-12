@@ -1,0 +1,49 @@
+PARTE 3 de 7 · cuenta Quick Laundry (cuenta Supliese Gómez) (256-397-2201)
+Mismas reglas de la Parte 1: hazlo a mano, no toques nada existente, fecha de inicio 2026-12-31, "En pausa" en cuanto la publiques, y la configuración del PASO 2 (solo Búsqueda, México con "Presencia", solo español, maximizar clics con límite de CPC, lista "AB · Negativas de la cuenta").
+
+CAMPAÑA 2 de 6: AB · Emprendimiento
+Presupuesto diario: $49 MXN · Límite de CPC: $7 MXN
+Negativas propias de esta campaña (además de la lista):
+"cuanto cuesta"
+"cuánto cuesta"
+"cuanto cuestan"
+"cuánto cuestan"
+"cuanto se necesita"
+"cuánto se necesita"
+"cuanto se invierte"
+"cuánto se invierte"
+"cuanto dinero"
+"cuánto dinero"
+"cuanto gana"
+"cuánto gana"
+"cuanto deja"
+"cuánto deja"
+
+  Grupo de anuncios: Abrir una lavandería
+  Palabras clave:
+  "abrir una lavandería"
+  "poner una lavandería"
+  "abrir mi lavandería"
+  "poner mi lavandería"
+  Anuncio adaptable de búsqueda:
+  URL final: https://supliese.com/landing/
+  Ruta: lavanderia / abrir
+  Títulos:
+  - Abre tu Lavandería
+  - Pon tu Propia Lavandería
+  - Asesoría para tu Lavandería
+  - Equipo para tu Lavandería
+  - Te Ayudamos a Planearla
+  - Elige el Equipo Correcto
+  - Lavadoras y Secadoras
+  - Quick Laundry
+  - Cotiza con un Asesor
+  - Solicita tu Cotización
+  Descripciones:
+  - Te asesoramos para elegir el equipo de tu lavandería según tu espacio y tu plan.
+  - Quick Laundry: lavadoras y secadoras para abrir tu lavandería, con asesoría.
+  - Platica con un asesor sobre el local, el equipo y los pasos para abrir tu lavandería.
+  - Solicita tu cotización de equipo para tu lavandería nueva.
+
+AL TERMINAR ESTA CAMPAÑA: dime su estado (debe decir "En pausa"), su presupuesto, cuántos grupos, palabras clave y anuncios tiene, y si algún anuncio o palabra clave quedó "Rechazado" o "Limitado" y por qué. No actives nada.
+Luego espera la Parte 4.

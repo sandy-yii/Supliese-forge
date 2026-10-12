@@ -1,0 +1,45 @@
+PARTE 2 de 7 · cuenta Servicio para Lavandería (265-909-2662)
+Mismas reglas de la Parte 1: hazlo a mano, no toques nada existente, fecha de inicio 2026-12-31, "En pausa" en cuanto la publiques, y la configuración del PASO 2 (solo Búsqueda, México con "Presencia", solo español, maximizar clics con límite de CPC, lista "AB · Negativas de la cuenta").
+
+CAMPAÑA 1 de 6: AB · Servicio técnico industrial
+Presupuesto diario: $43 MXN · Límite de CPC: $15 MXN
+Negativas propias de esta campaña (además de la lista):
+refacciones
+refacción
+refaccion
+partes
+repuestos
+venta
+comprar
+cotizar equipo
+girbau
+"precio lavadora industrial"
+"lavadora industrial precio"
+
+  Grupo de anuncios: Servicio técnico
+  Palabras clave:
+  "servicio técnico lavadoras industriales"
+  "técnico en lavadoras industriales"
+  "servicio técnico lavandería industrial"
+  "servicio técnico secadoras industriales"
+  Anuncio adaptable de búsqueda:
+  URL final: LA PÁGINA DE DESTINO QUE ANOTASTE EN EL PASO 0
+  Ruta: servicio / tecnico
+  Títulos:
+  - Servicio Técnico Industrial
+  - Técnicos en Lavadoras
+  - Lavadoras Industriales
+  - Lavanderías Industriales
+  - Secadoras Industriales
+  - Mantenimiento Correctivo
+  - Mantenimiento Preventivo
+  - Agenda tu Servicio
+  - Habla con un Técnico
+  Descripciones:
+  - Servicio técnico para lavadoras y secadoras industriales. Agenda tu servicio hoy.
+  - Técnicos para lavanderías industriales, hoteles y hospitales. Habla con un técnico.
+  - Mantenimiento correctivo y preventivo para que tu lavandería no se detenga.
+  - Agenda una visita y recibe el diagnóstico de tu equipo.
+
+AL TERMINAR ESTA CAMPAÑA: dime su estado (debe decir "En pausa"), su presupuesto, cuántos grupos, palabras clave y anuncios tiene, y si algún anuncio o palabra clave quedó "Rechazado" o "Limitado" y por qué. No actives nada.
+Luego espera la Parte 3.

@@ -1,0 +1,66 @@
+PARTE 4 de 8 · cuenta Gamesail (645-094-0317)
+Mismas reglas de la Parte 1: hazlo a mano, no toques nada existente, fecha de inicio 2026-12-31, "En pausa" en cuanto la publiques, y la configuración del PASO 2 (solo Búsqueda, México con "Presencia", solo español, maximizar clics con límite de CPC, lista "AB · Negativas de la cuenta").
+
+CAMPAÑA 3 de 7: AB · Secadoras industriales
+Presupuesto diario: $58 MXN · Límite de CPC: $14 MXN
+
+  Grupo de anuncios: Secadoras para ropa
+  Palabras clave:
+  "secadoras industriales de ropa"
+  "secadoras industriales"
+  [secadora industrial de ropa]
+  "secadora industrial para ropa"
+  "secadora industrial para sábanas"
+  Anuncio adaptable de búsqueda:
+  URL final: https://gamesail.mx/
+  Ruta: secadoras / ropa
+  Títulos:
+  - Secadoras Industriales
+  - Secadoras para Ropa
+  - Secadoras de 50 a 200 kg
+  - Para Ropa, Sábanas y Blancos
+  - Secadoras para Sábanas
+  - Para Hoteles y Hospitales
+  - Lavadoras y Secadoras
+  - Te Ayudamos a Elegir
+  - Equipo Gamesail
+  - Cotiza con un Asesor
+  - Solicita tu Cotización
+  Descripciones:
+  - Secadoras industriales para ropa y sábanas de 50, 100, 130 y 200 kg. Cotiza hoy.
+  - Equipo Gamesail para secar ropa y blancos en volumen. Te ayudamos a elegir.
+  - Secadoras para hoteles, hospitales y lavanderías de ropa. Habla con un asesor.
+  - Solicita tu cotización y elige la capacidad que necesita tu operación.
+
+  Grupo de anuncios: Secadoras por capacidad
+  Palabras clave:
+  "secadora industrial 50 kg"
+  "secadora industrial 100 kg"
+  "secadora industrial 130 kg"
+  "secadora industrial 200 kg"
+  "secadora de 100 kilos"
+  "secadora de 200 kilos"
+  "secadora industrial 30 kg"
+  Anuncio adaptable de búsqueda:
+  URL final: https://gamesail.mx/
+  Ruta: secadoras / capacidad
+  Títulos:
+  - Secadoras de 50 a 200 kg
+  - Secadora Industrial 50 kg
+  - Secadora Industrial 100 kg
+  - Secadora Industrial 130 kg
+  - Secadora Industrial 200 kg
+  - Secadoras para Ropa
+  - Cotiza por Capacidad
+  - Elige la Capacidad Ideal
+  - Equipo Gamesail
+  - Cotiza con un Asesor
+  - Solicita tu Cotización
+  Descripciones:
+  - Secadoras industriales de 50, 100, 130 y 200 kg para ropa y sábanas. Pide precio.
+  - Te ayudamos a elegir la capacidad según los kilos de ropa que secas al día.
+  - Equipo Gamesail para lavanderías, hoteles y hospitales. Cotiza con un asesor.
+  - Solicita tu cotización con la capacidad que necesitas y recibe precio por equipo.
+
+AL TERMINAR ESTA CAMPAÑA: dime su estado (debe decir "En pausa"), su presupuesto, cuántos grupos, palabras clave y anuncios tiene, y si algún anuncio o palabra clave quedó "Rechazado" o "Limitado" y por qué. No actives nada.
+Luego espera la Parte 5.

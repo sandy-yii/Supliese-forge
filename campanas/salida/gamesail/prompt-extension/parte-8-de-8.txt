@@ -1,0 +1,77 @@
+PARTE 8 de 8 · cuenta Gamesail (645-094-0317)
+Mismas reglas de la Parte 1: hazlo a mano, no toques nada existente, fecha de inicio 2026-12-31, "En pausa" en cuanto la publiques, y la configuración del PASO 2 (solo Búsqueda, México con "Presencia", solo español, maximizar clics con límite de CPC, lista "AB · Negativas de la cuenta").
+
+CAMPAÑA 7 de 7: AB · Marca Gamesail
+Presupuesto diario: $23 MXN · Límite de CPC: $8 MXN
+
+  Grupo de anuncios: Gamesail
+  Palabras clave:
+  [gamesail]
+  "gamesail méxico"
+  [gamesail lavadoras industriales]
+  Anuncio adaptable de búsqueda:
+  URL final: https://gamesail.mx/
+  Ruta: gamesail / equipo
+  Títulos:
+  - Gamesail México
+  - Lavadoras Industriales
+  - Secadoras Industriales
+  - Lavadoras de 20 a 50 kg
+  - Secadoras de 50 a 200 kg
+  - Para Ropa, Sábanas y Blancos
+  - Sitio Oficial Gamesail
+  - Equipo Gamesail
+  - Cotiza con un Asesor
+  - Solicita tu Cotización
+  Descripciones:
+  - Lavadoras y secadoras industriales Gamesail para ropa y sábanas. Cotiza hoy.
+  - Lavadoras de 20 a 50 kg y secadoras de 50 a 200 kg. Habla con un asesor.
+  - Equipo para hoteles, hospitales y lavanderías de ropa. Te ayudamos a elegir.
+  - Solicita tu cotización y elige la capacidad que necesita tu operación.
+
+  Grupo de anuncios: Lavadoras Gamesail
+  Palabras clave:
+  "lavadoras gamesail"
+  "lavadora gamesail"
+  Anuncio adaptable de búsqueda:
+  URL final: https://gamesail.mx/
+  Ruta: lavadoras / gamesail
+  Títulos:
+  - Lavadoras Gamesail
+  - Lavadora Industrial Gamesail
+  - Lavadoras de 20 a 50 kg
+  - Para Ropa, Sábanas y Blancos
+  - Sitio Oficial Gamesail
+  - Te Ayudamos a Elegir
+  - Equipo Gamesail
+  - Cotiza con un Asesor
+  - Solicita tu Cotización
+  Descripciones:
+  - Lavadoras industriales Gamesail de 20 a 50 kg para ropa y sábanas. Cotiza hoy.
+  - Elige la capacidad según los kilos de ropa que lavas al día. Habla con un asesor.
+  - Para hoteles, hospitales y lavanderías de ropa. Solicita tu cotización.
+
+  Grupo de anuncios: Secadoras Gamesail
+  Palabras clave:
+  "secadoras gamesail"
+  "secadora gamesail"
+  Anuncio adaptable de búsqueda:
+  URL final: https://gamesail.mx/
+  Ruta: secadoras / gamesail
+  Títulos:
+  - Secadoras Gamesail
+  - Secadora Industrial Gamesail
+  - Secadoras de 50 a 200 kg
+  - Para Ropa, Sábanas y Blancos
+  - Sitio Oficial Gamesail
+  - Te Ayudamos a Elegir
+  - Equipo Gamesail
+  - Cotiza con un Asesor
+  - Solicita tu Cotización
+  Descripciones:
+  - Secadoras industriales Gamesail de 50, 100, 130 y 200 kg. Cotiza hoy.
+  - Elige la capacidad según los kilos de ropa que secas al día. Habla con un asesor.
+  - Para hoteles, hospitales y lavanderías de ropa. Solicita tu cotización.
+
+AL TERMINAR ESTA CAMPAÑA: dime su estado (debe decir "En pausa"), su presupuesto, cuántos grupos, palabras clave y anuncios tiene, y si algún anuncio o palabra clave quedó "Rechazado" o "Limitado" y por qué. No actives nada.
+Es la última parte: dame también la lista de todas las campañas que creaste en esta cuenta, con su estado.

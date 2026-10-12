@@ -8,7 +8,7 @@ Plan corregido con los acuerdos de la junta del 11 de octubre de 2026, y los scr
 | `generar.py` | Revisa el plan y genera los scripts y las fichas. |
 | `plantilla-script.js` | Base de los scripts de Google Ads. |
 | `salida/<cuenta>/crear-campanas.js` | Script que crea las campañas de esa cuenta, **en pausa**. |
-| `salida/<cuenta>/prompt-extension.txt` | Instrucciones para crear las mismas campañas a mano con la extensión Claude in Chrome, si no se puede usar el script. Quedan en pausa, con fecha de inicio 2026-12-31. |
+| `salida/<cuenta>/prompt-extension/parte-N-de-M.txt` | Instrucciones para crear las campañas a mano con la extensión Claude in Chrome, en partes: la 1 trae las reglas y la lista de negativas; cada parte siguiente, una campaña. Quedan en pausa, con fecha de inicio 2026-12-31. |
 | `salida/<cuenta>/ficha.md` | Todo lo que crea el script, para revisarlo antes. |
 | `salida/cruces.md` | Palabras clave que todavía podrían competir entre cuentas. |
 
@@ -43,7 +43,7 @@ El generador se detiene con error si algo falla:
   - CLM se queda con la lavandería completa: la búsqueda exacta «lavandería hotelera», el túnel y los proyectos.
 - **Quick Laundry en los anuncios desde ya,** pujando también por «supliese».
 - **Las campañas se crean en pausa;** se activan cuenta por cuenta con el OK.
-- **Zona de Girbau:** Girbau Occidente no cubre todo el país. Sus campañas nuevas copian las ubicaciones incluidas y excluidas de su campaña actual «Girbau Búsqueda | Nerea». El script solo las lee y muestra en el registro cuáles copió.
+- **Zona de Girbau:** su campaña actual «Girbau Búsqueda | Nerea» tiene los 32 estados, así que las nuevas van a todo México, como las demás cuentas. Idioma: solo español (Nerea tiene también inglés).
 
 ## Reparto de búsquedas entre cuentas
 
@@ -62,7 +62,7 @@ Cada cuenta carga como negativas las búsquedas de las otras. `salida/cruces.md`
 Los scripts **no se pueden usar**: la cuenta no puede autorizarlos. Las campañas se crean a mano con la extensión Claude in Chrome:
 
 1. En Chrome, abrir Google Ads **dentro de la cuenta** (no en el MCC).
-2. Abrir el panel de la extensión y pegar el texto completo de `salida/<cuenta>/prompt-extension.txt`. Es texto, no el `.js`.
+2. Abrir el panel de la extensión y pegar `salida/<cuenta>/prompt-extension/parte-1-de-M.txt`. Cuando la extensión termine, pegar la parte 2, y así hasta la última, en la misma conversación. Van en partes porque un texto largo se corta al pegarlo.
 3. Al terminar, la extensión da la lista de lo creado. Se compara contra `ficha.md`.
 
 Orden: Girbau, Servicio para Lavandería, CLM, Quick Laundry, Gamesail.
@@ -93,6 +93,5 @@ Detalles del script:
   - genera bien las operaciones;
   - se detiene si se corre en la cuenta equivocada;
   - en Servicio, copia la página de destino de los anuncios actuales.
-  - en Girbau, copia las ubicaciones de «Girbau Búsqueda | Nerea» y se detiene si esa campaña no existe o usa radios.
 - La vista previa en la cuenta es la prueba real.
 - Los topes de CPC salen del CPC promedio de Gamesail (~$8) y Supliese (~$5). En CLM, Servicio y Girbau son estimados: se ajustan la primera semana con el CPC real.

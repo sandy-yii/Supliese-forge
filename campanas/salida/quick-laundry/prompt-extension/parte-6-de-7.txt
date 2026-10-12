@@ -1,0 +1,39 @@
+PARTE 6 de 7 · cuenta Quick Laundry (cuenta Supliese Gómez) (256-397-2201)
+Mismas reglas de la Parte 1: hazlo a mano, no toques nada existente, fecha de inicio 2026-12-31, "En pausa" en cuanto la publiques, y la configuración del PASO 2 (solo Búsqueda, México con "Presencia", solo español, maximizar clics con límite de CPC, lista "AB · Negativas de la cuenta").
+
+CAMPAÑA 5 de 6: AB · Marcas comerciales
+Presupuesto diario: $16 MXN · Límite de CPC: $7 MXN
+Negativas propias de esta campaña (además de la lista):
+teléfono
+telefono
+dirección
+direccion
+sucursal
+servicio
+
+  Grupo de anuncios: Maytag y LG
+  Palabras clave:
+  "lavadora maytag industrial"
+  "lavadora maytag comercial"
+  "lg lavadora industrial"
+  "lavadora lg comercial"
+  Anuncio adaptable de búsqueda:
+  URL final: https://supliese.com/landing/
+  Ruta: lavadoras / comerciales
+  Títulos:
+  - Lavadoras Comerciales
+  - Equipo para Lavanderías
+  - Lavadoras y Secadoras
+  - Equipa tu Lavandería
+  - Precios de Equipo
+  - Te Ayudamos a Elegir
+  - Quick Laundry
+  - Cotiza con un Asesor
+  - Solicita tu Cotización
+  Descripciones:
+  - Lavadoras y secadoras comerciales para lavandería. Cotiza hoy con un asesor.
+  - Quick Laundry: equipo comercial para tu lavandería con asesoría para elegir modelo.
+  - Solicita tu cotización y recibe precio del equipo que necesita tu lavandería.
+
+AL TERMINAR ESTA CAMPAÑA: dime su estado (debe decir "En pausa"), su presupuesto, cuántos grupos, palabras clave y anuncios tiene, y si algún anuncio o palabra clave quedó "Rechazado" o "Limitado" y por qué. No actives nada.
+Luego espera la Parte 7.

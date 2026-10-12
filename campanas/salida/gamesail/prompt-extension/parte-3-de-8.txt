@@ -1,0 +1,39 @@
+PARTE 3 de 8 · cuenta Gamesail (645-094-0317)
+Mismas reglas de la Parte 1: hazlo a mano, no toques nada existente, fecha de inicio 2026-12-31, "En pausa" en cuanto la publiques, y la configuración del PASO 2 (solo Búsqueda, México con "Presencia", solo español, maximizar clics con límite de CPC, lista "AB · Negativas de la cuenta").
+
+CAMPAÑA 2 de 7: AB · Lavadoras por capacidad y precio
+Presupuesto diario: $58 MXN · Límite de CPC: $12 MXN
+
+  Grupo de anuncios: Lavadoras por capacidad
+  Palabras clave:
+  [lavadora industrial 20 kg precio]
+  [lavadora industrial 30 kg precio]
+  [lavadora industrial 50 kg precio]
+  "lavadora industrial 20 kg"
+  "lavadora industrial 30 kg"
+  "lavadora industrial 50 kg"
+  "lavadoras industriales precio"
+  "centro de lavado industrial"
+  Anuncio adaptable de búsqueda:
+  URL final: https://gamesail.mx/
+  Ruta: lavadoras / capacidad
+  Títulos:
+  - Lavadoras de 20, 30 y 50 kg
+  - Lavadora Industrial 20 kg
+  - Lavadora Industrial 30 kg
+  - Lavadora Industrial 50 kg
+  - Precios de Lavadoras
+  - Cotiza por Capacidad
+  - Para Ropa y Sábanas
+  - Elige la Capacidad Ideal
+  - Equipo Gamesail
+  - Cotiza con un Asesor
+  - Solicita tu Cotización
+  Descripciones:
+  - Lavadoras industriales de 20, 30 y 50 kg para ropa y sábanas. Pide el precio hoy.
+  - Te ayudamos a elegir la capacidad según los kilos de ropa que lavas al día.
+  - Equipo Gamesail para lavanderías, hoteles y hospitales. Cotiza con un asesor.
+  - Solicita tu cotización con la capacidad que necesitas y recibe precio por equipo.
+
+AL TERMINAR ESTA CAMPAÑA: dime su estado (debe decir "En pausa"), su presupuesto, cuántos grupos, palabras clave y anuncios tiene, y si algún anuncio o palabra clave quedó "Rechazado" o "Limitado" y por qué. No actives nada.
+Luego espera la Parte 4.

@@ -1,0 +1,88 @@
+PARTE 3 de 7 · cuenta Servicio para Lavandería (265-909-2662)
+Mismas reglas de la Parte 1: hazlo a mano, no toques nada existente, fecha de inicio 2026-12-31, "En pausa" en cuanto la publiques, y la configuración del PASO 2 (solo Búsqueda, México con "Presencia", solo español, maximizar clics con límite de CPC, lista "AB · Negativas de la cuenta").
+
+CAMPAÑA 2 de 6: AB · Reparación y mantenimiento
+Presupuesto diario: $54 MXN · Límite de CPC: $15 MXN
+Negativas propias de esta campaña (además de la lista):
+refacciones
+refacción
+refaccion
+partes
+repuestos
+venta
+comprar
+cotizar equipo
+girbau
+"precio lavadora industrial"
+"lavadora industrial precio"
+
+  Grupo de anuncios: Reparación
+  Palabras clave:
+  "reparación de lavadoras industriales"
+  "reparación de lavadora industrial"
+  Anuncio adaptable de búsqueda:
+  URL final: LA PÁGINA DE DESTINO QUE ANOTASTE EN EL PASO 0
+  Ruta: reparacion / lavadoras
+  Títulos:
+  - Reparación de Lavadoras
+  - Lavadoras Industriales
+  - Reparación Industrial
+  - Mantenimiento Correctivo
+  - Técnicos en Lavadoras
+  - Diagnóstico de tu Equipo
+  - Servicio Técnico Industrial
+  - Agenda tu Servicio
+  - Habla con un Técnico
+  Descripciones:
+  - Reparación de lavadoras industriales para lavanderías, hoteles y hospitales.
+  - Técnicos en lavadoras y secadoras industriales. Agenda tu servicio hoy.
+  - Agenda una visita y recibe el diagnóstico de tu equipo.
+
+  Grupo de anuncios: Mantenimiento correctivo
+  Palabras clave:
+  "mantenimiento correctivo lavadora industrial"
+  "mantenimiento correctivo lavadoras industriales"
+  "mantenimiento correctivo lavadora"
+  Anuncio adaptable de búsqueda:
+  URL final: LA PÁGINA DE DESTINO QUE ANOTASTE EN EL PASO 0
+  Ruta: mantenimiento / correctivo
+  Títulos:
+  - Mantenimiento Correctivo
+  - Lavadoras Industriales
+  - Reparación de Lavadoras
+  - Técnicos en Lavadoras
+  - Diagnóstico de tu Equipo
+  - Agenda una Visita
+  - Servicio Técnico Industrial
+  - Agenda tu Servicio
+  - Habla con un Técnico
+  Descripciones:
+  - Mantenimiento correctivo para lavadoras industriales. Agenda tu servicio hoy.
+  - Técnicos para lavanderías industriales, hoteles y hospitales. Habla con un técnico.
+  - Agenda una visita y recibe el diagnóstico de tu equipo.
+
+  Grupo de anuncios: Mantenimiento preventivo
+  Palabras clave:
+  "mantenimiento preventivo lavadoras industriales"
+  "mantenimiento lavandería industrial"
+  "mantenimiento de lavadoras industriales"
+  Anuncio adaptable de búsqueda:
+  URL final: LA PÁGINA DE DESTINO QUE ANOTASTE EN EL PASO 0
+  Ruta: mantenimiento / preventivo
+  Títulos:
+  - Mantenimiento Preventivo
+  - Lavadoras Industriales
+  - Lavanderías Industriales
+  - Técnicos en Lavadoras
+  - Evita Paros de tu Equipo
+  - Agenda una Visita
+  - Servicio Técnico Industrial
+  - Agenda tu Servicio
+  - Habla con un Técnico
+  Descripciones:
+  - Mantenimiento preventivo para lavadoras y secadoras industriales. Agenda hoy.
+  - Técnicos para lavanderías industriales, hoteles y hospitales. Habla con un técnico.
+  - Agenda una visita y recibe el diagnóstico de tu equipo.
+
+AL TERMINAR ESTA CAMPAÑA: dime su estado (debe decir "En pausa"), su presupuesto, cuántos grupos, palabras clave y anuncios tiene, y si algún anuncio o palabra clave quedó "Rechazado" o "Limitado" y por qué. No actives nada.
+Luego espera la Parte 4.

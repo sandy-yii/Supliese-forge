@@ -1,0 +1,36 @@
+PARTE 4 de 7 · cuenta Quick Laundry (cuenta Supliese Gómez) (256-397-2201)
+Mismas reglas de la Parte 1: hazlo a mano, no toques nada existente, fecha de inicio 2026-12-31, "En pausa" en cuanto la publiques, y la configuración del PASO 2 (solo Búsqueda, México con "Presencia", solo español, maximizar clics con límite de CPC, lista "AB · Negativas de la cuenta").
+
+CAMPAÑA 3 de 6: AB · Autoservicio y monedas
+Presupuesto diario: $28 MXN · Límite de CPC: $7 MXN
+
+  Grupo de anuncios: Autoservicio
+  Palabras clave:
+  [lavadoras de monedas]
+  [equipo para lavandería autoservicio]
+  "lavadoras de autoservicio"
+  "lavadora para lavandería autoservicio"
+  "lavadora de monedas"
+  "secadora de monedas"
+  Anuncio adaptable de búsqueda:
+  URL final: https://supliese.com/landing/
+  Ruta: autoservicio / monedas
+  Títulos:
+  - Lavadoras de Monedas
+  - Equipo para Autoservicio
+  - Lavandería de Autoservicio
+  - Secadoras de Monedas
+  - Lavadoras y Secadoras
+  - Equipa tu Lavandería
+  - Te Ayudamos a Elegir
+  - Quick Laundry
+  - Cotiza con un Asesor
+  - Solicita tu Cotización
+  Descripciones:
+  - Lavadoras y secadoras de monedas para lavandería de autoservicio. Cotiza hoy.
+  - Quick Laundry: equipo para autoservicio con asesoría para elegir modelo.
+  - Equipa tu lavandería de autoservicio con lavadoras y secadoras comerciales.
+  - Solicita tu cotización y recibe precio del equipo para tu autoservicio.
+
+AL TERMINAR ESTA CAMPAÑA: dime su estado (debe decir "En pausa"), su presupuesto, cuántos grupos, palabras clave y anuncios tiene, y si algún anuncio o palabra clave quedó "Rechazado" o "Limitado" y por qué. No actives nada.
+Luego espera la Parte 5.

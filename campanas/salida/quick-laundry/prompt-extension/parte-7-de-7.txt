@@ -1,0 +1,60 @@
+PARTE 7 de 7 · cuenta Quick Laundry (cuenta Supliese Gómez) (256-397-2201)
+Mismas reglas de la Parte 1: hazlo a mano, no toques nada existente, fecha de inicio 2026-12-31, "En pausa" en cuanto la publiques, y la configuración del PASO 2 (solo Búsqueda, México con "Presencia", solo español, maximizar clics con límite de CPC, lista "AB · Negativas de la cuenta").
+
+CAMPAÑA 6 de 6: AB · Marca Quick Laundry
+Presupuesto diario: $10 MXN · Límite de CPC: $6 MXN
+Negativas propias de esta campaña (además de la lista):
+"precio por kilo"
+"por kilo"
+"servicio de lavado"
+domicilio
+horario
+horarios
+
+  Grupo de anuncios: Quick Laundry
+  Palabras clave:
+  [quick laundry]
+  "quick laundry méxico"
+  [quicklaundry]
+  "quick laundry equipo"
+  Anuncio adaptable de búsqueda:
+  URL final: https://supliese.com/landing/
+  Ruta: quick / laundry
+  Títulos:
+  - Quick Laundry
+  - Quick Laundry México
+  - Equipo para Lavanderías
+  - Lavadoras y Secadoras
+  - Antes Supliese
+  - Te Ayudamos a Elegir
+  - Cotiza con un Asesor
+  - Solicita tu Cotización
+  Descripciones:
+  - Quick Laundry, antes Supliese: equipo para lavanderías. Cotiza hoy con un asesor.
+  - Lavadoras y secadoras comerciales para abrir o equipar tu lavandería.
+  - Solicita tu cotización y recibe precio del equipo que necesita tu lavandería.
+
+  Grupo de anuncios: Supliese
+  Palabras clave:
+  [supliese]
+  "supliese"
+  [supliese gómez]
+  Anuncio adaptable de búsqueda:
+  URL final: https://supliese.com/landing/
+  Ruta: quick / laundry
+  Títulos:
+  - Supliese Ahora es
+  - Quick Laundry
+  - Equipo para Lavanderías
+  - Lavadoras y Secadoras
+  - Antes Supliese
+  - Te Ayudamos a Elegir
+  - Cotiza con un Asesor
+  - Solicita tu Cotización
+  Descripciones:
+  - Supliese ahora es Quick Laundry: el mismo equipo para lavanderías. Cotiza hoy.
+  - Lavadoras y secadoras comerciales para abrir o equipar tu lavandería.
+  - Solicita tu cotización y recibe precio del equipo que necesita tu lavandería.
+
+AL TERMINAR ESTA CAMPAÑA: dime su estado (debe decir "En pausa"), su presupuesto, cuántos grupos, palabras clave y anuncios tiene, y si algún anuncio o palabra clave quedó "Rechazado" o "Limitado" y por qué. No actives nada.
+Es la última parte: dame también la lista de todas las campañas que creaste en esta cuenta, con su estado.

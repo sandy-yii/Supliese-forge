@@ -1,0 +1,32 @@
+PARTE 5 de 7 · cuenta Quick Laundry (cuenta Supliese Gómez) (256-397-2201)
+Mismas reglas de la Parte 1: hazlo a mano, no toques nada existente, fecha de inicio 2026-12-31, "En pausa" en cuanto la publiques, y la configuración del PASO 2 (solo Búsqueda, México con "Presencia", solo español, maximizar clics con límite de CPC, lista "AB · Negativas de la cuenta").
+
+CAMPAÑA 4 de 6: AB · Secadoras para lavandería
+Presupuesto diario: $16 MXN · Límite de CPC: $8 MXN
+
+  Grupo de anuncios: Secadoras para lavandería
+  Palabras clave:
+  "secadora de ropa para lavandería"
+  "secadora lavandería"
+  "secadora semi industrial"
+  "secadoras semi industriales"
+  Anuncio adaptable de búsqueda:
+  URL final: https://supliese.com/landing/
+  Ruta: secadoras / lavanderia
+  Títulos:
+  - Secadoras para Lavandería
+  - Secadoras Semi Industriales
+  - Secadora Comercial
+  - Lavadoras y Secadoras
+  - Equipa tu Lavandería
+  - Te Ayudamos a Elegir
+  - Quick Laundry
+  - Cotiza con un Asesor
+  - Solicita tu Cotización
+  Descripciones:
+  - Secadoras de ropa para lavandería, comerciales y semi industriales. Cotiza hoy.
+  - Quick Laundry: equipo para tu lavandería con asesoría para elegir modelo.
+  - Solicita tu cotización y recibe precio de la secadora que necesitas.
+
+AL TERMINAR ESTA CAMPAÑA: dime su estado (debe decir "En pausa"), su presupuesto, cuántos grupos, palabras clave y anuncios tiene, y si algún anuncio o palabra clave quedó "Rechazado" o "Limitado" y por qué. No actives nada.
+Luego espera la Parte 6.

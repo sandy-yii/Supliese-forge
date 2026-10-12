@@ -1,0 +1,57 @@
+PARTE 3 de 7 · cuenta CLM (993-525-8739)
+Mismas reglas de la Parte 1: hazlo a mano, no toques nada existente, fecha de inicio 2026-12-31, "En pausa" en cuanto la publiques, y la configuración del PASO 2 (solo Búsqueda, México con "Presencia", solo español, maximizar clics con límite de CPC, lista "AB · Negativas de la cuenta").
+
+CAMPAÑA 2 de 6: AB · Lavandería hotelera e institucional
+Presupuesto diario: $77 MXN · Límite de CPC: $18 MXN
+
+  Grupo de anuncios: Lavandería hotelera
+  Palabras clave:
+  [lavandería hotelera]
+  "proyecto de lavandería hotelera"
+  "lavandería industrial para hotel"
+  "lavandería para hotel"
+  Anuncio adaptable de búsqueda:
+  URL final: https://clmmexico.com/
+  Ruta: lavanderia / hotelera
+  Títulos:
+  - Lavandería Hotelera
+  - Lavandería para Hoteles
+  - Proyectos de Lavandería
+  - Equipo de Alta Capacidad
+  - Túnel de Lavado para Ropa
+  - Mangles y Planchado
+  - Te Ayudamos a Planearla
+  - CLM México
+  - Cotiza con un Asesor
+  - Solicita tu Cotización
+  Descripciones:
+  - Lavandería hotelera completa: lavado, secado y planchado de alta capacidad. Cotiza hoy.
+  - CLM diseña y equipa la lavandería de tu hotel según los kilos que procesas al día.
+  - Túnel de lavado, lavadoras de alta capacidad y mangles para hoteles.
+  - Solicita tu cotización y habla con un asesor sobre tu proyecto.
+
+  Grupo de anuncios: Hospitales e institucional
+  Palabras clave:
+  "lavandería para hospital"
+  "lavandería hospitalaria"
+  "lavandería institucional"
+  Anuncio adaptable de búsqueda:
+  URL final: https://clmmexico.com/
+  Ruta: lavanderia / hospital
+  Títulos:
+  - Lavandería Hospitalaria
+  - Lavandería Institucional
+  - Proyectos de Lavandería
+  - Equipo de Alta Capacidad
+  - Túnel de Lavado para Ropa
+  - Te Ayudamos a Planearla
+  - CLM México
+  - Cotiza con un Asesor
+  - Solicita tu Cotización
+  Descripciones:
+  - Lavandería para hospitales e instituciones: lavado, secado y planchado. Cotiza hoy.
+  - CLM diseña y equipa tu lavandería según los kilos que procesas al día.
+  - Solicita tu cotización y habla con un asesor sobre tu proyecto.
+
+AL TERMINAR ESTA CAMPAÑA: dime su estado (debe decir "En pausa"), su presupuesto, cuántos grupos, palabras clave y anuncios tiene, y si algún anuncio o palabra clave quedó "Rechazado" o "Limitado" y por qué. No actives nada.
+Luego espera la Parte 4.

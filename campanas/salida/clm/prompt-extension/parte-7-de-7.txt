@@ -1,0 +1,32 @@
+PARTE 7 de 7 · cuenta CLM (993-525-8739)
+Mismas reglas de la Parte 1: hazlo a mano, no toques nada existente, fecha de inicio 2026-12-31, "En pausa" en cuanto la publiques, y la configuración del PASO 2 (solo Búsqueda, México con "Presencia", solo español, maximizar clics con límite de CPC, lista "AB · Negativas de la cuenta").
+
+CAMPAÑA 6 de 6: AB · Marca CLM
+Presupuesto diario: $15 MXN · Límite de CPC: $8 MXN
+
+  Grupo de anuncios: CLM
+  Palabras clave:
+  [clm méxico]
+  [clmmexico]
+  "clm lavandería"
+  "clm lavadoras"
+  "clm lavandería industrial"
+  Anuncio adaptable de búsqueda:
+  URL final: https://clmmexico.com/
+  Ruta: clm / lavanderia
+  Títulos:
+  - CLM México
+  - Lavandería Industrial
+  - Túnel de Lavado para Ropa
+  - Equipo de Alta Capacidad
+  - Sitio Oficial CLM
+  - Te Ayudamos a Elegir
+  - Cotiza con un Asesor
+  - Solicita tu Cotización
+  Descripciones:
+  - CLM México: lavandería industrial, túnel de lavado y alta capacidad. Cotiza hoy.
+  - Equipo para hoteles, hospitales y lavanderías de gran volumen.
+  - Solicita tu cotización y habla con un asesor sobre tu proyecto.
+
+AL TERMINAR ESTA CAMPAÑA: dime su estado (debe decir "En pausa"), su presupuesto, cuántos grupos, palabras clave y anuncios tiene, y si algún anuncio o palabra clave quedó "Rechazado" o "Limitado" y por qué. No actives nada.
+Es la última parte: dame también la lista de todas las campañas que creaste en esta cuenta, con su estado.
