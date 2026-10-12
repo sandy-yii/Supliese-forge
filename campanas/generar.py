@@ -243,6 +243,7 @@ def prompt(p):
     o = ['Vas a crear campañas nuevas de Búsqueda en Google Ads, en la cuenta %s (%s). Trabaja en una pestaña nueva.' % (c['nombre'], c['id']),
          '',
          'REGLAS (no negociables):',
+         '- Hazlo todo a mano en la interfaz de Google Ads, clic por clic. No uses Scripts, Google Ads Editor, cargas masivas ni hojas de cálculo: la cuenta no puede autorizar scripts.',
          '- No modifiques, pauses, actives, borres ni edites absolutamente nada de lo que ya existe en la cuenta: campañas, anuncios, palabras clave, presupuestos, listas, configuración ni facturación. Solo puedes CREAR lo que está en estas instrucciones.',
          '- Antes de empezar, confirma que el número de cuenta arriba a la derecha sea %s. Si no lo es, detente y pregúntame.' % c['id'],
          '- Ninguna campaña nueva debe quedar activa. En cada una pon como fecha de inicio el %s y, en cuanto la publiques, cámbiala a "En pausa".' % INICIO,

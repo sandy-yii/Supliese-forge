@@ -57,7 +57,17 @@ Cada cuenta carga como negativas las búsquedas de las otras. `salida/cruces.md`
 | Servicio para Lavandería | Servicio técnico, reparación, mantenimiento preventivo y correctivo, instalación; refacciones solo Girbau y Gamesail. |
 | Girbau | Todo lo que lleva la palabra «girbau», salvo las refacciones. |
 
-## Cómo se ejecuta cada cuenta
+## Cómo se crean las campañas: a mano con la extensión, SIN SCRIPT
+
+Los scripts **no se pueden usar**: la cuenta no puede autorizarlos. Las campañas se crean a mano con la extensión Claude in Chrome:
+
+1. En Chrome, abrir Google Ads **dentro de la cuenta** (no en el MCC).
+2. Abrir el panel de la extensión y pegar el texto completo de `salida/<cuenta>/prompt-extension.txt`. Es texto, no el `.js`.
+3. Al terminar, la extensión da la lista de lo creado. Se compara contra `ficha.md`.
+
+Orden: Girbau, Servicio para Lavandería, CLM, Quick Laundry, Gamesail.
+
+## Cómo se ejecutaría con script (no se usa: la cuenta no puede autorizarlo)
 
 1. Revisar la zona de la cuenta en la ficha. Las páginas de destino son las actuales; la de Servicio para Lavandería la copia el script de los anuncios actuales y la muestra en el registro.
 2. Dentro de la cuenta, no en el MCC: Herramientas > Acciones masivas > Scripts > «+».
