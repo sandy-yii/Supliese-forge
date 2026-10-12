@@ -1,0 +1,30 @@
+PLAN B · Servicio para Lavandería 265-909-2662 · reactivar solo lo que trae clientes
+Trabaja en una pestaña nueva y confirma el número de cuenta antes de empezar.
+
+FASE 1 · SOLO LECTURA
+No modifiques, pauses, actives ni edites absolutamente nada dentro de las cuentas. Solo navegar, configurar vistas, descargar y capturar. Si algo te pide confirmar un cambio, detente y pregúntame.
+Periodo: 1 mar 2026 – 11 oct 2026. Muestra habilitado y pausado.
+
+1. Conversiones: en Objetivos > Conversiones > Resumen, dime qué acciones son "Principal" y cuántas tuvo cada una. Una conversión real es formulario, llamada o WhatsApp; si lo que cuenta es visita a página o clic en botón genérico, avísame.
+2. Tabla de las 7 campañas: nombre, tipo, estado, presupuesto diario, puja, costo, conversiones, costo por conversión, fecha de finalización (si tiene y ya pasó, márcalo).
+3. Para estas candidatas: «Servicio y mantenimiento Industrial», «Campaña Search - General», «Servicio Regional»:
+   - cuántos anuncios aprobados tiene cada grupo habilitado;
+   - si hay anuncios rechazados, el MOTIVO EXACTO y sus textos;
+   - abre su URL final y dime si la página carga.
+
+DECISIÓN (aplícala tú y muéstrame el resultado en una tabla):
+Una candidata se ACTIVA solo si cumple todo:
+  a) 3 o más conversiones reales en el periodo;
+  b) costo por conversión no mayor a $400;
+  c) al menos un anuncio aprobado en cada grupo que va a correr;
+  d) la URL final carga;
+  e) no tiene fecha de finalización vencida.
+No actives: «Pmax - Local», «Refacciones Industriales», Display/Remarketing ni «Local - Comercial/doméstico», aunque tengan números buenos; solo repórtalos.
+Presupuesto: deja el que tenía. Si la suma de las que pasan supera $300 al día, NO bajes nada: dímelo y espera.
+
+Termina la Fase 1 con la tabla "Activar / No activar y por qué" y la frase: "¿Activo estas campañas? Responde SÍ ACTIVA".
+
+FASE 2 · SOLO SI YO RESPONDO "SÍ ACTIVA"
+Cambia a "Habilitada" únicamente las campañas de la tabla marcadas Activar. Nada más: no cambies presupuestos, pujas, anuncios, palabras ni grupos.
+Si aparece "Confirma que eres tú", una llave de acceso o cualquier verificación de Google, detente y avísame; no intentes saltarla.
+Al terminar, vuelve a la lista de campañas y dime el estado que muestra cada una (Apta, Limitada, En revisión, etc.).

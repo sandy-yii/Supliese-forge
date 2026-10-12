@@ -1,0 +1,29 @@
+PLAN B · Supliese Gomez / Quick Laundry 256-397-2201 · reactivar lo que convertía
+Trabaja en una pestaña nueva y confirma el número de cuenta antes de empezar.
+
+FASE 1 · SOLO LECTURA
+No modifiques, pauses, actives ni edites absolutamente nada dentro de las cuentas. Solo navegar, configurar vistas, descargar y capturar. Si algo te pide confirmar un cambio, detente y pregúntame.
+Periodo: 1 mar 2026 – 11 oct 2026. Muestra habilitado y pausado.
+
+1. Conversiones: acciones "Principal" y cuántas tuvo cada una. Avísame si lo que cuenta no es formulario, llamada o WhatsApp.
+2. Tabla de TODAS las campañas: nombre, tipo, estado, presupuesto diario, costo, conversiones, costo por conversión, y el estado que da Google (limitada por presupuesto / por volumen de búsquedas).
+3. Tabla de los GRUPOS DE ANUNCIOS pausados que tengan conversiones en el periodo, dentro de campañas habilitadas o pausadas: campaña, grupo, conversiones, costo por conversión, anuncios aprobados.
+   Busca en especial grupos o campañas de Lavadoras Comerciales, Emprendimiento, Franquicias y Competencia.
+4. De cada candidata, abre su URL final y dime si carga.
+
+DECISIÓN (aplícala tú y muéstrame el resultado en una tabla):
+Una campaña o grupo PAUSADO se ACTIVA solo si:
+  a) 3 o más conversiones reales en el periodo;
+  b) costo por conversión no mayor a $150;
+  c) tiene al menos un anuncio aprobado;
+  d) la URL carga;
+  e) NO es de marca Girbau (las palabras con "girbau" son de la cuenta de Girbau: no las actives aquí aunque conviertan).
+Si para activar un grupo hay que activar también su campaña, dímelo en la tabla.
+No toques presupuestos. Si la suma de presupuestos de lo que activarías supera $250 al día, dímelo y espera.
+
+Termina la Fase 1 con la tabla "Activar / No activar y por qué" y la frase: "¿Activo esto? Responde SÍ ACTIVA".
+
+FASE 2 · SOLO SI YO RESPONDO "SÍ ACTIVA"
+Cambia a "Habilitada" únicamente lo marcado Activar en la tabla. Nada más.
+Si aparece "Confirma que eres tú", una llave de acceso o cualquier verificación de Google, detente y avísame.
+Al terminar, dime el estado que muestra cada cosa activada.

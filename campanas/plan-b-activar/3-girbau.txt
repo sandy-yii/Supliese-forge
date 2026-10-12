@@ -1,0 +1,22 @@
+PLAN B · Girbau 860-582-6837 · mover dinero a lo que sí trae clientes
+Trabaja en una pestaña nueva y confirma el número de cuenta antes de empezar.
+
+FASE 1 · SOLO LECTURA
+No modifiques, pauses, actives ni edites absolutamente nada dentro de las cuentas. Solo navegar, configurar vistas, descargar y capturar. Si algo te pide confirmar un cambio, detente y pregúntame.
+
+1. Conversiones: acciones "Principal" y cuántas tuvo cada una en los últimos 30 días. Avísame si lo que cuenta no es formulario, llamada o WhatsApp.
+2. Tabla de TODAS las campañas (habilitadas y pausadas), últimos 30 días y también 1 mar – 11 oct 2026: nombre, tipo, estado, presupuesto diario, costo, conversiones, costo por conversión, cuota de impresiones perdida por presupuesto (Búsqueda) y el estado que da Google.
+3. «Girbau Búsqueda | Nerea»: costo y clics por día de los últimos 14 días. Si ayer tuvo 0 clics, busca la causa (anuncios rechazados, pagos, horario, límite de presupuesto, campaña en revisión) y dímela.
+
+DECISIÓN (aplícala tú y muéstrame el resultado):
+  A) Si Nerea tiene conversiones y pierde impresiones por presupuesto, propón: bajar «Máximo Rendimiento» a la MITAD y subir Nerea en la MISMA cantidad (el total diario de la cuenta no cambia).
+     Si Nerea NO pierde impresiones por presupuesto, no propongas mover dinero: dímelo.
+  B) Campañas de Búsqueda PAUSADAS con 3 o más conversiones y costo por conversión no mayor a $400 en el periodo largo, con un anuncio aprobado y URL que carga: márcalas "Activar".
+  C) No propongas nada más.
+
+Termina la Fase 1 con la tabla de cambios propuestos (antes → después) y la frase: "¿Hago estos cambios? Responde SÍ CAMBIA".
+
+FASE 2 · SOLO SI YO RESPONDO "SÍ CAMBIA"
+Haz únicamente los cambios de la tabla, uno por uno, en este orden: primero subir Nerea, después bajar «Máximo Rendimiento», después activar las campañas marcadas.
+Si aparece "Confirma que eres tú", una llave de acceso o cualquier verificación de Google, detente y avísame. Si alcanzaste a subir Nerea pero no a bajar Máximo Rendimiento, dímelo claramente.
+Al terminar, dime el presupuesto y estado que muestra cada campaña.
