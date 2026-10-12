@@ -31,6 +31,7 @@ franquicias
 "poner una lavandería"
 "poner una lavanderia"
 lorsa
+lorza
 wascomat
 unimac
 maytag
@@ -39,10 +40,17 @@ alliance
 primus
 electrolux
 lg
+imesa
+sertec
+edro
+lavartind
+whirlpool
+braun
 gamesail
 clm
 supliese
 "quick laundry"
+"continental girbau"
 empleo
 curso
 cursos

@@ -562,8 +562,10 @@ CUENTAS['girbau'] = dict(
                                        '[lavadora industrial 30 kg]', '[lavadora industrial 30 kg precio]'],
         'Refacciones (las atiende Servicio para Lavandería)': ['refacciones', 'refacción', 'partes', 'repuestos'],
         'Negocio de lavandería': ['franquicia', 'franquicias', '"poner una lavandería"'],
-        'Otras marcas': ['lorsa', 'wascomat', 'unimac', 'maytag', 'alliance', '"speed queen"', 'primus', 'electrolux', 'lg',
+        'Otras marcas': ['lorsa', 'lorza', 'wascomat', 'unimac', 'maytag', 'alliance', '"speed queen"', 'primus', 'electrolux',
+                         'lg', 'imesa', 'sertec', 'edro', 'lavartind', 'whirlpool', 'braun',
                          'gamesail', 'clm', 'supliese', '"quick laundry"'],
+        'Girbau de otro país (filial de EE. UU.)': ['"continental girbau"'],
         'Información, no compra': ['empleo', 'curso', 'cursos', 'manual', 'pdf', 'usada', 'usadas', 'renta'],
     },
     campanas=[
@@ -619,5 +621,8 @@ CUENTAS['girbau'] = dict(
     salen=['Refacciones Girbau (25%): pasa a Servicio para Lavandería; «refacciones» queda como negativa',
            'Genérico «lavadora industrial»: va a negativas en exacta. En frase bloquearía «lavadora industrial girbau»'],
     cambios_actuales=['Al activar: bajar la búsqueda actual a la mitad de su presupuesto',
-                      'Máximo Rendimiento actual: el plan dice apagarlo; requiere tu OK'],
+                      'Al activar: pausar en «Girbau Búsqueda | Nerea» las keywords «lavadoras girbau», «girbau mexico» y '
+                      '«lavadoras industriales girbau», que ya cubre «Marca Girbau»; si no, las dos campañas pujan por lo mismo',
+                      'Máximo Rendimiento actual: el plan dice apagarlo; requiere tu OK. Avisar al cliente: las búsquedas de marca '
+                      'que hoy recoge pasan a «Marca Girbau», así que los números se mueven entre campañas'],
 )
