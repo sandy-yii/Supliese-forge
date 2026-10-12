@@ -5,6 +5,9 @@ Hazlo todo a mano en la interfaz. No uses Scripts, Google Ads Editor, cargas mas
 Haz SOLO lo que dice aquí. Si algo no coincide o Google te pide confirmar algo distinto, detente y pregúntame.
 Si aparece "Confirma que eres tú", una llave de acceso o cualquier verificación de Google, detente y avísame; no intentes saltarla.
 
+PASO 0 · Revisa (solo leer)
+En «Campaña Search Marcas» revisa sus palabras negativas y las listas de exclusión aplicadas. Si alguna contiene "industrial", "industriales", "lavadora" o "secadora", dime cuál y DETENTE: con esa negativa el grupo nuevo no saldría.
+
 PASO 1 · Grupo de anuncios nuevo
 En la campaña «Campaña Search Marcas» crea un grupo de anuncios llamado: Industrial temporal
 Palabras clave (pégalas tal cual, una por línea; las comillas son concordancia de frase):

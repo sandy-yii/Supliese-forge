@@ -1,0 +1,43 @@
+PLAN B · Supliese Gomez / Quick Laundry 256-397-2201 · negativas de basura
+Trabaja en una pestaña nueva y confirma el número de cuenta antes de empezar.
+Hazlo todo a mano en la interfaz. No uses Scripts, Google Ads Editor, cargas masivas ni hojas de cálculo.
+
+FASE 1 · SOLO LECTURA
+No modifiques, pauses, actives ni edites absolutamente nada dentro de las cuentas. Solo navegar, configurar vistas, descargar y capturar. Si algo te pide confirmar un cambio, detente y pregúntame.
+1. En las campañas que estén HABILITADAS: lista las palabras clave negativas que ya tienen (de la campaña y de las listas de exclusión aplicadas).
+2. Marca las que podrían estar bloqueando clientes buenos: industrial, industriales, hotel, hospital, mangle, secadora, lavadora, comercial, Maytag, LG (mientras CLM y Gamesail estén pausadas, esta cuenta debe poder salir en búsquedas industriales). Solo repórtalas; no las quites.
+3. Si existe una lista llamada «AB · Negativas de la cuenta», dime a qué campañas está aplicada. No la apliques a ninguna campaña vieja: es para las campañas nuevas.
+Termina con: "¿Agrego las negativas de basura? Responde SÍ NEGATIVAS".
+
+FASE 2 · SOLO SI YO RESPONDO "SÍ NEGATIVAS"
+Herramientas > Biblioteca compartida > Listas de exclusión > "+". Nombre: PB · Negativas basura
+Pega estas palabras tal cual, una por línea (las comillas son concordancia de frase):
+lavax
+"lava 1"
+aquamatic
+5asec
+"cerca de mí"
+"cerca de mi"
+usada
+usadas
+usado
+usados
+seminueva
+seminuevas
+remate
+renta
+alquiler
+empleo
+vacante
+vacantes
+pdf
+manual
+gratis
+doméstica
+domésticas
+"para casa"
+mabe
+samsung
+Guarda la lista y aplícala SOLO a las campañas que estén HABILITADAS. No quites ninguna negativa existente ni cambies nada más.
+Si aparece "Confirma que eres tú", una llave de acceso o cualquier verificación de Google, detente y avísame; no intentes saltarla.
+Al terminar dime a qué campañas quedó aplicada.
