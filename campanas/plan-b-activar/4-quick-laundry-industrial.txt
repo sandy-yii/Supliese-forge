@@ -1,0 +1,42 @@
+PLAN B · Supliese Gomez / Quick Laundry 256-397-2201 · grupo "Industrial temporal"
+Mientras CLM y Gamesail estén pausadas por Google, esta cuenta atiende las búsquedas de equipo industrial.
+Trabaja en una pestaña nueva y confirma el número de cuenta antes de empezar.
+Hazlo todo a mano en la interfaz. No uses Scripts, Google Ads Editor, cargas masivas ni hojas de cálculo.
+Haz SOLO lo que dice aquí. Si algo no coincide o Google te pide confirmar algo distinto, detente y pregúntame.
+Si aparece "Confirma que eres tú", una llave de acceso o cualquier verificación de Google, detente y avísame; no intentes saltarla.
+
+PASO 1 · Grupo de anuncios nuevo
+En la campaña «Campaña Search Marcas» crea un grupo de anuncios llamado: Industrial temporal
+Palabras clave (pégalas tal cual, una por línea; las comillas son concordancia de frase):
+"lavadora industrial"
+"lavadoras industriales"
+"secadora industrial"
+"secadoras industriales"
+"lavadora industrial precio"
+"equipo de lavandería industrial"
+
+PASO 2 · Anuncio adaptable de búsqueda en ese grupo
+URL final: https://www.supliese.com/
+Ruta: industrial / cotiza
+Títulos (uno por campo):
+Lavadoras Industriales
+Secadoras Industriales
+Equipo para Lavandería
+Quick Laundry
+Equipo Industrial y Comercial
+Cotiza con un Asesor
+Te Ayudamos a Elegir
+Solicita tu Cotización
+Descripciones:
+Lavadoras y secadoras industriales para tu negocio. Cotiza hoy con un asesor.
+Te ayudamos a elegir la capacidad según los kilos de ropa que lavas al día.
+Copia los textos exactamente, con acentos. Guarda el grupo HABILITADO.
+
+PASO 3 · Revisa antes del presupuesto
+Dime el presupuesto diario actual de «Campaña Search Marcas» y si Google la marca "Limitada por presupuesto".
+Luego pregúntame: "¿Subo el presupuesto de Search Marcas en $150 al día? Responde SÍ SUBE".
+
+PASO 4 · SOLO SI YO RESPONDO "SÍ SUBE"
+Sube el presupuesto diario de «Campaña Search Marcas» exactamente $150 sobre el que tenía. No cambies la puja ni nada más.
+
+Al terminar dime: estado del grupo, estado del anuncio (Apto, En revisión, Rechazado) y presupuesto final.

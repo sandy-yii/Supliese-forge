@@ -8,7 +8,7 @@ Periodo: 1 mar 2026 – 11 oct 2026. Muestra habilitado y pausado.
 1. Conversiones: acciones "Principal" y cuántas tuvo cada una. Avísame si lo que cuenta no es formulario, llamada o WhatsApp.
 2. Tabla de TODAS las campañas: nombre, tipo, estado, presupuesto diario, costo, conversiones, costo por conversión, y el estado que da Google (limitada por presupuesto / por volumen de búsquedas).
 3. Tabla de los GRUPOS DE ANUNCIOS pausados que tengan conversiones en el periodo, dentro de campañas habilitadas o pausadas: campaña, grupo, conversiones, costo por conversión, anuncios aprobados.
-   Busca en especial grupos o campañas de Lavadoras Comerciales, Emprendimiento, Franquicias y Competencia.
+   Busca en especial grupos de Lavadoras Comerciales, Secadoras, Maytag, LG, Emprendimiento y Franquicias.
 4. De cada candidata y de las 2 campañas habilitadas: la URL final de sus anuncios y enlaces de sitio, si es de supliese.com y si carga.
 
 DECISIÓN (aplícala tú y muéstrame el resultado en una tabla):
@@ -16,7 +16,8 @@ Una campaña o grupo PAUSADO se ACTIVA solo si:
   a) 3 o más conversiones reales en el periodo;
   b) costo por conversión no mayor a $150;
   c) tiene al menos un anuncio aprobado;
-  d) NO es de marca Girbau (las palabras con "girbau" son de la cuenta de Girbau: no las actives aquí aunque conviertan).
+  d) NO es de marca Girbau (las palabras con "girbau" son de la cuenta de Girbau: no las actives aquí aunque conviertan);
+  e) NO es Competencia (se retiró en la junta).
 Si para activar un grupo hay que activar también su campaña, dímelo en la tabla.
 No toques presupuestos. Si la suma de presupuestos de lo que activarías supera $250 al día, dímelo y espera.
 

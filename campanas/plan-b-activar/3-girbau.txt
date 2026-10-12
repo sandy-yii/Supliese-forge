@@ -14,12 +14,13 @@ DECISIÓN (aplícala tú y muéstrame el resultado):
      Si Nerea NO pierde impresiones por presupuesto, no propongas mover dinero: dímelo.
   B) Campañas de Búsqueda PAUSADAS con 3 o más conversiones y costo por conversión no mayor a $400 en el periodo largo, con un anuncio aprobado: márcalas "Activar".
   C) Anuncios de Búsqueda con URL de otro dominio: márcalos "Cambiar URL". En «Máximo Rendimiento» solo repórtalo, no lo edites.
-  D) No propongas nada más.
+  D) Si Nerea tiene inglés entre sus idiomas, propón dejar solo español.
+  E) No propongas nada más.
 
 Termina la Fase 1 con la tabla de cambios propuestos (antes → después) y la frase: "¿Hago estos cambios? Responde SÍ CAMBIA".
 
 FASE 2 · SOLO SI YO RESPONDO "SÍ CAMBIA"
-Haz únicamente los cambios de la tabla, uno por uno, en este orden: primero subir Nerea, después bajar «Máximo Rendimiento», después activar las campañas marcadas.
+Haz únicamente los cambios de la tabla, uno por uno, en este orden: primero subir Nerea, después bajar «Máximo Rendimiento», después activar las campañas marcadas, al final el idioma.
 PÁGINA DE DESTINO NUEVA: https://girbauoccidente.com/
 En Nerea y en las campañas de Búsqueda que actives: si un anuncio habilitado tiene una URL final de otro dominio (que no sea girbauoccidente.com) o una página que no carga, crea en ese mismo grupo un anuncio nuevo con los mismos títulos, descripciones y rutas, cambiando SOLO la URL final por https://girbauoccidente.com/. Deja el anuncio viejo como está hasta que el nuevo salga Aprobado; yo te digo cuándo pausarlo. Si un enlace de sitio u otro recurso apunta a otro dominio, no lo edites: solo repórtalo.
 
