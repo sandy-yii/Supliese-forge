@@ -1,0 +1,13 @@
+AUDITORÍA DE LECTURA · Supliese Gomez / Quick Laundry 256-397-2201
+No modifiques, pauses, actives ni edites absolutamente nada dentro de las cuentas. Solo navegar, configurar vistas, descargar y capturar. Si algo te pide confirmar un cambio, detente y pregúntame.
+Trabaja en una pestaña nueva y confirma el número de cuenta antes de empezar.
+
+Hazlo dos veces: periodo "Últimos 30 días" y periodo "1 mar 2026 – 11 oct 2026". Que se vea lo habilitado y lo pausado.
+
+1. CAMPAÑAS (las 4). Tabla: nombre, estado y motivo, presupuesto diario, estrategia de puja, costo, clics, conversiones, costo por conversión, "Cuota de impresiones de búsqueda", "Cuota perdida de impr. de búsqueda (presupuesto)" y "(ranking)". Agrega las columnas si no están (Columnas > Competitivas).
+2. GRUPOS DE ANUNCIOS: nombre, campaña, estado, costo, clics, conversiones, costo por conversión.
+3. ANUNCIOS: estado de aprobación y, si están limitados o rechazados, el MOTIVO EXACTO.
+4. TÉRMINOS DE BÚSQUEDA (últimos 30 días): los 30 con más costo. Tabla: término, campaña, costo, clics, conversiones.
+5. CONVERSIONES: acciones de conversión, cuáles son "Principal" y cuántas tuvo cada una en los últimos 30 días.
+
+Entrégame todo como tablas de texto, sin resumir números.

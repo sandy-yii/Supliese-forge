@@ -1,0 +1,13 @@
+AUDITORÍA DE LECTURA · Girbau 860-582-6837
+No modifiques, pauses, actives ni edites absolutamente nada dentro de las cuentas. Solo navegar, configurar vistas, descargar y capturar. Si algo te pide confirmar un cambio, detente y pregúntame.
+Trabaja en una pestaña nueva y confirma el número de cuenta antes de empezar.
+
+Hazlo dos veces: periodo "Últimos 30 días" y periodo "1 mar 2026 – 11 oct 2026".
+
+1. CAMPAÑAS (las 2). Tabla: nombre, estado y motivo, presupuesto diario, estrategia de puja, costo, clics, conversiones, costo por conversión, "Cuota de impresiones de búsqueda" y "Cuota perdida (presupuesto)" y "(ranking)" de Nerea.
+2. GRUPOS DE ANUNCIOS de Nerea: nombre, estado, costo, clics, conversiones.
+3. Por día, últimos 14 días, de Nerea: costo y clics (quiero ver por qué ayer tuvo 0 clics).
+4. TÉRMINOS DE BÚSQUEDA de Nerea (últimos 30 días): los 25 con más costo, con conversiones.
+5. CONVERSIONES: acciones de conversión, cuáles son "Principal" y cuántas tuvo cada una en los últimos 30 días.
+
+Entrégame todo como tablas de texto, sin resumir números.

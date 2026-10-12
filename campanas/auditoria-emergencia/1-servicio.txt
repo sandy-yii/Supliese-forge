@@ -1,0 +1,13 @@
+AUDITORÍA DE LECTURA · Servicio para Lavandería 265-909-2662
+No modifiques, pauses, actives ni edites absolutamente nada dentro de las cuentas. Solo navegar, configurar vistas, descargar y capturar. Si algo te pide confirmar un cambio, detente y pregúntame.
+Trabaja en una pestaña nueva y confirma el número de cuenta antes de empezar.
+
+Periodo: 1 mar 2026 – 11 oct 2026. En las vistas, quita el filtro que oculta lo pausado (debe verse lo habilitado y lo pausado; no hace falta lo retirado).
+
+1. CAMPAÑAS (las 7). Una tabla con: nombre, tipo (Búsqueda, Máximo Rendimiento, Display), estado, presupuesto diario, estrategia de puja, costo, clics, conversiones, costo por conversión, y la fecha aproximada en que se pausó si la ves en el historial de cambios (Herramientas > Historial de cambios, filtra "Estado").
+2. GRUPOS DE ANUNCIOS de las campañas de Búsqueda. Tabla: campaña, grupo, estado, costo, clics, conversiones, costo por conversión.
+3. ANUNCIOS de esas campañas. Para cada anuncio: campaña, grupo, estado de aprobación (Aprobado, Limitado, Rechazado) y, si está rechazado o limitado, el MOTIVO EXACTO que muestra Google (abre el detalle). Copia también sus títulos y descripciones y la URL final.
+4. PALABRAS CLAVE: las 25 con más costo. Tabla: palabra, concordancia, campaña, estado, costo, clics, conversiones.
+5. CONVERSIONES: en Objetivos > Conversiones > Resumen, lista las acciones de conversión, cuáles son "Principal" y cuántas conversiones tuvo cada una en el periodo.
+
+Entrégame todo como tablas de texto, sin resumir números. Al final dime si algo no pudiste ver.

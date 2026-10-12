@@ -1,0 +1,14 @@
+AUDITORÍA DE LECTURA · CLM 993-525-8739 y Gamesail 645-094-0317
+No modifiques, pauses, actives ni edites absolutamente nada dentro de las cuentas. Solo navegar, configurar vistas, descargar y capturar. Si algo te pide confirmar un cambio, detente y pregúntame.
+Trabaja en una pestaña nueva. Confirma el número de cada cuenta antes de empezar.
+
+Estas dos cuentas están pausadas por Google (verificación del anunciante). Quiero dejarlas listas para cuando se reactiven.
+Periodo: 1 mar 2026 – 11 oct 2026. Que se vea lo habilitado y lo pausado.
+
+En cada cuenta:
+1. CAMPAÑAS: nombre, tipo, estado, presupuesto diario, estrategia de puja, costo, clics, conversiones, costo por conversión.
+2. GRUPOS DE ANUNCIOS de las campañas de Búsqueda: nombre, campaña, estado, costo, clics, conversiones.
+3. ANUNCIOS rechazados o limitados: cuál y el MOTIVO EXACTO.
+4. VERIFICACIÓN DEL ANUNCIANTE: abre el aviso y dime qué pide Google (datos, documentos, quién debe hacerlo, fecha límite, estado). No llenes ni envíes nada.
+
+Entrégame todo como tablas de texto, sin resumir números.
