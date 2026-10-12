@@ -7,7 +7,7 @@ Cuenta 860-582-6837 · presupuesto mensual $6,600 · Solo búsquedas con la marc
 **Configuración de todas las campañas:**
 
 - Red de Búsqueda solamente: sin socios de búsqueda ni Display.
-- México, solo personas que están en la zona (no "interesadas").
+- Las mismas ubicaciones que la campaña actual «Girbau Búsqueda | Nerea» (el registro de la vista previa dice cuáles son), solo personas que están en la zona (no "interesadas").
 - Idioma: español.
 - Puja: maximizar clics con tope de costo por clic.
 - Se crean **en pausa** y con el presupuesto de arranque (50%).

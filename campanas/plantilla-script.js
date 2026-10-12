@@ -13,9 +13,10 @@
  *   4. Revisar las campañas creadas. Se activan solo con el OK del cliente.
  */
 
-// Ubicación: 2484 = México completo. Si la cuenta cubre solo algunos estados, reemplazar por sus IDs
-// (Herramientas > Ubicaciones, o la lista de geoTargetConstants de Google Ads).
+// Ubicación: 2484 = México completo. Si el plan trae «ubicacion_de», se copian las ubicaciones incluidas y
+// excluidas de esa campaña actual (solo se leen, no se toca la campaña).
 var UBICACIONES = [2484];
+var EXCLUIDAS = [];
 // Idioma: 1003 = español.
 var IDIOMAS = [1003];
 // Si es true, la página de destino se copia de los anuncios actuales de la cuenta (la que más anuncios usan).
@@ -32,6 +33,9 @@ function main() {
     PLAN.url = urlDeAnunciosActuales();
   }
   Logger.log('Página de destino: ' + PLAN.url);
+  if (PLAN.ubicacion_de) {
+    ubicacionesDe(PLAN.ubicacion_de);
+  }
   var c = cid.replace(/-/g, '');
 
   var choques = [];
@@ -79,6 +83,9 @@ function main() {
       containsEuPoliticalAdvertising: 'DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING' } } });
     UBICACIONES.forEach(function (u) {
       ops.push({ campaignCriterionOperation: { create: { campaign: campana, location: { geoTargetConstant: 'geoTargetConstants/' + u } } } });
+    });
+    EXCLUIDAS.forEach(function (u) {
+      ops.push({ campaignCriterionOperation: { create: { campaign: campana, negative: true, location: { geoTargetConstant: 'geoTargetConstants/' + u } } } });
     });
     IDIOMAS.forEach(function (l) {
       ops.push({ campaignCriterionOperation: { create: { campaign: campana, language: { languageConstant: 'languageConstants/' + l } } } });
@@ -138,4 +145,46 @@ function urlDeAnunciosActuales() {
   }
   urls.forEach(function (u) { Logger.log('  en anuncios actuales: ' + u + ' (' + cuenta[u] + ' anuncios)'); });
   return urls[0];
+}
+
+function ubicacionesDe(nombre) {
+  var incluidas = [], excluidas = [], radios = 0, encontrada = false;
+  var it = AdsApp.search("SELECT campaign.name, campaign_criterion.type, campaign_criterion.negative, " +
+                         "campaign_criterion.location.geo_target_constant FROM campaign_criterion " +
+                         "WHERE campaign.name = '" + nombre.replace(/'/g, "\\'") + "' AND campaign.status != 'REMOVED' " +
+                         "AND campaign_criterion.type IN ('LOCATION', 'PROXIMITY')");
+  while (it.hasNext()) {
+    var r = it.next().campaignCriterion;
+    encontrada = true;
+    if (r.type === 'PROXIMITY') { radios++; continue; }
+    var id = String(r.location.geoTargetConstant).split('/').pop();
+    (r.negative ? excluidas : incluidas).push(id);
+  }
+  if (radios) {
+    throw new Error('«' + nombre + '» usa radios alrededor de una dirección; el script no los copia. No se creó nada.');
+  }
+  if (!incluidas.length) {
+    throw new Error((encontrada ? '«' + nombre + '» no tiene ubicaciones incluidas' : 'No encontré la campaña «' + nombre +
+                    '» o no tiene ubicaciones') + '. No se creó nada: revisa el nombre o elige la zona a mano.');
+  }
+  UBICACIONES = incluidas;
+  EXCLUIDAS = excluidas;
+  Logger.log('Ubicaciones copiadas de «' + nombre + '»:');
+  Logger.log('  incluidas: ' + nombresDeUbicaciones(incluidas));
+  if (excluidas.length) Logger.log('  excluidas: ' + nombresDeUbicaciones(excluidas));
+}
+
+function nombresDeUbicaciones(ids) {
+  var nombres = {};
+  try {
+    var it = AdsApp.search("SELECT geo_target_constant.id, geo_target_constant.canonical_name FROM geo_target_constant " +
+                           "WHERE geo_target_constant.id IN (" + ids.join(', ') + ")");
+    while (it.hasNext()) {
+      var g = it.next().geoTargetConstant;
+      nombres[String(g.id)] = g.canonicalName;
+    }
+  } catch (e) {
+    // Si no se pueden leer los nombres, se muestran solo los números.
+  }
+  return ids.map(function (i) { return nombres[i] ? nombres[i] + ' (' + i + ')' : i; }).join(' · ');
 }

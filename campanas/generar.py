@@ -167,7 +167,7 @@ def cruces(todas):
 def js(p):
     c = p['c']
     plan = dict(
-        cuenta=c['id'], nombre=c['nombre'], url=c['url'],
+        cuenta=c['id'], nombre=c['nombre'], url=c['url'], ubicacion_de=c.get('ubicacion_de'),
         lista=dict(nombre=PREFIJO + 'Negativas de la cuenta', kw=p['lista']),
         campanas=[dict(nombre=k['nombre'], diario=k['arranque'], cpc=k['cpc'], negativas=k['negativas'],
                        grupos=[dict(nombre=g['nombre'], kw=g['kw'], h=g['h'], d=g['d'], p=g['p']) for g in k['grupos']])
@@ -192,7 +192,9 @@ def ficha(p):
                                         'el registro de la vista previa dice cuál es' if c['url'] == 'COPIAR_DE_ANUNCIOS' else c['url']),
          '', '**Configuración de todas las campañas:**', '',
          '- Red de Búsqueda solamente: sin socios de búsqueda ni Display.',
-         '- México, solo personas que están en la zona (no "interesadas").',
+         '- %s, solo personas que están en la zona (no "interesadas").' % (
+             'Las mismas ubicaciones que la campaña actual «%s» (el registro de la vista previa dice cuáles son)' % c['ubicacion_de']
+             if c.get('ubicacion_de') else 'México'),
          '- Idioma: español.',
          '- Puja: maximizar clics con tope de costo por clic.',
          '- Se crean **en pausa** y con el presupuesto de arranque (50%).', '',
@@ -237,6 +239,7 @@ def prompt(p):
     c = p['c']
     copiar = c['url'] == 'COPIAR_DE_ANUNCIOS'
     url = 'LA PÁGINA DE DESTINO QUE ANOTASTE EN EL PASO 0' if copiar else c['url']
+    zona = c.get('ubicacion_de')
     o = ['Vas a crear campañas nuevas de Búsqueda en Google Ads, en la cuenta %s (%s). Trabaja en una pestaña nueva.' % (c['nombre'], c['id']),
          '',
          'REGLAS (no negociables):',
@@ -251,6 +254,9 @@ def prompt(p):
     if copiar:
         o += ['PASO 0 · Página de destino (solo leer):',
               'Ve a Campañas > Anuncios, mira la columna o el detalle de "URL final" de los anuncios actuales y anota la que más se repite. No edites ningún anuncio. Dime cuál anotaste y úsala en todos los anuncios nuevos.', '']
+    if zona:
+        o += ['PASO 0 · Ubicaciones (solo leer):',
+              'Abre la campaña actual "%s" > Configuración > Ubicaciones y anota las ubicaciones incluidas y excluidas. No edites nada. Dime cuáles anotaste y usa exactamente las mismas en todas las campañas nuevas.' % zona, '']
     o += ['PASO 1 · Lista de palabras clave negativas:',
           'Herramientas > Biblioteca compartida > Listas de exclusión (o "Listas de palabras clave negativas") > "+". Nombre: "%sNegativas de la cuenta". Pega estas palabras, una por línea:' % PREFIJO,
           ''] + [escribir(*n) for n in p['lista']] + ['',
@@ -258,7 +264,7 @@ def prompt(p):
           '- Nueva campaña > "Crear una campaña sin la orientación de un objetivo" > Búsqueda.',
           '- Nombre: el que se indica abajo.',
           '- Redes: quita "Red de Búsqueda de socios" y "Red de Display".',
-          '- Ubicaciones: México. En "Opciones de ubicación", elige "Presencia: personas que están o que suelen estar en tus ubicaciones incluidas" (no "Presencia o interés").',
+          '- Ubicaciones: %s. En "Opciones de ubicación", elige "Presencia: personas que están o que suelen estar en tus ubicaciones incluidas" (no "Presencia o interés").' % ('las que anotaste en el PASO 0' if zona else 'México'),
           '- Idioma: español.',
           '- Fechas: inicio %s.' % INICIO,
           '- Presupuesto diario y puja: el que se indica. Puja: "Clics" (maximizar clics) con "Límite máximo de oferta de CPC".',

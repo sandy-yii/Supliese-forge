@@ -43,6 +43,7 @@ El generador se detiene con error si algo falla:
   - CLM se queda con la lavandería completa: la búsqueda exacta «lavandería hotelera», el túnel y los proyectos.
 - **Quick Laundry en los anuncios desde ya,** pujando también por «supliese».
 - **Las campañas se crean en pausa;** se activan cuenta por cuenta con el OK.
+- **Zona de Girbau:** Girbau Occidente no cubre todo el país. Sus campañas nuevas copian las ubicaciones incluidas y excluidas de su campaña actual «Girbau Búsqueda | Nerea». El script solo las lee y muestra en el registro cuáles copió.
 
 ## Reparto de búsquedas entre cuentas
 
@@ -82,5 +83,6 @@ Detalles del script:
   - genera bien las operaciones;
   - se detiene si se corre en la cuenta equivocada;
   - en Servicio, copia la página de destino de los anuncios actuales.
+  - en Girbau, copia las ubicaciones de «Girbau Búsqueda | Nerea» y se detiene si esa campaña no existe o usa radios.
 - La vista previa en la cuenta es la prueba real.
 - Los topes de CPC salen del CPC promedio de Gamesail (~$8) y Supliese (~$5). En CLM, Servicio y Girbau son estimados: se ajustan la primera semana con el CPC real.
