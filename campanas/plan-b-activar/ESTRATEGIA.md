@@ -10,6 +10,15 @@ Basado en las auditorías de septiembre y en lo que la extensión vio el 12 de o
 | CLM 993-525-8739 | Pausada por Google (verificación) | Que la agencia (dueña) complete la verificación. Al volver: Búsqueda sí; Máximo Rendimiento e Inglés no; Túnel solo con negativas de autolavado. | — |
 | Gamesail 645-094-0317 | Pausada por Google (verificación) | Que el cliente (perfil de pagos) complete la verificación. Los datos de septiembre son de la cuenta vieja: antes de activar, leer las 9 campañas. Display, Video y Latam no entran en el plan B. | — |
 
+## Resultado de Servicio (12 oct)
+
+- «Servicio y mantenimiento Industrial»: $51,178, 254.71 conversiones Principal ($201) pero solo 85 reales (formulario 10, llamadas 10, conversación iniciada 65) = $602 por contacto real. Coudibot (evento de chatbot, 147.71) es Principal y es lo que aprende la puja (CPA objetivo $180). Se activa como excepción: es la única campaña de la cuenta que trae contactos reales.
+- Servicio Regional: 0 contactos reales en $6,068 y lleva a la página de doméstico: no se activa.
+- Campaña Search - General: nunca gastó; Reparación Marcas sin anuncios aprobados: no se activa.
+- servicioparalavanderias.com/landing/, /laundrysolutions/ y landing.servicioparalavanderias.com dan error 500: son la causa de los rechazos por "Destino no operativo". Redirigirlas a la portada arregla esos anuncios y enlaces sin editarlos.
+- Las acciones de WhatsApp registraron 0 en el periodo.
+- Pendiente con acceso: pasar Coudibot a Secundaria y revisar la puja.
+
 ## Negativas en el plan B
 
 - Solo se agregan negativas de basura (empleo, cursos, usado y renta, doméstico, cadenas de lavandería, marcas ajenas en Girbau), en la lista «PB · Negativas basura» de cada cuenta: prompts 5, 6 y 7, después de activar.

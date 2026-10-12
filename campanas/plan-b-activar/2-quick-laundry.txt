@@ -14,7 +14,7 @@ Periodo: 1 mar 2026 – 11 oct 2026. Muestra habilitado y pausado.
 DECISIÓN (aplícala tú y muéstrame el resultado en una tabla):
 Una campaña o grupo PAUSADO se ACTIVA solo si:
   a) 3 o más conversiones reales en el periodo;
-  b) costo por conversión no mayor a $150;
+  b) costo por conversión no mayor a $150 (el de la columna Conversiones, con todas las acciones Principal: así se fijó este tope). En la tabla pon también el costo por conversión real (solo formulario, llamada y mensaje), pero no lo uses para descartar;
   c) tiene al menos un anuncio aprobado;
   d) NO es de marca Girbau (las palabras con "girbau" son de la cuenta de Girbau: no las actives aquí aunque conviertan);
   e) NO es Competencia ni Franquicias (las dos salieron en la junta).

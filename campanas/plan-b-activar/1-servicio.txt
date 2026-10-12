@@ -15,7 +15,7 @@ Periodo: 1 mar 2026 – 11 oct 2026. Muestra habilitado y pausado.
 DECISIÓN (aplícala tú y muéstrame el resultado en una tabla):
 Una candidata se ACTIVA solo si cumple todo:
   a) 3 o más conversiones reales en el periodo;
-  b) costo por conversión no mayor a $400;
+  b) costo por conversión no mayor a $400 (el de la columna Conversiones, con todas las acciones Principal: así se fijó este tope). En la tabla pon también el costo por conversión real (solo formulario, llamada y mensaje), pero no lo uses para descartar;
   c) al menos un anuncio aprobado en cada grupo que va a correr;
   d) no tiene fecha de finalización vencida.
 No actives: «Pmax - Local», «Refacciones Industriales», Display/Remarketing ni «Local - Comercial/doméstico», aunque tengan números buenos; solo repórtalos.
