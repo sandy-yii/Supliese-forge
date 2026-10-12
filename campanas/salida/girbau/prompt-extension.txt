@@ -1,0 +1,200 @@
+Vas a crear campañas nuevas de Búsqueda en Google Ads, en la cuenta Girbau (860-582-6837). Trabaja en una pestaña nueva.
+
+REGLAS (no negociables):
+- No modifiques, pauses, actives, borres ni edites absolutamente nada de lo que ya existe en la cuenta: campañas, anuncios, palabras clave, presupuestos, listas, configuración ni facturación. Solo puedes CREAR lo que está en estas instrucciones.
+- Antes de empezar, confirma que el número de cuenta arriba a la derecha sea 860-582-6837. Si no lo es, detente y pregúntame.
+- Ninguna campaña nueva debe quedar activa. En cada una pon como fecha de inicio el 2026-12-31 y, en cuanto la publiques, cámbiala a "En pausa".
+- Si Google ofrece crear recursos automáticamente, AI Max, expansión de URL final, concordancia amplia en toda la campaña, recomendaciones o "aplicar sugerencias": recházalo o déjalo apagado.
+- Si algo te pide confirmar un cambio distinto a crear lo de estas instrucciones, o aparece un error que no entiendes, detente y pregúntame.
+- Copia los textos exactamente como están, con acentos. No inventes ni cambies títulos, descripciones ni palabras clave.
+- Las palabras clave se pegan tal cual, una por línea: [texto] es concordancia exacta y "texto" es concordancia de frase.
+
+PASO 1 · Lista de palabras clave negativas:
+Herramientas > Biblioteca compartida > Listas de exclusión (o "Listas de palabras clave negativas") > "+". Nombre: "AB · Negativas de la cuenta". Pega estas palabras, una por línea:
+
+[lavadora industrial]
+[lavadoras industriales]
+[lavadora industrial precio]
+[lavadoras industriales precio]
+[precio lavadora industrial]
+[lavadora industrial 12 kg]
+[lavadora industrial 14 kg]
+[lavadora industrial 30 kg]
+[lavadora industrial 30 kg precio]
+refacciones
+refacción
+refaccion
+partes
+repuestos
+franquicia
+franquicias
+"poner una lavandería"
+"poner una lavanderia"
+lorsa
+wascomat
+unimac
+maytag
+alliance
+"speed queen"
+primus
+electrolux
+lg
+gamesail
+clm
+supliese
+"quick laundry"
+empleo
+curso
+cursos
+manual
+pdf
+usada
+usadas
+renta
+
+PASO 2 · Crear cada campaña. Para cada una:
+- Nueva campaña > "Crear una campaña sin la orientación de un objetivo" > Búsqueda.
+- Nombre: el que se indica abajo.
+- Redes: quita "Red de Búsqueda de socios" y "Red de Display".
+- Ubicaciones: México. En "Opciones de ubicación", elige "Presencia: personas que están o que suelen estar en tus ubicaciones incluidas" (no "Presencia o interés").
+- Idioma: español.
+- Fechas: inicio 2026-12-31.
+- Presupuesto diario y puja: el que se indica. Puja: "Clics" (maximizar clics) con "Límite máximo de oferta de CPC".
+- Grupos de anuncios: crea los que se indican, cada uno con sus palabras clave y un anuncio adaptable de búsqueda con sus títulos, descripciones y rutas. URL final: https://girbauoccidente.com/
+- Al terminar, publica, pon la campaña "En pausa" y en Palabras clave > Palabras clave negativas: agrega la lista "AB · Negativas de la cuenta" y, si se indican, las negativas propias de la campaña.
+
+============================================================
+CAMPAÑA 1 de 4: AB · Marca Girbau
+Presupuesto diario: $49 MXN · Límite de CPC: $10 MXN
+
+  Grupo de anuncios: Girbau
+  Palabras clave:
+  [girbau]
+  "lavadoras girbau"
+  "girbau méxico"
+  "distribuidor girbau"
+  "girbau occidente"
+  Anuncio adaptable de búsqueda:
+  URL final: https://girbauoccidente.com/
+  Ruta: girbau / equipo
+  Títulos:
+  - Girbau Occidente
+  - Distribuidor Girbau
+  - Lavadoras Girbau
+  - Nueva Girbau Smart Plus
+  - Lavadoras de 12 y 14 kg
+  - Secadoras y Mangles Girbau
+  - Girbau
+  - Cotiza con un Asesor
+  - Solicita tu Cotización
+  Descripciones:
+  - Lavadoras, secadoras y mangles Girbau. Cotiza hoy con un asesor.
+  - Conoce la nueva Girbau Smart Plus y las lavadoras de 12 y 14 kg.
+  - Equipo Girbau para lavanderías, hoteles y hospitales. Te ayudamos a elegir.
+
+============================================================
+CAMPAÑA 2 de 4: AB · Girbau Smart Plus
+Presupuesto diario: $22 MXN · Límite de CPC: $10 MXN
+
+  Grupo de anuncios: Smart Plus
+  Palabras clave:
+  "girbau smart plus"
+  "smart plus girbau"
+  "lavadora girbau smart plus"
+  Anuncio adaptable de búsqueda:
+  URL final: https://girbauoccidente.com/
+  Ruta: smart-plus / girbau
+  Títulos:
+  - Girbau Smart Plus
+  - Nueva Girbau Smart Plus
+  - Lavadora Smart Plus
+  - Distribuidor Girbau
+  - Conoce el Nuevo Modelo
+  - Girbau
+  - Cotiza con un Asesor
+  - Solicita tu Cotización
+  Descripciones:
+  - Conoce la nueva Girbau Smart Plus. Cotiza hoy con un asesor.
+  - Te explicamos el nuevo modelo y te ayudamos a elegir la capacidad.
+  - Equipo Girbau para lavanderías, hoteles y hospitales.
+
+============================================================
+CAMPAÑA 3 de 4: AB · Girbau por capacidad y sector
+Presupuesto diario: $27 MXN · Límite de CPC: $10 MXN
+
+  Grupo de anuncios: Capacidad
+  Palabras clave:
+  "lavadora girbau 12 kg"
+  "lavadora girbau 14 kg"
+  "girbau 12 kg"
+  "girbau 14 kg"
+  "secadora girbau"
+  "lavadora industrial girbau"
+  Anuncio adaptable de búsqueda:
+  URL final: https://girbauoccidente.com/
+  Ruta: girbau / capacidad
+  Títulos:
+  - Lavadora Girbau 12 kg
+  - Lavadora Girbau 14 kg
+  - Lavadoras de 12 y 14 kg
+  - Secadoras Girbau
+  - Distribuidor Girbau
+  - Te Ayudamos a Elegir
+  - Girbau
+  - Cotiza con un Asesor
+  - Solicita tu Cotización
+  Descripciones:
+  - Lavadoras Girbau de 12 y 14 kg y secadoras Girbau. Cotiza hoy con un asesor.
+  - Te ayudamos a elegir la capacidad según los kilos de ropa que lavas al día.
+  - Equipo Girbau para lavanderías, hoteles y hospitales.
+
+  Grupo de anuncios: Sector
+  Palabras clave:
+  "lavadora girbau para hotel"
+  "mangle girbau"
+  "girbau para lavandería"
+  Anuncio adaptable de búsqueda:
+  URL final: https://girbauoccidente.com/
+  Ruta: girbau / sector
+  Títulos:
+  - Girbau para Hoteles
+  - Mangles Girbau
+  - Girbau para Lavanderías
+  - Distribuidor Girbau
+  - Te Ayudamos a Elegir
+  - Girbau
+  - Cotiza con un Asesor
+  - Solicita tu Cotización
+  Descripciones:
+  - Lavadoras, secadoras y mangles Girbau para hoteles y lavanderías. Cotiza hoy.
+  - Te ayudamos a elegir el equipo Girbau para tu operación.
+
+============================================================
+CAMPAÑA 4 de 4: AB · Servicio técnico Girbau
+Presupuesto diario: $11 MXN · Límite de CPC: $10 MXN
+
+  Grupo de anuncios: Servicio técnico
+  Palabras clave:
+  "servicio técnico girbau"
+  "técnico girbau"
+  "reparación girbau"
+  "mantenimiento girbau"
+  Anuncio adaptable de búsqueda:
+  URL final: https://girbauoccidente.com/
+  Ruta: servicio / girbau
+  Títulos:
+  - Servicio Técnico Girbau
+  - Técnicos Girbau
+  - Mantenimiento Girbau
+  - Distribuidor Girbau
+  - Agenda tu Servicio
+  - Girbau
+  - Cotiza con un Asesor
+  - Solicita tu Cotización
+  Descripciones:
+  - Servicio técnico y mantenimiento para equipo Girbau. Agenda hoy.
+  - Técnicos para lavadoras, secadoras y mangles Girbau.
+
+============================================================
+AL TERMINAR:
+Dame una lista con cada campaña creada, su estado (debe decir "En pausa"), su presupuesto, cuántos grupos, palabras clave y anuncios tiene, y si algún anuncio o palabra clave quedó "Rechazado" o "Limitado" y por qué. No actives nada.

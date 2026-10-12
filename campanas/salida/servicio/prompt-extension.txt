@@ -1,0 +1,362 @@
+Vas a crear campañas nuevas de Búsqueda en Google Ads, en la cuenta Servicio para Lavandería (265-909-2662). Trabaja en una pestaña nueva.
+
+REGLAS (no negociables):
+- No modifiques, pauses, actives, borres ni edites absolutamente nada de lo que ya existe en la cuenta: campañas, anuncios, palabras clave, presupuestos, listas, configuración ni facturación. Solo puedes CREAR lo que está en estas instrucciones.
+- Antes de empezar, confirma que el número de cuenta arriba a la derecha sea 265-909-2662. Si no lo es, detente y pregúntame.
+- Ninguna campaña nueva debe quedar activa. En cada una pon como fecha de inicio el 2026-12-31 y, en cuanto la publiques, cámbiala a "En pausa".
+- Si Google ofrece crear recursos automáticamente, AI Max, expansión de URL final, concordancia amplia en toda la campaña, recomendaciones o "aplicar sugerencias": recházalo o déjalo apagado.
+- Si algo te pide confirmar un cambio distinto a crear lo de estas instrucciones, o aparece un error que no entiendes, detente y pregúntame.
+- Copia los textos exactamente como están, con acentos. No inventes ni cambies títulos, descripciones ni palabras clave.
+- Las palabras clave se pegan tal cual, una por línea: [texto] es concordancia exacta y "texto" es concordancia de frase.
+
+PASO 0 · Página de destino (solo leer):
+Ve a Campañas > Anuncios, mira la columna o el detalle de "URL final" de los anuncios actuales y anota la que más se repite. No edites ningún anuncio. Dime cuál anotaste y úsala en todos los anuncios nuevos.
+
+PASO 1 · Lista de palabras clave negativas:
+Herramientas > Biblioteca compartida > Listas de exclusión (o "Listas de palabras clave negativas") > "+". Nombre: "AB · Negativas de la cuenta". Pega estas palabras, una por línea:
+
+"partes para lavadora industrial"
+"partes para lavadoras industriales"
+"refacciones para lavadora industrial"
+"refacciones para lavadoras industriales"
+"refacciones para secadora industrial"
+"refacciones para secadoras industriales"
+"refacciones lavandería industrial"
+"refacciones lavanderia industrial"
+curso
+cursos
+tutorial
+"cómo reparar"
+"como reparar"
+diagrama
+diagramas
+pdf
+manual
+manuales
+mabe
+samsung
+whirlpool
+lg
+easy
+"de casa"
+"para casa"
+doméstica
+domestica
+domésticas
+domesticas
+"carga frontal"
+vacante
+vacantes
+empleo
+trabajo
+sueldo
+franquicia
+franquicias
+"poner una lavandería"
+"poner una lavanderia"
+supliese
+"quick laundry"
+clm
+
+PASO 2 · Crear cada campaña. Para cada una:
+- Nueva campaña > "Crear una campaña sin la orientación de un objetivo" > Búsqueda.
+- Nombre: el que se indica abajo.
+- Redes: quita "Red de Búsqueda de socios" y "Red de Display".
+- Ubicaciones: México. En "Opciones de ubicación", elige "Presencia: personas que están o que suelen estar en tus ubicaciones incluidas" (no "Presencia o interés").
+- Idioma: español.
+- Fechas: inicio 2026-12-31.
+- Presupuesto diario y puja: el que se indica. Puja: "Clics" (maximizar clics) con "Límite máximo de oferta de CPC".
+- Grupos de anuncios: crea los que se indican, cada uno con sus palabras clave y un anuncio adaptable de búsqueda con sus títulos, descripciones y rutas. URL final: LA PÁGINA DE DESTINO QUE ANOTASTE EN EL PASO 0
+- Al terminar, publica, pon la campaña "En pausa" y en Palabras clave > Palabras clave negativas: agrega la lista "AB · Negativas de la cuenta" y, si se indican, las negativas propias de la campaña.
+
+============================================================
+CAMPAÑA 1 de 6: AB · Servicio técnico industrial
+Presupuesto diario: $43 MXN · Límite de CPC: $15 MXN
+Negativas propias de esta campaña (además de la lista):
+refacciones
+refacción
+refaccion
+partes
+repuestos
+venta
+comprar
+cotizar equipo
+girbau
+"precio lavadora industrial"
+"lavadora industrial precio"
+
+  Grupo de anuncios: Servicio técnico
+  Palabras clave:
+  "servicio técnico lavadoras industriales"
+  "técnico en lavadoras industriales"
+  "servicio técnico lavandería industrial"
+  "servicio técnico secadoras industriales"
+  Anuncio adaptable de búsqueda:
+  URL final: LA PÁGINA DE DESTINO QUE ANOTASTE EN EL PASO 0
+  Ruta: servicio / tecnico
+  Títulos:
+  - Servicio Técnico Industrial
+  - Técnicos en Lavadoras
+  - Lavadoras Industriales
+  - Lavanderías Industriales
+  - Secadoras Industriales
+  - Mantenimiento Correctivo
+  - Mantenimiento Preventivo
+  - Agenda tu Servicio
+  - Habla con un Técnico
+  Descripciones:
+  - Servicio técnico para lavadoras y secadoras industriales. Agenda tu servicio hoy.
+  - Técnicos para lavanderías industriales, hoteles y hospitales. Habla con un técnico.
+  - Mantenimiento correctivo y preventivo para que tu lavandería no se detenga.
+  - Agenda una visita y recibe el diagnóstico de tu equipo.
+
+============================================================
+CAMPAÑA 2 de 6: AB · Reparación y mantenimiento
+Presupuesto diario: $54 MXN · Límite de CPC: $15 MXN
+Negativas propias de esta campaña (además de la lista):
+refacciones
+refacción
+refaccion
+partes
+repuestos
+venta
+comprar
+cotizar equipo
+girbau
+"precio lavadora industrial"
+"lavadora industrial precio"
+
+  Grupo de anuncios: Reparación
+  Palabras clave:
+  "reparación de lavadoras industriales"
+  "reparación de lavadora industrial"
+  Anuncio adaptable de búsqueda:
+  URL final: LA PÁGINA DE DESTINO QUE ANOTASTE EN EL PASO 0
+  Ruta: reparacion / lavadoras
+  Títulos:
+  - Reparación de Lavadoras
+  - Lavadoras Industriales
+  - Reparación Industrial
+  - Mantenimiento Correctivo
+  - Técnicos en Lavadoras
+  - Diagnóstico de tu Equipo
+  - Servicio Técnico Industrial
+  - Agenda tu Servicio
+  - Habla con un Técnico
+  Descripciones:
+  - Reparación de lavadoras industriales para lavanderías, hoteles y hospitales.
+  - Técnicos en lavadoras y secadoras industriales. Agenda tu servicio hoy.
+  - Agenda una visita y recibe el diagnóstico de tu equipo.
+
+  Grupo de anuncios: Mantenimiento correctivo
+  Palabras clave:
+  "mantenimiento correctivo lavadora industrial"
+  "mantenimiento correctivo lavadoras industriales"
+  "mantenimiento correctivo lavadora"
+  Anuncio adaptable de búsqueda:
+  URL final: LA PÁGINA DE DESTINO QUE ANOTASTE EN EL PASO 0
+  Ruta: mantenimiento / correctivo
+  Títulos:
+  - Mantenimiento Correctivo
+  - Lavadoras Industriales
+  - Reparación de Lavadoras
+  - Técnicos en Lavadoras
+  - Diagnóstico de tu Equipo
+  - Agenda una Visita
+  - Servicio Técnico Industrial
+  - Agenda tu Servicio
+  - Habla con un Técnico
+  Descripciones:
+  - Mantenimiento correctivo para lavadoras industriales. Agenda tu servicio hoy.
+  - Técnicos para lavanderías industriales, hoteles y hospitales. Habla con un técnico.
+  - Agenda una visita y recibe el diagnóstico de tu equipo.
+
+  Grupo de anuncios: Mantenimiento preventivo
+  Palabras clave:
+  "mantenimiento preventivo lavadoras industriales"
+  "mantenimiento lavandería industrial"
+  "mantenimiento de lavadoras industriales"
+  Anuncio adaptable de búsqueda:
+  URL final: LA PÁGINA DE DESTINO QUE ANOTASTE EN EL PASO 0
+  Ruta: mantenimiento / preventivo
+  Títulos:
+  - Mantenimiento Preventivo
+  - Lavadoras Industriales
+  - Lavanderías Industriales
+  - Técnicos en Lavadoras
+  - Evita Paros de tu Equipo
+  - Agenda una Visita
+  - Servicio Técnico Industrial
+  - Agenda tu Servicio
+  - Habla con un Técnico
+  Descripciones:
+  - Mantenimiento preventivo para lavadoras y secadoras industriales. Agenda hoy.
+  - Técnicos para lavanderías industriales, hoteles y hospitales. Habla con un técnico.
+  - Agenda una visita y recibe el diagnóstico de tu equipo.
+
+============================================================
+CAMPAÑA 3 de 6: AB · Refacciones Girbau y Gamesail
+Presupuesto diario: $16 MXN · Límite de CPC: $12 MXN
+
+  Grupo de anuncios: Refacciones Girbau
+  Palabras clave:
+  [refacciones girbau]
+  "refacciones girbau"
+  "refacciones para lavadora girbau"
+  "refacciones para secadora girbau"
+  "partes girbau"
+  Anuncio adaptable de búsqueda:
+  URL final: LA PÁGINA DE DESTINO QUE ANOTASTE EN EL PASO 0
+  Ruta: refacciones / girbau
+  Títulos:
+  - Refacciones Girbau
+  - Refacciones Originales
+  - Para Lavadoras y Secadoras
+  - Instalación por Técnicos
+  - Pide tu Refacción
+  - Cotiza tu Refacción
+  - Servicio Técnico Industrial
+  - Agenda tu Servicio
+  - Habla con un Técnico
+  Descripciones:
+  - Refacciones Girbau para lavadoras y secadoras. Cotiza tu refacción hoy.
+  - Te ayudamos a identificar la pieza y la instalamos con nuestros técnicos.
+  - Envíanos el modelo de tu equipo y recibe cotización de la refacción.
+
+  Grupo de anuncios: Refacciones Gamesail
+  Palabras clave:
+  [refacciones gamesail]
+  "refacciones gamesail"
+  "partes gamesail"
+  Anuncio adaptable de búsqueda:
+  URL final: LA PÁGINA DE DESTINO QUE ANOTASTE EN EL PASO 0
+  Ruta: refacciones / gamesail
+  Títulos:
+  - Refacciones Gamesail
+  - Refacciones Originales
+  - Para Lavadoras y Secadoras
+  - Instalación por Técnicos
+  - Pide tu Refacción
+  - Cotiza tu Refacción
+  - Servicio Técnico Industrial
+  - Agenda tu Servicio
+  - Habla con un Técnico
+  Descripciones:
+  - Refacciones Gamesail para lavadoras y secadoras. Cotiza tu refacción hoy.
+  - Te ayudamos a identificar la pieza y la instalamos con nuestros técnicos.
+  - Envíanos el modelo de tu equipo y recibe cotización de la refacción.
+
+============================================================
+CAMPAÑA 4 de 6: AB · Servicio a secadoras
+Presupuesto diario: $11 MXN · Límite de CPC: $15 MXN
+Negativas propias de esta campaña (además de la lista):
+refacciones
+refacción
+refaccion
+partes
+repuestos
+venta
+comprar
+cotizar equipo
+girbau
+"precio lavadora industrial"
+"lavadora industrial precio"
+
+  Grupo de anuncios: Secadoras
+  Palabras clave:
+  "reparación de secadoras industriales"
+  "servicio a secadoras industriales"
+  "mantenimiento de secadoras industriales"
+  Anuncio adaptable de búsqueda:
+  URL final: LA PÁGINA DE DESTINO QUE ANOTASTE EN EL PASO 0
+  Ruta: secadoras / servicio
+  Títulos:
+  - Reparación de Secadoras
+  - Secadoras Industriales
+  - Mantenimiento Correctivo
+  - Mantenimiento Preventivo
+  - Técnicos en Secadoras
+  - Agenda una Visita
+  - Servicio Técnico Industrial
+  - Agenda tu Servicio
+  - Habla con un Técnico
+  Descripciones:
+  - Reparación y mantenimiento de secadoras industriales. Agenda tu servicio hoy.
+  - Técnicos para lavanderías industriales, hoteles y hospitales.
+  - Agenda una visita y recibe el diagnóstico de tu equipo.
+
+============================================================
+CAMPAÑA 5 de 6: AB · Instalación
+Presupuesto diario: $7 MXN · Límite de CPC: $15 MXN
+Negativas propias de esta campaña (además de la lista):
+refacciones
+refacción
+refaccion
+partes
+repuestos
+venta
+comprar
+cotizar equipo
+girbau
+"precio lavadora industrial"
+"lavadora industrial precio"
+
+  Grupo de anuncios: Instalación
+  Palabras clave:
+  "instalación de lavandería industrial"
+  "instalación de equipo de lavandería"
+  Anuncio adaptable de búsqueda:
+  URL final: LA PÁGINA DE DESTINO QUE ANOTASTE EN EL PASO 0
+  Ruta: instalacion / lavanderia
+  Títulos:
+  - Instalación de Lavanderías
+  - Instalación de Equipo
+  - Lavanderías Industriales
+  - Técnicos Especializados
+  - Agenda una Visita
+  - Servicio Técnico Industrial
+  - Agenda tu Servicio
+  - Habla con un Técnico
+  Descripciones:
+  - Instalación de equipo para lavanderías industriales. Agenda una visita hoy.
+  - Técnicos para lavanderías, hoteles y hospitales. Habla con un técnico.
+
+============================================================
+CAMPAÑA 6 de 6: AB · Servicio a lavanderías
+Presupuesto diario: $4 MXN · Límite de CPC: $12 MXN
+Negativas propias de esta campaña (además de la lista):
+refacciones
+refacción
+refaccion
+partes
+repuestos
+venta
+comprar
+cotizar equipo
+girbau
+"precio lavadora industrial"
+"lavadora industrial precio"
+
+  Grupo de anuncios: Pólizas
+  Palabras clave:
+  "mantenimiento para lavandería de autoservicio"
+  "póliza de mantenimiento lavandería"
+  Anuncio adaptable de búsqueda:
+  URL final: LA PÁGINA DE DESTINO QUE ANOTASTE EN EL PASO 0
+  Ruta: mantenimiento / lavanderias
+  Títulos:
+  - Póliza de Mantenimiento
+  - Lavanderías de Autoservicio
+  - Mantenimiento Preventivo
+  - Evita Paros de tu Equipo
+  - Agenda una Visita
+  - Servicio Técnico Industrial
+  - Agenda tu Servicio
+  - Habla con un Técnico
+  Descripciones:
+  - Pólizas de mantenimiento para lavanderías de autoservicio. Agenda hoy.
+  - Mantenimiento preventivo y correctivo para que tu lavandería no se detenga.
+
+============================================================
+AL TERMINAR:
+Dame una lista con cada campaña creada, su estado (debe decir "En pausa"), su presupuesto, cuántos grupos, palabras clave y anuncios tiene, y si algún anuncio o palabra clave quedó "Rechazado" o "Limitado" y por qué. No actives nada.

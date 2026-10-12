@@ -229,6 +229,58 @@ def ficha(p):
     return '\n'.join(o) + '\n'
 
 
+INICIO = '2026-12-31'
+
+
+def prompt(p):
+    """Instrucciones para la extensión Claude in Chrome: crear las campañas a mano en la interfaz de Google Ads."""
+    c = p['c']
+    copiar = c['url'] == 'COPIAR_DE_ANUNCIOS'
+    url = 'LA PÁGINA DE DESTINO QUE ANOTASTE EN EL PASO 0' if copiar else c['url']
+    o = ['Vas a crear campañas nuevas de Búsqueda en Google Ads, en la cuenta %s (%s). Trabaja en una pestaña nueva.' % (c['nombre'], c['id']),
+         '',
+         'REGLAS (no negociables):',
+         '- No modifiques, pauses, actives, borres ni edites absolutamente nada de lo que ya existe en la cuenta: campañas, anuncios, palabras clave, presupuestos, listas, configuración ni facturación. Solo puedes CREAR lo que está en estas instrucciones.',
+         '- Antes de empezar, confirma que el número de cuenta arriba a la derecha sea %s. Si no lo es, detente y pregúntame.' % c['id'],
+         '- Ninguna campaña nueva debe quedar activa. En cada una pon como fecha de inicio el %s y, en cuanto la publiques, cámbiala a "En pausa".' % INICIO,
+         '- Si Google ofrece crear recursos automáticamente, AI Max, expansión de URL final, concordancia amplia en toda la campaña, recomendaciones o "aplicar sugerencias": recházalo o déjalo apagado.',
+         '- Si algo te pide confirmar un cambio distinto a crear lo de estas instrucciones, o aparece un error que no entiendes, detente y pregúntame.',
+         '- Copia los textos exactamente como están, con acentos. No inventes ni cambies títulos, descripciones ni palabras clave.',
+         '- Las palabras clave se pegan tal cual, una por línea: [texto] es concordancia exacta y "texto" es concordancia de frase.',
+         '']
+    if copiar:
+        o += ['PASO 0 · Página de destino (solo leer):',
+              'Ve a Campañas > Anuncios, mira la columna o el detalle de "URL final" de los anuncios actuales y anota la que más se repite. No edites ningún anuncio. Dime cuál anotaste y úsala en todos los anuncios nuevos.', '']
+    o += ['PASO 1 · Lista de palabras clave negativas:',
+          'Herramientas > Biblioteca compartida > Listas de exclusión (o "Listas de palabras clave negativas") > "+". Nombre: "%sNegativas de la cuenta". Pega estas palabras, una por línea:' % PREFIJO,
+          ''] + [escribir(*n) for n in p['lista']] + ['',
+          'PASO 2 · Crear cada campaña. Para cada una:',
+          '- Nueva campaña > "Crear una campaña sin la orientación de un objetivo" > Búsqueda.',
+          '- Nombre: el que se indica abajo.',
+          '- Redes: quita "Red de Búsqueda de socios" y "Red de Display".',
+          '- Ubicaciones: México. En "Opciones de ubicación", elige "Presencia: personas que están o que suelen estar en tus ubicaciones incluidas" (no "Presencia o interés").',
+          '- Idioma: español.',
+          '- Fechas: inicio %s.' % INICIO,
+          '- Presupuesto diario y puja: el que se indica. Puja: "Clics" (maximizar clics) con "Límite máximo de oferta de CPC".',
+          '- Grupos de anuncios: crea los que se indican, cada uno con sus palabras clave y un anuncio adaptable de búsqueda con sus títulos, descripciones y rutas. URL final: %s' % url,
+          '- Al terminar, publica, pon la campaña "En pausa" y en Palabras clave > Palabras clave negativas: agrega la lista "%sNegativas de la cuenta" y, si se indican, las negativas propias de la campaña.' % PREFIJO,
+          '']
+    for i, k in enumerate(p['campanas'], 1):
+        o += ['=' * 60,
+              'CAMPAÑA %d de %d: %s' % (i, len(p['campanas']), k['nombre']),
+              'Presupuesto diario: $%d MXN · Límite de CPC: $%d MXN' % (k['arranque'], k['cpc'])]
+        if k['negativas']:
+            o += ['Negativas propias de esta campaña (además de la lista):'] + [escribir(*n) for n in k['negativas']]
+        for g in k['grupos']:
+            o += ['', '  Grupo de anuncios: %s' % g['nombre'], '  Palabras clave:'] + ['  ' + escribir(*kw) for kw in g['kw']]
+            o += ['  Anuncio adaptable de búsqueda:', '  URL final: %s' % url, '  Ruta: %s / %s' % tuple(g['p']), '  Títulos:']
+            o += ['  - ' + h for h in g['h']] + ['  Descripciones:'] + ['  - ' + d for d in g['d']]
+        o.append('')
+    o += ['=' * 60, 'AL TERMINAR:',
+          'Dame una lista con cada campaña creada, su estado (debe decir "En pausa"), su presupuesto, cuántos grupos, palabras clave y anuncios tiene, y si algún anuncio o palabra clave quedó "Rechazado" o "Limitado" y por qué. No actives nada.']
+    return '\n'.join(o) + '\n'
+
+
 def main():
     todas = [preparar(slug, c) for slug, c in CUENTAS.items()]
     os.makedirs(SALIDA, exist_ok=True)
@@ -240,6 +292,8 @@ def main():
             f.write(js(p))
         with open(os.path.join(carpeta, 'ficha.md'), 'w', encoding='utf-8') as f:
             f.write(ficha(p))
+        with open(os.path.join(carpeta, 'prompt-extension.txt'), 'w', encoding='utf-8') as f:
+            f.write(prompt(p))
         for e in p['errores']:
             print('ERROR', p['c']['nombre'], '·', e)
             hay_error = True

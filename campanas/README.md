@@ -8,6 +8,7 @@ Plan corregido con los acuerdos de la junta del 11 de octubre de 2026, y los scr
 | `generar.py` | Revisa el plan y genera los scripts y las fichas. |
 | `plantilla-script.js` | Base de los scripts de Google Ads. |
 | `salida/<cuenta>/crear-campanas.js` | Script que crea las campañas de esa cuenta, **en pausa**. |
+| `salida/<cuenta>/prompt-extension.txt` | Instrucciones para crear las mismas campañas a mano con la extensión Claude in Chrome, si no se puede usar el script. Quedan en pausa, con fecha de inicio 2026-12-31. |
 | `salida/<cuenta>/ficha.md` | Todo lo que crea el script, para revisarlo antes. |
 | `salida/cruces.md` | Palabras clave que todavía podrían competir entre cuentas. |
 
