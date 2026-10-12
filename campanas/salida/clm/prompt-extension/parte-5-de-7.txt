@@ -13,7 +13,7 @@ Presupuesto diario: $46 MXN · Límite de CPC: $15 MXN
   "lavadora industrial 45 kg"
   "secadora industrial 45 kg"
   Anuncio adaptable de búsqueda:
-  URL final: https://clmmexico.com/
+  URL final: https://www.clmmexico.com/
   Ruta: lavadoras / 40-kg
   Títulos:
   - Lavadora Industrial 40 kg

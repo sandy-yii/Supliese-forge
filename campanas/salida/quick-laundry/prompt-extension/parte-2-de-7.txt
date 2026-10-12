@@ -13,7 +13,7 @@ Presupuesto diario: $79 MXN · Límite de CPC: $8 MXN
   "lavadoras y secadoras para lavandería"
   "equipo para lavandería"
   Anuncio adaptable de búsqueda:
-  URL final: https://supliese.com/landing/
+  URL final: https://www.supliese.com/
   Ruta: equipo / lavanderia
   Títulos:
   - Equipo para Lavanderías
@@ -38,7 +38,7 @@ Presupuesto diario: $79 MXN · Límite de CPC: $8 MXN
   "lavadora semi industrial"
   "lavadora comercial"
   Anuncio adaptable de búsqueda:
-  URL final: https://supliese.com/landing/
+  URL final: https://www.supliese.com/
   Ruta: lavadoras / comerciales
   Títulos:
   - Lavadoras Semi Industriales

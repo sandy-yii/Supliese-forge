@@ -2,7 +2,7 @@
 
 Cuenta 256-397-2201 · presupuesto mensual $12,000 · Marca nueva Quick Laundry en los anuncios; se sigue pujando por «supliese». Negocio de lavandería: equipo comercial, emprendimiento y autoservicio.
 
-**Página de destino:** https://supliese.com/landing/
+**Página de destino:** https://www.supliese.com/
 
 **Configuración de todas las campañas:**
 

@@ -22,7 +22,7 @@ girbau
   "servicio a secadoras industriales"
   "mantenimiento de secadoras industriales"
   Anuncio adaptable de búsqueda:
-  URL final: LA PÁGINA DE DESTINO QUE ANOTASTE EN EL PASO 0
+  URL final: https://www.servicioparalavanderias.com/
   Ruta: secadoras / servicio
   Títulos:
   - Reparación de Secadoras

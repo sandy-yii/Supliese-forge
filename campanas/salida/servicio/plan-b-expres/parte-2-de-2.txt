@@ -21,7 +21,7 @@ girbau
   "reparación de lavadoras industriales"
   "reparación de lavadora industrial"
   Anuncio adaptable de búsqueda:
-  URL final: LA PÁGINA DE DESTINO QUE ANOTASTE EN EL PASO 0
+  URL final: https://www.servicioparalavanderias.com/
   Ruta: reparacion / lavadoras
   Títulos:
   - Reparación de Lavadoras
@@ -44,7 +44,7 @@ girbau
   "mantenimiento correctivo lavadoras industriales"
   "mantenimiento correctivo lavadora"
   Anuncio adaptable de búsqueda:
-  URL final: LA PÁGINA DE DESTINO QUE ANOTASTE EN EL PASO 0
+  URL final: https://www.servicioparalavanderias.com/
   Ruta: mantenimiento / correctivo
   Títulos:
   - Mantenimiento Correctivo
@@ -67,7 +67,7 @@ girbau
   "mantenimiento lavandería industrial"
   "mantenimiento de lavadoras industriales"
   Anuncio adaptable de búsqueda:
-  URL final: LA PÁGINA DE DESTINO QUE ANOTASTE EN EL PASO 0
+  URL final: https://www.servicioparalavanderias.com/
   Ruta: mantenimiento / preventivo
   Títulos:
   - Mantenimiento Preventivo

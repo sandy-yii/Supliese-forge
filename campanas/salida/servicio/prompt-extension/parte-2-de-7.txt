@@ -23,7 +23,7 @@ girbau
   "servicio técnico lavandería industrial"
   "servicio técnico secadoras industriales"
   Anuncio adaptable de búsqueda:
-  URL final: LA PÁGINA DE DESTINO QUE ANOTASTE EN EL PASO 0
+  URL final: https://www.servicioparalavanderias.com/
   Ruta: servicio / tecnico
   Títulos:
   - Servicio Técnico Industrial

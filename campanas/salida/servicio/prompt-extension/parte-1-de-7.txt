@@ -10,9 +10,6 @@ REGLAS (no negociables):
 - Copia los textos exactamente como están, con acentos. No inventes ni cambies títulos, descripciones ni palabras clave.
 - Las palabras clave se pegan tal cual, una por línea: [texto] es concordancia exacta y "texto" es concordancia de frase.
 
-PASO 0 · Página de destino (solo leer):
-Ve a Campañas > Anuncios, mira la columna o el detalle de "URL final" de los anuncios actuales y anota la que más se repite. No edites ningún anuncio. Dime cuál anotaste y úsala en todos los anuncios nuevos.
-
 PASO 1 · Lista de palabras clave negativas:
 Herramientas > Biblioteca compartida > Listas de exclusión (o "Listas de palabras clave negativas") > "+". Nombre: "AB · Negativas de la cuenta". Pega estas palabras, una por línea:
 
@@ -67,7 +64,7 @@ PASO 2 · Crear cada campaña. Para cada una:
 - Idioma: solo español (si aparece inglés u otro, quítalo).
 - Fechas: inicio 2026-12-31.
 - Presupuesto diario y puja: el que se indica. Puja: "Clics" (maximizar clics) con "Límite máximo de oferta de CPC".
-- Grupos de anuncios: crea los que se indican, cada uno con sus palabras clave y un anuncio adaptable de búsqueda con sus títulos, descripciones y rutas. URL final: LA PÁGINA DE DESTINO QUE ANOTASTE EN EL PASO 0
+- Grupos de anuncios: crea los que se indican, cada uno con sus palabras clave y un anuncio adaptable de búsqueda con sus títulos, descripciones y rutas. URL final: https://www.servicioparalavanderias.com/
 - Al terminar, publica, deja la campaña "En pausa" y en Palabras clave > Palabras clave negativas: agrega la lista "AB · Negativas de la cuenta" y, si se indican, las negativas propias de la campaña.
 
-En esta parte haz solo el PASO 0 y el PASO 1. NO crees campañas todavía: te mando cada campaña en un mensaje aparte (Parte 2 a Parte 7). Cuando termines, dime qué hiciste y espera la Parte 2.
+En esta parte haz solo el PASO 1. NO crees campañas todavía: te mando cada campaña en un mensaje aparte (Parte 2 a Parte 7). Cuando termines, dime qué hiciste y espera la Parte 2.

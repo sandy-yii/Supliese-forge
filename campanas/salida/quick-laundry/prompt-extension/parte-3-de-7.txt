@@ -26,7 +26,7 @@ Negativas propias de esta campaña (además de la lista):
   "abrir mi lavandería"
   "poner mi lavandería"
   Anuncio adaptable de búsqueda:
-  URL final: https://supliese.com/landing/
+  URL final: https://www.supliese.com/
   Ruta: lavanderia / abrir
   Títulos:
   - Abre tu Lavandería

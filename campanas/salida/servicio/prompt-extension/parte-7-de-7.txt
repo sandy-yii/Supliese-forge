@@ -21,7 +21,7 @@ girbau
   "mantenimiento para lavandería de autoservicio"
   "póliza de mantenimiento lavandería"
   Anuncio adaptable de búsqueda:
-  URL final: LA PÁGINA DE DESTINO QUE ANOTASTE EN EL PASO 0
+  URL final: https://www.servicioparalavanderias.com/
   Ruta: mantenimiento / lavanderias
   Títulos:
   - Póliza de Mantenimiento

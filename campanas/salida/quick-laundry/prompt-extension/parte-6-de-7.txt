@@ -18,7 +18,7 @@ servicio
   "lg lavadora industrial"
   "lavadora lg comercial"
   Anuncio adaptable de búsqueda:
-  URL final: https://supliese.com/landing/
+  URL final: https://www.supliese.com/
   Ruta: lavadoras / comerciales
   Títulos:
   - Lavadoras Comerciales
