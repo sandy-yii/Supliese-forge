@@ -19,6 +19,12 @@ Basado en las auditorías de septiembre y en lo que la extensión vio el 12 de o
 - Las acciones de WhatsApp registraron 0 en el periodo.
 - Pendiente con acceso: pasar Coudibot a Secundaria y revisar la puja.
 
+## Gamesail: cuenta vieja y cuenta nueva (14 oct)
+
+- En la cuenta vieja tenemos acceso Estándar: se pueden crear, editar y pausar campañas, pero no dar ni subir accesos. El acceso de administrador solo lo puede dar un administrador (la agencia).
+- La cuenta nueva va con un correo propio del cliente. Para Google sigue siendo el mismo negocio (gamesail.mx, misma empresa, misma verificación), así que las dos no pueden salir en las mismas búsquedas (política de ventaja injusta) y la nueva también pedirá verificación del anunciante.
+- Transición: cada línea que se enciende en la nueva se pausa antes en la vieja (con el acceso estándar lo hacemos nosotros). La nueva no se usa para esquivar la pausa por verificación de la vieja.
+
 ## Negativas en el plan B
 
 - Solo se agregan negativas de basura (empleo, cursos, usado y renta, doméstico, cadenas de lavandería, marcas ajenas en Girbau), en la lista «PB · Negativas basura» de cada cuenta: prompts 5, 6 y 7, después de activar.
