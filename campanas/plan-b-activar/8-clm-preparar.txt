@@ -1,0 +1,29 @@
+PLAN B · CLM 993-525-8739 · dejar lista la cuenta para cuando Google apruebe la verificación
+La cuenta está en pausa por la verificación del anunciante. Cuando Google la apruebe, todo lo que esté habilitado empieza a gastar solo. Hay que dejar habilitado solo lo que conviene.
+Trabaja en una pestaña nueva y confirma el número de cuenta antes de empezar.
+Hazlo todo a mano en la interfaz. No uses Scripts, Google Ads Editor, cargas masivas ni hojas de cálculo.
+
+FASE 1 · SOLO LECTURA
+No modifiques, pauses, actives ni edites absolutamente nada dentro de las cuentas. Solo navegar, configurar vistas, descargar y capturar. Si algo te pide confirmar un cambio, detente y pregúntame.
+Periodo: 1 mar 2026 – 11 oct 2026. Muestra habilitado y pausado.
+1. Conversiones: acciones "Principal" y cuántas tuvo cada una. Avísame si lo que cuenta no es formulario, llamada o WhatsApp.
+2. Tabla de TODAS las campañas: nombre, tipo, estado, presupuesto diario, puja, costo, conversiones, costo por conversión.
+3. De las campañas HABILITADAS: URL final de sus anuncios (¿es de clmmexico.com y carga?) y si tienen anuncios rechazados (con el motivo exacto).
+4. Si existe una campaña de túnel de lavado: ¿tiene negativas como autolavado, carros, coches, autos, car wash?
+5. En Administración > Verificación del anunciante: el estado que muestra hoy.
+
+DECISIÓN (aplícala tú y muéstrame el resultado en una tabla "Queda habilitada / Pausar / Activar"):
+  A) Máximo Rendimiento e «Ingles Search» (o cualquier campaña en inglés): si están habilitadas, propón PAUSAR.
+  B) Campañas de Búsqueda habilitadas con conversiones reales: se quedan habilitadas como están.
+  C) Campañas de Búsqueda PAUSADAS con 3 o más conversiones reales y costo por conversión no mayor a $300 (el de la columna Conversiones; reporta también el real): propón ACTIVAR.
+  D) Túnel de lavado: solo puede quedar habilitado si ya tiene negativas de autolavado; si no las tiene, propón PAUSAR.
+  E) Competencia: si existe y está habilitada, propón PAUSAR (pedido en la junta).
+  F) No propongas nada más. No cambies presupuestos.
+Termina con la tabla y la frase: "¿Hago estos cambios? Responde SÍ CLM".
+
+FASE 2 · SOLO SI YO RESPONDO "SÍ CLM"
+Haz únicamente los cambios de estado de la tabla. No toques presupuestos, pujas, anuncios ni palabras.
+PÁGINA DE DESTINO NUEVA: https://www.clmmexico.com/
+En las campañas que queden habilitadas: si un anuncio habilitado tiene una URL final de otro dominio o una página que no carga, crea en ese mismo grupo un anuncio nuevo con los mismos títulos, descripciones y rutas, cambiando SOLO la URL final por https://www.clmmexico.com/. Deja el viejo como está.
+Si aparece "Confirma que eres tú", una llave de acceso o cualquier verificación de Google, detente y avísame; no intentes saltarla.
+Al terminar dime el estado de cada campaña.
