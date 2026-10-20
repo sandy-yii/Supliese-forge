@@ -202,7 +202,6 @@ function main() {
       cambios.push('COPIAR ' + g.copiar.length + ' anuncio(s) con la página nueva en «' + g.nombre + '» (los anteriores se quedan)');
     });
 
-    var siguiente = -1;
     var lista = null, yaEnLista = {};
     var its = AdsApp.search("SELECT shared_set.resource_name, shared_set.name FROM shared_set " +
       "WHERE shared_set.status = 'ENABLED' AND shared_set.type = 'NEGATIVE_KEYWORDS'");
@@ -217,12 +216,19 @@ function main() {
         var kw = itc.next().sharedCriterion.keyword;
         if (kw) yaEnLista[plano(kw.text) + '|' + kw.matchType] = true;
       }
+    } else if (AdsApp.getExecutionInfo().isPreview()) {
+      // Google no acepta agregar palabras ni campañas a una lista que todavía no existe; al ejecutar se crea primero.
+      lista = null;
+      cambios.push('CREAR la lista «' + PLAN.basura.nombre + '» con sus negativas y aplicarla (se revisa al ejecutar)');
     } else {
-      lista = 'customers/' + c + '/sharedSets/' + (siguiente--);
-      ops.push({ sharedSetOperation: { create: { resourceName: lista, name: PLAN.basura.nombre, type: 'NEGATIVE_KEYWORDS' } } });
+      var rl = AdsApp.mutate({ sharedSetOperation: { create: { name: PLAN.basura.nombre, type: 'NEGATIVE_KEYWORDS' } } });
+      if (!rl.isSuccessful()) {
+        throw new Error('No se pudo crear la lista «' + PLAN.basura.nombre + '»: ' + rl.getErrorMessages().join('; ') + '. No se cambió nada.');
+      }
+      lista = rl.getResourceName();
     }
     var agregadas = 0, omitidas = [];
-    PLAN.basura.kw.forEach(function (n) {
+    if (lista) PLAN.basura.kw.forEach(function (n) {
       if (yaEnLista[plano(n[0]) + '|' + n[1]]) return;
       var choca = palabrasActivas.filter(function (t) { return bloquea(n, t); });
       if (choca.length) { omitidas.push(n[0] + ' (bloquearía «' + choca[0] + '»)'); return; }
@@ -235,11 +241,13 @@ function main() {
       var l = itl.next();
       if (l.sharedSet.name === PLAN.basura.nombre) conLista[l.campaign.name] = true;
     }
-    siguenBusqueda.forEach(function (k) {
-      if (!conLista[k.nombre]) ops.push({ campaignSharedSetOperation: { create: { campaign: k.rn, sharedSet: lista } } });
-    });
-    cambios.push('LISTA «' + PLAN.basura.nombre + '»: ' + agregadas + ' negativas nuevas, aplicada a ' +
-      siguenBusqueda.map(function (k) { return '«' + k.nombre + '»'; }).join(', '));
+    if (lista) {
+      siguenBusqueda.forEach(function (k) {
+        if (!conLista[k.nombre]) ops.push({ campaignSharedSetOperation: { create: { campaign: k.rn, sharedSet: lista } } });
+      });
+      cambios.push('LISTA «' + PLAN.basura.nombre + '»: ' + agregadas + ' negativas nuevas, aplicada a ' +
+        siguenBusqueda.map(function (k) { return '«' + k.nombre + '»'; }).join(', '));
+    }
     if (omitidas.length) avisos.push('Negativas que no se agregaron porque bloquearían palabras activas: ' + omitidas.join('; '));
   }
 
