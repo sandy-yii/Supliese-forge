@@ -32,7 +32,7 @@ Negativas de la campaña: refacciones, refacción, partes, repuestos, venta, com
 
 **Servicio técnico**
 
-Palabras clave: "servicio técnico lavadoras industriales" · "técnico en lavadoras industriales" · "servicio técnico lavandería industrial" · "servicio técnico secadoras industriales"
+Palabras clave: "técnico de lavadoras industriales" · "técnico en lavadoras industriales" · "técnico en lavandería industrial" · "técnico de secadoras industriales"
 
 Títulos: Servicio Técnico Industrial | Técnicos en Lavadoras | Lavadoras Industriales | Lavanderías Industriales | Secadoras Industriales | Mantenimiento Correctivo | Mantenimiento Preventivo | Agenda tu Servicio | Habla con un Técnico
 

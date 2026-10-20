@@ -18,10 +18,10 @@ girbau
 
   Grupo de anuncios: Servicio técnico
   Palabras clave:
-  "servicio técnico lavadoras industriales"
+  "técnico de lavadoras industriales"
   "técnico en lavadoras industriales"
-  "servicio técnico lavandería industrial"
-  "servicio técnico secadoras industriales"
+  "técnico en lavandería industrial"
+  "técnico de secadoras industriales"
   Anuncio adaptable de búsqueda:
   URL final: https://laundry-solutions-servicio.vercel.app/
   Ruta: servicio / tecnico

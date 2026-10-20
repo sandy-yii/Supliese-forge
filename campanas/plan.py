@@ -454,8 +454,9 @@ CUENTAS['servicio'] = dict(
     campanas=[
         dict(nombre='Servicio técnico industrial', pct=32, cpc=15, origen='Plan', negativas='SERVICIO', grupos=[
             dict(nombre='Servicio técnico',
-                 kw=['"servicio técnico lavadoras industriales"', '"técnico en lavadoras industriales"',
-                     '"servicio técnico lavandería industrial"', '"servicio técnico secadoras industriales"'],
+                 # Google rechaza las palabras que empiezan con «servicio técnico» (No cumple las directrices editoriales).
+                 kw=['"técnico de lavadoras industriales"', '"técnico en lavadoras industriales"',
+                     '"técnico en lavandería industrial"', '"técnico de secadoras industriales"'],
                  h=['Servicio Técnico Industrial', 'Técnicos en Lavadoras', 'Lavadoras Industriales', 'Lavanderías Industriales',
                     'Secadoras Industriales', 'Mantenimiento Correctivo', 'Mantenimiento Preventivo'],
                  d=['Servicio técnico para lavadoras y secadoras industriales. Agenda tu servicio hoy.',
