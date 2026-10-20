@@ -46,7 +46,7 @@ El generador se detiene con error si algo falla:
 - **Quick Laundry en los anuncios desde ya,** pujando también por «supliese».
 - **Las campañas se crean en pausa;** se activan cuenta por cuenta con el OK.
 - **Zona de Girbau:** su campaña actual «Girbau Búsqueda | Nerea» tiene los 32 estados, así que las nuevas van a todo México, como las demás cuentas. Idioma: solo español (Nerea tiene también inglés).
-- **Páginas de destino (12 oct 2026):** Supliese / Quick Laundry https://www.supliese.com/ · Girbau https://supliese-girbau-lavadoras.vercel.app/ (desde el 21 oct 2026; antes girbauoccidente.com) · CLM https://supliese-clm-lavadoras.vercel.app/ (desde el 21 oct 2026; antes clmmexico.com) · Gamesail https://gamesail.mx/ · Servicio https://www.servicioparalavanderias.com/. Los anuncios viejos con otra URL no se editan: se crea uno nuevo igual con la URL nueva y el viejo se pausa cuando el nuevo esté aprobado.
+- **Páginas de destino (actualizadas el 20 oct 2026, de Rodolfo):** Quick Laundry https://www.supliese.com/ · Girbau https://supliese-girbau-lavadoras.vercel.app/ · CLM (Kingstar) https://supliese-clm-lavadoras.vercel.app/ · Servicio (Laundry Solutions) https://laundry-solutions-servicio.vercel.app/ · Gamesail https://gamesail-lavadoras.vercel.app/. Los anuncios viejos con otra URL no se editan: se crea uno nuevo igual con la URL nueva y el viejo se pausa cuando el nuevo esté aprobado.
 
 ## Reparto de búsquedas entre cuentas
 

@@ -11,7 +11,7 @@ Presupuesto diario: $26 MXN · Límite de CPC: $16 MXN
   "calandria industrial"
   "mangle para sábanas"
   Anuncio adaptable de búsqueda:
-  URL final: https://gamesail.mx/
+  URL final: https://gamesail-lavadoras.vercel.app/
   Ruta: mangles / planchado
   Títulos:
   - Mangle Planchador

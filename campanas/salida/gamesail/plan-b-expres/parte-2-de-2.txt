@@ -13,7 +13,7 @@ Presupuesto diario: $97 MXN · Límite de CPC: $14 MXN
   "lavadora industrial de ropa"
   "lavadoras y secadoras industriales"
   Anuncio adaptable de búsqueda:
-  URL final: https://gamesail.mx/
+  URL final: https://gamesail-lavadoras.vercel.app/
   Ruta: lavadoras / ropa
   Títulos:
   - Lavadoras Industriales
@@ -40,7 +40,7 @@ Presupuesto diario: $97 MXN · Límite de CPC: $14 MXN
   "lavadora de sábanas industrial"
   "lavadora industrial para blancos"
   Anuncio adaptable de búsqueda:
-  URL final: https://gamesail.mx/
+  URL final: https://gamesail-lavadoras.vercel.app/
   Ruta: lavadoras / sabanas
   Títulos:
   - Lavadoras para Sábanas

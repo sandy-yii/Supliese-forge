@@ -13,7 +13,7 @@ CUENTAS = {}
 # ---------------------------------------------------------------- Gamesail
 CUENTAS['gamesail'] = dict(
     nombre='Gamesail', id='CUENTA NUEVA', id_anterior='645-094-0317', mensual=19700,
-    url='https://gamesail.mx/',
+    url='https://gamesail-lavadoras.vercel.app/',
     nota='Cuenta nueva. Equipo industrial: lavadoras para ropa y sábanas, capacidades, secadoras, hoteles y hospitales, mangles.',
     comunes=['Equipo Gamesail', 'Cotiza con un Asesor', 'Solicita tu Cotización'],
     negativas={
@@ -436,7 +436,7 @@ CUENTAS['clm'] = dict(
 # ---------------------------------------------------------------- Servicio para Lavandería
 CUENTAS['servicio'] = dict(
     nombre='Servicio para Lavandería', id='265-909-2662', mensual=8200,
-    url='https://www.servicioparalavanderias.com/',
+    url='https://laundry-solutions-servicio.vercel.app/',
     nota='Servicio técnico, reparación y mantenimiento industrial. Refacciones solo Girbau y Gamesail.',
     comunes=['Servicio Técnico Industrial', 'Agenda tu Servicio', 'Habla con un Técnico'],
     negativas={

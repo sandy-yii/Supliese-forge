@@ -12,7 +12,7 @@ Presupuesto diario: $58 MXN · Límite de CPC: $14 MXN
   "secadora industrial para ropa"
   "secadora industrial para sábanas"
   Anuncio adaptable de búsqueda:
-  URL final: https://gamesail.mx/
+  URL final: https://gamesail-lavadoras.vercel.app/
   Ruta: secadoras / ropa
   Títulos:
   - Secadoras Industriales
@@ -42,7 +42,7 @@ Presupuesto diario: $58 MXN · Límite de CPC: $14 MXN
   "secadora de 200 kilos"
   "secadora industrial 30 kg"
   Anuncio adaptable de búsqueda:
-  URL final: https://gamesail.mx/
+  URL final: https://gamesail-lavadoras.vercel.app/
   Ruta: secadoras / capacidad
   Títulos:
   - Secadoras de 50 a 200 kg

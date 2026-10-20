@@ -10,7 +10,7 @@ Periodo: 1 mar 2026 – 11 oct 2026. Muestra habilitado y pausado.
 3. Para estas candidatas: «Servicio y mantenimiento Industrial», «Campaña Search - General», «Servicio Regional»:
    - cuántos anuncios aprobados tiene cada grupo habilitado;
    - si hay anuncios rechazados, el MOTIVO EXACTO y sus textos;
-   - la URL final de sus anuncios y de sus enlaces de sitio: dime si es de servicioparalavanderias.com y si la página carga.
+   - la URL final de sus anuncios y de sus enlaces de sitio: dime si es https://laundry-solutions-servicio.vercel.app/ y si la página carga.
 
 DECISIÓN (aplícala tú y muéstrame el resultado en una tabla):
 Una candidata se ACTIVA solo si cumple todo:
@@ -25,8 +25,8 @@ Termina la Fase 1 con la tabla "Activar / No activar y por qué" (con la columna
 
 FASE 2 · SOLO SI YO RESPONDO "SÍ ACTIVA"
 Cambia a "Habilitada" únicamente las campañas de la tabla marcadas Activar. No cambies presupuestos, pujas, palabras ni grupos.
-PÁGINA DE DESTINO NUEVA: https://www.servicioparalavanderias.com/
-En los grupos de las campañas que actives: si un anuncio habilitado tiene una URL final de otro dominio (que no sea servicioparalavanderias.com) o una página que no carga, crea en ese mismo grupo un anuncio nuevo con los mismos títulos, descripciones y rutas, cambiando SOLO la URL final por https://www.servicioparalavanderias.com/. Deja el anuncio viejo como está hasta que el nuevo salga Aprobado; yo te digo cuándo pausarlo. Si un enlace de sitio u otro recurso apunta a otro dominio, no lo edites: solo repórtalo.
+PÁGINA DE DESTINO NUEVA: https://laundry-solutions-servicio.vercel.app/
+En los grupos de las campañas que actives: si un anuncio habilitado tiene una URL final de otro dominio (que no sea https://laundry-solutions-servicio.vercel.app/) o una página que no carga, crea en ese mismo grupo un anuncio nuevo con los mismos títulos, descripciones y rutas, cambiando SOLO la URL final por https://laundry-solutions-servicio.vercel.app/. Deja el anuncio viejo como está hasta que el nuevo salga Aprobado; yo te digo cuándo pausarlo. Si un enlace de sitio u otro recurso apunta a otro dominio, no lo edites: solo repórtalo.
 
 Si aparece "Confirma que eres tú", una llave de acceso o cualquier verificación de Google, detente y avísame; no intentes saltarla.
 Al terminar, vuelve a la lista de campañas y dime el estado que muestra cada una (Apta, Limitada, En revisión, etc.).

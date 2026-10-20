@@ -2,7 +2,7 @@
 
 Cuenta CUENTA NUEVA · presupuesto mensual $19,700 · Cuenta nueva. Equipo industrial: lavadoras para ropa y sábanas, capacidades, secadoras, hoteles y hospitales, mangles.
 
-**Página de destino:** https://gamesail.mx/
+**Página de destino:** https://gamesail-lavadoras.vercel.app/
 
 **Configuración de todas las campañas:**
 
