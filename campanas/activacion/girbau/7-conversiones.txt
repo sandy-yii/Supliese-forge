@@ -1,11 +1,11 @@
-GIRBAU 860-582-6837 · CONVERSIONES PARA LA PÁGINA girbauoccidente.com
+GIRBAU 860-582-6837 · CONVERSIONES PARA LA PÁGINA supliese-girbau-lavadoras.vercel.app
 Trabaja en una pestaña nueva y confirma que el número de cuenta arriba a la derecha sea 860-582-6837.
 Hazlo todo a mano en la interfaz. Haz SOLO lo que dice aquí. Si algo no coincide o Google te pide confirmar algo distinto, detente y pregúntame.
 No modifiques, pauses ni borres ninguna acción de conversión que ya exista.
 Si aparece "Confirma que eres tú", una llave de acceso o cualquier verificación de Google, detente y avísame.
 
 PASO 1 · Crear estas acciones de conversión
-Objetivos > Conversiones > Resumen > "+ Crear acción de conversión" > Sitio web > dominio girbauoccidente.com > "Agregar una acción de conversión manualmente". Si ya existe una con el mismo nombre, no la dupliques: dímelo.
+Objetivos > Conversiones > Resumen > "+ Crear acción de conversión" > Sitio web > dominio supliese-girbau-lavadoras.vercel.app > "Agregar una acción de conversión manualmente". Si ya existe una con el mismo nombre, no la dupliques: dímelo.
 
 | Nombre | Categoría | Valor | Recuento | Objetivo |
 | AB · Formulario enviado | Enviar formulario de clientes potenciales | Usar el mismo valor: 1 MXN | Uno | Principal |

@@ -11,7 +11,7 @@ Presupuesto diario: $11 MXN · Límite de CPC: $10 MXN
   "reparación girbau"
   "mantenimiento girbau"
   Anuncio adaptable de búsqueda:
-  URL final: https://girbauoccidente.com/
+  URL final: https://supliese-girbau-lavadoras.vercel.app/
   Ruta: servicio / girbau
   Títulos:
   - Servicio Técnico Girbau

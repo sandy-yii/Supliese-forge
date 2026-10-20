@@ -552,7 +552,7 @@ CUENTAS['servicio'] = dict(
 # ---------------------------------------------------------------- Girbau
 CUENTAS['girbau'] = dict(
     nombre='Girbau', id='860-582-6837', mensual=6600,
-    url='https://girbauoccidente.com/',
+    url='https://supliese-girbau-lavadoras.vercel.app/',
     nota='Solo búsquedas con la marca Girbau. Nuevo modelo Smart Plus y capacidades de 12 y 14 kg.',
     comunes=['Girbau', 'Cotiza con un Asesor', 'Solicita tu Cotización'],
     negativas={

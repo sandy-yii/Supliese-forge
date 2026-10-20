@@ -13,7 +13,7 @@ Presupuesto diario: $27 MXN · Límite de CPC: $10 MXN
   "secadora girbau"
   "lavadora industrial girbau"
   Anuncio adaptable de búsqueda:
-  URL final: https://girbauoccidente.com/
+  URL final: https://supliese-girbau-lavadoras.vercel.app/
   Ruta: girbau / capacidad
   Títulos:
   - Lavadora Girbau 12 kg
@@ -36,7 +36,7 @@ Presupuesto diario: $27 MXN · Límite de CPC: $10 MXN
   "mangle girbau"
   "girbau para lavandería"
   Anuncio adaptable de búsqueda:
-  URL final: https://girbauoccidente.com/
+  URL final: https://supliese-girbau-lavadoras.vercel.app/
   Ruta: girbau / sector
   Títulos:
   - Girbau para Hoteles
