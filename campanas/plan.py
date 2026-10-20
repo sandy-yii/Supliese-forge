@@ -616,7 +616,7 @@ CUENTAS['girbau'] = dict(
         dict(nombre='Servicio técnico Girbau', pct=10, cpc=10,
              origen='Sale de la antigua campaña de refacciones; las refacciones pasan a Servicio para Lavandería', grupos=[
             dict(nombre='Servicio técnico',
-                 kw=['"servicio técnico girbau"', '"técnico girbau"', '"reparación girbau"', '"mantenimiento girbau"'],
+                 kw=['"técnico girbau"', '"reparación girbau"', '"mantenimiento girbau"'],
                  h=['Servicio Técnico Girbau', 'Técnicos Girbau', 'Mantenimiento Girbau', 'Distribuidor Girbau',
                     'Agenda tu Servicio'],
                  d=['Servicio técnico y mantenimiento para equipo Girbau. Agenda hoy.',

@@ -100,6 +100,8 @@ function main() {
   Logger.log('Lista «' + PLAN.lista.nombre + '»: ' + (listaExistente ? 'ya existía, se reutiliza' : 'nueva') +
     ' · ' + agregadas + ' palabras por agregar.');
 
+  // Las palabras clave van aparte: si Google rechaza alguna por sus políticas, se omite y lo demás sí se crea.
+  var claves = [], indiceGrupo = {};
   var resumen = [];
   PLAN.campanas.forEach(function (k) {
     var presupuesto = temporal('campaignBudgets');
@@ -131,9 +133,10 @@ function main() {
     var palabras = 0;
     k.grupos.forEach(function (g) {
       var grupo = temporal('adGroups');
+      indiceGrupo[grupo] = ops.length;
       ops.push({ adGroupOperation: { create: { resourceName: grupo, campaign: campana, name: g.nombre, status: 'ENABLED', type: 'SEARCH_STANDARD' } } });
       g.kw.forEach(function (w) {
-        ops.push({ adGroupCriterionOperation: { create: { adGroup: grupo, status: 'ENABLED', keyword: { text: w[0], matchType: w[1] } } } });
+        claves.push({ grupo: grupo, donde: k.nombre + ' > ' + g.nombre, texto: w[0], tipo: w[1] });
         palabras++;
       });
       ops.push({ adGroupAdOperation: { create: { adGroup: grupo, status: 'ENABLED', ad: {
@@ -146,24 +149,59 @@ function main() {
     resumen.push(k.nombre + ' · $' + k.diario + '/día de arranque · tope CPC $' + k.cpc + ' · ' + k.grupos.length + ' grupos · ' + palabras + ' palabras clave');
   });
 
-  Logger.log(PLAN.nombre + ': ' + ops.length + ' operaciones.');
+  function opClave(x, grupo) {
+    return { adGroupCriterionOperation: { create: { adGroup: grupo, status: 'ENABLED', keyword: { text: x.texto, matchType: x.tipo } } } };
+  }
+  function errorDe(r, op) { return JSON.stringify(op).substring(0, 300) + ' → ' + r.getErrorMessages().join('; '); }
+  var vista = AdsApp.getExecutionInfo().isPreview();
+  Logger.log(PLAN.nombre + ': ' + ops.length + ' operaciones de estructura y ' + claves.length + ' palabras clave.');
+
+  if (vista) {
+    // En la vista previa no se crea nada: se revisa todo junto y cada error se reporta por separado.
+    var todas = ops.concat(claves.map(function (x) { return opClave(x, x.grupo); }));
+    var rv = AdsApp.mutateAll(todas, { partialFailure: true });
+    var malas = [], omitidas = [];
+    rv.forEach(function (r, i) {
+      if (r.isSuccessful()) return;
+      if (i < ops.length) malas.push('#' + i + ' ' + errorDe(r, todas[i]));
+      else omitidas.push(claves[i - ops.length]);
+    });
+    omitidas.forEach(function (x) {
+      Logger.log('AVISO: Google no acepta la palabra clave «' + x.texto + '» (' + x.donde + '); se omitirá.');
+    });
+    if (malas.length) {
+      malas.forEach(function (e) { Logger.log(e); });
+      throw new Error(malas.length + ' operaciones con error en la vista previa. No ejecutes; manda el registro.');
+    }
+    resumen.forEach(function (r) { Logger.log(r); });
+    Logger.log('VISTA PREVIA SIN ERRORES' + (omitidas.length ? ' (con ' + omitidas.length + ' palabra(s) que se omitirán)' : '') +
+      '. Para crear las campañas (en pausa), da EJECUTAR.');
+    return;
+  }
+
+  // 1. Estructura completa (lista, presupuestos, campañas, ubicación, idioma, negativas, grupos y anuncios): todo o nada.
   var resultados = AdsApp.mutateAll(ops, { partialFailure: false });
   var errores = [];
   resultados.forEach(function (r, i) {
-    if (!r.isSuccessful()) {
-      errores.push('#' + i + ' ' + JSON.stringify(ops[i]).substring(0, 300) + ' → ' + r.getErrorMessages().join('; '));
-    }
+    if (!r.isSuccessful()) errores.push('#' + i + ' ' + errorDe(r, ops[i]));
   });
   if (errores.length) {
     errores.forEach(function (e) { Logger.log(e); });
     throw new Error(errores.length + ' operaciones con error. No se creó nada. Revisa el registro.');
   }
+
+  // 2. Palabras clave, cada una por su lado, con el grupo ya creado.
+  var opsClaves = claves.map(function (x) { return opClave(x, resultados[indiceGrupo[x.grupo]].getResourceName()); });
+  var rk = opsClaves.length ? AdsApp.mutateAll(opsClaves, { partialFailure: true }) : [];
+  var fallidas = 0;
+  rk.forEach(function (r, i) {
+    if (r.isSuccessful()) return;
+    fallidas++;
+    Logger.log('AVISO: no se agregó la palabra clave «' + claves[i].texto + '» (' + claves[i].donde + '): ' + r.getErrorMessages().join('; '));
+  });
   resumen.forEach(function (r) { Logger.log(r); });
-  if (AdsApp.getExecutionInfo().isPreview()) {
-    Logger.log('VISTA PREVIA SIN ERRORES. Para crear las campañas (en pausa), da EJECUTAR.');
-  } else {
-    Logger.log('CREADO. Todas las campañas quedaron EN PAUSA. Se activan solo con el OK del cliente.');
-  }
+  Logger.log('CREADO. Todas las campañas quedaron EN PAUSA' + (fallidas ? ', sin ' + fallidas + ' palabra(s) clave que Google no aceptó' : '') +
+    '. Se activan solo con el OK del cliente.');
 }
 
 function urlDeAnunciosActuales() {

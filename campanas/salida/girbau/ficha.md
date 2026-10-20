@@ -89,7 +89,7 @@ Ruta: /girbau/sector
 
 **Servicio técnico**
 
-Palabras clave: "servicio técnico girbau" · "técnico girbau" · "reparación girbau" · "mantenimiento girbau"
+Palabras clave: "técnico girbau" · "reparación girbau" · "mantenimiento girbau"
 
 Títulos: Servicio Técnico Girbau | Técnicos Girbau | Mantenimiento Girbau | Distribuidor Girbau | Agenda tu Servicio | Girbau | Cotiza con un Asesor | Solicita tu Cotización
 

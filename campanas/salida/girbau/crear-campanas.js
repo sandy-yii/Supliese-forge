@@ -22,7 +22,7 @@ var IDIOMAS = [1003];
 // Si es true, la página de destino se copia de los anuncios actuales de la cuenta (la que más anuncios usan).
 var COPIAR_URL = false;
 
-var PLAN = {"cuenta": "860-582-6837", "anterior": "", "nombre": "Girbau", "url": "https://supliese-girbau-lavadoras.vercel.app/", "ubicacion_de": null, "lista": {"nombre": "AB · Negativas de la cuenta", "kw": [["lavadora industrial", "EXACT"], ["lavadoras industriales", "EXACT"], ["lavadora industrial precio", "EXACT"], ["lavadoras industriales precio", "EXACT"], ["precio lavadora industrial", "EXACT"], ["lavadora industrial 12 kg", "EXACT"], ["lavadora industrial 14 kg", "EXACT"], ["lavadora industrial 30 kg", "EXACT"], ["lavadora industrial 30 kg precio", "EXACT"], ["refacciones", "BROAD"], ["refacción", "BROAD"], ["refaccion", "BROAD"], ["partes", "BROAD"], ["repuestos", "BROAD"], ["franquicia", "BROAD"], ["franquicias", "BROAD"], ["poner una lavandería", "PHRASE"], ["poner una lavanderia", "PHRASE"], ["lorsa", "BROAD"], ["lorza", "BROAD"], ["wascomat", "BROAD"], ["unimac", "BROAD"], ["maytag", "BROAD"], ["alliance", "BROAD"], ["speed queen", "PHRASE"], ["primus", "BROAD"], ["electrolux", "BROAD"], ["lg", "BROAD"], ["imesa", "BROAD"], ["sertec", "BROAD"], ["edro", "BROAD"], ["lavartind", "BROAD"], ["whirlpool", "BROAD"], ["braun", "BROAD"], ["gamesail", "BROAD"], ["clm", "BROAD"], ["supliese", "BROAD"], ["quick laundry", "PHRASE"], ["continental girbau", "PHRASE"], ["empleo", "BROAD"], ["curso", "BROAD"], ["cursos", "BROAD"], ["manual", "BROAD"], ["pdf", "BROAD"], ["usada", "BROAD"], ["usadas", "BROAD"], ["renta", "BROAD"]]}, "campanas": [{"nombre": "AB · Marca Girbau", "diario": 49, "cpc": 10, "negativas": [], "grupos": [{"nombre": "Girbau", "kw": [["girbau", "EXACT"], ["lavadoras girbau", "PHRASE"], ["girbau méxico", "PHRASE"], ["distribuidor girbau", "PHRASE"], ["girbau occidente", "PHRASE"]], "h": ["Girbau Occidente", "Distribuidor Girbau", "Lavadoras Girbau", "Nueva Girbau Smart Plus", "Lavadoras de 12 y 14 kg", "Secadoras y Mangles Girbau", "Girbau", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Lavadoras, secadoras y mangles Girbau. Cotiza hoy con un asesor.", "Conoce la nueva Girbau Smart Plus y las lavadoras de 12 y 14 kg.", "Equipo Girbau para lavanderías, hoteles y hospitales. Te ayudamos a elegir."], "p": ["girbau", "equipo"]}]}, {"nombre": "AB · Girbau Smart Plus", "diario": 22, "cpc": 10, "negativas": [], "grupos": [{"nombre": "Smart Plus", "kw": [["girbau smart plus", "PHRASE"], ["smart plus girbau", "PHRASE"], ["lavadora girbau smart plus", "PHRASE"]], "h": ["Girbau Smart Plus", "Nueva Girbau Smart Plus", "Lavadora Smart Plus", "Distribuidor Girbau", "Conoce el Nuevo Modelo", "Girbau", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Conoce la nueva Girbau Smart Plus. Cotiza hoy con un asesor.", "Te explicamos el nuevo modelo y te ayudamos a elegir la capacidad.", "Equipo Girbau para lavanderías, hoteles y hospitales."], "p": ["smart-plus", "girbau"]}]}, {"nombre": "AB · Girbau por capacidad y sector", "diario": 27, "cpc": 10, "negativas": [], "grupos": [{"nombre": "Capacidad", "kw": [["lavadora girbau 12 kg", "PHRASE"], ["lavadora girbau 14 kg", "PHRASE"], ["girbau 12 kg", "PHRASE"], ["girbau 14 kg", "PHRASE"], ["secadora girbau", "PHRASE"], ["lavadora industrial girbau", "PHRASE"]], "h": ["Lavadora Girbau 12 kg", "Lavadora Girbau 14 kg", "Lavadoras de 12 y 14 kg", "Secadoras Girbau", "Distribuidor Girbau", "Te Ayudamos a Elegir", "Girbau", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Lavadoras Girbau de 12 y 14 kg y secadoras Girbau. Cotiza hoy con un asesor.", "Te ayudamos a elegir la capacidad según los kilos de ropa que lavas al día.", "Equipo Girbau para lavanderías, hoteles y hospitales."], "p": ["girbau", "capacidad"]}, {"nombre": "Sector", "kw": [["lavadora girbau para hotel", "PHRASE"], ["mangle girbau", "PHRASE"], ["girbau para lavandería", "PHRASE"]], "h": ["Girbau para Hoteles", "Mangles Girbau", "Girbau para Lavanderías", "Distribuidor Girbau", "Te Ayudamos a Elegir", "Girbau", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Lavadoras, secadoras y mangles Girbau para hoteles y lavanderías. Cotiza hoy.", "Te ayudamos a elegir el equipo Girbau para tu operación."], "p": ["girbau", "sector"]}]}, {"nombre": "AB · Servicio técnico Girbau", "diario": 11, "cpc": 10, "negativas": [], "grupos": [{"nombre": "Servicio técnico", "kw": [["servicio técnico girbau", "PHRASE"], ["técnico girbau", "PHRASE"], ["reparación girbau", "PHRASE"], ["mantenimiento girbau", "PHRASE"]], "h": ["Servicio Técnico Girbau", "Técnicos Girbau", "Mantenimiento Girbau", "Distribuidor Girbau", "Agenda tu Servicio", "Girbau", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Servicio técnico y mantenimiento para equipo Girbau. Agenda hoy.", "Técnicos para lavadoras, secadoras y mangles Girbau."], "p": ["servicio", "girbau"]}]}]};
+var PLAN = {"cuenta": "860-582-6837", "anterior": "", "nombre": "Girbau", "url": "https://supliese-girbau-lavadoras.vercel.app/", "ubicacion_de": null, "lista": {"nombre": "AB · Negativas de la cuenta", "kw": [["lavadora industrial", "EXACT"], ["lavadoras industriales", "EXACT"], ["lavadora industrial precio", "EXACT"], ["lavadoras industriales precio", "EXACT"], ["precio lavadora industrial", "EXACT"], ["lavadora industrial 12 kg", "EXACT"], ["lavadora industrial 14 kg", "EXACT"], ["lavadora industrial 30 kg", "EXACT"], ["lavadora industrial 30 kg precio", "EXACT"], ["refacciones", "BROAD"], ["refacción", "BROAD"], ["refaccion", "BROAD"], ["partes", "BROAD"], ["repuestos", "BROAD"], ["franquicia", "BROAD"], ["franquicias", "BROAD"], ["poner una lavandería", "PHRASE"], ["poner una lavanderia", "PHRASE"], ["lorsa", "BROAD"], ["lorza", "BROAD"], ["wascomat", "BROAD"], ["unimac", "BROAD"], ["maytag", "BROAD"], ["alliance", "BROAD"], ["speed queen", "PHRASE"], ["primus", "BROAD"], ["electrolux", "BROAD"], ["lg", "BROAD"], ["imesa", "BROAD"], ["sertec", "BROAD"], ["edro", "BROAD"], ["lavartind", "BROAD"], ["whirlpool", "BROAD"], ["braun", "BROAD"], ["gamesail", "BROAD"], ["clm", "BROAD"], ["supliese", "BROAD"], ["quick laundry", "PHRASE"], ["continental girbau", "PHRASE"], ["empleo", "BROAD"], ["curso", "BROAD"], ["cursos", "BROAD"], ["manual", "BROAD"], ["pdf", "BROAD"], ["usada", "BROAD"], ["usadas", "BROAD"], ["renta", "BROAD"]]}, "campanas": [{"nombre": "AB · Marca Girbau", "diario": 49, "cpc": 10, "negativas": [], "grupos": [{"nombre": "Girbau", "kw": [["girbau", "EXACT"], ["lavadoras girbau", "PHRASE"], ["girbau méxico", "PHRASE"], ["distribuidor girbau", "PHRASE"], ["girbau occidente", "PHRASE"]], "h": ["Girbau Occidente", "Distribuidor Girbau", "Lavadoras Girbau", "Nueva Girbau Smart Plus", "Lavadoras de 12 y 14 kg", "Secadoras y Mangles Girbau", "Girbau", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Lavadoras, secadoras y mangles Girbau. Cotiza hoy con un asesor.", "Conoce la nueva Girbau Smart Plus y las lavadoras de 12 y 14 kg.", "Equipo Girbau para lavanderías, hoteles y hospitales. Te ayudamos a elegir."], "p": ["girbau", "equipo"]}]}, {"nombre": "AB · Girbau Smart Plus", "diario": 22, "cpc": 10, "negativas": [], "grupos": [{"nombre": "Smart Plus", "kw": [["girbau smart plus", "PHRASE"], ["smart plus girbau", "PHRASE"], ["lavadora girbau smart plus", "PHRASE"]], "h": ["Girbau Smart Plus", "Nueva Girbau Smart Plus", "Lavadora Smart Plus", "Distribuidor Girbau", "Conoce el Nuevo Modelo", "Girbau", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Conoce la nueva Girbau Smart Plus. Cotiza hoy con un asesor.", "Te explicamos el nuevo modelo y te ayudamos a elegir la capacidad.", "Equipo Girbau para lavanderías, hoteles y hospitales."], "p": ["smart-plus", "girbau"]}]}, {"nombre": "AB · Girbau por capacidad y sector", "diario": 27, "cpc": 10, "negativas": [], "grupos": [{"nombre": "Capacidad", "kw": [["lavadora girbau 12 kg", "PHRASE"], ["lavadora girbau 14 kg", "PHRASE"], ["girbau 12 kg", "PHRASE"], ["girbau 14 kg", "PHRASE"], ["secadora girbau", "PHRASE"], ["lavadora industrial girbau", "PHRASE"]], "h": ["Lavadora Girbau 12 kg", "Lavadora Girbau 14 kg", "Lavadoras de 12 y 14 kg", "Secadoras Girbau", "Distribuidor Girbau", "Te Ayudamos a Elegir", "Girbau", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Lavadoras Girbau de 12 y 14 kg y secadoras Girbau. Cotiza hoy con un asesor.", "Te ayudamos a elegir la capacidad según los kilos de ropa que lavas al día.", "Equipo Girbau para lavanderías, hoteles y hospitales."], "p": ["girbau", "capacidad"]}, {"nombre": "Sector", "kw": [["lavadora girbau para hotel", "PHRASE"], ["mangle girbau", "PHRASE"], ["girbau para lavandería", "PHRASE"]], "h": ["Girbau para Hoteles", "Mangles Girbau", "Girbau para Lavanderías", "Distribuidor Girbau", "Te Ayudamos a Elegir", "Girbau", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Lavadoras, secadoras y mangles Girbau para hoteles y lavanderías. Cotiza hoy.", "Te ayudamos a elegir el equipo Girbau para tu operación."], "p": ["girbau", "sector"]}]}, {"nombre": "AB · Servicio técnico Girbau", "diario": 11, "cpc": 10, "negativas": [], "grupos": [{"nombre": "Servicio técnico", "kw": [["técnico girbau", "PHRASE"], ["reparación girbau", "PHRASE"], ["mantenimiento girbau", "PHRASE"]], "h": ["Servicio Técnico Girbau", "Técnicos Girbau", "Mantenimiento Girbau", "Distribuidor Girbau", "Agenda tu Servicio", "Girbau", "Cotiza con un Asesor", "Solicita tu Cotización"], "d": ["Servicio técnico y mantenimiento para equipo Girbau. Agenda hoy.", "Técnicos para lavadoras, secadoras y mangles Girbau."], "p": ["servicio", "girbau"]}]}]};
 
 // Solo si es una cuenta nueva (el plan no trae su número): pega aquí su número, por ejemplo '123-456-7890'.
 var CUENTA_NUEVA = '';
@@ -100,6 +100,8 @@ function main() {
   Logger.log('Lista «' + PLAN.lista.nombre + '»: ' + (listaExistente ? 'ya existía, se reutiliza' : 'nueva') +
     ' · ' + agregadas + ' palabras por agregar.');
 
+  // Las palabras clave van aparte: si Google rechaza alguna por sus políticas, se omite y lo demás sí se crea.
+  var claves = [], indiceGrupo = {};
   var resumen = [];
   PLAN.campanas.forEach(function (k) {
     var presupuesto = temporal('campaignBudgets');
@@ -131,9 +133,10 @@ function main() {
     var palabras = 0;
     k.grupos.forEach(function (g) {
       var grupo = temporal('adGroups');
+      indiceGrupo[grupo] = ops.length;
       ops.push({ adGroupOperation: { create: { resourceName: grupo, campaign: campana, name: g.nombre, status: 'ENABLED', type: 'SEARCH_STANDARD' } } });
       g.kw.forEach(function (w) {
-        ops.push({ adGroupCriterionOperation: { create: { adGroup: grupo, status: 'ENABLED', keyword: { text: w[0], matchType: w[1] } } } });
+        claves.push({ grupo: grupo, donde: k.nombre + ' > ' + g.nombre, texto: w[0], tipo: w[1] });
         palabras++;
       });
       ops.push({ adGroupAdOperation: { create: { adGroup: grupo, status: 'ENABLED', ad: {
@@ -146,24 +149,59 @@ function main() {
     resumen.push(k.nombre + ' · $' + k.diario + '/día de arranque · tope CPC $' + k.cpc + ' · ' + k.grupos.length + ' grupos · ' + palabras + ' palabras clave');
   });
 
-  Logger.log(PLAN.nombre + ': ' + ops.length + ' operaciones.');
+  function opClave(x, grupo) {
+    return { adGroupCriterionOperation: { create: { adGroup: grupo, status: 'ENABLED', keyword: { text: x.texto, matchType: x.tipo } } } };
+  }
+  function errorDe(r, op) { return JSON.stringify(op).substring(0, 300) + ' → ' + r.getErrorMessages().join('; '); }
+  var vista = AdsApp.getExecutionInfo().isPreview();
+  Logger.log(PLAN.nombre + ': ' + ops.length + ' operaciones de estructura y ' + claves.length + ' palabras clave.');
+
+  if (vista) {
+    // En la vista previa no se crea nada: se revisa todo junto y cada error se reporta por separado.
+    var todas = ops.concat(claves.map(function (x) { return opClave(x, x.grupo); }));
+    var rv = AdsApp.mutateAll(todas, { partialFailure: true });
+    var malas = [], omitidas = [];
+    rv.forEach(function (r, i) {
+      if (r.isSuccessful()) return;
+      if (i < ops.length) malas.push('#' + i + ' ' + errorDe(r, todas[i]));
+      else omitidas.push(claves[i - ops.length]);
+    });
+    omitidas.forEach(function (x) {
+      Logger.log('AVISO: Google no acepta la palabra clave «' + x.texto + '» (' + x.donde + '); se omitirá.');
+    });
+    if (malas.length) {
+      malas.forEach(function (e) { Logger.log(e); });
+      throw new Error(malas.length + ' operaciones con error en la vista previa. No ejecutes; manda el registro.');
+    }
+    resumen.forEach(function (r) { Logger.log(r); });
+    Logger.log('VISTA PREVIA SIN ERRORES' + (omitidas.length ? ' (con ' + omitidas.length + ' palabra(s) que se omitirán)' : '') +
+      '. Para crear las campañas (en pausa), da EJECUTAR.');
+    return;
+  }
+
+  // 1. Estructura completa (lista, presupuestos, campañas, ubicación, idioma, negativas, grupos y anuncios): todo o nada.
   var resultados = AdsApp.mutateAll(ops, { partialFailure: false });
   var errores = [];
   resultados.forEach(function (r, i) {
-    if (!r.isSuccessful()) {
-      errores.push('#' + i + ' ' + JSON.stringify(ops[i]).substring(0, 300) + ' → ' + r.getErrorMessages().join('; '));
-    }
+    if (!r.isSuccessful()) errores.push('#' + i + ' ' + errorDe(r, ops[i]));
   });
   if (errores.length) {
     errores.forEach(function (e) { Logger.log(e); });
     throw new Error(errores.length + ' operaciones con error. No se creó nada. Revisa el registro.');
   }
+
+  // 2. Palabras clave, cada una por su lado, con el grupo ya creado.
+  var opsClaves = claves.map(function (x) { return opClave(x, resultados[indiceGrupo[x.grupo]].getResourceName()); });
+  var rk = opsClaves.length ? AdsApp.mutateAll(opsClaves, { partialFailure: true }) : [];
+  var fallidas = 0;
+  rk.forEach(function (r, i) {
+    if (r.isSuccessful()) return;
+    fallidas++;
+    Logger.log('AVISO: no se agregó la palabra clave «' + claves[i].texto + '» (' + claves[i].donde + '): ' + r.getErrorMessages().join('; '));
+  });
   resumen.forEach(function (r) { Logger.log(r); });
-  if (AdsApp.getExecutionInfo().isPreview()) {
-    Logger.log('VISTA PREVIA SIN ERRORES. Para crear las campañas (en pausa), da EJECUTAR.');
-  } else {
-    Logger.log('CREADO. Todas las campañas quedaron EN PAUSA. Se activan solo con el OK del cliente.');
-  }
+  Logger.log('CREADO. Todas las campañas quedaron EN PAUSA' + (fallidas ? ', sin ' + fallidas + ' palabra(s) clave que Google no aceptó' : '') +
+    '. Se activan solo con el OK del cliente.');
 }
 
 function urlDeAnunciosActuales() {

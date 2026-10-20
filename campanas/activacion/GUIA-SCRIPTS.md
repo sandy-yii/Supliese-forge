@@ -73,4 +73,5 @@ Los anuncios anteriores no se editan: se copian con la página nueva y el anteri
 | «Faltan campañas nuevas» | Falta correr «crear-campanas.js», o alguna campaña nueva se borró o se renombró. |
 | «Este script es para la cuenta …» | Estás en otra cuenta. Cambia de cuenta arriba a la derecha. |
 | «Es una cuenta nueva: pega su número…» | Solo Gamesail: falta poner el número en `CUENTA_NUEVA`. |
+| "AVISO: Google no acepta la palabra clave…" | Google rechaza esa palabra por sus políticas. El script la omite y crea todo lo demás; se puede ejecutar. |
 | Cualquier otro error | No ejecutes. Copia el registro completo y mándalo. |
