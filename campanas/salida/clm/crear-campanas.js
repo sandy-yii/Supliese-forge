@@ -176,6 +176,7 @@ function main() {
   }
 
   var vista = AdsApp.getExecutionInfo().isPreview();
+  Logger.log('Versión del script: por pasos, 21 oct 2026.');
   Logger.log(PLAN.nombre + ': ' + (paso1.length + paso2.length + paso3.length) + ' operaciones y ' + claves.length + ' palabras clave.');
 
   if (vista) {
@@ -183,13 +184,17 @@ function main() {
     // la ubicación, el idioma y las listas solo se pueden revisar cuando la campaña ya existe, al ejecutar.
     var todas = paso1.concat(paso3, claves.map(opClave));
     var rv = AdsApp.mutateAll(todas, { partialFailure: true });
-    var malas = [], omitidas = [];
+    var malas = [], omitidas = [], sinRevisar = 0;
     var base = paso1.length + paso3.length;
     rv.forEach(function (r, i) {
       if (r.isSuccessful()) return;
+      // La vista previa no puede revisar lo que depende de una campaña que todavía no existe: Google responde
+      // con un error genérico. Eso no es un error real; se revisa al ejecutar, paso por paso.
+      if (/int[eé]ntelo de nuevo|try again|internal/i.test(r.getErrorMessages().join(' '))) { sinRevisar++; return; }
       if (i < base) malas.push(errorDe(r, todas[i]));
       else omitidas.push(claves[i - base]);
     });
+    if (sinRevisar) Logger.log(sinRevisar + ' operaciones no se pueden revisar en la vista previa porque dependen de campañas que aún no existen; se revisan al ejecutar.');
     omitidas.forEach(function (x) {
       Logger.log('AVISO: Google no acepta la palabra clave «' + x.texto + '» (' + x.donde + '); se omitirá.');
     });
