@@ -165,10 +165,45 @@ def cruces(todas):
     return filas
 
 
+BASURA = {'Doméstico', 'Marcas que no se venden aquí', 'Lavado por encargo, no venta', 'Usado y renta',
+          'Información, no compra', 'Lavado de autos', 'Lavado de autos (junta)', 'Cadenas de lavandería',
+          'Aprender a reparar', 'Empleo', 'Otras marcas', 'Girbau de otro país (filial de EE. UU.)'}
+
+
+def numero(c):
+    """Número de la cuenta para los scripts; vacío si es una cuenta nueva que todavía no tiene número."""
+    return c['id'] if re.match(r'^\d{3}-\d{3}-\d{4}$', c['id']) else ''
+
+
+def plantilla(nombre, c, plan):
+    with open(os.path.join(AQUI, nombre), encoding='utf-8') as f:
+        texto = f.read()
+    return (texto.replace('{{NOMBRE}}', c['nombre']).replace('{{ID}}', c['id'])
+            .replace('{{PLAN}}', json.dumps(plan, ensure_ascii=False)))
+
+
+def js_activar(p):
+    c = p['c']
+    act = c.get('activacion', {})
+    basura = ampliar([leer(n) for k, grupo in c['negativas'].items() if k in BASURA for n in grupo])
+    plan = dict(cuenta=numero(c), anterior=c.get('id_anterior', ''), nombre=c['nombre'], url=c['url'], prefijo=PREFIJO,
+                campanas=[dict(nombre=k['nombre'], arranque=k['arranque'], completo=k['diario']) for k in p['campanas']],
+                anteriores=act.get('anteriores', 'MITAD'), pausar_palabras=act.get('pausar_palabras', []),
+                pausar_nombres=act.get('pausar_nombres', []),
+                basura=dict(nombre='PB · Negativas basura', kw=basura))
+    return plantilla('plantilla-activar.js', c, plan)
+
+
+def js_conversiones(p):
+    c = p['c']
+    return plantilla('plantilla-conversiones.js', c, dict(cuenta=numero(c), anterior=c.get('id_anterior', ''),
+                                                          nombre=c['nombre'], url=c['url']))
+
+
 def js(p):
     c = p['c']
     plan = dict(
-        cuenta=c['id'], nombre=c['nombre'], url=c['url'], ubicacion_de=c.get('ubicacion_de'),
+        cuenta=numero(c), anterior=c.get('id_anterior', ''), nombre=c['nombre'], url=c['url'], ubicacion_de=c.get('ubicacion_de'),
         lista=dict(nombre=PREFIJO + 'Negativas de la cuenta', kw=p['lista']),
         campanas=[dict(nombre=k['nombre'], diario=k['arranque'], cpc=k['cpc'], negativas=k['negativas'],
                        grupos=[dict(nombre=g['nombre'], kw=g['kw'], h=g['h'], d=g['d'], p=g['p']) for g in k['grupos']])
@@ -257,7 +292,10 @@ def prompt(p, expres=False):
          'REGLAS (no negociables):',
          '- Hazlo todo a mano en la interfaz de Google Ads, clic por clic. No uses Scripts, Google Ads Editor, cargas masivas ni hojas de cálculo: la cuenta no puede autorizar scripts.',
          '- No modifiques, pauses, actives, borres ni edites absolutamente nada de lo que ya existe en la cuenta: campañas, anuncios, palabras clave, presupuestos, listas, configuración ni facturación. Solo puedes CREAR lo que está en estas instrucciones.',
-         '- Antes de empezar, confirma que el número de cuenta arriba a la derecha sea %s. Si no lo es, detente y pregúntame.' % c['id'],
+         ('- Antes de empezar, confirma que el número de cuenta arriba a la derecha sea %s. Si no lo es, detente y pregúntame.' % c['id']
+          if numero(c) else
+          '- Es una cuenta nueva: antes de empezar, dime el número de cuenta que ves arriba a la derecha y espera mi OK.%s'
+          % (' Si es %s (la cuenta anterior), detente.' % c['id_anterior'] if c.get('id_anterior') else '')),
          ('- La campaña nueva SÍ sale hoy: deja la fecha de inicio de hoy y, al publicarla, déjala "Habilitada". No actives nada más.'
           if expres else
           '- Ninguna campaña nueva debe quedar activa. En cada una pon como fecha de inicio el %s y, en cuanto la publiques, cámbiala a "En pausa".' % INICIO),
@@ -326,6 +364,10 @@ def main():
         os.makedirs(carpeta, exist_ok=True)
         with open(os.path.join(carpeta, 'crear-campanas.js'), 'w', encoding='utf-8') as f:
             f.write(js(p))
+        with open(os.path.join(carpeta, 'conversiones.js'), 'w', encoding='utf-8') as f:
+            f.write(js_conversiones(p))
+        with open(os.path.join(carpeta, 'activar.js'), 'w', encoding='utf-8') as f:
+            f.write(js_activar(p))
         with open(os.path.join(carpeta, 'ficha.md'), 'w', encoding='utf-8') as f:
             f.write(ficha(p))
         viejo = os.path.join(carpeta, 'prompt-extension.txt')

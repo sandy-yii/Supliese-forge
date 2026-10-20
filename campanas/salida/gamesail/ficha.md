@@ -1,6 +1,6 @@
 # Gamesail · campañas de arranque
 
-Cuenta 645-094-0317 · presupuesto mensual $19,700 · Cuenta nueva. Equipo industrial: lavadoras para ropa y sábanas, capacidades, secadoras, hoteles y hospitales, mangles.
+Cuenta CUENTA NUEVA · presupuesto mensual $19,700 · Cuenta nueva. Equipo industrial: lavadoras para ropa y sábanas, capacidades, secadoras, hoteles y hospitales, mangles.
 
 **Página de destino:** https://gamesail.mx/
 

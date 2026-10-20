@@ -24,11 +24,26 @@ var COPIAR_URL = {{COPIAR_URL}};
 
 var PLAN = {{PLAN}};
 
-function main() {
+// Solo si es una cuenta nueva (el plan no trae su número): pega aquí su número, por ejemplo '123-456-7890'.
+var CUENTA_NUEVA = '';
+
+function revisarCuenta() {
   var cid = AdsApp.currentAccount().getCustomerId();
-  if (cid !== PLAN.cuenta) {
-    throw new Error('Este script es para la cuenta ' + PLAN.cuenta + ' y se está corriendo en ' + cid + '. No se creó nada.');
+  var esperada = PLAN.cuenta || CUENTA_NUEVA;
+  if (!esperada) {
+    throw new Error('Es una cuenta nueva: pega su número en CUENTA_NUEVA, arriba del script. No se hizo nada.');
   }
+  if (PLAN.anterior && cid === PLAN.anterior) {
+    throw new Error('Esta es la cuenta anterior (' + cid + '), no la nueva. No se hizo nada.');
+  }
+  if (cid !== esperada) {
+    throw new Error('Este script es para la cuenta ' + esperada + ' y se está corriendo en ' + cid + '. No se hizo nada.');
+  }
+  return cid;
+}
+
+function main() {
+  var cid = revisarCuenta();
   if (COPIAR_URL) {
     PLAN.url = urlDeAnunciosActuales();
   }

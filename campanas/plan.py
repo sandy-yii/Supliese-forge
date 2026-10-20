@@ -12,7 +12,7 @@ CUENTAS = {}
 
 # ---------------------------------------------------------------- Gamesail
 CUENTAS['gamesail'] = dict(
-    nombre='Gamesail', id='645-094-0317', mensual=19700,
+    nombre='Gamesail', id='CUENTA NUEVA', id_anterior='645-094-0317', mensual=19700,
     url='https://gamesail.mx/',
     nota='Cuenta nueva. Equipo industrial: lavadoras para ropa y sábanas, capacidades, secadoras, hoteles y hospitales, mangles.',
     comunes=['Equipo Gamesail', 'Cotiza con un Asesor', 'Solicita tu Cotización'],
@@ -184,6 +184,7 @@ CUENTAS['gamesail'] = dict(
            '[maytag lavadora industrial]: Maytag la vende Quick Laundry',
            '«mangle industrial»: pasa a CLM'],
     cambios_actuales=[],
+    activacion=dict(anteriores='MITAD'),
 )
 
 # ---------------------------------------------------------------- Quick Laundry (cuenta Supliese Gómez)
@@ -308,6 +309,9 @@ CUENTAS['quick-laundry'] = dict(
     cambios_actuales=['Pausar las palabras clave que contienen «franquicia» (grupo Franquicias de lavanderías, campaña Modelo de Negocio) — pedido en la junta',
                       'Pausar «cuánto cuesta poner una lavandería» si existe en las campañas actuales',
                       'Al activar: bajar las campañas actuales a la mitad de su presupuesto'],
+    activacion=dict(anteriores='MITAD',
+                    pausar_palabras=['franquicia', 'cuánto cuesta poner una lavandería'],
+                    pausar_nombres=['competencia']),
 )
 
 # ---------------------------------------------------------------- CLM
@@ -426,6 +430,7 @@ CUENTAS['clm'] = dict(
            '[clm] solo: es una sigla ambigua; se usa «clm méxico» y «clm lavandería»'],
     cambios_actuales=['Si existe una campaña o grupo de competencia en la cuenta actual: pausarlo (pedido en la junta)',
                       'Al activar: bajar las campañas actuales a la mitad de su presupuesto'],
+    activacion=dict(anteriores='MITAD', pausar_nombres=['competencia']),
 )
 
 # ---------------------------------------------------------------- Servicio para Lavandería
@@ -547,6 +552,7 @@ CUENTAS['servicio'] = dict(
            'Interpretación: «mantenimiento correctivo lavadora, lavadoras industriales» se tomó como dos keywords de mantenimiento correctivo; «lavadoras industriales» sola es venta y es de Gamesail'],
     cambios_actuales=['Al activar: bajar las campañas actuales a la mitad de su presupuesto',
                       'Revisar la campaña actual de refacciones (tenía todos sus anuncios rechazados)'],
+    activacion=dict(anteriores='MITAD'),
 )
 
 # ---------------------------------------------------------------- Girbau
@@ -625,4 +631,5 @@ CUENTAS['girbau'] = dict(
                       'Al pausarlas, las campañas nuevas pasan de la mitad a su presupuesto completo ($217 al día), para no bajar el gasto',
                       'Las búsquedas genéricas («lavadora industrial») que hoy recoge la campaña actual dejan de salir en Girbau: '
                       'son de Gamesail y CLM'],
+    activacion=dict(anteriores='PAUSAR'),
 )
