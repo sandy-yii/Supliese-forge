@@ -5,11 +5,8 @@ Trabaja en una pestaña nueva y confirma que el número de cuenta arriba a la de
 1. Acceso: en Administración > Acceso y seguridad, dime con qué correo estás dentro y qué nivel de acceso tiene (debe decir Administrador).
 2. Campañas: tabla de TODAS (habilitadas, pausadas y borradores), últimos 30 días: nombre, tipo, estado, presupuesto diario, puja, costo, clics, conversiones. Dime si ya existe alguna campaña o borrador cuyo nombre empiece con "AB ·".
 3. Biblioteca compartida > Listas de exclusión: ¿existe la lista "AB · Negativas de la cuenta"? Si existe, cuántas palabras tiene y a qué campañas está aplicada.
-4. «Girbau Búsqueda | Nerea»:
-   - si tiene estas palabras clave y su concordancia: lavadoras girbau, girbau mexico (o girbau méxico), lavadoras industriales girbau;
-   - la URL final de sus anuncios habilitados: ¿es https://girbauoccidente.com/ y carga?
-5. Conversiones (Objetivos > Conversiones > Resumen): cada acción, si es Principal o Secundaria, su origen y cuántas tuvo en 30 días.
-6. Administración > Configuración de la cuenta: ¿el "Etiquetado automático" está activado?
-7. Facturación: ¿hay algún aviso de pago rechazado o de fondos bajos?
+4. Conversiones (Objetivos > Conversiones > Resumen): cada acción, si es Principal o Secundaria, su origen y cuántas tuvo en 30 días.
+5. Administración > Configuración de la cuenta: ¿el "Etiquetado automático" está activado?
+6. Facturación: ¿hay algún aviso de pago rechazado o de fondos bajos?
 
 Entrégame todo en tablas, sin resumir números. Al final dime si algo no pudiste ver.

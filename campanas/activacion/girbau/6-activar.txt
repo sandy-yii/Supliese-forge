@@ -1,4 +1,4 @@
-GIRBAU 860-582-6837 · ACTIVAR LAS CAMPAÑAS NUEVAS
+GIRBAU 860-582-6837 · ACTIVAR LAS CAMPAÑAS NUEVAS Y PAUSAR LAS DE LA AGENCIA ANTERIOR
 Trabaja en una pestaña nueva y confirma que el número de cuenta arriba a la derecha sea 860-582-6837.
 Hazlo todo a mano en la interfaz. No uses Scripts, Google Ads Editor, cargas masivas ni hojas de cálculo.
 Haz SOLO lo que dice aquí. Si algo no coincide o Google te pide confirmar algo distinto, detente y pregúntame.
@@ -6,17 +6,14 @@ Haz SOLO lo que dice aquí. Si algo no coincide o Google te pide confirmar algo 
 FASE 1 · SOLO LECTURA
 No modifiques, pauses, actives ni edites absolutamente nada dentro de las cuentas. Solo navegar, configurar vistas, descargar y capturar. Si algo te pide confirmar un cambio, detente y pregúntame.
 Muéstrame en una tabla "antes → después" estos cambios, con los valores reales que ves hoy:
-  A) Las 4 campañas nuevas «AB · Marca Girbau», «AB · Girbau Smart Plus», «AB · Girbau por capacidad y sector» y «AB · Servicio técnico Girbau»: si la fecha de inicio es futura (2026-12-31), cambiarla a hoy; estado En pausa → Habilitada. Presupuestos sin cambio ($49, $22, $27 y $11 al día). Si falta alguna de las 4 o tiene anuncios rechazados, dímelo.
-  B) «Girbau Búsqueda | Nerea»: pausar SOLO las palabras clave lavadoras girbau, girbau mexico (o girbau méxico) y lavadoras industriales girbau, porque ahora las cubre «AB · Marca Girbau». Presupuesto de Nerea sin cambio.
-  C) «Girbau Búsqueda | Nerea»: si algún anuncio habilitado tiene una URL final distinta de https://girbauoccidente.com/, crear en ese mismo grupo una copia con los mismos títulos, descripciones y rutas, cambiando SOLO la URL final a https://girbauoccidente.com/. El anuncio viejo se queda como está.
-  D) Máximo Rendimiento: estado y presupuesto actuales. Propuesta: pausarla (en septiembre trajo 3 conversiones a $985 contra 55 a $331 de búsqueda). Su presupuesto es casi lo que necesitan las 4 campañas nuevas, así que el gasto total de la cuenta queda parecido.
-Termina con la tabla y estas dos preguntas:
-  "¿Hago A, B y C? Responde SÍ ACTIVA"
-  "¿Pauso también Máximo Rendimiento? Responde SÍ PAUSA PMAX o NO PMAX"
+  A) Las 4 campañas nuevas: estado En pausa → Habilitada. Si la fecha de inicio es futura (2026-12-31), cambiarla a hoy. Presupuesto diario a su monto completo:
+     «AB · Marca Girbau» $98 · «AB · Girbau Smart Plus» $43 · «AB · Girbau por capacidad y sector» $54 · «AB · Servicio técnico Girbau» $22 (total $217).
+     Si falta alguna de las 4 o tiene anuncios rechazados, dímelo.
+  B) Las dos campañas que armó la agencia anterior, «Girbau Búsqueda | Nerea» y Máximo Rendimiento: estado Habilitada → En pausa. Antes, dime su presupuesto diario, costo, clics y conversiones de los últimos 30 días. No se borran.
+Termina con la tabla y la pregunta: "¿Hago A y B? Responde SÍ ACTIVA".
 
-FASE 2 · SOLO DESPUÉS DE MI RESPUESTA
-Si respondo "SÍ ACTIVA", haz A, después B, después C, en ese orden.
-Si respondo "SÍ PAUSA PMAX", al final pausa Máximo Rendimiento. Si respondo "NO PMAX", no la toques.
-No cambies presupuestos, pujas, ubicaciones, idiomas ni nada más.
+FASE 2 · SOLO SI RESPONDO "SÍ ACTIVA"
+Haz primero A (las 4 nuevas quedan habilitadas con su presupuesto completo) y después B (pausar las dos anteriores). En ese orden, para que la cuenta no se quede sin anuncios.
+No cambies pujas, ubicaciones, idiomas, palabras clave, anuncios ni nada más.
 Si aparece "Confirma que eres tú", una llave de acceso o cualquier verificación de Google, detente y avísame; no intentes saltarla. Si te detienes, dime qué pasos alcanzaste a hacer.
-Al terminar, dame una tabla con cada campaña: estado (Apta, Limitada, En revisión, etc.), presupuesto diario y fecha de inicio; y la lista de palabras clave que pausaste.
+Al terminar, dame una tabla con cada campaña: estado (Apta, Limitada, En revisión, En pausa, etc.), presupuesto diario y fecha de inicio.

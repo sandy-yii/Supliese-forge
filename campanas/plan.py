@@ -620,9 +620,9 @@ CUENTAS['girbau'] = dict(
     ],
     salen=['Refacciones Girbau (25%): pasa a Servicio para Lavandería; «refacciones» queda como negativa',
            'Genérico «lavadora industrial»: va a negativas en exacta. En frase bloquearía «lavadora industrial girbau»'],
-    cambios_actuales=['Al activar: bajar la búsqueda actual a la mitad de su presupuesto',
-                      'Al activar: pausar en «Girbau Búsqueda | Nerea» las keywords «lavadoras girbau», «girbau mexico» y '
-                      '«lavadoras industriales girbau», que ya cubre «Marca Girbau»; si no, las dos campañas pujan por lo mismo',
-                      'Máximo Rendimiento actual: el plan dice apagarlo; requiere tu OK. Avisar al cliente: las búsquedas de marca '
-                      'que hoy recoge pasan a «Marca Girbau», así que los números se mueven entre campañas'],
+    cambios_actuales=['Al activar: pausar las dos campañas actuales, que armó la agencia anterior («Girbau Búsqueda | Nerea» y '
+                      'Máximo Rendimiento); las reemplazan las campañas nuevas. Requiere tu OK',
+                      'Al pausarlas, las campañas nuevas pasan de la mitad a su presupuesto completo ($217 al día), para no bajar el gasto',
+                      'Las búsquedas genéricas («lavadora industrial») que hoy recoge la campaña actual dejan de salir en Girbau: '
+                      'son de Gamesail y CLM'],
 )
