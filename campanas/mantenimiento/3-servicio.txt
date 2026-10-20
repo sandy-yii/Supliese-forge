@@ -1,0 +1,30 @@
+MANTENIMIENTO DE PALABRAS CLAVE · Servicio para Lavandería 265-909-2662
+Trabaja en una pestaña nueva y confirma que el número de cuenta arriba a la derecha sea 265-909-2662.
+Hazlo todo a mano en la interfaz. No uses Scripts, Google Ads Editor, cargas masivas ni hojas de cálculo.
+
+FASE 1 · SOLO LECTURA
+No modifiques, pauses, actives ni edites absolutamente nada dentro de las cuentas. Solo navegar, configurar vistas, descargar y capturar. Si algo te pide confirmar un cambio, detente y pregúntame.
+Periodo: del 1 de marzo al 11 de octubre de 2026 (la cuenta estuvo en pausa). Solo campañas de Búsqueda.
+
+1. Costo por conversión de la cuenta en el periodo (costo total entre conversiones). Lo llamaremos CPA.
+2. Términos de búsqueda (Palabras clave > Términos de búsqueda), ordenados por costo, los 60 primeros: término, campaña, grupo, palabra clave que lo activó, costo, clics, conversiones.
+3. Palabras clave habilitadas, ordenadas por costo, las 40 primeras: palabra, concordancia, campaña, costo, clics, CTR, conversiones, CPC promedio y las columnas de calidad (Nivel de calidad, CTR esperado, Relevancia del anuncio, Experiencia en la página de destino). Si las columnas de calidad no aparecen, agrégalas desde "Columnas"; eso no cambia la cuenta.
+4. Anuncios habilitados: grupo, "Calidad del anuncio" (Excelente, Buena, Promedio, Deficiente) y estado de aprobación.
+5. Recomendaciones de Google (menú Recomendaciones): la lista de títulos. No apliques ni descartes ninguna.
+
+PROPUESTA (aplícala tú y muéstramela en dos tablas):
+Tabla A · Negativas nuevas. Un término va a negativa solo si NO es cliente posible: empleo o vacantes, cursos o tutoriales, manuales o PDF, equipo usado, renta o remate, lavadoras domésticas o de casa, lavandería "cerca de mí" o servicio de lavado de ropa, marcas que no se venden aquí, o algo sin relación con el negocio.
+  - Escribe la negativa más corta que lo bloquea, en concordancia de frase ("texto") o exacta ([texto]).
+  - NUNCA propongas como negativa algo que contenga estas palabras, porque son clientes: servicio, técnico, reparación, mantenimiento, instalación, industrial, refacciones.
+  - Revisa que la negativa no bloquee ninguna palabra clave habilitada de la cuenta. Si la bloquea, no la propongas.
+  Columnas: negativa, concordancia, términos que bloquea, costo que se ahorra, motivo.
+Tabla B · Palabras clave a pausar. Solo si gastó más del doble del CPA y tuvo 0 conversiones en el periodo. Columnas: palabra, campaña, costo, clics, conversiones, motivo.
+Además, en texto corto: palabras con Nivel de calidad de 4 o menos, anuncios con calidad "Deficiente" o "Promedio", y las recomendaciones de Google que veas. Solo para que yo decida; no se cambian en esta pasada.
+Termina con: "¿Aplico las tablas A y B? Responde SÍ MANTENIMIENTO".
+
+FASE 2 · SOLO SI RESPONDO "SÍ MANTENIMIENTO"
+1. Negativas: Herramientas > Biblioteca compartida > Listas de exclusión. Si existe la lista "PB · Negativas basura", agrégale las de la tabla A. Si no existe, créala con ese nombre y aplícala a las campañas de Búsqueda HABILITADAS. No apliques la lista «AB · Negativas de la cuenta» a ninguna campaña existente.
+2. Después, pausa las palabras de la tabla B.
+No cambies pujas, presupuestos, anuncios, ubicaciones ni nada más.
+Si aparece "Confirma que eres tú", una llave de acceso o cualquier verificación de Google, detente y avísame; no intentes saltarla. Dime exactamente qué alcanzaste a hacer.
+Al terminar: lista de negativas agregadas, campañas a las que quedó aplicada la lista y palabras pausadas.
