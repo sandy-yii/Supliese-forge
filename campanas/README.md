@@ -58,9 +58,14 @@ Cada cuenta carga como negativas las búsquedas de las otras. `salida/cruces.md`
 | Servicio para Lavandería | Servicio técnico, reparación, mantenimiento preventivo y correctivo, instalación; refacciones solo Girbau y Gamesail. |
 | Girbau | Todo lo que lleva la palabra «girbau», salvo las refacciones. |
 
-## Cómo se crean las campañas: a mano con la extensión, SIN SCRIPT
+## Cómo se crean las campañas
 
-Los scripts **no se pueden usar**: la cuenta no puede autorizarlos. Las campañas se crean a mano con la extensión Claude in Chrome:
+Depende del acceso de la usuaria en cada cuenta:
+
+- **Administradora con su propio usuario** (Girbau desde el 20 oct 2026): con el script, ver «Cómo se ejecuta con script».
+- **Sin ese acceso**: a mano con la extensión Claude in Chrome, sin script, porque la cuenta no puede autorizarlo.
+
+### A mano con la extensión
 
 1. En Chrome, abrir Google Ads **dentro de la cuenta** (no en el MCC).
 2. Abrir el panel de la extensión y pegar `salida/<cuenta>/prompt-extension/parte-1-de-M.txt`. Cuando la extensión termine, pegar la parte 2, y así hasta la última, en la misma conversación. Van en partes porque un texto largo se corta al pegarlo.
@@ -68,11 +73,11 @@ Los scripts **no se pueden usar**: la cuenta no puede autorizarlos. Las campaña
 
 Orden: Girbau, Servicio para Lavandería, CLM, Quick Laundry, Gamesail.
 
-## Cómo se ejecutaría con script (no se usa: la cuenta no puede autorizarlo)
+## Cómo se ejecuta con script
 
-1. Revisar la zona de la cuenta en la ficha. Las páginas de destino son las actuales; la de Servicio para Lavandería la copia el script de los anuncios actuales y la muestra en el registro.
+1. Revisar la ficha de la cuenta. Si la lista «AB · Negativas de la cuenta» ya existe de un intento a mano, el script la reutiliza y solo le agrega lo que falte; si ya existe alguna campaña «AB ·», se detiene sin crear nada.
 2. Dentro de la cuenta, no en el MCC: Herramientas > Acciones masivas > Scripts > «+».
-3. Pegar `crear-campanas.js` y autorizar.
+3. Pegar `crear-campanas.js` y autorizar con el usuario administrador propio (con su verificación en 2 pasos).
 4. Correr la **vista previa**: no crea nada. Si termina en «VISTA PREVIA SIN ERRORES», dar **Ejecutar**.
 
 Detalles del script:
@@ -93,6 +98,7 @@ Detalles del script:
 - El script no se ha corrido en una cuenta real. Se probó con una simulación de Google Ads:
   - genera bien las operaciones;
   - se detiene si se corre en la cuenta equivocada;
-  - en Servicio, copia la página de destino de los anuncios actuales.
+  - reutiliza la lista de negativas si ya existe y le agrega solo lo que falta;
+  - se detiene sin crear nada si ya existe una campaña con el mismo nombre.
 - La vista previa en la cuenta es la prueba real.
 - Los topes de CPC salen del CPC promedio de Gamesail (~$8) y Supliese (~$5). En CLM, Servicio y Girbau son estimados: se ajustan la primera semana con el CPC real.

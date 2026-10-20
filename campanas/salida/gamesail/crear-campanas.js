@@ -46,10 +46,13 @@ function main() {
     var n = it.next().campaign.name;
     if (nombres[n]) choques.push('campaña «' + n + '»');
   }
-  var it2 = AdsApp.search("SELECT shared_set.name FROM shared_set WHERE shared_set.status = 'ENABLED'");
+  // Si la lista ya existe (por ejemplo, de un intento anterior a mano), se reutiliza: solo se le agregan las palabras que falten.
+  var listaExistente = null;
+  var it2 = AdsApp.search("SELECT shared_set.resource_name, shared_set.name FROM shared_set " +
+    "WHERE shared_set.status = 'ENABLED' AND shared_set.type = 'NEGATIVE_KEYWORDS'");
   while (it2.hasNext()) {
-    var s = it2.next().sharedSet.name;
-    if (s === PLAN.lista.nombre) choques.push('lista «' + s + '»');
+    var s = it2.next().sharedSet;
+    if (s.name === PLAN.lista.nombre) listaExistente = s.resourceName;
   }
   if (choques.length) {
     throw new Error('Ya existen: ' + choques.join(', ') + '. No se creó nada, para no duplicar.');
@@ -60,11 +63,27 @@ function main() {
   function micros(pesos) { return String(Math.round(pesos * 1000000)); }
 
   var ops = [];
-  var lista = temporal('sharedSets');
-  ops.push({ sharedSetOperation: { create: { resourceName: lista, name: PLAN.lista.nombre, type: 'NEGATIVE_KEYWORDS' } } });
+  var lista, yaEnLista = {};
+  if (listaExistente) {
+    lista = listaExistente;
+    var it3 = AdsApp.search("SELECT shared_criterion.keyword.text, shared_criterion.keyword.match_type FROM shared_criterion " +
+      "WHERE shared_criterion.shared_set = '" + listaExistente + "'");
+    while (it3.hasNext()) {
+      var kw = it3.next().sharedCriterion.keyword;
+      if (kw) yaEnLista[kw.text.toLowerCase() + '|' + kw.matchType] = true;
+    }
+  } else {
+    lista = temporal('sharedSets');
+    ops.push({ sharedSetOperation: { create: { resourceName: lista, name: PLAN.lista.nombre, type: 'NEGATIVE_KEYWORDS' } } });
+  }
+  var agregadas = 0;
   PLAN.lista.kw.forEach(function (k) {
+    if (yaEnLista[k[0].toLowerCase() + '|' + k[1]]) return;
     ops.push({ sharedCriterionOperation: { create: { sharedSet: lista, keyword: { text: k[0], matchType: k[1] } } } });
+    agregadas++;
   });
+  Logger.log('Lista «' + PLAN.lista.nombre + '»: ' + (listaExistente ? 'ya existía, se reutiliza' : 'nueva') +
+    ' · ' + agregadas + ' palabras por agregar.');
 
   var resumen = [];
   PLAN.campanas.forEach(function (k) {

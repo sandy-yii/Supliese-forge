@@ -2,6 +2,18 @@
 
 Página de destino: https://girbauoccidente.com/ (sin parámetros; Google agrega el gclid solo).
 
+## Camino rápido (con tu usuario administrador)
+
+1. Dentro de la cuenta 860-582-6837 (no en una cuenta de administrador general): Herramientas > Acciones masivas > Secuencias de comandos > «+».
+2. Pegar completo `campanas/salida/girbau/crear-campanas.js` y dar **Autorizar** con tu usuario.
+3. **Vista previa.** No crea nada. El registro debe terminar en «VISTA PREVIA SIN ERRORES».
+4. **Ejecutar.** Crea las 4 campañas en pausa, con fecha de inicio de hoy.
+5. Pegar en la extensión `6-activar.txt` y después `7-conversiones.txt`, o hacer esos pasos a mano.
+
+Con este camino no hacen falta los archivos 0 a 5.
+
+## Camino con la extensión
+
 Pegar en la extensión, uno por mensaje y en este orden:
 
 | # | Archivo | Qué hace | ¿Cambia la cuenta? |
