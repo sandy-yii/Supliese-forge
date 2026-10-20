@@ -29,7 +29,7 @@ Los IDs y etiquetas se los pasamos nosotros cuando creemos las conversiones en c
 |---|---|---|---|---|---|---|
 | www.supliese.com | Quick Laundry 256-397-2201 | | | | | |
 | supliese-girbau-lavadoras.vercel.app | Girbau 860-582-6837 | | | | | |
-| www.clmmexico.com | CLM 993-525-8739 | | | | | |
+| supliese-clm-lavadoras.vercel.app | CLM 993-525-8739 | | | | | |
 | www.servicioparalavanderias.com | Servicio para Lavandería 265-909-2662 | | | | | |
 | gamesail.mx | Cuenta nueva de Gamesail | | | | | |
 

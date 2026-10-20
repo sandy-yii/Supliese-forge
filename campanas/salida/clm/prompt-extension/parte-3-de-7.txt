@@ -11,7 +11,7 @@ Presupuesto diario: $77 MXN · Límite de CPC: $18 MXN
   "lavandería industrial para hotel"
   "lavandería para hotel"
   Anuncio adaptable de búsqueda:
-  URL final: https://www.clmmexico.com/
+  URL final: https://supliese-clm-lavadoras.vercel.app/
   Ruta: lavanderia / hotelera
   Títulos:
   - Lavandería Hotelera
@@ -36,7 +36,7 @@ Presupuesto diario: $77 MXN · Límite de CPC: $18 MXN
   "lavandería hospitalaria"
   "lavandería institucional"
   Anuncio adaptable de búsqueda:
-  URL final: https://www.clmmexico.com/
+  URL final: https://supliese-clm-lavadoras.vercel.app/
   Ruta: lavanderia / hospital
   Títulos:
   - Lavandería Hospitalaria

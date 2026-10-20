@@ -10,7 +10,7 @@ Presupuesto diario: $46 MXN · Límite de CPC: $18 MXN
   "mangle industrial"
   "planchadora de rodillo industrial"
   Anuncio adaptable de búsqueda:
-  URL final: https://www.clmmexico.com/
+  URL final: https://supliese-clm-lavadoras.vercel.app/
   Ruta: mangles / planchado
   Títulos:
   - Mangle Industrial

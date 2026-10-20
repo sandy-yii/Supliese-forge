@@ -35,7 +35,7 @@ Ningún script borra nada. Si un script encuentra un error, no hace ningún camb
 |---|---|---|---|---|
 | **Girbau** 860-582-6837 | supliese-girbau-lavadoras.vercel.app | Se **pausan** todas (las armó la agencia anterior) | **Completo: $217** | — |
 | **Quick Laundry** 256-397-2201 | www.supliese.com | Las activas bajan a la **mitad** | Arranque: $198 (completo: $396) | Pausa palabras de «franquicia» y «cuánto cuesta poner una lavandería» y el grupo o campaña de Competencia. Copia sus anuncios con la página nueva y les aplica «PB · Negativas basura». |
-| **CLM** 993-525-8739 | www.clmmexico.com | Las activas bajan a la **mitad** | Arranque: $307 (completo: $616) | Pausa la campaña o grupo de Competencia. Copia anuncios con la página nueva y aplica «PB · Negativas basura». |
+| **CLM** 993-525-8739 | supliese-clm-lavadoras.vercel.app | Las activas bajan a la **mitad** | Arranque: $307 (completo: $616) | Pausa la campaña o grupo de Competencia. Copia anuncios con la página nueva y aplica «PB · Negativas basura». |
 | **Servicio** 265-909-2662 | www.servicioparalavanderias.com | Están todas en pausa; se quedan así | **Completo: $269** | — |
 | **Gamesail** (cuenta nueva) | gamesail.mx | No hay | **Completo: $648** | — |
 
