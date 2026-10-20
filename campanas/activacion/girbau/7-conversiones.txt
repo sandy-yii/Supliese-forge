@@ -1,0 +1,27 @@
+GIRBAU 860-582-6837 · CONVERSIONES PARA LA PÁGINA girbauoccidente.com
+Trabaja en una pestaña nueva y confirma que el número de cuenta arriba a la derecha sea 860-582-6837.
+Hazlo todo a mano en la interfaz. Haz SOLO lo que dice aquí. Si algo no coincide o Google te pide confirmar algo distinto, detente y pregúntame.
+No modifiques, pauses ni borres ninguna acción de conversión que ya exista.
+Si aparece "Confirma que eres tú", una llave de acceso o cualquier verificación de Google, detente y avísame.
+
+PASO 1 · Crear estas acciones de conversión
+Objetivos > Conversiones > Resumen > "+ Crear acción de conversión" > Sitio web > dominio girbauoccidente.com > "Agregar una acción de conversión manualmente". Si ya existe una con el mismo nombre, no la dupliques: dímelo.
+
+| Nombre | Categoría | Valor | Recuento | Objetivo |
+| AB · Formulario enviado | Enviar formulario de clientes potenciales | Usar el mismo valor: 1 MXN | Uno | Principal |
+| AB · Clic en WhatsApp | Contacto | Usar el mismo valor: 1 MXN | Uno | Principal |
+| AB · Clic en teléfono de la página | Contacto | Usar el mismo valor: 1 MXN | Uno | Secundaria |
+| AB · Clic en correo | Contacto | Usar el mismo valor: 1 MXN | Uno | Secundaria |
+
+Ventana de conversión: 30 días. No actives "Conversiones mejoradas" desde aquí.
+
+PASO 2 · Copiar los datos de la etiqueta
+En cada acción nueva: "Configurar etiqueta" > "Usar Google tag" (o "Instalar la etiqueta tú mismo"). Copia el valor de send_to, que se ve así: AW-123456789/AbC-D_efG-h12_34. No instales nada ni cambies nada en la página.
+
+PASO 3 · Llamadas desde anuncios
+Si NO existe una acción de "Llamadas desde anuncios", créala: "+ Crear acción de conversión" > Llamadas telefónicas > Llamadas desde anuncios > duración mínima 60 segundos > Uno > Principal. Si ya existe, solo dime su duración mínima y si es Principal.
+
+AL TERMINAR, entrégame:
+1. El ID de la cuenta (AW-…).
+2. Una tabla: nombre de cada acción nueva y su etiqueta (lo que va después de la diagonal en send_to).
+3. La lista de las acciones de conversión que ya existían, si son Principal o Secundaria y cuántas tuvieron en 30 días. NO las cambies.

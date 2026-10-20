@@ -263,6 +263,7 @@ def prompt(p, expres=False):
           '- Ninguna campaña nueva debe quedar activa. En cada una pon como fecha de inicio el %s y, en cuanto la publiques, cámbiala a "En pausa".' % INICIO),
          '- Si Google ofrece crear recursos automáticamente, AI Max, expansión de URL final, concordancia amplia en toda la campaña, recomendaciones o "aplicar sugerencias": recházalo o déjalo apagado.',
          '- Si algo te pide confirmar un cambio distinto a crear lo de estas instrucciones, o aparece un error que no entiendes, detente y pregúntame.',
+         '- Si ya existe una lista o una campaña con el mismo nombre (de un intento anterior o como borrador), no la dupliques. Si es la lista, ábrela y agrega solo las palabras que le falten. Si es una campaña o un borrador, detente y dime qué encontraste.',
          '- Copia los textos exactamente como están, con acentos. No inventes ni cambies títulos, descripciones ni palabras clave.',
          '- Las palabras clave se pegan tal cual, una por línea: [texto] es concordancia exacta y "texto" es concordancia de frase.',
          '']

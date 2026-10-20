@@ -1,0 +1,55 @@
+PARTE 4 de 5 · cuenta Girbau (860-582-6837)
+Mismas reglas de la Parte 1: hazlo a mano, no toques nada existente, fecha de inicio 2026-12-31, "En pausa" al publicarla, y la configuración del PASO 2 (solo Búsqueda, México con "Presencia", solo español, maximizar clics con límite de CPC, lista "AB · Negativas de la cuenta").
+
+CAMPAÑA 3 de 4: AB · Girbau por capacidad y sector
+Presupuesto diario: $27 MXN · Límite de CPC: $10 MXN
+
+  Grupo de anuncios: Capacidad
+  Palabras clave:
+  "lavadora girbau 12 kg"
+  "lavadora girbau 14 kg"
+  "girbau 12 kg"
+  "girbau 14 kg"
+  "secadora girbau"
+  "lavadora industrial girbau"
+  Anuncio adaptable de búsqueda:
+  URL final: https://girbauoccidente.com/
+  Ruta: girbau / capacidad
+  Títulos:
+  - Lavadora Girbau 12 kg
+  - Lavadora Girbau 14 kg
+  - Lavadoras de 12 y 14 kg
+  - Secadoras Girbau
+  - Distribuidor Girbau
+  - Te Ayudamos a Elegir
+  - Girbau
+  - Cotiza con un Asesor
+  - Solicita tu Cotización
+  Descripciones:
+  - Lavadoras Girbau de 12 y 14 kg y secadoras Girbau. Cotiza hoy con un asesor.
+  - Te ayudamos a elegir la capacidad según los kilos de ropa que lavas al día.
+  - Equipo Girbau para lavanderías, hoteles y hospitales.
+
+  Grupo de anuncios: Sector
+  Palabras clave:
+  "lavadora girbau para hotel"
+  "mangle girbau"
+  "girbau para lavandería"
+  Anuncio adaptable de búsqueda:
+  URL final: https://girbauoccidente.com/
+  Ruta: girbau / sector
+  Títulos:
+  - Girbau para Hoteles
+  - Mangles Girbau
+  - Girbau para Lavanderías
+  - Distribuidor Girbau
+  - Te Ayudamos a Elegir
+  - Girbau
+  - Cotiza con un Asesor
+  - Solicita tu Cotización
+  Descripciones:
+  - Lavadoras, secadoras y mangles Girbau para hoteles y lavanderías. Cotiza hoy.
+  - Te ayudamos a elegir el equipo Girbau para tu operación.
+
+AL TERMINAR ESTA CAMPAÑA: dime su estado (debe decir "En pausa"), su presupuesto, cuántos grupos, palabras clave y anuncios tiene, y si algún anuncio o palabra clave quedó "Rechazado" o "Limitado" y por qué. No actives nada más.
+Luego espera la Parte 5.
