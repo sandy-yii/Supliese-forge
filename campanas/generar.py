@@ -206,7 +206,7 @@ def plan_auditoria(p):
     act = c.get('activacion', {})
     return dict(cuenta=numero(c), anterior=c.get('id_anterior', ''), nombre=c['nombre'], url=c['url'], prefijo=PREFIJO,
                 lista=PREFIJO + 'Negativas de la cuenta', anteriores=act.get('anteriores', 'MITAD'),
-                campanas=[dict(nombre=k['nombre'], arranque=k['arranque'], completo=k['diario']) for k in p['campanas']])
+                campanas=[dict(nombre=k['nombre'], arranque=k['arranque'], completo=k['diario'], cpc=k['cpc']) for k in p['campanas']])
 
 
 def js_auditoria(planes, nombre='las cinco cuentas'):
@@ -221,8 +221,8 @@ def js_corregir(planes, nombre='las cinco cuentas'):
     return texto.replace('{{NOMBRE}}', nombre).replace('{{PLANES}}', json.dumps(planes, ensure_ascii=False))
 
 
-def js_diagnostico(planes, nombre='las cinco cuentas'):
-    with open(os.path.join(AQUI, 'plantilla-diagnostico.js'), encoding='utf-8') as f:
+def js_diagnostico(planes, nombre='las cinco cuentas', archivo='plantilla-diagnostico.js'):
+    with open(os.path.join(AQUI, archivo), encoding='utf-8') as f:
         texto = f.read()
     return texto.replace('{{NOMBRE}}', nombre).replace('{{PLANES}}', json.dumps(planes, ensure_ascii=False))
 
@@ -437,6 +437,8 @@ def main():
         f.write(js_corregir([plan_auditoria(p) for p in todas]))
     with open(os.path.join(SALIDA, 'diagnostico-sin-clics-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
         f.write(js_diagnostico([plan_auditoria(p) for p in todas]))
+    with open(os.path.join(SALIDA, 'mas-leads-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
+        f.write(js_diagnostico([plan_auditoria(p) for p in todas], archivo='plantilla-mas-leads.js'))
     filas = cruces(todas)
     o = ['# Cruces entre cuentas que quedan', '',
          'Palabras clave de una cuenta que otra cuenta del grupo también puede activar, porque no las tiene bloqueadas. '
