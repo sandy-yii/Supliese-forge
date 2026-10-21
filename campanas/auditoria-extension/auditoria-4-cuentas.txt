@@ -1,0 +1,23 @@
+AUDITORÍA DE LECTURA · 4 cuentas de Google Ads
+No modifiques, pauses, actives ni edites absolutamente nada dentro de las cuentas. Solo navegar, configurar vistas, descargar y capturar. Si algo te pide confirmar un cambio, detente y pregúntame.
+Trabaja en una pestaña nueva. Haz una cuenta a la vez, en este orden, y confirma el número arriba a la derecha antes de empezar cada una:
+
+| Cuenta | Número | Página correcta |
+| CLM | 993-525-8739 | kingstar.com.mx |
+| Servicio para Lavandería | 265-909-2662 | laundrysolutions.store |
+| Girbau | 860-582-6837 | girbaupro.com |
+| Supliese / Quick Laundry | 256-397-2201 | supliese.com |
+
+EN CADA CUENTA, junta esto (en las vistas, muestra habilitado y pausado; no hace falta lo quitado):
+1. Avisos: el texto exacto de los avisos de arriba de la cuenta y de la campana de notificaciones. Estado de Administración > Verificación del anunciante. Avisos en Facturación.
+2. Campañas: nombre, estado, estado que da Google con su motivo (la columna Estado y su detalle), presupuesto diario, impresiones y clics de hoy y de ayer.
+3. Anuncios (habilitados y pausados, de todas las campañas): campaña, grupo, estado del anuncio y del grupo, URL final, URL final para celulares si tiene, estado de aprobación y, si no está aprobado, el motivo y el detalle completo que muestra Google al abrirlo (por ejemplo "Error de HTTP 500", la URL que falló, los dominios que se mezclan).
+4. Un sitio por grupo: los grupos donde los anuncios o las palabras clave usan más de un dominio, con los dominios.
+5. Palabras clave: las que tengan URL final propia (dominio), y las rechazadas o con "pocas búsquedas", con su campaña y grupo.
+6. Recursos (Recursos > Enlaces de sitio y demás): tipo, texto, URL, a qué cuenta, campaña o grupo está asociado y su estado de aprobación.
+7. Configuración de la cuenta y de las campañas: plantilla de seguimiento y sufijo de URL final, si tienen.
+8. Conversiones (Objetivos > Conversiones > Resumen): nombre, Principal o Secundaria, estado (por ejemplo "Sin verificar", "Registrando conversiones", "Sin conversiones recientes") y conversiones de los últimos 7 días. Y si el "Etiquetado automático" está activado.
+9. Página: abre en otra pestaña la página correcta de esa cuenta y cada URL distinta de los anuncios rechazados. Dime si carga, si redirige a otro dominio o si da error, y si se ven el formulario y el botón de WhatsApp.
+
+ENTREGA: al terminar las 4 cuentas, dame TODO en un solo reporte en formato Markdown (títulos con #, tablas con |), dentro de un único bloque de código, para copiarlo y guardarlo como archivo .md. Un apartado por cuenta con los puntos 1 a 9, sin resumir números ni textos de Google. Al final, una lista de lo que no pudiste ver.
+Si el texto se corta, dime "continúo" y sigue desde donde quedaste.
