@@ -8,7 +8,7 @@ Cada cuenta tiene tres scripts en `campanas/salida/<cuenta>/`. Se corren **dentr
 | 2 | `conversiones.js` | Crea las conversiones de la página (formulario, WhatsApp, teléfono, correo) y «Llamadas desde anuncios» si no existe. Activa el etiquetado automático. Al ejecutarlo, deja en el registro las **variables para Rodolfo**. |
 | 3 | `activar.js` | Enciende las campañas nuevas con su presupuesto y hace los cambios del plan en las campañas anteriores (ver la tabla de abajo). |
 
-Si después cambia la página de una cuenta, `cambiar-pagina.js` cambia la URL de los anuncios de las campañas «AB ·» y deja en el registro si Google aprobó o rechazó cada anuncio y por qué.
+Si después cambia la página de una cuenta, `cambiar-pagina.js` cambia la URL de los anuncios de todas las campañas (un solo sitio por grupo) y deja en el registro si Google aprobó o rechazó cada anuncio y por qué.
 
 Ningún script borra nada. Si un script encuentra un error, no hace ningún cambio y explica por qué en el registro.
 
@@ -36,14 +36,14 @@ Ningún script borra nada. Si un script encuentra un error, no hace ningún camb
 | Cuenta | Página | Campañas anteriores | Presupuesto diario de las nuevas | Además |
 |---|---|---|---|---|
 | **Girbau** 860-582-6837 | supliese-girbau-lavadoras.vercel.app | Se **pausan** todas (las armó la agencia anterior) | **Completo: $217** | — |
-| **Quick Laundry** 256-397-2201 | www.supliese.com | Las activas bajan a la **mitad** | Arranque: $198 (completo: $396) | Pausa palabras de «franquicia» y «cuánto cuesta poner una lavandería» y el grupo o campaña de Competencia. Copia sus anuncios con la página nueva y les aplica «PB · Negativas basura». |
-| **CLM** 993-525-8739 | kingstar.com.mx | Las activas bajan a la **mitad** | Arranque: $307 (completo: $616) | Pausa la campaña o grupo de Competencia. Copia anuncios con la página nueva y aplica «PB · Negativas basura». |
+| **Quick Laundry** 256-397-2201 | www.supliese.com | Las activas bajan a la **mitad** | Arranque: $198 (completo: $396) | Pausa palabras de «franquicia» y «cuánto cuesta poner una lavandería» y el grupo o campaña de Competencia. Cambia sus anuncios a la página nueva y les aplica «PB · Negativas basura». |
+| **CLM** 993-525-8739 | kingstar.com.mx | Las activas bajan a la **mitad** | Arranque: $307 (completo: $616) | Pausa la campaña o grupo de Competencia. Cambia sus anuncios a la página nueva y aplica «PB · Negativas basura». |
 | **Servicio** 265-909-2662 | laundry-solutions-servicio.vercel.app | Están todas en pausa; se quedan así | **Completo: $269** | — |
 | **Gamesail** (cuenta nueva) | gamesail-lavadoras.vercel.app | No hay | **Completo: $648** | — |
 
 Regla de presupuesto: si las campañas anteriores siguen activas, las nuevas arrancan con la mitad y las anteriores se quedan con la otra mitad; si no hay campañas anteriores activas, las nuevas arrancan con su presupuesto completo. En 2 a 4 semanas, si las nuevas sostienen los clientes, se pausan las anteriores y las nuevas pasan a completo.
 
-Los anuncios anteriores no se editan: se copian con la página nueva y el anterior se queda hasta que la copia esté aprobada.
+Google exige un solo sitio web por grupo de anuncios («Un sitio web por cada grupo de anuncios»). Por eso los anuncios anteriores no se copian: se les cambia la página (los adaptables de búsqueda) o se pausan (los de otro tipo). Google los vuelve a revisar en unas horas.
 
 ## Gamesail: abrir la cuenta nueva
 

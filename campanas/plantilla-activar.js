@@ -42,6 +42,22 @@ function plano(s) {
   return String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 }
 
+// Sitio (dominio sin www) de una URL.
+function sitio(url) {
+  var m = /^https?:\/\/([^\/?#]+)/i.exec(url || '');
+  return m ? m[1].toLowerCase().replace(/^www\./, '') : '';
+}
+
+// URL nueva para un anuncio: si venía de una versión anterior del mismo sitio (PLAN.mismo_sitio), se conserva
+// la sección (/mangles/…); si no, va a la página principal del plan.
+function urlNueva(url) {
+  var m = /^https?:\/\/([^\/?#]+)([^?#]*)/i.exec(url || '');
+  if (m && (PLAN.mismo_sitio || []).indexOf(sitio(url)) >= 0 && m[2] && m[2] !== '/') {
+    return PLAN.url.replace(/\/+$/, '') + m[2];
+  }
+  return PLAN.url;
+}
+
 // Página sin www, sin parámetros y sin la diagonal final, para comparar si un anuncio ya va a la página nueva.
 function pagina(url) {
   var m = /^https?:\/\/([^\/?#]+)([^?#]*)/i.exec(url || '');
@@ -171,36 +187,27 @@ function main() {
   if (siguenBusqueda.length) {
     var activas = {};
     siguenBusqueda.forEach(function (k) { activas[k.nombre] = true; });
-    var destino = pagina(PLAN.url);
-    var grupos = {};
-    var ita = AdsApp.search('SELECT ad_group.resource_name, ad_group.name, campaign.name, ad_group_ad.ad.type, ad_group_ad.ad.final_urls, ' +
-      'ad_group_ad.ad.responsive_search_ad.headlines, ad_group_ad.ad.responsive_search_ad.descriptions, ' +
-      'ad_group_ad.ad.responsive_search_ad.path1, ad_group_ad.ad.responsive_search_ad.path2 FROM ad_group_ad ' +
-      "WHERE ad_group_ad.status = 'ENABLED' AND ad_group.status = 'ENABLED' AND campaign.status = 'ENABLED'");
+    // Google exige un solo sitio web por grupo de anuncios: los anuncios que van a otra página se cambian
+    // a la página nueva (los adaptables de búsqueda) o se pausan (los de otro tipo, que ya no se pueden editar).
+    var cambiadas = 0, pausados = 0;
+    var ita = AdsApp.search('SELECT campaign.name, ad_group.name, ad_group_ad.resource_name, ad_group_ad.ad.resource_name, ' +
+      "ad_group_ad.ad.type, ad_group_ad.ad.final_urls FROM ad_group_ad WHERE ad_group_ad.status = 'ENABLED' " +
+      "AND ad_group.status != 'REMOVED' AND campaign.status = 'ENABLED'");
     while (ita.hasNext()) {
       var a = ita.next();
       if (!activas[a.campaign.name]) continue;
-      var rn = a.adGroup.resourceName;
-      grupos[rn] = grupos[rn] || { nombre: a.campaign.name + ' > ' + a.adGroup.name, nuevos: 0, copiar: [], otros: 0 };
       var url = (a.adGroupAd.ad.finalUrls || [])[0] || '';
-      if (pagina(url) === destino) { grupos[rn].nuevos++; continue; }
-      if (a.adGroupAd.ad.type === 'RESPONSIVE_SEARCH_AD') grupos[rn].copiar.push(a.adGroupAd.ad.responsiveSearchAd);
-      else grupos[rn].otros++;
+      if (sitio(url) === sitio(PLAN.url)) continue;
+      if (a.adGroupAd.ad.type === 'RESPONSIVE_SEARCH_AD') {
+        ops.push({ adOperation: { update: { resourceName: a.adGroupAd.ad.resourceName, finalUrls: [urlNueva(url)] }, updateMask: 'finalUrls' } });
+        cambiadas++;
+      } else {
+        ops.push({ adGroupAdOperation: { update: { resourceName: a.adGroupAd.resourceName, status: 'PAUSED' }, updateMask: 'status' } });
+        pausados++;
+      }
     }
-    Object.keys(grupos).forEach(function (rn) {
-      var g = grupos[rn];
-      if (g.otros) avisos.push(g.nombre + ': ' + g.otros + ' anuncio(s) de otro tipo con otra página; no se pueden copiar, revísalos a mano.');
-      if (g.nuevos || !g.copiar.length) return;
-      g.copiar.forEach(function (rsa) {
-        function limpia(x) { var o = { text: x.text }; if (x.pinnedField) o.pinnedField = x.pinnedField; return o; }
-        var ad = { finalUrls: [PLAN.url], responsiveSearchAd: {
-          headlines: (rsa.headlines || []).map(limpia), descriptions: (rsa.descriptions || []).map(limpia) } };
-        if (rsa.path1) ad.responsiveSearchAd.path1 = rsa.path1;
-        if (rsa.path2) ad.responsiveSearchAd.path2 = rsa.path2;
-        ops.push({ adGroupAdOperation: { create: { adGroup: rn, status: 'ENABLED', ad: ad } } });
-      });
-      cambios.push('COPIAR ' + g.copiar.length + ' anuncio(s) con la página nueva en «' + g.nombre + '» (los anteriores se quedan)');
-    });
+    if (cambiadas) cambios.push('CAMBIAR la página de ' + cambiadas + ' anuncio(s) de las campañas anteriores a ' + PLAN.url);
+    if (pausados) cambios.push('PAUSAR ' + pausados + ' anuncio(s) de otro tipo que van a otra página (un solo sitio por grupo)');
 
     var lista = null, yaEnLista = {};
     var its = AdsApp.search("SELECT shared_set.resource_name, shared_set.name FROM shared_set " +

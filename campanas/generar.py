@@ -187,6 +187,7 @@ def js_activar(p):
     act = c.get('activacion', {})
     basura = ampliar([leer(n) for k, grupo in c['negativas'].items() if k in BASURA for n in grupo])
     plan = dict(cuenta=numero(c), anterior=c.get('id_anterior', ''), nombre=c['nombre'], url=c['url'], prefijo=PREFIJO,
+                mismo_sitio=c.get('mismo_sitio', []),
                 campanas=[dict(nombre=k['nombre'], arranque=k['arranque'], completo=k['diario']) for k in p['campanas']],
                 anteriores=act.get('anteriores', 'MITAD'), pausar_palabras=act.get('pausar_palabras', []),
                 pausar_nombres=act.get('pausar_nombres', []),
@@ -203,7 +204,8 @@ def js_conversiones(p):
 def js_pagina(p):
     c = p['c']
     return plantilla('plantilla-pagina.js', c, dict(cuenta=numero(c), anterior=c.get('id_anterior', ''),
-                                                    nombre=c['nombre'], url=c['url'], prefijo=PREFIJO))
+                                                    nombre=c['nombre'], url=c['url'], prefijo=PREFIJO,
+                                                    mismo_sitio=c.get('mismo_sitio', [])))
 
 
 def js(p):
