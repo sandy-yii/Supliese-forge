@@ -6,9 +6,9 @@
  *   1. Habilita las campañas nuevas «AB ·» y les pone su presupuesto.
  *   2. Campañas anteriores habilitadas: las pausa o les baja el presupuesto a la mitad, según el plan.
  *   3. Pausa en las campañas anteriores las palabras clave, campañas y grupos que el plan indica.
- *   4. Si las campañas anteriores siguen activas: cambia sus anuncios a la página nueva (un solo sitio por
- *      grupo, como exige Google) y les aplica la lista «PB · Negativas basura».
- *      Si alguna campaña nueva se creó con una página anterior, también la pasa a la página nueva.
+ *   4. Pasa a la página nueva todos los anuncios de la cuenta que vayan a otra (campañas nuevas y anteriores,
+ *      encendidas o en pausa: Google exige un solo sitio por grupo y cuenta también los pausados).
+ *      Si las campañas anteriores siguen activas, les aplica la lista «PB · Negativas basura».
  *   5. Activa el etiquetado automático si está apagado.
  * No borra nada. No toca pujas, ubicaciones, idiomas ni facturación.
  *
@@ -188,29 +188,6 @@ function main() {
   if (siguenBusqueda.length) {
     var activas = {};
     siguenBusqueda.forEach(function (k) { activas[k.nombre] = true; });
-    // Google exige un solo sitio web por grupo de anuncios: los anuncios que van a otra página se cambian
-    // a la página nueva (los adaptables de búsqueda) o se quitan (los de otro tipo, que ya no se pueden editar;
-    // pausarlos no basta, porque para Google los pausados también cuentan).
-    var cambiadas = 0, pausados = 0;
-    var ita = AdsApp.search('SELECT campaign.name, ad_group.name, ad_group_ad.resource_name, ad_group_ad.ad.resource_name, ' +
-      "ad_group_ad.ad.type, ad_group_ad.ad.final_urls FROM ad_group_ad WHERE ad_group_ad.status != 'REMOVED' " +
-      "AND ad_group.status != 'REMOVED' AND campaign.status = 'ENABLED'");
-    while (ita.hasNext()) {
-      var a = ita.next();
-      if (!activas[a.campaign.name]) continue;
-      var url = (a.adGroupAd.ad.finalUrls || [])[0] || '';
-      if (sitio(url) === sitio(PLAN.url)) continue;
-      if (a.adGroupAd.ad.type === 'RESPONSIVE_SEARCH_AD') {
-        ops.push({ adOperation: { update: { resourceName: a.adGroupAd.ad.resourceName, finalUrls: [urlNueva(url)] }, updateMask: 'finalUrls' } });
-        cambiadas++;
-      } else {
-        ops.push({ adGroupAdOperation: { remove: a.adGroupAd.resourceName } });
-        pausados++;
-      }
-    }
-    if (cambiadas) cambios.push('CAMBIAR la página de ' + cambiadas + ' anuncio(s) de las campañas anteriores a ' + PLAN.url);
-    if (pausados) cambios.push('QUITAR ' + pausados + ' anuncio(s) de otro tipo que van a otra página: ya no se pueden editar y, aunque estén en pausa, cuentan como otro sitio');
-
     var lista = null, yaEnLista = {};
     var its = AdsApp.search("SELECT shared_set.resource_name, shared_set.name FROM shared_set " +
       "WHERE shared_set.status = 'ENABLED' AND shared_set.type = 'NEGATIVE_KEYWORDS'");
@@ -260,14 +237,15 @@ function main() {
     if (omitidas.length) avisos.push('Negativas que no se agregaron porque bloquearían palabras activas: ' + omitidas.join('; '));
   }
 
-  // 4b. Campañas nuevas creadas con una página anterior: se pasan a la página del plan (un solo sitio por grupo).
+  // 4b. Página de todos los anuncios de la cuenta (campañas nuevas y anteriores, encendidas o en pausa).
+  // Google exige un solo sitio web por grupo y revisa también los anuncios en pausa: los adaptables de búsqueda
+  // se cambian a la página del plan y los de otro tipo, que ya no se pueden editar, se quitan.
   var corregidas = 0;
   var itn = AdsApp.search('SELECT campaign.name, ad_group_ad.resource_name, ad_group_ad.ad.resource_name, ad_group_ad.ad.type, ' +
     "ad_group_ad.ad.final_urls FROM ad_group_ad WHERE ad_group_ad.status != 'REMOVED' AND ad_group.status != 'REMOVED' " +
     "AND campaign.status != 'REMOVED'");
   while (itn.hasNext()) {
     var an = itn.next();
-    if (!esNueva(an.campaign.name)) continue;
     var un = (an.adGroupAd.ad.finalUrls || [])[0] || '';
     if (sitio(un) === sitio(PLAN.url)) continue;
     if (an.adGroupAd.ad.type === 'RESPONSIVE_SEARCH_AD') {
@@ -277,7 +255,7 @@ function main() {
     }
     corregidas++;
   }
-  if (corregidas) cambios.push('CAMBIAR a ' + PLAN.url + ' ' + corregidas + ' anuncio(s) de las campañas nuevas que tenían otra página');
+  if (corregidas) cambios.push('CAMBIAR a ' + PLAN.url + ' (o quitar, si ya no se pueden editar) ' + corregidas + ' anuncio(s) que iban a otra página, en campañas nuevas y anteriores');
 
   // 5. Etiquetado automático
   var itu = AdsApp.search('SELECT customer.auto_tagging_enabled FROM customer');
