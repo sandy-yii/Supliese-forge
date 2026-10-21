@@ -53,6 +53,12 @@ function sitio(url) {
   var m = /^https?:\/\/([^\/?#]+)/i.exec(url || '');
   return m ? m[1].toLowerCase().replace(/^www\./, '') : '';
 }
+// Dominio de nivel superior (supliese.com, kingstar.com.mx): es el que cuenta para «un sitio por grupo».
+function dominio(url) {
+  var h = sitio(url).split('.');
+  var n = (h.length >= 3 && /^(com|net|org|gob|edu)$/.test(h[h.length - 2]) && h[h.length - 1].length === 2) ? 3 : 2;
+  return h.slice(-n).join('.');
+}
 function pesos(micros) { return Math.round(Number(micros || 0) / 1000000); }
 function esNueva(nombre) { return nombre.indexOf(PLAN.prefijo) === 0; }
 
@@ -252,10 +258,23 @@ function main() {
   filas("SELECT campaign.name, ad_group.name, ad_group.status, asset.type, asset.final_urls FROM ad_group_asset " +
     "WHERE ad_group_asset.status != 'REMOVED' AND ad_group.status != 'REMOVED'", 'los recursos de los grupos')
     .forEach(function (f) { f.campaign = { name: f.campaign.name + ' > ' + f.adGroup.name }; recursos.push(f); });
+  var urlsRecursos = {};
   recursos.forEach(function (f) {
     (f.asset.finalUrls || []).forEach(function (u) {
-      if (sitio(u) && sitio(u) !== destino) aviso('«' + f.campaign.name + '»: ' + f.asset.type + ' apunta a ' + u + '. Cámbialo en Recursos.');
+      if (!sitio(u)) return;
+      if (dominio(u) !== dominio(PLAN.url)) aviso('«' + f.campaign.name + '»: ' + f.asset.type + ' apunta a otro sitio, ' + u + '. Cámbialo en Recursos.');
+      else urlsRecursos[u] = f.campaign.name + ' · ' + f.asset.type;
     });
+  });
+  // Los recursos del mismo dominio no causan rechazos, pero tienen que cargar.
+  Object.keys(urlsRecursos).forEach(function (u) {
+    try {
+      var r = UrlFetchApp.fetch(u, { muteHttpExceptions: true, followRedirects: true });
+      var code = r.getResponseCode();
+      if (code >= 400) mal(urlsRecursos[u] + ' va a ' + u + ', que responde con error ' + code + '. Cámbialo en Recursos.');
+    } catch (e) {
+      aviso('No se pudo abrir ' + u + ' (' + urlsRecursos[u] + '): ' + e.message + '.');
+    }
   });
 
   // ---- La página carga

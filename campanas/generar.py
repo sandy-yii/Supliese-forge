@@ -215,6 +215,12 @@ def js_auditoria(planes, nombre='las cinco cuentas'):
     return texto.replace('{{NOMBRE}}', nombre).replace('{{PLANES}}', json.dumps(planes, ensure_ascii=False))
 
 
+def js_corregir(planes, nombre='las cinco cuentas'):
+    with open(os.path.join(AQUI, 'plantilla-corregir.js'), encoding='utf-8') as f:
+        texto = f.read()
+    return texto.replace('{{NOMBRE}}', nombre).replace('{{PLANES}}', json.dumps(planes, ensure_ascii=False))
+
+
 def js_pagina(p):
     c = p['c']
     return plantilla('plantilla-pagina.js', c, dict(cuenta=numero(c), anterior=c.get('id_anterior', ''),
@@ -394,6 +400,8 @@ def main():
             f.write(js_pagina(p))
         with open(os.path.join(carpeta, 'auditoria.js'), 'w', encoding='utf-8') as f:
             f.write(js_auditoria([plan_auditoria(p)], p['c']['nombre']))
+        with open(os.path.join(carpeta, 'corregir.js'), 'w', encoding='utf-8') as f:
+            f.write(js_corregir([plan_auditoria(p)], p['c']['nombre']))
         with open(os.path.join(carpeta, 'ficha.md'), 'w', encoding='utf-8') as f:
             f.write(ficha(p))
         viejo = os.path.join(carpeta, 'prompt-extension.txt')
@@ -419,6 +427,8 @@ def main():
             print('aviso', p['c']['nombre'], '·', a)
     with open(os.path.join(SALIDA, 'auditoria-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
         f.write(js_auditoria([plan_auditoria(p) for p in todas]))
+    with open(os.path.join(SALIDA, 'corregir-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
+        f.write(js_corregir([plan_auditoria(p) for p in todas]))
     filas = cruces(todas)
     o = ['# Cruces entre cuentas que quedan', '',
          'Palabras clave de una cuenta que otra cuenta del grupo también puede activar, porque no las tiene bloqueadas. '
