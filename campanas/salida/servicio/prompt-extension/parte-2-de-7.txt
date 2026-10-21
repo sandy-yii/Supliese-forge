@@ -23,7 +23,7 @@ girbau
   "técnico en lavandería industrial"
   "técnico de secadoras industriales"
   Anuncio adaptable de búsqueda:
-  URL final: https://laundry-solutions-servicio.vercel.app/
+  URL final: https://laundrysolutions.store/
   Ruta: servicio / tecnico
   Títulos:
   - Servicio Técnico Industrial

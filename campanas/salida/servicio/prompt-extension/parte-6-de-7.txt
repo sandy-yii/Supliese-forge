@@ -21,7 +21,7 @@ girbau
   "instalación de lavandería industrial"
   "instalación de equipo de lavandería"
   Anuncio adaptable de búsqueda:
-  URL final: https://laundry-solutions-servicio.vercel.app/
+  URL final: https://laundrysolutions.store/
   Ruta: instalacion / lavanderia
   Títulos:
   - Instalación de Lavanderías

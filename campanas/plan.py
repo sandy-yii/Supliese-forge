@@ -437,7 +437,8 @@ CUENTAS['clm'] = dict(
 # ---------------------------------------------------------------- Servicio para Lavandería
 CUENTAS['servicio'] = dict(
     nombre='Servicio para Lavandería', id='265-909-2662', mensual=8200,
-    url='https://laundry-solutions-servicio.vercel.app/',
+    url='https://laundrysolutions.store/',
+    mismo_sitio=['laundry-solutions-servicio.vercel.app'],  # versión anterior del mismo sitio: se conserva la sección
     nota='Servicio técnico, reparación y mantenimiento industrial. Refacciones solo Girbau y Gamesail.',
     comunes=['Servicio Técnico Industrial', 'Agenda tu Servicio', 'Habla con un Técnico'],
     negativas={

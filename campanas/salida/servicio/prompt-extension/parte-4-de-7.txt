@@ -12,7 +12,7 @@ Presupuesto diario: $16 MXN · Límite de CPC: $12 MXN
   "refacciones para secadora girbau"
   "partes girbau"
   Anuncio adaptable de búsqueda:
-  URL final: https://laundry-solutions-servicio.vercel.app/
+  URL final: https://laundrysolutions.store/
   Ruta: refacciones / girbau
   Títulos:
   - Refacciones Girbau
@@ -35,7 +35,7 @@ Presupuesto diario: $16 MXN · Límite de CPC: $12 MXN
   "refacciones gamesail"
   "partes gamesail"
   Anuncio adaptable de búsqueda:
-  URL final: https://laundry-solutions-servicio.vercel.app/
+  URL final: https://laundrysolutions.store/
   Ruta: refacciones / gamesail
   Títulos:
   - Refacciones Gamesail

@@ -22,7 +22,7 @@ girbau
   "servicio a secadoras industriales"
   "mantenimiento de secadoras industriales"
   Anuncio adaptable de búsqueda:
-  URL final: https://laundry-solutions-servicio.vercel.app/
+  URL final: https://laundrysolutions.store/
   Ruta: secadoras / servicio
   Títulos:
   - Reparación de Secadoras

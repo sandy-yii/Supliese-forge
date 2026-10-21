@@ -38,7 +38,7 @@ Ningún script borra nada. Si un script encuentra un error, no hace ningún camb
 | **Girbau** 860-582-6837 | supliese-girbau-lavadoras.vercel.app | Se **pausan** todas (las armó la agencia anterior) | **Completo: $217** | — |
 | **Quick Laundry** 256-397-2201 | www.supliese.com | Las activas bajan a la **mitad** | Arranque: $198 (completo: $396) | Pausa palabras de «franquicia» y «cuánto cuesta poner una lavandería» y el grupo o campaña de Competencia. Cambia sus anuncios a la página nueva y les aplica «PB · Negativas basura». |
 | **CLM** 993-525-8739 | kingstar.com.mx | Las activas bajan a la **mitad** | Arranque: $307 (completo: $616) | Pausa la campaña o grupo de Competencia. Cambia sus anuncios a la página nueva y aplica «PB · Negativas basura». |
-| **Servicio** 265-909-2662 | laundry-solutions-servicio.vercel.app | Están todas en pausa; se quedan así | **Completo: $269** | — |
+| **Servicio** 265-909-2662 | laundrysolutions.store | Están todas en pausa; se quedan así | **Completo: $269** | — |
 | **Gamesail** (cuenta nueva) | gamesail-lavadoras.vercel.app | No hay | **Completo: $648** | — |
 
 Regla de presupuesto: si las campañas anteriores siguen activas, las nuevas arrancan con la mitad y las anteriores se quedan con la otra mitad; si no hay campañas anteriores activas, las nuevas arrancan con su presupuesto completo. En 2 a 4 semanas, si las nuevas sostienen los clientes, se pausan las anteriores y las nuevas pasan a completo.

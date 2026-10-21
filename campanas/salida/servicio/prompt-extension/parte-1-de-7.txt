@@ -65,7 +65,7 @@ PASO 2 · Crear cada campaña. Para cada una:
 - Idioma: solo español (si aparece inglés u otro, quítalo).
 - Fechas: inicio 2026-12-31.
 - Presupuesto diario y puja: el que se indica. Puja: "Clics" (maximizar clics) con "Límite máximo de oferta de CPC".
-- Grupos de anuncios: crea los que se indican, cada uno con sus palabras clave y un anuncio adaptable de búsqueda con sus títulos, descripciones y rutas. URL final: https://laundry-solutions-servicio.vercel.app/
+- Grupos de anuncios: crea los que se indican, cada uno con sus palabras clave y un anuncio adaptable de búsqueda con sus títulos, descripciones y rutas. URL final: https://laundrysolutions.store/
 - Al terminar, publica, deja la campaña "En pausa" y en Palabras clave > Palabras clave negativas: agrega la lista "AB · Negativas de la cuenta" y, si se indican, las negativas propias de la campaña.
 
 En esta parte haz solo el PASO 1. NO crees campañas todavía: te mando cada campaña en un mensaje aparte (Parte 2 a Parte 7). Cuando termines, dime qué hiciste y espera la Parte 2.
