@@ -189,10 +189,11 @@ function main() {
     var activas = {};
     siguenBusqueda.forEach(function (k) { activas[k.nombre] = true; });
     // Google exige un solo sitio web por grupo de anuncios: los anuncios que van a otra página se cambian
-    // a la página nueva (los adaptables de búsqueda) o se pausan (los de otro tipo, que ya no se pueden editar).
+    // a la página nueva (los adaptables de búsqueda) o se quitan (los de otro tipo, que ya no se pueden editar;
+    // pausarlos no basta, porque para Google los pausados también cuentan).
     var cambiadas = 0, pausados = 0;
     var ita = AdsApp.search('SELECT campaign.name, ad_group.name, ad_group_ad.resource_name, ad_group_ad.ad.resource_name, ' +
-      "ad_group_ad.ad.type, ad_group_ad.ad.final_urls FROM ad_group_ad WHERE ad_group_ad.status = 'ENABLED' " +
+      "ad_group_ad.ad.type, ad_group_ad.ad.final_urls FROM ad_group_ad WHERE ad_group_ad.status != 'REMOVED' " +
       "AND ad_group.status != 'REMOVED' AND campaign.status = 'ENABLED'");
     while (ita.hasNext()) {
       var a = ita.next();
@@ -203,12 +204,12 @@ function main() {
         ops.push({ adOperation: { update: { resourceName: a.adGroupAd.ad.resourceName, finalUrls: [urlNueva(url)] }, updateMask: 'finalUrls' } });
         cambiadas++;
       } else {
-        ops.push({ adGroupAdOperation: { update: { resourceName: a.adGroupAd.resourceName, status: 'PAUSED' }, updateMask: 'status' } });
+        ops.push({ adGroupAdOperation: { remove: a.adGroupAd.resourceName } });
         pausados++;
       }
     }
     if (cambiadas) cambios.push('CAMBIAR la página de ' + cambiadas + ' anuncio(s) de las campañas anteriores a ' + PLAN.url);
-    if (pausados) cambios.push('PAUSAR ' + pausados + ' anuncio(s) de otro tipo que van a otra página (un solo sitio por grupo)');
+    if (pausados) cambios.push('QUITAR ' + pausados + ' anuncio(s) de otro tipo que van a otra página: ya no se pueden editar y, aunque estén en pausa, cuentan como otro sitio');
 
     var lista = null, yaEnLista = {};
     var its = AdsApp.search("SELECT shared_set.resource_name, shared_set.name FROM shared_set " +
@@ -262,7 +263,7 @@ function main() {
   // 4b. Campañas nuevas creadas con una página anterior: se pasan a la página del plan (un solo sitio por grupo).
   var corregidas = 0;
   var itn = AdsApp.search('SELECT campaign.name, ad_group_ad.resource_name, ad_group_ad.ad.resource_name, ad_group_ad.ad.type, ' +
-    "ad_group_ad.ad.final_urls FROM ad_group_ad WHERE ad_group_ad.status = 'ENABLED' AND ad_group.status != 'REMOVED' " +
+    "ad_group_ad.ad.final_urls FROM ad_group_ad WHERE ad_group_ad.status != 'REMOVED' AND ad_group.status != 'REMOVED' " +
     "AND campaign.status != 'REMOVED'");
   while (itn.hasNext()) {
     var an = itn.next();
@@ -272,7 +273,7 @@ function main() {
     if (an.adGroupAd.ad.type === 'RESPONSIVE_SEARCH_AD') {
       ops.push({ adOperation: { update: { resourceName: an.adGroupAd.ad.resourceName, finalUrls: [urlNueva(un)] }, updateMask: 'finalUrls' } });
     } else {
-      ops.push({ adGroupAdOperation: { update: { resourceName: an.adGroupAd.resourceName, status: 'PAUSED' }, updateMask: 'status' } });
+      ops.push({ adGroupAdOperation: { remove: an.adGroupAd.resourceName } });
     }
     corregidas++;
   }

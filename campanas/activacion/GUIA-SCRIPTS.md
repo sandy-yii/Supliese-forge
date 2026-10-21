@@ -43,7 +43,7 @@ Ningún script borra nada. Si un script encuentra un error, no hace ningún camb
 
 Regla de presupuesto: si las campañas anteriores siguen activas, las nuevas arrancan con la mitad y las anteriores se quedan con la otra mitad; si no hay campañas anteriores activas, las nuevas arrancan con su presupuesto completo. En 2 a 4 semanas, si las nuevas sostienen los clientes, se pausan las anteriores y las nuevas pasan a completo.
 
-Google exige un solo sitio web por grupo de anuncios («Un sitio web por cada grupo de anuncios»). Por eso los anuncios anteriores no se copian: se les cambia la página (los adaptables de búsqueda) o se pausan (los de otro tipo). Google los vuelve a revisar en unas horas.
+Google exige un solo sitio web por grupo de anuncios («Un sitio web por cada grupo de anuncios»). Para Google, los anuncios pausados también cuentan. Por eso los anuncios anteriores no se copian: se les cambia la página (los adaptables de búsqueda) o se quitan (los de otro tipo, que ya no se pueden editar). La vista previa lista exactamente cuáles antes de ejecutar. Google los vuelve a revisar en unas horas.
 
 ## Gamesail: abrir la cuenta nueva
 

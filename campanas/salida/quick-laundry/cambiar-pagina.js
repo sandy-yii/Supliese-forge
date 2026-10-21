@@ -5,7 +5,9 @@
  * QUÉ HACE: en todas las campañas de la cuenta, los anuncios activos que van a otra página:
  *   - los adaptables de búsqueda se cambian a la página del plan (si venían de una versión anterior del mismo
  *     sitio, se conserva la sección, por ejemplo /mangles/…);
- *   - los de otro tipo, que ya no se pueden editar, se pausan.
+ *   - los de otro tipo, que ya no se pueden editar, se quitan (pausados también cuentan para Google).
+ * Revisa anuncios habilitados y pausados. Además lista los enlaces de sitio y otros recursos, y las plantillas
+ * de seguimiento, que apunten a otro sitio: esos se corrigen a mano.
  * Así cada grupo queda con un solo sitio web, como exige Google. Deja en el registro el estado de aprobación
  * de cada anuncio y, si Google lo rechazó, el motivo. No toca textos, palabras clave ni presupuestos.
  *
@@ -55,7 +57,7 @@ function main() {
   var it = AdsApp.search('SELECT campaign.name, ad_group.name, ad_group_ad.resource_name, ad_group_ad.ad.resource_name, ' +
     'ad_group_ad.ad.type, ad_group_ad.ad.final_urls, ad_group_ad.policy_summary.approval_status, ' +
     'ad_group_ad.policy_summary.policy_topic_entries FROM ad_group_ad ' +
-    "WHERE ad_group_ad.status = 'ENABLED' AND ad_group.status != 'REMOVED' AND campaign.status != 'REMOVED'");
+    "WHERE ad_group_ad.status != 'REMOVED' AND ad_group.status != 'REMOVED' AND campaign.status != 'REMOVED'");
   while (it.hasNext()) {
     var f = it.next();
     var nombre = f.campaign.name + ' > ' + f.adGroup.name;
@@ -69,10 +71,12 @@ function main() {
       ops.push({ adOperation: { update: { resourceName: f.adGroupAd.ad.resourceName, finalUrls: [nueva] }, updateMask: 'finalUrls' } });
       donde.push('CAMBIAR ' + nombre + ': ' + url + ' → ' + nueva);
     } else {
-      ops.push({ adGroupAdOperation: { update: { resourceName: f.adGroupAd.resourceName, status: 'PAUSED' }, updateMask: 'status' } });
-      donde.push('PAUSAR ' + nombre + ' (anuncio ' + f.adGroupAd.ad.type + ' a ' + url + ', no se puede editar)');
+      // Pausarlo no basta: para Google los anuncios pausados también cuentan. Ya no se puede editar, así que se quita.
+      ops.push({ adGroupAdOperation: { remove: f.adGroupAd.resourceName } });
+      donde.push('QUITAR ' + nombre + ' (anuncio ' + f.adGroupAd.ad.type + ' a ' + url + ': ya no se puede editar y, aunque esté en pausa, cuenta como otro sitio)');
     }
   }
+  revisarOtros();
   donde.forEach(function (d) { Logger.log(d); });
   if (yaBien) Logger.log(yaBien + ' anuncio(s) ya van a ' + sitio(PLAN.url) + '.');
   if (!ops.length) { Logger.log('No hay anuncios que cambiar.'); return; }
@@ -88,5 +92,45 @@ function main() {
   } else {
     Logger.log((ops.length - malos) + ' cambio(s) aplicados' + (malos ? ', ' + malos + ' con error' : '') +
       '. Google vuelve a revisar los anuncios; suele tardar de unas horas a un día.');
+  }
+}
+
+// Recursos (enlaces de sitio, etc.) y plantillas de seguimiento que apuntan a otro sitio. Solo se reportan.
+function revisarOtros() {
+  var destino = sitio(PLAN.url), avisos = [];
+  function revisa(consulta, nombre) {
+    try {
+      var it = AdsApp.search(consulta);
+      while (it.hasNext()) {
+        var f = it.next();
+        var urls = (f.asset && f.asset.finalUrls) || [];
+        urls.forEach(function (u) {
+          if (sitio(u) && sitio(u) !== destino) avisos.push(nombre(f) + ' · ' + (f.asset.type || 'recurso') + ' a ' + u);
+        });
+      }
+    } catch (e) { Logger.log('No se pudo revisar: ' + e.message); }
+  }
+  revisa("SELECT asset.type, asset.final_urls FROM customer_asset WHERE customer_asset.status != 'REMOVED'",
+    function () { return 'Cuenta'; });
+  revisa("SELECT campaign.name, asset.type, asset.final_urls FROM campaign_asset WHERE campaign_asset.status != 'REMOVED' " +
+    "AND campaign.status != 'REMOVED'", function (f) { return f.campaign.name; });
+  revisa("SELECT campaign.name, ad_group.name, asset.type, asset.final_urls FROM ad_group_asset " +
+    "WHERE ad_group_asset.status != 'REMOVED' AND ad_group.status != 'REMOVED'",
+    function (f) { return f.campaign.name + ' > ' + f.adGroup.name; });
+  try {
+    var itc = AdsApp.search("SELECT campaign.name, campaign.tracking_url_template, campaign.final_url_suffix FROM campaign " +
+      "WHERE campaign.status != 'REMOVED'");
+    while (itc.hasNext()) {
+      var c = itc.next().campaign;
+      if (c.trackingUrlTemplate || c.finalUrlSuffix) {
+        avisos.push(c.name + ' · plantilla de seguimiento: ' + (c.trackingUrlTemplate || '') + ' ' + (c.finalUrlSuffix || ''));
+      }
+    }
+  } catch (e) { Logger.log('No se pudo revisar las plantillas: ' + e.message); }
+  if (avisos.length) {
+    Logger.log('REVISAR A MANO (Recursos o configuración de la campaña; el script no los cambia):');
+    avisos.forEach(function (a) { Logger.log('  ' + a); });
+  } else {
+    Logger.log('Recursos y plantillas de seguimiento: ninguno apunta a otro sitio.');
   }
 }
