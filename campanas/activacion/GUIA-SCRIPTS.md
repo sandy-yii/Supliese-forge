@@ -6,7 +6,7 @@ Cada cuenta tiene tres scripts en `campanas/salida/<cuenta>/`. Se corren **dentr
 |---|---|---|
 | 1 | `crear-campanas.js` | Crea las campañas nuevas «AB ·» **en pausa**, con grupos, palabras clave, anuncios, negativas, ubicación (México) e idioma (español), más la lista «AB · Negativas de la cuenta». |
 | 2 | `conversiones.js` | Crea las conversiones de la página (formulario, WhatsApp, teléfono, correo) y «Llamadas desde anuncios» si no existe. Activa el etiquetado automático. Al ejecutarlo, deja en el registro las **variables para Rodolfo**. |
-| 3 | `activar.js` | Enciende las campañas nuevas con su presupuesto y hace los cambios del plan en las campañas anteriores (ver la tabla de abajo). |
+| 3 | `activar.js` | Enciende las campañas nuevas con su presupuesto, les corrige la página si se crearon con una anterior, y hace los cambios del plan en las campañas anteriores (ver la tabla de abajo). |
 
 Si después cambia la página de una cuenta, `cambiar-pagina.js` cambia la URL de los anuncios de todas las campañas (un solo sitio por grupo) y deja en el registro si Google aprobó o rechazó cada anuncio y por qué.
 

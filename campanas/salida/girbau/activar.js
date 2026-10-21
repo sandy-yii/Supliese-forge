@@ -6,8 +6,9 @@
  *   1. Habilita las campañas nuevas «AB ·» y les pone su presupuesto.
  *   2. Campañas anteriores habilitadas: las pausa o les baja el presupuesto a la mitad, según el plan.
  *   3. Pausa en las campañas anteriores las palabras clave, campañas y grupos que el plan indica.
- *   4. Si las campañas anteriores siguen activas: copia sus anuncios con la página de destino nueva
- *      (el anuncio anterior se queda) y les aplica la lista «PB · Negativas basura».
+ *   4. Si las campañas anteriores siguen activas: cambia sus anuncios a la página nueva (un solo sitio por
+ *      grupo, como exige Google) y les aplica la lista «PB · Negativas basura».
+ *      Si alguna campaña nueva se creó con una página anterior, también la pasa a la página nueva.
  *   5. Activa el etiquetado automático si está apagado.
  * No borra nada. No toca pujas, ubicaciones, idiomas ni facturación.
  *
@@ -257,6 +258,25 @@ function main() {
     }
     if (omitidas.length) avisos.push('Negativas que no se agregaron porque bloquearían palabras activas: ' + omitidas.join('; '));
   }
+
+  // 4b. Campañas nuevas creadas con una página anterior: se pasan a la página del plan (un solo sitio por grupo).
+  var corregidas = 0;
+  var itn = AdsApp.search('SELECT campaign.name, ad_group_ad.resource_name, ad_group_ad.ad.resource_name, ad_group_ad.ad.type, ' +
+    "ad_group_ad.ad.final_urls FROM ad_group_ad WHERE ad_group_ad.status = 'ENABLED' AND ad_group.status != 'REMOVED' " +
+    "AND campaign.status != 'REMOVED'");
+  while (itn.hasNext()) {
+    var an = itn.next();
+    if (!esNueva(an.campaign.name)) continue;
+    var un = (an.adGroupAd.ad.finalUrls || [])[0] || '';
+    if (sitio(un) === sitio(PLAN.url)) continue;
+    if (an.adGroupAd.ad.type === 'RESPONSIVE_SEARCH_AD') {
+      ops.push({ adOperation: { update: { resourceName: an.adGroupAd.ad.resourceName, finalUrls: [urlNueva(un)] }, updateMask: 'finalUrls' } });
+    } else {
+      ops.push({ adGroupAdOperation: { update: { resourceName: an.adGroupAd.resourceName, status: 'PAUSED' }, updateMask: 'status' } });
+    }
+    corregidas++;
+  }
+  if (corregidas) cambios.push('CAMBIAR a ' + PLAN.url + ' ' + corregidas + ' anuncio(s) de las campañas nuevas que tenían otra página');
 
   // 5. Etiquetado automático
   var itu = AdsApp.search('SELECT customer.auto_tagging_enabled FROM customer');
