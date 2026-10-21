@@ -227,6 +227,13 @@ def js_diagnostico(planes, nombre='las cinco cuentas', archivo='plantilla-diagno
     return texto.replace('{{NOMBRE}}', nombre).replace('{{PLANES}}', json.dumps(planes, ensure_ascii=False))
 
 
+def plan_palabras(p):
+    c = p['c']
+    return dict(cuenta=numero(c), nombre=c['nombre'],
+                campanas=[dict(nombre=k['nombre'], grupos=[dict(nombre=g['nombre'], kw=g['kw']) for g in k['grupos']])
+                          for k in p['campanas']])
+
+
 def js_pagina(p):
     c = p['c']
     return plantilla('plantilla-pagina.js', c, dict(cuenta=numero(c), anterior=c.get('id_anterior', ''),
@@ -439,6 +446,8 @@ def main():
         f.write(js_diagnostico([plan_auditoria(p) for p in todas]))
     with open(os.path.join(SALIDA, 'mas-leads-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
         f.write(js_diagnostico([plan_auditoria(p) for p in todas], archivo='plantilla-mas-leads.js'))
+    with open(os.path.join(SALIDA, 'palabras-nuevas-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
+        f.write(js_diagnostico([plan_palabras(p) for p in todas], archivo='plantilla-palabras.js'))
     filas = cruces(todas)
     o = ['# Cruces entre cuentas que quedan', '',
          'Palabras clave de una cuenta que otra cuenta del grupo también puede activar, porque no las tiene bloqueadas. '

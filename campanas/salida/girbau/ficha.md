@@ -28,7 +28,7 @@ Cuenta 860-582-6837 · presupuesto mensual $6,600 · Solo búsquedas con la marc
 
 **Girbau**
 
-Palabras clave: [girbau] · "lavadoras girbau" · "girbau méxico" · "distribuidor girbau" · "girbau occidente"
+Palabras clave: [girbau] · "girbau" · "lavadoras girbau" · "girbau méxico" · "distribuidor girbau" · "girbau occidente"
 
 Títulos: Girbau Occidente | Distribuidor Girbau | Lavadoras Girbau | Nueva Girbau Smart Plus | Lavadoras de 12 y 14 kg | Secadoras y Mangles Girbau | Girbau | Cotiza con un Asesor | Solicita tu Cotización
 

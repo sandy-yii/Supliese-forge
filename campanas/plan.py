@@ -581,7 +581,7 @@ CUENTAS['girbau'] = dict(
     campanas=[
         dict(nombre='Marca Girbau', pct=45, cpc=10, origen='Plan', grupos=[
             dict(nombre='Girbau',
-                 kw=['[girbau]', '"lavadoras girbau"', '"girbau méxico"', '"distribuidor girbau"', '"girbau occidente"'],
+                 kw=['[girbau]', '"girbau"', '"lavadoras girbau"', '"girbau méxico"', '"distribuidor girbau"', '"girbau occidente"'],
                  h=['Girbau Occidente', 'Distribuidor Girbau', 'Lavadoras Girbau', 'Nueva Girbau Smart Plus',
                     'Lavadoras de 12 y 14 kg', 'Secadoras y Mangles Girbau'],
                  d=['Lavadoras, secadoras y mangles Girbau. Cotiza hoy con un asesor.',

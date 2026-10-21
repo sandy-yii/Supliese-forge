@@ -1,0 +1,80 @@
+/**
+ * Atelback · Agregar las palabras clave nuevas del plan — las cinco cuentas
+ * Generado por campanas/generar.py a partir de campanas/plan.py. No se edita a mano: se cambia el plan y se regenera.
+ *
+ * QUÉ HACE (sirve en cualquiera de las cuentas del plan: reconoce sola en cuál está): compara las palabras clave de
+ * cada grupo de las campañas «AB ·» con el plan y agrega las que faltan, encendidas. No quita ni cambia ninguna
+ * de las que ya existen, ni toca anuncios, presupuestos o páginas.
+ *
+ * CÓMO SE USA: pegar completo > Autorizar > VISTA PREVIA > revisar el registro > EJECUTAR.
+ */
+
+var PLANES = [{"cuenta": "", "nombre": "Gamesail", "campanas": [{"nombre": "AB · Lavadoras para ropa y sábanas", "grupos": [{"nombre": "Lavadoras industriales para ropa", "kw": [["lavadoras industriales", "EXACT"], ["lavadora industrial para ropa", "EXACT"], ["lavadora industrial para ropa", "PHRASE"], ["lavadoras industriales de ropa", "PHRASE"], ["lavadora industrial de ropa", "PHRASE"], ["lavadoras y secadoras industriales", "PHRASE"]]}, {"nombre": "Lavadoras para sábanas", "kw": [["lavadora industrial para sábanas", "PHRASE"], ["lavadoras para sábanas", "PHRASE"], ["lavadora de sábanas industrial", "PHRASE"], ["lavadora industrial para blancos", "PHRASE"]]}]}, {"nombre": "AB · Lavadoras por capacidad y precio", "grupos": [{"nombre": "Lavadoras por capacidad", "kw": [["lavadora industrial 20 kg precio", "EXACT"], ["lavadora industrial 30 kg precio", "EXACT"], ["lavadora industrial 50 kg precio", "EXACT"], ["lavadora industrial 20 kg", "PHRASE"], ["lavadora industrial 30 kg", "PHRASE"], ["lavadora industrial 50 kg", "PHRASE"], ["lavadoras industriales precio", "PHRASE"], ["centro de lavado industrial", "PHRASE"]]}]}, {"nombre": "AB · Secadoras industriales", "grupos": [{"nombre": "Secadoras para ropa", "kw": [["secadoras industriales de ropa", "PHRASE"], ["secadoras industriales", "PHRASE"], ["secadora industrial de ropa", "EXACT"], ["secadora industrial para ropa", "PHRASE"], ["secadora industrial para sábanas", "PHRASE"]]}, {"nombre": "Secadoras por capacidad", "kw": [["secadora industrial 50 kg", "PHRASE"], ["secadora industrial 100 kg", "PHRASE"], ["secadora industrial 130 kg", "PHRASE"], ["secadora industrial 200 kg", "PHRASE"], ["secadora de 100 kilos", "PHRASE"], ["secadora de 200 kilos", "PHRASE"], ["secadora industrial 30 kg", "PHRASE"]]}]}, {"nombre": "AB · Hoteles y hospitales", "grupos": [{"nombre": "Hoteles", "kw": [["lavadora industrial para hotel", "PHRASE"], ["lavadoras para lavandería hotelera", "PHRASE"], ["secadoras para lavandería hotelera", "PHRASE"], ["secadora industrial para hotel", "PHRASE"], ["equipo para lavandería hotelera", "PHRASE"]]}, {"nombre": "Hospitales", "kw": [["lavadora industrial para hospital", "PHRASE"], ["lavadoras para hospitales", "PHRASE"], ["secadora industrial para hospital", "PHRASE"]]}]}, {"nombre": "AB · Mangles y planchado", "grupos": [{"nombre": "Mangles", "kw": [["mangle planchador", "PHRASE"], ["dobladora de ropa industrial", "PHRASE"], ["calandria industrial", "PHRASE"], ["mangle para sábanas", "PHRASE"]]}]}, {"nombre": "AB · Competencia depurada", "grupos": [{"nombre": "Marcas de la competencia", "kw": [["atlika lavadoras industriales", "EXACT"], ["lavadora industrial atlika", "EXACT"], ["servex lavadoras", "EXACT"], ["lavadora industrial servex", "EXACT"], ["domus lavadora industrial", "EXACT"], ["wascomat lavadora industrial", "EXACT"], ["lorsa lavadora industrial", "EXACT"], ["unimac lavadora industrial", "EXACT"], ["primus lavadora industrial", "EXACT"]]}]}, {"nombre": "AB · Marca Gamesail", "grupos": [{"nombre": "Gamesail", "kw": [["gamesail", "EXACT"], ["gamesail méxico", "PHRASE"], ["gamesail lavadoras industriales", "EXACT"]]}, {"nombre": "Lavadoras Gamesail", "kw": [["lavadoras gamesail", "PHRASE"], ["lavadora gamesail", "PHRASE"]]}, {"nombre": "Secadoras Gamesail", "kw": [["secadoras gamesail", "PHRASE"], ["secadora gamesail", "PHRASE"]]}]}]}, {"cuenta": "256-397-2201", "nombre": "Quick Laundry (cuenta Supliese Gómez)", "campanas": [{"nombre": "AB · Equipo para lavandería", "grupos": [{"nombre": "Lavadoras para lavandería", "kw": [["lavadoras para lavanderías", "PHRASE"], ["lavadoras industriales para lavandería", "PHRASE"], ["lavadoras para lavandería precios", "EXACT"], ["lavadoras para negocio", "EXACT"], ["lavadoras y secadoras para lavandería", "PHRASE"], ["equipo para lavandería", "PHRASE"]]}, {"nombre": "Semi industrial", "kw": [["lavadoras semi industriales", "PHRASE"], ["lavadora semi industrial", "PHRASE"], ["lavadora comercial", "PHRASE"]]}]}, {"nombre": "AB · Emprendimiento", "grupos": [{"nombre": "Abrir una lavandería", "kw": [["abrir una lavandería", "PHRASE"], ["poner una lavandería", "PHRASE"], ["abrir mi lavandería", "PHRASE"], ["poner mi lavandería", "PHRASE"]]}]}, {"nombre": "AB · Autoservicio y monedas", "grupos": [{"nombre": "Autoservicio", "kw": [["lavadoras de monedas", "EXACT"], ["equipo para lavandería autoservicio", "EXACT"], ["lavadoras de autoservicio", "PHRASE"], ["lavadora para lavandería autoservicio", "PHRASE"], ["lavadora de monedas", "PHRASE"], ["secadora de monedas", "PHRASE"]]}]}, {"nombre": "AB · Secadoras para lavandería", "grupos": [{"nombre": "Secadoras para lavandería", "kw": [["secadora de ropa para lavandería", "PHRASE"], ["secadora lavandería", "PHRASE"], ["secadora semi industrial", "PHRASE"], ["secadoras semi industriales", "PHRASE"]]}]}, {"nombre": "AB · Marcas comerciales", "grupos": [{"nombre": "Maytag y LG", "kw": [["lavadora maytag industrial", "PHRASE"], ["lavadora maytag comercial", "PHRASE"], ["lg lavadora industrial", "PHRASE"], ["lavadora lg comercial", "PHRASE"]]}]}, {"nombre": "AB · Marca Quick Laundry", "grupos": [{"nombre": "Quick Laundry", "kw": [["quick laundry", "EXACT"], ["quick laundry méxico", "PHRASE"], ["quicklaundry", "EXACT"], ["quick laundry equipo", "PHRASE"]]}, {"nombre": "Supliese", "kw": [["supliese", "EXACT"], ["supliese", "PHRASE"], ["supliese gómez", "EXACT"]]}]}]}, {"cuenta": "993-525-8739", "nombre": "CLM", "campanas": [{"nombre": "AB · Alta capacidad 60 kg o más", "grupos": [{"nombre": "Lavadoras de alta capacidad", "kw": [["lavadoras de 100 kilos", "PHRASE"], ["lavadora industrial 100 kg", "PHRASE"], ["lavadora industrial 60 kg", "PHRASE"], ["lavadoras de alta capacidad", "PHRASE"], ["lavadora industrial de alta capacidad", "PHRASE"]]}]}, {"nombre": "AB · Lavandería hotelera e institucional", "grupos": [{"nombre": "Lavandería hotelera", "kw": [["lavandería hotelera", "EXACT"], ["proyecto de lavandería hotelera", "PHRASE"], ["lavandería industrial para hotel", "PHRASE"], ["lavandería para hotel", "PHRASE"]]}, {"nombre": "Hospitales e institucional", "kw": [["lavandería para hospital", "PHRASE"], ["lavandería hospitalaria", "PHRASE"], ["lavandería institucional", "PHRASE"]]}]}, {"nombre": "AB · Mangles y planchado", "grupos": [{"nombre": "Mangles", "kw": [["mangle de planchado", "PHRASE"], ["mangle industrial", "PHRASE"], ["planchadora de rodillo industrial", "PHRASE"]]}]}, {"nombre": "AB · Lavadoras y secadoras de 20 a 45 kg", "grupos": [{"nombre": "20 a 45 kg", "kw": [["lavadoras y secadoras de 20 a 45 kg", "PHRASE"], ["lavadora industrial 40 kg", "PHRASE"], ["secadora industrial 40 kg", "PHRASE"], ["lavadora de 40 kilos", "PHRASE"], ["lavadora industrial 45 kg", "PHRASE"], ["secadora industrial 45 kg", "PHRASE"]]}]}, {"nombre": "AB · Túnel de lavado", "grupos": [{"nombre": "Túnel de lavado para ropa", "kw": [["túnel de lavado industrial", "PHRASE"], ["túnel de lavado para ropa", "PHRASE"], ["túnel de lavado de ropa", "PHRASE"], ["lavadora de túnel", "PHRASE"], ["sistema de lavado continuo", "PHRASE"], ["túnel de lavado para hotel", "PHRASE"], ["túnel de lavado para lavandería", "PHRASE"]]}]}, {"nombre": "AB · Marca CLM", "grupos": [{"nombre": "CLM", "kw": [["clm méxico", "EXACT"], ["clmmexico", "EXACT"], ["clm lavandería", "PHRASE"], ["clm lavadoras", "PHRASE"], ["clm lavandería industrial", "PHRASE"]]}]}]}, {"cuenta": "265-909-2662", "nombre": "Servicio para Lavandería", "campanas": [{"nombre": "AB · Servicio técnico industrial", "grupos": [{"nombre": "Servicio técnico", "kw": [["técnico de lavadoras industriales", "PHRASE"], ["técnico en lavadoras industriales", "PHRASE"], ["técnico en lavandería industrial", "PHRASE"], ["técnico de secadoras industriales", "PHRASE"]]}]}, {"nombre": "AB · Reparación y mantenimiento", "grupos": [{"nombre": "Reparación", "kw": [["reparación de lavadoras industriales", "PHRASE"], ["reparación de lavadora industrial", "PHRASE"]]}, {"nombre": "Mantenimiento correctivo", "kw": [["mantenimiento correctivo lavadora industrial", "PHRASE"], ["mantenimiento correctivo lavadoras industriales", "PHRASE"], ["mantenimiento correctivo lavadora", "PHRASE"]]}, {"nombre": "Mantenimiento preventivo", "kw": [["mantenimiento preventivo lavadoras industriales", "PHRASE"], ["mantenimiento lavandería industrial", "PHRASE"], ["mantenimiento de lavadoras industriales", "PHRASE"]]}]}, {"nombre": "AB · Refacciones Girbau y Gamesail", "grupos": [{"nombre": "Refacciones Girbau", "kw": [["refacciones girbau", "EXACT"], ["refacciones girbau", "PHRASE"], ["refacciones para lavadora girbau", "PHRASE"], ["refacciones para secadora girbau", "PHRASE"], ["partes girbau", "PHRASE"]]}, {"nombre": "Refacciones Gamesail", "kw": [["refacciones gamesail", "EXACT"], ["refacciones gamesail", "PHRASE"], ["partes gamesail", "PHRASE"]]}]}, {"nombre": "AB · Servicio a secadoras", "grupos": [{"nombre": "Secadoras", "kw": [["reparación de secadoras industriales", "PHRASE"], ["servicio a secadoras industriales", "PHRASE"], ["mantenimiento de secadoras industriales", "PHRASE"]]}]}, {"nombre": "AB · Instalación", "grupos": [{"nombre": "Instalación", "kw": [["instalación de lavandería industrial", "PHRASE"], ["instalación de equipo de lavandería", "PHRASE"]]}]}, {"nombre": "AB · Servicio a lavanderías", "grupos": [{"nombre": "Pólizas", "kw": [["mantenimiento para lavandería de autoservicio", "PHRASE"], ["póliza de mantenimiento lavandería", "PHRASE"]]}]}]}, {"cuenta": "860-582-6837", "nombre": "Girbau", "campanas": [{"nombre": "AB · Marca Girbau", "grupos": [{"nombre": "Girbau", "kw": [["girbau", "EXACT"], ["girbau", "PHRASE"], ["lavadoras girbau", "PHRASE"], ["girbau méxico", "PHRASE"], ["distribuidor girbau", "PHRASE"], ["girbau occidente", "PHRASE"]]}]}, {"nombre": "AB · Girbau Smart Plus", "grupos": [{"nombre": "Smart Plus", "kw": [["girbau smart plus", "PHRASE"], ["smart plus girbau", "PHRASE"], ["lavadora girbau smart plus", "PHRASE"]]}]}, {"nombre": "AB · Girbau por capacidad y sector", "grupos": [{"nombre": "Capacidad", "kw": [["lavadora girbau 12 kg", "PHRASE"], ["lavadora girbau 14 kg", "PHRASE"], ["girbau 12 kg", "PHRASE"], ["girbau 14 kg", "PHRASE"], ["secadora girbau", "PHRASE"], ["lavadora industrial girbau", "PHRASE"]]}, {"nombre": "Sector", "kw": [["lavadora girbau para hotel", "PHRASE"], ["mangle girbau", "PHRASE"], ["girbau para lavandería", "PHRASE"]]}]}, {"nombre": "AB · Servicio técnico Girbau", "grupos": [{"nombre": "Servicio técnico", "kw": [["técnico girbau", "PHRASE"], ["reparación girbau", "PHRASE"], ["mantenimiento girbau", "PHRASE"]]}]}]}];
+var PLAN = null;
+
+// Solo para la cuenta nueva de Gamesail: pega aquí su número, por ejemplo '123-456-7890'.
+var CUENTA_NUEVA = '';
+
+var TIPOS = { EXACT: 'exacta', PHRASE: 'frase', BROAD: 'amplia' };
+
+function revisarCuenta() {
+  var cid = AdsApp.currentAccount().getCustomerId();
+  PLANES.forEach(function (p) {
+    if (p.cuenta === cid || (!p.cuenta && CUENTA_NUEVA && CUENTA_NUEVA === cid)) PLAN = p;
+  });
+  if (!PLAN) throw new Error('La cuenta ' + cid + ' no está en el plan. No se hizo nada.');
+  return cid;
+}
+
+function clave(texto, tipo) { return texto.toLowerCase() + '|' + tipo; }
+
+function main() {
+  revisarCuenta();
+  var vista = AdsApp.getExecutionInfo().isPreview();
+  Logger.log('PALABRAS CLAVE NUEVAS · ' + PLAN.nombre + (vista ? ' · VISTA PREVIA (no cambia nada)' : ''));
+
+  var grupos = {};
+  var it = AdsApp.search('SELECT campaign.name, ad_group.name, ad_group.resource_name FROM ad_group ' +
+    "WHERE ad_group.status != 'REMOVED' AND campaign.status != 'REMOVED'");
+  while (it.hasNext()) {
+    var g = it.next();
+    grupos[g.campaign.name + ' > ' + g.adGroup.name] = { rn: g.adGroup.resourceName, hay: {} };
+  }
+  var itk = AdsApp.search('SELECT campaign.name, ad_group.name, ad_group_criterion.keyword.text, ad_group_criterion.keyword.match_type ' +
+    "FROM ad_group_criterion WHERE ad_group_criterion.type = 'KEYWORD' AND ad_group_criterion.negative = FALSE " +
+    "AND ad_group_criterion.status != 'REMOVED' AND ad_group.status != 'REMOVED' AND campaign.status != 'REMOVED'");
+  while (itk.hasNext()) {
+    var k = itk.next();
+    var gr = grupos[k.campaign.name + ' > ' + k.adGroup.name];
+    if (gr) gr.hay[clave(k.adGroupCriterion.keyword.text, k.adGroupCriterion.keyword.matchType)] = true;
+  }
+
+  var ops = [], donde = [], faltan = [];
+  PLAN.campanas.forEach(function (c) {
+    c.grupos.forEach(function (g) {
+      var nombre = c.nombre + ' > ' + g.nombre;
+      var gr = grupos[nombre];
+      if (!gr) { faltan.push(nombre); return; }
+      g.kw.forEach(function (w) {
+        if (gr.hay[clave(w[0], w[1])]) return;
+        ops.push({ adGroupCriterionOperation: { create: { adGroup: gr.rn, status: 'ENABLED', keyword: { text: w[0], matchType: w[1] } } } });
+        donde.push('«' + w[0] + '» (' + (TIPOS[w[1]] || w[1]) + ') en ' + nombre);
+      });
+    });
+  });
+  faltan.forEach(function (n) { Logger.log('AVISO: no existe el grupo ' + n + ' (¿falta correr «crear-campanas.js»?). Se salta.'); });
+  if (!ops.length) { Logger.log('Nada que agregar: las campañas ya tienen todas las palabras clave del plan.'); return; }
+
+  var res = AdsApp.mutateAll(ops, { partialFailure: true });
+  var malos = 0;
+  res.forEach(function (r, i) {
+    if (r.isSuccessful()) Logger.log((vista ? 'SE AGREGARÍA ' : 'AGREGADA ') + donde[i]);
+    else { malos++; Logger.log('AVISO: Google no acepta ' + donde[i] + ': ' + r.getErrorMessages().join('; ')); }
+  });
+  Logger.log('');
+  if (vista) {
+    Logger.log((ops.length - malos) + ' palabra(s) por agregar' + (malos ? '; ' + malos + ' que Google no acepta se omiten' : '') + '. Da EJECUTAR.');
+  } else {
+    Logger.log('LISTO: ' + (ops.length - malos) + ' palabra(s) agregadas' + (malos ? ', ' + malos + ' rechazadas por Google' : '') + '.');
+  }
+}
