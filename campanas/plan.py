@@ -317,7 +317,7 @@ CUENTAS['quick-laundry'] = dict(
 # ---------------------------------------------------------------- CLM
 CUENTAS['clm'] = dict(
     nombre='CLM', id='993-525-8739', mensual=18700,
-    url='https://supliese-clm-lavadoras.vercel.app/',
+    url='https://kingstar.com.mx/',
     nota='Alta capacidad, lavandería hotelera e institucional completa, túnel de lavado para ropa, mangles, 20 a 45 kg.',
     comunes=['CLM México', 'Cotiza con un Asesor', 'Solicita tu Cotización'],
     negativas={

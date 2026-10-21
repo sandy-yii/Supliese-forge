@@ -8,7 +8,7 @@ No modifiques, pauses, actives ni edites absolutamente nada dentro de las cuenta
 Periodo: 1 mar 2026 – 11 oct 2026. Muestra habilitado y pausado.
 1. Conversiones: acciones "Principal" y cuántas tuvo cada una. Avísame si lo que cuenta no es formulario, llamada o WhatsApp.
 2. Tabla de TODAS las campañas: nombre, tipo, estado, presupuesto diario, puja, costo, conversiones, costo por conversión.
-3. De las campañas HABILITADAS: URL final de sus anuncios (¿es https://supliese-clm-lavadoras.vercel.app/ y carga?) y si tienen anuncios rechazados (con el motivo exacto).
+3. De las campañas HABILITADAS: URL final de sus anuncios (¿es https://kingstar.com.mx/ y carga?) y si tienen anuncios rechazados (con el motivo exacto).
 4. Si existe una campaña de túnel de lavado: ¿tiene negativas como autolavado, carros, coches, autos, car wash?
 5. En Administración > Verificación del anunciante: el estado que muestra hoy.
 
@@ -23,7 +23,7 @@ Termina con la tabla y la frase: "¿Hago estos cambios? Responde SÍ CLM".
 
 FASE 2 · SOLO SI YO RESPONDO "SÍ CLM"
 Haz únicamente los cambios de estado de la tabla. No toques presupuestos, pujas, anuncios ni palabras.
-PÁGINA DE DESTINO NUEVA: https://supliese-clm-lavadoras.vercel.app/
-En las campañas que queden habilitadas: si un anuncio habilitado tiene una URL final de otro dominio o una página que no carga, crea en ese mismo grupo un anuncio nuevo con los mismos títulos, descripciones y rutas, cambiando SOLO la URL final por https://supliese-clm-lavadoras.vercel.app/. Deja el viejo como está.
+PÁGINA DE DESTINO NUEVA: https://kingstar.com.mx/
+En las campañas que queden habilitadas: si un anuncio habilitado tiene una URL final de otro dominio o una página que no carga, crea en ese mismo grupo un anuncio nuevo con los mismos títulos, descripciones y rutas, cambiando SOLO la URL final por https://kingstar.com.mx/. Deja el viejo como está.
 Si aparece "Confirma que eres tú", una llave de acceso o cualquier verificación de Google, detente y avísame; no intentes saltarla.
 Al terminar dime el estado de cada campaña.

@@ -200,6 +200,12 @@ def js_conversiones(p):
                                                           nombre=c['nombre'], url=c['url']))
 
 
+def js_pagina(p):
+    c = p['c']
+    return plantilla('plantilla-pagina.js', c, dict(cuenta=numero(c), anterior=c.get('id_anterior', ''),
+                                                    nombre=c['nombre'], url=c['url'], prefijo=PREFIJO))
+
+
 def js(p):
     c = p['c']
     plan = dict(
@@ -368,6 +374,8 @@ def main():
             f.write(js_conversiones(p))
         with open(os.path.join(carpeta, 'activar.js'), 'w', encoding='utf-8') as f:
             f.write(js_activar(p))
+        with open(os.path.join(carpeta, 'cambiar-pagina.js'), 'w', encoding='utf-8') as f:
+            f.write(js_pagina(p))
         with open(os.path.join(carpeta, 'ficha.md'), 'w', encoding='utf-8') as f:
             f.write(ficha(p))
         viejo = os.path.join(carpeta, 'prompt-extension.txt')

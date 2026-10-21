@@ -15,7 +15,7 @@
  *   3. EJECUTAR. Al final del registro salen las variables para la página: se le pasan a quien programa el sitio.
  */
 
-var PLAN = {"cuenta": "993-525-8739", "anterior": "", "nombre": "CLM", "url": "https://supliese-clm-lavadoras.vercel.app/"};
+var PLAN = {"cuenta": "993-525-8739", "anterior": "", "nombre": "CLM", "url": "https://kingstar.com.mx/"};
 
 // Solo si es una cuenta nueva (el plan no trae su número): pega aquí su número, por ejemplo '123-456-7890'.
 var CUENTA_NUEVA = '';

@@ -14,7 +14,7 @@ Presupuesto diario: $31 MXN · Límite de CPC: $30 MXN
   "túnel de lavado para hotel"
   "túnel de lavado para lavandería"
   Anuncio adaptable de búsqueda:
-  URL final: https://supliese-clm-lavadoras.vercel.app/
+  URL final: https://kingstar.com.mx/
   Ruta: tunel / ropa
   Títulos:
   - Túnel de Lavado para Ropa
