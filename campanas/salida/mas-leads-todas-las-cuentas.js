@@ -65,7 +65,9 @@ function main() {
   var cuota = {};
   filas('SELECT campaign.name, metrics.search_rank_lost_impression_share, metrics.search_budget_lost_impression_share FROM campaign ' +
     "WHERE segments.date DURING LAST_7_DAYS AND campaign.status = 'ENABLED'", 'la cuota de impresiones').forEach(function (f) {
-    cuota[f.campaign.name] = { puja: f.metrics.searchRankLostImpressionShare, presupuesto: f.metrics.searchBudgetLostImpressionShare };
+    // Si una campaña aún no tiene datos, Google no manda «metrics».
+    var m = f.metrics || {};
+    cuota[f.campaign.name] = { puja: m.searchRankLostImpressionShare, presupuesto: m.searchBudgetLostImpressionShare };
   });
   var primera = {};
   filas('SELECT campaign.name, ad_group_criterion.position_estimates.first_page_cpc_micros FROM ad_group_criterion ' +
@@ -99,7 +101,7 @@ function main() {
     despues += monto;
     // 2. Tope de CPC
     var c = cuota[x.nombre];
-    if (x.puja !== 'TARGET_SPEND' || !x.tope || !c || Number(c.puja) < 0.5) return;
+    if (x.puja !== 'TARGET_SPEND' || !x.tope || !c || !(Number(c.puja) >= 0.5)) return;
     var maximo = k ? k.cpc * 2 : x.tope * 2;
     if (x.tope >= maximo) {
       que.push('AVISO «' + x.nombre + '»: pierde ' + Math.round(c.puja * 100) + '% por puja, pero su tope ($' + x.tope + ') ya es el doble del plan. Se revisa con las palabras clave.');

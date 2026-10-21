@@ -89,16 +89,18 @@ function main() {
   filas('SELECT campaign.name, metrics.impressions, metrics.clicks, metrics.cost_micros FROM campaign ' +
     "WHERE segments.date DURING TODAY AND campaign.status = 'ENABLED'", 'los números de hoy').forEach(function (f) {
     var d = datos[f.campaign.name];
-    if (d) { d.hoy.imp += Number(f.metrics.impressions || 0); d.hoy.clics += Number(f.metrics.clicks || 0); d.hoy.costo += Number(f.metrics.costMicros || 0); }
+    var m = f.metrics || {};
+    if (d) { d.hoy.imp += Number(m.impressions || 0); d.hoy.clics += Number(m.clicks || 0); d.hoy.costo += Number(m.costMicros || 0); }
   });
   filas('SELECT campaign.name, metrics.impressions, metrics.clicks, metrics.search_impression_share, ' +
     'metrics.search_rank_lost_impression_share, metrics.search_budget_lost_impression_share FROM campaign ' +
     "WHERE segments.date DURING LAST_7_DAYS AND campaign.status = 'ENABLED'", 'los números de la semana').forEach(function (f) {
     var d = datos[f.campaign.name];
     if (!d) return;
-    d.semana.imp += Number(f.metrics.impressions || 0);
-    d.semana.clics += Number(f.metrics.clicks || 0);
-    d.cuota = { tiene: f.metrics.searchImpressionShare, puja: f.metrics.searchRankLostImpressionShare, presupuesto: f.metrics.searchBudgetLostImpressionShare };
+    var m = f.metrics || {};
+    d.semana.imp += Number(m.impressions || 0);
+    d.semana.clics += Number(m.clicks || 0);
+    d.cuota = { tiene: m.searchImpressionShare, puja: m.searchRankLostImpressionShare, presupuesto: m.searchBudgetLostImpressionShare };
   });
   filas("SELECT campaign.name FROM campaign_criterion WHERE campaign_criterion.type = 'AD_SCHEDULE' AND campaign.status = 'ENABLED'", 'los horarios')
     .forEach(function (f) { var d = datos[f.campaign.name]; if (d) d.horario++; });
