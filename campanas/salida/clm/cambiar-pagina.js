@@ -140,9 +140,9 @@ function revisarOtros() {
   }
   revisa("SELECT asset.type, asset.final_urls FROM customer_asset WHERE customer_asset.status != 'REMOVED'",
     function () { return 'Cuenta'; });
-  revisa("SELECT campaign.name, asset.type, asset.final_urls FROM campaign_asset WHERE campaign_asset.status != 'REMOVED' " +
+  revisa("SELECT campaign.name, campaign.status, asset.type, asset.final_urls FROM campaign_asset WHERE campaign_asset.status != 'REMOVED' " +
     "AND campaign.status != 'REMOVED'", function (f) { return f.campaign.name; });
-  revisa("SELECT campaign.name, ad_group.name, asset.type, asset.final_urls FROM ad_group_asset " +
+  revisa("SELECT campaign.name, ad_group.name, ad_group.status, asset.type, asset.final_urls FROM ad_group_asset " +
     "WHERE ad_group_asset.status != 'REMOVED' AND ad_group.status != 'REMOVED'",
     function (f) { return f.campaign.name + ' > ' + f.adGroup.name; });
   try {

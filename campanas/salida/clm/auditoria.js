@@ -236,9 +236,9 @@ function main() {
   }
 
   // ---- Recursos con otro sitio
-  var recursos = filas("SELECT campaign.name, asset.type, asset.final_urls FROM campaign_asset WHERE campaign_asset.status != 'REMOVED' " +
+  var recursos = filas("SELECT campaign.name, campaign.status, asset.type, asset.final_urls FROM campaign_asset WHERE campaign_asset.status != 'REMOVED' " +
     "AND campaign.status = 'ENABLED'", 'los enlaces de sitio');
-  filas("SELECT campaign.name, asset.type, asset.final_urls, asset.policy_summary.approval_status, asset.policy_summary.policy_topic_entries " +
+  filas("SELECT campaign.name, campaign.status, asset.type, asset.final_urls, asset.policy_summary.approval_status, asset.policy_summary.policy_topic_entries " +
     "FROM campaign_asset WHERE campaign_asset.status != 'REMOVED' AND campaign.status != 'REMOVED'", 'la aprobación de los recursos')
     .forEach(function (f) {
       var ps = (f.asset && f.asset.policySummary) || {};
@@ -247,6 +247,11 @@ function main() {
           ((ps.policyTopicEntries || []).length ? '\n     ' + ps.policyTopicEntries.map(evidencia).join('\n     ') : ''));
       }
     });
+  filas("SELECT asset.type, asset.final_urls FROM customer_asset WHERE customer_asset.status != 'REMOVED'", 'los recursos de la cuenta')
+    .forEach(function (f) { f.campaign = { name: 'Cuenta (todas las campañas)' }; recursos.push(f); });
+  filas("SELECT campaign.name, ad_group.name, ad_group.status, asset.type, asset.final_urls FROM ad_group_asset " +
+    "WHERE ad_group_asset.status != 'REMOVED' AND ad_group.status != 'REMOVED'", 'los recursos de los grupos')
+    .forEach(function (f) { f.campaign = { name: f.campaign.name + ' > ' + f.adGroup.name }; recursos.push(f); });
   recursos.forEach(function (f) {
     (f.asset.finalUrls || []).forEach(function (u) {
       if (sitio(u) && sitio(u) !== destino) aviso('«' + f.campaign.name + '»: ' + f.asset.type + ' apunta a ' + u + '. Cámbialo en Recursos.');
