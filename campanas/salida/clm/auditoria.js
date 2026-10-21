@@ -119,7 +119,7 @@ function main() {
 
   // ---- Anuncios: página, aprobación y un solo sitio por grupo
   var ads = filas('SELECT campaign.name, campaign.status, ad_group.name, ad_group.status, ad_group_ad.status, ad_group_ad.ad.type, ' +
-    'ad_group_ad.ad.final_urls, ad_group_ad.policy_summary.approval_status, ad_group_ad.policy_summary.review_status, ' +
+    'ad_group_ad.ad.final_urls, ad_group_ad.ad.final_mobile_urls, ad_group_ad.policy_summary.approval_status, ad_group_ad.policy_summary.review_status, ' +
     'ad_group_ad.policy_summary.policy_topic_entries FROM ad_group_ad ' +
     "WHERE ad_group_ad.status != 'REMOVED' AND ad_group.status != 'REMOVED' AND campaign.status != 'REMOVED'", 'los anuncios');
   var sitios = {}, urlsActivas = {}, porCampana = {};
@@ -127,7 +127,7 @@ function main() {
     var url = (f.adGroupAd.ad.finalUrls || [])[0] || '';
     var g = f.campaign.name + ' > ' + f.adGroup.name;
     sitios[g] = sitios[g] || {};
-    if (sitio(url)) sitios[g][sitio(url)] = true;
+    (f.adGroupAd.ad.finalUrls || []).concat(f.adGroupAd.ad.finalMobileUrls || []).forEach(function (u) { if (sitio(u)) sitios[g][sitio(u)] = true; });
     var activo = f.campaign.status === 'ENABLED' && f.adGroup.status === 'ENABLED' && f.adGroupAd.status === 'ENABLED';
     if (!activo) return;
     if (url) urlsActivas[url] = true;
@@ -135,7 +135,9 @@ function main() {
     var c = porCampana[f.campaign.name] = porCampana[f.campaign.name] || { ok: 0, revision: 0, malos: [] };
     if (sitio(url) !== destino) mal(g + ': el anuncio va a ' + url + ', no a ' + destino + '. Corre «cambiar-pagina.js».');
     var estado = pol.approvalStatus || '';
-    if (estado === 'DISAPPROVED') {
+    if (estado === 'DISAPPROVED' && /IN_PROGRESS|UNDER_APPEAL/.test(pol.reviewStatus || '')) {
+      c.revision++;
+    } else if (estado === 'DISAPPROVED') {
       c.malos.push(g + ' (' + (pol.policyTopicEntries || []).map(function (e) { return e.topic; }).join(', ') + ')');
     } else if (estado === 'APPROVED' || estado === 'APPROVED_LIMITED') {
       c.ok++;
@@ -143,6 +145,14 @@ function main() {
     } else {
       c.revision++;
     }
+  });
+  filas('SELECT campaign.name, ad_group.name, ad_group_criterion.final_urls, ad_group_criterion.final_mobile_urls FROM ad_group_criterion ' +
+    "WHERE ad_group_criterion.type = 'KEYWORD' AND ad_group_criterion.status != 'REMOVED' AND ad_group.status != 'REMOVED' " +
+    "AND campaign.status != 'REMOVED'", 'las URL de las palabras clave').forEach(function (f) {
+    var g = f.campaign.name + ' > ' + (f.adGroup || {}).name;
+    (f.adGroupCriterion.finalUrls || []).concat(f.adGroupCriterion.finalMobileUrls || []).forEach(function (u) {
+      if (sitio(u)) { sitios[g] = sitios[g] || {}; sitios[g][sitio(u)] = true; }
+    });
   });
   Object.keys(sitios).forEach(function (g) {
     var s = Object.keys(sitios[g]);

@@ -54,28 +54,56 @@ function main() {
   revisarCuenta();
   Logger.log('Página nueva: ' + PLAN.url);
   var ops = [], donde = [], yaBien = 0;
+  var destino = sitio(PLAN.url);
+  function otroSitio(urls) { return (urls || []).some(function (u) { return sitio(u) && sitio(u) !== destino; }); }
   var it = AdsApp.search('SELECT campaign.name, ad_group.name, ad_group_ad.resource_name, ad_group_ad.ad.resource_name, ' +
-    'ad_group_ad.ad.type, ad_group_ad.ad.final_urls, ad_group_ad.policy_summary.approval_status, ' +
-    'ad_group_ad.policy_summary.policy_topic_entries FROM ad_group_ad ' +
+    'ad_group_ad.ad.type, ad_group_ad.ad.final_urls, ad_group_ad.ad.final_mobile_urls, ad_group_ad.policy_summary.approval_status, ' +
+    'ad_group_ad.policy_summary.review_status, ad_group_ad.policy_summary.policy_topic_entries FROM ad_group_ad ' +
     "WHERE ad_group_ad.status != 'REMOVED' AND ad_group.status != 'REMOVED' AND campaign.status != 'REMOVED'");
+  var enRevision = 0;
   while (it.hasNext()) {
     var f = it.next();
     var nombre = f.campaign.name + ' > ' + f.adGroup.name;
     var pol = f.adGroupAd.policySummary || {};
     var motivos = (pol.policyTopicEntries || []).map(function (e) { return e.topic + (e.type ? ' (' + e.type + ')' : ''); });
-    Logger.log(nombre + ' · aprobación: ' + (pol.approvalStatus || 'sin dato') + (motivos.length ? ' · motivos: ' + motivos.join(', ') : ''));
-    var url = (f.adGroupAd.ad.finalUrls || [])[0] || '';
-    if (sitio(url) === sitio(PLAN.url)) { yaBien++; continue; }
-    if (f.adGroupAd.ad.type === 'RESPONSIVE_SEARCH_AD') {
-      var nueva = urlNueva(url);
-      ops.push({ adOperation: { update: { resourceName: f.adGroupAd.ad.resourceName, finalUrls: [nueva] }, updateMask: 'finalUrls' } });
-      donde.push('CAMBIAR ' + nombre + ': ' + url + ' → ' + nueva);
+    var revisando = /IN_PROGRESS|UNDER_APPEAL/.test(pol.reviewStatus || '');
+    if (revisando) enRevision++;
+    Logger.log(nombre + ' · aprobación: ' + (pol.approvalStatus || 'sin dato') + (revisando ? ' (en revisión)' : '') +
+      (motivos.length ? ' · motivos: ' + motivos.join(', ') : ''));
+    var ad = f.adGroupAd.ad;
+    var url = (ad.finalUrls || [])[0] || '';
+    var movil = ad.finalMobileUrls || [];
+    if (!otroSitio(ad.finalUrls) && !otroSitio(movil)) { yaBien++; continue; }
+    if (ad.type === 'RESPONSIVE_SEARCH_AD') {
+      var nueva = otroSitio(ad.finalUrls) ? urlNueva(url) : url;
+      var cambio = { resourceName: ad.resourceName, finalUrls: [nueva] };
+      var mascara = 'finalUrls';
+      // La URL para celulares también cuenta como sitio: si va a otro dominio, se borra y el anuncio usa la principal.
+      if (otroSitio(movil)) { cambio.finalMobileUrls = []; mascara += ',finalMobileUrls'; }
+      ops.push({ adOperation: { update: cambio, updateMask: mascara } });
+      donde.push('CAMBIAR ' + nombre + ': ' + url + (movil.length ? ' (celular: ' + movil[0] + ')' : '') + ' → ' + nueva);
     } else {
       // Pausarlo no basta: para Google los anuncios pausados también cuentan. Ya no se puede editar, así que se quita.
       ops.push({ adGroupAdOperation: { remove: f.adGroupAd.resourceName } });
-      donde.push('QUITAR ' + nombre + ' (anuncio ' + f.adGroupAd.ad.type + ' a ' + url + ': ya no se puede editar y, aunque esté en pausa, cuenta como otro sitio)');
+      donde.push('QUITAR ' + nombre + ' (anuncio ' + ad.type + ' a ' + url + ': ya no se puede editar y, aunque esté en pausa, cuenta como otro sitio)');
     }
   }
+
+  // Palabras clave con URL propia a otro sitio: también cuentan. Se borra su URL y usan la del anuncio.
+  var itk = AdsApp.search('SELECT campaign.name, ad_group.name, ad_group_criterion.resource_name, ad_group_criterion.keyword.text, ' +
+    'ad_group_criterion.final_urls, ad_group_criterion.final_mobile_urls FROM ad_group_criterion ' +
+    "WHERE ad_group_criterion.type = 'KEYWORD' AND ad_group_criterion.status != 'REMOVED' AND ad_group.status != 'REMOVED' " +
+    "AND campaign.status != 'REMOVED'");
+  while (itk.hasNext()) {
+    var k = itk.next();
+    var gc = k.adGroupCriterion;
+    if (!otroSitio(gc.finalUrls) && !otroSitio(gc.finalMobileUrls)) continue;
+    ops.push({ adGroupCriterionOperation: { update: { resourceName: gc.resourceName, finalUrls: [], finalMobileUrls: [] },
+      updateMask: 'finalUrls,finalMobileUrls' } });
+    donde.push('LIMPIAR la URL de la palabra clave «' + (gc.keyword ? gc.keyword.text : '') + '» en ' + k.campaign.name + ' > ' + k.adGroup.name +
+      ' (iba a ' + ((gc.finalUrls || [])[0] || (gc.finalMobileUrls || [])[0]) + ')');
+  }
+  if (enRevision) Logger.log(enRevision + ' anuncio(s) están en revisión de Google: su estado puede seguir diciendo «Rechazado» hasta que termine.');
   revisarOtros();
   donde.forEach(function (d) { Logger.log(d); });
   if (yaBien) Logger.log(yaBien + ' anuncio(s) ya van a ' + sitio(PLAN.url) + '.');
