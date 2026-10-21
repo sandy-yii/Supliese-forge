@@ -13,7 +13,7 @@
  * Al cambiar la URL, Google vuelve a revisar los anuncios (suele tardar de unas horas a un día).
  */
 
-var PLAN = {"cuenta": "860-582-6837", "anterior": "", "nombre": "Girbau", "url": "https://supliese-girbau-lavadoras.vercel.app/", "prefijo": "AB · ", "mismo_sitio": []};
+var PLAN = {"cuenta": "860-582-6837", "anterior": "", "nombre": "Girbau", "url": "https://girbaupro.com/", "prefijo": "AB · ", "mismo_sitio": ["supliese-girbau-lavadoras.vercel.app"]};
 
 // Solo si es una cuenta nueva (el plan no trae su número): pega aquí su número, por ejemplo '123-456-7890'.
 var CUENTA_NUEVA = '';

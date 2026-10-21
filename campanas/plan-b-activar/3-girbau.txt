@@ -7,7 +7,7 @@ No modifiques, pauses, actives ni edites absolutamente nada dentro de las cuenta
 1. Conversiones: acciones "Principal" y cuántas tuvo cada una en los últimos 30 días. Avísame si lo que cuenta no es formulario, llamada o WhatsApp.
 2. Tabla de TODAS las campañas (habilitadas y pausadas), últimos 30 días y también 1 mar – 11 oct 2026: nombre, tipo, estado, presupuesto diario, costo, conversiones, costo por conversión, cuota de impresiones perdida por presupuesto (Búsqueda) y el estado que da Google.
 3. «Girbau Búsqueda | Nerea»: costo y clics por día de los últimos 14 días. Si ayer tuvo 0 clics, busca la causa (anuncios rechazados, pagos, horario, límite de presupuesto, campaña en revisión) y dímela.
-4. URL final de los anuncios de Nerea, del grupo de recursos de «Máximo Rendimiento» y de las candidatas: dime si es de supliese-girbau-lavadoras.vercel.app y si carga.
+4. URL final de los anuncios de Nerea, del grupo de recursos de «Máximo Rendimiento» y de las candidatas: dime si es de girbaupro.com y si carga.
 
 DECISIÓN (aplícala tú y muéstrame el resultado):
   A) Si Nerea tiene conversiones y pierde impresiones por presupuesto, propón: bajar «Máximo Rendimiento» a la MITAD y subir Nerea en la MISMA cantidad (el total diario de la cuenta no cambia).
@@ -21,8 +21,8 @@ Termina la Fase 1 con la tabla de cambios propuestos (antes → después) y la f
 
 FASE 2 · SOLO SI YO RESPONDO "SÍ CAMBIA"
 Haz únicamente los cambios de la tabla, uno por uno, en este orden: primero subir Nerea, después bajar «Máximo Rendimiento», después activar las campañas marcadas, al final el idioma.
-PÁGINA DE DESTINO NUEVA: https://supliese-girbau-lavadoras.vercel.app/
-En Nerea y en las campañas de Búsqueda que actives: si un anuncio habilitado tiene una URL final de otro dominio (que no sea supliese-girbau-lavadoras.vercel.app) o una página que no carga, crea en ese mismo grupo un anuncio nuevo con los mismos títulos, descripciones y rutas, cambiando SOLO la URL final por https://supliese-girbau-lavadoras.vercel.app/. Deja el anuncio viejo como está hasta que el nuevo salga Aprobado; yo te digo cuándo pausarlo. Si un enlace de sitio u otro recurso apunta a otro dominio, no lo edites: solo repórtalo.
+PÁGINA DE DESTINO NUEVA: https://girbaupro.com/
+En Nerea y en las campañas de Búsqueda que actives: si un anuncio habilitado tiene una URL final de otro dominio (que no sea girbaupro.com) o una página que no carga, crea en ese mismo grupo un anuncio nuevo con los mismos títulos, descripciones y rutas, cambiando SOLO la URL final por https://girbaupro.com/. Deja el anuncio viejo como está hasta que el nuevo salga Aprobado; yo te digo cuándo pausarlo. Si un enlace de sitio u otro recurso apunta a otro dominio, no lo edites: solo repórtalo.
 
 Si aparece "Confirma que eres tú", una llave de acceso o cualquier verificación de Google, detente y avísame. Si alcanzaste a subir Nerea pero no a bajar Máximo Rendimiento, dímelo claramente.
 Al terminar, dime el presupuesto y estado que muestra cada campaña.

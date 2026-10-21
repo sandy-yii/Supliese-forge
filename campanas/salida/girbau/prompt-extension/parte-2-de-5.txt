@@ -12,7 +12,7 @@ Presupuesto diario: $49 MXN · Límite de CPC: $10 MXN
   "distribuidor girbau"
   "girbau occidente"
   Anuncio adaptable de búsqueda:
-  URL final: https://supliese-girbau-lavadoras.vercel.app/
+  URL final: https://girbaupro.com/
   Ruta: girbau / equipo
   Títulos:
   - Girbau Occidente

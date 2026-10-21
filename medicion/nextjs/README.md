@@ -74,7 +74,7 @@ No importar a Google Ads los eventos clave de GA4 como Principal: Google Ads ya 
 | Sitio | Cuenta de Google Ads | GA4 |
 |---|---|---|
 | https://www.supliese.com/ | Supliese Gomez / Quick Laundry 256-397-2201 | Propiedad de Supliese |
-| https://supliese-girbau-lavadoras.vercel.app/ | Girbau 860-582-6837 | Propiedad de Girbau Occidente |
+| https://girbaupro.com/ | Girbau 860-582-6837 | Propiedad de Girbau Occidente |
 | https://kingstar.com.mx/ | CLM 993-525-8739 | Propiedad de CLM |
 | https://laundrysolutions.store/ | Servicio para Lavandería 265-909-2662 | Propiedad de Servicio |
 | https://gamesail-lavadoras.vercel.app/ | La cuenta nueva de Gamesail | Propiedad de Gamesail |

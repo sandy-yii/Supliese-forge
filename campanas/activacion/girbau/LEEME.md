@@ -1,6 +1,6 @@
 # Girbau 860-582-6837 · crear y activar las campañas nuevas
 
-Página de destino: https://supliese-girbau-lavadoras.vercel.app/ (sin parámetros; Google agrega el gclid solo).
+Página de destino: https://girbaupro.com/ (sin parámetros; Google agrega el gclid solo).
 
 ## Camino rápido (con tu usuario administrador)
 
