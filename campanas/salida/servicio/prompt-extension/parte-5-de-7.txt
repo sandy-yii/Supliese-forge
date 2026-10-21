@@ -21,6 +21,7 @@ girbau
   "reparación de secadoras industriales"
   "servicio a secadoras industriales"
   "mantenimiento de secadoras industriales"
+  reparación secadoras industriales
   Anuncio adaptable de búsqueda:
   URL final: https://laundrysolutions.store/
   Ruta: secadoras / servicio

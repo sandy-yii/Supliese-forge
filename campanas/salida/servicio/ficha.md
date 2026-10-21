@@ -32,7 +32,7 @@ Negativas de la campaña: refacciones, refacción, partes, repuestos, venta, com
 
 **Servicio técnico**
 
-Palabras clave: "técnico de lavadoras industriales" · "técnico en lavadoras industriales" · "técnico en lavandería industrial" · "técnico de secadoras industriales"
+Palabras clave: "técnico de lavadoras industriales" · "técnico en lavadoras industriales" · "técnico en lavandería industrial" · "técnico de secadoras industriales" · técnico lavadoras industriales
 
 Títulos: Servicio Técnico Industrial | Técnicos en Lavadoras | Lavadoras Industriales | Lavanderías Industriales | Secadoras Industriales | Mantenimiento Correctivo | Mantenimiento Preventivo | Agenda tu Servicio | Habla con un Técnico
 
@@ -51,7 +51,7 @@ Negativas de la campaña: refacciones, refacción, partes, repuestos, venta, com
 
 **Reparación**
 
-Palabras clave: "reparación de lavadoras industriales" · "reparación de lavadora industrial"
+Palabras clave: "reparación de lavadoras industriales" · "reparación de lavadora industrial" · reparación lavadoras industriales
 
 Títulos: Reparación de Lavadoras | Lavadoras Industriales | Reparación Industrial | Mantenimiento Correctivo | Técnicos en Lavadoras | Diagnóstico de tu Equipo | Servicio Técnico Industrial | Agenda tu Servicio | Habla con un Técnico
 
@@ -79,7 +79,7 @@ Ruta: /mantenimiento/correctivo
 
 **Mantenimiento preventivo**
 
-Palabras clave: "mantenimiento preventivo lavadoras industriales" · "mantenimiento lavandería industrial" · "mantenimiento de lavadoras industriales"
+Palabras clave: "mantenimiento preventivo lavadoras industriales" · "mantenimiento lavandería industrial" · "mantenimiento de lavadoras industriales" · mantenimiento lavadoras industriales
 
 Títulos: Mantenimiento Preventivo | Lavadoras Industriales | Lavanderías Industriales | Técnicos en Lavadoras | Evita Paros de tu Equipo | Agenda una Visita | Servicio Técnico Industrial | Agenda tu Servicio | Habla con un Técnico
 
@@ -95,7 +95,7 @@ Ruta: /mantenimiento/preventivo
 
 **Refacciones Girbau**
 
-Palabras clave: [refacciones girbau] · "refacciones girbau" · "refacciones para lavadora girbau" · "refacciones para secadora girbau" · "partes girbau"
+Palabras clave: [refacciones girbau] · "refacciones girbau" · "refacciones para lavadora girbau" · "refacciones para secadora girbau" · "partes girbau" · refacciones girbau
 
 Títulos: Refacciones Girbau | Refacciones Originales | Para Lavadoras y Secadoras | Instalación por Técnicos | Pide tu Refacción | Cotiza tu Refacción | Servicio Técnico Industrial | Agenda tu Servicio | Habla con un Técnico
 
@@ -109,7 +109,7 @@ Ruta: /refacciones/girbau
 
 **Refacciones Gamesail**
 
-Palabras clave: [refacciones gamesail] · "refacciones gamesail" · "partes gamesail"
+Palabras clave: [refacciones gamesail] · "refacciones gamesail" · "partes gamesail" · refacciones gamesail
 
 Títulos: Refacciones Gamesail | Refacciones Originales | Para Lavadoras y Secadoras | Instalación por Técnicos | Pide tu Refacción | Cotiza tu Refacción | Servicio Técnico Industrial | Agenda tu Servicio | Habla con un Técnico
 
@@ -127,7 +127,7 @@ Negativas de la campaña: refacciones, refacción, partes, repuestos, venta, com
 
 **Secadoras**
 
-Palabras clave: "reparación de secadoras industriales" · "servicio a secadoras industriales" · "mantenimiento de secadoras industriales"
+Palabras clave: "reparación de secadoras industriales" · "servicio a secadoras industriales" · "mantenimiento de secadoras industriales" · reparación secadoras industriales
 
 Títulos: Reparación de Secadoras | Secadoras Industriales | Mantenimiento Correctivo | Mantenimiento Preventivo | Técnicos en Secadoras | Agenda una Visita | Servicio Técnico Industrial | Agenda tu Servicio | Habla con un Técnico
 
@@ -145,7 +145,7 @@ Negativas de la campaña: refacciones, refacción, partes, repuestos, venta, com
 
 **Instalación**
 
-Palabras clave: "instalación de lavandería industrial" · "instalación de equipo de lavandería"
+Palabras clave: "instalación de lavandería industrial" · "instalación de equipo de lavandería" · instalación lavandería industrial
 
 Títulos: Instalación de Lavanderías | Instalación de Equipo | Lavanderías Industriales | Técnicos Especializados | Agenda una Visita | Servicio Técnico Industrial | Agenda tu Servicio | Habla con un Técnico
 
@@ -162,7 +162,7 @@ Negativas de la campaña: refacciones, refacción, partes, repuestos, venta, com
 
 **Pólizas**
 
-Palabras clave: "mantenimiento para lavandería de autoservicio" · "póliza de mantenimiento lavandería"
+Palabras clave: "mantenimiento para lavandería de autoservicio" · "póliza de mantenimiento lavandería" · mantenimiento lavandería autoservicio
 
 Títulos: Póliza de Mantenimiento | Lavanderías de Autoservicio | Mantenimiento Preventivo | Evita Paros de tu Equipo | Agenda una Visita | Servicio Técnico Industrial | Agenda tu Servicio | Habla con un Técnico
 

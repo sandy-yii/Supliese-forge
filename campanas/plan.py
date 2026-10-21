@@ -458,7 +458,8 @@ CUENTAS['servicio'] = dict(
             dict(nombre='Servicio técnico',
                  # Google rechaza las palabras que empiezan con «servicio técnico» (No cumple las directrices editoriales).
                  kw=['"técnico de lavadoras industriales"', '"técnico en lavadoras industriales"',
-                     '"técnico en lavandería industrial"', '"técnico de secadoras industriales"'],
+                     '"técnico en lavandería industrial"', '"técnico de secadoras industriales"',
+                     'técnico lavadoras industriales'],
                  h=['Servicio Técnico Industrial', 'Técnicos en Lavadoras', 'Lavadoras Industriales', 'Lavanderías Industriales',
                     'Secadoras Industriales', 'Mantenimiento Correctivo', 'Mantenimiento Preventivo'],
                  d=['Servicio técnico para lavadoras y secadoras industriales. Agenda tu servicio hoy.',
@@ -470,7 +471,7 @@ CUENTAS['servicio'] = dict(
         dict(nombre='Reparación y mantenimiento', pct=40, cpc=15,
              origen='Plan más mantenimiento correctivo (junta); absorbe «Servicio a lavadoras»', negativas='SERVICIO', grupos=[
             dict(nombre='Reparación',
-                 kw=['"reparación de lavadoras industriales"', '"reparación de lavadora industrial"'],
+                 kw=['"reparación de lavadoras industriales"', '"reparación de lavadora industrial"', 'reparación lavadoras industriales'],
                  h=['Reparación de Lavadoras', 'Lavadoras Industriales', 'Reparación Industrial', 'Mantenimiento Correctivo',
                     'Técnicos en Lavadoras', 'Diagnóstico de tu Equipo'],
                  d=['Reparación de lavadoras industriales para lavanderías, hoteles y hospitales.',
@@ -488,7 +489,7 @@ CUENTAS['servicio'] = dict(
                  p=('mantenimiento', 'correctivo')),
             dict(nombre='Mantenimiento preventivo',
                  kw=['"mantenimiento preventivo lavadoras industriales"', '"mantenimiento lavandería industrial"',
-                     '"mantenimiento de lavadoras industriales"'],
+                     '"mantenimiento de lavadoras industriales"', 'mantenimiento lavadoras industriales'],
                  h=['Mantenimiento Preventivo', 'Lavadoras Industriales', 'Lavanderías Industriales', 'Técnicos en Lavadoras',
                     'Evita Paros de tu Equipo', 'Agenda una Visita'],
                  d=['Mantenimiento preventivo para lavadoras y secadoras industriales. Agenda hoy.',
@@ -501,7 +502,7 @@ CUENTAS['servicio'] = dict(
              grupos=[
             dict(nombre='Refacciones Girbau',
                  kw=['[refacciones girbau]', '"refacciones girbau"', '"refacciones para lavadora girbau"',
-                     '"refacciones para secadora girbau"', '"partes girbau"'],
+                     '"refacciones para secadora girbau"', '"partes girbau"', 'refacciones girbau'],
                  h=['Refacciones Girbau', 'Refacciones Originales', 'Para Lavadoras y Secadoras', 'Instalación por Técnicos',
                     'Pide tu Refacción', 'Cotiza tu Refacción'],
                  d=['Refacciones Girbau para lavadoras y secadoras. Cotiza tu refacción hoy.',
@@ -509,7 +510,7 @@ CUENTAS['servicio'] = dict(
                     'Envíanos el modelo de tu equipo y recibe cotización de la refacción.'],
                  p=('refacciones', 'girbau')),
             dict(nombre='Refacciones Gamesail',
-                 kw=['[refacciones gamesail]', '"refacciones gamesail"', '"partes gamesail"'],
+                 kw=['[refacciones gamesail]', '"refacciones gamesail"', '"partes gamesail"', 'refacciones gamesail'],
                  h=['Refacciones Gamesail', 'Refacciones Originales', 'Para Lavadoras y Secadoras', 'Instalación por Técnicos',
                     'Pide tu Refacción', 'Cotiza tu Refacción'],
                  d=['Refacciones Gamesail para lavadoras y secadoras. Cotiza tu refacción hoy.',
@@ -520,7 +521,7 @@ CUENTAS['servicio'] = dict(
         dict(nombre='Servicio a secadoras', pct=8, cpc=15, origen='Plan', negativas='SERVICIO', grupos=[
             dict(nombre='Secadoras',
                  kw=['"reparación de secadoras industriales"', '"servicio a secadoras industriales"',
-                     '"mantenimiento de secadoras industriales"'],
+                     '"mantenimiento de secadoras industriales"', 'reparación secadoras industriales'],
                  h=['Reparación de Secadoras', 'Secadoras Industriales', 'Mantenimiento Correctivo', 'Mantenimiento Preventivo',
                     'Técnicos en Secadoras', 'Agenda una Visita'],
                  d=['Reparación y mantenimiento de secadoras industriales. Agenda tu servicio hoy.',
@@ -530,7 +531,7 @@ CUENTAS['servicio'] = dict(
         ]),
         dict(nombre='Instalación', pct=5, cpc=15, origen='Plan', negativas='SERVICIO', grupos=[
             dict(nombre='Instalación',
-                 kw=['"instalación de lavandería industrial"', '"instalación de equipo de lavandería"'],
+                 kw=['"instalación de lavandería industrial"', '"instalación de equipo de lavandería"', 'instalación lavandería industrial'],
                  h=['Instalación de Lavanderías', 'Instalación de Equipo', 'Lavanderías Industriales', 'Técnicos Especializados',
                     'Agenda una Visita'],
                  d=['Instalación de equipo para lavanderías industriales. Agenda una visita hoy.',
@@ -539,7 +540,8 @@ CUENTAS['servicio'] = dict(
         ]),
         dict(nombre='Servicio a lavanderías', pct=3, cpc=12, origen='Plan, prueba', negativas='SERVICIO', grupos=[
             dict(nombre='Pólizas',
-                 kw=['"mantenimiento para lavandería de autoservicio"', '"póliza de mantenimiento lavandería"'],
+                 kw=['"mantenimiento para lavandería de autoservicio"', '"póliza de mantenimiento lavandería"',
+                     'mantenimiento lavandería autoservicio'],
                  h=['Póliza de Mantenimiento', 'Lavanderías de Autoservicio', 'Mantenimiento Preventivo', 'Evita Paros de tu Equipo',
                     'Agenda una Visita'],
                  d=['Pólizas de mantenimiento para lavanderías de autoservicio. Agenda hoy.',

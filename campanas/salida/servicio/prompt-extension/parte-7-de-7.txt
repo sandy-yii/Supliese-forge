@@ -20,6 +20,7 @@ girbau
   Palabras clave:
   "mantenimiento para lavandería de autoservicio"
   "póliza de mantenimiento lavandería"
+  mantenimiento lavandería autoservicio
   Anuncio adaptable de búsqueda:
   URL final: https://laundrysolutions.store/
   Ruta: mantenimiento / lavanderias
