@@ -201,6 +201,15 @@ def js_conversiones(p):
                                                           nombre=c['nombre'], url=c['url']))
 
 
+def js_auditoria(p):
+    c = p['c']
+    act = c.get('activacion', {})
+    return plantilla('plantilla-auditoria.js', c, dict(
+        cuenta=numero(c), anterior=c.get('id_anterior', ''), nombre=c['nombre'], url=c['url'], prefijo=PREFIJO,
+        lista=PREFIJO + 'Negativas de la cuenta', anteriores=act.get('anteriores', 'MITAD'),
+        campanas=[dict(nombre=k['nombre'], arranque=k['arranque'], completo=k['diario']) for k in p['campanas']]))
+
+
 def js_pagina(p):
     c = p['c']
     return plantilla('plantilla-pagina.js', c, dict(cuenta=numero(c), anterior=c.get('id_anterior', ''),
@@ -378,6 +387,8 @@ def main():
             f.write(js_activar(p))
         with open(os.path.join(carpeta, 'cambiar-pagina.js'), 'w', encoding='utf-8') as f:
             f.write(js_pagina(p))
+        with open(os.path.join(carpeta, 'auditoria.js'), 'w', encoding='utf-8') as f:
+            f.write(js_auditoria(p))
         with open(os.path.join(carpeta, 'ficha.md'), 'w', encoding='utf-8') as f:
             f.write(ficha(p))
         viejo = os.path.join(carpeta, 'prompt-extension.txt')

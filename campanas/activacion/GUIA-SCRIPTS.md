@@ -53,6 +53,10 @@ Google exige un solo sitio web por grupo de anuncios («Un sitio web por cada gr
 4. Completar la **verificación del anunciante** como organización, con la Constancia de Situación Fiscal, el acta y la identificación del representante.
 5. Copiar el número de la cuenta nueva. En **cada uno** de los tres scripts de Gamesail, pegarlo arriba en `var CUENTA_NUEVA = '';` (por ejemplo `var CUENTA_NUEVA = '123-456-7890';`). Los scripts se niegan a correr en la cuenta anterior 645-094-0317.
 
+## Auditoría (solo lectura)
+
+`auditoria.js` no cambia nada. Con la vista previa basta: deja en el registro un reporte con ❌ (impide o frena los clientes), ⚠️ (revisar) y ✅ (bien) sobre campañas encendidas y su presupuesto, ubicación e idioma, anuncios aprobados y con la página correcta, un solo sitio por grupo, palabras clave, conversiones, etiquetado automático, que la página cargue y los números de hoy. Correrlo al terminar y al día siguiente.
+
 ## Después de ejecutar
 
 - [ ] **Pasar a Rodolfo** las variables que dejó «conversiones.js» en el registro (`NEXT_PUBLIC_GADS_ID` y las etiquetas), para cada sitio. La guía de instalación es `medicion/nextjs/Guia-medicion-landings.md`.
