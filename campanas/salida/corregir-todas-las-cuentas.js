@@ -5,8 +5,8 @@
  * QUÉ HACE (sirve en cualquiera de las cuentas del plan: reconoce sola en cuál está):
  *   1. Pasa a Secundaria las conversiones que no son clientes (chat, chatbot, acciones locales, visitas…),
  *      para que Google aprenda a buscar clientes reales. Las de la página («AB ·») y las llamadas no se tocan.
- *   2. Enlaces de sitio y otros recursos que van a otro dominio o a una página que no carga: les pone la página
- *      de la cuenta. Si Google no deja editar alguno, lo deja en la lista «A MANO».
+ *   2. Enlaces de sitio y otros recursos que no van a la página de la marca (otro dominio, otra sección o una
+ *      página que no carga): les pone la página de la marca. Si Google no deja editar alguno, lo deja en «A MANO».
  * No toca campañas, presupuestos, anuncios ni palabras clave.
  *
  * CÓMO SE USA: pegar completo > Autorizar > VISTA PREVIA > revisar el registro > EJECUTAR.
@@ -38,6 +38,11 @@ function dominio(url) {
   var h = sitio(url).split('.');
   var n = (h.length >= 3 && /^(com|net|org|gob|edu)$/.test(h[h.length - 2]) && h[h.length - 1].length === 2) ? 3 : 2;
   return h.slice(-n).join('.');
+}
+// Página sin www, sin parámetros y sin la diagonal final, para comparar si un anuncio ya va a la página de la marca.
+function pagina(url) {
+  var m = /^https?:\/\/([^\/?#]+)([^?#]*)/i.exec(url || '');
+  return m ? m[1].toLowerCase().replace(/^www\./, '') + m[2].replace(/\/+$/, '') : '';
 }
 function filas(consulta, que) {
   var out = [];
@@ -99,11 +104,18 @@ function main() {
     var url = (a.finalUrls || [])[0];
     if (!url) return;
     var nombre = a.type + ' «' + ((a.sitelinkAsset && a.sitelinkAsset.linkText) || a.name || '') + '» (' + x.donde.join(', ') + ')';
-    var motivo = dominio(url) !== dominio(PLAN.url) ? 'va a otro dominio' : carga(url);
+    var motivo = dominio(url) !== dominio(PLAN.url) ? 'va a otro dominio'
+      : pagina(url.split('#')[0]) !== pagina(PLAN.url) ? 'no va a la página de la marca' : carga(url);
     if (!motivo) return;
-    var r = AdsApp.mutate({ assetOperation: { update: { resourceName: rn, finalUrls: [PLAN.url] }, updateMask: 'finalUrls' } });
-    if (r.isSuccessful()) hechos.push(nombre + ': ' + url + ' (' + motivo + ') → ' + PLAN.url);
-    else aMano.push(nombre + ': ' + url + ' (' + motivo + '). Cámbialo en Recursos a ' + PLAN.url + ' (' + r.getErrorMessages().join('; ') + ')');
+    // Los enlaces de sitio llevan una marca (#…) distinta cada uno: van a la misma página, pero Google no los ve repetidos.
+    var nueva = PLAN.url;
+    if (a.type === 'SITELINK') {
+      var texto = ((a.sitelinkAsset && a.sitelinkAsset.linkText) || 'enlace').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      nueva = PLAN.url + '#' + (texto.replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'enlace');
+    }
+    var r = AdsApp.mutate({ assetOperation: { update: { resourceName: rn, finalUrls: [nueva] }, updateMask: 'finalUrls' } });
+    if (r.isSuccessful()) hechos.push(nombre + ': ' + url + ' (' + motivo + ') → ' + nueva);
+    else aMano.push(nombre + ': ' + url + ' (' + motivo + '). Cámbialo en Recursos a ' + nueva + ' (' + r.getErrorMessages().join('; ') + ')');
   });
 
   Logger.log('');

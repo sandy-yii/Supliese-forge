@@ -6,7 +6,7 @@
  *   1. Habilita las campañas nuevas «AB ·» y les pone su presupuesto.
  *   2. Campañas anteriores habilitadas: las pausa o les baja el presupuesto a la mitad, según el plan.
  *   3. Pausa en las campañas anteriores las palabras clave, campañas y grupos que el plan indica.
- *   4. Pasa a la página nueva todos los anuncios de la cuenta que vayan a otra (campañas nuevas y anteriores,
+ *   4. Pasa a la página de la marca todos los anuncios de la cuenta que vayan a otra (campañas nuevas y anteriores,
  *      encendidas o en pausa: Google exige un solo sitio por grupo y cuenta también los pausados).
  *      Si las campañas anteriores siguen activas, les aplica la lista «PB · Negativas basura».
  *   5. Activa el etiquetado automático si está apagado.
@@ -49,13 +49,8 @@ function sitio(url) {
   return m ? m[1].toLowerCase().replace(/^www\./, '') : '';
 }
 
-// URL nueva para un anuncio: si venía de una versión anterior del mismo sitio (PLAN.mismo_sitio), se conserva
-// la sección (/mangles/…); si no, va a la página principal del plan.
-function urlNueva(url) {
-  var m = /^https?:\/\/([^\/?#]+)([^?#]*)/i.exec(url || '');
-  if (m && (PLAN.mismo_sitio || []).indexOf(sitio(url)) >= 0 && m[2] && m[2] !== '/') {
-    return PLAN.url.replace(/\/+$/, '') + m[2];
-  }
+// Todos los anuncios de la marca van a una sola página: la del plan.
+function urlNueva() {
   return PLAN.url;
 }
 
@@ -247,7 +242,7 @@ function main() {
   while (itn.hasNext()) {
     var an = itn.next();
     var un = (an.adGroupAd.ad.finalUrls || [])[0] || '';
-    if (sitio(un) === sitio(PLAN.url)) continue;
+    if (pagina(un) === pagina(PLAN.url)) continue;
     if (an.adGroupAd.ad.type === 'RESPONSIVE_SEARCH_AD') {
       ops.push({ adOperation: { update: { resourceName: an.adGroupAd.ad.resourceName, finalUrls: [urlNueva(un)] }, updateMask: 'finalUrls' } });
     } else {

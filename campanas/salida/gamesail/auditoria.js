@@ -59,6 +59,11 @@ function dominio(url) {
   var n = (h.length >= 3 && /^(com|net|org|gob|edu)$/.test(h[h.length - 2]) && h[h.length - 1].length === 2) ? 3 : 2;
   return h.slice(-n).join('.');
 }
+// Página sin www, sin parámetros y sin la diagonal final, para comparar si un anuncio ya va a la página de la marca.
+function pagina(url) {
+  var m = /^https?:\/\/([^\/?#]+)([^?#]*)/i.exec(url || '');
+  return m ? m[1].toLowerCase().replace(/^www\./, '') + m[2].replace(/\/+$/, '') : '';
+}
 function pesos(micros) { return Math.round(Number(micros || 0) / 1000000); }
 function esNueva(nombre) { return nombre.indexOf(PLAN.prefijo) === 0; }
 
@@ -164,7 +169,7 @@ function main() {
     if (url) urlsActivas[url] = true;
     var pol = f.adGroupAd.policySummary || {};
     var c = porCampana[f.campaign.name] = porCampana[f.campaign.name] || { ok: 0, revision: 0, malos: [] };
-    if (sitio(url) !== destino) mal(g + ': el anuncio va a ' + url + ', no a ' + destino + '. Corre «cambiar-pagina.js».');
+    if (pagina(url) !== pagina(PLAN.url)) mal(g + ': el anuncio va a ' + url + ', no a la página de la marca ' + PLAN.url + '. Corre «cambiar-pagina.js».');
     var estado = pol.approvalStatus || '';
     if (estado && estado !== 'APPROVED') {
       POLITICAS.push(g + ' · ' + estado + (pol.reviewStatus ? ' (' + pol.reviewStatus + ')' : '') + ' · ' + url +
@@ -262,7 +267,7 @@ function main() {
   recursos.forEach(function (f) {
     (f.asset.finalUrls || []).forEach(function (u) {
       if (!sitio(u)) return;
-      if (dominio(u) !== dominio(PLAN.url)) aviso('«' + f.campaign.name + '»: ' + f.asset.type + ' apunta a otro sitio, ' + u + '. Cámbialo en Recursos.');
+      if (pagina(u) !== pagina(PLAN.url)) aviso('«' + f.campaign.name + '»: ' + f.asset.type + ' va a ' + u + ', no a la página de la marca. Corre «corregir.js».');
       else urlsRecursos[u] = f.campaign.name + ' · ' + f.asset.type;
     });
   });

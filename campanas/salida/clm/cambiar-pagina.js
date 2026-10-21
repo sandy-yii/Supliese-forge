@@ -3,8 +3,7 @@
  * Generado por campanas/generar.py a partir de campanas/plan.py. No se edita a mano: se cambia el plan y se regenera.
  *
  * QUÉ HACE: en todas las campañas de la cuenta, los anuncios activos que van a otra página:
- *   - los adaptables de búsqueda se cambian a la página del plan (si venían de una versión anterior del mismo
- *     sitio, se conserva la sección, por ejemplo /mangles/…);
+ *   - los adaptables de búsqueda se cambian a la página de la marca (una sola página por marca);
  *   - los de otro tipo, que ya no se pueden editar, se quitan (pausados también cuentan para Google).
  * Revisa anuncios habilitados y pausados. Además lista los enlaces de sitio y otros recursos, y las plantillas
  * de seguimiento, que apunten a otro sitio: esos se corrigen a mano.
@@ -41,13 +40,15 @@ function sitio(url) {
   return m ? m[1].toLowerCase().replace(/^www\./, '') : '';
 }
 
-// Si el anuncio venía de una versión anterior del mismo sitio (PLAN.mismo_sitio), se conserva la sección.
-function urlNueva(url) {
-  var m = /^https?:\/\/([^\/?#]+)([^?#]*)/i.exec(url || '');
-  if (m && (PLAN.mismo_sitio || []).indexOf(sitio(url)) >= 0 && m[2] && m[2] !== '/') {
-    return PLAN.url.replace(/\/+$/, '') + m[2];
-  }
+// Todos los anuncios de la marca van a una sola página: la del plan.
+function urlNueva() {
   return PLAN.url;
+}
+
+// Página sin www, sin parámetros y sin la diagonal final, para comparar si un anuncio ya va a la página de la marca.
+function pagina(url) {
+  var m = /^https?:\/\/([^\/?#]+)([^?#]*)/i.exec(url || '');
+  return m ? m[1].toLowerCase().replace(/^www\./, '') + m[2].replace(/\/+$/, '') : '';
 }
 
 function main() {
@@ -55,7 +56,8 @@ function main() {
   Logger.log('Página nueva: ' + PLAN.url);
   var ops = [], donde = [], yaBien = 0;
   var destino = sitio(PLAN.url);
-  function otroSitio(urls) { return (urls || []).some(function (u) { return sitio(u) && sitio(u) !== destino; }); }
+  // Todo debe ir a la página de la marca: cualquier otra página (otro dominio u otra sección) se cambia.
+  function otroSitio(urls) { return (urls || []).some(function (u) { return sitio(u) && pagina(u) !== pagina(PLAN.url); }); }
   var it = AdsApp.search('SELECT campaign.name, ad_group.name, ad_group_ad.resource_name, ad_group_ad.ad.resource_name, ' +
     'ad_group_ad.ad.type, ad_group_ad.ad.final_urls, ad_group_ad.ad.final_mobile_urls, ad_group_ad.policy_summary.approval_status, ' +
     'ad_group_ad.policy_summary.review_status, ad_group_ad.policy_summary.policy_topic_entries FROM ad_group_ad ' +
