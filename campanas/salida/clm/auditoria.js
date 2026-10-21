@@ -1,31 +1,52 @@
 /**
- * Atelback · Auditoría antes de recibir clientes — CLM (993-525-8739)
+ * Atelback · Auditoría antes de recibir clientes — CLM
  * Generado por campanas/generar.py a partir de campanas/plan.py. No se edita a mano: se cambia el plan y se regenera.
  *
  * SOLO LEE: no cambia nada en la cuenta. Revisa que lo que dejaron los otros scripts esté bien y que los anuncios
  * puedan traer clientes: campañas encendidas y su presupuesto, ubicación e idioma, anuncios aprobados y con la página
  * correcta, un solo sitio por grupo, palabras clave, conversiones, etiquetado automático y que la página cargue.
  *
- * CÓMO SE USA: pegar completo > Autorizar > VISTA PREVIA (basta con la vista previa) > leer el reporte en Registros.
+ * CÓMO SE USA: pegar completo > Autorizar > EJECUTAR (no cambia nada) > abrir «Registros».
+ * El mismo archivo sirve en cualquiera de las cinco cuentas: reconoce sola en cuál está.
  */
 
-var PLAN = {"cuenta": "993-525-8739", "anterior": "", "nombre": "CLM", "url": "https://kingstar.com.mx/", "prefijo": "AB · ", "lista": "AB · Negativas de la cuenta", "anteriores": "MITAD", "campanas": [{"nombre": "AB · Alta capacidad 60 kg o más", "arranque": 92, "completo": 185}, {"nombre": "AB · Lavandería hotelera e institucional", "arranque": 77, "completo": 154}, {"nombre": "AB · Mangles y planchado", "arranque": 46, "completo": 92}, {"nombre": "AB · Lavadoras y secadoras de 20 a 45 kg", "arranque": 46, "completo": 92}, {"nombre": "AB · Túnel de lavado", "arranque": 31, "completo": 62}, {"nombre": "AB · Marca CLM", "arranque": 15, "completo": 31}]};
+// Plan de cada cuenta, por número. El script elige solo el de la cuenta donde se corre.
+var PLANES = [{"cuenta": "993-525-8739", "anterior": "", "nombre": "CLM", "url": "https://kingstar.com.mx/", "prefijo": "AB · ", "lista": "AB · Negativas de la cuenta", "anteriores": "MITAD", "campanas": [{"nombre": "AB · Alta capacidad 60 kg o más", "arranque": 92, "completo": 185}, {"nombre": "AB · Lavandería hotelera e institucional", "arranque": 77, "completo": 154}, {"nombre": "AB · Mangles y planchado", "arranque": 46, "completo": 92}, {"nombre": "AB · Lavadoras y secadoras de 20 a 45 kg", "arranque": 46, "completo": 92}, {"nombre": "AB · Túnel de lavado", "arranque": 31, "completo": 62}, {"nombre": "AB · Marca CLM", "arranque": 15, "completo": 31}]}];
+var PLAN = null;
 
-// Solo si es una cuenta nueva (el plan no trae su número): pega aquí su número, por ejemplo '123-456-7890'.
+// Solo para la cuenta nueva de Gamesail: pega aquí su número, por ejemplo '123-456-7890'.
 var CUENTA_NUEVA = '';
 
-var MAL = [], AVISOS = [], BIEN = [];
+var MAL = [], AVISOS = [], BIEN = [], POLITICAS = [];
 function mal(t) { MAL.push(t); }
 function aviso(t) { AVISOS.push(t); }
 function bien(t) { BIEN.push(t); }
 
 function revisarCuenta() {
   var cid = AdsApp.currentAccount().getCustomerId();
-  var esperada = PLAN.cuenta || CUENTA_NUEVA;
-  if (!esperada) throw new Error('Es una cuenta nueva: pega su número en CUENTA_NUEVA, arriba del script.');
-  if (PLAN.anterior && cid === PLAN.anterior) throw new Error('Esta es la cuenta anterior (' + cid + '), no la nueva.');
-  if (cid !== esperada) throw new Error('Este script es para la cuenta ' + esperada + ' y se está corriendo en ' + cid + '.');
+  PLANES.forEach(function (p) {
+    if (p.cuenta === cid || (!p.cuenta && CUENTA_NUEVA && CUENTA_NUEVA === cid)) PLAN = p;
+  });
+  if (!PLAN) {
+    var anterior = PLANES.filter(function (p) { return p.anterior === cid; })[0];
+    if (anterior) throw new Error('Esta es la cuenta anterior de ' + anterior.nombre + ' (' + cid + '). Para la nueva, pega su número en CUENTA_NUEVA.');
+    throw new Error('La cuenta ' + cid + ' no está en el plan. Cuentas del plan: ' +
+      PLANES.map(function (p) { return p.nombre + ' ' + (p.cuenta || '(cuenta nueva: pega su número en CUENTA_NUEVA)'); }).join(' · '));
+  }
   return cid;
+}
+
+// Resumen corto de la evidencia que da Google para un rechazo (error HTTP, URL, texto…).
+function evidencia(e) {
+  var ev = (e.evidences || []).map(function (x) {
+    var d = x.destinationNotWorking;
+    if (d) return 'error ' + (d.httpErrorCode || d.dnsErrorType || '') + ' en ' + (d.expandedUrl || '') + (d.device ? ' (' + d.device + ')' : '');
+    if (x.destinationMismatch) return 'la URL visible no coincide con la página (' + (x.destinationMismatch.urlTypes || []).join(', ') + ')';
+    if (x.websiteList) return 'sitios: ' + (x.websiteList.websites || []).join(', ');
+    if (x.textList) return 'texto: ' + (x.textList.texts || []).join(' | ');
+    return JSON.stringify(x).substring(0, 160);
+  });
+  return e.topic + (e.type ? ' [' + e.type + ']' : '') + (ev.length ? ' → ' + ev.join('; ') : '');
 }
 
 function sitio(url) {
@@ -90,6 +111,10 @@ function main() {
     }
   });
   if (total) bien('Gasto diario de las campañas nuevas encendidas: $' + total + '.');
+  camp.forEach(function (f) {
+    POLITICAS.push('Campaña «' + f.campaign.name + '» · ' + f.campaign.status + ' · estado de Google: ' + (f.campaign.primaryStatus || '') +
+      ((f.campaign.primaryStatusReasons || []).length ? ' (' + f.campaign.primaryStatusReasons.join(', ') + ')' : ''));
+  });
   if (PLAN.anteriores === 'PAUSAR' && anterioresActivas.length) {
     mal('Siguen encendidas campañas anteriores que el plan pide pausar: ' + anterioresActivas.map(function (f) { return '«' + f.campaign.name + '»'; }).join(', ') + '.');
   } else if (anterioresActivas.length) {
@@ -135,6 +160,10 @@ function main() {
     var c = porCampana[f.campaign.name] = porCampana[f.campaign.name] || { ok: 0, revision: 0, malos: [] };
     if (sitio(url) !== destino) mal(g + ': el anuncio va a ' + url + ', no a ' + destino + '. Corre «cambiar-pagina.js».');
     var estado = pol.approvalStatus || '';
+    if (estado && estado !== 'APPROVED') {
+      POLITICAS.push(g + ' · ' + estado + (pol.reviewStatus ? ' (' + pol.reviewStatus + ')' : '') + ' · ' + url +
+        ((pol.policyTopicEntries || []).length ? '\n     ' + pol.policyTopicEntries.map(evidencia).join('\n     ') : ''));
+    }
     if (estado === 'DISAPPROVED' && /IN_PROGRESS|UNDER_APPEAL/.test(pol.reviewStatus || '')) {
       c.revision++;
     } else if (estado === 'DISAPPROVED') {
@@ -209,6 +238,15 @@ function main() {
   // ---- Recursos con otro sitio
   var recursos = filas("SELECT campaign.name, asset.type, asset.final_urls FROM campaign_asset WHERE campaign_asset.status != 'REMOVED' " +
     "AND campaign.status = 'ENABLED'", 'los enlaces de sitio');
+  filas("SELECT campaign.name, asset.type, asset.final_urls, asset.policy_summary.approval_status, asset.policy_summary.policy_topic_entries " +
+    "FROM campaign_asset WHERE campaign_asset.status != 'REMOVED' AND campaign.status != 'REMOVED'", 'la aprobación de los recursos')
+    .forEach(function (f) {
+      var ps = (f.asset && f.asset.policySummary) || {};
+      if (ps.approvalStatus && ps.approvalStatus !== 'APPROVED') {
+        POLITICAS.push('Recurso ' + f.asset.type + ' de «' + f.campaign.name + '» · ' + ps.approvalStatus + ' · ' + ((f.asset.finalUrls || [])[0] || '') +
+          ((ps.policyTopicEntries || []).length ? '\n     ' + ps.policyTopicEntries.map(evidencia).join('\n     ') : ''));
+      }
+    });
   recursos.forEach(function (f) {
     (f.asset.finalUrls || []).forEach(function (u) {
       if (sitio(u) && sitio(u) !== destino) aviso('«' + f.campaign.name + '»: ' + f.asset.type + ' apunta a ' + u + '. Cámbialo en Recursos.');
@@ -251,6 +289,9 @@ function main() {
   aviso('Revisa a mano: verificación del anunciante (Administración > Verificación del anunciante) y que no haya avisos de pago en Facturación.');
 
   // ---- Reporte
+  Logger.log('');
+  Logger.log('================ DETALLE: ESTADO DE CAMPAÑAS Y RECHAZOS ================');
+  POLITICAS.forEach(function (t) { Logger.log(t); });
   Logger.log('');
   Logger.log('================ RESULTADO ================');
   MAL.forEach(function (t) { Logger.log('❌ ' + t); });
