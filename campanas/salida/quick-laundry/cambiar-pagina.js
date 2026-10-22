@@ -14,7 +14,7 @@
  * Al cambiar la URL, Google vuelve a revisar los anuncios (suele tardar de unas horas a un día).
  */
 
-var PLAN = {"cuenta": "256-397-2201", "anterior": "", "nombre": "Quick Laundry (cuenta Supliese Gómez)", "url": "https://www.supliese.com/", "prefijo": "AB · ", "mismo_sitio": []};
+var PLAN = {"cuenta": "256-397-2201", "anterior": "", "nombre": "Quick Laundry (cuenta Supliese Gómez)", "url": "https://quicklaundry.store/", "prefijo": "AB · ", "mismo_sitio": []};
 
 // Solo si es una cuenta nueva (el plan no trae su número): pega aquí su número, por ejemplo '123-456-7890'.
 var CUENTA_NUEVA = '';

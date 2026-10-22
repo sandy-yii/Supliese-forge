@@ -15,7 +15,7 @@
  *   3. EJECUTAR. Al final del registro salen las variables para la página: se le pasan a quien programa el sitio.
  */
 
-var PLAN = {"cuenta": "256-397-2201", "anterior": "", "nombre": "Quick Laundry (cuenta Supliese Gómez)", "url": "https://www.supliese.com/"};
+var PLAN = {"cuenta": "256-397-2201", "anterior": "", "nombre": "Quick Laundry (cuenta Supliese Gómez)", "url": "https://quicklaundry.store/"};
 
 // Solo si es una cuenta nueva (el plan no trae su número): pega aquí su número, por ejemplo '123-456-7890'.
 var CUENTA_NUEVA = '';

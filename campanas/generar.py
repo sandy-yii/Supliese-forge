@@ -13,7 +13,7 @@ import sys
 import unicodedata
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from plan import CUENTAS  # noqa: E402
+from plan import CUENTAS, HORARIO_LLAMADAS  # noqa: E402
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 SALIDA = os.path.join(AQUI, 'salida')
@@ -234,6 +234,11 @@ def plan_palabras(p):
                           for k in p['campanas']])
 
 
+def plan_llamadas(p):
+    c = p['c']
+    return dict(cuenta=numero(c), nombre=c['nombre'], prefijo=PREFIJO, telefono=c['telefono'], horario=HORARIO_LLAMADAS)
+
+
 def js_pagina(p):
     c = p['c']
     return plantilla('plantilla-pagina.js', c, dict(cuenta=numero(c), anterior=c.get('id_anterior', ''),
@@ -450,6 +455,8 @@ def main():
         f.write(js_diagnostico([plan_palabras(p) for p in todas], archivo='plantilla-palabras.js'))
     with open(os.path.join(SALIDA, 'numeros-junta-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
         f.write(js_diagnostico([plan_auditoria(p) for p in todas], archivo='plantilla-informe.js'))
+    with open(os.path.join(SALIDA, 'boton-llamada-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
+        f.write(js_diagnostico([plan_llamadas(p) for p in todas], archivo='plantilla-llamadas.js'))
     filas = cruces(todas)
     o = ['# Cruces entre cuentas que quedan', '',
          'Palabras clave de una cuenta que otra cuenta del grupo también puede activar, porque no las tiene bloqueadas. '

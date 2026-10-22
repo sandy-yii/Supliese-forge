@@ -10,9 +10,14 @@
 
 CUENTAS = {}
 
+# Horario en que se muestra el botón de llamada (hora de la cuenta). Fuera de este horario el anuncio sale sin el botón.
+HORARIO_LLAMADAS = dict(dias=['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY'], desde=9, hasta=18,
+                        sabado=dict(desde=9, hasta=14))
+
 # ---------------------------------------------------------------- Gamesail
 CUENTAS['gamesail'] = dict(
     nombre='Gamesail', id='CUENTA NUEVA', id_anterior='645-094-0317', mensual=19700,
+    telefono='33 1185 9797',  # botón de llamada de los anuncios (lista de Rodolfo, 21 oct)
     url='https://gamesail-lavadoras.vercel.app/',
     nota='Cuenta nueva. Equipo industrial: lavadoras para ropa y sábanas, capacidades, secadoras, hoteles y hospitales, mangles.',
     comunes=['Equipo Gamesail', 'Cotiza con un Asesor', 'Solicita tu Cotización'],
@@ -190,7 +195,8 @@ CUENTAS['gamesail'] = dict(
 # ---------------------------------------------------------------- Quick Laundry (cuenta Supliese Gómez)
 CUENTAS['quick-laundry'] = dict(
     nombre='Quick Laundry (cuenta Supliese Gómez)', id='256-397-2201', mensual=12000,
-    url='https://www.supliese.com/',
+    telefono='33 2601 2237',  # botón de llamada de los anuncios (lista de Rodolfo, 21 oct)
+    url='https://quicklaundry.store/',  # desde el 22 oct; antes https://www.supliese.com/
     nota='Marca nueva Quick Laundry en los anuncios; se sigue pujando por «supliese». Negocio de lavandería: equipo comercial, emprendimiento y autoservicio.',
     comunes=['Quick Laundry', 'Cotiza con un Asesor', 'Solicita tu Cotización'],
     negativas={
@@ -317,6 +323,7 @@ CUENTAS['quick-laundry'] = dict(
 # ---------------------------------------------------------------- CLM
 CUENTAS['clm'] = dict(
     nombre='CLM', id='993-525-8739', mensual=18700,
+    telefono='33 1564 1538',  # botón de llamada de los anuncios (lista de Rodolfo, 21 oct)
     url='https://kingstar.com.mx/',
     mismo_sitio=['supliese-clm-lavadoras.vercel.app'],  # versión anterior del mismo sitio: se conserva la sección
     nota='Alta capacidad, lavandería hotelera e institucional completa, túnel de lavado para ropa, mangles, 20 a 45 kg.',
@@ -437,6 +444,7 @@ CUENTAS['clm'] = dict(
 # ---------------------------------------------------------------- Servicio para Lavandería
 CUENTAS['servicio'] = dict(
     nombre='Servicio para Lavandería', id='265-909-2662', mensual=8200,
+    telefono='33 1417 2994',  # botón de llamada de los anuncios (lista de Rodolfo, 21 oct)
     url='https://laundrysolutions.store/',
     mismo_sitio=['laundry-solutions-servicio.vercel.app'],  # versión anterior del mismo sitio: se conserva la sección
     nota='Servicio técnico, reparación y mantenimiento industrial. Refacciones solo Girbau y Gamesail.',
@@ -563,6 +571,7 @@ CUENTAS['servicio'] = dict(
 # ---------------------------------------------------------------- Girbau
 CUENTAS['girbau'] = dict(
     nombre='Girbau', id='860-582-6837', mensual=6600,
+    telefono='33 2806 8994',  # botón de llamada de los anuncios (lista de Rodolfo, 21 oct)
     url='https://girbaupro.com/',
     mismo_sitio=['supliese-girbau-lavadoras.vercel.app'],  # versión anterior del mismo sitio: se conserva la sección
     nota='Solo búsquedas con la marca Girbau. Nuevo modelo Smart Plus y capacidades de 12 y 14 kg.',

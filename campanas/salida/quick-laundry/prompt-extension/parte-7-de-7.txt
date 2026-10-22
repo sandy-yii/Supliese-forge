@@ -18,7 +18,7 @@ horarios
   [quicklaundry]
   "quick laundry equipo"
   Anuncio adaptable de búsqueda:
-  URL final: https://www.supliese.com/
+  URL final: https://quicklaundry.store/
   Ruta: quick / laundry
   Títulos:
   - Quick Laundry
@@ -40,7 +40,7 @@ horarios
   "supliese"
   [supliese gómez]
   Anuncio adaptable de búsqueda:
-  URL final: https://www.supliese.com/
+  URL final: https://quicklaundry.store/
   Ruta: quick / laundry
   Títulos:
   - Supliese Ahora es

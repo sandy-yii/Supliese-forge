@@ -13,7 +13,7 @@ Presupuesto diario: $28 MXN · Límite de CPC: $7 MXN
   "lavadora de monedas"
   "secadora de monedas"
   Anuncio adaptable de búsqueda:
-  URL final: https://www.supliese.com/
+  URL final: https://quicklaundry.store/
   Ruta: autoservicio / monedas
   Títulos:
   - Lavadoras de Monedas
