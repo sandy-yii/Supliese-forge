@@ -10,7 +10,7 @@ Presupuesto diario: $23 MXN · Límite de CPC: $8 MXN
   "gamesail méxico"
   [gamesail lavadoras industriales]
   Anuncio adaptable de búsqueda:
-  URL final: https://gamesail-lavadoras.vercel.app/
+  URL final: https://gamesail.mx/
   Ruta: gamesail / equipo
   Títulos:
   - Gamesail México
@@ -34,7 +34,7 @@ Presupuesto diario: $23 MXN · Límite de CPC: $8 MXN
   "lavadoras gamesail"
   "lavadora gamesail"
   Anuncio adaptable de búsqueda:
-  URL final: https://gamesail-lavadoras.vercel.app/
+  URL final: https://gamesail.mx/
   Ruta: lavadoras / gamesail
   Títulos:
   - Lavadoras Gamesail
@@ -56,7 +56,7 @@ Presupuesto diario: $23 MXN · Límite de CPC: $8 MXN
   "secadoras gamesail"
   "secadora gamesail"
   Anuncio adaptable de búsqueda:
-  URL final: https://gamesail-lavadoras.vercel.app/
+  URL final: https://gamesail.mx/
   Ruta: secadoras / gamesail
   Títulos:
   - Secadoras Gamesail

@@ -18,7 +18,8 @@ HORARIO_LLAMADAS = dict(dias=['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRI
 CUENTAS['gamesail'] = dict(
     nombre='Gamesail', id='CUENTA NUEVA', id_anterior='645-094-0317', mensual=19700,
     telefono='33 1185 9797',  # botón de llamada de los anuncios (lista de Rodolfo, 21 oct)
-    url='https://gamesail-lavadoras.vercel.app/',
+    url='https://gamesail.mx/',  # página nueva desde el 22 oct; antes https://gamesail-lavadoras.vercel.app/
+    mismo_sitio=['gamesail-lavadoras.vercel.app'],  # versión anterior del mismo sitio: se conserva la sección
     nota='Cuenta nueva. Equipo industrial: lavadoras para ropa y sábanas, capacidades, secadoras, hoteles y hospitales, mangles.',
     comunes=['Equipo Gamesail', 'Cotiza con un Asesor', 'Solicita tu Cotización'],
     negativas={

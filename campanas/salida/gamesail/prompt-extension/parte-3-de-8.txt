@@ -15,7 +15,7 @@ Presupuesto diario: $58 MXN · Límite de CPC: $12 MXN
   "lavadoras industriales precio"
   "centro de lavado industrial"
   Anuncio adaptable de búsqueda:
-  URL final: https://gamesail-lavadoras.vercel.app/
+  URL final: https://gamesail.mx/
   Ruta: lavadoras / capacidad
   Títulos:
   - Lavadoras de 20, 30 y 50 kg

@@ -34,7 +34,7 @@ queretaro
   [unimac lavadora industrial]
   [primus lavadora industrial]
   Anuncio adaptable de búsqueda:
-  URL final: https://gamesail-lavadoras.vercel.app/
+  URL final: https://gamesail.mx/
   Ruta: lavadoras / cotiza
   Títulos:
   - Lavadoras Industriales

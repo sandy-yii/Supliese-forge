@@ -14,7 +14,7 @@
  * Al cambiar la URL, Google vuelve a revisar los anuncios (suele tardar de unas horas a un día).
  */
 
-var PLAN = {"cuenta": "", "anterior": "645-094-0317", "nombre": "Gamesail", "url": "https://gamesail-lavadoras.vercel.app/", "prefijo": "AB · ", "mismo_sitio": []};
+var PLAN = {"cuenta": "", "anterior": "645-094-0317", "nombre": "Gamesail", "url": "https://gamesail.mx/", "prefijo": "AB · ", "mismo_sitio": ["gamesail-lavadoras.vercel.app"]};
 
 // Solo si es una cuenta nueva (el plan no trae su número): pega aquí su número, por ejemplo '123-456-7890'.
 var CUENTA_NUEVA = '';
