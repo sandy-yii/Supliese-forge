@@ -11,8 +11,8 @@
 CUENTAS = {}
 
 # Horario en que se muestra el botón de llamada (hora de la cuenta). Fuera de este horario el anuncio sale sin el botón.
-HORARIO_LLAMADAS = dict(dias=['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY'], desde=9, hasta=18,
-                        sabado=dict(desde=9, hasta=14))
+# Atención de 9 a 18 h (dicho el 22 oct). Si atienden sábado, agregar sabado=dict(desde=9, hasta=18).
+HORARIO_LLAMADAS = dict(dias=['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY'], desde=9, hasta=18)
 
 # ---------------------------------------------------------------- Gamesail
 CUENTAS['gamesail'] = dict(
