@@ -3,8 +3,9 @@
  * Generado por campanas/generar.py a partir de campanas/plan.py. No se edita a mano: se cambia el plan y se regenera.
  *
  * QUÉ HACE (sirve en cualquiera de las cuentas del plan: reconoce sola en cuál está): compara las palabras clave de
- * cada grupo de las campañas «AB ·» con el plan y agrega las que faltan, encendidas. No quita ni cambia ninguna
- * de las que ya existen, ni toca anuncios, presupuestos o páginas.
+ * cada grupo de las campañas «AB ·» con el plan y agrega las que faltan, encendidas. También agrega a la lista
+ * «AB · Negativas de la cuenta» las exclusiones del plan que le falten. No quita ni cambia ninguna de las que ya
+ * existen, ni toca anuncios, presupuestos o páginas.
  *
  * CÓMO SE USA: pegar completo > Autorizar > VISTA PREVIA > revisar el registro > EJECUTAR.
  */
@@ -50,6 +51,24 @@ function main() {
   }
 
   var ops = [], donde = [], faltan = [];
+
+  // Exclusiones de la cuenta que faltan en la lista
+  var lista = '', yaEnLista = {};
+  var its = AdsApp.search("SELECT shared_set.resource_name, shared_set.name FROM shared_set " +
+    "WHERE shared_set.status = 'ENABLED' AND shared_set.type = 'NEGATIVE_KEYWORDS'");
+  while (its.hasNext()) { var ss = its.next().sharedSet; if (ss.name === PLAN.lista.nombre) lista = ss.resourceName; }
+  if (!lista) {
+    Logger.log('AVISO: no existe la lista «' + PLAN.lista.nombre + '». Las exclusiones no se agregan.');
+  } else {
+    var itn = AdsApp.search("SELECT shared_criterion.keyword.text, shared_criterion.keyword.match_type FROM shared_criterion " +
+      "WHERE shared_criterion.shared_set = '" + lista + "'");
+    while (itn.hasNext()) { var kn = itn.next().sharedCriterion.keyword; if (kn) yaEnLista[clave(kn.text, kn.matchType)] = true; }
+    PLAN.lista.kw.forEach(function (w) {
+      if (yaEnLista[clave(w[0], w[1])]) return;
+      ops.push({ sharedCriterionOperation: { create: { sharedSet: lista, keyword: { text: w[0], matchType: w[1] } } } });
+      donde.push('exclusión «' + w[0] + '» (' + (TIPOS[w[1]] || w[1]) + ') en la lista de la cuenta');
+    });
+  }
   PLAN.campanas.forEach(function (c) {
     c.grupos.forEach(function (g) {
       var nombre = c.nombre + ' > ' + g.nombre;
@@ -63,7 +82,7 @@ function main() {
     });
   });
   faltan.forEach(function (n) { Logger.log('AVISO: no existe el grupo ' + n + ' (¿falta correr «crear-campanas.js»?). Se salta.'); });
-  if (!ops.length) { Logger.log('Nada que agregar: las campañas ya tienen todas las palabras clave del plan.'); return; }
+  if (!ops.length) { Logger.log('Nada que agregar: las campañas ya tienen todas las palabras clave y exclusiones del plan.'); return; }
 
   var res = AdsApp.mutateAll(ops, { partialFailure: true });
   var malos = 0;
@@ -73,8 +92,8 @@ function main() {
   });
   Logger.log('');
   if (vista) {
-    Logger.log((ops.length - malos) + ' palabra(s) por agregar' + (malos ? '; ' + malos + ' que Google no acepta se omiten' : '') + '. Da EJECUTAR.');
+    Logger.log((ops.length - malos) + ' palabra(s) y exclusión(es) por agregar' + (malos ? '; ' + malos + ' que Google no acepta se omiten' : '') + '. Da EJECUTAR.');
   } else {
-    Logger.log('LISTO: ' + (ops.length - malos) + ' palabra(s) agregadas' + (malos ? ', ' + malos + ' rechazadas por Google' : '') + '.');
+    Logger.log('LISTO: ' + (ops.length - malos) + ' palabra(s) y exclusión(es) agregadas' + (malos ? ', ' + malos + ' rechazadas por Google' : '') + '.');
   }
 }

@@ -36,7 +36,7 @@ CUENTAS['gamesail'] = dict(
         'Territorio de Quick Laundry': ['"poner una lavandería"', '"abrir una lavandería"', '"negocio de lavandería"',
                                         'franquicia', 'franquicias', 'autoservicio', 'monedas', '"semi industrial"',
                                         '"semi industriales"', 'semindustrial', 'supliese', '"quick laundry"'],
-        'Territorio de CLM': ['túnel', 'clm', '"40 kg"', '"40 kilos"', '"45 kg"', '"45 kilos"', '"60 kg"', '"60 kilos"',
+        'Territorio de CLM': ['túnel', 'clm', 'kingstar', '"king star"', '"40 kg"', '"40 kilos"', '"45 kg"', '"45 kilos"', '"60 kg"', '"60 kilos"',
                               '"lavadora industrial 100 kg"', '"lavadoras industriales 100 kg"', '"lavadora de 100 kilos"',
                               '"lavadoras de 100 kilos"', '[lavandería hotelera]', '"lavandería para hospital"',
                               '"lavandería institucional"', '[mangle industrial]', '"mangle de planchado"',
@@ -198,6 +198,9 @@ CUENTAS['quick-laundry'] = dict(
     nombre='Quick Laundry (cuenta Supliese Gómez)', id='256-397-2201', mensual=12000,
     telefono='33 2601 2237',  # botón de llamada de los anuncios (lista de Rodolfo, 21 oct)
     url='https://quicklaundry.store/',  # desde el 22 oct; antes https://www.supliese.com/
+    # 23 oct: «Modelo de Negocio» pagaba $15.54 por clic contra $4.29 de las nuevas; su dinero pasa a las dos nuevas
+    # que se quedan sin presupuesto (Equipo pierde 65% por presupuesto, Emprendimiento 22%). +50% ahora, el resto después del aprendizaje.
+    ajustes=dict(pausar=['Campaña Modelo de Negocio'], presupuesto={'Equipo para lavandería': 119, 'Emprendimiento': 74}),
     nota='Marca nueva Quick Laundry en los anuncios; se sigue pujando por «supliese». Negocio de lavandería: equipo comercial, emprendimiento y autoservicio.',
     comunes=['Quick Laundry', 'Cotiza con un Asesor', 'Solicita tu Cotización'],
     negativas={
@@ -205,7 +208,7 @@ CUENTAS['quick-laundry'] = dict(
         'Territorio de Gamesail': ['hotel', 'hoteles', 'hotelera', 'hospital', 'hospitales', 'clínica', 'mangle', 'mangles',
                                    'planchadora', 'dobladora', 'calandria', 'gamesail', '"50 kg"', '"50 kilos"', '"100 kg"',
                                    '"100 kilos"', '"130 kg"', '"200 kg"'],
-        'Territorio de CLM': ['túnel', 'clm', '"60 kg"'],
+        'Territorio de CLM': ['túnel', 'clm', 'kingstar', '"king star"', '"60 kg"'],
         'Territorio de Girbau': ['girbau'],
         'Territorio de Servicio para Lavandería': ['refacciones', 'refacción', 'partes', 'repuestos', 'reparación',
                                                    'mantenimiento', 'servicio'],
@@ -349,6 +352,12 @@ CUENTAS['clm'] = dict(
         'Doméstico': ['"para casa"', 'doméstica', 'domésticas', 'mabe', 'samsung', 'whirlpool', 'lg', '"carga frontal"'],
         'Usado y renta': ['usada', 'usadas', 'usado', 'usados', 'seminueva', 'remate', 'renta', 'alquiler'],
         'Información, no compra': ['empleo', 'vacante', 'curso', 'cursos', 'manual', 'pdf'],
+        # 23 oct: búsquedas reales que «Alta capacidad» atrajo y no son de 40 kg o más (lavadoras de casa de 15 a 28 kg)
+        'Doméstico y capacidades chicas (23 oct)': ['hisense', '"fuzzy logic"', '"heavy duty"', 'cobija', 'cobijas', 'edredón',
+                                                    'edredones', '"15 kg"', '"15 kilos"', '"20 kilos"', '"30kg"',
+                                                    '"lavadora 24 kg"', '"lavadora 24kg"', '"lavadora 25 kg"', '"lavadora 26 kg"',
+                                                    '"lavadora 28 kg"', '"lavadora de 24 kilos"', '"lavadora de 25 kilos"',
+                                                    '"lavadora de 26 kilos"', '"lavadora de 28 kg"'],
     },
     campanas=[
         dict(nombre='Alta capacidad 60 kg o más', pct=30, cpc=18, origen='Plan', grupos=[
@@ -424,7 +433,9 @@ CUENTAS['clm'] = dict(
         ]),
         dict(nombre='Marca CLM', pct=5, cpc=8, origen='Plan', grupos=[
             dict(nombre='CLM',
-                 kw=['[clm méxico]', '[clmmexico]', '"clm lavandería"', '"clm lavadoras"', '"clm lavandería industrial"'],
+                 kw=['[clm méxico]', '[clmmexico]', '"clm lavandería"', '"clm lavadoras"', '"clm lavandería industrial"',
+                     # 23 oct: el nombre nuevo de la marca
+                     '[kingstar]', '"kingstar méxico"', '"kingstar lavadoras"', '"kingstar lavandería"', '"king star lavadoras"'],
                  h=['CLM México', 'Lavandería Industrial', 'Túnel de Lavado para Ropa', 'Equipo de Alta Capacidad',
                     'Sitio Oficial CLM', 'Te Ayudamos a Elegir'],
                  d=['CLM México: lavandería industrial, túnel de lavado y alta capacidad. Cotiza hoy.',
@@ -460,7 +471,7 @@ CUENTAS['servicio'] = dict(
         'Doméstico': ['mabe', 'samsung', 'whirlpool', 'lg', 'easy', '"de casa"', '"para casa"', 'doméstica', 'domésticas',
                       '"carga frontal"'],
         'Empleo': ['vacante', 'vacantes', 'empleo', 'trabajo', 'sueldo'],
-        'Otras cuentas del grupo': ['franquicia', 'franquicias', '"poner una lavandería"', 'supliese', '"quick laundry"', 'clm'],
+        'Otras cuentas del grupo': ['franquicia', 'franquicias', '"poner una lavandería"', 'supliese', '"quick laundry"', 'clm', 'kingstar', '"king star"'],
     },
     campanas=[
         dict(nombre='Servicio técnico industrial', pct=32, cpc=15, origen='Plan', negativas='SERVICIO', grupos=[
@@ -586,7 +597,7 @@ CUENTAS['girbau'] = dict(
         'Negocio de lavandería': ['franquicia', 'franquicias', '"poner una lavandería"'],
         'Otras marcas': ['lorsa', 'lorza', 'wascomat', 'unimac', 'maytag', 'alliance', '"speed queen"', 'primus', 'electrolux',
                          'lg', 'imesa', 'sertec', 'edro', 'lavartind', 'whirlpool', 'braun',
-                         'gamesail', 'clm', 'supliese', '"quick laundry"'],
+                         'gamesail', 'clm', 'kingstar', '"king star"', 'supliese', '"quick laundry"'],
         'Girbau de otro país (filial de EE. UU.)': ['"continental girbau"'],
         'Información, no compra': ['empleo', 'curso', 'cursos', 'manual', 'pdf', 'usada', 'usadas', 'renta'],
     },

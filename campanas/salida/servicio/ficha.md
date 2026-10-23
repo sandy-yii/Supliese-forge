@@ -181,7 +181,7 @@ Se carga como una lista compartida, «AB · Negativas de la cuenta», ligada a t
 - **Aprender a reparar:** curso, cursos, tutorial, "cómo reparar", diagrama, diagramas, pdf, manual, manuales
 - **Doméstico:** mabe, samsung, whirlpool, lg, easy, "de casa", "para casa", doméstica, domésticas, "carga frontal"
 - **Empleo:** vacante, vacantes, empleo, trabajo, sueldo
-- **Otras cuentas del grupo:** franquicia, franquicias, "poner una lavandería", supliese, "quick laundry", clm
+- **Otras cuentas del grupo:** franquicia, franquicias, "poner una lavandería", supliese, "quick laundry", clm, kingstar, "king star"
 
 ## Lo que sale del plan anterior
 

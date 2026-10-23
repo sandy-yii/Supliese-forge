@@ -50,6 +50,8 @@ whirlpool
 braun
 gamesail
 clm
+kingstar
+"king star"
 supliese
 "quick laundry"
 "continental girbau"

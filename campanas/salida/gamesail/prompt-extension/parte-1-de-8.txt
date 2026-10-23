@@ -97,6 +97,8 @@ supliese
 túnel
 tunel
 clm
+kingstar
+"king star"
 "40 kg"
 "40 kilos"
 "45 kg"

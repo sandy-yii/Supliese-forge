@@ -107,7 +107,7 @@ Se carga como una lista compartida, «AB · Negativas de la cuenta», ligada a t
 - **Genérico sin marca (junta):** [lavadora industrial], [lavadoras industriales], [lavadora industrial precio], [lavadoras industriales precio], [precio lavadora industrial], [lavadora industrial 12 kg], [lavadora industrial 14 kg], [lavadora industrial 30 kg], [lavadora industrial 30 kg precio]
 - **Refacciones (las atiende Servicio para Lavandería):** refacciones, refacción, partes, repuestos
 - **Negocio de lavandería:** franquicia, franquicias, "poner una lavandería"
-- **Otras marcas:** lorsa, lorza, wascomat, unimac, maytag, alliance, "speed queen", primus, electrolux, lg, imesa, sertec, edro, lavartind, whirlpool, braun, gamesail, clm, supliese, "quick laundry"
+- **Otras marcas:** lorsa, lorza, wascomat, unimac, maytag, alliance, "speed queen", primus, electrolux, lg, imesa, sertec, edro, lavartind, whirlpool, braun, gamesail, clm, kingstar, "king star", supliese, "quick laundry"
 - **Girbau de otro país (filial de EE. UU.):** "continental girbau"
 - **Información, no compra:** empleo, curso, cursos, manual, pdf, usada, usadas, renta
 

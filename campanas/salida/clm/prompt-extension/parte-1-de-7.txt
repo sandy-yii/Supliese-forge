@@ -119,6 +119,27 @@ curso
 cursos
 manual
 pdf
+hisense
+"fuzzy logic"
+"heavy duty"
+cobija
+cobijas
+edredón
+edredon
+edredones
+"15 kg"
+"15 kilos"
+"20 kilos"
+"30kg"
+"lavadora 24 kg"
+"lavadora 24kg"
+"lavadora 25 kg"
+"lavadora 26 kg"
+"lavadora 28 kg"
+"lavadora de 24 kilos"
+"lavadora de 25 kilos"
+"lavadora de 26 kilos"
+"lavadora de 28 kg"
 
 PASO 2 · Crear cada campaña. Para cada una:
 - Nueva campaña > "Crear una campaña sin la orientación de un objetivo" > Búsqueda.

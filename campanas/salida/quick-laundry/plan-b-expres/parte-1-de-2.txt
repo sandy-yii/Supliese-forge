@@ -42,6 +42,8 @@ gamesail
 túnel
 tunel
 clm
+kingstar
+"king star"
 "60 kg"
 girbau
 refacciones

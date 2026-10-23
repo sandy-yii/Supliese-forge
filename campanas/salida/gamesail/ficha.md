@@ -232,7 +232,7 @@ Se carga como una lista compartida, «AB · Negativas de la cuenta», ligada a t
 - **Información, no compra:** empleo, vacante, vacantes, curso, cursos, manual, pdf, "cómo hacer"
 - **Territorio de Servicio para Lavandería:** refacciones, refacción, partes, repuestos, reparación, mantenimiento, servicio, técnico
 - **Territorio de Quick Laundry:** "poner una lavandería", "abrir una lavandería", "negocio de lavandería", franquicia, franquicias, autoservicio, monedas, "semi industrial", "semi industriales", semindustrial, supliese, "quick laundry"
-- **Territorio de CLM:** túnel, clm, "40 kg", "40 kilos", "45 kg", "45 kilos", "60 kg", "60 kilos", "lavadora industrial 100 kg", "lavadoras industriales 100 kg", "lavadora de 100 kilos", "lavadoras de 100 kilos", [lavandería hotelera], "lavandería para hospital", "lavandería institucional", [mangle industrial], "mangle de planchado", "planchadora de rodillo"
+- **Territorio de CLM:** túnel, clm, kingstar, "king star", "40 kg", "40 kilos", "45 kg", "45 kilos", "60 kg", "60 kilos", "lavadora industrial 100 kg", "lavadoras industriales 100 kg", "lavadora de 100 kilos", "lavadoras de 100 kilos", [lavandería hotelera], "lavandería para hospital", "lavandería institucional", [mangle industrial], "mangle de planchado", "planchadora de rodillo"
 - **Lavado de autos:** autos, carros, coches, autolavado, "car wash", carwash, vehículos
 
 ## Lo que sale del plan anterior

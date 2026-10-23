@@ -165,7 +165,7 @@ Se carga como una lista compartida, «AB · Negativas de la cuenta», ligada a t
 
 - **Franquicias (junta):** franquicia, franquicias, franchise, franquiciatario
 - **Territorio de Gamesail:** hotel, hoteles, hotelera, hospital, hospitales, clínica, mangle, mangles, planchadora, dobladora, calandria, gamesail, "50 kg", "50 kilos", "100 kg", "100 kilos", "130 kg", "200 kg"
-- **Territorio de CLM:** túnel, clm, "60 kg"
+- **Territorio de CLM:** túnel, clm, kingstar, "king star", "60 kg"
 - **Territorio de Girbau:** girbau
 - **Territorio de Servicio para Lavandería:** refacciones, refacción, partes, repuestos, reparación, mantenimiento, servicio
 - **Cadenas de lavandería:** lavax, "lava 1", aquamatic, 5asec, "cerca de mí", "cerca de mi"

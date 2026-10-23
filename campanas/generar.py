@@ -229,7 +229,7 @@ def js_diagnostico(planes, nombre='las cinco cuentas', archivo='plantilla-diagno
 
 def plan_palabras(p):
     c = p['c']
-    return dict(cuenta=numero(c), nombre=c['nombre'],
+    return dict(cuenta=numero(c), nombre=c['nombre'], lista=dict(nombre=PREFIJO + 'Negativas de la cuenta', kw=p['lista']),
                 campanas=[dict(nombre=k['nombre'], grupos=[dict(nombre=g['nombre'], kw=g['kw']) for g in k['grupos']])
                           for k in p['campanas']])
 
@@ -237,6 +237,11 @@ def plan_palabras(p):
 def plan_llamadas(p):
     c = p['c']
     return dict(cuenta=numero(c), nombre=c['nombre'], prefijo=PREFIJO, telefono=c['telefono'], horario=HORARIO_LLAMADAS)
+
+
+def plan_ajustes(p):
+    c = p['c']
+    return dict(cuenta=numero(c), nombre=c['nombre'], prefijo=PREFIJO, ajustes=c.get('ajustes', {}))
 
 
 def js_pagina(p):
@@ -457,6 +462,8 @@ def main():
         f.write(js_diagnostico([plan_auditoria(p) for p in todas], archivo='plantilla-informe.js'))
     with open(os.path.join(SALIDA, 'revision-diaria-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
         f.write(js_diagnostico([plan_auditoria(p) for p in todas], archivo='plantilla-diaria.js'))
+    with open(os.path.join(SALIDA, 'ajustes-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
+        f.write(js_diagnostico([plan_ajustes(p) for p in todas], archivo='plantilla-ajustes.js'))
     with open(os.path.join(SALIDA, 'boton-llamada-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
         f.write(js_diagnostico([plan_llamadas(p) for p in todas], archivo='plantilla-llamadas.js'))
     filas = cruces(todas)
