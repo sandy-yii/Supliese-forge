@@ -36,6 +36,28 @@ function filas(consulta, que) {
   }
   return out;
 }
+// Por qué Google marca una campaña como «Apta (limitada)» u otro estado, en palabras simples.
+var MOTIVOS = {
+  SEARCH_VOLUME_LIMITED: 'pocas búsquedas: sus palabras clave casi no se buscan',
+  BUDGET_CONSTRAINED: 'limitada por presupuesto: se le acaba el dinero antes de terminar el día',
+  BIDDING_STRATEGY_LEARNING: 'la puja está aprendiendo (normal la primera semana)',
+  BIDDING_STRATEGY_LIMITED: 'la puja está limitada: el tope de CPC no alcanza para muchas subastas',
+  BIDDING_STRATEGY_CONSTRAINED: 'la puja está restringida por el tope de CPC',
+  BIDDING_STRATEGY_MISCONFIGURED: 'la estrategia de puja está mal configurada',
+  BUDGET_MISCONFIGURED: 'el presupuesto está mal configurado',
+  HAS_ADS_LIMITED_BY_POLICY: 'hay anuncios aprobados con restricciones (por ejemplo, por usar una marca registrada)',
+  HAS_ADS_DISAPPROVED: 'hay anuncios rechazados',
+  MOST_ADS_UNDER_REVIEW: 'la mayoría de los anuncios siguen en revisión',
+  CALL_EXTENSION_UNDER_REVIEW: 'el teléfono sigue en revisión',
+  CALL_EXTENSION_DISAPPROVED: 'Google rechazó el teléfono',
+  NO_AD_GROUPS: 'no tiene grupos de anuncios', AD_GROUPS_PAUSED: 'sus grupos están en pausa',
+  NO_KEYWORDS: 'no tiene palabras clave', KEYWORDS_PAUSED: 'sus palabras clave están en pausa',
+  NO_AD_GROUP_ADS: 'no tiene anuncios', AD_GROUP_ADS_PAUSED: 'sus anuncios están en pausa',
+  CAMPAIGN_PENDING: 'todavía no empieza (fecha de inicio)', CAMPAIGN_ENDED: 'ya terminó (fecha de fin)'
+};
+var ESTADOS = { ELIGIBLE: 'apta', LIMITED: 'apta (limitada)', LEARNING: 'aprendiendo', NOT_ELIGIBLE: 'no apta', PENDING: 'pendiente', PAUSED: 'en pausa', MISCONFIGURED: 'mal configurada' };
+function motivo(r) { return MOTIVOS[r] || r; }
+
 function esNueva(nombre) { return nombre.indexOf(PLAN.prefijo) === 0; }
 function pesos(micros) { return '$' + (Number(micros || 0) / 1e6).toFixed(2); }
 function pct(x) { return x === undefined || x === null || x === '' ? 'sin dato' : Math.round(Number(x) * 100) + '%'; }
@@ -130,7 +152,7 @@ function main() {
   Logger.log('================ CAMPAÑA POR CAMPAÑA ================');
   nombres.forEach(function (n) {
     var d = datos[n], c = d.c, por = [];
-    Logger.log(n + ' · ' + (c.primaryStatus || '') + ((c.primaryStatusReasons || []).length ? ' (' + c.primaryStatusReasons.join(', ') + ')' : '') +
+    Logger.log(n + ' · ' + (ESTADOS[c.primaryStatus] || c.primaryStatus || '') + ((c.primaryStatusReasons || []).length ? ' (' + c.primaryStatusReasons.map(motivo).join('; ') + ')' : '') +
       ' · ' + pesos(d.presupuesto) + '/día · ' + (c.biddingStrategyType || '') + (d.tope ? ' tope CPC ' + pesos(d.tope) : '') +
       ' · inicio ' + (d.inicio || '?') + ' · hoy ' + d.hoy.imp + ' impr., ' + d.hoy.clics + ' clics, ' + pesos(d.hoy.costo) +
       ' · 7 días ' + d.semana.imp + ' impr., ' + d.semana.clics + ' clics' +
@@ -146,6 +168,9 @@ function main() {
     if (por.length) { GRAVE.push(n + ': ' + por.join('; ') + '.'); return; }
     if (d.hoy.clics) { BIEN.push(n + ': hoy lleva ' + d.hoy.clics + ' clic(s).'); return; }
     var porque = [];
+    (c.primaryStatusReasons || []).forEach(function (r) {
+      if (/BUDGET_CONSTRAINED|BIDDING_STRATEGY_LIMITED|BIDDING_STRATEGY_CONSTRAINED|HAS_ADS_LIMITED_BY_POLICY|HAS_ADS_DISAPPROVED|CALL_EXTENSION_DISAPPROVED/.test(r)) porque.push(motivo(r));
+    });
     if (d.palabras && d.pocas / d.palabras >= 0.5) porque.push(d.pocas + ' de ' + d.palabras + ' palabras clave tienen pocas búsquedas');
     if (d.caras.length) porque.push(d.caras.length + ' palabra(s) piden más que el tope de CPC para salir en la primera página: ' + d.caras.slice(0, 5).join(', '));
     if (d.cuota && Number(d.cuota.puja) >= 0.5) porque.push('pierde ' + pct(d.cuota.puja) + ' de las impresiones por puja: el tope de CPC es bajo');
