@@ -455,6 +455,8 @@ def main():
         f.write(js_diagnostico([plan_palabras(p) for p in todas], archivo='plantilla-palabras.js'))
     with open(os.path.join(SALIDA, 'numeros-junta-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
         f.write(js_diagnostico([plan_auditoria(p) for p in todas], archivo='plantilla-informe.js'))
+    with open(os.path.join(SALIDA, 'revision-diaria-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
+        f.write(js_diagnostico([plan_auditoria(p) for p in todas], archivo='plantilla-diaria.js'))
     with open(os.path.join(SALIDA, 'boton-llamada-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
         f.write(js_diagnostico([plan_llamadas(p) for p in todas], archivo='plantilla-llamadas.js'))
     filas = cruces(todas)
