@@ -9,6 +9,7 @@ Plan corregido con los acuerdos de la junta del 11 de octubre de 2026, y los scr
 | `plantilla-script.js` | Base de los scripts de Google Ads. |
 | `salida/<cuenta>/crear-campanas.js` | Script que crea las campañas de esa cuenta, **en pausa**. |
 | `salida/<cuenta>/conversiones.js` | Script que crea las conversiones de la página y deja en el registro las variables para el código de medición. |
+| `salida/datos-medicion-todas-las-cuentas.js` | Solo lee: saca el ID y las etiquetas de conversión para la página, y revisa el botón de llamada. Se corre en Vista previa en cada cuenta. Cómo usarlo: `medicion/README.md`. |
 | `salida/<cuenta>/activar.js` | Script que enciende las campañas nuevas y hace los cambios del plan en las anteriores. Cómo usarlo: `activacion/GUIA-SCRIPTS.md`. |
 | `salida/<cuenta>/prompt-extension/parte-N-de-M.txt` | Instrucciones para crear las campañas a mano con la extensión Claude in Chrome, en partes: la 1 trae las reglas y la lista de negativas; cada parte siguiente, una campaña. Quedan en pausa, con fecha de inicio 2026-12-31. |
 | `salida/<cuenta>/ficha.md` | Todo lo que crea el script, para revisarlo antes. |

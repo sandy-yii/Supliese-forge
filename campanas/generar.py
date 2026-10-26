@@ -240,6 +240,11 @@ def plan_llamadas(p):
     return dict(cuenta=numero(c), nombre=c['nombre'], prefijo=PREFIJO, telefono=c['telefono'], horario=HORARIO_LLAMADAS)
 
 
+def plan_medicion(p):
+    c = p['c']
+    return dict(cuenta=numero(c), nombre=c['nombre'], url=c['url'], prefijo=PREFIJO, telefono=c['telefono'])
+
+
 def plan_ajustes(p):
     c = p['c']
     return dict(cuenta=numero(c), nombre=c['nombre'], prefijo=PREFIJO, ajustes=c.get('ajustes', {}))
@@ -469,6 +474,8 @@ def main():
         f.write(js_diagnostico([plan_auditoria(p) for p in todas], archivo='plantilla-subir.js'))
     with open(os.path.join(SALIDA, 'boton-llamada-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
         f.write(js_diagnostico([plan_llamadas(p) for p in todas], archivo='plantilla-llamadas.js'))
+    with open(os.path.join(SALIDA, 'datos-medicion-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
+        f.write(js_diagnostico([plan_medicion(p) for p in todas], archivo='plantilla-medicion.js'))
     filas = cruces(todas)
     o = ['# Cruces entre cuentas que quedan', '',
          'Palabras clave de una cuenta que otra cuenta del grupo también puede activar, porque no las tiene bloqueadas. '

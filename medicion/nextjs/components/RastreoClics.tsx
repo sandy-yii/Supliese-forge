@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import { registrar } from '../lib/medicion'
 
-const WHATSAPP = /^(https?:\/\/(wa\.me|api\.whatsapp\.com|web\.whatsapp\.com)\/|whatsapp:)/i
+const WHATSAPP = /^(https?:\/\/(wa\.me|wa\.link|(api\.|web\.|www\.)?whatsapp\.com)\/|whatsapp:)/i
 
 // Escucha los clics en todo el sitio: cualquier enlace tel:, de WhatsApp o mailto: cuenta como contacto,
 // sin tener que tocar cada botón. Va una vez en el layout raíz, junto a <GoogleTags />.

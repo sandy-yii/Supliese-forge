@@ -5,7 +5,7 @@ Código para que Google Ads y Google Analytics 4 cuenten cada contacto que llega
 | Contacto | Cómo se detecta | Evento en GA4 | Conversión en Google Ads |
 |---|---|---|---|
 | Formulario enviado | Se llama a `registrarFormulario()` cuando el servidor confirma el envío | `generate_lead` | Formulario (Principal) |
-| Clic en WhatsApp | Automático: cualquier enlace `wa.me`, `api.whatsapp.com` o `whatsapp:` | `clic_whatsapp` | WhatsApp (Principal) |
+| Clic en WhatsApp | Automático: cualquier enlace `wa.me`, `wa.link`, `whatsapp.com` o `whatsapp:` | `clic_whatsapp` | WhatsApp (Principal) |
 | Clic en teléfono | Automático: cualquier enlace `tel:` | `clic_llamada` | Llamada desde la página (Secundaria) |
 | Clic en correo | Automático: cualquier enlace `mailto:` | `clic_correo` | Opcional (Secundaria) |
 | Visitas a páginas | Automático con la etiqueta de Google | `page_view` | No se usa como conversión |
@@ -73,11 +73,11 @@ No importar a Google Ads los eventos clave de GA4 como Principal: Google Ads ya 
 
 | Sitio | Cuenta de Google Ads | GA4 |
 |---|---|---|
-| https://www.supliese.com/ | Supliese Gomez / Quick Laundry 256-397-2201 | Propiedad de Supliese |
+| https://quicklaundry.store/ | Supliese Gomez / Quick Laundry 256-397-2201 | Propiedad de Supliese |
 | https://girbaupro.com/ | Girbau 860-582-6837 | Propiedad de Girbau Occidente |
 | https://kingstar.com.mx/ | CLM 993-525-8739 | Propiedad de CLM |
 | https://laundrysolutions.store/ | Servicio para Lavandería 265-909-2662 | Propiedad de Servicio |
-| https://gamesail-lavadoras.vercel.app/ | La cuenta nueva de Gamesail | Propiedad de Gamesail |
+| https://gamesail.mx/ | La cuenta nueva de Gamesail | Propiedad de Gamesail |
 
 ## Paso 4 · Probar
 

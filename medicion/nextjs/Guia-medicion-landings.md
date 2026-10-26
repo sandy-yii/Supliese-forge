@@ -23,15 +23,15 @@ Además, en cada sitio hay que revisar dos cosas que dependen de cómo está hec
 
 ### Valores por sitio
 
-Los IDs y etiquetas se los pasamos nosotros cuando creemos las conversiones en cada cuenta de Google Ads.
+Los IDs y etiquetas se los pasamos nosotros: las conversiones ya están creadas en cada cuenta de Google Ads con el nombre «AB · Formulario enviado», «AB · Clic en WhatsApp», etc.
 
 | Sitio | Cuenta de Google Ads | `GA4_ID` | `GADS_ID` | Formulario | WhatsApp | Llamada |
 |---|---|---|---|---|---|---|
-| www.supliese.com | Quick Laundry 256-397-2201 | | | | | |
+| quicklaundry.store | Quick Laundry 256-397-2201 | | | | | |
 | girbaupro.com | Girbau 860-582-6837 | | | | | |
 | kingstar.com.mx | CLM 993-525-8739 | | | | | |
 | laundrysolutions.store | Servicio para Lavandería 265-909-2662 | | | | | |
-| gamesail-lavadoras.vercel.app | Cuenta nueva de Gamesail | | | | | |
+| gamesail.mx | Cuenta nueva de Gamesail | | | | | |
 
 ## Qué se mide
 
@@ -40,7 +40,7 @@ Código para que Google Ads y Google Analytics 4 cuenten cada contacto que llega
 | Contacto | Cómo se detecta | Evento en GA4 | Conversión en Google Ads |
 |---|---|---|---|
 | Formulario enviado | Se llama a `registrarFormulario()` cuando el servidor confirma el envío | `generate_lead` | Formulario (Principal) |
-| Clic en WhatsApp | Automático: cualquier enlace `wa.me`, `api.whatsapp.com` o `whatsapp:` | `clic_whatsapp` | WhatsApp (Principal) |
+| Clic en WhatsApp | Automático: cualquier enlace `wa.me`, `wa.link`, `whatsapp.com` o `whatsapp:` | `clic_whatsapp` | WhatsApp (Principal) |
 | Clic en teléfono | Automático: cualquier enlace `tel:` | `clic_llamada` | Llamada desde la página (Secundaria) |
 | Clic en correo | Automático: cualquier enlace `mailto:` | `clic_correo` | Opcional (Secundaria) |
 | Visitas a páginas | Automático con la etiqueta de Google | `page_view` | No se usa como conversión |
@@ -176,7 +176,7 @@ ${config}`}
 import { useEffect } from 'react'
 import { registrar } from '../lib/medicion'
 
-const WHATSAPP = /^(https?:\/\/(wa\.me|api\.whatsapp\.com|web\.whatsapp\.com)\/|whatsapp:)/i
+const WHATSAPP = /^(https?:\/\/(wa\.me|wa\.link|(api\.|web\.|www\.)?whatsapp\.com)\/|whatsapp:)/i
 
 // Escucha los clics en todo el sitio: cualquier enlace tel:, de WhatsApp o mailto: cuenta como contacto,
 // sin tener que tocar cada botón. Va una vez en el layout raíz, junto a <GoogleTags />.
@@ -204,8 +204,9 @@ export default function RastreoClics() {
 ```tsx
 // Ejemplo para App Router (carpeta app/). Solo hay que agregar las dos líneas marcadas a su layout actual.
 import type { ReactNode } from 'react'
-import GoogleTags from '../../components/GoogleTags' // ← agregar
-import RastreoClics from '../../components/RastreoClics' // ← agregar
+// La ruta depende de dónde quedó la carpeta components (con el alias de Next.js: '@/components/GoogleTags').
+import GoogleTags from '../components/GoogleTags' // ← agregar
+import RastreoClics from '../components/RastreoClics' // ← agregar
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
@@ -225,8 +226,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 ```tsx
 // Ejemplo para Pages Router (carpeta pages/). Solo hay que agregar las líneas marcadas a su _app actual.
 import type { AppProps } from 'next/app'
-import GoogleTags from '../../components/GoogleTags' // ← agregar
-import RastreoClics from '../../components/RastreoClics' // ← agregar
+// La ruta depende de dónde quedó la carpeta components (con el alias de Next.js: '@/components/GoogleTags').
+import GoogleTags from '../components/GoogleTags' // ← agregar
+import RastreoClics from '../components/RastreoClics' // ← agregar
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
