@@ -199,8 +199,9 @@ CUENTAS['quick-laundry'] = dict(
     telefono='33 2601 2237',  # botón de llamada de los anuncios (lista de Rodolfo, 21 oct)
     url='https://quicklaundry.store/',  # desde el 22 oct; antes https://www.supliese.com/
     # 23 oct: «Modelo de Negocio» pagaba $15.54 por clic contra $4.29 de las nuevas; su dinero pasa a las dos nuevas
-    # que se quedan sin presupuesto (Equipo pierde 65% por presupuesto, Emprendimiento 22%). +50% ahora, el resto después del aprendizaje.
-    ajustes=dict(pausar=['Campaña Modelo de Negocio'], presupuesto={'Equipo para lavandería': 119, 'Emprendimiento': 74}),
+    # que se queda sin presupuesto (Equipo pierde 65% el 22 oct y 26% el 25). +50% ahora.
+    ajustes=dict(pausar=['Campaña Modelo de Negocio'], presupuesto={'Equipo para lavandería': 119}),
+    subir=False, subir_porque='hoy se ajusta con «ajustes» (pausa de Modelo de Negocio y Equipo a $119)',
     nota='Marca nueva Quick Laundry en los anuncios; se sigue pujando por «supliese». Negocio de lavandería: equipo comercial, emprendimiento y autoservicio.',
     comunes=['Quick Laundry', 'Cotiza con un Asesor', 'Solicita tu Cotización'],
     negativas={
@@ -355,9 +356,9 @@ CUENTAS['clm'] = dict(
         # 23 oct: búsquedas reales que «Alta capacidad» atrajo y no son de 40 kg o más (lavadoras de casa de 15 a 28 kg)
         'Doméstico y capacidades chicas (23 oct)': ['hisense', '"fuzzy logic"', '"heavy duty"', 'cobija', 'cobijas', 'edredón',
                                                     'edredones', '"15 kg"', '"15 kilos"', '"20 kilos"', '"30kg"',
-                                                    '"lavadora 24 kg"', '"lavadora 24kg"', '"lavadora 25 kg"', '"lavadora 26 kg"',
-                                                    '"lavadora 28 kg"', '"lavadora de 24 kilos"', '"lavadora de 25 kilos"',
-                                                    '"lavadora de 26 kilos"', '"lavadora de 28 kg"'],
+                                                    # 26 oct: siguen llegando 10, 22 y 25 kg; se excluye la capacidad en cualquier búsqueda
+                                                    '"10 kg"', '"22 kg"', '"24 kg"', '"24kg"', '"25 kg"', '"26 kg"', '"28 kg"',
+                                                    '"24 kilos"', '"25 kilos"', '"26 kilos"', '"28 kilos"'],
     },
     campanas=[
         dict(nombre='Alta capacidad 60 kg o más', pct=30, cpc=18, origen='Plan', grupos=[
@@ -461,7 +462,22 @@ CUENTAS['servicio'] = dict(
     mismo_sitio=['laundry-solutions-servicio.vercel.app'],  # versión anterior del mismo sitio: se conserva la sección
     nota='Servicio técnico, reparación y mantenimiento industrial. Refacciones solo Girbau y Gamesail.',
     comunes=['Servicio Técnico Industrial', 'Agenda tu Servicio', 'Habla con un Técnico'],
+    # 26 oct: las amplias «técnico / reparación / mantenimiento lavadoras industriales» salían en búsquedas de COMPRA
+    # («lavadoras industriales», «precio de lavadora industrial») y le subían el precio a Quick Laundry. Se pausan.
+    ajustes=dict(pausar_palabras=[
+        ['Servicio técnico industrial', 'Servicio técnico', 'técnico lavadoras industriales', 'BROAD'],
+        ['Reparación y mantenimiento', 'Reparación', 'reparación lavadoras industriales', 'BROAD'],
+        ['Reparación y mantenimiento', 'Mantenimiento preventivo', 'mantenimiento lavadoras industriales', 'BROAD']]),
+    subir=False, subir_porque='primero quitar las búsquedas de compra; el presupuesto se le acababa en clics que no son de servicio',
     negativas={
+        'Compra de equipo, no servicio (26 oct)': ['[lavadoras industriales]', '[lavadora industrial]', '[lavadoras para lavanderia]',
+                                                   '[lavadoras para lavandería]', '[lavadoras comerciales]',
+                                                   '[lavadoras industriales precio]', '[lavadora industrial precio]',
+                                                   '"precio de lavadora industrial"', '"precio de lavadoras industriales"',
+                                                   '"precio lavadoras industriales"', '"costo lavadora industrial"',
+                                                   '"costo de lavadora industrial"', '"costo de lavadoras industriales"',
+                                                   '"cuánto cuesta una lavadora industrial"', '"cuánto cuestan las lavadoras industriales"',
+                                                   '"cuánto vale una lavadora industrial"', '"para negocio"', '"commercial washer"'],
         'Partes genéricas (junta)': ['"partes para lavadora industrial"', '"partes para lavadoras industriales"',
                                      '"refacciones para lavadora industrial"', '"refacciones para lavadoras industriales"',
                                      '"refacciones para secadora industrial"', '"refacciones para secadoras industriales"',
@@ -478,8 +494,7 @@ CUENTAS['servicio'] = dict(
             dict(nombre='Servicio técnico',
                  # Google rechaza las palabras que empiezan con «servicio técnico» (No cumple las directrices editoriales).
                  kw=['"técnico de lavadoras industriales"', '"técnico en lavadoras industriales"',
-                     '"técnico en lavandería industrial"', '"técnico de secadoras industriales"',
-                     'técnico lavadoras industriales'],
+                     '"técnico en lavandería industrial"', '"técnico de secadoras industriales"'],
                  h=['Servicio Técnico Industrial', 'Técnicos en Lavadoras', 'Lavadoras Industriales', 'Lavanderías Industriales',
                     'Secadoras Industriales', 'Mantenimiento Correctivo', 'Mantenimiento Preventivo'],
                  d=['Servicio técnico para lavadoras y secadoras industriales. Agenda tu servicio hoy.',
@@ -491,7 +506,7 @@ CUENTAS['servicio'] = dict(
         dict(nombre='Reparación y mantenimiento', pct=40, cpc=15,
              origen='Plan más mantenimiento correctivo (junta); absorbe «Servicio a lavadoras»', negativas='SERVICIO', grupos=[
             dict(nombre='Reparación',
-                 kw=['"reparación de lavadoras industriales"', '"reparación de lavadora industrial"', 'reparación lavadoras industriales'],
+                 kw=['"reparación de lavadoras industriales"', '"reparación de lavadora industrial"'],
                  h=['Reparación de Lavadoras', 'Lavadoras Industriales', 'Reparación Industrial', 'Mantenimiento Correctivo',
                     'Técnicos en Lavadoras', 'Diagnóstico de tu Equipo'],
                  d=['Reparación de lavadoras industriales para lavanderías, hoteles y hospitales.',
@@ -509,7 +524,7 @@ CUENTAS['servicio'] = dict(
                  p=('mantenimiento', 'correctivo')),
             dict(nombre='Mantenimiento preventivo',
                  kw=['"mantenimiento preventivo lavadoras industriales"', '"mantenimiento lavandería industrial"',
-                     '"mantenimiento de lavadoras industriales"', 'mantenimiento lavadoras industriales'],
+                     '"mantenimiento de lavadoras industriales"'],
                  h=['Mantenimiento Preventivo', 'Lavadoras Industriales', 'Lavanderías Industriales', 'Técnicos en Lavadoras',
                     'Evita Paros de tu Equipo', 'Agenda una Visita'],
                  d=['Mantenimiento preventivo para lavadoras y secadoras industriales. Agenda hoy.',

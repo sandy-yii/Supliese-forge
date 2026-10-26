@@ -205,7 +205,8 @@ def plan_auditoria(p):
     c = p['c']
     act = c.get('activacion', {})
     return dict(cuenta=numero(c), anterior=c.get('id_anterior', ''), nombre=c['nombre'], url=c['url'], prefijo=PREFIJO,
-                mensual=c['mensual'], lista=PREFIJO + 'Negativas de la cuenta', anteriores=act.get('anteriores', 'MITAD'),
+                mensual=c['mensual'], subir=c.get('subir', True), subir_porque=c.get('subir_porque', ''),
+                lista=PREFIJO + 'Negativas de la cuenta', anteriores=act.get('anteriores', 'MITAD'),
                 campanas=[dict(nombre=k['nombre'], arranque=k['arranque'], completo=k['diario'], cpc=k['cpc']) for k in p['campanas']])
 
 

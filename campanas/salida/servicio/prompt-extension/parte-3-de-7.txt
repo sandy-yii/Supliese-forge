@@ -20,7 +20,6 @@ girbau
   Palabras clave:
   "reparación de lavadoras industriales"
   "reparación de lavadora industrial"
-  reparación lavadoras industriales
   Anuncio adaptable de búsqueda:
   URL final: https://laundrysolutions.store/
   Ruta: reparacion / lavadoras
@@ -67,7 +66,6 @@ girbau
   "mantenimiento preventivo lavadoras industriales"
   "mantenimiento lavandería industrial"
   "mantenimiento de lavadoras industriales"
-  mantenimiento lavadoras industriales
   Anuncio adaptable de búsqueda:
   URL final: https://laundrysolutions.store/
   Ruta: mantenimiento / preventivo

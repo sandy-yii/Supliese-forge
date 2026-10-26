@@ -32,7 +32,7 @@ Negativas de la campaña: refacciones, refacción, partes, repuestos, venta, com
 
 **Servicio técnico**
 
-Palabras clave: "técnico de lavadoras industriales" · "técnico en lavadoras industriales" · "técnico en lavandería industrial" · "técnico de secadoras industriales" · técnico lavadoras industriales
+Palabras clave: "técnico de lavadoras industriales" · "técnico en lavadoras industriales" · "técnico en lavandería industrial" · "técnico de secadoras industriales"
 
 Títulos: Servicio Técnico Industrial | Técnicos en Lavadoras | Lavadoras Industriales | Lavanderías Industriales | Secadoras Industriales | Mantenimiento Correctivo | Mantenimiento Preventivo | Agenda tu Servicio | Habla con un Técnico
 
@@ -51,7 +51,7 @@ Negativas de la campaña: refacciones, refacción, partes, repuestos, venta, com
 
 **Reparación**
 
-Palabras clave: "reparación de lavadoras industriales" · "reparación de lavadora industrial" · reparación lavadoras industriales
+Palabras clave: "reparación de lavadoras industriales" · "reparación de lavadora industrial"
 
 Títulos: Reparación de Lavadoras | Lavadoras Industriales | Reparación Industrial | Mantenimiento Correctivo | Técnicos en Lavadoras | Diagnóstico de tu Equipo | Servicio Técnico Industrial | Agenda tu Servicio | Habla con un Técnico
 
@@ -79,7 +79,7 @@ Ruta: /mantenimiento/correctivo
 
 **Mantenimiento preventivo**
 
-Palabras clave: "mantenimiento preventivo lavadoras industriales" · "mantenimiento lavandería industrial" · "mantenimiento de lavadoras industriales" · mantenimiento lavadoras industriales
+Palabras clave: "mantenimiento preventivo lavadoras industriales" · "mantenimiento lavandería industrial" · "mantenimiento de lavadoras industriales"
 
 Títulos: Mantenimiento Preventivo | Lavadoras Industriales | Lavanderías Industriales | Técnicos en Lavadoras | Evita Paros de tu Equipo | Agenda una Visita | Servicio Técnico Industrial | Agenda tu Servicio | Habla con un Técnico
 
@@ -177,6 +177,7 @@ Ruta: /mantenimiento/lavanderias
 
 Se carga como una lista compartida, «AB · Negativas de la cuenta», ligada a todas las campañas nuevas. El script agrega solo la versión sin acentos de cada una.
 
+- **Compra de equipo, no servicio (26 oct):** [lavadoras industriales], [lavadora industrial], [lavadoras para lavanderia], [lavadoras para lavandería], [lavadoras comerciales], [lavadoras industriales precio], [lavadora industrial precio], "precio de lavadora industrial", "precio de lavadoras industriales", "precio lavadoras industriales", "costo lavadora industrial", "costo de lavadora industrial", "costo de lavadoras industriales", "cuánto cuesta una lavadora industrial", "cuánto cuestan las lavadoras industriales", "cuánto vale una lavadora industrial", "para negocio", "commercial washer"
 - **Partes genéricas (junta):** "partes para lavadora industrial", "partes para lavadoras industriales", "refacciones para lavadora industrial", "refacciones para lavadoras industriales", "refacciones para secadora industrial", "refacciones para secadoras industriales", "refacciones lavandería industrial"
 - **Aprender a reparar:** curso, cursos, tutorial, "cómo reparar", diagrama, diagramas, pdf, manual, manuales
 - **Doméstico:** mabe, samsung, whirlpool, lg, easy, "de casa", "para casa", doméstica, domésticas, "carga frontal"

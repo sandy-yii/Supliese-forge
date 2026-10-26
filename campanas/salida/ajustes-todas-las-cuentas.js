@@ -3,13 +3,13 @@
  * Generado por campanas/generar.py a partir de campanas/plan.py (campo «ajustes» de cada cuenta). No se edita a mano.
  *
  * QUÉ HACE (sirve en cualquiera de las cuentas del plan: reconoce sola en cuál está): pausa las campañas anteriores
- * que indica el plan y pone a las campañas nuevas «AB ·» el presupuesto diario que indica el plan. Pausar se puede
- * deshacer en cualquier momento y conserva el historial. No toca anuncios, palabras clave, topes ni páginas.
+ * y las palabras clave que indica el plan, y pone a las campañas nuevas «AB ·» el presupuesto diario que indica el plan.
+ * Pausar se puede deshacer en cualquier momento y conserva el historial. No toca anuncios, topes ni páginas.
  *
  * CÓMO SE USA: pegar completo > Autorizar > VISTA PREVIA > revisar el registro (dice cuánto se gastaría) > EJECUTAR.
  */
 
-var PLANES = [{"cuenta": "", "nombre": "Gamesail", "prefijo": "AB · ", "ajustes": {}}, {"cuenta": "256-397-2201", "nombre": "Quick Laundry (cuenta Supliese Gómez)", "prefijo": "AB · ", "ajustes": {"pausar": ["Campaña Modelo de Negocio"], "presupuesto": {"Equipo para lavandería": 119, "Emprendimiento": 74}}}, {"cuenta": "993-525-8739", "nombre": "CLM", "prefijo": "AB · ", "ajustes": {}}, {"cuenta": "265-909-2662", "nombre": "Servicio para Lavandería", "prefijo": "AB · ", "ajustes": {}}, {"cuenta": "860-582-6837", "nombre": "Girbau", "prefijo": "AB · ", "ajustes": {}}];
+var PLANES = [{"cuenta": "", "nombre": "Gamesail", "prefijo": "AB · ", "ajustes": {}}, {"cuenta": "256-397-2201", "nombre": "Quick Laundry (cuenta Supliese Gómez)", "prefijo": "AB · ", "ajustes": {"pausar": ["Campaña Modelo de Negocio"], "presupuesto": {"Equipo para lavandería": 119}}}, {"cuenta": "993-525-8739", "nombre": "CLM", "prefijo": "AB · ", "ajustes": {}}, {"cuenta": "265-909-2662", "nombre": "Servicio para Lavandería", "prefijo": "AB · ", "ajustes": {"pausar_palabras": [["Servicio técnico industrial", "Servicio técnico", "técnico lavadoras industriales", "BROAD"], ["Reparación y mantenimiento", "Reparación", "reparación lavadoras industriales", "BROAD"], ["Reparación y mantenimiento", "Mantenimiento preventivo", "mantenimiento lavadoras industriales", "BROAD"]]}}, {"cuenta": "860-582-6837", "nombre": "Girbau", "prefijo": "AB · ", "ajustes": {}}];
 var PLAN = null;
 
 // Solo para la cuenta nueva de Gamesail: pega aquí su número, por ejemplo '123-456-7890'.
@@ -41,10 +41,10 @@ function dinero(x) { return '$' + Math.round(x).toLocaleString('es-MX'); }
 function main() {
   revisarCuenta();
   var vista = AdsApp.getExecutionInfo().isPreview();
-  Logger.log('AJUSTES DE PRESUPUESTO · ' + PLAN.nombre + (vista ? ' · VISTA PREVIA (no cambia nada)' : ''));
+  Logger.log('AJUSTES · ' + PLAN.nombre + (vista ? ' · VISTA PREVIA (no cambia nada)' : ''));
   var aj = PLAN.ajustes || {};
-  var pausar = aj.pausar || [], presupuesto = aj.presupuesto || {};
-  if (!pausar.length && !Object.keys(presupuesto).length) { Logger.log('Nada que ajustar en esta cuenta por ahora.'); return; }
+  var pausar = aj.pausar || [], presupuesto = aj.presupuesto || {}, palabras = aj.pausar_palabras || [];
+  if (!pausar.length && !Object.keys(presupuesto).length && !palabras.length) { Logger.log('Nada que ajustar en esta cuenta por ahora.'); return; }
 
   var C = {};
   filas('SELECT campaign.resource_name, campaign.name, campaign.status, campaign_budget.resource_name, campaign_budget.amount_micros, ' +
@@ -64,6 +64,22 @@ function main() {
     que.push('PAUSAR «' + n + '» (gastaba hasta ' + dinero(c.monto) + ' al día)');
     despues -= c.monto;
   });
+  if (palabras.length) {
+    var kws = {};
+    filas('SELECT campaign.name, ad_group.name, ad_group_criterion.resource_name, ad_group_criterion.keyword.text, ad_group_criterion.keyword.match_type ' +
+      "FROM ad_group_criterion WHERE ad_group_criterion.type = 'KEYWORD' AND ad_group_criterion.negative = FALSE AND ad_group_criterion.status = 'ENABLED' " +
+      "AND campaign.status != 'REMOVED' AND ad_group.status != 'REMOVED'", 'las palabras clave').forEach(function (f) {
+      var k = f.adGroupCriterion.keyword;
+      kws[[f.campaign.name, f.adGroup.name, k.text.toLowerCase(), k.matchType].join('|')] = f.adGroupCriterion.resourceName;
+    });
+    palabras.forEach(function (w) {
+      var nombre = PLAN.prefijo + w[0] + ' > ' + w[1], rn = kws[[PLAN.prefijo + w[0], w[1], w[2].toLowerCase(), w[3]].join('|')];
+      if (!rn) { que.push('«' + w[2] + '» en ' + nombre + ': no está encendida. Se salta.'); return; }
+      ops.push({ adGroupCriterionOperation: { update: { resourceName: rn, status: 'PAUSED' }, updateMask: 'status' } });
+      donde.push('pausa de la palabra «' + w[2] + '»');
+      que.push('PAUSAR PALABRA «' + w[2] + '» en ' + nombre);
+    });
+  }
   Object.keys(presupuesto).forEach(function (corto) {
     var n = PLAN.prefijo + corto, c = C[n], nuevo = presupuesto[corto];
     if (!c) { que.push('«' + n + '»: no está encendida. Se salta.'); return; }

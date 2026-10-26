@@ -14,6 +14,27 @@ REGLAS (no negociables):
 PASO 1 · Lista de palabras clave negativas:
 Herramientas > Biblioteca compartida > Listas de exclusión (o "Listas de palabras clave negativas") > "+". Nombre: "AB · Negativas de la cuenta". Pega estas palabras, una por línea:
 
+[lavadoras industriales]
+[lavadora industrial]
+[lavadoras para lavanderia]
+[lavadoras para lavandería]
+[lavadoras comerciales]
+[lavadoras industriales precio]
+[lavadora industrial precio]
+"precio de lavadora industrial"
+"precio de lavadoras industriales"
+"precio lavadoras industriales"
+"costo lavadora industrial"
+"costo de lavadora industrial"
+"costo de lavadoras industriales"
+"cuánto cuesta una lavadora industrial"
+"cuanto cuesta una lavadora industrial"
+"cuánto cuestan las lavadoras industriales"
+"cuanto cuestan las lavadoras industriales"
+"cuánto vale una lavadora industrial"
+"cuanto vale una lavadora industrial"
+"para negocio"
+"commercial washer"
 "partes para lavadora industrial"
 "partes para lavadoras industriales"
 "refacciones para lavadora industrial"

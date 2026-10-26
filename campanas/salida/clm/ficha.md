@@ -151,7 +151,7 @@ Se carga como una lista compartida, «AB · Negativas de la cuenta», ligada a t
 - **Doméstico:** "para casa", doméstica, domésticas, mabe, samsung, whirlpool, lg, "carga frontal"
 - **Usado y renta:** usada, usadas, usado, usados, seminueva, remate, renta, alquiler
 - **Información, no compra:** empleo, vacante, curso, cursos, manual, pdf
-- **Doméstico y capacidades chicas (23 oct):** hisense, "fuzzy logic", "heavy duty", cobija, cobijas, edredón, edredones, "15 kg", "15 kilos", "20 kilos", "30kg", "lavadora 24 kg", "lavadora 24kg", "lavadora 25 kg", "lavadora 26 kg", "lavadora 28 kg", "lavadora de 24 kilos", "lavadora de 25 kilos", "lavadora de 26 kilos", "lavadora de 28 kg"
+- **Doméstico y capacidades chicas (23 oct):** hisense, "fuzzy logic", "heavy duty", cobija, cobijas, edredón, edredones, "15 kg", "15 kilos", "20 kilos", "30kg", "10 kg", "22 kg", "24 kg", "24kg", "25 kg", "26 kg", "28 kg", "24 kilos", "25 kilos", "26 kilos", "28 kilos"
 
 ## Lo que sale del plan anterior
 

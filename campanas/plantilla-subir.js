@@ -56,6 +56,7 @@ function mas(t, dias) { var p = t.split('-'); var d = new Date(Date.UTC(+p[0], +
 function main() {
   revisarCuenta();
   var vista = AdsApp.getExecutionInfo().isPreview();
+  if (PLAN.subir === false) { Logger.log('SUBIR PRESUPUESTO · ' + PLAN.nombre + ' · hoy no toca en esta cuenta: ' + PLAN.subir_porque + '. No se hizo nada.'); return; }
   var hoy = Utilities.formatDate(new Date(), AdsApp.currentAccount().getTimeZone(), 'yyyy-MM-dd');
   var desde = mas(hoy, -DIAS), hasta = mas(hoy, -1);
   var tope = PLAN.mensual / DIAS_MES;
