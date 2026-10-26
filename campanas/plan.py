@@ -332,6 +332,10 @@ CUENTAS['clm'] = dict(
     nombre='CLM', id='993-525-8739', mensual=18700,
     telefono='33 1564 1538',  # botón de llamada de los anuncios (lista de Rodolfo, 21 oct)
     url='https://kingstar.com.mx/',
+    # 26 oct: más leads dentro del tope de la cuenta ($18,700). Alta capacidad gastó 98% y perdió 32% por presupuesto ayer;
+    # Lavandería hotelera usó 0 a 16% del suyo. +20% a una con dinero de la otra.
+    ajustes=dict(presupuesto={'Alta capacidad 60 kg o más': 222, 'Lavandería hotelera e institucional': 117}),
+    subir=False, subir_porque='hoy ya sube con «ajustes» (Alta capacidad)',
     mismo_sitio=['supliese-clm-lavadoras.vercel.app'],  # versión anterior del mismo sitio: se conserva la sección
     nota='Alta capacidad, lavandería hotelera e institucional completa, túnel de lavado para ropa, mangles, 20 a 45 kg.',
     comunes=['CLM México', 'Cotiza con un Asesor', 'Solicita tu Cotización'],
@@ -605,9 +609,9 @@ CUENTAS['girbau'] = dict(
     nombre='Girbau', id='860-582-6837', mensual=6600,
     telefono='33 2806 8994',  # botón de llamada de los anuncios (lista de Rodolfo, 21 oct)
     url='https://girbaupro.com/',
-    # 26 oct: Marca gasta 41% de su presupuesto y pierde 49% de las subastas por puja: lo que falta es tope, no presupuesto.
-    ajustes=dict(topes={'Marca Girbau': 15, 'Girbau por capacidad y sector': 15}),
-    subir=False, subir_porque='no usa su presupuesto (41%); hoy sube el tope por clic con «ajustes»',
+    # 26 oct: Marca gasta 41% de su presupuesto y pierde 50% de las subastas por puja: lo que falta es tope, no presupuesto.
+    # El tope lo sube «más leads» (paso 3) de $10 a $15; si también lo subiera «ajustes», al ejecutar «más leads» lo llevaría a $20.
+    subir=False, subir_porque='no usa su presupuesto (41%); hoy sube el tope por clic en el paso 3',
     mismo_sitio=['supliese-girbau-lavadoras.vercel.app'],  # versión anterior del mismo sitio: se conserva la sección
     nota='Solo búsquedas con la marca Girbau. Nuevo modelo Smart Plus y capacidades de 12 y 14 kg.',
     comunes=['Girbau', 'Cotiza con un Asesor', 'Solicita tu Cotización'],
