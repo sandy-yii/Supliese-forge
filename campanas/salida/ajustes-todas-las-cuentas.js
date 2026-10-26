@@ -10,7 +10,7 @@
  * CÓMO SE USA: pegar completo > Autorizar > VISTA PREVIA > revisar el registro (dice cuánto se gastaría) > EJECUTAR.
  */
 
-var PLANES = [{"cuenta": "118-347-6484", "nombre": "Gamesail", "prefijo": "AB · ", "ajustes": {}}, {"cuenta": "256-397-2201", "nombre": "Quick Laundry (cuenta Supliese Gómez)", "prefijo": "AB · ", "ajustes": {"pausar": ["Campaña Modelo de Negocio"], "presupuesto": {"Equipo para lavandería": 119, "Emprendimiento": 59, "Autoservicio y monedas": 34}}}, {"cuenta": "993-525-8739", "nombre": "CLM", "prefijo": "AB · ", "ajustes": {"presupuesto": {"Alta capacidad 60 kg o más": 222, "Lavandería hotelera e institucional": 117}}}, {"cuenta": "265-909-2662", "nombre": "Servicio para Lavandería", "prefijo": "AB · ", "ajustes": {"pausar_palabras": [["Servicio técnico industrial", "Servicio técnico", "técnico lavadoras industriales", "BROAD"], ["Reparación y mantenimiento", "Reparación", "reparación lavadoras industriales", "BROAD"], ["Reparación y mantenimiento", "Mantenimiento preventivo", "mantenimiento lavadoras industriales", "BROAD"]], "presupuesto": {"Reparación y mantenimiento": 130, "Servicio técnico industrial": 64}}}, {"cuenta": "860-582-6837", "nombre": "Girbau", "prefijo": "AB · ", "ajustes": {}}];
+var PLANES = [{"cuenta": "118-347-6484", "nombre": "Gamesail", "prefijo": "AB · ", "ajustes": {}}, {"cuenta": "256-397-2201", "nombre": "Quick Laundry (cuenta Supliese Gómez)", "prefijo": "AB · ", "ajustes": {"pausar": ["Campaña Modelo de Negocio"], "presupuesto": {"Equipo para lavandería": 119, "Emprendimiento": 59, "Autoservicio y monedas": 34}}}, {"cuenta": "993-525-8739", "nombre": "CLM", "prefijo": "AB · ", "ajustes": {"presupuesto": {"Alta capacidad 60 kg o más": 222, "Lavandería hotelera e institucional": 117}}}, {"cuenta": "265-909-2662", "nombre": "Servicio para Lavandería", "prefijo": "AB · ", "ajustes": {"pausar_palabras": [["Servicio técnico industrial", "Servicio técnico", "técnico lavadoras industriales", "BROAD"], ["Reparación y mantenimiento", "Reparación", "reparación lavadoras industriales", "BROAD"], ["Reparación y mantenimiento", "Mantenimiento preventivo", "mantenimiento lavadoras industriales", "BROAD"]], "presupuesto": {"Reparación y mantenimiento": 130, "Servicio técnico industrial": 64}}}, {"cuenta": "860-582-6837", "nombre": "Girbau", "prefijo": "AB · ", "ajustes": {"arriba": {"Marca Girbau": {"cuota": 0.8, "tope": 25}}}}];
 var PLAN = null;
 
 // Solo para la cuenta nueva de Gamesail: pega aquí su número, por ejemplo '123-456-7890'.
@@ -44,15 +44,17 @@ function main() {
   var vista = AdsApp.getExecutionInfo().isPreview();
   Logger.log('AJUSTES · ' + PLAN.nombre + (vista ? ' · VISTA PREVIA (no cambia nada)' : ''));
   var aj = PLAN.ajustes || {};
-  var pausar = aj.pausar || [], presupuesto = aj.presupuesto || {}, palabras = aj.pausar_palabras || [], topes = aj.topes || {};
-  if (!pausar.length && !Object.keys(presupuesto).length && !palabras.length && !Object.keys(topes).length) { Logger.log('Nada que ajustar en esta cuenta por ahora.'); return; }
+  var pausar = aj.pausar || [], presupuesto = aj.presupuesto || {}, palabras = aj.pausar_palabras || [], topes = aj.topes || {},
+      arriba = aj.arriba || {};
+  if (!pausar.length && !Object.keys(presupuesto).length && !palabras.length && !Object.keys(topes).length && !Object.keys(arriba).length) { Logger.log('Nada que ajustar en esta cuenta por ahora.'); return; }
 
   var C = {};
   filas('SELECT campaign.resource_name, campaign.name, campaign.status, campaign.bidding_strategy_type, campaign.target_spend.cpc_bid_ceiling_micros, ' +
-    'campaign_budget.resource_name, campaign_budget.amount_micros, ' +
+    'campaign.target_impression_share.location, campaign.target_impression_share.location_fraction_micros, ' +
+    'campaign.target_impression_share.cpc_bid_ceiling_micros, campaign_budget.resource_name, campaign_budget.amount_micros, ' +
     "campaign_budget.explicitly_shared FROM campaign WHERE campaign.status = 'ENABLED'", 'las campañas').forEach(function (f) {
     C[f.campaign.name] = { rn: f.campaign.resourceName, presupuesto: f.campaignBudget.resourceName, puja: f.campaign.biddingStrategyType,
-      tope: Number((f.campaign.targetSpend || {}).cpcBidCeilingMicros || 0) / 1e6,
+      tope: Number((f.campaign.targetSpend || {}).cpcBidCeilingMicros || 0) / 1e6, cuota: f.campaign.targetImpressionShare || {},
       monto: Number(f.campaignBudget.amountMicros || 0) / 1e6, compartido: f.campaignBudget.explicitlyShared };
   });
   var antes = 0;
@@ -92,6 +94,22 @@ function main() {
       updateMask: 'targetSpend.cpcBidCeilingMicros' } });
     donde.push('tope CPC de «' + n + '»');
     que.push('TOPE CPC «' + n + '»: $' + c.tope + ' → $' + nuevoTope + ' (entra a más subastas; no cambia el presupuesto)');
+  });
+  // Campañas que deben salir hasta arriba: «Cuota de impresiones objetivo», parte superior absoluta de la página
+  Object.keys(arriba).forEach(function (corto) {
+    var n = PLAN.prefijo + corto, c = C[n], a = arriba[corto];
+    if (!c) { que.push('«' + n + '»: no está encendida. Se salta.'); return; }
+    if (c.puja === 'TARGET_IMPRESSION_SHARE' && c.cuota.location === 'ABSOLUTE_TOP_OF_PAGE' &&
+        Math.round(Number(c.cuota.locationFractionMicros || 0) / 1e4) === Math.round(a.cuota * 100) &&
+        Math.round(Number(c.cuota.cpcBidCeilingMicros || 0) / 1e6) === a.tope) {
+      que.push('«' + n + '»: ya pide salir hasta arriba el ' + Math.round(a.cuota * 100) + '% de las veces con tope $' + a.tope + '.');
+      return;
+    }
+    ops.push({ campaignOperation: { update: { resourceName: c.rn, targetImpressionShare: { location: 'ABSOLUTE_TOP_OF_PAGE',
+      locationFractionMicros: Math.round(a.cuota * 1e6), cpcBidCeilingMicros: Math.round(a.tope * 1e6) } }, updateMask: 'targetImpressionShare.location,targetImpressionShare.locationFractionMicros,targetImpressionShare.cpcBidCeilingMicros' } });
+    donde.push('puja para salir arriba en «' + n + '»');
+    que.push('SALIR ARRIBA «' + n + '»: de «maximizar clics» (tope $' + c.tope + ') a «salir hasta arriba el ' + Math.round(a.cuota * 100) +
+      '% de las veces», pagando como máximo $' + a.tope + ' por clic. El presupuesto no cambia.');
   });
   Object.keys(presupuesto).forEach(function (corto) {
     var n = PLAN.prefijo + corto, c = C[n], nuevo = presupuesto[corto];

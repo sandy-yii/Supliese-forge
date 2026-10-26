@@ -634,7 +634,10 @@ CUENTAS['girbau'] = dict(
     url='https://girbaupro.com/',
     # 26 oct: Marca gasta 41% de su presupuesto y pierde 50% de las subastas por puja: lo que falta es tope, no presupuesto.
     # El tope lo sube «más leads» (paso 3) de $10 a $15; si también lo subiera «ajustes», al ejecutar «más leads» lo llevaría a $20.
-    subir=False, subir_porque='no usa su presupuesto (41%); hoy sube el tope por clic en el paso 3',
+    # 27 oct: el anuncio de marca sale hasta abajo de la página. Quien busca «Girbau» ya quiere Girbau: la campaña de marca
+    # pide salir hasta arriba el 80% de las veces, con máximo $25 por clic (hoy paga unos $10). Solo gasta el 41% de su presupuesto.
+    ajustes=dict(arriba={'Marca Girbau': dict(cuota=0.8, tope=25)}),
+    subir=False, subir_porque='no usa su presupuesto (41%); la marca sale arriba con «ajustes»',
     mismo_sitio=['supliese-girbau-lavadoras.vercel.app'],  # versión anterior del mismo sitio: se conserva la sección
     nota='Solo búsquedas con la marca Girbau. Nuevo modelo Smart Plus y capacidades de 12 y 14 kg.',
     comunes=['Girbau', 'Cotiza con un Asesor', 'Solicita tu Cotización'],
