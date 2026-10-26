@@ -1,9 +1,10 @@
 /**
- * Atelback · Ajustes de presupuesto — {{NOMBRE}}
+ * Atelback · Ajustes — {{NOMBRE}}
  * Generado por campanas/generar.py a partir de campanas/plan.py (campo «ajustes» de cada cuenta). No se edita a mano.
  *
  * QUÉ HACE (sirve en cualquiera de las cuentas del plan: reconoce sola en cuál está): pausa las campañas anteriores
- * y las palabras clave que indica el plan, y pone a las campañas nuevas «AB ·» el presupuesto diario que indica el plan.
+ * y las palabras clave que indica el plan, y pone a las campañas nuevas «AB ·» el presupuesto diario y el tope de costo
+ * por clic que indica el plan.
  * Pausar se puede deshacer en cualquier momento y conserva el historial. No toca anuncios, topes ni páginas.
  *
  * CÓMO SE USA: pegar completo > Autorizar > VISTA PREVIA > revisar el registro (dice cuánto se gastaría) > EJECUTAR.
@@ -43,13 +44,15 @@ function main() {
   var vista = AdsApp.getExecutionInfo().isPreview();
   Logger.log('AJUSTES · ' + PLAN.nombre + (vista ? ' · VISTA PREVIA (no cambia nada)' : ''));
   var aj = PLAN.ajustes || {};
-  var pausar = aj.pausar || [], presupuesto = aj.presupuesto || {}, palabras = aj.pausar_palabras || [];
-  if (!pausar.length && !Object.keys(presupuesto).length && !palabras.length) { Logger.log('Nada que ajustar en esta cuenta por ahora.'); return; }
+  var pausar = aj.pausar || [], presupuesto = aj.presupuesto || {}, palabras = aj.pausar_palabras || [], topes = aj.topes || {};
+  if (!pausar.length && !Object.keys(presupuesto).length && !palabras.length && !Object.keys(topes).length) { Logger.log('Nada que ajustar en esta cuenta por ahora.'); return; }
 
   var C = {};
-  filas('SELECT campaign.resource_name, campaign.name, campaign.status, campaign_budget.resource_name, campaign_budget.amount_micros, ' +
+  filas('SELECT campaign.resource_name, campaign.name, campaign.status, campaign.bidding_strategy_type, campaign.target_spend.cpc_bid_ceiling_micros, ' +
+    'campaign_budget.resource_name, campaign_budget.amount_micros, ' +
     "campaign_budget.explicitly_shared FROM campaign WHERE campaign.status = 'ENABLED'", 'las campañas').forEach(function (f) {
-    C[f.campaign.name] = { rn: f.campaign.resourceName, presupuesto: f.campaignBudget.resourceName,
+    C[f.campaign.name] = { rn: f.campaign.resourceName, presupuesto: f.campaignBudget.resourceName, puja: f.campaign.biddingStrategyType,
+      tope: Number((f.campaign.targetSpend || {}).cpcBidCeilingMicros || 0) / 1e6,
       monto: Number(f.campaignBudget.amountMicros || 0) / 1e6, compartido: f.campaignBudget.explicitlyShared };
   });
   var antes = 0;
@@ -80,6 +83,16 @@ function main() {
       que.push('PAUSAR PALABRA «' + w[2] + '» en ' + nombre);
     });
   }
+  Object.keys(topes).forEach(function (corto) {
+    var n = PLAN.prefijo + corto, c = C[n], nuevoTope = topes[corto];
+    if (!c) { que.push('«' + n + '»: no está encendida. Se salta.'); return; }
+    if (c.puja !== 'TARGET_SPEND') { que.push('AVISO «' + n + '»: no puja por clics con tope (' + c.puja + '). Se salta.'); return; }
+    if (c.tope >= nuevoTope) { que.push('«' + n + '»: su tope ya es $' + c.tope + ' o más.'); return; }
+    ops.push({ campaignOperation: { update: { resourceName: c.rn, targetSpend: { cpcBidCeilingMicros: Math.round(nuevoTope * 1e6) } },
+      updateMask: 'targetSpend.cpcBidCeilingMicros' } });
+    donde.push('tope CPC de «' + n + '»');
+    que.push('TOPE CPC «' + n + '»: $' + c.tope + ' → $' + nuevoTope + ' (entra a más subastas; no cambia el presupuesto)');
+  });
   Object.keys(presupuesto).forEach(function (corto) {
     var n = PLAN.prefijo + corto, c = C[n], nuevo = presupuesto[corto];
     if (!c) { que.push('«' + n + '»: no está encendida. Se salta.'); return; }

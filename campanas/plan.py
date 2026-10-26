@@ -200,8 +200,10 @@ CUENTAS['quick-laundry'] = dict(
     url='https://quicklaundry.store/',  # desde el 22 oct; antes https://www.supliese.com/
     # 23 oct: «Modelo de Negocio» pagaba $15.54 por clic contra $4.29 de las nuevas; su dinero pasa a las dos nuevas
     # que se queda sin presupuesto (Equipo pierde 65% el 22 oct y 26% el 25). +50% ahora.
-    ajustes=dict(pausar=['Campaña Modelo de Negocio'], presupuesto={'Equipo para lavandería': 119}),
-    subir=False, subir_porque='hoy se ajusta con «ajustes» (pausa de Modelo de Negocio y Equipo a $119)',
+    # 26 oct: más leads. Emprendimiento y Autoservicio gastan 174-194% de su presupuesto: +20%.
+    ajustes=dict(pausar=['Campaña Modelo de Negocio'],
+                 presupuesto={'Equipo para lavandería': 119, 'Emprendimiento': 59, 'Autoservicio y monedas': 34}),
+    subir=False, subir_porque='hoy ya sube con «ajustes» (Equipo, Emprendimiento y Autoservicio)',
     nota='Marca nueva Quick Laundry en los anuncios; se sigue pujando por «supliese». Negocio de lavandería: equipo comercial, emprendimiento y autoservicio.',
     comunes=['Quick Laundry', 'Cotiza con un Asesor', 'Solicita tu Cotización'],
     negativas={
@@ -467,8 +469,11 @@ CUENTAS['servicio'] = dict(
     ajustes=dict(pausar_palabras=[
         ['Servicio técnico industrial', 'Servicio técnico', 'técnico lavadoras industriales', 'BROAD'],
         ['Reparación y mantenimiento', 'Reparación', 'reparación lavadoras industriales', 'BROAD'],
-        ['Reparación y mantenimiento', 'Mantenimiento preventivo', 'mantenimiento lavadoras industriales', 'BROAD']]),
-    subir=False, subir_porque='primero quitar las búsquedas de compra; el presupuesto se le acababa en clics que no son de servicio',
+        ['Reparación y mantenimiento', 'Mantenimiento preventivo', 'mantenimiento lavadoras industriales', 'BROAD']],
+        # La cuenta ya está en su tope mensual ($8,200): Reparación sube 20% con dinero que Servicio técnico no usaba
+        # antes de las amplias (0 impresiones del 21 al 23 oct).
+        presupuesto={'Reparación y mantenimiento': 130, 'Servicio técnico industrial': 64}),
+    subir=False, subir_porque='hoy ya sube con «ajustes» (Reparación y mantenimiento)',
     negativas={
         'Compra de equipo, no servicio (26 oct)': ['[lavadoras industriales]', '[lavadora industrial]', '[lavadoras para lavanderia]',
                                                    '[lavadoras para lavandería]', '[lavadoras comerciales]',
@@ -600,6 +605,9 @@ CUENTAS['girbau'] = dict(
     nombre='Girbau', id='860-582-6837', mensual=6600,
     telefono='33 2806 8994',  # botón de llamada de los anuncios (lista de Rodolfo, 21 oct)
     url='https://girbaupro.com/',
+    # 26 oct: Marca gasta 41% de su presupuesto y pierde 49% de las subastas por puja: lo que falta es tope, no presupuesto.
+    ajustes=dict(topes={'Marca Girbau': 15, 'Girbau por capacidad y sector': 15}),
+    subir=False, subir_porque='no usa su presupuesto (41%); hoy sube el tope por clic con «ajustes»',
     mismo_sitio=['supliese-girbau-lavadoras.vercel.app'],  # versión anterior del mismo sitio: se conserva la sección
     nota='Solo búsquedas con la marca Girbau. Nuevo modelo Smart Plus y capacidades de 12 y 14 kg.',
     comunes=['Girbau', 'Cotiza con un Asesor', 'Solicita tu Cotización'],
