@@ -478,6 +478,29 @@ CUENTAS['servicio'] = dict(
         # antes de las amplias (0 impresiones del 21 al 23 oct).
         presupuesto={'Reparación y mantenimiento': 130, 'Servicio técnico industrial': 64}),
     subir=False, subir_porque='hoy ya sube con «ajustes» (Reparación y mantenimiento)',
+    # PREPARADO, SIN APLICAR (27 oct): que Laundry Solutions venda refacciones de cualquier marca, no solo Girbau y
+    # Gamesail. La venta de equipo nuevo se queda en las cuentas de Girbau y Gamesail (cuando un equipo no tiene arreglo,
+    # el vendedor lo manda a esas páginas). Dentro de los $8,200. Se aplica con salida/servicio/preparado-refacciones-cualquier-marca.js.
+    # Cuando ya se haya ejecutado en la cuenta, cambiar aplicado a True: así los scripts de todos los días lo incluyen
+    # y no vuelven a poner las exclusiones de refacciones genéricas.
+    preparado=dict(
+        aplicado=False,
+        titulo='Refacciones de cualquier marca (preparado, sin aplicar)', archivo='refacciones-cualquier-marca',
+        quitar_negativas=['Partes genéricas (junta)'],
+        grupos={'Refacciones Girbau y Gamesail': [
+            dict(nombre='Refacciones industriales',
+                 kw=['"refacciones para lavadora industrial"', '"refacciones para lavadoras industriales"',
+                     '"refacciones para secadora industrial"', '"refacciones para secadoras industriales"',
+                     '"partes para lavadora industrial"', '"partes para lavadoras industriales"',
+                     '"refacciones lavandería industrial"', '"repuestos para lavadora industrial"'],
+                 h=['Refacciones Industriales', 'Partes Lavadora Industrial', 'Refacciones para Secadoras',
+                    'Para Lavadoras y Secadoras', 'Instalación por Técnicos', 'Cotiza tu Refacción',
+                    'Te Ayudamos con la Pieza', 'Asesoría para Renovar Equipo'],
+                 d=['Refacciones para lavadoras y secadoras industriales. Cotiza con un técnico.',
+                    'Envíanos el modelo de tu equipo y te ayudamos a encontrar la pieza correcta.',
+                    'Instalamos la refacción con nuestros técnicos para que tu equipo vuelva a trabajar.',
+                    'Si tu equipo ya no tiene arreglo, te asesoramos para renovarlo con equipo nuevo.'],
+                 p=('refacciones', 'industriales'))]}),
     negativas={
         'Compra de equipo, no servicio (26 oct)': ['[lavadoras industriales]', '[lavadora industrial]', '[lavadoras para lavanderia]',
                                                    '[lavadoras para lavandería]', '[lavadoras comerciales]',

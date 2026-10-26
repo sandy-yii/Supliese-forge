@@ -34,6 +34,9 @@ function main() {
   var vista = AdsApp.getExecutionInfo().isPreview();
   Logger.log('PALABRAS CLAVE NUEVAS · ' + PLAN.nombre + (vista ? ' · VISTA PREVIA (no cambia nada)' : ''));
 
+  var campanasRn = {};
+  var itc = AdsApp.search("SELECT campaign.name, campaign.resource_name FROM campaign WHERE campaign.status != 'REMOVED'");
+  while (itc.hasNext()) { var cc = itc.next().campaign; campanasRn[cc.name] = cc.resourceName; }
   var grupos = {};
   var it = AdsApp.search('SELECT campaign.name, ad_group.name, ad_group.resource_name FROM ad_group ' +
     "WHERE ad_group.status != 'REMOVED' AND campaign.status != 'REMOVED'");
@@ -50,7 +53,7 @@ function main() {
     if (gr) gr.hay[clave(k.adGroupCriterion.keyword.text, k.adGroupCriterion.keyword.matchType)] = true;
   }
 
-  var ops = [], donde = [], faltan = [];
+  var ops = [], donde = [], faltan = [], temporal = 0;
 
   // Exclusiones de la cuenta que faltan en la lista
   var lista = '', yaEnLista = {};
@@ -60,9 +63,19 @@ function main() {
   if (!lista) {
     Logger.log('AVISO: no existe la lista «' + PLAN.lista.nombre + '». Las exclusiones no se agregan.');
   } else {
-    var itn = AdsApp.search("SELECT shared_criterion.keyword.text, shared_criterion.keyword.match_type FROM shared_criterion " +
+    var itn = AdsApp.search("SELECT shared_criterion.resource_name, shared_criterion.keyword.text, shared_criterion.keyword.match_type FROM shared_criterion " +
       "WHERE shared_criterion.shared_set = '" + lista + "'");
-    while (itn.hasNext()) { var kn = itn.next().sharedCriterion.keyword; if (kn) yaEnLista[clave(kn.text, kn.matchType)] = true; }
+    while (itn.hasNext()) {
+      var sc = itn.next().sharedCriterion, kn = sc.keyword;
+      if (kn) yaEnLista[clave(kn.text, kn.matchType)] = sc.resourceName || true;
+    }
+    // Exclusiones que el plan ya no quiere (por ejemplo, porque ahora esas búsquedas sí se atienden)
+    (PLAN.quitar || []).forEach(function (w) {
+      var rn = yaEnLista[clave(w[0], w[1])];
+      if (typeof rn !== 'string') return;
+      ops.push({ sharedCriterionOperation: { remove: rn } });
+      donde.push('quitar la exclusión «' + w[0] + '» (' + (TIPOS[w[1]] || w[1]) + ') de la lista de la cuenta');
+    });
     PLAN.lista.kw.forEach(function (w) {
       if (yaEnLista[clave(w[0], w[1])]) return;
       ops.push({ sharedCriterionOperation: { create: { sharedSet: lista, keyword: { text: w[0], matchType: w[1] } } } });
@@ -73,6 +86,17 @@ function main() {
     c.grupos.forEach(function (g) {
       var nombre = c.nombre + ' > ' + g.nombre;
       var gr = grupos[nombre];
+      if (!gr && g.h && campanasRn[c.nombre]) {
+        // Grupo nuevo en una campaña que ya existe: se crea con su anuncio y sus palabras clave
+        var rnGrupo = 'customers/' + AdsApp.currentAccount().getCustomerId().replace(/-/g, '') + '/adGroups/' + (--temporal);
+        ops.push({ adGroupOperation: { create: { resourceName: rnGrupo, campaign: campanasRn[c.nombre], name: g.nombre, status: 'ENABLED', type: 'SEARCH_STANDARD' } } });
+        donde.push('grupo nuevo «' + nombre + '»');
+        ops.push({ adGroupAdOperation: { create: { adGroup: rnGrupo, status: 'ENABLED', ad: { finalUrls: [PLAN.url],
+          responsiveSearchAd: { headlines: g.h.map(function (t) { return { text: t }; }), descriptions: g.d.map(function (t) { return { text: t }; }),
+            path1: g.p[0], path2: g.p[1] } } } } });
+        donde.push('anuncio de «' + nombre + '» (' + g.h.length + ' títulos, ' + g.d.length + ' descripciones, a ' + PLAN.url + ')');
+        gr = grupos[nombre] = { rn: rnGrupo, hay: {} };
+      }
       if (!gr) { faltan.push(nombre); return; }
       g.kw.forEach(function (w) {
         if (gr.hay[clave(w[0], w[1])]) return;
@@ -87,13 +111,14 @@ function main() {
   var res = AdsApp.mutateAll(ops, { partialFailure: true });
   var malos = 0;
   res.forEach(function (r, i) {
-    if (r.isSuccessful()) Logger.log((vista ? 'SE AGREGARÍA ' : 'AGREGADA ') + donde[i]);
+    var otro = /^(quitar|grupo|anuncio)/.test(donde[i]);
+    if (r.isSuccessful()) Logger.log((otro ? (vista ? 'SE HARÍA: ' : 'HECHO: ') : (vista ? 'SE AGREGARÍA ' : 'AGREGADA ')) + donde[i]);
     else { malos++; Logger.log('AVISO: Google no acepta ' + donde[i] + ': ' + r.getErrorMessages().join('; ')); }
   });
   Logger.log('');
   if (vista) {
-    Logger.log((ops.length - malos) + ' palabra(s) y exclusión(es) por agregar' + (malos ? '; ' + malos + ' que Google no acepta se omiten' : '') + '. Da EJECUTAR.');
+    Logger.log((ops.length - malos) + ' cambio(s) por hacer' + (malos ? '; ' + malos + ' que Google no acepta se omiten' : '') + '. Da EJECUTAR.');
   } else {
-    Logger.log('LISTO: ' + (ops.length - malos) + ' palabra(s) y exclusión(es) agregadas' + (malos ? ', ' + malos + ' rechazadas por Google' : '') + '.');
+    Logger.log('LISTO: ' + (ops.length - malos) + ' cambio(s) hechos' + (malos ? ', ' + malos + ' rechazadas por Google' : '') + '.');
   }
 }

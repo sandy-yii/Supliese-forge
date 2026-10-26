@@ -5,6 +5,7 @@
 
 Sale con código 1 si hay errores (textos fuera de límite o negativas que bloquean palabras propias).
 """
+import copy
 import json
 import os
 import shutil
@@ -256,11 +257,29 @@ def js_todo_en_uno(pasos):
     return '\n'.join(o)
 
 
-def plan_palabras(p):
+def plan_palabras(p, nuevos=(), quitar=()):
+    """nuevos: nombres de grupos que pueden no existir todavía; esos llevan su anuncio para crearlos."""
     c = p['c']
-    return dict(cuenta=numero(c), nombre=c['nombre'], lista=dict(nombre=PREFIJO + 'Negativas de la cuenta', kw=p['lista']),
-                campanas=[dict(nombre=k['nombre'], grupos=[dict(nombre=g['nombre'], kw=g['kw']) for g in k['grupos']])
-                          for k in p['campanas']])
+    def grupo(g):
+        d = dict(nombre=g['nombre'], kw=g['kw'])
+        if g['nombre'] in nuevos:
+            d.update(h=g['h'], d=g['d'], p=g['p'])
+        return d
+    return dict(cuenta=numero(c), nombre=c['nombre'], url=c['url'], quitar=list(quitar),
+                lista=dict(nombre=PREFIJO + 'Negativas de la cuenta', kw=p['lista']),
+                campanas=[dict(nombre=k['nombre'], grupos=[grupo(g) for g in k['grupos']]) for k in p['campanas']])
+
+
+def preparado(slug, c):
+    """Versión de la cuenta con su cambio «preparado» (aún no decidido): grupos nuevos y exclusiones que se quitan."""
+    pre = c['preparado']
+    c2 = copy.deepcopy(c)
+    for k in c2['campanas']:
+        k['grupos'] += copy.deepcopy(pre.get('grupos', {}).get(k['nombre'], []))
+    quitar = []
+    for nombre in pre.get('quitar_negativas', []):
+        quitar += ampliar([leer(n) for n in c2['negativas'].pop(nombre)])
+    return preparar(slug, c2), [g['nombre'] for gs in pre.get('grupos', {}).values() for g in gs], quitar
 
 
 def plan_llamadas(p):
@@ -436,7 +455,10 @@ def prompt(p, expres=False):
 
 
 def main():
-    todas = [preparar(slug, c) for slug, c in CUENTAS.items()]
+    todas = []
+    for slug, c in CUENTAS.items():
+        # Un cambio preparado que ya se aplicó en la cuenta pasa a ser parte del plan de todos los días
+        todas.append(preparado(slug, c)[0] if c.get('preparado', {}).get('aplicado') else preparar(slug, c))
     os.makedirs(SALIDA, exist_ok=True)
     hay_error = False
     for p in todas:
@@ -505,6 +527,18 @@ def main():
         f.write(js_todo_en_uno(pasos))
     with open(os.path.join(SALIDA, 'boton-llamada-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
         f.write(js_diagnostico([plan_llamadas(p) for p in todas], archivo='plantilla-llamadas.js'))
+    for i, p in enumerate(todas):
+        if 'preparado' not in p['c'] or p['c']['preparado'].get('aplicado'):
+            continue
+        pv, nuevos, quitar = preparado(p['slug'], p['c'])
+        for e in pv['errores']:
+            print('ERROR preparado', p['c']['nombre'], '·', e)
+            hay_error = True
+        otras = todas[:i] + [pv] + todas[i + 1:]
+        print('preparado %s: %d cruces si se aplica' % (p['c']['nombre'], len(cruces(otras))))
+        with open(os.path.join(SALIDA, p['slug'], 'preparado-' + p['c']['preparado']['archivo'] + '.js'), 'w', encoding='utf-8') as f:
+            f.write(js_diagnostico([plan_palabras(pv, nuevos, quitar)], nombre=p['c']['nombre'] + ' · ' + p['c']['preparado']['titulo'],
+                                   archivo='plantilla-palabras.js'))
     filas = cruces(todas)
     o = ['# Cruces entre cuentas que quedan', '',
          'Palabras clave de una cuenta que otra cuenta del grupo también puede activar, porque no las tiene bloqueadas. '
