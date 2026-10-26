@@ -201,15 +201,13 @@ CUENTAS['quick-laundry'] = dict(
     # 23 oct: «Modelo de Negocio» pagaba $15.54 por clic contra $4.29 de las nuevas; su dinero pasa a las dos nuevas
     # que se queda sin presupuesto (Equipo pierde 65% el 22 oct y 26% el 25). +50% ahora.
     # 26 oct: más leads. Emprendimiento y Autoservicio gastan 174-194% de su presupuesto: +20%.
-    # 27 oct: más leads ya. Se pausa también «Search Marcas» (paga $8.91 por clic contra $6.28 de las nuevas; su búsqueda
-    # «supliese» la cubre «Marca Quick Laundry») y las nuevas pasan a su presupuesto completo, cargado a Equipo para
-    # lavandería, la que más trae y se queda sin presupuesto. Secadoras y Marcas comerciales casi no tienen búsquedas:
-    # se quedan como están. Total $394 al día = tope de $12,000. La marca pide salir hasta arriba.
-    ajustes=dict(pausar=['Campaña Modelo de Negocio', 'Campaña Search Marcas'],
-                 presupuesto={'Equipo para lavandería': 190, 'Emprendimiento': 99, 'Autoservicio y monedas': 55,
-                              'Secadoras para lavandería': 16, 'Marcas comerciales': 16, 'Marca Quick Laundry': 18},
+    # 27 oct: más leads, sin pausar nada (decisión de la usuaria: «Search Marcas» sigue encendida con sus $95).
+    # El espacio que queda hasta el tope de $12,000 ($395 al día) va a lo que más trae: Equipo para lavandería (se queda
+    # sin presupuesto), Emprendimiento (gasta 161% del suyo) y la marca, que pide salir hasta arriba.
+    ajustes=dict(presupuesto={'Equipo para lavandería': 150, 'Emprendimiento': 69, 'Autoservicio y monedas': 34,
+                              'Marca Quick Laundry': 14},
                  arriba={'Marca Quick Laundry': dict(cuota=0.8, tope=10)}),
-    subir=False, subir_porque='hoy ya sube con «ajustes» (presupuesto completo, cargado a Equipo para lavandería)',
+    subir=False, subir_porque='hoy ya sube con «ajustes» (Equipo, Emprendimiento y la marca, hasta el tope)',
     nota='Marca nueva Quick Laundry en los anuncios; se sigue pujando por «supliese». Negocio de lavandería: equipo comercial, emprendimiento y autoservicio.',
     comunes=['Quick Laundry', 'Cotiza con un Asesor', 'Solicita tu Cotización'],
     negativas={
