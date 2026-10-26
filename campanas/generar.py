@@ -205,7 +205,7 @@ def plan_auditoria(p):
     c = p['c']
     act = c.get('activacion', {})
     return dict(cuenta=numero(c), anterior=c.get('id_anterior', ''), nombre=c['nombre'], url=c['url'], prefijo=PREFIJO,
-                lista=PREFIJO + 'Negativas de la cuenta', anteriores=act.get('anteriores', 'MITAD'),
+                mensual=c['mensual'], lista=PREFIJO + 'Negativas de la cuenta', anteriores=act.get('anteriores', 'MITAD'),
                 campanas=[dict(nombre=k['nombre'], arranque=k['arranque'], completo=k['diario'], cpc=k['cpc']) for k in p['campanas']])
 
 
@@ -464,6 +464,8 @@ def main():
         f.write(js_diagnostico([plan_auditoria(p) for p in todas], archivo='plantilla-diaria.js'))
     with open(os.path.join(SALIDA, 'ajustes-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
         f.write(js_diagnostico([plan_ajustes(p) for p in todas], archivo='plantilla-ajustes.js'))
+    with open(os.path.join(SALIDA, 'subir-presupuesto-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
+        f.write(js_diagnostico([plan_auditoria(p) for p in todas], archivo='plantilla-subir.js'))
     with open(os.path.join(SALIDA, 'boton-llamada-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
         f.write(js_diagnostico([plan_llamadas(p) for p in todas], archivo='plantilla-llamadas.js'))
     filas = cruces(todas)
