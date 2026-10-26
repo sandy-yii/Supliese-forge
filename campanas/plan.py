@@ -16,7 +16,7 @@ HORARIO_LLAMADAS = dict(dias=['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRI
 
 # ---------------------------------------------------------------- Gamesail
 CUENTAS['gamesail'] = dict(
-    nombre='Gamesail', id='CUENTA NUEVA', id_anterior='645-094-0317', mensual=19700,
+    nombre='Gamesail', id='118-347-6484', id_anterior='645-094-0317', mensual=19700,  # cuenta nueva desde el 26 oct (AW-18531600046)
     telefono='33 1185 9797',  # botón de llamada de los anuncios (lista de Rodolfo, 21 oct)
     url='https://gamesail.mx/',  # página nueva desde el 22 oct; antes https://gamesail-lavadoras.vercel.app/
     mismo_sitio=['gamesail-lavadoras.vercel.app'],  # versión anterior del mismo sitio: se conserva la sección

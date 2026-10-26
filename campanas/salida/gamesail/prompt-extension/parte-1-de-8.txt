@@ -1,9 +1,9 @@
-Vas a crear campañas nuevas de Búsqueda en Google Ads, en la cuenta Gamesail (CUENTA NUEVA). Trabaja en una pestaña nueva.
+Vas a crear campañas nuevas de Búsqueda en Google Ads, en la cuenta Gamesail (118-347-6484). Trabaja en una pestaña nueva.
 
 REGLAS (no negociables):
 - Hazlo todo a mano en la interfaz de Google Ads, clic por clic. No uses Scripts, Google Ads Editor, cargas masivas ni hojas de cálculo: la cuenta no puede autorizar scripts.
 - No modifiques, pauses, actives, borres ni edites absolutamente nada de lo que ya existe en la cuenta: campañas, anuncios, palabras clave, presupuestos, listas, configuración ni facturación. Solo puedes CREAR lo que está en estas instrucciones.
-- Es una cuenta nueva: antes de empezar, dime el número de cuenta que ves arriba a la derecha y espera mi OK. Si es 645-094-0317 (la cuenta anterior), detente.
+- Antes de empezar, confirma que el número de cuenta arriba a la derecha sea 118-347-6484. Si no lo es, detente y pregúntame.
 - Ninguna campaña nueva debe quedar activa. En cada una pon como fecha de inicio el 2026-12-31 y, en cuanto la publiques, cámbiala a "En pausa".
 - Si Google ofrece crear recursos automáticamente, AI Max, expansión de URL final, concordancia amplia en toda la campaña, recomendaciones o "aplicar sugerencias": recházalo o déjalo apagado.
 - Si algo te pide confirmar un cambio distinto a crear lo de estas instrucciones, o aparece un error que no entiendes, detente y pregúntame.

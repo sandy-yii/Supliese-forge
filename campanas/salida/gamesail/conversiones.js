@@ -1,5 +1,5 @@
 /**
- * Atelback · Conversiones de la página — Gamesail (CUENTA NUEVA)
+ * Atelback · Conversiones de la página — Gamesail (118-347-6484)
  * Generado por campanas/generar.py a partir de campanas/plan.py. No se edita a mano: se cambia el plan y se regenera.
  *
  * QUÉ HACE:
@@ -15,7 +15,7 @@
  *   3. EJECUTAR. Al final del registro salen las variables para la página: se le pasan a quien programa el sitio.
  */
 
-var PLAN = {"cuenta": "", "anterior": "645-094-0317", "nombre": "Gamesail", "url": "https://gamesail.mx/"};
+var PLAN = {"cuenta": "118-347-6484", "anterior": "645-094-0317", "nombre": "Gamesail", "url": "https://gamesail.mx/"};
 
 // Solo si es una cuenta nueva (el plan no trae su número): pega aquí su número, por ejemplo '123-456-7890'.
 var CUENTA_NUEVA = '';

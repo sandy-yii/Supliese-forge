@@ -1,5 +1,5 @@
 /**
- * Atelback · Cambiar la página de destino de las campañas nuevas — Gamesail (CUENTA NUEVA)
+ * Atelback · Cambiar la página de destino de las campañas nuevas — Gamesail (118-347-6484)
  * Generado por campanas/generar.py a partir de campanas/plan.py. No se edita a mano: se cambia el plan y se regenera.
  *
  * QUÉ HACE: en todas las campañas de la cuenta, los anuncios activos que van a otra página:
@@ -14,7 +14,7 @@
  * Al cambiar la URL, Google vuelve a revisar los anuncios (suele tardar de unas horas a un día).
  */
 
-var PLAN = {"cuenta": "", "anterior": "645-094-0317", "nombre": "Gamesail", "url": "https://gamesail.mx/", "prefijo": "AB · ", "mismo_sitio": ["gamesail-lavadoras.vercel.app"]};
+var PLAN = {"cuenta": "118-347-6484", "anterior": "645-094-0317", "nombre": "Gamesail", "url": "https://gamesail.mx/", "prefijo": "AB · ", "mismo_sitio": ["gamesail-lavadoras.vercel.app"]};
 
 // Solo si es una cuenta nueva (el plan no trae su número): pega aquí su número, por ejemplo '123-456-7890'.
 var CUENTA_NUEVA = '';
