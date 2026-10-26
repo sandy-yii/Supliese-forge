@@ -89,7 +89,8 @@ function main() {
     antes += x.monto;
     var monto = x.monto;
     // 1. Presupuesto completo
-    if (completo && k && x.monto <= k.arranque && x.monto < k.completo) {
+    var fijo = (PLAN.fijos || []).indexOf(x.nombre.replace(PLAN.prefijo, '')) >= 0;   // su presupuesto lo pone «ajustes»
+    if (completo && k && !fijo && x.monto <= k.arranque && x.monto < k.completo) {
       if (x.compartido) {
         que.push('AVISO «' + x.nombre + '»: su presupuesto es compartido con otras campañas; súbelo a mano a $' + k.completo + ' al día.');
       } else {

@@ -201,9 +201,15 @@ CUENTAS['quick-laundry'] = dict(
     # 23 oct: «Modelo de Negocio» pagaba $15.54 por clic contra $4.29 de las nuevas; su dinero pasa a las dos nuevas
     # que se queda sin presupuesto (Equipo pierde 65% el 22 oct y 26% el 25). +50% ahora.
     # 26 oct: más leads. Emprendimiento y Autoservicio gastan 174-194% de su presupuesto: +20%.
-    ajustes=dict(pausar=['Campaña Modelo de Negocio'],
-                 presupuesto={'Equipo para lavandería': 119, 'Emprendimiento': 59, 'Autoservicio y monedas': 34}),
-    subir=False, subir_porque='hoy ya sube con «ajustes» (Equipo, Emprendimiento y Autoservicio)',
+    # 27 oct: más leads ya. Se pausa también «Search Marcas» (paga $8.91 por clic contra $6.28 de las nuevas; su búsqueda
+    # «supliese» la cubre «Marca Quick Laundry») y las nuevas pasan a su presupuesto completo, cargado a Equipo para
+    # lavandería, la que más trae y se queda sin presupuesto. Secadoras y Marcas comerciales casi no tienen búsquedas:
+    # se quedan como están. Total $394 al día = tope de $12,000. La marca pide salir hasta arriba.
+    ajustes=dict(pausar=['Campaña Modelo de Negocio', 'Campaña Search Marcas'],
+                 presupuesto={'Equipo para lavandería': 190, 'Emprendimiento': 99, 'Autoservicio y monedas': 55,
+                              'Secadoras para lavandería': 16, 'Marcas comerciales': 16, 'Marca Quick Laundry': 18},
+                 arriba={'Marca Quick Laundry': dict(cuota=0.8, tope=10)}),
+    subir=False, subir_porque='hoy ya sube con «ajustes» (presupuesto completo, cargado a Equipo para lavandería)',
     nota='Marca nueva Quick Laundry en los anuncios; se sigue pujando por «supliese». Negocio de lavandería: equipo comercial, emprendimiento y autoservicio.',
     comunes=['Quick Laundry', 'Cotiza con un Asesor', 'Solicita tu Cotización'],
     negativas={
@@ -334,7 +340,9 @@ CUENTAS['clm'] = dict(
     url='https://kingstar.com.mx/',
     # 26 oct: más leads dentro del tope de la cuenta ($18,700). Alta capacidad gastó 98% y perdió 32% por presupuesto ayer;
     # Lavandería hotelera usó 0 a 16% del suyo. +20% a una con dinero de la otra.
-    ajustes=dict(presupuesto={'Alta capacidad 60 kg o más': 222, 'Lavandería hotelera e institucional': 117}),
+    ajustes=dict(presupuesto={'Alta capacidad 60 kg o más': 222, 'Lavandería hotelera e institucional': 117},
+                 # 27 oct: quien busca «clm» o «kingstar» ya quiere la marca: sale hasta arriba
+                 arriba={'Marca CLM': dict(cuota=0.8, tope=15)}),
     subir=False, subir_porque='hoy ya sube con «ajustes» (Alta capacidad)',
     mismo_sitio=['supliese-clm-lavadoras.vercel.app'],  # versión anterior del mismo sitio: se conserva la sección
     nota='Alta capacidad, lavandería hotelera e institucional completa, túnel de lavado para ropa, mangles, 20 a 45 kg.',
