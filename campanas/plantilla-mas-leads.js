@@ -3,8 +3,9 @@
  * Generado por campanas/generar.py a partir de campanas/plan.py. No se edita a mano: se cambia el plan y se regenera.
  *
  * QUÉ HACE (sirve en cualquiera de las cuentas del plan: reconoce sola en cuál está):
- *   1. Si ya no hay campañas anteriores encendidas, pasa las campañas nuevas «AB ·» a su presupuesto completo del plan
- *      (mientras las anteriores sigan encendidas, las nuevas se quedan con la mitad).
+ *   1. Si ya no hay campañas anteriores encendidas, pasa a su presupuesto completo del plan las campañas nuevas «AB ·»
+ *      que siguen con el de arranque (la mitad). Si un presupuesto ya se movió después (con «ajustes» o «subir
+ *      presupuesto»), no lo toca.
  *   2. A las campañas nuevas que pierden la mitad o más de sus impresiones por puja (últimos 7 días), les sube el
  *      tope de CPC un 50%, o hasta lo que Google pide para la primera página. Nunca pasa del doble del tope del plan.
  * No toca anuncios, palabras clave, páginas ni campañas anteriores.
@@ -88,7 +89,7 @@ function main() {
     antes += x.monto;
     var monto = x.monto;
     // 1. Presupuesto completo
-    if (completo && k && x.monto < k.completo) {
+    if (completo && k && x.monto <= k.arranque && x.monto < k.completo) {
       if (x.compartido) {
         que.push('AVISO «' + x.nombre + '»: su presupuesto es compartido con otras campañas; súbelo a mano a $' + k.completo + ' al día.');
       } else {

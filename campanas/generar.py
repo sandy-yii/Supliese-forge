@@ -228,6 +228,34 @@ def js_diagnostico(planes, nombre='las cinco cuentas', archivo='plantilla-diagno
     return texto.replace('{{NOMBRE}}', nombre).replace('{{PLANES}}', json.dumps(planes, ensure_ascii=False))
 
 
+def js_todo_en_uno(pasos):
+    """Junta varios scripts en uno: cada uno corre dentro de su propia función, en orden, y si uno falla se detiene."""
+    o = ['/**',
+         ' * Atelback · Todo en uno — las cinco cuentas',
+         ' * Generado por campanas/generar.py a partir de campanas/plan.py. No se edita a mano: se cambia el plan y se regenera.',
+         ' *',
+         ' * QUÉ HACE (sirve en cualquiera de las cuentas del plan: reconoce sola en cuál está): corre, en este orden, los',
+         ' * mismos pasos que los scripts sueltos:',
+         ] + [' *   %d. %s' % (i, n.capitalize()) for i, (n, _) in enumerate(pasos, 1)] + [
+         ' * Primero las exclusiones, para que el presupuesto que sube no se vaya en búsquedas que no sirven.',
+         ' * Si un paso falla, se detiene ahí y no corre los siguientes.',
+         ' *',
+         ' * CÓMO SE USA: pegar completo > Autorizar > VISTA PREVIA > revisar el registro (cada paso dice qué haría) > EJECUTAR.',
+         ' * En la vista previa cada paso ve la cuenta como está hoy; al ejecutar, cada uno ve lo que dejó el anterior.',
+         ' */', '']
+    for i, (nombre, texto) in enumerate(pasos, 1):
+        o += ['function paso%d() {' % i, texto, '  main();', '}', '']
+    o += ['function main() {']
+    for i, (nombre, _) in enumerate(pasos, 1):
+        o += ["  Logger.log('');",
+              "  Logger.log('########## PASO %d DE %d · %s ##########');" % (i, len(pasos), nombre),
+              '  try { paso%d(); } catch (e) {' % i,
+              "    Logger.log('ERROR en el paso %d: ' + e.message + '. Se detiene aquí: los pasos siguientes no se corrieron.');" % i,
+              '    return;', '  }']
+    o += ["  Logger.log('');", "  Logger.log('LISTO: se corrieron los %d pasos. Copia todo el registro y mándalo.');" % len(pasos), '}', '']
+    return '\n'.join(o)
+
+
 def plan_palabras(p):
     c = p['c']
     return dict(cuenta=numero(c), nombre=c['nombre'], lista=dict(nombre=PREFIJO + 'Negativas de la cuenta', kw=p['lista']),
@@ -467,6 +495,12 @@ def main():
         f.write(js_diagnostico([plan_ajustes(p) for p in todas], archivo='plantilla-ajustes.js'))
     with open(os.path.join(SALIDA, 'subir-presupuesto-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
         f.write(js_diagnostico([plan_auditoria(p) for p in todas], archivo='plantilla-subir.js'))
+    pasos = [('EXCLUSIONES Y PALABRAS CLAVE', js_diagnostico([plan_palabras(p) for p in todas], archivo='plantilla-palabras.js')),
+             ('AJUSTES', js_diagnostico([plan_ajustes(p) for p in todas], archivo='plantilla-ajustes.js')),
+             ('TOPES DE COSTO POR CLIC', js_diagnostico([plan_auditoria(p) for p in todas], archivo='plantilla-mas-leads.js')),
+             ('SUBIR PRESUPUESTO', js_diagnostico([plan_auditoria(p) for p in todas], archivo='plantilla-subir.js'))]
+    with open(os.path.join(SALIDA, 'todo-en-uno-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
+        f.write(js_todo_en_uno(pasos))
     with open(os.path.join(SALIDA, 'boton-llamada-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
         f.write(js_diagnostico([plan_llamadas(p) for p in todas], archivo='plantilla-llamadas.js'))
     filas = cruces(todas)
