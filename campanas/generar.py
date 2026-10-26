@@ -515,6 +515,8 @@ def main():
         f.write(js_diagnostico([plan_auditoria(p) for p in todas], archivo='plantilla-diaria.js'))
     with open(os.path.join(SALIDA, 'pulso-de-hoy-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
         f.write(js_diagnostico([plan_auditoria(p) for p in todas], archivo='plantilla-pulso.js'))
+    with open(os.path.join(SALIDA, 'datos-tablero-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
+        f.write(js_diagnostico([plan_auditoria(p) for p in todas], archivo='plantilla-tablero.js'))
     with open(os.path.join(SALIDA, 'ajustes-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
         f.write(js_diagnostico([plan_ajustes(p) for p in todas], archivo='plantilla-ajustes.js'))
     with open(os.path.join(SALIDA, 'subir-presupuesto-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:

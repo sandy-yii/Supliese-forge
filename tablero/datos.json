@@ -1,0 +1,18 @@
+{
+ "_nota": "Lo edita Claude. 'cuentas' se llena con tablero/cargar.py a partir del registro del script de datos; mientras esté vacío, los tableros salen con datos de ejemplo. 'pendientes' es el Kanban del tablero interno; los que llevan duenos: true también salen en el de los dueños.",
+ "cuentas": {},
+ "pendientes": [
+  {"titulo": "Campañas nuevas encendidas en las cuatro cuentas activas", "estado": "hecho", "fecha": "2026-10-21", "duenos": true,
+   "marca": "Todas", "nota": "Arrancaron el 20 y 21 de octubre."},
+  {"titulo": "Ajustes de la primera semana: búsquedas que no venden y presupuesto a lo que funciona", "estado": "en_curso", "fecha": "2026-10-26", "duenos": true,
+   "marca": "Todas", "nota": "Ajustes del 23 y 26 de octubre. Por confirmar cuáles ya se aplicaron."},
+  {"titulo": "Medir contactos del formulario y de WhatsApp en las páginas", "estado": "bloqueado", "duenos": true,
+   "marca": "Todas", "dueno": "Rodolfo", "nota": "Sin esto las conversiones salen en 0 y no se puede calcular el costo por contacto."},
+  {"titulo": "Abrir la cuenta de Gamesail y arrancar sus campañas", "estado": "pendiente", "duenos": true,
+   "marca": "Gamesail", "nota": "Falta el número de la cuenta nueva."},
+  {"titulo": "Vender refacciones de cualquier marca en Laundry Solutions", "estado": "pendiente",
+   "marca": "Laundry Solutions", "dueno": "Atelback", "nota": "Preparado sin aplicar; espera tu OK."},
+  {"titulo": "Primera carga de números reales a este tablero", "estado": "pendiente",
+   "marca": "Todas", "dueno": "Atelback", "nota": "Correr «datos-tablero-todas-las-cuentas.js» en cada cuenta y pasar el registro."}
+ ]
+}
