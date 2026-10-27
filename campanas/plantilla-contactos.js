@@ -6,8 +6,8 @@
  * Google pone en el anuncio y que no pasan por la página:
  *   - botón de mensaje / WhatsApp: a qué número manda, si está aprobado y en qué campañas sale;
  *   - botón de llamada: a qué número marca y si está aprobado;
- *   - llamadas de los últimos 30 días: cuántas hubo y cuántas no se contestaron;
- *   - conversaciones y llamadas que Google registró, por campaña;
+ *   - llamadas desde que empezamos a trabajar (DESDE): cuántas hubo y cuántas no se contestaron;
+ *   - conversaciones y llamadas que Google registró desde esa fecha, por día y campaña;
  *   - formularios dentro del anuncio.
  * Compara cada número con el del vendedor de la marca. No cambia nada.
  *
@@ -19,6 +19,9 @@ var PLAN = null;
 
 // Solo para la cuenta nueva de Gamesail: pega aquí su número, por ejemplo '123-456-7890'.
 var CUENTA_NUEVA = '';
+
+// Día en que empezamos a trabajar las cuentas: lo de antes es de la agencia anterior y no se cuenta.
+var DESDE = '2026-10-20';
 
 function revisarCuenta() {
   var cid = AdsApp.currentAccount().getCustomerId();
@@ -112,32 +115,33 @@ function main() {
   });
   if (hayVendedor) BIEN.push('El botón de llamada marca al vendedor (' + PLAN.telefono + ').');
 
-  // ---- Llamadas reales de los últimos 30 días
+  // ---- Llamadas reales desde DESDE
+  var hoy = Utilities.formatDate(new Date(), AdsApp.currentAccount().getTimeZone(), 'yyyy-MM-dd');
   Logger.log('');
-  Logger.log('==== LLAMADAS DESDE EL ANUNCIO, ÚLTIMOS 30 DÍAS ====');
-  var hace30 = Utilities.formatDate(new Date(Date.now() - 30 * 864e5), AdsApp.currentAccount().getTimeZone(), 'yyyy-MM-dd');
+  Logger.log('==== LLAMADAS DESDE EL ANUNCIO, DEL ' + DESDE + ' A HOY ====');
   // call_view no acepta segments.date: se filtra por la hora de la llamada
   var vistas = filas('SELECT campaign.name, call_view.start_call_date_time, call_view.call_duration_seconds, call_view.call_status, ' +
-    "call_view.caller_area_code FROM call_view WHERE call_view.start_call_date_time >= '" + hace30 + " 00:00:00' ORDER BY call_view.start_call_date_time DESC", 'las llamadas');
+    "call_view.caller_area_code FROM call_view WHERE call_view.start_call_date_time >= '" + DESDE + " 00:00:00' ORDER BY call_view.start_call_date_time DESC", 'las llamadas');
   var perdidas = 0;
   vistas.forEach(function (f) {
     var c = f.callView, perdida = c.callStatus === 'MISSED';
     if (perdida) perdidas++;
     Logger.log(c.startCallDateTime + ' · ' + f.campaign.name + ' · ' + (perdida ? 'NO CONTESTADA' : 'contestada') + ' · ' + num(c.callDurationSeconds) + ' s · lada ' + (c.callerAreaCode || '?'));
   });
-  if (!vistas.length) Logger.log('Ninguna llamada desde el botón del anuncio en 30 días.');
-  if (perdidas) MAL.push(perdidas + ' llamada(s) desde el anuncio NO se contestaron en 30 días.');
+  if (!vistas.length) Logger.log('Ninguna llamada desde el botón del anuncio desde el ' + DESDE + '.');
+  if (perdidas) MAL.push(perdidas + ' llamada(s) desde el anuncio NO se contestaron desde el ' + DESDE + '.');
 
   // ---- Conversaciones y llamadas que Google registró, por campaña
   Logger.log('');
-  Logger.log('==== CONVERSACIONES Y LLAMADAS REGISTRADAS, ÚLTIMOS 30 DÍAS ====');
+  Logger.log('==== CONVERSACIONES Y LLAMADAS REGISTRADAS, DEL ' + DESDE + ' A HOY, POR DÍA ====');
   var hay = 0;
-  filas('SELECT campaign.name, segments.conversion_action_name, metrics.all_conversions FROM campaign WHERE segments.date DURING LAST_30_DAYS', 'las conversiones')
+  filas("SELECT segments.date, campaign.name, segments.conversion_action_name, metrics.all_conversions FROM campaign WHERE segments.date BETWEEN '" + DESDE +
+    "' AND '" + hoy + "' ORDER BY segments.date DESC", 'las conversiones')
     .forEach(function (f) {
       var n = f.segments.conversionActionName, v = num((f.metrics || {}).allConversions);
       if (!v || !/conversa|conversation|mensaje|message|whats|llamad|call/i.test(n)) return;
       hay++;
-      Logger.log('«' + n + '» · ' + f.campaign.name + ' · ' + Math.round(v * 10) / 10);
+      Logger.log(f.segments.date + ' · «' + n + '» · ' + f.campaign.name + ' · ' + Math.round(v * 10) / 10);
     });
   if (!hay) Logger.log('Ninguna.');
   else OJO.push('Hubo conversaciones o llamadas registradas por Google (arriba). Confirma con el vendedor que le llegaron; si no, se fueron al número del botón que no es suyo.');
