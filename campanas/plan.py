@@ -345,7 +345,6 @@ CUENTAS['clm'] = dict(
     ajustes=dict(presupuesto={'Alta capacidad 60 kg o más': 222, 'Lavandería hotelera e institucional': 117},
                  # 27 oct: quien busca «clm» o «kingstar» ya quiere la marca: sale hasta arriba
                  arriba={'Marca CLM': dict(cuota=0.8, tope=15)}),
-    subir=False, subir_porque='hoy ya sube con «ajustes» (Alta capacidad)',
     mismo_sitio=['supliese-clm-lavadoras.vercel.app'],  # versión anterior del mismo sitio: se conserva la sección
     nota='Alta capacidad, lavandería hotelera e institucional completa, túnel de lavado para ropa, mangles, 20 a 45 kg.',
     comunes=['CLM México', 'Cotiza con un Asesor', 'Solicita tu Cotización'],
@@ -487,7 +486,6 @@ CUENTAS['servicio'] = dict(
         # La cuenta ya está en su tope mensual ($8,200): Reparación sube 20% con dinero que Servicio técnico no usaba
         # antes de las amplias (0 impresiones del 21 al 23 oct).
         presupuesto={'Reparación y mantenimiento': 130, 'Servicio técnico industrial': 64}),
-    subir=False, subir_porque='hoy ya sube con «ajustes» (Reparación y mantenimiento)',
     # PREPARADO, SIN APLICAR (27 oct): que Laundry Solutions venda refacciones de cualquier marca, no solo Girbau y
     # Gamesail. La venta de equipo nuevo se queda en las cuentas de Girbau y Gamesail (cuando un equipo no tiene arreglo,
     # el vendedor lo manda a esas páginas). Dentro de los $8,200. Se aplica con salida/servicio/preparado-refacciones-cualquier-marca.js.
