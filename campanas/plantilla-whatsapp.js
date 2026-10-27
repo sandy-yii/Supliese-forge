@@ -67,6 +67,49 @@ function main() {
   Logger.log('¿QUIÉNES DIERON CLIC A WHATSAPP? · ' + PLAN.nombre + ' · últimos 30 días · solo lee');
   var DUR = 'segments.date DURING LAST_30_DAYS';
 
+  // ---- Cada contacto de los últimos 7 días (WhatsApp, llamadas y formularios), para buscarlo en el teléfono del vendedor
+  var CONTACTO = /whats|\bwa\b|mensaje|message|conversa|chat|llamad|call|tel[eé]fono|formul|lead|contact/i;
+  var SEM = 'segments.date DURING LAST_7_DAYS';
+  var busco = {}, ciudadDia = {};
+  filas('SELECT segments.date, campaign.name, search_term_view.search_term, segments.conversion_action_name, metrics.all_conversions ' +
+    'FROM search_term_view WHERE ' + SEM, 'las búsquedas de la semana').forEach(function (f) {
+    if (!num((f.metrics || {}).allConversions) || !CONTACTO.test(f.segments.conversionActionName)) return;
+    var k = f.segments.date + '|' + f.campaign.name;
+    (busco[k] = busco[k] || []).push('«' + f.searchTermView.searchTerm + '»');
+  });
+  filas('SELECT segments.date, campaign.name, segments.geo_target_city, segments.conversion_action_name, metrics.all_conversions ' +
+    'FROM geographic_view WHERE ' + SEM, 'las ciudades de la semana').forEach(function (f) {
+    if (!num((f.metrics || {}).allConversions) || !CONTACTO.test(f.segments.conversionActionName)) return;
+    var k = f.segments.date + '|' + f.campaign.name;
+    (ciudadDia[k] = ciudadDia[k] || []).push(f.segments.geoTargetCity || '');
+  });
+  var cadaUno = filas('SELECT segments.date, segments.hour, segments.device, campaign.name, segments.conversion_action_name, metrics.all_conversions ' +
+    'FROM campaign WHERE ' + SEM, 'los contactos de la semana').filter(function (f) {
+    return num((f.metrics || {}).allConversions) && CONTACTO.test(f.segments.conversionActionName);
+  }).sort(function (a, b) {
+    var x = a.segments.date + (100 + num(a.segments.hour)), y = b.segments.date + (100 + num(b.segments.hour));
+    return x < y ? 1 : -1;
+  });
+  var rnsDia = [];
+  Object.keys(ciudadDia).forEach(function (k) { ciudadDia[k].forEach(function (c) { if (c.indexOf('geoTargetConstants/') === 0) rnsDia.push(c); }); });
+  var nombreDia = {};
+  if (rnsDia.length) {
+    filas("SELECT geo_target_constant.resource_name, geo_target_constant.name FROM geo_target_constant WHERE geo_target_constant.resource_name IN ('" +
+      rnsDia.join("','") + "')", 'los nombres de las ciudades').forEach(function (f) { nombreDia[f.geoTargetConstant.resourceName] = f.geoTargetConstant.name; });
+  }
+  Logger.log('');
+  Logger.log('==== CADA CONTACTO DE LOS ÚLTIMOS 7 DÍAS (hora del clic al anuncio, hora de la cuenta: ' + AdsApp.currentAccount().getTimeZone() + ') ====');
+  if (!cadaUno.length) Logger.log('Ninguno.');
+  cadaUno.forEach(function (f) {
+    var h = num(f.segments.hour), k = f.segments.date + '|' + f.campaign.name;
+    var ciudades = (ciudadDia[k] || []).map(function (c) { return nombreDia[c] || c; }).filter(function (c, i, a) { return c && a.indexOf(c) === i; });
+    Logger.log(f.segments.date + ' entre ' + (h < 10 ? '0' : '') + h + ':00 y ' + (h < 9 ? '0' : '') + (h + 1) + ':00 · ' +
+      uno(num(f.metrics.allConversions)) + ' × «' + f.segments.conversionActionName + '» · ' + corto(f.campaign.name) + ' · ' +
+      (DISPOSITIVO[f.segments.device] || f.segments.device) +
+      (busco[k] ? ' · buscó ' + busco[k].join(' o ') : '') + (ciudades.length ? ' · desde ' + ciudades.join(' o ') : ''));
+  });
+  Logger.log('Ojo: «Clic en WhatsApp» cuenta a quien tocó el botón y se le abrió WhatsApp, aunque no haya llegado a mandar mensaje.');
+
   var porDia = filas('SELECT segments.date, campaign.name, segments.conversion_action_name, metrics.all_conversions FROM campaign WHERE ' + DUR, 'los días');
   var total = 0;
   sumar(porDia, function () { return 't'; }).forEach(function (r) { total = r[1]; });
