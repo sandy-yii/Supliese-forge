@@ -344,6 +344,33 @@ CUENTAS['clm'] = dict(
     # Lavandería hotelera usó 0 a 16% del suyo. +20% a una con dinero de la otra.
     # 27 oct: «Marca CLM» pide salir arriba y se quedaba sin presupuesto (pierde 90%): sube con dinero de Lavandería
     # hotelera, que casi no usa el suyo. Así la cuenta también queda justo en su tope ($615 al día).
+    # 27 oct: Gamesail no tiene anuncios (falta su forma de pago) y nadie del grupo atiende sus búsquedas de equipo grande.
+    # Mientras tanto las atiende Kingstar con el presupuesto que ya tiene y no usa. Al encender Gamesail: aplicado=False.
+    preparado=dict(
+        aplicado=False,
+        titulo='Cubrir las búsquedas de Gamesail mientras arranca', archivo='cubrir-gamesail',
+        quitar_negativas=['Territorio de Gamesail (equipo grande)'],
+        grupos={
+            'Alta capacidad 60 kg o más': [
+                dict(nombre='Secadoras de alta capacidad',
+                     kw=['"secadora industrial 100 kg"', '"secadoras de 100 kilos"', '"secadora industrial 130 kg"',
+                         '"secadora industrial 200 kg"', '"secadoras industriales de alta capacidad"', '"secadora industrial 50 kg"'],
+                     h=['Secadoras Industriales', 'Secadoras de 100 a 200 kg', 'Secadora Industrial 100 kg', 'Alta Capacidad',
+                        'Para Lavandería Industrial', 'Te Ayudamos a Elegir'],
+                     d=['Secadoras industriales de alta capacidad, de 50 a 200 kg. Cotiza hoy.',
+                        'Equipo para lavanderías industriales, hoteles y hospitales de gran volumen.',
+                        'Solicita tu cotización y habla con un asesor sobre la capacidad que necesitas.'],
+                     p=('secadoras', 'industriales'))],
+            'Lavandería hotelera e institucional': [
+                dict(nombre='Lavadoras para hotel y hospital',
+                     kw=['"lavadora industrial para hotel"', '"lavadoras industriales para hotel"', '"lavadoras para lavandería hotelera"',
+                         '"lavadora industrial para hospital"', '"lavadoras para hospitales"', '"lavadora industrial 50 kg"'],
+                     h=['Lavadoras para Hotel', 'Lavadoras para Hospital', 'Lavadora Industrial 50 kg', 'Equipo de Alta Capacidad',
+                        'Lavandería Hotelera', 'Te Ayudamos a Elegir'],
+                     d=['Lavadoras industriales para hoteles y hospitales, de alta capacidad. Cotiza hoy.',
+                        'Te ayudamos a elegir el equipo según los kilos de ropa que procesas al día.',
+                        'Solicita tu cotización y habla con un asesor sobre tu proyecto.'],
+                     p=('lavadoras', 'hotel'))]}),
     ajustes=dict(presupuesto={'Alta capacidad 60 kg o más': 222, 'Lavandería hotelera e institucional': 97, 'Marca CLM': 50},
                  # 27 oct: quien busca «clm» o «kingstar» ya quiere la marca: sale hasta arriba
                  arriba={'Marca CLM': dict(cuota=0.8, tope=15)}),
@@ -359,7 +386,10 @@ CUENTAS['clm'] = dict(
                                         'franquicia', 'franquicias', 'autoservicio', 'monedas', 'supliese', '"quick laundry"'],
         'Territorio de Servicio para Lavandería': ['refacciones', 'refacción', 'partes', 'repuestos', 'reparación',
                                                    'mantenimiento', 'servicio'],
-        'Territorio de Gamesail': ['gamesail', '"20 kg"', '"30 kg"', '"30 kilos"', '"50 kg"', '"50 kilos"', '"130 kg"', '"200 kg"',
+        'Territorio de Gamesail': ['gamesail', '"20 kg"', '"30 kg"', '"30 kilos"'],
+        # Equipo grande de Gamesail. Mientras Gamesail no tenga anuncios, lo atiende Kingstar (preparado «cubrir-gamesail»);
+        # cuando Gamesail se encienda, se pone aplicado=False en «preparado» y estas exclusiones vuelven solas.
+        'Territorio de Gamesail (equipo grande)': ['"50 kg"', '"50 kilos"', '"130 kg"', '"200 kg"',
                                    '"secadora industrial 100 kg"', '"secadora de 100 kilos"', '"secadoras de 100 kilos"',
                                    '"lavadora industrial para hotel"', '"lavadoras industriales para hotel"',
                                    '"lavadoras para lavandería hotelera"', '"lavadora para lavandería hotelera"',

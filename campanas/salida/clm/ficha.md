@@ -146,7 +146,8 @@ Se carga como una lista compartida, «AB · Negativas de la cuenta», ligada a t
 - **Lavado de autos (junta):** auto, autos, carro, carros, coche, coches, automóvil, automóviles, vehículo, vehículos, camión, camiones, camioneta, camionetas, moto, motos, "car wash", carwash, autolavado, autolavados, "auto lavado", lavacoches, tráiler, trailer, tráileres, encerado, detallado
 - **Territorio de Quick Laundry:** "poner una lavandería", "abrir una lavandería", "negocio de lavandería", franquicia, franquicias, autoservicio, monedas, supliese, "quick laundry"
 - **Territorio de Servicio para Lavandería:** refacciones, refacción, partes, repuestos, reparación, mantenimiento, servicio
-- **Territorio de Gamesail:** gamesail, "20 kg", "30 kg", "30 kilos", "50 kg", "50 kilos", "130 kg", "200 kg", "secadora industrial 100 kg", "secadora de 100 kilos", "secadoras de 100 kilos", "lavadora industrial para hotel", "lavadoras industriales para hotel", "lavadoras para lavandería hotelera", "lavadora para lavandería hotelera", "secadoras para lavandería hotelera", "lavadora industrial para hospital", "lavadoras para hospitales", "mangle planchador", dobladora, calandria, "para sábanas"
+- **Territorio de Gamesail:** gamesail, "20 kg", "30 kg", "30 kilos"
+- **Territorio de Gamesail (equipo grande):** "50 kg", "50 kilos", "130 kg", "200 kg", "secadora industrial 100 kg", "secadora de 100 kilos", "secadoras de 100 kilos", "lavadora industrial para hotel", "lavadoras industriales para hotel", "lavadoras para lavandería hotelera", "lavadora para lavandería hotelera", "secadoras para lavandería hotelera", "lavadora industrial para hospital", "lavadoras para hospitales", "mangle planchador", dobladora, calandria, "para sábanas"
 - **Territorio de Girbau:** girbau
 - **Doméstico:** "para casa", doméstica, domésticas, mabe, samsung, whirlpool, lg, "carga frontal"
 - **Usado y renta:** usada, usadas, usado, usados, seminueva, remate, renta, alquiler
