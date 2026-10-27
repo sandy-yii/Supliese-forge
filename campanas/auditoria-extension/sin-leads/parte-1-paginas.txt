@@ -1,0 +1,23 @@
+REVISIÓN DE LECTURA · Sin leads desde el 26 oct · PARTE 1 de 6: LAS PÁGINAS
+REGLAS PARA TODAS LAS PARTES: no modifiques, pauses, actives, edites, apliques recomendaciones ni aceptes nada dentro de Google Ads. No envíes formularios, no mandes mensajes de WhatsApp, no hagas llamadas ni compres nada. Solo navegar, mirar, leer y anotar. Si algo te pide confirmar un cambio, detente y pregúntame. Trabaja en una pestaña nueva.
+
+Contexto: ayer 26 oct se publicaron cambios en las páginas (aviso de cookies nuevo, botón «Preferencias de cookies» al pie, botones de WhatsApp que abren en pestaña nueva, cotizador que arma el mensaje de WhatsApp). Desde entonces no ha llegado ningún lead. Lo más probable es que algo de las páginas esté fallando, así que revísalas primero, como si fueras un cliente.
+
+Páginas, en este orden:
+| Marca | Página | Teléfono de los anuncios |
+| Girbau | https://girbaupro.com/ | 33 2806 8994 |
+| Kingstar (CLM) | https://kingstar.com.mx/ | 33 1564 1538 |
+| Quick Laundry | https://quicklaundry.store/ | 33 2601 2237 |
+| Laundry Solutions (Servicio) | https://laundrysolutions.store/ | 33 1417 2994 |
+| Gamesail | https://gamesail.mx/ | 33 1185 9797 |
+
+EN CADA PÁGINA, primero con la ventana normal y luego con la ventana lo más angosta que puedas (como celular):
+1. Carga: si abre, cuánto tarda más o menos, si redirige a otra dirección (anota la final), si sale error, página en blanco o algo roto.
+2. Aviso de cookies: si aparece, su texto, sus botones, y si TAPA algún botón de contacto (WhatsApp, cotizar, enviar, llamar) o impide hacer clic en la página mientras no se contesta. Prueba primero RECHAZAR y revisa si los botones de contacto siguen funcionando; luego usa «Preferencias de cookies» al pie y ACEPTA.
+3. Botones de WhatsApp: cuántos hay y dónde. En cada uno, sin enviar nada: el enlace exacto al que lleva (por ejemplo https://wa.me/52…), el número y el mensaje que trae escrito. Si al hacer clic no pasa nada, se abre una pestaña en blanco, lo bloquea el navegador o lleva a un número distinto entre botones, anótalo. Cierra la pestaña de WhatsApp sin mandar nada.
+4. Cotizador o formulario: dónde está, qué campos pide, si se puede llenar y si el botón final se activa. En Girbau y Kingstar el cotizador termina en un WhatsApp: llega hasta el último paso y anota el enlace y el mensaje que arma, SIN mandarlo. En las páginas con formulario normal, NO lo envíes: solo dime si los campos y el botón funcionan o marcan error.
+5. Teléfono y correo: si aparecen en la página, cuáles son y si coinciden con el teléfono de los anuncios de la tabla.
+6. Consola del navegador, si puedes verla: copia los errores en rojo tal cual (solo leerlos, no escribas nada en la consola).
+7. Cualquier otra cosa rara: textos encimados, botones que no se ven en celular, precios o datos de otra marca, enlaces rotos.
+
+ENTREGA: un reporte en Markdown (títulos con #, tablas con |) dentro de un único bloque de código, una sección por página con los puntos 1 a 7, y al final una tabla resumen: Página | ¿Carga? | ¿El aviso tapa algo? | ¿WhatsApp funciona? (número) | ¿Cotizador/formulario funciona? | Problemas. Si el texto se corta, dime "continúo" y sigue. Luego espera la Parte 2.

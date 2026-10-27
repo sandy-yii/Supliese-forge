@@ -1,0 +1,18 @@
+REVISIÓN DE LECTURA · Sin leads desde el 26 oct · PARTE 5 de 6: Servicio para Lavandería (Laundry Solutions) (265-909-2662)
+Mismas reglas de la Parte 1: no modifiques, pauses, actives, edites, apliques recomendaciones ni aceptes nada. Solo mirar y anotar. Si algo te pide confirmar un cambio, detente y pregúntame.
+Entra a la cuenta 265-909-2662 y confirma el número arriba a la derecha antes de empezar. Página correcta de esta cuenta: https://laundrysolutions.store/
+Fechas: hoy es 27 oct; "ayer" es 26 oct; "antes" es del 20 al 25 oct. Las campañas nuevas empiezan con «AB · ».
+Ojo: el 26 oct se hicieron ajustes para que esta cuenta deje de salir en búsquedas de compra; revisa en el historial y en los términos si eso cortó de más el tráfico.
+
+1. Avisos: el texto exacto de los avisos de arriba de la cuenta y de la campana de notificaciones. Facturación: si hay un pago rechazado, saldo agotado, método de pago vencido o cualquier aviso (Facturación > Resumen). Administración > Verificación del anunciante: estado.
+2. Campañas (habilitadas y pausadas): nombre, estado, estado que da Google con su motivo (columna Estado y su detalle), presupuesto diario, estrategia de puja, y para HOY, AYER y del 20 al 25 oct: impresiones, clics, costo, conversiones y llamadas. Dime si alguna campaña dejó de tener impresiones o clics ayer comparado con antes.
+3. Anuncios: los que NO estén aprobados (rechazados, limitados, en revisión, «no aptos»), con campaña, grupo, URL final, motivo y el detalle completo que muestra Google al abrirlo (por ejemplo, destino no funciona, error HTTP, política). Y la lista de URLs finales distintas que usan los anuncios habilitados.
+4. Historial de cambios (Herramientas > Historial de cambios), del 25 al 27 oct: cada cambio con fecha, hora, quién, campaña/grupo y qué cambió (presupuestos, pausas, palabras negativas, ubicaciones, horarios, URLs, pujas). Copia los textos tal cual.
+5. Palabras clave: las 15 con más clics del 20 al 25 oct y cuántos clics tuvieron ayer; las que están rechazadas, «pocas búsquedas» o «no apta».
+6. Términos de búsqueda de ayer y de hoy: los 20 con más clics, con campaña.
+7. Configuración de cada campaña «AB · »: ubicaciones (y si es "presencia" o "presencia o interés"), idioma, redes (Búsqueda, socios, Display), programación de anuncios, fecha de finalización si tiene.
+8. Recursos de llamada (Recursos > Llamada): número, a qué campañas está asociado, estado de aprobación con su motivo, horario. Columna de llamadas si existe.
+9. Conversiones (Objetivos > Conversiones > Resumen): cada acción con Principal o Secundaria, estado ("Sin verificar", "Registrando conversiones", "Sin conversiones recientes", "Inactiva"…), conversiones de ayer, de hoy y de los últimos 7 días. Etiquetado automático: activado o no (Administración > Configuración de la cuenta).
+10. Recomendaciones y "Diagnóstico de la cuenta" o "Información de estadísticas" si aparecen: solo copia lo que dicen, NO apliques nada.
+
+ENTREGA: un reporte en Markdown (títulos con #, tablas con |) dentro de un único bloque de código, con los puntos 1 a 10, sin resumir números ni textos de Google. Al final: lo que no pudiste ver, y en 3 a 5 renglones qué cambió entre "antes" y "ayer". Si el texto se corta, dime "continúo" y sigue. Luego espera la Parte 6.
