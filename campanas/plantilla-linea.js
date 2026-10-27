@@ -15,7 +15,7 @@ var PLAN = null;
 // Solo para la cuenta nueva de Gamesail: pega aquí su número, por ejemplo '123-456-7890'.
 var CUENTA_NUEVA = '';
 
-var CONTACTO = /conversa|conversation|mensaje|message|whats|\bwa\b|llamad|call|formul|lead|contact/i;
+var CONTACTO = /conversa|conversation|mensaje|message|whats|\bwa\b|llamad|call|formul|lead|contact|chat|bot/i;   // chat y bot: el chatbot de las páginas anteriores
 
 function revisarCuenta() {
   var cid = AdsApp.currentAccount().getCustomerId();
