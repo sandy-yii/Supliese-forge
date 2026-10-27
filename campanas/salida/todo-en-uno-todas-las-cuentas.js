@@ -180,10 +180,12 @@ function filas(consulta, que) {
     var it = AdsApp.search(consulta);
     while (it.hasNext()) out.push(it.next());
   } catch (e) {
+    FALLO = true;
     Logger.log('No se pudo revisar ' + que + ': ' + e.message);
   }
   return out;
 }
+var FALLO = false;   // si una revisión falla, no se enciende ninguna campaña anterior
 function dinero(x) { return '$' + Math.round(x).toLocaleString('es-MX'); }
 
 function main() {
@@ -219,6 +221,7 @@ function main() {
     if (!f) { que.push('«' + n + '»: no existe en esta cuenta. Se salta.'); return; }
     if (f.campaign.status === 'ENABLED') { que.push('«' + n + '»: ya está encendida.'); return; }
     var malas = {};
+    FALLO = false;
     filas("SELECT ad_group_ad.ad.final_urls FROM ad_group_ad WHERE campaign.resource_name = '" + f.campaign.resourceName + "' AND ad_group_ad.status = 'ENABLED' " +
       "AND ad_group.status = 'ENABLED'", 'los anuncios de ' + n).forEach(function (a) {
       (a.adGroupAd.ad.finalUrls || []).forEach(function (u) { if (sitio(u) !== nuestra) malas[sitio(u) || '(sin dirección)'] = true; });
@@ -228,10 +231,15 @@ function main() {
       (a.assetGroup.finalUrls || []).forEach(function (u) { if (sitio(u) !== nuestra) malas[sitio(u) || '(sin dirección)'] = true; });
     });
     // Enlaces de sitio y otros recursos de la campaña que llevan a una página
-    filas("SELECT asset.final_urls, campaign_asset.field_type FROM campaign_asset WHERE campaign.resource_name = '" + f.campaign.resourceName + "' " +
+    filas("SELECT campaign.resource_name, asset.final_urls, campaign_asset.field_type FROM campaign_asset WHERE campaign.resource_name = '" + f.campaign.resourceName + "' " +
       "AND campaign_asset.status = 'ENABLED'", 'los enlaces de ' + n).forEach(function (a) {
       (a.asset.finalUrls || []).forEach(function (u) { if (sitio(u) !== nuestra) malas[sitio(u) + ' (enlace de sitio u otro recurso)'] = true; });
     });
+    if (FALLO) {
+      que.push('NO SE ENCIENDE «' + n + '»: no se pudo revisar a dónde mandan todos sus anuncios y enlaces (ver arriba). Manda este registro.');
+      noEncendio.push(n);
+      return;
+    }
     if (Object.keys(malas).length) {
       que.push('NO SE ENCIENDE «' + n + '»: todavía manda a ' + Object.keys(malas).join(', ') + ' y no a ' + nuestra + '. Primero hay que cambiarle la página.');
       noEncendio.push(n);
