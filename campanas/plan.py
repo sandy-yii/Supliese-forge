@@ -342,7 +342,9 @@ CUENTAS['clm'] = dict(
     url='https://kingstar.com.mx/',
     # 26 oct: más leads dentro del tope de la cuenta ($18,700). Alta capacidad gastó 98% y perdió 32% por presupuesto ayer;
     # Lavandería hotelera usó 0 a 16% del suyo. +20% a una con dinero de la otra.
-    ajustes=dict(presupuesto={'Alta capacidad 60 kg o más': 222, 'Lavandería hotelera e institucional': 117},
+    # 27 oct: «Marca CLM» pide salir arriba y se quedaba sin presupuesto (pierde 90%): sube con dinero de Lavandería
+    # hotelera, que casi no usa el suyo. Así la cuenta también queda justo en su tope ($615 al día).
+    ajustes=dict(presupuesto={'Alta capacidad 60 kg o más': 222, 'Lavandería hotelera e institucional': 97, 'Marca CLM': 50},
                  # 27 oct: quien busca «clm» o «kingstar» ya quiere la marca: sale hasta arriba
                  arriba={'Marca CLM': dict(cuota=0.8, tope=15)}),
     mismo_sitio=['supliese-clm-lavadoras.vercel.app'],  # versión anterior del mismo sitio: se conserva la sección
