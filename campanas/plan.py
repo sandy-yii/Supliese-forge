@@ -204,9 +204,13 @@ CUENTAS['quick-laundry'] = dict(
     # 27 oct: más leads, sin pausar nada (decisión de la usuaria: «Search Marcas» sigue encendida con sus $95).
     # El espacio que queda hasta el tope de $12,000 ($395 al día) va a lo que más trae: Equipo para lavandería (se queda
     # sin presupuesto), Emprendimiento (gasta 161% del suyo) y la marca, que pide salir hasta arriba.
-    ajustes=dict(presupuesto={'Equipo para lavandería': 150, 'Emprendimiento': 69, 'Autoservicio y monedas': 34,
-                              'Marca Quick Laundry': 14},
-                 arriba={'Marca Quick Laundry': dict(cuota=0.8, tope=10)}),
+    # 27 oct (2): se vuelve a encender «Modelo de Negocio» (10 conversaciones de WhatsApp en 30 días, con el número de Liliana).
+    # Cubre lo mismo que Emprendimiento, que baja; Secadoras y Marcas comerciales casi no tienen búsquedas. Total $394 = tope.
+    ajustes=dict(presupuesto={'Equipo para lavandería': 146, 'Emprendimiento': 40, 'Autoservicio y monedas': 34,
+                              'Secadoras para lavandería': 10, 'Marcas comerciales': 10, 'Marca Quick Laundry': 14},
+                 arriba={'Marca Quick Laundry': dict(cuota=0.8, tope=10)},
+                 activar={'Campaña Modelo de Negocio': 45},
+                 presencia=['Campaña Search Marcas']),
     subir=False, subir_porque='hoy ya sube con «ajustes» (Equipo, Emprendimiento y la marca, hasta el tope)',
     nota='Marca nueva Quick Laundry en los anuncios; se sigue pujando por «supliese». Negocio de lavandería: equipo comercial, emprendimiento y autoservicio.',
     comunes=['Quick Laundry', 'Cotiza con un Asesor', 'Solicita tu Cotización'],
@@ -642,7 +646,11 @@ CUENTAS['girbau'] = dict(
     # El tope lo sube «más leads» (paso 3) de $10 a $15; si también lo subiera «ajustes», al ejecutar «más leads» lo llevaría a $20.
     # 27 oct: el anuncio de marca sale hasta abajo de la página. Quien busca «Girbau» ya quiere Girbau: la campaña de marca
     # pide salir hasta arriba el 80% de las veces, con máximo $25 por clic (hoy paga unos $10). Solo gasta el 41% de su presupuesto.
-    ajustes=dict(arriba={'Marca Girbau': dict(cuota=0.8, tope=25)}),
+    # 27 oct (2): se vuelve a encender «Max Rendimiento - Girbau» (5 conversaciones y llamadas contestadas en 30 días),
+    # con dinero de las campañas nuevas que no tienen búsquedas. Total $187 al día, debajo del tope de $217.
+    ajustes=dict(arriba={'Marca Girbau': dict(cuota=0.8, tope=25)},
+                 presupuesto={'Marca Girbau': 62, 'Girbau Smart Plus': 10, 'Girbau por capacidad y sector': 15, 'Servicio técnico Girbau': 10},
+                 activar={'Max Rendimiento - Girbau': 90}),
     subir=False, subir_porque='no usa su presupuesto (41%); la marca sale arriba con «ajustes»',
     mismo_sitio=['supliese-girbau-lavadoras.vercel.app'],  # versión anterior del mismo sitio: se conserva la sección
     nota='Solo búsquedas con la marca Girbau. Nuevo modelo Smart Plus y capacidades de 12 y 14 kg.',

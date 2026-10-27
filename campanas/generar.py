@@ -290,7 +290,7 @@ def plan_llamadas(p):
 
 def plan_ajustes(p):
     c = p['c']
-    return dict(cuenta=numero(c), nombre=c['nombre'], prefijo=PREFIJO, ajustes=c.get('ajustes', {}))
+    return dict(cuenta=numero(c), nombre=c['nombre'], prefijo=PREFIJO, url=c['url'], ajustes=c.get('ajustes', {}))
 
 
 def js_pagina(p):

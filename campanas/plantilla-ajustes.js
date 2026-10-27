@@ -45,8 +45,9 @@ function main() {
   Logger.log('AJUSTES · ' + PLAN.nombre + (vista ? ' · VISTA PREVIA (no cambia nada)' : ''));
   var aj = PLAN.ajustes || {};
   var pausar = aj.pausar || [], presupuesto = aj.presupuesto || {}, palabras = aj.pausar_palabras || [], topes = aj.topes || {},
-      arriba = aj.arriba || {};
-  if (!pausar.length && !Object.keys(presupuesto).length && !palabras.length && !Object.keys(topes).length && !Object.keys(arriba).length) { Logger.log('Nada que ajustar en esta cuenta por ahora.'); return; }
+      arriba = aj.arriba || {}, activar = aj.activar || {}, presencia = aj.presencia || [];
+  if (!pausar.length && !Object.keys(presupuesto).length && !palabras.length && !Object.keys(topes).length && !Object.keys(arriba).length &&
+      !Object.keys(activar).length && !presencia.length) { Logger.log('Nada que ajustar en esta cuenta por ahora.'); return; }
 
   var C = {};
   filas('SELECT campaign.resource_name, campaign.name, campaign.status, campaign.bidding_strategy_type, campaign.target_spend.cpc_bid_ceiling_micros, ' +
@@ -61,6 +62,51 @@ function main() {
   Object.keys(C).forEach(function (n) { antes += C[n].monto; });
 
   var ops = [], donde = [], que = [], despues = antes;
+  function sitio(url) { var m = /^https?:\/\/([^\/?#]+)/i.exec(url || ''); return m ? m[1].toLowerCase().replace(/^www\./, '') : ''; }
+  var nuestra = sitio(PLAN.url), noEncendio = [];
+
+  // Campañas anteriores que se vuelven a encender: solo si todos sus anuncios ya llevan a la página de la marca
+  Object.keys(activar).forEach(function (n) {
+    var monto = activar[n], f = filas("SELECT campaign.resource_name, campaign.status, campaign.advertising_channel_type, campaign_budget.resource_name, " +
+      "campaign_budget.amount_micros, campaign_budget.explicitly_shared FROM campaign WHERE campaign.name = '" + n.replace(/'/g, "\\'") + "' AND campaign.status != 'REMOVED'", 'la campaña ' + n)[0];
+    if (!f) { que.push('«' + n + '»: no existe en esta cuenta. Se salta.'); return; }
+    if (f.campaign.status === 'ENABLED') { que.push('«' + n + '»: ya está encendida.'); return; }
+    var malas = {};
+    filas("SELECT ad_group_ad.ad.final_urls FROM ad_group_ad WHERE campaign.resource_name = '" + f.campaign.resourceName + "' AND ad_group_ad.status = 'ENABLED' " +
+      "AND ad_group.status = 'ENABLED'", 'los anuncios de ' + n).forEach(function (a) {
+      (a.adGroupAd.ad.finalUrls || []).forEach(function (u) { if (sitio(u) !== nuestra) malas[sitio(u) || '(sin dirección)'] = true; });
+    });
+    filas("SELECT asset_group.final_urls FROM asset_group WHERE campaign.resource_name = '" + f.campaign.resourceName + "' AND asset_group.status = 'ENABLED'",
+      'los grupos de recursos de ' + n).forEach(function (a) {
+      (a.assetGroup.finalUrls || []).forEach(function (u) { if (sitio(u) !== nuestra) malas[sitio(u) || '(sin dirección)'] = true; });
+    });
+    if (Object.keys(malas).length) {
+      que.push('NO SE ENCIENDE «' + n + '»: todavía manda a ' + Object.keys(malas).join(', ') + ' y no a ' + nuestra + '. Primero hay que cambiarle la página.');
+      noEncendio.push(n);
+      return;
+    }
+    ops.push({ campaignOperation: { update: { resourceName: f.campaign.resourceName, status: 'ENABLED',
+      geoTargetTypeSetting: { positiveGeoTargetType: 'PRESENCE' } }, updateMask: 'status,geoTargetTypeSetting.positiveGeoTargetType' } });
+    donde.push('encender «' + n + '»');
+    if (f.campaignBudget.explicitlyShared) {
+      que.push('ENCENDER «' + n + '» (manda a ' + nuestra + '; solo personas en México). AVISO: su presupuesto es compartido; revísalo a mano.');
+    } else {
+      ops.push({ campaignBudgetOperation: { update: { resourceName: f.campaignBudget.resourceName, amountMicros: Math.round(monto * 1e6) }, updateMask: 'amountMicros' } });
+      donde.push('presupuesto de «' + n + '»');
+      que.push('ENCENDER «' + n + '» con ' + dinero(monto) + ' al día (antes tenía ' + dinero(Number(f.campaignBudget.amountMicros || 0) / 1e6) +
+        '; manda a ' + nuestra + '; solo personas en México)');
+    }
+    despues += monto;
+  });
+  // Campañas encendidas que deben mostrarse solo a personas que están en México
+  presencia.forEach(function (n) {
+    var c = C[n];
+    if (!c) return;
+    ops.push({ campaignOperation: { update: { resourceName: c.rn, geoTargetTypeSetting: { positiveGeoTargetType: 'PRESENCE' } },
+      updateMask: 'geoTargetTypeSetting.positiveGeoTargetType' } });
+    donde.push('zona de «' + n + '»');
+    que.push('ZONA «' + n + '»: solo personas que están en México (antes también «interesadas» desde otros países)');
+  });
   pausar.forEach(function (n) {
     var c = C[n];
     if (!c) { que.push('«' + n + '»: no está encendida (ya en pausa o con otro nombre). Se salta.'); return; }
@@ -115,6 +161,8 @@ function main() {
     var n = PLAN.prefijo + corto, c = C[n], nuevo = presupuesto[corto];
     if (!c) { que.push('«' + n + '»: no está encendida. Se salta.'); return; }
     if (Math.round(c.monto) === Math.round(nuevo)) { que.push('«' + n + '»: ya tiene ' + dinero(nuevo) + ' al día.'); return; }
+    // Las bajadas pagan las campañas que se encienden: si alguna no se encendió, no se baja nada
+    if (nuevo < c.monto && noEncendio.length) { que.push('«' + n + '»: se queda en ' + dinero(c.monto) + ' (iba a bajar para pagar «' + noEncendio.join('», «') + '», que no se encendió).'); return; }
     if (c.compartido) { que.push('AVISO «' + n + '»: su presupuesto es compartido; cámbialo a mano a ' + dinero(nuevo) + ' al día.'); return; }
     ops.push({ campaignBudgetOperation: { update: { resourceName: c.presupuesto, amountMicros: Math.round(nuevo * 1e6) }, updateMask: 'amountMicros' } });
     donde.push('presupuesto de «' + n + '»');
