@@ -7,11 +7,13 @@ Para cada página, cuando Rodolfo avise que ya la publicó. Toma unos 10 minutos
 Usa los datos móviles (no el wifi de la oficina) y una ventana normal del navegador, no de incógnito.
 
 1. **Entrar desde un anuncio.** Busca en Google una palabra de la campaña (por ejemplo, "lavadora industrial girbau") y entra por el anuncio. Si no sale, entra escribiendo la dirección y agrégale al final `?gclid=prueba` (por ejemplo, `girbaupro.com/?gclid=prueba`). No le des clic a tus propios anuncios muchas veces: con una vez basta.
-2. **WhatsApp.** Toca el botón de WhatsApp. Debe abrir el chat con el número de la marca. Manda un mensaje que diga "PRUEBA, no contestar".
-3. **Formulario.** Llénalo con tu nombre y "PRUEBA" en el mensaje. Al enviarlo debe salir el mensaje de "gracias" (o la página de gracias). Si sale un error, la prueba no cuenta.
-4. **Teléfono de la página** (si tiene). Tócalo; basta con que abra la pantalla de marcar, no hace falta llamar.
-5. Anota la hora de cada prueba en la tabla de abajo.
-6. Avisa a quien recibe los formularios y los WhatsApp que llegaron pruebas, para que no las tomen como clientes.
+2. **Acepta el aviso de cookies.** La etiqueta solo carga si se acepta; quien lo rechaza no se mide. Si ya lo habías contestado, usa «Preferencias de cookies», al pie de la página.
+3. **WhatsApp.** Toca el botón de WhatsApp. Debe abrir el chat con el número de la marca. Manda un mensaje que diga "PRUEBA, no contestar".
+4. **Formulario.** En Quick Laundry y Laundry Solutions, llénalo con tu nombre y "PRUEBA" en el mensaje; al enviarlo debe salir el mensaje de "gracias". En Girbau y Kingstar el formulario es el cotizador: úsalo y manda el WhatsApp que arma; ese cuenta como formulario, no como WhatsApp. Usa otra visita (otra pestaña o al día siguiente) para probar el WhatsApp suelto. Si sale un error, la prueba no cuenta.
+5. **Teléfono y correo de la página** (hoy solo Laundry Solutions). Tócalos; basta con que abran la pantalla de marcar o el correo.
+6. **Tag Assistant** (opcional, desde computadora): en tagassistant.google.com, «Add domain» con la página, acepta las cookies y repite las pruebas. Debe salir un evento «Conversion» con el `AW-…` de esa cuenta en cada una.
+7. Anota la hora de cada prueba en la tabla de abajo.
+8. Avisa a quien recibe los formularios y los WhatsApp que llegaron pruebas, para que no las tomen como clientes.
 
 ## Día 2 · Revisar en Google Ads
 
