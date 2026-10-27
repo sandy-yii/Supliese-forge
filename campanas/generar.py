@@ -522,6 +522,8 @@ def main():
         f.write(js_diagnostico([plan_llamadas(p) for p in todas], archivo='plantilla-contactos.js'))
     with open(os.path.join(SALIDA, 'contactos-dia-por-dia-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
         f.write(js_diagnostico([plan_auditoria(p) for p in todas], archivo='plantilla-linea.js'))
+    with open(os.path.join(SALIDA, 'estan-llegando-leads-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
+        f.write(js_diagnostico([plan_llamadas(p) for p in todas], archivo='plantilla-leads.js'))
     with open(os.path.join(SALIDA, 'ajustes-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
         f.write(js_diagnostico([plan_ajustes(p) for p in todas], archivo='plantilla-ajustes.js'))
     with open(os.path.join(SALIDA, 'subir-presupuesto-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
