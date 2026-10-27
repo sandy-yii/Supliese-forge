@@ -57,11 +57,12 @@ function main() {
   var MAL = [], OJO = [], BIEN = [];
 
   // ---- Dónde está puesto cada recurso (cuenta o campaña)
-  var donde = {};
+  var donde = {}, activos = {};
   function ligar(consulta, que, nivel) {
     filas(consulta, que).forEach(function (f) {
       var rn = f.asset.resourceName;
       (donde[rn] = donde[rn] || []).push(nivel === 'cuenta' ? 'toda la cuenta' : '«' + f.campaign.name + '»' + (f.campaign.status === 'ENABLED' ? '' : ' (' + f.campaign.status + ')'));
+      if (nivel === 'cuenta' || f.campaign.status === 'ENABLED') activos[rn] = true;   // solo esto llega a verse en un anuncio
     });
   }
   ['CALL', 'BUSINESS_MESSAGE', 'LEAD_FORM'].forEach(function (tipo) {
@@ -77,16 +78,18 @@ function main() {
   var mensajes = filas('SELECT asset.resource_name, asset.name, asset.business_message_asset.message_provider, asset.business_message_asset.starter_message, ' +
     'asset.business_message_asset.whatsapp_info.phone_number, asset.business_message_asset.whatsapp_info.country_code, asset.policy_summary.approval_status, ' +
     "asset.policy_summary.review_status, asset.policy_summary.policy_topic_entries FROM asset WHERE asset.type = 'BUSINESS_MESSAGE'", 'los botones de mensaje');
+  var bienMensaje = false;
   if (!mensajes.length) Logger.log('No hay botón de mensaje en los anuncios (o Google no deja leerlo con scripts).');
   mensajes.forEach(function (f) {
     var a = f.asset, b = a.businessMessageAsset || {}, w = b.whatsappInfo || {};
-    var numero = digitos(w.phoneNumber), lugares = donde[a.resourceName] || [];
+    var numero = digitos(w.phoneNumber), lugares = donde[a.resourceName] || [], activo = activos[a.resourceName];
     Logger.log('Botón ' + (b.messageProvider || '') + ' → ' + (w.phoneNumber || '(sin número)') + ' · ' + aprobacion(a.policySummary) +
       ' · sale en: ' + (lugares.join(', ') || 'ninguna campaña (no se usa)') + (b.starterMessage ? ' · mensaje inicial: «' + b.starterMessage + '»' : ''));
-    if (lugares.length && numero && numero !== vendedor) MAL.push('El botón de WhatsApp del anuncio manda al ' + w.phoneNumber + ', NO al vendedor (' + PLAN.telefono + '). Sale en: ' + lugares.join(', ') + '. Los mensajes de esos clientes le llegan a otra persona.');
-    else if (lugares.length && numero === vendedor) BIEN.push('El botón de WhatsApp del anuncio manda al vendedor (' + PLAN.telefono + ').');
+    if (activo && numero && numero !== vendedor) MAL.push('El botón de WhatsApp del anuncio manda al ' + w.phoneNumber + ', NO al vendedor (' + PLAN.telefono + '). Sale en: ' + lugares.join(', ') + '. Los mensajes de esos clientes le llegan a otra persona.');
+    else if (activo && numero === vendedor) bienMensaje = true;
   });
 
+  if (bienMensaje) BIEN.push('El botón de WhatsApp del anuncio manda al vendedor (' + PLAN.telefono + ').');
   var nuevasConMensaje = mensajes.some(function (f) {
     return (donde[f.asset.resourceName] || []).some(function (l) { return l === 'toda la cuenta' || l.indexOf('«' + PLAN.prefijo) === 0; });
   });
@@ -102,7 +105,7 @@ function main() {
   llamadas.forEach(function (f) {
     var a = f.asset, numero = digitos((a.callAsset || {}).phoneNumber), lugares = donde[a.resourceName] || [];
     Logger.log('Llamada → ' + (a.callAsset || {}).phoneNumber + ' · ' + aprobacion(a.policySummary) + ' · sale en: ' + (lugares.join(', ') || 'ninguna campaña (no se usa)'));
-    if (!lugares.length) return;
+    if (!activos[a.resourceName]) return;   // solo en campañas en pausa o sin usar: no llega a verse
     if (numero !== vendedor) MAL.push('El botón de llamada marca al ' + (a.callAsset || {}).phoneNumber + ', NO al vendedor (' + PLAN.telefono + '). Sale en: ' + lugares.join(', ') + '.');
     else hayVendedor = true;
     if ((a.policySummary || {}).approvalStatus === 'DISAPPROVED') MAL.push('Google RECHAZÓ el botón de llamada ' + (a.callAsset || {}).phoneNumber + ': no se muestra.');
