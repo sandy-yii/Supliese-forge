@@ -211,6 +211,17 @@ CUENTAS['quick-laundry'] = dict(
                  arriba={'Marca Quick Laundry': dict(cuota=0.8, tope=10)},
                  activar={'Campaña Modelo de Negocio': 45},
                  presencia=['Campaña Search Marcas']),
+    # 27 oct (3): Google califica «anuncio poco relevante» en lavadoras para negocio / para lavanderías / industriales para
+    # lavandería / y secadoras para lavandería. Se agrega un segundo anuncio que repite esas búsquedas; el que ya hay se queda.
+    anuncios_nuevos={'Equipo para lavandería > Lavadoras para lavandería': dict(
+        h=['Lavadoras para Lavanderías', 'Lavadoras para Negocio', 'Lavadoras Industriales', 'Lavadoras y Secadoras',
+           'Equipo para Lavandería', 'Precios de Lavadoras', 'Lavadoras para tu Negocio', 'Lavadora Industrial',
+           'Cotiza por WhatsApp', 'Pide tu Precio Hoy', 'Para Lavandería Comercial', 'Quick Laundry', 'Te Ayudamos a Elegir'],
+        d=['Lavadoras para lavandería y para negocio, industriales y semi industriales. Cotiza hoy.',
+           'Lavadoras y secadoras para lavandería. Te damos precio y te ayudamos a elegir.',
+           'Equipo para lavandería nueva o que va a crecer. Escríbenos por WhatsApp y cotiza.',
+           'Quick Laundry: lavadoras industriales para lavandería con asesoría para elegir.'],
+        p=('lavadoras', 'negocio'))},
     subir=False, subir_porque='hoy ya sube con «ajustes» (Equipo, Emprendimiento y la marca, hasta el tope)',
     nota='Marca nueva Quick Laundry en los anuncios; se sigue pujando por «supliese». Negocio de lavandería: equipo comercial, emprendimiento y autoservicio.',
     comunes=['Quick Laundry', 'Cotiza con un Asesor', 'Solicita tu Cotización'],
@@ -509,6 +520,17 @@ CUENTAS['servicio'] = dict(
     mismo_sitio=['laundry-solutions-servicio.vercel.app'],  # versión anterior del mismo sitio: se conserva la sección
     nota='Servicio técnico, reparación y mantenimiento industrial. Refacciones solo Girbau y Gamesail.',
     comunes=['Servicio Técnico Industrial', 'Agenda tu Servicio', 'Habla con un Técnico'],
+    # 27 oct (3): «reparación de lavadoras industriales», la búsqueda con más volumen, tiene «anuncio poco relevante».
+    # Segundo anuncio en el grupo que repite la búsqueda; el que ya hay se queda.
+    anuncios_nuevos={'Reparación y mantenimiento > Reparación': dict(
+        h=['Reparación Lavadora Industrial', 'Reparación de Lavadoras', 'Lavadoras Industriales', 'Reparamos tu Lavadora',
+           'Técnicos en Reparación', 'Reparación en tu Negocio', 'Agenda tu Reparación', 'Diagnóstico de tu Equipo',
+           'Habla con un Técnico', 'Servicio Técnico Industrial', 'Cotiza por WhatsApp'],
+        d=['Reparación de lavadoras industriales con técnicos en equipo industrial. Agenda tu visita.',
+           'Reparamos lavadoras industriales de lavanderías, hoteles y hospitales.',
+           'Escríbenos por WhatsApp: te damos diagnóstico y cotización de la reparación.',
+           'Reparación de lavadora industrial y mantenimiento correctivo. Habla con un técnico.'],
+        p=('reparacion', 'industrial'))},
     # 26 oct: las amplias «técnico / reparación / mantenimiento lavadoras industriales» salían en búsquedas de COMPRA
     # («lavadoras industriales», «precio de lavadora industrial») y le subían el precio a Quick Laundry. Se pausan.
     ajustes=dict(pausar_palabras=[
@@ -517,7 +539,8 @@ CUENTAS['servicio'] = dict(
         ['Reparación y mantenimiento', 'Mantenimiento preventivo', 'mantenimiento lavadoras industriales', 'BROAD']],
         # La cuenta ya está en su tope mensual ($8,200): Reparación sube 20% con dinero que Servicio técnico no usaba
         # antes de las amplias (0 impresiones del 21 al 23 oct).
-        presupuesto={'Reparación y mantenimiento': 130, 'Servicio técnico industrial': 64}),
+        # 27 oct: «subir» ya los llevó a 156 y 75; el plan queda igual para que «ajustes» no los regrese.
+        presupuesto={'Reparación y mantenimiento': 156, 'Servicio técnico industrial': 75}),
     # PREPARADO, SIN APLICAR (27 oct): que Laundry Solutions venda refacciones de cualquier marca, no solo Girbau y
     # Gamesail. La venta de equipo nuevo se queda en las cuentas de Girbau y Gamesail (cuando un equipo no tiene arreglo,
     # el vendedor lo manda a esas páginas). Dentro de los $8,200. Se aplica con salida/servicio/preparado-refacciones-cualquier-marca.js.
@@ -678,7 +701,9 @@ CUENTAS['girbau'] = dict(
     # pide salir hasta arriba el 80% de las veces, con máximo $25 por clic (hoy paga unos $10). Solo gasta el 41% de su presupuesto.
     # 27 oct (2): se vuelve a encender «Max Rendimiento - Girbau» (5 conversaciones y llamadas contestadas en 30 días),
     # con dinero de las campañas nuevas que no tienen búsquedas. Total $187 al día, debajo del tope de $217.
-    ajustes=dict(arriba={'Marca Girbau': dict(cuota=0.8, tope=25)},
+    # 27 oct (3): la marca tiene calidad 7-8 de 10 y aun así sale hasta abajo: no es la calidad, otros pujan más por
+    # «girbau». El tope sube a $35 por clic; el presupuesto no cambia.
+    ajustes=dict(arriba={'Marca Girbau': dict(cuota=0.8, tope=35)},
                  presupuesto={'Marca Girbau': 62, 'Girbau Smart Plus': 10, 'Girbau por capacidad y sector': 15, 'Servicio técnico Girbau': 10},
                  activar={'Max Rendimiento - Girbau': 90}),
     subir=False, subir_porque='no usa su presupuesto (41%); la marca sale arriba con «ajustes»',

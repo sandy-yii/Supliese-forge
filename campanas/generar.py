@@ -293,6 +293,24 @@ def plan_ajustes(p):
     return dict(cuenta=numero(c), nombre=c['nombre'], prefijo=PREFIJO, url=c['url'], ajustes=c.get('ajustes', {}))
 
 
+def plan_anuncios(p):
+    """Anuncios extra que el plan agrega a grupos que ya existen (el anuncio que ya hay se queda)."""
+    c = p['c']
+    anuncios, errores = [], []
+    for donde, a in c.get('anuncios_nuevos', {}).items():
+        campana, grupo = donde.split(' > ')
+        for t in a['h']:
+            if len(t) > 30:
+                errores.append('%s: título de %d caracteres: «%s»' % (donde, len(t), t))
+        for t in a['d']:
+            if len(t) > 90:
+                errores.append('%s: descripción de %d caracteres: «%s»' % (donde, len(t), t))
+        if not 3 <= len(a['h']) <= 15 or not 2 <= len(a['d']) <= 4 or any(len(x) > 15 for x in a['p']):
+            errores.append('%s: el anuncio necesita de 3 a 15 títulos, de 2 a 4 descripciones y rutas de 15 letras o menos' % donde)
+        anuncios.append(dict(campana=PREFIJO + campana, grupo=grupo, h=a['h'], d=a['d'], p=list(a['p'])))
+    return dict(cuenta=numero(c), nombre=c['nombre'], url=c['url'], anuncios=anuncios, errores=errores)
+
+
 def js_pagina(p):
     c = p['c']
     return plantilla('plantilla-pagina.js', c, dict(cuenta=numero(c), anterior=c.get('id_anterior', ''),
@@ -530,6 +548,15 @@ def main():
         f.write(js_diagnostico([plan_ajustes(p) for p in todas], archivo='plantilla-ajustes.js'))
     with open(os.path.join(SALIDA, 'subir-presupuesto-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
         f.write(js_diagnostico([plan_auditoria(p) for p in todas], archivo='plantilla-subir.js'))
+    with open(os.path.join(SALIDA, 'anuncios-nuevos-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
+        anuncios = []
+        for p in todas:
+            pa = plan_anuncios(p)
+            for e in pa.pop('errores'):
+                print('ERROR anuncios', p['c']['nombre'], '·', e)
+                hay_error = True
+            anuncios.append(pa)
+        f.write(js_diagnostico(anuncios, archivo='plantilla-anuncios.js'))
     pasos = [('EXCLUSIONES Y PALABRAS CLAVE', js_diagnostico([plan_palabras(p) for p in todas], archivo='plantilla-palabras.js')),
              ('AJUSTES', js_diagnostico([plan_ajustes(p) for p in todas], archivo='plantilla-ajustes.js')),
              ('TOPES DE COSTO POR CLIC', js_diagnostico([plan_auditoria(p) for p in todas], archivo='plantilla-mas-leads.js')),
