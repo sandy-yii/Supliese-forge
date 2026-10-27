@@ -43,7 +43,12 @@ function digitos(t) { return String(t || '').replace(/\D/g, '').slice(-10); }
 function num(x) { return Number(x || 0); }
 var APROBACION = { APPROVED: 'aprobado', APPROVED_LIMITED: 'aprobado con restricciones', DISAPPROVED: 'RECHAZADO',
   AREA_OF_INTEREST_ONLY: 'aprobado con restricciones', UNKNOWN: 'sin dato', UNSPECIFIED: 'sin dato' };
-function aprobacion(p) { p = p || {}; return (APROBACION[p.approvalStatus] || p.approvalStatus || 'sin dato') + (p.reviewStatus === 'REVIEW_IN_PROGRESS' ? ' (en revisión)' : ''); }
+function aprobacion(p) {
+  p = p || {};
+  var motivos = (p.policyTopicEntries || []).map(function (e) { return e.topic; }).filter(function (t) { return t; });
+  return (APROBACION[p.approvalStatus] || p.approvalStatus || 'sin dato') + (p.reviewStatus === 'REVIEW_IN_PROGRESS' ? ' (en revisión)' : '') +
+    (motivos.length ? ' · motivo de Google: ' + motivos.join(', ') : '');
+}
 
 function main() {
   revisarCuenta();
@@ -71,7 +76,7 @@ function main() {
   Logger.log('==== BOTÓN DE MENSAJE / WHATSAPP EN EL ANUNCIO ====');
   var mensajes = filas('SELECT asset.resource_name, asset.name, asset.business_message_asset.message_provider, asset.business_message_asset.starter_message, ' +
     'asset.business_message_asset.whatsapp_info.phone_number, asset.business_message_asset.whatsapp_info.country_code, asset.policy_summary.approval_status, ' +
-    "asset.policy_summary.review_status FROM asset WHERE asset.type = 'BUSINESS_MESSAGE'", 'los botones de mensaje');
+    "asset.policy_summary.review_status, asset.policy_summary.policy_topic_entries FROM asset WHERE asset.type = 'BUSINESS_MESSAGE'", 'los botones de mensaje');
   if (!mensajes.length) Logger.log('No hay botón de mensaje en los anuncios (o Google no deja leerlo con scripts).');
   mensajes.forEach(function (f) {
     var a = f.asset, b = a.businessMessageAsset || {}, w = b.whatsappInfo || {};
@@ -82,11 +87,16 @@ function main() {
     else if (lugares.length && numero === vendedor) BIEN.push('El botón de WhatsApp del anuncio manda al vendedor (' + PLAN.telefono + ').');
   });
 
+  var nuevasConMensaje = mensajes.some(function (f) {
+    return (donde[f.asset.resourceName] || []).some(function (l) { return l === 'toda la cuenta' || l.indexOf('«' + PLAN.prefijo) === 0; });
+  });
+  if (!nuevasConMensaje) MAL.push('Las campañas nuevas «' + PLAN.prefijo + '» NO tienen botón de WhatsApp en el anuncio: se pierde el canal que más conversaciones traía.');
+
   // ---- Botón de llamada
   Logger.log('');
   Logger.log('==== BOTÓN DE LLAMADA EN EL ANUNCIO ====');
   var llamadas = filas('SELECT asset.resource_name, asset.call_asset.phone_number, asset.call_asset.country_code, asset.policy_summary.approval_status, ' +
-    "asset.policy_summary.review_status FROM asset WHERE asset.type = 'CALL'", 'los botones de llamada');
+    "asset.policy_summary.review_status, asset.policy_summary.policy_topic_entries FROM asset WHERE asset.type = 'CALL'", 'los botones de llamada');
   if (!llamadas.length) OJO.push('No hay botón de llamada en la cuenta.');
   var hayVendedor = false;
   llamadas.forEach(function (f) {
@@ -102,8 +112,10 @@ function main() {
   // ---- Llamadas reales de los últimos 30 días
   Logger.log('');
   Logger.log('==== LLAMADAS DESDE EL ANUNCIO, ÚLTIMOS 30 DÍAS ====');
+  var hace30 = Utilities.formatDate(new Date(Date.now() - 30 * 864e5), AdsApp.currentAccount().getTimeZone(), 'yyyy-MM-dd');
+  // call_view no acepta segments.date: se filtra por la hora de la llamada
   var vistas = filas('SELECT campaign.name, call_view.start_call_date_time, call_view.call_duration_seconds, call_view.call_status, ' +
-    'call_view.caller_area_code FROM call_view WHERE segments.date DURING LAST_30_DAYS ORDER BY call_view.start_call_date_time DESC', 'las llamadas');
+    "call_view.caller_area_code FROM call_view WHERE call_view.start_call_date_time >= '" + hace30 + " 00:00:00' ORDER BY call_view.start_call_date_time DESC", 'las llamadas');
   var perdidas = 0;
   vistas.forEach(function (f) {
     var c = f.callView, perdida = c.callStatus === 'MISSED';
