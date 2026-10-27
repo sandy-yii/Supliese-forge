@@ -227,6 +227,11 @@ function main() {
       'los grupos de recursos de ' + n).forEach(function (a) {
       (a.assetGroup.finalUrls || []).forEach(function (u) { if (sitio(u) !== nuestra) malas[sitio(u) || '(sin dirección)'] = true; });
     });
+    // Enlaces de sitio y otros recursos de la campaña que llevan a una página
+    filas("SELECT asset.final_urls, campaign_asset.field_type FROM campaign_asset WHERE campaign.resource_name = '" + f.campaign.resourceName + "' " +
+      "AND campaign_asset.status = 'ENABLED'", 'los enlaces de ' + n).forEach(function (a) {
+      (a.asset.finalUrls || []).forEach(function (u) { if (sitio(u) !== nuestra) malas[sitio(u) + ' (enlace de sitio u otro recurso)'] = true; });
+    });
     if (Object.keys(malas).length) {
       que.push('NO SE ENCIENDE «' + n + '»: todavía manda a ' + Object.keys(malas).join(', ') + ' y no a ' + nuestra + '. Primero hay que cambiarle la página.');
       noEncendio.push(n);
