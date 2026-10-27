@@ -71,13 +71,16 @@ No importar a Google Ads los eventos clave de GA4 como Principal: Google Ads ya 
 
 ## Qué ID va en cada sitio
 
+Los valores de cada sitio están en `etiquetas-por-sitio.md`.
+
+
 | Sitio | Cuenta de Google Ads | GA4 |
 |---|---|---|
-| https://www.supliese.com/ | Supliese Gomez / Quick Laundry 256-397-2201 | Propiedad de Supliese |
+| https://quicklaundry.store/ | Supliese Gomez / Quick Laundry 256-397-2201 | Propiedad de Quick Laundry |
 | https://girbaupro.com/ | Girbau 860-582-6837 | Propiedad de Girbau Occidente |
 | https://kingstar.com.mx/ | CLM 993-525-8739 | Propiedad de CLM |
 | https://laundrysolutions.store/ | Servicio para Lavandería 265-909-2662 | Propiedad de Servicio |
-| https://gamesail-lavadoras.vercel.app/ | La cuenta nueva de Gamesail | Propiedad de Gamesail |
+| https://gamesail.mx/ | Gamesail 118-347-6484 | Propiedad de Gamesail |
 
 ## Paso 4 · Probar
 
