@@ -31,5 +31,31 @@ Presupuesto diario: $92 MXN · Límite de CPC: $18 MXN
   - Te ayudamos a dimensionar la lavandería según los kilos que procesas al día.
   - Solicita tu cotización y habla con un asesor sobre tu proyecto.
 
+  Grupo de anuncios: Secadoras de alta capacidad
+  Palabras clave:
+  "secadora industrial 100 kg"
+  "secadoras de 100 kilos"
+  "secadora industrial 130 kg"
+  "secadora industrial 200 kg"
+  "secadoras industriales de alta capacidad"
+  "secadora industrial 50 kg"
+  Anuncio adaptable de búsqueda:
+  URL final: https://kingstar.com.mx/
+  Ruta: secadoras / industriales
+  Títulos:
+  - Secadoras Industriales
+  - Secadoras de 100 a 200 kg
+  - Secadora Industrial 100 kg
+  - Alta Capacidad
+  - Para Lavandería Industrial
+  - Te Ayudamos a Elegir
+  - CLM México
+  - Cotiza con un Asesor
+  - Solicita tu Cotización
+  Descripciones:
+  - Secadoras industriales de alta capacidad, de 50 a 200 kg. Cotiza hoy.
+  - Equipo para lavanderías industriales, hoteles y hospitales de gran volumen.
+  - Solicita tu cotización y habla con un asesor sobre la capacidad que necesitas.
+
 AL TERMINAR ESTA CAMPAÑA: dime su estado (debe decir "En pausa"), su presupuesto, cuántos grupos, palabras clave y anuncios tiene, y si algún anuncio o palabra clave quedó "Rechazado" o "Limitado" y por qué. No actives nada más.
 Luego espera la Parte 3.

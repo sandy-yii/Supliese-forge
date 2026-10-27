@@ -347,7 +347,7 @@ CUENTAS['clm'] = dict(
     # 27 oct: Gamesail no tiene anuncios (falta su forma de pago) y nadie del grupo atiende sus búsquedas de equipo grande.
     # Mientras tanto las atiende Kingstar con el presupuesto que ya tiene y no usa. Al encender Gamesail: aplicado=False.
     preparado=dict(
-        aplicado=False,
+        aplicado=True,   # ejecutado en la cuenta el 27 oct, sin errores
         titulo='Cubrir las búsquedas de Gamesail mientras arranca', archivo='cubrir-gamesail',
         quitar_negativas=['Territorio de Gamesail (equipo grande)'],
         grupos={

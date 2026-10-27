@@ -43,6 +43,20 @@ Descripciones:
 
 Ruta: /alta/capacidad
 
+**Secadoras de alta capacidad**
+
+Palabras clave: "secadora industrial 100 kg" · "secadoras de 100 kilos" · "secadora industrial 130 kg" · "secadora industrial 200 kg" · "secadoras industriales de alta capacidad" · "secadora industrial 50 kg"
+
+Títulos: Secadoras Industriales | Secadoras de 100 a 200 kg | Secadora Industrial 100 kg | Alta Capacidad | Para Lavandería Industrial | Te Ayudamos a Elegir | CLM México | Cotiza con un Asesor | Solicita tu Cotización
+
+Descripciones:
+
+- Secadoras industriales de alta capacidad, de 50 a 200 kg. Cotiza hoy.
+- Equipo para lavanderías industriales, hoteles y hospitales de gran volumen.
+- Solicita tu cotización y habla con un asesor sobre la capacidad que necesitas.
+
+Ruta: /secadoras/industriales
+
 ### AB · Lavandería hotelera e institucional
 
 **Lavandería hotelera**
@@ -73,6 +87,20 @@ Descripciones:
 - Solicita tu cotización y habla con un asesor sobre tu proyecto.
 
 Ruta: /lavanderia/hospital
+
+**Lavadoras para hotel y hospital**
+
+Palabras clave: "lavadora industrial para hotel" · "lavadoras industriales para hotel" · "lavadoras para lavandería hotelera" · "lavadora industrial para hospital" · "lavadoras para hospitales" · "lavadora industrial 50 kg"
+
+Títulos: Lavadoras para Hotel | Lavadoras para Hospital | Lavadora Industrial 50 kg | Equipo de Alta Capacidad | Lavandería Hotelera | Te Ayudamos a Elegir | CLM México | Cotiza con un Asesor | Solicita tu Cotización
+
+Descripciones:
+
+- Lavadoras industriales para hoteles y hospitales, de alta capacidad. Cotiza hoy.
+- Te ayudamos a elegir el equipo según los kilos de ropa que procesas al día.
+- Solicita tu cotización y habla con un asesor sobre tu proyecto.
+
+Ruta: /lavadoras/hotel
 
 ### AB · Mangles y planchado
 
@@ -147,7 +175,6 @@ Se carga como una lista compartida, «AB · Negativas de la cuenta», ligada a t
 - **Territorio de Quick Laundry:** "poner una lavandería", "abrir una lavandería", "negocio de lavandería", franquicia, franquicias, autoservicio, monedas, supliese, "quick laundry"
 - **Territorio de Servicio para Lavandería:** refacciones, refacción, partes, repuestos, reparación, mantenimiento, servicio
 - **Territorio de Gamesail:** gamesail, "20 kg", "30 kg", "30 kilos"
-- **Territorio de Gamesail (equipo grande):** "50 kg", "50 kilos", "130 kg", "200 kg", "secadora industrial 100 kg", "secadora de 100 kilos", "secadoras de 100 kilos", "lavadora industrial para hotel", "lavadoras industriales para hotel", "lavadoras para lavandería hotelera", "lavadora para lavandería hotelera", "secadoras para lavandería hotelera", "lavadora industrial para hospital", "lavadoras para hospitales", "mangle planchador", dobladora, calandria, "para sábanas"
 - **Territorio de Girbau:** girbau
 - **Doméstico:** "para casa", doméstica, domésticas, mabe, samsung, whirlpool, lg, "carga frontal"
 - **Usado y renta:** usada, usadas, usado, usados, seminueva, remate, renta, alquiler

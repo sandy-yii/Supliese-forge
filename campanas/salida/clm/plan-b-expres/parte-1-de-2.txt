@@ -74,28 +74,6 @@ gamesail
 "20 kg"
 "30 kg"
 "30 kilos"
-"50 kg"
-"50 kilos"
-"130 kg"
-"200 kg"
-"secadora industrial 100 kg"
-"secadora de 100 kilos"
-"secadoras de 100 kilos"
-"lavadora industrial para hotel"
-"lavadoras industriales para hotel"
-"lavadoras para lavandería hotelera"
-"lavadoras para lavanderia hotelera"
-"lavadora para lavandería hotelera"
-"lavadora para lavanderia hotelera"
-"secadoras para lavandería hotelera"
-"secadoras para lavanderia hotelera"
-"lavadora industrial para hospital"
-"lavadoras para hospitales"
-"mangle planchador"
-dobladora
-calandria
-"para sábanas"
-"para sabanas"
 girbau
 "para casa"
 doméstica

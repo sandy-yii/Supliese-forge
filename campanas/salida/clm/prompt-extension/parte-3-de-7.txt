@@ -53,5 +53,31 @@ Presupuesto diario: $77 MXN · Límite de CPC: $18 MXN
   - CLM diseña y equipa tu lavandería según los kilos que procesas al día.
   - Solicita tu cotización y habla con un asesor sobre tu proyecto.
 
+  Grupo de anuncios: Lavadoras para hotel y hospital
+  Palabras clave:
+  "lavadora industrial para hotel"
+  "lavadoras industriales para hotel"
+  "lavadoras para lavandería hotelera"
+  "lavadora industrial para hospital"
+  "lavadoras para hospitales"
+  "lavadora industrial 50 kg"
+  Anuncio adaptable de búsqueda:
+  URL final: https://kingstar.com.mx/
+  Ruta: lavadoras / hotel
+  Títulos:
+  - Lavadoras para Hotel
+  - Lavadoras para Hospital
+  - Lavadora Industrial 50 kg
+  - Equipo de Alta Capacidad
+  - Lavandería Hotelera
+  - Te Ayudamos a Elegir
+  - CLM México
+  - Cotiza con un Asesor
+  - Solicita tu Cotización
+  Descripciones:
+  - Lavadoras industriales para hoteles y hospitales, de alta capacidad. Cotiza hoy.
+  - Te ayudamos a elegir el equipo según los kilos de ropa que procesas al día.
+  - Solicita tu cotización y habla con un asesor sobre tu proyecto.
+
 AL TERMINAR ESTA CAMPAÑA: dime su estado (debe decir "En pausa"), su presupuesto, cuántos grupos, palabras clave y anuncios tiene, y si algún anuncio o palabra clave quedó "Rechazado" o "Limitado" y por qué. No actives nada más.
 Luego espera la Parte 4.
