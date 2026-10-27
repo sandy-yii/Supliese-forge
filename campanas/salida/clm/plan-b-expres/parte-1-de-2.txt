@@ -122,6 +122,21 @@ edredones
 "25 kilos"
 "26 kilos"
 "28 kilos"
+"speed queen"
+dexter
+wascomat
+unimac
+electrolux
+primus
+lorsa
+alliance
+ipso
+cobertor
+cobertores
+"king size"
+[lavadora grande]
+[lavadoras grandes]
+[lavadora potente]
 
 PASO 2 · Crear cada campaña. Para cada una:
 - Nueva campaña > "Crear una campaña sin la orientación de un objetivo" > Búsqueda.
