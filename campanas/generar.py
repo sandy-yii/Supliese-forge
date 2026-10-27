@@ -230,10 +230,10 @@ def js_diagnostico(planes, nombre='las cinco cuentas', archivo='plantilla-diagno
     return texto.replace('{{NOMBRE}}', nombre).replace('{{PLANES}}', json.dumps(planes, ensure_ascii=False))
 
 
-def js_todo_en_uno(pasos):
+def js_todo_en_uno(pasos, titulo='Todo en uno'):
     """Junta varios scripts en uno: cada uno corre dentro de su propia función, en orden, y si uno falla se detiene."""
     o = ['/**',
-         ' * Atelback · Todo en uno — las cinco cuentas',
+         ' * Atelback · %s — las cinco cuentas' % titulo,
          ' * Generado por campanas/generar.py a partir de campanas/plan.py. No se edita a mano: se cambia el plan y se regenera.',
          ' *',
          ' * QUÉ HACE (sirve en cualquiera de las cuentas del plan: reconoce sola en cuál está): corre, en este orden, los',
@@ -557,6 +557,12 @@ def main():
                 hay_error = True
             anuncios.append(pa)
         f.write(js_diagnostico(anuncios, archivo='plantilla-anuncios.js'))
+    # Los cambios del día en un solo script: sin «más leads» ni «subir», que moverían topes y presupuestos encima de «ajustes».
+    hoy = [('EXCLUSIONES Y PALABRAS CLAVE', js_diagnostico([plan_palabras(p) for p in todas], archivo='plantilla-palabras.js')),
+           ('ANUNCIOS NUEVOS', js_diagnostico(anuncios, archivo='plantilla-anuncios.js')),
+           ('AJUSTES', js_diagnostico([plan_ajustes(p) for p in todas], archivo='plantilla-ajustes.js'))]
+    with open(os.path.join(SALIDA, 'cambios-de-hoy-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
+        f.write(js_todo_en_uno(hoy, 'Cambios de hoy (exclusiones, anuncios nuevos y ajustes)'))
     pasos = [('EXCLUSIONES Y PALABRAS CLAVE', js_diagnostico([plan_palabras(p) for p in todas], archivo='plantilla-palabras.js')),
              ('AJUSTES', js_diagnostico([plan_ajustes(p) for p in todas], archivo='plantilla-ajustes.js')),
              ('TOPES DE COSTO POR CLIC', js_diagnostico([plan_auditoria(p) for p in todas], archivo='plantilla-mas-leads.js')),
