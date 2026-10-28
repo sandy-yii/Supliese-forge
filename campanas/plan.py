@@ -203,6 +203,9 @@ CUENTAS['quick-laundry'] = dict(
     # 26 oct: más leads. Emprendimiento y Autoservicio gastan 174-194% de su presupuesto: +20%.
     ajustes=dict(pausar=['Campaña Modelo de Negocio'],
                  presupuesto={'Equipo para lavandería': 119, 'Emprendimiento': 59, 'Autoservicio y monedas': 34}),
+    # 28 oct: bajar el costo por clic. Del 20 al 27 oct las anteriores pagaron $17.81 (Modelo de Negocio) y $9.19 (Search Marcas)
+    # por clic contra $4.91 de «Equipo para lavandería», que además pierde 30% de las búsquedas por presupuesto.
+    bajar_cpc=dict(pausar=['Campaña Modelo de Negocio'], mitad=['Campaña Search Marcas'], pasar_a='Equipo para lavandería'),
     subir=False, subir_porque='hoy ya sube con «ajustes» (Equipo, Emprendimiento y Autoservicio)',
     nota='Marca nueva Quick Laundry en los anuncios; se sigue pujando por «supliese». Negocio de lavandería: equipo comercial, emprendimiento y autoservicio.',
     comunes=['Quick Laundry', 'Cotiza con un Asesor', 'Solicita tu Cotización'],
@@ -335,6 +338,9 @@ CUENTAS['clm'] = dict(
     # 26 oct: más leads dentro del tope de la cuenta ($18,700). Alta capacidad gastó 98% y perdió 32% por presupuesto ayer;
     # Lavandería hotelera usó 0 a 16% del suyo. +20% a una con dinero de la otra.
     ajustes=dict(presupuesto={'Alta capacidad 60 kg o más': 222, 'Lavandería hotelera e institucional': 117}),
+    # 28 oct: bajar el costo por clic. «Más leads» subió topes y del 20 al 27 oct estas pagaron más que el tope del plan:
+    # Lavandería hotelera $23.48 (plan $18) y 20 a 45 kg $21.40 (plan $15). Vuelven al tope del plan.
+    bajar_cpc=dict(topes={'Lavandería hotelera e institucional': 18, 'Lavadoras y secadoras de 20 a 45 kg': 15}),
     subir=False, subir_porque='hoy ya sube con «ajustes» (Alta capacidad)',
     mismo_sitio=['supliese-clm-lavadoras.vercel.app'],  # versión anterior del mismo sitio: se conserva la sección
     nota='Alta capacidad, lavandería hotelera e institucional completa, túnel de lavado para ropa, mangles, 20 a 45 kg.',
