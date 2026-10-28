@@ -469,14 +469,19 @@ function hallazgos(m) {
   else add('mejora', 'warn', 2, `<b>Clics por día sin cambio</b> (${signo(rv)}): la estrategia todavía no mueve el volumen.`, `Las visitas al día se mantienen como antes (${nf1.format(vA)} → ${nf1.format(vN)}); el siguiente paso es aumentarlas.`,
     'Mover presupuesto a las campañas que pierden búsquedas por presupuesto.');
 
-  // 2. Costo por visita
-  if (cpc(A) && N.clics) {
-    const rc = cambio(cpc(N), cpc(A));
-    if (rc <= -0.05) add('bueno', 'good', 2, `<b>Costo por clic ${signo(rc)}</b>: ${pesos2(cpc(A))} → ${pesos2(cpc(N))}.`, `<b>Cada visita cuesta ${nf0.format(Math.abs(rc * 100))}% menos</b> (${pesos2(cpc(A))} → ${pesos2(cpc(N))}).`);
-    else if (rc >= 0.2) add('mejora', 'bad', 2, `<b>Costo por clic ${signo(rc)}</b>: ${pesos2(cpc(A))} → ${pesos2(cpc(N))}.`, `Cada visita cuesta más que antes (${pesos2(cpc(A))} → ${pesos2(cpc(N))}); estamos afinando las palabras para bajarlo.`,
-      'Bajar topes de costo por clic en las campañas más caras o pausar las que no traen contactos.');
-    else if (rc > 0.05) add('mejora', 'warn', 1, `<b>Costo por clic ${signo(rc)}</b>: ${pesos2(cpc(A))} → ${pesos2(cpc(N))}.`, `Cada visita cuesta un poco más que antes (${pesos2(cpc(A))} → ${pesos2(cpc(N))}).`,
-      'Vigilar; si sigue subiendo, revisar las campañas con costo por clic más alto.');
+  // 2. Costo por visita: antes (toda la cuenta) contra las campañas nuevas; las anteriores que siguen se cuentan aparte (6c)
+  const nv = nuevasVsAnteriores(m), c1 = cpc(nv.nu), cA = cpc(A), c0 = nv.an.clics ? nv.an.costo / nv.an.clics : 0;
+  const yAnt = c0 > c1 ? ` (las anteriores que siguen encendidas cuestan ${pesos2(c0)})` : '';
+  if (cA && nv.nu.clics >= 10) {
+    const rc = cambio(c1, cA);
+    if (rc <= -0.05) add('bueno', 'good', 3, `<b>Campañas nuevas ${signo(rc)} por clic</b>: ${pesos2(cA)} antes → ${pesos2(c1)}${yAnt}.`,
+      `<b>Cada visita de las campañas nuevas cuesta ${nf0.format(Math.abs(rc * 100))}% menos</b> que antes (${pesos2(cA)} → ${pesos2(c1)}).`);
+    else if (rc >= 0.2) add('mejora', 'bad', 2, `<b>Campañas nuevas ${signo(rc)} por clic</b>: ${pesos2(cA)} antes → ${pesos2(c1)}.`,
+      `Cada visita de las campañas nuevas cuesta más que antes (${pesos2(cA)} → ${pesos2(c1)}); estamos afinando las palabras para bajarlo.`,
+      'Bajar topes de costo por clic en las campañas más caras y revisar qué búsquedas se llevan el gasto.');
+    else if (rc > 0.05) add('mejora', 'warn', 1, `<b>Campañas nuevas ${signo(rc)} por clic</b>: ${pesos2(cA)} antes → ${pesos2(c1)}.`,
+      `Cada visita de las campañas nuevas cuesta un poco más que antes (${pesos2(cA)} → ${pesos2(c1)}).`, 'Vigilar; si sigue subiendo, revisar topes de costo por clic.');
+    else add('bueno', 'good', 1, `<b>Campañas nuevas al mismo costo por clic</b> que antes (${pesos2(c1)}).`, `Cada visita de las campañas nuevas cuesta lo mismo que antes (${pesos2(c1)}).`);
   }
 
   // 3. Ritmo de gasto contra el tope
@@ -528,13 +533,7 @@ function hallazgos(m) {
     else if (rl >= 0.2) add('mejora', 'warn', 1, `<b>Costo por llamada ${signo(rl)}</b>: ${pesos(A.costo / A.llam)} → ${pesos(N.costo / N.llam)}.`, null, 'Revisar horario del botón de llamada y campañas que traen llamadas.');
   }
 
-  // 6c. Campañas nuevas contra lo de antes y contra las anteriores que siguen encendidas
-  const nv = nuevasVsAnteriores(m), c1 = cpc(nv.nu), cA = cpc(nv.A), c0 = nv.an.clics ? nv.an.costo / nv.an.clics : 0;
-  if (nv.nu.clics >= 20 && cA && c1 <= cA * 0.95) add('bueno', 'good', 3,
-    `<b>Campañas nuevas a ${pesos2(c1)} por clic</b>, más baratas que antes (${pesos2(cA)})${c0 ? ` y que las anteriores que siguen (${pesos2(c0)})` : ''}.`,
-    `Las campañas nuevas traen visitas más baratas que antes: <b>${pesos2(c1)}</b> contra ${pesos2(cA)}.`);
-  else if (nv.nu.clics >= 20 && cA && c1 >= cA * 1.1) add('mejora', 'warn', 2, `<b>Campañas nuevas a ${pesos2(c1)} por clic</b>, más caras que antes (${pesos2(cA)}).`, null,
-    'Revisar topes de costo por clic y qué búsquedas se llevan el gasto.');
+  // 6c. Campañas anteriores que siguen encendidas y gastando más caro que las nuevas
   if (nv.gasto && nv.an.costo / nv.gasto > 0.3 && c0 > c1 * 1.2) add('mejora', 'warn', 2,
     `<b>Las campañas anteriores siguen gastando</b> ${pesos(nv.an.costo)} (${pct(nv.an.costo / nv.gasto)} del gasto) a ${pesos2(c0)} por clic, contra ${pesos2(c1)} de las nuevas.`,
     `Las campañas anteriores que siguen encendidas cuestan ${pesos2(c0)} por visita; las nuevas, ${pesos2(c1)}.`, 'Bajar o pausar las anteriores (con tu OK) y pasar ese dinero a las nuevas que pierden por presupuesto.');
@@ -722,10 +721,11 @@ function barras(cont, filas, fmt) {
 // Antes contra ahora: dos barras por dato, con el cambio a la derecha.
 function versus(cont, filas, color) {
   for (const f of filas) {
-    const max = Math.max(1e-9, f.a || 0, f.n || 0);
+    const max = Math.max(1e-9, f.a || 0, f.n || 0, ...(f.extra || []).map((x) => x.v || 0));
     const barra = (lbl, v, c, txt) => {
       const w = v ? (v / max) * 100 : 0;
       const n = h('span', { class: 'n', style: w > 70 ? `right:calc(${100 - w}% + 6px);color:${c === 'var(--antes)' ? 'var(--ink)' : '#fff'}` : `left:calc(${w}% + 6px)` }, txt);
+      if (lbl === 'Anteriores') n.style.fontWeight = '500';
       if (w > 70 && color.oscuro && c !== 'var(--antes)') n.style.color = '#111';
       return h('div', { class: 'vs-bar' }, h('span', {}, lbl), h('div', { class: 'tr' }, h('div', { class: 'f', style: `width:${w}%;background:${c}` }), n));
     };
@@ -739,7 +739,8 @@ function versus(cont, filas, color) {
       res = h('div', { class: 'res' }, h('span', { class: 'delta ' + cls }, (sube ? '▲ ' : baja ? '▼ ' : '= ') + nf0.format(Math.abs(Math.round(r * 100))) + '%'), h('small', {}, pal));
     }
     cont.append(h('div', { class: 'vs-row' }, h('div', { class: 'lbl2' }, f.lbl, f.sub ? h('small', {}, f.sub) : null),
-      h('div', { class: 'vs-bars' }, f.solo ? h('div', { class: 'vacio', style: 'padding:8px 12px' }, f.vacio || '') : [barra('Antes', f.a, 'var(--antes)', f.fmt(f.a)), barra('Ahora', f.n, color.color, f.fmt(f.n))]), res));
+      h('div', { class: 'vs-bars' }, f.solo ? h('div', { class: 'vacio', style: 'padding:8px 12px' }, f.vacio || '') : [barra('Antes', f.a, 'var(--antes)', f.fmt(f.a)), barra(f.nLbl || 'Ahora', f.n, color.color, f.fmt(f.n)),
+        ...(f.extra || []).map((x) => barra(x.lbl, x.v, 'var(--antes)', f.fmt(x.v)))]), res));
   }
 }
 
@@ -749,9 +750,9 @@ function semanas(m) {
   for (let k = -4; ; k++) {
     const a = mas(arr, 7 * k), b = mas(a, 6);
     if (a > hasta) break;
-    const t = suma(m, a, b);
+    const t = suma(m, a, b), tn = k < 0 ? t : suma(m, a, b, true);
     const parcial = b > hasta;
-    out.push({ antes: k < 0, parcial, t, lbl: k < 0 ? fecha(a) : 'Sem ' + (k + 1), sub: k < 0 ? null : parcial ? 'en curso' : fecha(a), rango: `${fecha(a)} al ${fecha(parcial ? hasta : b)}` });
+    out.push({ antes: k < 0, parcial, t, tn, lbl: k < 0 ? fecha(a) : 'Sem ' + (k + 1), sub: k < 0 ? null : parcial ? 'en curso' : fecha(a), rango: `${fecha(a)} al ${fecha(parcial ? hasta : b)}` });
   }
   return out;
 }
@@ -789,7 +790,11 @@ function apartado(m) {
   const vs = h('div', { class: 'vs' });
   const filas = [
     { lbl: INTERNO ? 'Clics por día' : 'Visitas a la página', sub: INTERNO ? null : 'al día', a: porDia(A, 'clics'), n: porDia(N, 'clics'), fmt: (v) => nf1.format(v), mejorSube: true },
-    { lbl: INTERNO ? 'Costo por clic' : 'Costo de cada visita', a: cpc(A), n: cpc(N), fmt: pesos2, mejorSube: false },
+    (() => {
+      const nv = nuevasVsAnteriores(m), c0 = nv.an.clics ? nv.an.costo / nv.an.clics : 0;
+      return { lbl: INTERNO ? 'Costo por clic' : 'Costo de cada visita', sub: 'antes contra campañas nuevas', a: cpc(A), n: cpc(nv.nu), nLbl: 'Nuevas', fmt: pesos2, mejorSube: false,
+        extra: c0 ? [{ lbl: 'Anteriores', v: c0 }] : [] };
+    })(),
     { lbl: INTERNO ? 'Impresiones por día' : 'Veces que se vio el anuncio', sub: INTERNO ? null : 'al día', a: porDia(A, 'imp'), n: porDia(N, 'imp'), fmt: (v) => nf0.format(v), mejorSube: true },
     { lbl: 'Llamadas desde el anuncio', sub: 'por semana', a: porDia(A, 'llam') * 7, n: porDia(N, 'llam') * 7, fmt: (v) => nf1.format(v), mejorSube: true },
   ];
@@ -829,12 +834,12 @@ function apartado(m) {
   const S = semanas(m);
   const sem = h('div', { class: 'semanas' });
   const c1 = h('div', { class: 'chart' }, h('span', {}, INTERNO ? 'Clics por día, semana a semana' : 'Visitas al día, semana a semana'));
-  const c2 = h('div', { class: 'chart' }, h('span', {}, INTERNO ? 'Costo por clic, semana a semana' : 'Costo de cada visita, semana a semana'));
+  const c2 = h('div', { class: 'chart' }, h('span', {}, (INTERNO ? 'Costo por clic' : 'Costo de cada visita') + ': antes la cuenta, después las campañas nuevas'));
   sem.append(c1, c2);
   body.append(h('div', { class: 'bloque' }, h('h3', {}, 'Cómo va avanzando', h('small', {}, 'promedio de cada semana; la última puede ir a medias')), sem));
   requestAnimationFrame(() => {
     columnas(c1, S.map((w) => ({ ...w, v: w.t.dias ? w.t.clics / w.t.dias : null })), m.color, (v) => nf1.format(v));
-    columnas(c2, S.map((w) => ({ ...w, v: w.t.clics ? cpc(w.t) : null })), m.color, (v, fino) => (fino ? pesos2(v) : '$' + nf1.format(v)));
+    columnas(c2, S.map((w) => ({ ...w, v: w.tn.clics ? cpc(w.tn) : null })), m.color, (v, fino) => (fino ? pesos2(v) : '$' + nf1.format(v)));
   });
 
   // Inversión del mes
@@ -904,7 +909,11 @@ function pintarTiles() {
   };
   cont.append(
     tile(INTERNO ? 'Clics por día' : 'Visitas al día', nf1.format(vN), `antes ${nf1.format(vA)}`, dl(cambio(vN, vA), true, 'contra antes')),
-    tile(INTERNO ? 'Costo por clic' : 'Costo de cada visita', N.clics ? pesos2(cpc(N)) : '—', `antes ${pesos2(cpc(A))}`, dl(cambio(cpc(N), cpc(A)), false, 'contra antes')),
+    (() => {
+      const NN = vacio(); for (const m of CON) { const x = ahoraDe(m, true); NN.clics += x.clics; NN.costo += x.costo; }
+      return tile(INTERNO ? 'Costo por clic · campañas nuevas' : 'Costo de cada visita · campañas nuevas', NN.clics ? pesos2(cpc(NN)) : '—',
+        `antes ${pesos2(cpc(A))} · toda la cuenta hoy ${pesos2(cpc(N))}`, dl(cambio(cpc(NN), cpc(A)), false, 'contra antes'));
+    })(),
     tile(INTERNO ? 'Gasto' : 'Inversión', pesos(N.costo), `${INTERNO ? nombreAhora() : 'desde el arranque'} · ${pesos(N.costo / d)} al día`),
     (() => {
       const cs = CON.map(contactosNuevos).filter((x) => x && x.total > 0);
