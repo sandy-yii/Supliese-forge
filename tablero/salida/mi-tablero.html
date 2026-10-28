@@ -119,6 +119,21 @@ p { margin: 0; }
 .vs-row .res small { color: var(--muted); font-size: 12px; }
 @media (max-width: 620px) { .vs-row { grid-template-columns: 1fr auto; } .vs-bars { grid-column: 1 / -1; grid-row: 2; } }
 
+.cb { display: grid; gap: 10px; }
+.cb-row { display: grid; grid-template-columns: minmax(0, 200px) minmax(0, 1fr); gap: 12px; align-items: center; font-size: 13px; }
+.cb-row .l { font-weight: 600; }
+.cb-row .l small { display: block; color: var(--muted); font-size: 12px; font-weight: 400; }
+.cb-row .tr { position: relative; height: 22px; }
+.cb-row .f { position: absolute; inset: 0 auto 0 0; border-radius: 0 4px 4px 0; min-width: 2px; }
+.cb-row .n { position: absolute; top: 50%; transform: translateY(-50%); font-weight: 700; font-size: 13px; white-space: nowrap; color: var(--ink); font-variant-numeric: tabular-nums; }
+.cb-row .na { color: var(--muted); font-size: 13px; }
+@media (max-width: 520px) { .cb-row { grid-template-columns: 1fr; gap: 4px; } }
+.cc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 14px; }
+.cc { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: grid; gap: 12px; align-content: start; }
+.cc-top { display: flex; justify-content: space-between; gap: 10px; align-items: center; flex-wrap: wrap; }
+.cc-top h3 { display: flex; gap: 8px; align-items: center; }
+.cc p { font-size: 14px; color: var(--ink-2); }
+.cc p b { color: var(--ink); }
 .semanas { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 18px; }
 .semanas .chart { display: grid; gap: 6px; }
 .semanas .chart > span { font-size: 13px; color: var(--ink-2); font-weight: 600; }
@@ -220,6 +235,11 @@ td .sub { color: var(--muted); font-size: 12px; }
   </div>
 
   <section class="tiles" id="tiles" aria-label="Resumen del grupo"></section>
+
+  <section class="card" id="s-costo">
+    <div class="card-head"><h2>¿Los contactos salen más caros que antes?</h2><p id="p-costo"></p></div>
+    <div class="cc-grid" id="costo"></div>
+  </section>
 
   <div class="seccion-t"><h2 id="t-indice"></h2><p id="p-indice"></p></div>
   <nav class="indice" id="indice" aria-label="Marcas"></nav>
@@ -392,6 +412,48 @@ function diasConAnuncios(m) {
   return { activos: ds.size, total: entre(m.datos.desde, fin) };
 }
 
+const esChat = (n) => /coudibot/i.test(n);
+function costoContacto(m) {
+  const pre = mas(m.datos.arranque, -1), acc = acciones(m, m.datos.desde, pre, () => true);
+  const conv = total(acc), chat = total(Object.fromEntries(Object.entries(acc).filter(([n]) => esChat(n))));
+  const ca = suma(m, m.datos.desde, pre).costo, cn = contactosNuevos(m);
+  const gastoAhora = cn ? suma(m, cn.desde, m.datos.hasta).costo : 0;
+  return { ca, conv, chat, sinChat: conv - chat, pCon: conv ? ca / conv : null, pSin: conv - chat > 0 ? ca / (conv - chat) : null,
+    cn, gastoAhora, pAhora: cn && cn.total ? gastoAhora / cn.total : null };
+}
+function veredictoCosto(m, cc) {
+  const base = cc.pSin ?? cc.pCon;
+  if (!cc.pAhora) return { nivel: 'off', txt: INTERNO ? 'Sin dato' : 'Por medir',
+    t: 'Todavía no hay contactos con la medición nueva en esta página, así que no se puede comparar.' };
+  if (!base) return { nivel: 'off', txt: 'Sin antes', t: `Ahora: <b>${pesos(cc.pAhora)} por contacto</b>. Antes no se medían contactos.` };
+  const r = cc.pAhora / base - 1, poco = cc.cn.dias < 7 || cc.cn.total < 10, menos = r < 0;
+  const quePct = `${nf0.format(Math.abs(r * 100))}% ${menos ? 'menos' : 'más'}`;
+  if (poco) return { nivel: menos ? 'good' : 'warn', txt: menos ? 'Primera señal: más barato' : 'Primera señal: más caro',
+    t: `${cc.cn.dias === 1 ? 'Primer día' : `Primeros ${cc.cn.dias} días`} con la medición nueva: <b>${pesos(cc.pAhora)} por contacto</b>, ${quePct} que antes (${pesos(base)}${cc.pSin ? ', sin contar el chat' : ''}). Todavía son ${nf0.format(cc.cn.total)} contactos: es una señal, no una conclusión.` };
+  return { nivel: menos ? 'good' : 'bad', txt: menos ? 'Más barato que antes' : 'Más caro que antes',
+    t: `Cada contacto cuesta <b>${quePct}</b> que antes: ${pesos(cc.pAhora)} contra ${pesos(base)}${cc.pSin ? ' (sin contar el chat)' : ''}.` };
+}
+function nuevasVsAnteriores(m) {
+  const [a, b] = ahora(m), nu = suma(m, a, b, true), to = suma(m, a, b);
+  const an = { clics: to.clics - nu.clics, costo: to.costo - nu.costo };
+  return { A: antesDe(m), nu, an, gasto: to.costo };
+}
+// Barras de costo: la más alta llena el ancho; las que no tienen dato dicen por qué.
+function barrasCosto(filas, oscuro) {
+  const cont = h('div', { class: 'cb' }), max = Math.max(1e-9, ...filas.map((f) => f.v || 0));
+  for (const f of filas) {
+    let der;
+    if (!f.v) der = h('span', { class: 'na' }, f.vacio || 'sin dato');
+    else {
+      const w = (f.v / max) * 100, dentro = w > 72;
+      const n = h('span', { class: 'n', style: dentro ? `right:calc(${100 - w}% + 6px);color:${f.claro ? 'var(--ink)' : oscuro ? '#111' : '#fff'}` : `left:calc(${w}% + 6px)` }, f.fmt(f.v));
+      der = h('div', { class: 'tr' }, h('div', { class: 'f', style: `width:${w}%;background:${f.color}` }), n);
+    }
+    cont.append(h('div', { class: 'cb-row' }, h('span', { class: 'l' }, f.lbl, f.sub ? h('small', {}, f.sub) : null), der));
+  }
+  return cont;
+}
+
 // ---------- hallazgos: los mismos datos, dos tonos. tipo: bueno | mejora · nivel: good | warn | bad
 function hallazgos(m) {
   const A = antesDe(m), N = ahoraDe(m), NN = ahoraDe(m, true), H = [];
@@ -465,6 +527,17 @@ function hallazgos(m) {
     if (rl <= -0.1) add('bueno', 'good', 2, `<b>Costo por llamada ${signo(rl)}</b>: ${pesos(A.costo / A.llam)} → ${pesos(N.costo / N.llam)}.`, `<b>Cada llamada cuesta ${nf0.format(Math.abs(rl * 100))}% menos</b> (${pesos(A.costo / A.llam)} → ${pesos(N.costo / N.llam)}).`);
     else if (rl >= 0.2) add('mejora', 'warn', 1, `<b>Costo por llamada ${signo(rl)}</b>: ${pesos(A.costo / A.llam)} → ${pesos(N.costo / N.llam)}.`, null, 'Revisar horario del botón de llamada y campañas que traen llamadas.');
   }
+
+  // 6c. Campañas nuevas contra lo de antes y contra las anteriores que siguen encendidas
+  const nv = nuevasVsAnteriores(m), c1 = cpc(nv.nu), cA = cpc(nv.A), c0 = nv.an.clics ? nv.an.costo / nv.an.clics : 0;
+  if (nv.nu.clics >= 20 && cA && c1 <= cA * 0.95) add('bueno', 'good', 3,
+    `<b>Campañas nuevas a ${pesos2(c1)} por clic</b>, más baratas que antes (${pesos2(cA)})${c0 ? ` y que las anteriores que siguen (${pesos2(c0)})` : ''}.`,
+    `Las campañas nuevas traen visitas más baratas que antes: <b>${pesos2(c1)}</b> contra ${pesos2(cA)}.`);
+  else if (nv.nu.clics >= 20 && cA && c1 >= cA * 1.1) add('mejora', 'warn', 2, `<b>Campañas nuevas a ${pesos2(c1)} por clic</b>, más caras que antes (${pesos2(cA)}).`, null,
+    'Revisar topes de costo por clic y qué búsquedas se llevan el gasto.');
+  if (nv.gasto && nv.an.costo / nv.gasto > 0.3 && c0 > c1 * 1.2) add('mejora', 'warn', 2,
+    `<b>Las campañas anteriores siguen gastando</b> ${pesos(nv.an.costo)} (${pct(nv.an.costo / nv.gasto)} del gasto) a ${pesos2(c0)} por clic, contra ${pesos2(c1)} de las nuevas.`,
+    `Las campañas anteriores que siguen encendidas cuestan ${pesos2(c0)} por visita; las nuevas, ${pesos2(c1)}.`, 'Bajar o pausar las anteriores (con tu OK) y pasar ese dinero a las nuevas que pierden por presupuesto.');
 
   // 7. Campañas nuevas sin clics
   const sinClics = Object.keys(m.campanas).filter((n) => { const c = m.datos.c[n]; return !c || !suma(m, ...ahora(m), true, n).clics; });
@@ -735,6 +808,23 @@ function apartado(m) {
     `Antes la cuenta tuvo anuncios solo ${dca.activos} de los ${dca.total} días; por eso el cambio por día puede verse más grande o más chico.`));
   body.append(h('div', { class: 'bloque' }, h('h3', {}, 'Antes y ahora', h('small', {}, `antes: 30 días previos al ${fecha(m.datos.arranque)} · ahora: ${INTERNO ? nombreAhora() : 'desde el arranque'} (${N.dias} días)`)), vs));
 
+  // Campañas nuevas contra anteriores
+  {
+    const nv = nuevasVsAnteriores(m), c1 = cpc(nv.nu), cA = cpc(nv.A), c0 = nv.an.clics ? nv.an.costo / nv.an.clics : 0;
+    const vis = INTERNO ? 'clics' : 'visitas';
+    const filasC = [
+      { lbl: 'Antes', sub: `toda la cuenta · ${nf0.format(nv.A.clics)} ${vis}`, v: cA, color: 'var(--antes)', claro: true, fmt: pesos2 },
+      { lbl: 'Ahora: campañas anteriores', sub: c0 ? `siguen encendidas · ${nf0.format(nv.an.clics)} ${vis} · ${pesos(nv.an.costo)}` : 'ya no gastan', v: c0, color: 'var(--line-2)', claro: true, fmt: pesos2, vacio: 'apagadas' },
+      { lbl: 'Ahora: campañas nuevas', sub: `${nf0.format(nv.nu.clics)} ${vis} · ${pesos(nv.nu.costo)}`, v: c1, color: m.color, fmt: pesos2, vacio: 'sin clics todavía' },
+    ];
+    let txt;
+    if (!c1) txt = 'Las campañas nuevas todavía no traen visitas.';
+    else if (c0 && c0 > c1) txt = `Cada visita de las campañas nuevas cuesta <b>${nf0.format((1 - c1 / c0) * 100)}% menos</b> que la de las anteriores que siguen encendidas${cA ? `, y ${c1 <= cA ? `${nf0.format((1 - c1 / cA) * 100)}% menos` : `${nf0.format((c1 / cA - 1) * 100)}% más`} que antes` : ''}.`;
+    else if (cA) txt = `Cada visita de las campañas nuevas cuesta ${pesos2(c1)}: ${c1 <= cA ? `<b>${nf0.format((1 - c1 / cA) * 100)}% menos</b>` : `${nf0.format((c1 / cA - 1) * 100)}% más`} que antes.`;
+    body.append(h('div', { class: 'bloque' }, h('h3', {}, INTERNO ? 'Campañas nuevas contra anteriores' : 'Las campañas nuevas contra las de antes', h('small', {}, 'costo de cada ' + (INTERNO ? 'clic' : 'visita'))),
+      barrasCosto(filasC, m.oscuro), txt ? html('p', { style: 'font-size:14px;color:var(--ink-2)' }, txt) : null));
+  }
+
   // Semana a semana
   const S = semanas(m);
   const sem = h('div', { class: 'semanas' });
@@ -823,6 +913,24 @@ function pintarTiles() {
       return tile('Contactos', nf1.format(cs.reduce((a, x) => a + x.total, 0)), `desde el ${fecha(desde)}, con la medición nueva`);
     })());
   const tv = cont.lastChild.querySelector('.v'); if (!/\d/.test(tv.textContent)) tv.style.cssText = 'font-size:22px;padding-block:4px';
+}
+
+function pintarCosto() {
+  const cont = $('#costo'); cont.replaceChildren();
+  let conv = 0, chat = 0;
+  for (const m of CON) { const cc = costoContacto(m); conv += cc.conv; chat += cc.chat; }
+  $('#p-costo').innerHTML = `Antes, <b>${pct(conv ? chat / conv : 0)} de lo que se contaba como contacto eran conversaciones con el chat de la página</b>; por eso cada «contacto» parecía barato. ` +
+    'Con la medición nueva solo cuentan formularios enviados y clics en WhatsApp. Abajo, el costo de antes con y sin el chat, y el de ahora.';
+  for (const m of MARCAS.filter((x) => x.datos)) {
+    const cc = costoContacto(m), v = veredictoCosto(m, cc);
+    const filas = [
+      { lbl: 'Antes, como se contaba', sub: `${nf0.format(cc.conv)} conversiones, ${nf0.format(cc.chat)} del chat`, v: cc.pCon, color: 'var(--antes)', claro: true, fmt: pesos },
+      { lbl: 'Antes, sin contar el chat', sub: `${nf0.format(cc.sinChat)} formularios, WhatsApp y llamadas`, v: cc.pSin, color: 'var(--antes)', claro: true, fmt: pesos },
+      { lbl: 'Ahora, medición nueva', sub: cc.cn && cc.cn.total ? `${nf0.format(cc.cn.total)} contactos en ${cc.cn.dias} ${cc.cn.dias === 1 ? 'día' : 'días'}` : 'sin contactos todavía', v: cc.pAhora, color: m.color, fmt: pesos, vacio: 'sin contactos todavía' },
+    ];
+    cont.append(h('div', { class: 'cc' }, h('div', { class: 'cc-top' }, h('h3', {}, h('span', { class: 'dot', style: 'background:' + m.color }), m.nombre), pill(v)),
+      barrasCosto(filas, m.oscuro), html('p', {}, v.t)));
+  }
 }
 
 function pintarIndice() {
@@ -957,7 +1065,7 @@ function pintar() {
     chips($('#f-periodo'), PERIODOS, est.periodo, (v) => { est.periodo = v; guardar('periodo', v); pintar(); });
     chips($('#f-metrica'), [['clics', 'Clics'], ['costo', 'Gasto'], ['cpc', 'Costo por clic']], est.metrica, (v) => { est.metrica = v; guardar('metrica', v); pintar(); });
   }
-  pintarTiles(); pintarIndice(); pintarMarcas(); pintarPasteles(); pintarTendencia(); pintarLeads(); pintarPendientes();
+  pintarTiles(); pintarCosto(); pintarIndice(); pintarMarcas(); pintarPasteles(); pintarTendencia(); pintarLeads(); pintarPendientes();
 }
 
 function iniciar() {
@@ -968,7 +1076,7 @@ function iniciar() {
   $('#meta').textContent = CON.length
     ? `Campañas nuevas desde el ${fecha(ARRANQUE)} · datos hasta el ${fecha(HASTA)} de ${HASTA.slice(0, 4)} · «antes» son los 30 días previos al arranque`
     : 'Todavía no hay datos cargados.';
-  if (!CON.length) { document.querySelectorAll('.tiles, .grid2, #s-leads, .seccion-t').forEach((e) => { e.hidden = true; }); pintarIndice(); pintarMarcas(); pintarPendientes(); return; }
+  if (!CON.length) { document.querySelectorAll('.tiles, .grid2, #s-leads, #s-costo, .seccion-t').forEach((e) => { e.hidden = true; }); pintarIndice(); pintarMarcas(); pintarPendientes(); return; }
   pintar();
   let ancho = innerWidth, to;
   addEventListener('resize', () => { if (innerWidth === ancho) return; ancho = innerWidth; clearTimeout(to); to = setTimeout(() => { pintarMarcas(); pintarTendencia(); }, 150); });
