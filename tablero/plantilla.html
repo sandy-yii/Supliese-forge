@@ -61,6 +61,7 @@ p { margin: 0; }
 .dot { width: 10px; height: 10px; border-radius: 3px; flex: none; display: inline-block; }
 
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; display: grid; gap: 16px; min-width: 0; }
+.card > * { min-width: 0; }
 .card-head { display: grid; gap: 4px; }
 .card-head p { color: var(--ink-2); font-size: 14px; max-width: 70ch; }
 .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 20px; }
@@ -357,15 +358,44 @@ function ahora(m) {
 const nombreAhora = () => ({ arranque: 'desde el arranque', '7': 'últimos 7 días', '14': 'últimos 14 días' }[est.periodo]);
 const antesDe = (m) => suma(m, m.datos.desde, mas(m.datos.arranque, -1));
 const ahoraDe = (m, soloNuevas = false) => suma(m, ...ahora(m), soloNuevas);
+// El cierre del mes se proyecta con el gasto diario reciente (desde el arranque, máximo 7 días), no con el promedio del mes,
+// que incluye días en que la cuenta pudo no tener anuncios.
 function mesDe(m) {
   const hasta = m.datos.hasta, ini = hasta.slice(0, 8) + '01', t = suma(m, ini, hasta), dm = diasMes(hasta), dt = entre(ini, hasta);
-  return { gasto: t.costo, debe: (m.tope * dt) / dm, cierre: (t.costo / dt) * dm, dm, dt, hasta };
+  let r0 = mas(hasta, -6); if (r0 < m.datos.arranque) r0 = m.datos.arranque;
+  const rec = suma(m, r0, hasta), diario = rec.dias ? rec.costo / rec.dias : 0;
+  return { gasto: t.costo, debe: (m.tope * dt) / dm, cierre: t.costo + diario * (dm - dt), diario, dm, dt, hasta };
+}
+
+// ---------- contactos: la medición nueva son las acciones «AB ·»; lo que se contaba antes no es comparable 1 a 1.
+const esNuevaAccion = (n) => n.startsWith('AB ·');
+function medicion(m) {
+  const k = (m.datos && m.datos.k) || {};
+  const fechas = Object.keys(k).filter((d) => Object.keys(k[d]).some(esNuevaAccion)).sort();
+  return fechas[0] || null;
+}
+function acciones(m, a, b, filtro) {
+  const out = {}, k = (m.datos && m.datos.k) || {};
+  for (const [d, x] of Object.entries(k)) if (d >= a && d <= b) for (const [n, v] of Object.entries(x)) if (filtro(n)) out[n] = (out[n] || 0) + v;
+  return out;
+}
+const total = (o) => Object.values(o).reduce((a, b) => a + b, 0);
+function contactosNuevos(m) {
+  const desde = medicion(m); if (!desde) return null;
+  const por = acciones(m, desde, m.datos.hasta, esNuevaAccion);
+  return { desde, dias: entre(desde, m.datos.hasta), total: total(por), por };
+}
+const detalle = (por) => Object.entries(por).sort((a, b) => b[1] - a[1]).map(([n, v]) => `${nf1.format(v)} ${n.replace('AB · ', '').toLowerCase()}`).join(', ');
+function diasConAnuncios(m) {
+  const fin = mas(m.datos.arranque, -1), ds = new Set();
+  for (const c of Object.values(m.datos.c)) for (const [d, r] of Object.entries(c.d)) if (d >= m.datos.desde && d <= fin && r[0] > 0) ds.add(d);
+  return { activos: ds.size, total: entre(m.datos.desde, fin) };
 }
 
 // ---------- hallazgos: los mismos datos, dos tonos. tipo: bueno | mejora · nivel: good | warn | bad
 function hallazgos(m) {
   const A = antesDe(m), N = ahoraDe(m), NN = ahoraDe(m, true), H = [];
-  const add = (tipo, nivel, peso, interno, duenos, accion) => H.push({ tipo, nivel, peso, interno, duenos, accion });
+  const add = (tipo, nivel, peso, interno, duenos, accion, medic) => H.push({ tipo, nivel, peso, interno, duenos, accion, medic });
   const dias = N.dias;
 
   // 1. Visitas por día
@@ -418,8 +448,10 @@ function hallazgos(m) {
     if (s1 !== null && s2 !== null) {
       if (s2 < s1 - 0.03) add('bueno', 'good', 2, `<b>Desperdicio a la baja</b>: el gasto en búsquedas que bloqueamos pasó de ${pct(s1)} a ${pct(s2)}.`,
         `Cada vez se gasta menos en búsquedas que no venden (de ${pct(s1)} a ${pct(s2)} del gasto).`);
-      if (s2 >= 0.15) add('mejora', 'warn', 1, `Todavía <b>${pct(s2)} del gasto</b> de los últimos días se va en búsquedas que después bloqueamos.`,
-        null, 'Revisar las búsquedas de ayer y agregar exclusiones.');
+      if (s2 >= 0.15) {
+        add('mejora', 'warn', 1, `<b>${pct(s2)} del gasto</b> de los últimos 3 días fue en búsquedas que ya bloqueamos.`, null, 'Ese gasto ya se cortó; revisar que no aparezcan búsquedas parecidas.');
+        add('bueno', 'good', 1, null, `Ya bloqueamos búsquedas que no venden y que se estaban llevando ${pct(s2)} del gasto de los últimos días.`);
+      }
     }
   }
 
@@ -439,14 +471,20 @@ function hallazgos(m) {
   if (sinClics.length) add('mejora', sinClics.length >= 2 ? 'bad' : 'warn', 1, `<b>${sinClics.length} campaña(s) nueva(s) sin clics</b>: ${sinClics.join(', ')}.`, null,
     'Revisar que estén aprobadas y que el tope de costo por clic alcance.');
 
-  // 8. Contactos
-  if (N.conv > 0) {
-    const cA = porDia(A, 'conv') * 7, cN = porDia(N, 'conv') * 7, pA = A.conv ? A.costo / A.conv : 0, pN = N.costo / N.conv;
-    if (pA && pN < pA * 0.9) add('bueno', 'good', 3, `<b>Costo por contacto ${signo(pN / pA - 1)}</b>: ${pesos(pA)} → ${pesos(pN)}.`, `<b>Cada contacto cuesta ${nf0.format((1 - pN / pA) * 100)}% menos</b> (${pesos(pA)} → ${pesos(pN)}).`);
-    else if (pA && pN > pA * 1.2) add('mejora', 'bad', 3, `<b>Costo por contacto ${signo(pN / pA - 1)}</b>: ${pesos(pA)} → ${pesos(pN)}.`, `Cada contacto cuesta más que antes (${pesos(pA)} → ${pesos(pN)}); es lo primero que estamos ajustando.`, 'Mover presupuesto a las campañas con menor costo por contacto.');
-    else add('bueno', 'good', 2, `<b>${nf1.format(N.conv)} contactos</b> a ${pesos(pN)} cada uno.`, `<b>${nf1.format(cN)} contactos por semana</b>${cA ? ` (antes ${nf1.format(cA)})` : ''}.`);
-  } else add('mejora', 'bad', 3, '<b>Sin medición de contactos</b>: no sabemos cuánto cuesta cada cliente ni qué campaña los trae.',
-    'Falta terminar de instalar la medición de contactos en la página para contar cuántos clientes llegan.', 'Cerrar con Rodolfo la instalación del formulario y WhatsApp.');
+  // 8. Contactos (medición nueva «AB ·»)
+  const cn = contactosNuevos(m), antesAcc = acciones(m, m.datos.desde, mas(m.datos.arranque, -1), (n) => true);
+  const antesTxt = Object.entries(antesAcc).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([n, v]) => `«${n}» ${nf1.format(v)}`).join(', ');
+  if (cn && cn.total > 0) {
+    add('bueno', 'good', 3, `<b>Medición nueva funcionando desde el ${fecha(cn.desde)}</b>: ${nf1.format(cn.total)} contactos (${detalle(cn.por)}).`,
+      `Ya se cuentan los contactos de la página: <b>${nf1.format(cn.total)} desde el ${fecha(cn.desde)}</b> (${detalle(cn.por)}).`, null, true);
+    if (cn.dias < 14) add('mejora', 'warn', 2, `<b>Costo por contacto: todavía no comparable.</b> La medición nueva lleva ${cn.dias} día(s)${antesTxt ? `; antes se contaba ${antesTxt}` : ''}.`,
+      `En unas semanas podremos decir cuánto cuesta cada contacto; la medición lleva ${cn.dias} día(s).`, 'Esperar 2 semanas de medición nueva. Revisar si lo que se contaba antes eran leads reales.', true);
+    else {
+      const pN = suma(m, cn.desde, m.datos.hasta).costo / cn.total;
+      add('bueno', 'good', 3, `<b>Costo por contacto ${pesos(pN)}</b> con la medición nueva (${cn.dias} días).`, `<b>Cada contacto cuesta ${pesos(pN)}</b>.`, null, true);
+    }
+  } else add('mejora', 'bad', 3, `<b>Sin contactos con la medición nueva</b>${antesTxt ? `; antes se contaba ${antesTxt}` : ''}.`,
+    'Todavía no se registran contactos con la medición nueva de la página; lo estamos revisando con el equipo web.', 'Confirmar con Rodolfo que el formulario y WhatsApp de esta página ya mandan la conversión «AB ·».', true);
 
   H.sort((x, y) => ({ bad: 0, warn: 1, good: 2 }[x.nivel] - { bad: 0, warn: 1, good: 2 }[y.nivel]) || y.peso - x.peso);
   return { H, dias };
@@ -456,7 +494,7 @@ function estado(m) {
   const { H } = hallazgos(m);
   const bad = H.filter((x) => x.nivel === 'bad').length, warn = H.filter((x) => x.nivel === 'warn').length;
   // El estado no cuenta la medición de contactos: es pendiente de todas las cuentas, no de la marca.
-  const badSinMedicion = H.filter((x) => x.nivel === 'bad' && !/medición/.test(x.interno)).length;
+  const badSinMedicion = H.filter((x) => x.nivel === 'bad' && !x.medic).length;
   if (INTERNO) return badSinMedicion ? { nivel: 'bad', txt: 'Va mal' } : warn ? { nivel: 'warn', txt: 'Revisar' } : { nivel: 'good', txt: 'Va bien' };
   return badSinMedicion || warn > 1 ? { nivel: 'warn', txt: 'En ajuste' } : { nivel: 'good', txt: 'Avanzando bien' };
 }
@@ -664,7 +702,8 @@ function apartado(m) {
   const A = antesDe(m), N = ahoraDe(m), { H } = hallazgos(m);
 
   // Lo bueno y lo que falta
-  const buenos = H.filter((x) => x.tipo === 'bueno'), mejoras = H.filter((x) => x.tipo === 'mejora');
+  const para = (x) => (INTERNO ? x.interno : x.duenos);
+  const buenos = H.filter((x) => x.tipo === 'bueno' && para(x)), mejoras = H.filter((x) => x.tipo === 'mejora' && para(x));
   const lista = (clase, titulo, icono, xs, conAccion) => h('div', { class: 'lista ' + clase }, h('h3', {}, h('span', { class: 'ic ' + icono }, ICONO[icono]), titulo),
     xs.length ? h('ul', {}, ...xs.map((x) => { const li = h('li', {}, h('span', { class: 'ic ' + (INTERNO ? x.nivel : icono) }, ICONO[INTERNO ? x.nivel : icono])); const sp = html('span', {}, INTERNO ? x.interno : x.duenos);
       if (conAccion && x.accion) sp.append(h('span', { class: 'acc' }, '→ ' + x.accion)); li.append(sp); return li; }))
@@ -682,12 +721,18 @@ function apartado(m) {
     { lbl: 'Llamadas desde el anuncio', sub: 'por semana', a: porDia(A, 'llam') * 7, n: porDia(N, 'llam') * 7, fmt: (v) => nf1.format(v), mejorSube: true },
   ];
   if (INTERNO) filas.splice(2, 0, { lbl: 'Gasto por día', a: porDia(A, 'costo'), n: porDia(N, 'costo'), fmt: pesos, neutro: true });
-  if (A.llam || N.llam) filas.push({ lbl: INTERNO ? 'Costo por llamada' : 'Costo de cada llamada', a: A.llam ? A.costo / A.llam : 0, n: N.llam ? N.costo / N.llam : 0, fmt: pesos, mejorSube: false });
+  // Un costo por llamada solo existe si hubo llamadas: sin llamadas «ahora», no hay costo que comparar (no es $0).
+  if (A.llam && N.llam) filas.push({ lbl: INTERNO ? 'Costo por llamada' : 'Costo de cada llamada', a: A.costo / A.llam, n: N.costo / N.llam, fmt: pesos, mejorSube: false });
+  else if (A.llam) filas.push({ lbl: INTERNO ? 'Costo por llamada' : 'Costo de cada llamada', solo: 'sin llamadas', vacio: `Antes ${pesos(A.costo / A.llam)} por llamada; desde el arranque no ha entrado ninguna.` });
   // Contactos solo se comparan cuando «ahora» ya se miden; si no, una caída a cero sería falsa.
-  if (N.conv) filas.push({ lbl: 'Contactos', sub: 'por semana', a: porDia(A, 'conv') * 7, n: porDia(N, 'conv') * 7, fmt: (v) => nf1.format(v), mejorSube: true },
-    { lbl: INTERNO ? 'Costo por contacto' : 'Costo de cada contacto', a: A.conv ? A.costo / A.conv : 0, n: N.costo / N.conv, fmt: pesos, mejorSube: false });
-  else filas.push({ lbl: 'Contactos', solo: 'pendiente', vacio: 'Medición en instalación' });
+  const cn = contactosNuevos(m);
+  if (cn && cn.total > 0) filas.push({ lbl: 'Contactos', sub: 'medición nueva', solo: cn.dias < 14 ? 'aún no comparable' : '',
+    vacio: `${nf1.format(cn.total)} desde el ${fecha(cn.desde)} (${detalle(cn.por)})` });
+  else filas.push({ lbl: 'Contactos', solo: 'pendiente', vacio: 'Medición nueva sin contactos todavía' });
   versus(vs, filas, m);
+  const dca = diasConAnuncios(m);
+  if (dca.activos < dca.total * 0.8) vs.append(h('p', { style: 'font-size:13px;color:var(--ink-2)' },
+    `Antes la cuenta tuvo anuncios solo ${dca.activos} de los ${dca.total} días; por eso el cambio por día puede verse más grande o más chico.`));
   body.append(h('div', { class: 'bloque' }, h('h3', {}, 'Antes y ahora', h('small', {}, `antes: 30 días previos al ${fecha(m.datos.arranque)} · ahora: ${INTERNO ? nombreAhora() : 'desde el arranque'} (${N.dias} días)`)), vs));
 
   // Semana a semana
@@ -709,7 +754,7 @@ function apartado(m) {
       h('div', { class: 'metro-top' }, h('span', {}, h('strong', {}, pesos(M.gasto)), ` de ${pesos(m.tope)}`), h('span', { style: 'color:var(--ink-2)' }, `${pct(M.gasto / m.tope)} del tope`)),
       h('div', { class: 'track', role: 'img', 'aria-label': `${pesos(M.gasto)} de ${pesos(m.tope)}` },
         h('div', { class: 'fill', style: `width:${f * 100}%;background:${m.color}` }), h('div', { class: 'mark', style: `left:calc(${Math.min(100, (M.debe / m.tope) * 100)}% - 1px)` })),
-      h('span', { class: 's' }, `Al ${fecha(M.hasta)} tocaría llevar ${pesos(M.debe)}. Al ritmo actual cerraría el mes en ${pesos(M.cierre)}.`))));
+      h('span', { class: 's' }, `Al ${fecha(M.hasta)} tocaría llevar ${pesos(M.debe)}. Gastando como en los últimos días (${pesos(M.diario)} al día), cerraría el mes en ${pesos(M.cierre)}.`))));
 
   // Solo interno: cuántas veces salimos, desperdicio y campañas
   if (INTERNO) {
@@ -771,9 +816,13 @@ function pintarTiles() {
     tile(INTERNO ? 'Clics por día' : 'Visitas al día', nf1.format(vN), `antes ${nf1.format(vA)}`, dl(cambio(vN, vA), true, 'contra antes')),
     tile(INTERNO ? 'Costo por clic' : 'Costo de cada visita', N.clics ? pesos2(cpc(N)) : '—', `antes ${pesos2(cpc(A))}`, dl(cambio(cpc(N), cpc(A)), false, 'contra antes')),
     tile(INTERNO ? 'Gasto' : 'Inversión', pesos(N.costo), `${INTERNO ? nombreAhora() : 'desde el arranque'} · ${pesos(N.costo / d)} al día`),
-    N.conv > 0 ? tile('Contactos', nf1.format(N.conv), `${pesos(N.costo / N.conv)} cada uno`) :
-      tile('Contactos', 'En instalación', `Mientras, ${nf0.format(N.llam)} llamadas desde el anuncio`));
-  cont.lastChild.querySelector('.v').style.cssText = N.conv > 0 ? '' : 'font-size:22px;padding-block:4px';
+    (() => {
+      const cs = CON.map(contactosNuevos).filter((x) => x && x.total > 0);
+      if (!cs.length) return tile('Contactos', 'En instalación', `Mientras, ${nf0.format(N.llam)} llamadas desde el anuncio`);
+      const desde = cs.map((x) => x.desde).sort()[0];
+      return tile('Contactos', nf1.format(cs.reduce((a, x) => a + x.total, 0)), `desde el ${fecha(desde)}, con la medición nueva`);
+    })());
+  const tv = cont.lastChild.querySelector('.v'); if (!/\d/.test(tv.textContent)) tv.style.cssText = 'font-size:22px;padding-block:4px';
 }
 
 function pintarIndice() {
@@ -831,21 +880,39 @@ function pintarTendencia() {
 
 function pintarLeads() {
   const cont = $('#leads'); cont.replaceChildren();
-  const P = CON.map((m) => ({ m, t: ahoraDe(m), r: ahora(m) }));
-  const conv = P.reduce((a, x) => a + x.t.conv, 0);
-  if (!conv) {
-    $('#p-leads').textContent = 'Personas que dejaron sus datos o escribieron por WhatsApp desde los anuncios.';
+  const P = CON.map((m) => ({ m, cn: contactosNuevos(m), t: ahoraDe(m) }));
+  const con = P.filter((x) => x.cn && x.cn.total > 0);
+  $('#p-leads').textContent = 'Personas que mandaron el formulario o escribieron por WhatsApp desde la página, con la medición nueva.';
+  if (!con.length) {
     cont.append(h('div', { class: 'vacio' }, h('b', {}, 'Medición en instalación. '),
-      'En cuanto las páginas registren formularios y WhatsApp, aquí saldrán los contactos de cada marca y cuánto cuesta cada uno. Mientras, estas son las llamadas que entraron desde el botón del anuncio:'));
-    const filas = P.filter((x) => x.t.llam > 0).map((x) => ({ label: x.m.nombre, value: x.t.llam, color: x.m.color }));
-    if (filas.length) { const b = h('div', { class: 'bars', style: 'margin-top:4px' }); cont.append(b); barras(b, filas, (v) => nf0.format(v) + (v === 1 ? ' llamada' : ' llamadas')); }
-    return;
+      'En cuanto las páginas registren formularios y WhatsApp, aquí saldrán los contactos de cada marca y cuánto cuesta cada uno.'));
+  } else {
+    const desde = con.map((x) => x.cn.desde).sort()[0];
+    const izq = h('div', { class: 'pie-box' }), der = h('div', { style: 'display:grid;gap:10px;align-content:start' });
+    cont.append(h('div', { class: 'grid2' }, izq, der));
+    pastel(izq, con.map((x) => ({ label: x.m.nombre, value: x.cn.total, color: x.m.color, oscuro: x.m.oscuro })), (v) => nf1.format(v) + ' contactos',
+      P.filter((x) => !x.cn || !x.cn.total).map((x) => [x.m.nombre, 'sin contactos aún']));
+    der.append(h('h3', {}, 'Cómo llegaron'));
+    const tot = {}; for (const x of con) for (const [n, v] of Object.entries(x.cn.por)) tot[n] = (tot[n] || 0) + v;
+    const b = h('div', { class: 'bars' }); der.append(b);
+    barras(b, Object.entries(tot).sort((x, y) => y[1] - x[1]).map(([n, v], i) => ({ label: n.replace('AB · ', ''), value: v, color: i ? 'var(--m3)' : 'var(--m1)' })), (v) => nf1.format(v));
+    const dias = entre(desde, HASTA);
+    der.append(h('p', { style: 'font-size:13px;color:var(--ink-2)' }, dias < 14
+      ? `La medición empezó el ${fecha(desde)}. Con ${dias} día(s) todavía no se puede calcular un costo por contacto confiable; saldrá cuando lleve dos semanas.`
+      : 'Costo por contacto en el apartado de cada marca.'));
   }
-  $('#p-leads').textContent = `Contactos que trajo Google Ads, ${INTERNO ? nombreAhora() : 'desde el arranque'}, y cuánto costó cada uno.`;
-  const izq = h('div', { class: 'pie-box' }), der = h('div', { class: 'bars' });
-  cont.append(h('div', { class: 'grid2' }, izq, h('div', { style: 'display:grid;gap:10px;align-content:start' }, h('h3', {}, 'Costo de cada contacto'), der)));
-  pastel(izq, P.filter((x) => x.t.conv > 0).map((x) => ({ label: x.m.nombre, value: x.t.conv, color: x.m.color, oscuro: x.m.oscuro })), (v) => nf1.format(v) + ' contactos');
-  barras(der, P.filter((x) => x.t.conv > 0).map((x) => ({ label: x.m.nombre, value: x.t.costo / x.t.conv, color: x.m.color })).sort((a, b) => a.value - b.value), pesos);
+  const filas = P.filter((x) => x.t.llam > 0).map((x) => ({ label: x.m.nombre, value: x.t.llam, color: x.m.color }));
+  if (filas.length) { cont.append(h('h3', { style: 'margin-top:12px' }, 'Llamadas desde el anuncio')); const b = h('div', { class: 'bars' }); cont.append(b); barras(b, filas, (v) => nf0.format(v) + (v === 1 ? ' llamada' : ' llamadas')); }
+  if (INTERNO) {
+    const filasT = [];
+    for (const x of P) {
+      const antesA = acciones(x.m, x.m.datos.desde, mas(x.m.datos.arranque, -1), () => true), ahoraA = acciones(x.m, x.m.datos.arranque, x.m.datos.hasta, () => true);
+      for (const n of new Set([...Object.keys(antesA), ...Object.keys(ahoraA)])) filasT.push(h('tr', {}, h('td', {}, x.m.nombre), h('td', {}, n, esNuevaAccion(n) ? h('div', { class: 'sub' }, 'medición nueva') : null),
+        h('td', {}, nf1.format(antesA[n] || 0)), h('td', {}, nf1.format(ahoraA[n] || 0))));
+    }
+    if (filasT.length) cont.append(h('h3', { style: 'margin-top:12px' }, 'Qué se contaba como conversión, antes y ahora'),
+      h('div', { class: 'tabla' }, h('table', {}, h('thead', {}, h('tr', {}, h('th', {}, 'Marca'), h('th', {}, 'Acción'), h('th', {}, 'Antes (30 días)'), h('th', {}, 'Desde el arranque'))), h('tbody', {}, ...filasT))));
+  }
 }
 
 const ESTADOS = { pendiente: ['Pendiente', 'off'], en_curso: ['En curso', 'warn'], bloqueado: ['Bloqueado', 'bad'], hecho: ['Hecho', 'good'] };
