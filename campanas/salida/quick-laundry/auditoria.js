@@ -11,7 +11,7 @@
  */
 
 // Plan de cada cuenta, por número. El script elige solo el de la cuenta donde se corre.
-var PLANES = [{"cuenta": "256-397-2201", "anterior": "", "nombre": "Quick Laundry (cuenta Supliese Gómez)", "url": "https://quicklaundry.store/", "prefijo": "AB · ", "mensual": 12000, "subir": false, "subir_porque": "hoy ya sube con «ajustes» (Equipo, Emprendimiento y la marca, hasta el tope)", "fijos": ["Equipo para lavandería", "Emprendimiento", "Autoservicio y monedas", "Secadoras para lavandería", "Marcas comerciales", "Marca Quick Laundry"], "lista": "AB · Negativas de la cuenta", "anteriores": "MITAD", "campanas": [{"nombre": "AB · Equipo para lavandería", "arranque": 79, "completo": 158, "cpc": 8}, {"nombre": "AB · Emprendimiento", "arranque": 49, "completo": 99, "cpc": 7}, {"nombre": "AB · Autoservicio y monedas", "arranque": 28, "completo": 55, "cpc": 7}, {"nombre": "AB · Secadoras para lavandería", "arranque": 16, "completo": 32, "cpc": 8}, {"nombre": "AB · Marcas comerciales", "arranque": 16, "completo": 32, "cpc": 7}, {"nombre": "AB · Marca Quick Laundry", "arranque": 10, "completo": 20, "cpc": 6}]}];
+var PLANES = [{"cuenta": "256-397-2201", "anterior": "", "nombre": "Quick Laundry (cuenta Supliese Gómez)", "url": "https://quicklaundry.store/", "prefijo": "AB · ", "paginas": {"AB · Autoservicio y monedas > Autoservicio": "https://quicklaundry.store/lavadoras-de-monedas"}, "mensual": 12000, "subir": false, "subir_porque": "hoy ya sube con «ajustes» (Equipo, Emprendimiento y la marca, hasta el tope)", "fijos": ["Equipo para lavandería", "Emprendimiento", "Autoservicio y monedas", "Secadoras para lavandería", "Marcas comerciales", "Marca Quick Laundry"], "lista": "AB · Negativas de la cuenta", "anteriores": "MITAD", "campanas": [{"nombre": "AB · Equipo para lavandería", "arranque": 79, "completo": 158, "cpc": 8}, {"nombre": "AB · Emprendimiento", "arranque": 49, "completo": 99, "cpc": 7}, {"nombre": "AB · Autoservicio y monedas", "arranque": 28, "completo": 55, "cpc": 7}, {"nombre": "AB · Secadoras para lavandería", "arranque": 16, "completo": 32, "cpc": 8}, {"nombre": "AB · Marcas comerciales", "arranque": 16, "completo": 32, "cpc": 7}, {"nombre": "AB · Marca Quick Laundry", "arranque": 10, "completo": 20, "cpc": 6}]}];
 var PLAN = null;
 
 // Solo para la cuenta nueva de Gamesail: pega aquí su número, por ejemplo '123-456-7890'.
@@ -64,6 +64,8 @@ function pagina(url) {
   var m = /^https?:\/\/([^\/?#]+)([^?#]*)/i.exec(url || '');
   return m ? m[1].toLowerCase().replace(/^www\./, '') + m[2].replace(/\/+$/, '') : '';
 }
+// Página que le toca a un grupo: la propia si el plan le da una; si no, la de la marca.
+function paginaDe(g) { return (PLAN.paginas || {})[g] || PLAN.url; }
 function pesos(micros) { return Math.round(Number(micros || 0) / 1000000); }
 function esNueva(nombre) { return nombre.indexOf(PLAN.prefijo) === 0; }
 
@@ -169,7 +171,7 @@ function main() {
     if (url) urlsActivas[url] = true;
     var pol = f.adGroupAd.policySummary || {};
     var c = porCampana[f.campaign.name] = porCampana[f.campaign.name] || { ok: 0, revision: 0, malos: [] };
-    if (pagina(url) !== pagina(PLAN.url)) mal(g + ': el anuncio va a ' + url + ', no a la página de la marca ' + PLAN.url + '. Corre «cambiar-pagina.js».');
+    if (pagina(url) !== pagina(paginaDe(g))) mal(g + ': el anuncio va a ' + url + ', no a ' + paginaDe(g) + '. Corre «cambiar-pagina.js».');
     var estado = pol.approvalStatus || '';
     if (estado && estado !== 'APPROVED') {
       POLITICAS.push(g + ' · ' + estado + (pol.reviewStatus ? ' (' + pol.reviewStatus + ')' : '') + ' · ' + url +

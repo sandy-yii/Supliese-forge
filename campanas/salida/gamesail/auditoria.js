@@ -11,7 +11,7 @@
  */
 
 // Plan de cada cuenta, por número. El script elige solo el de la cuenta donde se corre.
-var PLANES = [{"cuenta": "118-347-6484", "anterior": "645-094-0317", "nombre": "Gamesail", "url": "https://gamesail.mx/", "prefijo": "AB · ", "mensual": 19700, "subir": true, "subir_porque": "", "fijos": [], "lista": "AB · Negativas de la cuenta", "anteriores": "MITAD", "campanas": [{"nombre": "AB · Lavadoras para ropa y sábanas", "arranque": 97, "completo": 194, "cpc": 14}, {"nombre": "AB · Lavadoras por capacidad y precio", "arranque": 58, "completo": 117, "cpc": 12}, {"nombre": "AB · Secadoras industriales", "arranque": 58, "completo": 117, "cpc": 14}, {"nombre": "AB · Hoteles y hospitales", "arranque": 39, "completo": 78, "cpc": 16}, {"nombre": "AB · Mangles y planchado", "arranque": 26, "completo": 52, "cpc": 16}, {"nombre": "AB · Competencia depurada", "arranque": 23, "completo": 45, "cpc": 10}, {"nombre": "AB · Marca Gamesail", "arranque": 23, "completo": 45, "cpc": 8}]}];
+var PLANES = [{"cuenta": "118-347-6484", "anterior": "645-094-0317", "nombre": "Gamesail", "url": "https://gamesail.mx/", "prefijo": "AB · ", "paginas": {}, "mensual": 19700, "subir": true, "subir_porque": "", "fijos": [], "lista": "AB · Negativas de la cuenta", "anteriores": "MITAD", "campanas": [{"nombre": "AB · Lavadoras para ropa y sábanas", "arranque": 97, "completo": 194, "cpc": 14}, {"nombre": "AB · Lavadoras por capacidad y precio", "arranque": 58, "completo": 117, "cpc": 12}, {"nombre": "AB · Secadoras industriales", "arranque": 58, "completo": 117, "cpc": 14}, {"nombre": "AB · Hoteles y hospitales", "arranque": 39, "completo": 78, "cpc": 16}, {"nombre": "AB · Mangles y planchado", "arranque": 26, "completo": 52, "cpc": 16}, {"nombre": "AB · Competencia depurada", "arranque": 23, "completo": 45, "cpc": 10}, {"nombre": "AB · Marca Gamesail", "arranque": 23, "completo": 45, "cpc": 8}]}];
 var PLAN = null;
 
 // Solo para la cuenta nueva de Gamesail: pega aquí su número, por ejemplo '123-456-7890'.
@@ -64,6 +64,8 @@ function pagina(url) {
   var m = /^https?:\/\/([^\/?#]+)([^?#]*)/i.exec(url || '');
   return m ? m[1].toLowerCase().replace(/^www\./, '') + m[2].replace(/\/+$/, '') : '';
 }
+// Página que le toca a un grupo: la propia si el plan le da una; si no, la de la marca.
+function paginaDe(g) { return (PLAN.paginas || {})[g] || PLAN.url; }
 function pesos(micros) { return Math.round(Number(micros || 0) / 1000000); }
 function esNueva(nombre) { return nombre.indexOf(PLAN.prefijo) === 0; }
 
@@ -169,7 +171,7 @@ function main() {
     if (url) urlsActivas[url] = true;
     var pol = f.adGroupAd.policySummary || {};
     var c = porCampana[f.campaign.name] = porCampana[f.campaign.name] || { ok: 0, revision: 0, malos: [] };
-    if (pagina(url) !== pagina(PLAN.url)) mal(g + ': el anuncio va a ' + url + ', no a la página de la marca ' + PLAN.url + '. Corre «cambiar-pagina.js».');
+    if (pagina(url) !== pagina(paginaDe(g))) mal(g + ': el anuncio va a ' + url + ', no a ' + paginaDe(g) + '. Corre «cambiar-pagina.js».');
     var estado = pol.approvalStatus || '';
     if (estado && estado !== 'APPROVED') {
       POLITICAS.push(g + ' · ' + estado + (pol.reviewStatus ? ' (' + pol.reviewStatus + ')' : '') + ' · ' + url +

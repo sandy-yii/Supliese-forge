@@ -207,6 +207,8 @@ CUENTAS['quick-laundry'] = dict(
     # 27 oct (2): se vuelve a encender «Modelo de Negocio» (10 conversaciones de WhatsApp en 30 días, con el número de Liliana).
     # Cubre lo mismo que Emprendimiento, que baja; Secadoras y Marcas comerciales casi no tienen búsquedas. Total $394 = tope.
     # 27 oct (3): Equipo se queda sin presupuesto (pierde 33%) con clic a $6; Secadoras y Marcas comerciales no gastaron nada.
+    # 28 oct: página de lavadoras de monedas que publicó Rodolfo («página mala» en «lavadora de monedas»).
+    paginas={'Autoservicio y monedas > Autoservicio': 'https://quicklaundry.store/lavadoras-de-monedas'},
     ajustes=dict(presupuesto={'Equipo para lavandería': 160, 'Emprendimiento': 40, 'Autoservicio y monedas': 34,
                               'Secadoras para lavandería': 3, 'Marcas comerciales': 3, 'Marca Quick Laundry': 14},
                  arriba={'Marca Quick Laundry': dict(cuota=0.8, tope=10)},
@@ -386,6 +388,9 @@ CUENTAS['clm'] = dict(
     # 27 oct (3): Mangles, Hotelera y 20 a 45 kg ya pagan casi su tope por clic y pierden 44-69% de las búsquedas por puja,
     # gastando menos de la mitad de su presupuesto: se suben los topes (sin pasar del doble del plan). Túnel trajo un
     # WhatsApp con 2 clics y se queda sin presupuesto: recibe $30 de Marca CLM, que casi no tiene búsquedas.
+    # 28 oct: páginas por tipo de equipo que publicó Rodolfo («página mala» en Google). Cada grupo lleva a la suya; lo demás, a la de inicio.
+    paginas={'Alta capacidad 60 kg o más > Lavadoras de alta capacidad': 'https://kingstar.com.mx/lavadoras-alta-capacidad',
+             'Mangles y planchado > Mangles': 'https://kingstar.com.mx/mangles'},
     ajustes=dict(presupuesto={'Alta capacidad 60 kg o más': 222, 'Lavandería hotelera e institucional': 97, 'Marca CLM': 20,
                               'Túnel de lavado': 92},
                  topes={'Alta capacidad 60 kg o más': 24, 'Lavadoras y secadoras de 20 a 45 kg': 28, 'Mangles y planchado': 24,
@@ -531,6 +536,9 @@ CUENTAS['servicio'] = dict(
     mismo_sitio=['laundry-solutions-servicio.vercel.app'],  # versión anterior del mismo sitio: se conserva la sección
     nota='Servicio técnico, reparación y mantenimiento industrial. Refacciones solo Girbau y Gamesail.',
     comunes=['Servicio Técnico Industrial', 'Agenda tu Servicio', 'Habla con un Técnico'],
+    # 28 oct: página de reparación que publicó Rodolfo («página mala» en «reparación de lavadoras industriales»).
+    paginas={'Reparación y mantenimiento > Reparación': 'https://laundrysolutions.store/reparacion-lavadoras-industriales',
+             'Reparación y mantenimiento > Mantenimiento correctivo': 'https://laundrysolutions.store/reparacion-lavadoras-industriales'},
     # 27 oct (3): «reparación de lavadoras industriales», la búsqueda con más volumen, tiene «anuncio poco relevante».
     # Segundo anuncio en el grupo que repite la búsqueda; el que ya hay se queda.
     anuncios_nuevos={'Reparación y mantenimiento > Reparación': dict(

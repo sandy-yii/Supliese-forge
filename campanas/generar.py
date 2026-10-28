@@ -171,6 +171,25 @@ BASURA = {'Doméstico', 'Marcas que no se venden aquí', 'Lavado por encargo, no
           'Aprender a reparar', 'Empleo', 'Otras marcas', 'Girbau de otro país (filial de EE. UU.)'}
 
 
+def paginas(c):
+    """Páginas propias por grupo («Campaña > Grupo» con el prefijo) → URL. Los grupos que no están van a la página de la marca."""
+    return {PREFIJO + k: u for k, u in c.get('paginas', {}).items()}
+
+
+def revisar_paginas(c):
+    """Errores de las páginas por grupo: que el grupo exista en el plan y que la página sea del mismo sitio que la marca."""
+    errores = []
+    grupos = {'%s > %s' % (k['nombre'], g['nombre']) for k in c['campanas'] for g in k['grupos']}
+    grupos |= {'%s > %s' % (k, g['nombre']) for k, gs in c.get('preparado', {}).get('grupos', {}).items() for g in gs}
+    sitio = lambda u: re.sub(r'^www\.', '', re.match(r'https?://([^/?#]+)', u).group(1).lower())
+    for k, u in c.get('paginas', {}).items():
+        if k not in grupos:
+            errores.append('páginas: el grupo «%s» no está en el plan' % k)
+        if not re.match(r'https://', u) or sitio(u) != sitio(c['url']):
+            errores.append('páginas: «%s» no es del sitio de la marca (%s)' % (u, c['url']))
+    return errores
+
+
 def numero(c):
     """Número de la cuenta para los scripts; vacío si es una cuenta nueva que todavía no tiene número."""
     return c['id'] if re.match(r'^\d{3}-\d{3}-\d{4}$', c['id']) else ''
@@ -188,7 +207,7 @@ def js_activar(p):
     act = c.get('activacion', {})
     basura = ampliar([leer(n) for k, grupo in c['negativas'].items() if k in BASURA for n in grupo])
     plan = dict(cuenta=numero(c), anterior=c.get('id_anterior', ''), nombre=c['nombre'], url=c['url'], prefijo=PREFIJO,
-                mismo_sitio=c.get('mismo_sitio', []),
+                mismo_sitio=c.get('mismo_sitio', []), paginas=paginas(c),
                 campanas=[dict(nombre=k['nombre'], arranque=k['arranque'], completo=k['diario']) for k in p['campanas']],
                 anteriores=act.get('anteriores', 'MITAD'), pausar_palabras=act.get('pausar_palabras', []),
                 pausar_nombres=act.get('pausar_nombres', []),
@@ -206,7 +225,7 @@ def plan_auditoria(p):
     c = p['c']
     act = c.get('activacion', {})
     return dict(cuenta=numero(c), anterior=c.get('id_anterior', ''), nombre=c['nombre'], url=c['url'], prefijo=PREFIJO,
-                mensual=c['mensual'], subir=c.get('subir', True), subir_porque=c.get('subir_porque', ''),
+                paginas=paginas(c), mensual=c['mensual'], subir=c.get('subir', True), subir_porque=c.get('subir_porque', ''),
                 fijos=list(c.get('ajustes', {}).get('presupuesto', {}).keys()),
                 lista=PREFIJO + 'Negativas de la cuenta', anteriores=act.get('anteriores', 'MITAD'),
                 campanas=[dict(nombre=k['nombre'], arranque=k['arranque'], completo=k['diario'], cpc=k['cpc']) for k in p['campanas']])
@@ -261,14 +280,14 @@ def js_todo_en_uno(pasos, titulo='Todo en uno'):
 def plan_palabras(p, nuevos=(), quitar=()):
     """nuevos: nombres de grupos que pueden no existir todavía; esos llevan su anuncio para crearlos."""
     c = p['c']
-    def grupo(g):
+    def grupo(k, g):
         d = dict(nombre=g['nombre'], kw=g['kw'])
         if g['nombre'] in nuevos:
-            d.update(h=g['h'], d=g['d'], p=g['p'])
+            d.update(h=g['h'], d=g['d'], p=g['p'], url=paginas(c).get('%s > %s' % (k['nombre'], g['nombre']), c['url']))
         return d
     return dict(cuenta=numero(c), nombre=c['nombre'], url=c['url'], quitar=list(quitar),
                 lista=dict(nombre=PREFIJO + 'Negativas de la cuenta', kw=p['lista']),
-                campanas=[dict(nombre=k['nombre'], grupos=[grupo(g) for g in k['grupos']]) for k in p['campanas']])
+                campanas=[dict(nombre=k['nombre'], grupos=[grupo(k, g) for g in k['grupos']]) for k in p['campanas']])
 
 
 def preparado(slug, c):
@@ -307,14 +326,15 @@ def plan_anuncios(p):
                 errores.append('%s: descripción de %d caracteres: «%s»' % (donde, len(t), t))
         if not 3 <= len(a['h']) <= 15 or not 2 <= len(a['d']) <= 4 or any(len(x) > 15 for x in a['p']):
             errores.append('%s: el anuncio necesita de 3 a 15 títulos, de 2 a 4 descripciones y rutas de 15 letras o menos' % donde)
-        anuncios.append(dict(campana=PREFIJO + campana, grupo=grupo, h=a['h'], d=a['d'], p=list(a['p'])))
+        anuncios.append(dict(campana=PREFIJO + campana, grupo=grupo, h=a['h'], d=a['d'], p=list(a['p']),
+                             url=paginas(c).get(PREFIJO + donde, c['url'])))
     return dict(cuenta=numero(c), nombre=c['nombre'], url=c['url'], anuncios=anuncios, errores=errores)
 
 
 def js_pagina(p):
     c = p['c']
     return plantilla('plantilla-pagina.js', c, dict(cuenta=numero(c), anterior=c.get('id_anterior', ''),
-                                                    nombre=c['nombre'], url=c['url'], prefijo=PREFIJO,
+                                                    nombre=c['nombre'], url=c['url'], prefijo=PREFIJO, paginas=paginas(c),
                                                     mismo_sitio=c.get('mismo_sitio', [])))
 
 
@@ -513,7 +533,7 @@ def main():
         for i, texto in enumerate(prompt(p, expres=True), 1):
             with open(os.path.join(carpeta_expres, 'parte-%d-de-2.txt' % i), 'w', encoding='utf-8') as f:
                 f.write(texto)
-        for e in p['errores']:
+        for e in p['errores'] + revisar_paginas(p['c']):
             print('ERROR', p['c']['nombre'], '·', e)
             hay_error = True
         for a in p['avisos']:

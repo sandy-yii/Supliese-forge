@@ -59,6 +59,11 @@ function pagina(url) {
   var m = /^https?:\/\/([^\/?#]+)([^?#]*)/i.exec(url || '');
   return m ? m[1].toLowerCase().replace(/^www\./, '') + m[2].replace(/\/+$/, '') : '';
 }
+// Una página es nuestra si es la de la marca o alguna de las páginas propias de los grupos del plan.
+function permitida(u) {
+  var todas = [PLAN.url].concat(Object.keys(PLAN.paginas || {}).map(function (k) { return PLAN.paginas[k]; }));
+  return todas.some(function (t) { return pagina(t) === pagina(u); });
+}
 
 function micros(pesos) { return String(Math.round(pesos * 1000000)); }
 function pesos(micros) { return Math.round(Number(micros) / 1000000); }
@@ -242,7 +247,7 @@ function main() {
   while (itn.hasNext()) {
     var an = itn.next();
     var un = (an.adGroupAd.ad.finalUrls || [])[0] || '';
-    if (pagina(un) === pagina(PLAN.url)) continue;
+    if (permitida(un)) continue;
     if (an.adGroupAd.ad.type === 'RESPONSIVE_SEARCH_AD') {
       ops.push({ adOperation: { update: { resourceName: an.adGroupAd.ad.resourceName, finalUrls: [urlNueva(un)] }, updateMask: 'finalUrls' } });
     } else {

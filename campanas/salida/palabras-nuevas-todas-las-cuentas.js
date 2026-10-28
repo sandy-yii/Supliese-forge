@@ -91,10 +91,10 @@ function main() {
         var rnGrupo = 'customers/' + AdsApp.currentAccount().getCustomerId().replace(/-/g, '') + '/adGroups/' + (--temporal);
         ops.push({ adGroupOperation: { create: { resourceName: rnGrupo, campaign: campanasRn[c.nombre], name: g.nombre, status: 'ENABLED', type: 'SEARCH_STANDARD' } } });
         donde.push('grupo nuevo «' + nombre + '»');
-        ops.push({ adGroupAdOperation: { create: { adGroup: rnGrupo, status: 'ENABLED', ad: { finalUrls: [PLAN.url],
+        ops.push({ adGroupAdOperation: { create: { adGroup: rnGrupo, status: 'ENABLED', ad: { finalUrls: [g.url || PLAN.url],
           responsiveSearchAd: { headlines: g.h.map(function (t) { return { text: t }; }), descriptions: g.d.map(function (t) { return { text: t }; }),
             path1: g.p[0], path2: g.p[1] } } } } });
-        donde.push('anuncio de «' + nombre + '» (' + g.h.length + ' títulos, ' + g.d.length + ' descripciones, a ' + PLAN.url + ')');
+        donde.push('anuncio de «' + nombre + '» (' + g.h.length + ' títulos, ' + g.d.length + ' descripciones, a ' + (g.url || PLAN.url) + ')');
         gr = grupos[nombre] = { rn: rnGrupo, hay: {} };
       }
       if (!gr) { faltan.push(nombre); return; }

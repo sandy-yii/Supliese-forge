@@ -55,10 +55,10 @@ function main() {
     if (!gr) { Logger.log('AVISO: no existe el grupo ' + nombre + '. Se salta.'); return; }
     if (gr.firmas[firma(n.h)]) { Logger.log('«' + nombre + '»: el anuncio nuevo ya está. No se repite.'); return; }
     if (gr.anuncios >= 3) { Logger.log('AVISO «' + nombre + '»: ya tiene ' + gr.anuncios + ' anuncios (Google permite 3). Se salta.'); return; }
-    ops.push({ adGroupAdOperation: { create: { adGroup: gr.rn, status: 'ENABLED', ad: { finalUrls: [PLAN.url],
+    ops.push({ adGroupAdOperation: { create: { adGroup: gr.rn, status: 'ENABLED', ad: { finalUrls: [n.url || PLAN.url],
       responsiveSearchAd: { headlines: n.h.map(function (t) { return { text: t }; }), descriptions: n.d.map(function (t) { return { text: t }; }),
         path1: n.p[0], path2: n.p[1] } } } } });
-    donde.push('anuncio nuevo en «' + nombre + '» (' + n.h.length + ' títulos, ' + n.d.length + ' descripciones, a ' + PLAN.url +
+    donde.push('anuncio nuevo en «' + nombre + '» (' + n.h.length + ' títulos, ' + n.d.length + ' descripciones, a ' + (n.url || PLAN.url) +
       ') · títulos: ' + n.h.join(' · ') + ' · el anuncio que ya tenía se queda');
   });
   if (!ops.length) { Logger.log('Nada que agregar.'); return; }

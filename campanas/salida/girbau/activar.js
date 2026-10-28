@@ -19,7 +19,7 @@
  *   4. Si está de acuerdo, EJECUTAR.
  */
 
-var PLAN = {"cuenta": "860-582-6837", "anterior": "", "nombre": "Girbau", "url": "https://girbaupro.com/", "prefijo": "AB · ", "mismo_sitio": ["supliese-girbau-lavadoras.vercel.app"], "campanas": [{"nombre": "AB · Marca Girbau", "arranque": 49, "completo": 98}, {"nombre": "AB · Girbau Smart Plus", "arranque": 22, "completo": 43}, {"nombre": "AB · Girbau por capacidad y sector", "arranque": 27, "completo": 54}, {"nombre": "AB · Servicio técnico Girbau", "arranque": 11, "completo": 22}], "anteriores": "PAUSAR", "pausar_palabras": [], "pausar_nombres": [], "basura": {"nombre": "PB · Negativas basura", "kw": [["lorsa", "BROAD"], ["lorza", "BROAD"], ["wascomat", "BROAD"], ["unimac", "BROAD"], ["maytag", "BROAD"], ["alliance", "BROAD"], ["speed queen", "PHRASE"], ["primus", "BROAD"], ["electrolux", "BROAD"], ["lg", "BROAD"], ["imesa", "BROAD"], ["sertec", "BROAD"], ["edro", "BROAD"], ["lavartind", "BROAD"], ["whirlpool", "BROAD"], ["braun", "BROAD"], ["gamesail", "BROAD"], ["clm", "BROAD"], ["kingstar", "BROAD"], ["king star", "PHRASE"], ["supliese", "BROAD"], ["quick laundry", "PHRASE"], ["continental girbau", "PHRASE"], ["empleo", "BROAD"], ["curso", "BROAD"], ["cursos", "BROAD"], ["manual", "BROAD"], ["pdf", "BROAD"], ["usada", "BROAD"], ["usadas", "BROAD"], ["renta", "BROAD"]]}};
+var PLAN = {"cuenta": "860-582-6837", "anterior": "", "nombre": "Girbau", "url": "https://girbaupro.com/", "prefijo": "AB · ", "mismo_sitio": ["supliese-girbau-lavadoras.vercel.app"], "paginas": {}, "campanas": [{"nombre": "AB · Marca Girbau", "arranque": 49, "completo": 98}, {"nombre": "AB · Girbau Smart Plus", "arranque": 22, "completo": 43}, {"nombre": "AB · Girbau por capacidad y sector", "arranque": 27, "completo": 54}, {"nombre": "AB · Servicio técnico Girbau", "arranque": 11, "completo": 22}], "anteriores": "PAUSAR", "pausar_palabras": [], "pausar_nombres": [], "basura": {"nombre": "PB · Negativas basura", "kw": [["lorsa", "BROAD"], ["lorza", "BROAD"], ["wascomat", "BROAD"], ["unimac", "BROAD"], ["maytag", "BROAD"], ["alliance", "BROAD"], ["speed queen", "PHRASE"], ["primus", "BROAD"], ["electrolux", "BROAD"], ["lg", "BROAD"], ["imesa", "BROAD"], ["sertec", "BROAD"], ["edro", "BROAD"], ["lavartind", "BROAD"], ["whirlpool", "BROAD"], ["braun", "BROAD"], ["gamesail", "BROAD"], ["clm", "BROAD"], ["kingstar", "BROAD"], ["king star", "PHRASE"], ["supliese", "BROAD"], ["quick laundry", "PHRASE"], ["continental girbau", "PHRASE"], ["empleo", "BROAD"], ["curso", "BROAD"], ["cursos", "BROAD"], ["manual", "BROAD"], ["pdf", "BROAD"], ["usada", "BROAD"], ["usadas", "BROAD"], ["renta", "BROAD"]]}};
 
 // Solo si es una cuenta nueva (el plan no trae su número): pega aquí su número, por ejemplo '123-456-7890'.
 var CUENTA_NUEVA = '';
@@ -58,6 +58,11 @@ function urlNueva() {
 function pagina(url) {
   var m = /^https?:\/\/([^\/?#]+)([^?#]*)/i.exec(url || '');
   return m ? m[1].toLowerCase().replace(/^www\./, '') + m[2].replace(/\/+$/, '') : '';
+}
+// Una página es nuestra si es la de la marca o alguna de las páginas propias de los grupos del plan.
+function permitida(u) {
+  var todas = [PLAN.url].concat(Object.keys(PLAN.paginas || {}).map(function (k) { return PLAN.paginas[k]; }));
+  return todas.some(function (t) { return pagina(t) === pagina(u); });
 }
 
 function micros(pesos) { return String(Math.round(pesos * 1000000)); }
@@ -242,7 +247,7 @@ function main() {
   while (itn.hasNext()) {
     var an = itn.next();
     var un = (an.adGroupAd.ad.finalUrls || [])[0] || '';
-    if (pagina(un) === pagina(PLAN.url)) continue;
+    if (permitida(un)) continue;
     if (an.adGroupAd.ad.type === 'RESPONSIVE_SEARCH_AD') {
       ops.push({ adOperation: { update: { resourceName: an.adGroupAd.ad.resourceName, finalUrls: [urlNueva(un)] }, updateMask: 'finalUrls' } });
     } else {

@@ -64,6 +64,8 @@ function pagina(url) {
   var m = /^https?:\/\/([^\/?#]+)([^?#]*)/i.exec(url || '');
   return m ? m[1].toLowerCase().replace(/^www\./, '') + m[2].replace(/\/+$/, '') : '';
 }
+// Página que le toca a un grupo: la propia si el plan le da una; si no, la de la marca.
+function paginaDe(g) { return (PLAN.paginas || {})[g] || PLAN.url; }
 function pesos(micros) { return Math.round(Number(micros || 0) / 1000000); }
 function esNueva(nombre) { return nombre.indexOf(PLAN.prefijo) === 0; }
 
@@ -169,7 +171,7 @@ function main() {
     if (url) urlsActivas[url] = true;
     var pol = f.adGroupAd.policySummary || {};
     var c = porCampana[f.campaign.name] = porCampana[f.campaign.name] || { ok: 0, revision: 0, malos: [] };
-    if (pagina(url) !== pagina(PLAN.url)) mal(g + ': el anuncio va a ' + url + ', no a la página de la marca ' + PLAN.url + '. Corre «cambiar-pagina.js».');
+    if (pagina(url) !== pagina(paginaDe(g))) mal(g + ': el anuncio va a ' + url + ', no a ' + paginaDe(g) + '. Corre «cambiar-pagina.js».');
     var estado = pol.approvalStatus || '';
     if (estado && estado !== 'APPROVED') {
       POLITICAS.push(g + ' · ' + estado + (pol.reviewStatus ? ' (' + pol.reviewStatus + ')' : '') + ' · ' + url +

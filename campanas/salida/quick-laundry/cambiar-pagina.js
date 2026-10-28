@@ -3,7 +3,8 @@
  * Generado por campanas/generar.py a partir de campanas/plan.py. No se edita a mano: se cambia el plan y se regenera.
  *
  * QUÉ HACE: en todas las campañas de la cuenta, los anuncios activos que van a otra página:
- *   - los adaptables de búsqueda se cambian a la página de la marca (una sola página por marca);
+ *   - los adaptables de búsqueda se cambian a su página: la propia de su grupo si el plan le da una (por ejemplo
+ *     /mangles), o la de inicio de la marca. Una página propia que no abre se salta y el grupo se queda en la de inicio;
  *   - los de otro tipo, que ya no se pueden editar, se quitan (pausados también cuentan para Google).
  * Revisa anuncios habilitados y pausados. Además lista los enlaces de sitio y otros recursos, y las plantillas
  * de seguimiento, que apunten a otro sitio: esos se corrigen a mano.
@@ -14,7 +15,7 @@
  * Al cambiar la URL, Google vuelve a revisar los anuncios (suele tardar de unas horas a un día).
  */
 
-var PLAN = {"cuenta": "256-397-2201", "anterior": "", "nombre": "Quick Laundry (cuenta Supliese Gómez)", "url": "https://quicklaundry.store/", "prefijo": "AB · ", "mismo_sitio": []};
+var PLAN = {"cuenta": "256-397-2201", "anterior": "", "nombre": "Quick Laundry (cuenta Supliese Gómez)", "url": "https://quicklaundry.store/", "prefijo": "AB · ", "paginas": {"AB · Autoservicio y monedas > Autoservicio": "https://quicklaundry.store/lavadoras-de-monedas"}, "mismo_sitio": []};
 
 // Solo si es una cuenta nueva (el plan no trae su número): pega aquí su número, por ejemplo '123-456-7890'.
 var CUENTA_NUEVA = '';
@@ -40,9 +41,30 @@ function sitio(url) {
   return m ? m[1].toLowerCase().replace(/^www\./, '') : '';
 }
 
-// Todos los anuncios de la marca van a una sola página: la del plan.
-function urlNueva() {
-  return PLAN.url;
+// Cada grupo va a su página propia si el plan le da una y esa página abre; si no, a la página de la marca.
+var CARGA = {};
+function urlNueva(campana, grupo) {
+  var u = (PLAN.paginas || {})[campana + ' > ' + grupo];
+  return u && CARGA[u] ? u : PLAN.url;
+}
+// Una página es nuestra si es la de la marca o alguna de las páginas propias de los grupos.
+function permitida(u) {
+  var todas = [PLAN.url].concat(Object.keys(PLAN.paginas || {}).map(function (k) { return PLAN.paginas[k]; }));
+  return todas.some(function (t) { return pagina(t) === pagina(u); });
+}
+function revisarPaginas() {
+  Object.keys(PLAN.paginas || {}).forEach(function (k) {
+    var u = PLAN.paginas[k];
+    if (u in CARGA) return;
+    try {
+      var code = UrlFetchApp.fetch(u, { muteHttpExceptions: true, followRedirects: true }).getResponseCode();
+      CARGA[u] = code < 400;
+      Logger.log((CARGA[u] ? 'Abre bien: ' : 'AVISO: no abre (error ' + code + '), esos grupos se quedan en la página de inicio: ') + u);
+    } catch (e) {
+      CARGA[u] = false;
+      Logger.log('AVISO: no se pudo abrir ' + u + ' (' + e.message + '); esos grupos se quedan en la página de inicio.');
+    }
+  });
 }
 
 // Página sin www, sin parámetros y sin la diagonal final, para comparar si un anuncio ya va a la página de la marca.
@@ -53,11 +75,14 @@ function pagina(url) {
 
 function main() {
   revisarCuenta();
-  Logger.log('Página nueva: ' + PLAN.url);
+  Logger.log('Página de la marca: ' + PLAN.url);
+  revisarPaginas();
   var ops = [], donde = [], yaBien = 0;
   var destino = sitio(PLAN.url);
-  // Todo debe ir a la página de la marca: cualquier otra página (otro dominio u otra sección) se cambia.
-  function otroSitio(urls) { return (urls || []).some(function (u) { return sitio(u) && pagina(u) !== pagina(PLAN.url); }); }
+  // Lo que va a una página que no es nuestra (otro dominio u otra sección) se cambia.
+  function otroSitio(urls) { return (urls || []).some(function (u) { return sitio(u) && !permitida(u); }); }
+  // Un anuncio va mal si no va a la página que le toca a su grupo.
+  function fuera(urls, esperada) { return (urls || []).some(function (u) { return sitio(u) && pagina(u) !== pagina(esperada); }); }
   var it = AdsApp.search('SELECT campaign.name, ad_group.name, ad_group_ad.resource_name, ad_group_ad.ad.resource_name, ' +
     'ad_group_ad.ad.type, ad_group_ad.ad.final_urls, ad_group_ad.ad.final_mobile_urls, ad_group_ad.policy_summary.approval_status, ' +
     'ad_group_ad.policy_summary.review_status, ad_group_ad.policy_summary.policy_topic_entries FROM ad_group_ad ' +
@@ -75,15 +100,18 @@ function main() {
     var ad = f.adGroupAd.ad;
     var url = (ad.finalUrls || [])[0] || '';
     var movil = ad.finalMobileUrls || [];
-    if (!otroSitio(ad.finalUrls) && !otroSitio(movil)) { yaBien++; continue; }
+    var esperada = urlNueva(f.campaign.name, f.adGroup.name);
     if (ad.type === 'RESPONSIVE_SEARCH_AD') {
-      var nueva = otroSitio(ad.finalUrls) ? urlNueva(url) : url;
+      if (!fuera(ad.finalUrls, esperada) && !fuera(movil, esperada)) { yaBien++; continue; }
+      var nueva = fuera(ad.finalUrls, esperada) ? esperada : url;
       var cambio = { resourceName: ad.resourceName, finalUrls: [nueva] };
       var mascara = 'finalUrls';
-      // La URL para celulares también cuenta como sitio: si va a otro dominio, se borra y el anuncio usa la principal.
-      if (otroSitio(movil)) { cambio.finalMobileUrls = []; mascara += ',finalMobileUrls'; }
+      // La URL para celulares también cuenta: si va a otra página, se borra y el anuncio usa la principal.
+      if (fuera(movil, esperada)) { cambio.finalMobileUrls = []; mascara += ',finalMobileUrls'; }
       ops.push({ adOperation: { update: cambio, updateMask: mascara } });
       donde.push('CAMBIAR ' + nombre + ': ' + url + (movil.length ? ' (celular: ' + movil[0] + ')' : '') + ' → ' + nueva);
+    } else if (!otroSitio(ad.finalUrls) && !otroSitio(movil)) {
+      yaBien++;   // no se puede editar, pero va a una página nuestra: se queda
     } else {
       // Pausarlo no basta: para Google los anuncios pausados también cuentan. Ya no se puede editar, así que se quita.
       ops.push({ adGroupAdOperation: { remove: f.adGroupAd.resourceName } });

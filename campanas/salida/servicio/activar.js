@@ -19,7 +19,7 @@
  *   4. Si está de acuerdo, EJECUTAR.
  */
 
-var PLAN = {"cuenta": "265-909-2662", "anterior": "", "nombre": "Servicio para Lavandería", "url": "https://laundrysolutions.store/", "prefijo": "AB · ", "mismo_sitio": ["laundry-solutions-servicio.vercel.app"], "campanas": [{"nombre": "AB · Servicio técnico industrial", "arranque": 43, "completo": 86}, {"nombre": "AB · Reparación y mantenimiento", "arranque": 54, "completo": 108}, {"nombre": "AB · Refacciones Girbau y Gamesail", "arranque": 16, "completo": 32}, {"nombre": "AB · Servicio a secadoras", "arranque": 11, "completo": 22}, {"nombre": "AB · Instalación", "arranque": 7, "completo": 13}, {"nombre": "AB · Servicio a lavanderías", "arranque": 4, "completo": 8}], "anteriores": "MITAD", "pausar_palabras": [], "pausar_nombres": [], "basura": {"nombre": "PB · Negativas basura", "kw": [["curso", "BROAD"], ["cursos", "BROAD"], ["tutorial", "BROAD"], ["cómo reparar", "PHRASE"], ["como reparar", "PHRASE"], ["diagrama", "BROAD"], ["diagramas", "BROAD"], ["pdf", "BROAD"], ["manual", "BROAD"], ["manuales", "BROAD"], ["mabe", "BROAD"], ["samsung", "BROAD"], ["whirlpool", "BROAD"], ["lg", "BROAD"], ["easy", "BROAD"], ["de casa", "PHRASE"], ["para casa", "PHRASE"], ["doméstica", "BROAD"], ["domestica", "BROAD"], ["domésticas", "BROAD"], ["domesticas", "BROAD"], ["carga frontal", "PHRASE"], ["vacante", "BROAD"], ["vacantes", "BROAD"], ["empleo", "BROAD"], ["trabajo", "BROAD"], ["sueldo", "BROAD"]]}};
+var PLAN = {"cuenta": "265-909-2662", "anterior": "", "nombre": "Servicio para Lavandería", "url": "https://laundrysolutions.store/", "prefijo": "AB · ", "mismo_sitio": ["laundry-solutions-servicio.vercel.app"], "paginas": {"AB · Reparación y mantenimiento > Reparación": "https://laundrysolutions.store/reparacion-lavadoras-industriales", "AB · Reparación y mantenimiento > Mantenimiento correctivo": "https://laundrysolutions.store/reparacion-lavadoras-industriales"}, "campanas": [{"nombre": "AB · Servicio técnico industrial", "arranque": 43, "completo": 86}, {"nombre": "AB · Reparación y mantenimiento", "arranque": 54, "completo": 108}, {"nombre": "AB · Refacciones Girbau y Gamesail", "arranque": 16, "completo": 32}, {"nombre": "AB · Servicio a secadoras", "arranque": 11, "completo": 22}, {"nombre": "AB · Instalación", "arranque": 7, "completo": 13}, {"nombre": "AB · Servicio a lavanderías", "arranque": 4, "completo": 8}], "anteriores": "MITAD", "pausar_palabras": [], "pausar_nombres": [], "basura": {"nombre": "PB · Negativas basura", "kw": [["curso", "BROAD"], ["cursos", "BROAD"], ["tutorial", "BROAD"], ["cómo reparar", "PHRASE"], ["como reparar", "PHRASE"], ["diagrama", "BROAD"], ["diagramas", "BROAD"], ["pdf", "BROAD"], ["manual", "BROAD"], ["manuales", "BROAD"], ["mabe", "BROAD"], ["samsung", "BROAD"], ["whirlpool", "BROAD"], ["lg", "BROAD"], ["easy", "BROAD"], ["de casa", "PHRASE"], ["para casa", "PHRASE"], ["doméstica", "BROAD"], ["domestica", "BROAD"], ["domésticas", "BROAD"], ["domesticas", "BROAD"], ["carga frontal", "PHRASE"], ["vacante", "BROAD"], ["vacantes", "BROAD"], ["empleo", "BROAD"], ["trabajo", "BROAD"], ["sueldo", "BROAD"]]}};
 
 // Solo si es una cuenta nueva (el plan no trae su número): pega aquí su número, por ejemplo '123-456-7890'.
 var CUENTA_NUEVA = '';
@@ -58,6 +58,11 @@ function urlNueva() {
 function pagina(url) {
   var m = /^https?:\/\/([^\/?#]+)([^?#]*)/i.exec(url || '');
   return m ? m[1].toLowerCase().replace(/^www\./, '') + m[2].replace(/\/+$/, '') : '';
+}
+// Una página es nuestra si es la de la marca o alguna de las páginas propias de los grupos del plan.
+function permitida(u) {
+  var todas = [PLAN.url].concat(Object.keys(PLAN.paginas || {}).map(function (k) { return PLAN.paginas[k]; }));
+  return todas.some(function (t) { return pagina(t) === pagina(u); });
 }
 
 function micros(pesos) { return String(Math.round(pesos * 1000000)); }
@@ -242,7 +247,7 @@ function main() {
   while (itn.hasNext()) {
     var an = itn.next();
     var un = (an.adGroupAd.ad.finalUrls || [])[0] || '';
-    if (pagina(un) === pagina(PLAN.url)) continue;
+    if (permitida(un)) continue;
     if (an.adGroupAd.ad.type === 'RESPONSIVE_SEARCH_AD') {
       ops.push({ adOperation: { update: { resourceName: an.adGroupAd.ad.resourceName, finalUrls: [urlNueva(un)] }, updateMask: 'finalUrls' } });
     } else {

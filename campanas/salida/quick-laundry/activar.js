@@ -19,7 +19,7 @@
  *   4. Si está de acuerdo, EJECUTAR.
  */
 
-var PLAN = {"cuenta": "256-397-2201", "anterior": "", "nombre": "Quick Laundry (cuenta Supliese Gómez)", "url": "https://quicklaundry.store/", "prefijo": "AB · ", "mismo_sitio": [], "campanas": [{"nombre": "AB · Equipo para lavandería", "arranque": 79, "completo": 158}, {"nombre": "AB · Emprendimiento", "arranque": 49, "completo": 99}, {"nombre": "AB · Autoservicio y monedas", "arranque": 28, "completo": 55}, {"nombre": "AB · Secadoras para lavandería", "arranque": 16, "completo": 32}, {"nombre": "AB · Marcas comerciales", "arranque": 16, "completo": 32}, {"nombre": "AB · Marca Quick Laundry", "arranque": 10, "completo": 20}], "anteriores": "MITAD", "pausar_palabras": ["franquicia", "cuánto cuesta poner una lavandería"], "pausar_nombres": ["competencia"], "basura": {"nombre": "PB · Negativas basura", "kw": [["lavax", "BROAD"], ["lava 1", "PHRASE"], ["aquamatic", "BROAD"], ["5asec", "BROAD"], ["cerca de mí", "PHRASE"], ["cerca de mi", "PHRASE"], ["usada", "BROAD"], ["usadas", "BROAD"], ["usado", "BROAD"], ["usados", "BROAD"], ["seminueva", "BROAD"], ["seminuevas", "BROAD"], ["remate", "BROAD"], ["renta", "BROAD"], ["alquiler", "BROAD"], ["empleo", "BROAD"], ["vacante", "BROAD"], ["vacantes", "BROAD"], ["curso", "BROAD"], ["cursos", "BROAD"], ["pdf", "BROAD"], ["manual", "BROAD"], ["gratis", "BROAD"], ["para casa", "PHRASE"], ["doméstica", "BROAD"], ["domestica", "BROAD"], ["domésticas", "BROAD"], ["domesticas", "BROAD"], ["mabe", "BROAD"], ["samsung", "BROAD"], ["whirlpool", "BROAD"], ["carga frontal", "PHRASE"]]}};
+var PLAN = {"cuenta": "256-397-2201", "anterior": "", "nombre": "Quick Laundry (cuenta Supliese Gómez)", "url": "https://quicklaundry.store/", "prefijo": "AB · ", "mismo_sitio": [], "paginas": {"AB · Autoservicio y monedas > Autoservicio": "https://quicklaundry.store/lavadoras-de-monedas"}, "campanas": [{"nombre": "AB · Equipo para lavandería", "arranque": 79, "completo": 158}, {"nombre": "AB · Emprendimiento", "arranque": 49, "completo": 99}, {"nombre": "AB · Autoservicio y monedas", "arranque": 28, "completo": 55}, {"nombre": "AB · Secadoras para lavandería", "arranque": 16, "completo": 32}, {"nombre": "AB · Marcas comerciales", "arranque": 16, "completo": 32}, {"nombre": "AB · Marca Quick Laundry", "arranque": 10, "completo": 20}], "anteriores": "MITAD", "pausar_palabras": ["franquicia", "cuánto cuesta poner una lavandería"], "pausar_nombres": ["competencia"], "basura": {"nombre": "PB · Negativas basura", "kw": [["lavax", "BROAD"], ["lava 1", "PHRASE"], ["aquamatic", "BROAD"], ["5asec", "BROAD"], ["cerca de mí", "PHRASE"], ["cerca de mi", "PHRASE"], ["usada", "BROAD"], ["usadas", "BROAD"], ["usado", "BROAD"], ["usados", "BROAD"], ["seminueva", "BROAD"], ["seminuevas", "BROAD"], ["remate", "BROAD"], ["renta", "BROAD"], ["alquiler", "BROAD"], ["empleo", "BROAD"], ["vacante", "BROAD"], ["vacantes", "BROAD"], ["curso", "BROAD"], ["cursos", "BROAD"], ["pdf", "BROAD"], ["manual", "BROAD"], ["gratis", "BROAD"], ["para casa", "PHRASE"], ["doméstica", "BROAD"], ["domestica", "BROAD"], ["domésticas", "BROAD"], ["domesticas", "BROAD"], ["mabe", "BROAD"], ["samsung", "BROAD"], ["whirlpool", "BROAD"], ["carga frontal", "PHRASE"]]}};
 
 // Solo si es una cuenta nueva (el plan no trae su número): pega aquí su número, por ejemplo '123-456-7890'.
 var CUENTA_NUEVA = '';
@@ -58,6 +58,11 @@ function urlNueva() {
 function pagina(url) {
   var m = /^https?:\/\/([^\/?#]+)([^?#]*)/i.exec(url || '');
   return m ? m[1].toLowerCase().replace(/^www\./, '') + m[2].replace(/\/+$/, '') : '';
+}
+// Una página es nuestra si es la de la marca o alguna de las páginas propias de los grupos del plan.
+function permitida(u) {
+  var todas = [PLAN.url].concat(Object.keys(PLAN.paginas || {}).map(function (k) { return PLAN.paginas[k]; }));
+  return todas.some(function (t) { return pagina(t) === pagina(u); });
 }
 
 function micros(pesos) { return String(Math.round(pesos * 1000000)); }
@@ -242,7 +247,7 @@ function main() {
   while (itn.hasNext()) {
     var an = itn.next();
     var un = (an.adGroupAd.ad.finalUrls || [])[0] || '';
-    if (pagina(un) === pagina(PLAN.url)) continue;
+    if (permitida(un)) continue;
     if (an.adGroupAd.ad.type === 'RESPONSIVE_SEARCH_AD') {
       ops.push({ adOperation: { update: { resourceName: an.adGroupAd.ad.resourceName, finalUrls: [urlNueva(un)] }, updateMask: 'finalUrls' } });
     } else {

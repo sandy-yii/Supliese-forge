@@ -11,7 +11,7 @@
  */
 
 // Plan de cada cuenta, por número. El script elige solo el de la cuenta donde se corre.
-var PLANES = [{"cuenta": "993-525-8739", "anterior": "", "nombre": "CLM", "url": "https://kingstar.com.mx/", "prefijo": "AB · ", "mensual": 18700, "subir": true, "subir_porque": "", "fijos": ["Alta capacidad 60 kg o más", "Lavandería hotelera e institucional", "Marca CLM", "Túnel de lavado"], "lista": "AB · Negativas de la cuenta", "anteriores": "MITAD", "campanas": [{"nombre": "AB · Alta capacidad 60 kg o más", "arranque": 92, "completo": 185, "cpc": 18}, {"nombre": "AB · Lavandería hotelera e institucional", "arranque": 77, "completo": 154, "cpc": 18}, {"nombre": "AB · Mangles y planchado", "arranque": 46, "completo": 92, "cpc": 18}, {"nombre": "AB · Lavadoras y secadoras de 20 a 45 kg", "arranque": 46, "completo": 92, "cpc": 15}, {"nombre": "AB · Túnel de lavado", "arranque": 31, "completo": 62, "cpc": 30}, {"nombre": "AB · Marca CLM", "arranque": 15, "completo": 31, "cpc": 8}]}];
+var PLANES = [{"cuenta": "993-525-8739", "anterior": "", "nombre": "CLM", "url": "https://kingstar.com.mx/", "prefijo": "AB · ", "paginas": {"AB · Alta capacidad 60 kg o más > Lavadoras de alta capacidad": "https://kingstar.com.mx/lavadoras-alta-capacidad", "AB · Mangles y planchado > Mangles": "https://kingstar.com.mx/mangles"}, "mensual": 18700, "subir": true, "subir_porque": "", "fijos": ["Alta capacidad 60 kg o más", "Lavandería hotelera e institucional", "Marca CLM", "Túnel de lavado"], "lista": "AB · Negativas de la cuenta", "anteriores": "MITAD", "campanas": [{"nombre": "AB · Alta capacidad 60 kg o más", "arranque": 92, "completo": 185, "cpc": 18}, {"nombre": "AB · Lavandería hotelera e institucional", "arranque": 77, "completo": 154, "cpc": 18}, {"nombre": "AB · Mangles y planchado", "arranque": 46, "completo": 92, "cpc": 18}, {"nombre": "AB · Lavadoras y secadoras de 20 a 45 kg", "arranque": 46, "completo": 92, "cpc": 15}, {"nombre": "AB · Túnel de lavado", "arranque": 31, "completo": 62, "cpc": 30}, {"nombre": "AB · Marca CLM", "arranque": 15, "completo": 31, "cpc": 8}]}];
 var PLAN = null;
 
 // Solo para la cuenta nueva de Gamesail: pega aquí su número, por ejemplo '123-456-7890'.
@@ -64,6 +64,8 @@ function pagina(url) {
   var m = /^https?:\/\/([^\/?#]+)([^?#]*)/i.exec(url || '');
   return m ? m[1].toLowerCase().replace(/^www\./, '') + m[2].replace(/\/+$/, '') : '';
 }
+// Página que le toca a un grupo: la propia si el plan le da una; si no, la de la marca.
+function paginaDe(g) { return (PLAN.paginas || {})[g] || PLAN.url; }
 function pesos(micros) { return Math.round(Number(micros || 0) / 1000000); }
 function esNueva(nombre) { return nombre.indexOf(PLAN.prefijo) === 0; }
 
@@ -169,7 +171,7 @@ function main() {
     if (url) urlsActivas[url] = true;
     var pol = f.adGroupAd.policySummary || {};
     var c = porCampana[f.campaign.name] = porCampana[f.campaign.name] || { ok: 0, revision: 0, malos: [] };
-    if (pagina(url) !== pagina(PLAN.url)) mal(g + ': el anuncio va a ' + url + ', no a la página de la marca ' + PLAN.url + '. Corre «cambiar-pagina.js».');
+    if (pagina(url) !== pagina(paginaDe(g))) mal(g + ': el anuncio va a ' + url + ', no a ' + paginaDe(g) + '. Corre «cambiar-pagina.js».');
     var estado = pol.approvalStatus || '';
     if (estado && estado !== 'APPROVED') {
       POLITICAS.push(g + ' · ' + estado + (pol.reviewStatus ? ' (' + pol.reviewStatus + ')' : '') + ' · ' + url +
