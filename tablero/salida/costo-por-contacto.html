@@ -1,0 +1,1160 @@
+<title>Costo por contacto Supliese</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: resumen del grupo arriba, luego un apartado por marca (antes contra ahora, semana a semana, lo bueno y lo que falta). */
+:root {
+  --bg: #f3f5f7; --surface: #ffffff; --ink: #111820; --ink-2: #4b5663; --muted: #7a8592;
+  --line: #e1e5ea; --line-2: #c9d0d8; --wash: #eef1f4; --antes: #b9c1ca;
+  --m1: #2a78d6; --m2: #eb6834; --m3: #1baf7a; --m4: #eda100; --m5: #e87ba4;
+  --good: #0ca30c; --good-ink: #006300; --warn: #fab219; --warn-ink: #8a5a00; --bad: #d03b3b; --bad-ink: #b02a2a;
+  --display: "Bricolage Grotesque", "Public Sans", system-ui, sans-serif;
+  --body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1115; --surface: #151a20; --ink: #edf0f3; --ink-2: #b6bec8; --muted: #87919d;
+    --line: #252d36; --line-2: #36404b; --wash: #1c232b; --antes: #4a5562;
+    --m1: #3987e5; --m2: #d95926; --m3: #199e70; --m4: #c98500; --m5: #d55181;
+    --good-ink: #2fbf2f; --warn-ink: #fab219; --bad-ink: #ec6b6b;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d1115; --surface: #151a20; --ink: #edf0f3; --ink-2: #b6bec8; --muted: #87919d;
+  --line: #252d36; --line-2: #36404b; --wash: #1c232b; --antes: #4a5562;
+  --m1: #3987e5; --m2: #d95926; --m3: #199e70; --m4: #c98500; --m5: #d55181;
+  --good-ink: #2fbf2f; --warn-ink: #fab219; --bad-ink: #ec6b6b;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.5; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-block: 32px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 20px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(28px, 4.2vw, 42px); line-height: 1.08; letter-spacing: -0.02em; }
+h2 { font-size: 22px; line-height: 1.2; letter-spacing: -0.01em; }
+h3 { font-size: 16px; line-height: 1.3; }
+p { margin: 0; }
+.eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2); }
+.head { display: grid; gap: 10px; }
+.meta { color: var(--ink-2); font-size: 14px; }
+.aviso { background: var(--wash); border: 1px dashed var(--line-2); border-radius: 10px; padding: 12px 14px; font-size: 14px; color: var(--ink-2); }
+.aviso b { color: var(--ink); }
+.seccion-t { display: grid; gap: 4px; margin-top: 8px; }
+.seccion-t p { color: var(--ink-2); font-size: 14px; max-width: 70ch; }
+
+.filtros { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; }
+.grupo { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.grupo > span { font-size: 13px; color: var(--muted); margin-right: 4px; }
+.chip { font: inherit; font-size: 14px; border: 1px solid var(--line-2); background: var(--surface); color: var(--ink); text-decoration: none;
+  border-radius: 999px; padding: 6px 13px; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; }
+.chip:hover { border-color: var(--ink-2); }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.chip:focus-visible, button:focus-visible, a:focus-visible { outline: 2px solid var(--m1); outline-offset: 2px; }
+.dot { width: 10px; height: 10px; border-radius: 3px; flex: none; display: inline-block; }
+
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; display: grid; gap: 16px; min-width: 0; }
+.card > * { min-width: 0; }
+.card-head { display: grid; gap: 4px; }
+.card-head p { color: var(--ink-2); font-size: 14px; max-width: 70ch; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 20px; }
+.grid2 > * { min-width: 0; }
+
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: 12px; }
+.tile { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; display: grid; gap: 4px; align-content: start; }
+.tile .k { font-size: 13px; color: var(--ink-2); }
+.tile .v { font-family: var(--display); font-size: 30px; font-weight: 700; line-height: 1.1; letter-spacing: -0.01em; }
+.tile .s { font-size: 13px; color: var(--muted); }
+
+.delta { font-size: 13px; font-weight: 700; white-space: nowrap; }
+.delta.up { color: var(--good-ink); } .delta.down { color: var(--bad-ink); } .delta.soft { color: var(--warn-ink); } .delta.flat { color: var(--muted); }
+
+.pill { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; border-radius: 999px; padding: 3px 10px 3px 6px; white-space: nowrap; }
+.pill i { font-style: normal; width: 16px; height: 16px; border-radius: 50%; display: inline-grid; place-items: center; font-size: 11px; color: #fff; }
+.pill.good { background: color-mix(in srgb, var(--good) 14%, transparent); color: var(--good-ink); } .pill.good i { background: var(--good); }
+.pill.warn { background: color-mix(in srgb, var(--warn) 22%, transparent); color: var(--warn-ink); } .pill.warn i { background: var(--warn); color: #111; }
+.pill.bad { background: color-mix(in srgb, var(--bad) 14%, transparent); color: var(--bad-ink); } .pill.bad i { background: var(--bad); }
+.pill.off { background: var(--wash); color: var(--ink-2); } .pill.off i { background: var(--muted); }
+
+/* Índice de marcas */
+.indice { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 10px; }
+.indice a { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; color: inherit; text-decoration: none;
+  display: grid; gap: 6px; align-content: start; }
+.indice a:hover { border-color: var(--ink-2); }
+.indice a[aria-current="true"] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.indice .nm { display: flex; gap: 8px; align-items: center; font-weight: 700; }
+.indice .gr { font-family: var(--display); font-size: 22px; font-weight: 700; line-height: 1.1; }
+.indice .gr small { font-family: var(--body); font-size: 13px; font-weight: 500; color: var(--ink-2); }
+
+/* Apartado de marca */
+.marca { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; scroll-margin-top: 16px; }
+.marca-head { display: flex; justify-content: space-between; gap: 12px; align-items: center; flex-wrap: wrap; padding: 18px 22px; border-bottom: 1px solid var(--line); }
+.marca-head .t { display: grid; gap: 2px; }
+.marca-head h2 { display: flex; align-items: center; gap: 10px; }
+.marca-head h2 .dot { width: 14px; height: 14px; border-radius: 4px; }
+.marca-head .pg { font-size: 13px; color: var(--muted); }
+.marca-body { padding: 20px 22px 22px; display: grid; gap: 22px; }
+.bloque { display: grid; gap: 12px; min-width: 0; }
+.bloque > h3 { font-size: 15px; }
+.bloque > h3 small { font-family: var(--body); font-weight: 500; font-size: 13px; color: var(--muted); margin-left: 6px; }
+
+.vs { display: grid; gap: 14px; }
+.vs-row { display: grid; grid-template-columns: minmax(0, 170px) minmax(0, 1fr) minmax(0, 120px); gap: 14px; align-items: center; }
+.vs-row .lbl2 { font-size: 14px; font-weight: 600; }
+.vs-row .lbl2 small { display: block; font-weight: 400; color: var(--muted); font-size: 12px; }
+.vs-bars { display: grid; gap: 4px; min-width: 0; }
+.vs-bar { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 8px; align-items: center; font-size: 12px; color: var(--muted); }
+.vs-bar .tr { position: relative; height: 20px; }
+.vs-bar .f { position: absolute; inset: 0 auto 0 0; border-radius: 0 4px 4px 0; min-width: 2px; }
+.vs-bar .n { position: absolute; top: 50%; transform: translateY(-50%); font-size: 13px; font-weight: 700; color: var(--ink); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.vs-row .res { font-size: 14px; text-align: right; }
+.vs-row .res .delta { font-size: 15px; display: block; }
+.vs-row .res small { color: var(--muted); font-size: 12px; }
+@media (max-width: 620px) { .vs-row { grid-template-columns: 1fr auto; } .vs-bars { grid-column: 1 / -1; grid-row: 2; } }
+
+.cb { display: grid; gap: 10px; }
+.cb-row { display: grid; grid-template-columns: minmax(0, 200px) minmax(0, 1fr); gap: 12px; align-items: center; font-size: 13px; }
+.cb-row .l { font-weight: 600; }
+.cb-row .l small { display: block; color: var(--muted); font-size: 12px; font-weight: 400; }
+.cb-row .tr { position: relative; height: 22px; }
+.cb-row .f { position: absolute; inset: 0 auto 0 0; border-radius: 0 4px 4px 0; min-width: 2px; }
+.cb-row .n { position: absolute; top: 50%; transform: translateY(-50%); font-weight: 700; font-size: 13px; white-space: nowrap; color: var(--ink); font-variant-numeric: tabular-nums; }
+.cb-row .na { color: var(--muted); font-size: 13px; }
+@media (max-width: 520px) { .cb-row { grid-template-columns: 1fr; gap: 4px; } }
+.cc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 14px; }
+.cc { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: grid; gap: 12px; align-content: start; }
+.cc-top { display: flex; justify-content: space-between; gap: 10px; align-items: center; flex-wrap: wrap; }
+.cc-top h3 { display: flex; gap: 8px; align-items: center; }
+.cc p { font-size: 14px; color: var(--ink-2); }
+.cc p b { color: var(--ink); }
+.semanas { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 18px; }
+.semanas .chart { display: grid; gap: 6px; }
+.semanas .chart > span { font-size: 13px; color: var(--ink-2); font-weight: 600; }
+
+.dos { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 14px; }
+.lista { border-radius: 12px; padding: 14px 16px; display: grid; gap: 10px; align-content: start; }
+.lista.buena { background: color-mix(in srgb, var(--good) 8%, var(--surface)); border: 1px solid color-mix(in srgb, var(--good) 25%, var(--line)); }
+.lista.mejora { background: color-mix(in srgb, var(--warn) 9%, var(--surface)); border: 1px solid color-mix(in srgb, var(--warn) 30%, var(--line)); }
+.lista.critica { background: color-mix(in srgb, var(--bad) 7%, var(--surface)); border: 1px solid color-mix(in srgb, var(--bad) 28%, var(--line)); }
+.lista h3 { font-size: 15px; display: flex; gap: 8px; align-items: center; }
+.lista ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.lista li { display: grid; grid-template-columns: 18px 1fr; gap: 8px; align-items: baseline; font-size: 14px; color: var(--ink-2); }
+.lista li b { color: var(--ink); }
+.lista li .acc { display: block; color: var(--ink); font-size: 13px; margin-top: 2px; }
+.ic { font-weight: 800; text-align: center; }
+.ic.good { color: var(--good-ink); } .ic.warn { color: var(--warn-ink); } .ic.bad { color: var(--bad-ink); } .ic.off { color: var(--muted); }
+
+.metro { display: grid; gap: 6px; }
+.metro-top { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 14px; align-items: baseline; }
+.track { position: relative; height: 14px; border-radius: 4px; background: var(--wash); }
+.fill { position: absolute; inset: 0 auto 0 0; border-radius: 4px; }
+.mark { position: absolute; top: -4px; bottom: -4px; width: 2px; background: var(--ink); border-radius: 1px; }
+.metro .s { font-size: 13px; color: var(--muted); }
+
+.pie-box { display: grid; grid-template-columns: minmax(0, 200px) minmax(0, 1fr); gap: 20px; align-items: center; }
+@media (max-width: 520px) { .pie-box { grid-template-columns: 1fr; justify-items: center; } .pie-box .leyenda { width: 100%; } }
+.pie-box svg { width: 100%; max-width: 200px; height: auto; display: block; }
+.leyenda { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.leyenda li { display: grid; grid-template-columns: 12px 1fr auto auto; gap: 10px; align-items: center; padding: 6px 8px; border-radius: 8px; font-size: 14px; }
+.leyenda li:hover, .leyenda li.on { background: var(--wash); }
+.leyenda .pct { font-weight: 700; font-variant-numeric: tabular-nums; }
+.leyenda .val { color: var(--ink-2); font-variant-numeric: tabular-nums; min-width: 72px; text-align: right; }
+.leyenda li.nodata { color: var(--muted); grid-template-columns: 12px 1fr auto; }
+.slice { transition: opacity .15s; } .apagado .slice:not(.on) { opacity: .35; }
+
+.chart { width: 100%; min-width: 0; position: relative; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.axis text, .lbl { fill: var(--muted); font-size: 12px; font-family: var(--body); }
+.vlbl { fill: var(--ink); font-size: 12px; font-weight: 700; font-family: var(--body); }
+.grid line { stroke: var(--line); stroke-width: 1; }
+.base { stroke: var(--line-2); stroke-width: 1; }
+.serie-leyenda { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--ink-2); }
+.serie-leyenda span { display: inline-flex; align-items: center; gap: 6px; }
+
+.bars { display: grid; gap: 8px; }
+.bar { display: grid; grid-template-columns: minmax(0, 240px) minmax(0, 1fr) auto; gap: 12px; align-items: center; font-size: 14px; }
+.bar .n { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar .n small { color: var(--muted); }
+.bar .t { height: 12px; background: var(--wash); border-radius: 0 4px 4px 0; position: relative; }
+.bar .f { position: absolute; inset: 0 auto 0 0; border-radius: 0 4px 4px 0; }
+.bar .x { font-variant-numeric: tabular-nums; color: var(--ink-2); min-width: 80px; text-align: right; }
+@media (max-width: 560px) { .bar { grid-template-columns: 1fr auto; } .bar .t { grid-column: 1 / -1; grid-row: 2; } }
+.stack { display: flex; height: 14px; gap: 2px; }
+.stack > div { height: 100%; }
+.stack > div:first-child { border-radius: 4px 0 0 4px; } .stack > div:last-child { border-radius: 0 4px 4px 0; }
+
+.tabla { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { padding: 9px 12px; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; font-variant-numeric: tabular-nums; }
+th { font-size: 12px; font-weight: 600; color: var(--ink-2); background: var(--wash); text-transform: uppercase; letter-spacing: 0.04em; }
+th:first-child, td:first-child { text-align: left; }
+tr:last-child td { border-bottom: 0; }
+td.vieja { color: var(--muted); }
+td.ojo { color: var(--bad-ink); font-weight: 700; }
+td .sub { color: var(--muted); font-size: 12px; }
+
+.kanban { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 12px; }
+.col { background: var(--wash); border-radius: 12px; padding: 12px; display: grid; gap: 10px; align-content: start; }
+.col h3 { font-size: 14px; display: flex; justify-content: space-between; align-items: center; }
+.col h3 > span:last-child { color: var(--muted); font-family: var(--body); font-weight: 600; }
+.tarea { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; display: grid; gap: 6px; font-size: 14px; }
+.tarea .m { font-size: 12px; color: var(--muted); display: flex; gap: 8px; flex-wrap: wrap; }
+.tarea .nota { color: var(--ink-2); font-size: 13px; }
+.hitos { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.hitos li { display: grid; grid-template-columns: 120px 1fr; gap: 12px; align-items: baseline; font-size: 15px; }
+@media (max-width: 520px) { .hitos li { grid-template-columns: 1fr; gap: 4px; } }
+.hitos .nota { color: var(--ink-2); font-size: 13px; display: block; }
+.vacio { color: var(--ink-2); font-size: 14px; background: var(--wash); border-radius: 10px; padding: 14px 16px; }
+.pasos { margin: 0; padding-left: 20px; display: grid; gap: 6px; color: var(--ink-2); font-size: 14px; max-width: 75ch; }
+.pasos code { font-size: 13px; background: var(--wash); padding: 1px 5px; border-radius: 4px; color: var(--ink); }
+
+.tip { position: fixed; z-index: 20; pointer-events: none; background: var(--ink); color: var(--bg); border-radius: 8px; padding: 8px 10px;
+  font-size: 13px; line-height: 1.4; max-width: 260px; box-shadow: 0 6px 20px rgba(0,0,0,.18); }
+.tip .r { display: flex; gap: 8px; align-items: center; justify-content: space-between; }
+.tip .r span:first-child { display: inline-flex; gap: 6px; align-items: center; }
+</style>
+
+<div class="wrap" id="app">
+  <header class="head">
+    <div class="eyebrow">Grupo Supliese · Google Ads</div>
+    <h1 id="titulo"></h1>
+    <p class="meta" id="meta"></p>
+    <div class="aviso" id="aviso-ejemplo" hidden>
+      <b>Datos de ejemplo.</b> Todavía no se cargan números reales; las cifras de esta página son inventadas para mostrar cómo se verá.</div>
+  </header>
+
+  <div class="filtros solo-interno">
+    <div class="grupo" id="f-periodo" role="group" aria-label="Periodo"><span>«Ahora» es</span></div>
+  </div>
+
+  <section class="tiles" id="tiles" aria-label="Resumen del grupo"></section>
+
+  <section class="tiles solo-lead" id="lead-tiles" aria-label="Costo por contacto del grupo"></section>
+  <p class="meta solo-lead" id="lead-nota"></p>
+
+  <div class="grid2 solo-lead">
+    <section class="card">
+      <div class="card-head"><h2>¿Qué se contaba antes como contacto?</h2><p id="p-antes-tipo"></p></div>
+      <div class="pie-box" id="pie-antes-tipo"></div>
+    </section>
+    <section class="card">
+      <div class="card-head"><h2>¿Qué se cuenta ahora?</h2><p id="p-ahora-tipo"></p></div>
+      <div class="pie-box" id="pie-ahora-tipo"></div>
+    </section>
+  </div>
+
+  <section class="card" id="s-costo">
+    <div class="card-head"><h2>¿Los contactos salen más caros que antes?</h2><p id="p-costo"></p></div>
+    <div class="cc-grid" id="costo"></div>
+  </section>
+
+  <div class="seccion-t"><h2 id="t-indice"></h2><p id="p-indice"></p></div>
+  <nav class="indice" id="indice" aria-label="Marcas"></nav>
+
+  <div id="marcas" style="display:grid;gap:20px"></div>
+
+  <div class="seccion-t"><h2>Todo el grupo</h2></div>
+  <div class="grid2">
+    <section class="card">
+      <div class="card-head"><h2 id="t-gasto"></h2><p id="p-gasto"></p></div>
+      <div class="pie-box" id="pie-gasto"></div>
+    </section>
+    <section class="card">
+      <div class="card-head"><h2 id="t-clics"></h2><p id="p-clics"></p></div>
+      <div class="pie-box" id="pie-clics"></div>
+    </section>
+  </div>
+
+  <section class="card solo-interno" id="s-tendencia">
+    <div class="card-head"><h2 id="t-tend"></h2><p>Los 30 días antes del arranque y lo que va después, por marca. La línea punteada marca el arranque.</p></div>
+    <div class="grupo" id="f-metrica" role="group" aria-label="Qué medir"></div>
+    <div class="serie-leyenda" id="leyenda-tend"></div>
+    <div class="chart" id="tendencia"></div>
+  </section>
+
+  <section class="card" id="s-leads">
+    <div class="card-head"><h2>Contactos</h2><p id="p-leads"></p></div>
+    <div id="leads"></div>
+  </section>
+
+  <section class="card" id="s-pend">
+    <div class="card-head"><h2 id="t-pend"></h2><p id="p-pend"></p></div>
+    <div id="pendientes"></div>
+  </section>
+
+  <section class="card solo-interno" id="s-act">
+    <div class="card-head"><h2>Cómo se actualiza</h2></div>
+    <ol class="pasos">
+      <li>En cada cuenta, pega <code>campanas/salida/datos-tablero-todas-las-cuentas.js</code>, Autorizar y <b>Vista previa</b>. Solo lee.</li>
+      <li>Copia todo el registro, incluidas las líneas que empiezan con <code>TABLERO</code>, y pásalo a Claude.</li>
+      <li>Claude lo carga con <code>tablero/cargar.py</code> y vuelve a publicar los dos tableros en sus mismas ligas.</li>
+      <li>Una vez por semana basta. Si un día no se corre, la siguiente vez se llenan los huecos.</li>
+    </ol>
+  </section>
+</div>
+<div class="tip" id="tip" hidden></div>
+
+<script>
+const DATA = {"generado":"2026-10-28","ejemplo":false,"marcas":[{"id":"quick-laundry","nombre":"Quick Laundry","cuenta_nombre":"Supliese Gómez","pagina":"quicklaundry.store","cuenta":"256-397-2201","tope":12000,"campanas":{"Equipo para lavandería":{"cpc":8,"pct":40},"Emprendimiento":{"cpc":7,"pct":25},"Autoservicio y monedas":{"cpc":7,"pct":14},"Secadoras para lavandería":{"cpc":8,"pct":8},"Marcas comerciales":{"cpc":7,"pct":8},"Marca Quick Laundry":{"cpc":6,"pct":5}},"datos":{"v":1,"cuenta":"256-397-2201","marca":"Quick Laundry (cuenta Supliese Gómez)","generado":"2026-10-28 15:39","desde":"2026-09-20","hasta":"2026-10-27","arranque":"2026-10-20","c":{"Campaña Search México":{"n":0,"d":{"2026-09-21":[622,30,193.14,0,0,1,0,0]}},"Campaña Search Marcas":{"n":0,"d":{"2026-09-20":[243,47,182.34,7.99,0,0.258,0.658,0.083],"2026-09-21":[267,23,118.8,1,0,0.213,0.086,0.702],"2026-09-22":[207,20,130.72,4,0,0.163,0.077,0.76],"2026-09-23":[124,15,132.77,0,0,0.141,0.286,0.573],"2026-09-24":[171,11,65.32,0,0,0.144,0,0.856],"2026-09-25":[236,29,226.72,2,1,0.194,0.23,0.576],"2026-09-26":[304,30,180.31,1,0,0.278,0.303,0.419],"2026-09-27":[310,29,175.9,2,0,0.272,0.517,0.211],"2026-09-28":[172,15,96.88,1,0,0.164,0.236,0.6],"2026-09-29":[79,14,96.44,3,0,0.1,0.788,0.113],"2026-09-30":[96,12,50.98,2,0,0.213,0.569,0.218],"2026-10-01":[199,19,122.47,0,0,0.307,0.467,0.226],"2026-10-02":[179,23,146.43,1,0,0.183,0.358,0.46],"2026-10-03":[227,34,164.84,0,0,0.22,0.052,0.729],"2026-10-04":[371,52,181.38,1,0,0.291,0.47,0.239],"2026-10-05":[276,25,122.71,1,0,0.209,0.224,0.567],"2026-10-06":[266,29,145.48,0,0,0.24,0.349,0.411],"2026-10-07":[280,37,139.9,0,0,0.218,0,0.782],"2026-10-08":[182,23,129.12,0,0,0.175,0.179,0.646],"2026-10-09":[274,40,157.15,0,0,0.223,0.236,0.541],"2026-10-10":[377,44,124.63,0,0,0.289,0.273,0.437],"2026-10-11":[402,46,134.49,1,0,0.313,0.274,0.413],"2026-10-12":[331,35,138.95,0,0,0.265,0.347,0.388],"2026-10-13":[169,10,26.84,0,0,0.166,0.009,0.824],"2026-10-14":[231,18,63.98,0,0,0.196,0,0.804],"2026-10-15":[427,36,196.64,1,0,0.324,0,0.676],"2026-10-16":[391,27,274.35,2,2,0.345,0.365,0.291],"2026-10-17":[295,34,146.35,1,0,0.279,0.562,0.159],"2026-10-18":[399,41,147.88,0,0,0.296,0.533,0.171],"2026-10-19":[266,36,128.34,2,0,0.18,0.041,0.779],"2026-10-20":[190,13,127.5,1,0,0.19,0.368,0.443],"2026-10-21":[138,12,71.63,1,0,0.203,0.318,0.479],"2026-10-22":[48,4,44.19,0,0,0.171,0,0.829],"2026-10-23":[67,11,130.83,0,0,0.162,0.052,0.786],"2026-10-24":[42,10,92.14,0,0,0.123,0.454,0.423],"2026-10-25":[61,9,80.17,1,0,0.146,0.042,0.812],"2026-10-26":[37,5,39.42,0,0,0.228,0.207,0.566],"2026-10-27":[12,3,30.01,1,0,0.158,0,0.842]}},"Campaña Modelo de Negocio":{"n":0,"d":{"2026-09-21":[171,36,278.75,2,0,0.514,0.158,0.328],"2026-09-22":[181,34,224.77,3,0,0.432,0.196,0.372],"2026-09-23":[191,40,260.32,3,0,0.518,0.165,0.317],"2026-09-24":[225,32,234.22,3,0,0.544,0,0.456],"2026-09-25":[171,34,258.58,0,0,0.481,0.142,0.377],"2026-09-26":[193,28,182.05,4,0,0.523,0,0.477],"2026-09-28":[146,36,354.3,2,0,0.504,0.471,0.025],"2026-09-29":[133,25,228.17,4,0,0.442,0.537,0.02],"2026-09-30":[79,16,158.87,2,0,0.323,0.645,0.032],"2026-10-01":[165,25,234.9,0,0,0.619,0.028,0.352],"2026-10-02":[216,29,249.96,0,0,0.597,0.013,0.391],"2026-10-03":[121,20,265.21,0,0,0.353,0.54,0.106],"2026-10-05":[145,34,243.35,0,0,0.582,0.418,0],"2026-10-06":[151,30,256.4,0,0,0.51,0.447,0.043],"2026-10-07":[199,34,257.12,0,0,0.512,0.156,0.332],"2026-10-08":[230,38,251.3,1,1,0.507,0,0.493],"2026-10-09":[269,39,245.53,0,0,0.52,0,0.48],"2026-10-10":[162,33,273.46,0,0,0.361,0.48,0.16],"2026-10-12":[156,37,262.2,0,0,0.487,0.323,0.19],"2026-10-13":[189,28,164.01,0,0,0.519,0,0.481],"2026-10-14":[259,39,322.76,0,0,0.527,0,0.473],"2026-10-15":[208,30,257.01,2,0,0.56,0.034,0.405],"2026-10-16":[195,29,206.72,1,0,0.539,0.216,0.245],"2026-10-17":[225,18,98.5,0,0,0.533,0,0.467],"2026-10-19":[384,52,440.82,0,0,0.657,0.003,0.34],"2026-10-20":[152,14,263.13,2,0,0.552,0.448,0],"2026-10-21":[46,9,124.37,2,0,0.291,0.709,0],"2026-10-22":[66,7,126.72,0,0,0.401,0.381,0.218],"2026-10-23":[46,5,90.44,0,0,0.344,0,0.656],"2026-10-24":[57,9,169.68,1,0,0.271,0.368,0.361],"2026-10-26":[3,1,27.03,0,0,0.6,0.4,0],"2026-10-27":[48,0,0,0,0,0.436,0.026,0.538]}},"Equipo para lavandería":{"n":1,"d":{"2026-10-21":[186,30,82.3,0,0,0.216,0.765,0.019],"2026-10-22":[156,23,84.87,0,0,0.126,0.652,0.222],"2026-10-23":[68,10,48.16,0,0,0.1,0,0.9],"2026-10-24":[178,21,113.51,0,0,0.102,0.096,0.803],"2026-10-25":[157,16,88.3,0,0,0.1,0.262,0.665],"2026-10-26":[278,25,157.1,0,0,0.136,0.331,0.533],"2026-10-27":[199,22,146.94,3,0,0.115,0.291,0.594]}},"Marca Quick Laundry":{"n":1,"d":{"2026-10-21":[2,1,0.07,0,0,1,0,0],"2026-10-22":[5,1,3,0,0,1,0,0],"2026-10-23":[10,4,10.74,0,0,0.857,0,0.143],"2026-10-26":[2,1,6,0,0,1,0,0]}},"Autoservicio y monedas":{"n":1,"d":{"2026-10-21":[6,1,2.56,0,0,0.182,0.818,0],"2026-10-22":[22,4,17.82,0,0,0.313,0.094,0.594],"2026-10-23":[14,2,10.32,0,0,0.196,0,0.804],"2026-10-24":[21,0,0,0,0,0.228,0,0.772],"2026-10-25":[43,7,48.71,0,0,0.296,0,0.704],"2026-10-26":[31,4,35.74,0,0,0.344,0.109,0.547],"2026-10-27":[22,4,29.66,0,0,0.404,0.077,0.519]}},"Emprendimiento":{"n":1,"d":{"2026-10-21":[19,2,10.57,0,0,0.257,0.73,0.014],"2026-10-22":[36,10,57.49,0,0,0.274,0.221,0.504],"2026-10-23":[20,1,6.23,0,0,0.19,0,0.81],"2026-10-24":[33,5,34.82,0,0,0.268,0,0.732],"2026-10-25":[44,14,95.24,0,0,0.285,0.015,0.7],"2026-10-26":[88,7,52.5,0,0,0.411,0.226,0.363],"2026-10-27":[35,6,44.02,0,0,0.309,0.052,0.639]}}},"b":{"2026-10-21":[66.01,0,22,0],"2026-10-22":[77.35,0,18,0],"2026-10-23":[54.92,0,13,0],"2026-10-24":[79.61,0,14,0],"2026-10-25":[116.5,0,19,0],"2026-10-26":[167.58,0,25,0],"2026-10-27":[123.96,0,18,0]},"k":{"2026-09-20":{"Enviar formulario de clientes potenciales":1.99,"Supliese Equipos - GA4 (web) Coudibot":6},"2026-09-21":{"Supliese Equipos - GA4 (web) Coudibot":2,"Enviar formulario de clientes potenciales":1},"2026-09-22":{"Enviar formulario de clientes potenciales":1,"Supliese Equipos - GA4 (web) Coudibot":6},"2026-09-25":{"Calls from ads":1,"Supliese Equipos - GA4 (web) Coudibot":1},"2026-09-26":{"Supliese Equipos - GA4 (web) Coudibot":4,"Enviar formulario de clientes potenciales":1},"2026-09-27":{"Supliese Equipos - GA4 (web) Coudibot":2},"2026-09-28":{"Supliese Equipos - GA4 (web) Coudibot":2,"Conversación iniciada":1},"2026-09-29":{"Enviar formulario de clientes potenciales":4,"Supliese Equipos - GA4 (web) Coudibot":3},"2026-09-30":{"Enviar formulario de clientes potenciales":1,"Supliese Equipos - GA4 (web) Coudibot":3},"2026-10-02":{"Conversación iniciada":1},"2026-10-04":{"Conversación iniciada":1},"2026-10-05":{"Conversación iniciada":1},"2026-10-11":{"Conversación iniciada":1},"2026-10-15":{"Conversación iniciada":3},"2026-10-16":{"Calls from ads":1,"Conversación iniciada":2},"2026-10-17":{"Conversación iniciada":1},"2026-10-19":{"Conversación iniciada":2},"2026-10-20":{"Conversación iniciada":3},"2026-10-21":{"Conversación iniciada":3},"2026-10-25":{"Conversación iniciada":1},"2026-10-27":{"AB · Clic en WhatsApp":2,"AB · Formulario enviado":2},"2026-09-23":{"Supliese Equipos - GA4 (web) Coudibot":3},"2026-09-24":{"Supliese Equipos - GA4 (web) Coudibot":3},"2026-10-08":{"Conversación iniciada":1},"2026-10-24":{"Conversación iniciada":1}}}},{"id":"clm","nombre":"Kingstar México","cuenta_nombre":"CLM","pagina":"kingstar.com.mx","cuenta":"993-525-8739","tope":18700,"campanas":{"Alta capacidad 60 kg o más":{"cpc":18,"pct":30},"Lavandería hotelera e institucional":{"cpc":18,"pct":25},"Mangles y planchado":{"cpc":18,"pct":15},"Lavadoras y secadoras de 20 a 45 kg":{"cpc":15,"pct":15},"Túnel de lavado":{"cpc":30,"pct":10},"Marca CLM":{"cpc":8,"pct":5}},"datos":{"v":1,"cuenta":"993-525-8739","marca":"CLM","generado":"2026-10-28 15:39","desde":"2026-09-20","hasta":"2026-10-27","arranque":"2026-10-20","c":{"Campaña CLM General":{"n":0,"d":{"2026-09-21":[344,41,799.99,0,0,0.511,0.251,0.239],"2026-09-22":[291,30,799.23,2,0,0.427,0.25,0.323],"2026-09-23":[323,38,803.13,5,0,0.387,0.294,0.318],"2026-09-24":[204,17,255.46,3,0,0.307,0,0.693],"2026-09-25":[389,44,795.46,1,0,0.448,0,0.552],"2026-09-28":[264,32,807.49,3,0,0.48,0.516,0.004],"2026-09-29":[266,31,799.93,1,1,0.482,0.514,0.004],"2026-09-30":[241,39,799.67,2,0,0.435,0.525,0.039],"2026-10-01":[205,26,554.51,2,1,0.413,0.587,0],"2026-10-02":[88,16,495.39,0,0,0.315,0.677,0.008],"2026-10-13":[49,13,97.96,0,0,0.1,0.865,0.06],"2026-10-14":[293,48,488.33,0,0,0.509,0.44,0.05],"2026-10-15":[305,33,493.73,0,0,0.475,0.257,0.267],"2026-10-16":[358,40,383.26,0,0,0.522,0,0.478],"2026-10-19":[403,40,499.95,0,0,0.549,0.27,0.181],"2026-10-20":[256,30,307.05,0,0,0.4,0.432,0.168]}},"CLM Maximo Rendimiento":{"n":0,"d":{"2026-09-21":[973,124,281.62,2,0,0.114,0.101,0.785]}},"Ingles Search":{"n":0,"d":{"2026-09-21":[36,3,270.48,0,0,0.525,0.458,0.017]}},"Lavandería hotelera e institucional":{"n":1,"d":{"2026-10-21":[5,1,14.25,0,0,0.161,0.71,0.129],"2026-10-22":[11,1,24.47,0,0,0.375,0,0.625],"2026-10-23":[15,2,53.25,0,0,0.75,0,0.25],"2026-10-24":[7,1,26.97,0,0,0.444,0,0.556],"2026-10-25":[5,0,0,0,0,0.182,0,0.818],"2026-10-26":[11,1,26.56,0,0,0.538,0,0.462],"2026-10-27":[14,4,89.35,1,0,0.52,0.4,0.08]}},"Mangles y planchado":{"n":1,"d":{"2026-10-22":[1,0,0,0,0,0.1,0.786,0.143],"2026-10-23":[6,1,8.81,0,0,0.25,0.65,0.1],"2026-10-24":[13,2,29.88,0,0,0.389,0,0.611],"2026-10-25":[6,0,0,0,0,0.571,0,0.429],"2026-10-26":[14,2,35.05,0,0,0.308,0,0.692],"2026-10-27":[4,0,0,0,0,0.176,0,0.824]}},"Lavadoras y secadoras de 20 a 45 kg":{"n":1,"d":{"2026-10-21":[4,2,34.5,0,0,0.6,0.4,0],"2026-10-22":[18,3,59.46,0,0,0.846,0,0.154],"2026-10-23":[5,1,22.21,0,0,0.667,0,0.333],"2026-10-24":[15,3,68.48,0,0,0.769,0,0.231],"2026-10-25":[9,5,113.46,0,0,0.625,0,0.375],"2026-10-26":[8,2,44.25,0,0,0.556,0,0.444],"2026-10-27":[20,0,0,0,0,0.65,0,0.35]}},"Túnel de lavado":{"n":1,"d":{"2026-10-22":[7,0,0,0,0,0.538,0.462,0],"2026-10-23":[1,0,0,0,0,0.111,0.889,0],"2026-10-24":[3,0,0,0,0,0.5,0.5,0],"2026-10-26":[2,2,37.58,1,0,0.286,0.571,0.143],"2026-10-27":[10,5,125.67,1,0,0.667,0,0.333]}},"Alta capacidad 60 kg o más":{"n":1,"d":{"2026-10-20":[78,8,107.99,0,0,0.315,0.527,0.158],"2026-10-21":[123,11,164.79,0,0,0.243,0.257,0.5],"2026-10-22":[133,14,228.73,0,0,0.244,0.249,0.507],"2026-10-23":[110,10,158.59,0,0,0.5,0.06,0.44],"2026-10-24":[135,13,228.34,0,0,0.607,0.012,0.38],"2026-10-25":[86,14,182.08,0,0,0.418,0.323,0.259],"2026-10-26":[85,8,110,0,0,0.474,0.007,0.518],"2026-10-27":[117,6,89.09,0,0,0.431,0,0.569]}},"Marca CLM":{"n":1,"d":{"2026-10-26":[1,0,0,0,0,0.1,0.9,0]}}},"b":{"2026-10-21":[86.41,0,6,0],"2026-10-22":[106.2,0,6,0],"2026-10-23":[99.49,0,5,0],"2026-10-24":[176.09,0,9,0],"2026-10-25":[153.32,0,10,0],"2026-10-26":[129.75,0,8,0],"2026-10-27":[127.94,0,6,0],"2026-10-20":[34.86,0,2,0]},"k":{"2026-09-22":{"CLM México (web) COUDIBOT":2},"2026-09-23":{"CLM México (web) COUDIBOT":3,"Envio de Formulario":2},"2026-09-24":{"CLM México (web) COUDIBOT":3},"2026-09-25":{"CLM México (web) COUDIBOT":1},"2026-09-28":{"CLM México (web) COUDIBOT":2,"Envio de Formulario":1},"2026-09-29":{"Calls from ads":1},"2026-09-30":{"CLM México (web) COUDIBOT":2},"2026-10-01":{"CLM México (web) COUDIBOT":1,"Calls from ads":1},"2026-09-21":{"CLM México (web) COUDIBOT":2},"2026-10-27":{"AB · Clic en WhatsApp":2},"2026-10-26":{"AB · Clic en WhatsApp":1}}}},{"id":"servicio","nombre":"Laundry Solutions","cuenta_nombre":"Servicio para Lavandería","pagina":"laundrysolutions.store","cuenta":"265-909-2662","tope":8200,"campanas":{"Servicio técnico industrial":{"cpc":15,"pct":32},"Reparación y mantenimiento":{"cpc":15,"pct":40},"Refacciones Girbau y Gamesail":{"cpc":12,"pct":12},"Servicio a secadoras":{"cpc":15,"pct":8},"Instalación":{"cpc":15,"pct":5},"Servicio a lavanderías":{"cpc":12,"pct":3}},"datos":{"v":1,"cuenta":"265-909-2662","marca":"Servicio para Lavandería","generado":"2026-10-28 15:38","desde":"2026-09-21","hasta":"2026-10-27","arranque":"2026-10-21","c":{"Servicio y mantenimiento Industrial":{"n":0,"d":{"2026-09-21":[110,3,88.32,0,0,0.388,0.502,0.11],"2026-09-22":[100,5,153.64,1,0,0.275,0,0.725],"2026-09-23":[61,7,273.79,3,0,0.215,0,0.785],"2026-09-24":[34,7,223.2,0,0,0.144,0,0.856],"2026-09-25":[20,1,34.15,0,0,0.116,0,0.884],"2026-09-28":[74,3,84.37,0,0,0.197,0,0.803],"2026-09-29":[5,0,0,0,0,0.1,0,0.9]}},"Servicio Regional":{"n":0,"d":{"2026-09-21":[250,15,64.32,0,0,0.1,0.5,0.479],"2026-09-22":[360,24,145.29,1,0,0.126,0,0.874],"2026-09-23":[511,40,303.14,0,0,0.265,0,0.735],"2026-09-24":[468,38,479.94,1,0,0.354,0.153,0.493],"2026-09-25":[323,33,458.1,1,0,0.3,0.245,0.455],"2026-09-28":[538,49,392.85,1,0,0.252,0.45,0.298],"2026-09-29":[105,6,41.71,0,0,0.31,0,0.69],"2026-09-30":[10,0,0,0,0,null,null,null]}},"Servicio técnico industrial":{"n":1,"d":{"2026-10-24":[52,14,167.8,0,0,0.346,0.512,0.142],"2026-10-25":[119,16,166.82,0,0,0.299,0.443,0.258],"2026-10-26":[16,4,40.77,0,0,0.25,0.317,0.433]}},"Reparación y mantenimiento":{"n":1,"d":{"2026-10-21":[18,4,49.28,0,0,0.286,0.095,0.619],"2026-10-22":[33,10,136.3,0,0,0.471,0,0.529],"2026-10-23":[23,0,0,0,0,0.7,0,0.3],"2026-10-24":[176,19,216,0,0,0.303,0.422,0.276],"2026-10-25":[114,21,199.78,0,0,0.246,0.498,0.256],"2026-10-26":[20,4,42,0,0,0.302,0.07,0.628],"2026-10-27":[10,1,12.06,0,0,0.533,0,0.467]}},"Servicio a secadoras":{"n":1,"d":{"2026-10-26":[1,0,0,0,0,0.1,0.9,0.042]}}},"b":{"2026-10-24":[216.55,137.11,18,12],"2026-10-25":[101.61,167.1,11,17],"2026-10-26":[10.52,52.59,1,5],"2026-10-21":[14.13,0,1,0],"2026-10-22":[9.18,0,1,0],"2026-10-23":[0,0,0,0]},"k":{"2026-09-22":{"Servicios para Lavanderías - GA4 (web) Coudibot":2},"2026-09-23":{"Conversación iniciada":1,"Servicios para Lavanderías - GA4 (web) Coudibot":2},"2026-09-24":{"Servicios para Lavanderías - GA4 (web) Coudibot":1},"2026-09-25":{"Servicios para Lavanderías - GA4 (web) Coudibot":1},"2026-09-28":{"Servicios para Lavanderías - GA4 (web) Coudibot":1}}}},{"id":"girbau","nombre":"Girbau","cuenta_nombre":"Girbau","pagina":"girbaupro.com","cuenta":"860-582-6837","tope":6600,"campanas":{"Marca Girbau":{"cpc":10,"pct":45},"Girbau Smart Plus":{"cpc":10,"pct":20},"Girbau por capacidad y sector":{"cpc":10,"pct":25},"Servicio técnico Girbau":{"cpc":10,"pct":10}},"datos":{"v":1,"cuenta":"860-582-6837","marca":"Girbau","generado":"2026-10-28 15:40","desde":"2026-09-20","hasta":"2026-10-27","arranque":"2026-10-20","c":{"Girbau Búsqueda | Nerea":{"n":0,"d":{"2026-09-21":[113,18,479.03,0,0,0.39,0.572,0.037],"2026-09-22":[87,19,433.18,2,0,0.315,0.274,0.411],"2026-09-23":[144,21,439.82,0,0,0.451,0.218,0.331],"2026-09-24":[118,16,366.33,2,0,0.377,0,0.623],"2026-09-25":[71,15,439.95,1,0,0.565,0,0.435],"2026-09-28":[105,11,445.74,2,0,0.359,0.539,0.101],"2026-09-29":[86,13,260.47,0,0,0.35,0.65,0],"2026-09-30":[93,10,247.9,0,0,0.477,0.508,0.015],"2026-10-01":[49,10,334.35,0,0,0.441,0.559,0],"2026-10-02":[180,14,288.49,0,0,0.515,0.124,0.361],"2026-10-05":[99,13,321.57,0,0,0.343,0.253,0.404],"2026-10-06":[119,14,235.14,0,0,0.389,0.07,0.541],"2026-10-07":[141,7,80.03,0,0,0.442,0,0.558],"2026-10-08":[312,33,439.88,0,0,0.604,0,0.396],"2026-10-09":[105,18,435.69,0,0,0.357,0.587,0.056],"2026-10-12":[157,27,294.28,0,0,0.451,0.243,0.306],"2026-10-13":[136,23,323.94,0,0,0.367,0.196,0.437],"2026-10-14":[183,17,197.76,0,0,0.453,0.019,0.528],"2026-10-15":[154,14,306.8,0,0,0.439,0.061,0.5],"2026-10-16":[168,20,215.78,0,0,0.434,0,0.566],"2026-10-19":[114,24,439.92,0,0,0.522,0.469,0.01],"2026-10-20":[95,16,357.45,0,0,0.467,0.533,0]}},"Max Rendimiento - Girbau":{"n":0,"d":{"2026-09-20":[572,58,107.4,0,0,0.221,0.131,0.648],"2026-09-21":[277,23,97.79,0,0,0.182,0.039,0.779],"2026-09-22":[492,31,127.61,0,0,0.167,0.439,0.393],"2026-09-23":[215,13,40.5,0,0,0.208,0,0.792],"2026-09-24":[467,8,30.17,0,0,0.13,0,0.87],"2026-09-25":[1091,37,98.49,1,0,0.18,0,0.82],"2026-09-26":[1332,102,191.72,0,0,0.111,0.205,0.684],"2026-09-27":[312,13,24.34,0,0,0.171,0,0.829],"2026-09-28":[103,12,221.14,0,0,0.176,0.537,0.287],"2026-09-29":[83,3,3.92,0,0,0.1,0,0.9],"2026-09-30":[386,14,81.71,0,0,0.161,0,0.839],"2026-10-01":[118,9,56.02,0,0,0.189,0,0.811],"2026-10-02":[329,14,68.79,0,0,0.211,0,0.789],"2026-10-03":[322,25,37.19,0,0,0.104,0,0.896],"2026-10-04":[820,49,199.46,0,0,0.328,0,0.672],"2026-10-05":[166,12,109.71,1,0,0.232,0.028,0.74],"2026-10-06":[922,54,99.17,0,0,0.25,0,0.75],"2026-10-07":[205,16,99.37,1,0,0.256,0,0.744],"2026-10-08":[110,9,138.56,0,1,0.179,0.152,0.668],"2026-10-09":[128,10,16.61,0,0,0.211,0,0.789],"2026-10-10":[500,30,131.24,0,0,0.287,0,0.713],"2026-10-11":[531,36,104.26,1,0,0.333,0,0.667],"2026-10-12":[207,16,131,0,0,0.336,0.143,0.521],"2026-10-13":[291,23,49.28,1,0,0.295,0,0.705],"2026-10-14":[168,13,130.14,0,2,0.345,0.185,0.47],"2026-10-15":[218,15,150.96,1,1,0.325,0.146,0.528],"2026-10-16":[103,3,5.92,0,0,0.222,0,0.778],"2026-10-17":[654,39,123.54,0,0,0.265,0.191,0.544],"2026-10-18":[1163,77,163.21,0,0,0.231,0.196,0.573],"2026-10-19":[185,16,89.59,0,0,0.253,0.003,0.743],"2026-10-20":[103,6,41.8,1,0,0.279,0,0.721],"2026-10-27":[1130,61,93.64,0,0,null,null,null]}},"Marca Girbau":{"n":1,"d":{"2026-10-20":[2,0,0,0,0,0.4,0.6,0],"2026-10-21":[8,2,15.64,0,0,0.219,0.781,0],"2026-10-22":[34,8,69.74,0,0,0.385,0,0.615],"2026-10-23":[19,5,49.42,0,0,0.351,0,0.649],"2026-10-24":[7,0,0,0,0,0.231,0,0.769],"2026-10-25":[29,4,39.85,0,0,0.513,0,0.487],"2026-10-26":[28,9,116.41,0,0,0.611,0,0.389]}}},"b":{"2026-10-20":[0,0,0,0],"2026-10-21":[15.64,0,2,0],"2026-10-22":[43.94,0,5,0],"2026-10-23":[39.42,0,4,0],"2026-10-24":[0,0,0,0],"2026-10-25":[39.85,0,4,0],"2026-10-26":[116.41,0,9,0]},"k":{"2026-09-22":{"Girbau (web) Coudibot":2},"2026-09-24":{"Girbau (web) Coudibot":2},"2026-09-25":{"Girbau (web) Coudibot":1,"Conversation started":1},"2026-09-28":{"Girbau (web) Coudibot":2},"2026-10-05":{"Conversation started":1},"2026-10-07":{"Conversation started":1},"2026-10-11":{"Conversation started":1},"2026-10-13":{"Conversation started":1},"2026-10-15":{"Calls from ads":1},"2026-10-20":{"Conversation started":1}}}},{"id":"gamesail","nombre":"Gamesail","cuenta_nombre":"Cuenta nueva","pagina":"gamesail.mx","cuenta":"CUENTA NUEVA","tope":19700,"campanas":{"Lavadoras para ropa y sábanas":{"cpc":14,"pct":30},"Lavadoras por capacidad y precio":{"cpc":12,"pct":18},"Secadoras industriales":{"cpc":14,"pct":18},"Hoteles y hospitales":{"cpc":16,"pct":12},"Mangles y planchado":{"cpc":16,"pct":8},"Competencia depurada":{"cpc":10,"pct":7},"Marca Gamesail":{"cpc":8,"pct":7}},"datos":null}],"pendientes":[{"titulo":"Campañas nuevas encendidas en las cuatro cuentas activas","estado":"hecho","fecha":"2026-10-21","duenos":true,"marca":"Todas","nota":"Arrancaron el 20 y 21 de octubre.","nota_duenos":"Arrancaron el 20 y 21 de octubre."},{"titulo":"Ajustes de la primera semana: búsquedas que no venden y presupuesto a lo que funciona","estado":"en_curso","fecha":"2026-10-26","duenos":true,"marca":"Todas","nota":"Ajustes del 23 y 26 de octubre. Por confirmar cuáles ya se aplicaron.","nota_duenos":"Se quitan búsquedas que no traen clientes y se pasa dinero a lo que sí funciona."},{"titulo":"Medir contactos del formulario y de WhatsApp en las páginas","estado":"en_curso","duenos":true,"marca":"Todas","dueno":"Rodolfo","nota":"Ya registra en Quick Laundry (desde el 27 oct) y Kingstar (desde el 26 oct). En Laundry Solutions y Girbau todavía no hay contactos «AB ·».","nota_duenos":"Ya se cuentan en Quick Laundry y Kingstar; faltan Laundry Solutions y Girbau."},{"titulo":"Abrir la cuenta de Gamesail y arrancar sus campañas","estado":"pendiente","duenos":true,"marca":"Gamesail","nota":"Falta el número de la cuenta nueva.","nota_duenos":"Arranca en cuanto esté lista su cuenta."},{"titulo":"Vender refacciones de cualquier marca en Laundry Solutions","estado":"pendiente","marca":"Laundry Solutions","dueno":"Atelback","nota":"Preparado sin aplicar; espera tu OK."},{"titulo":"Primera carga de números reales a este tablero","estado":"hecho","marca":"Todas","dueno":"Atelback","nota":"Datos al 27 oct de las cuatro cuentas.","fecha":"2026-10-28"}],"notas":{}};
+const MODO = "lead";
+const INTERNO = MODO === 'interno';
+const LEAD = MODO === 'lead';
+
+// ---------- utilidades
+const $ = (q) => document.querySelector(q);
+const h = (tag, attrs = {}, ...kids) => {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === 'class') e.className = v; else if (k === 'style') e.style.cssText = v;
+    else if (k.startsWith('on')) e.addEventListener(k.slice(2), v); else if (v !== null && v !== undefined) e.setAttribute(k, v);
+  }
+  for (const c of kids.flat()) if (c !== null && c !== undefined && c !== false) e.append(c.nodeType ? c : document.createTextNode(c));
+  return e;
+};
+const html = (tag, attrs, inner) => { const e = h(tag, attrs); e.innerHTML = inner; return e; };
+const NS = 'http://www.w3.org/2000/svg';
+const s = (tag, attrs = {}) => { const e = document.createElementNS(NS, tag); for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v); return e; };
+const nf0 = new Intl.NumberFormat('es-MX', { maximumFractionDigits: 0 });
+const nf1 = new Intl.NumberFormat('es-MX', { maximumFractionDigits: 1 });
+const pesos = (x) => '$' + nf0.format(Math.round(x));
+const pesos2 = (x) => '$' + new Intl.NumberFormat('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(x);
+const pct = (x) => nf0.format(Math.round(x * 100)) + '%';
+const MESES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+const MESES_L = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+const fecha = (t) => { const [, m, d] = t.split('-'); return +d + ' ' + MESES[+m - 1]; };
+const aD = (t) => { const [y, m, d] = t.split('-').map(Number); return new Date(Date.UTC(y, m - 1, d)); };
+const aT = (d) => d.toISOString().slice(0, 10);
+const mas = (t, n) => { const d = aD(t); d.setUTCDate(d.getUTCDate() + n); return aT(d); };
+const entre = (a, b) => Math.round((aD(b) - aD(a)) / 864e5) + 1;
+const diasMes = (t) => { const d = aD(t); return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 0)).getUTCDate(); };
+const guardar = (k, v) => { try { localStorage.setItem('tablero-' + MODO + '-' + k, v); } catch (e) {} };
+const leerG = (k) => { try { return localStorage.getItem('tablero-' + MODO + '-' + k); } catch (e) { return null; } };
+const cambio = (a, b) => (b ? a / b - 1 : null);
+const signo = (r) => (r >= 0 ? '+' : '−') + nf0.format(Math.abs(Math.round(r * 100))) + '%';
+
+// ---------- tooltip
+const tip = $('#tip');
+function mostrarTip(ev, contenido) {
+  tip.innerHTML = contenido; tip.hidden = false;
+  const r = tip.getBoundingClientRect(), x = ev.clientX + 14, y = ev.clientY + 14;
+  tip.style.left = Math.max(8, Math.min(x, innerWidth - r.width - 8)) + 'px';
+  tip.style.top = (y + r.height > innerHeight - 8 ? ev.clientY - r.height - 10 : y) + 'px';
+}
+const ocultarTip = () => { tip.hidden = true; };
+const conTip = (el, contenido) => { el.addEventListener('pointermove', (ev) => mostrarTip(ev, contenido)); el.addEventListener('pointerleave', ocultarTip); return el; };
+
+// ---------- datos
+const MARCAS = DATA.marcas.map((m, i) => ({ ...m, i, color: `var(--m${i + 1})`, oscuro: i === 3 }));
+const CON = MARCAS.filter((m) => m.datos);
+const HASTA = CON.reduce((a, m) => (m.datos.hasta > a ? m.datos.hasta : a), '');
+const ARRANQUE = CON.reduce((a, m) => (!a || m.datos.arranque < a ? m.datos.arranque : a), '');
+
+function vacio() { return { imp: 0, clics: 0, costo: 0, conv: 0, llam: 0, elig: 0, perdP: 0, perdR: 0, util: 0, excl: 0, dias: 0 }; }
+function sumarFila(t, r) {
+  t.imp += r[0]; t.clics += r[1]; t.costo += r[2]; t.conv += r[3]; t.llam += r[4];
+  if (r[5] && r[0]) { const e = r[0] / r[5]; t.elig += e; t.perdP += e * (r[6] || 0); t.perdR += e * (r[7] || 0); }
+}
+// Suma de una marca entre dos fechas. soloNuevas: solo campañas «AB ·». campana: una sola campaña.
+function suma(m, a, b, soloNuevas = false, campana = null) {
+  const t = vacio(); if (!m.datos) return t;
+  a = a < m.datos.desde ? m.datos.desde : a; b = b > m.datos.hasta ? m.datos.hasta : b;
+  if (a > b) return t;
+  t.dias = entre(a, b);
+  for (const [n, c] of Object.entries(m.datos.c)) {
+    if (soloNuevas && !c.n) continue; if (campana && n !== campana) continue;
+    for (const [d, r] of Object.entries(c.d)) if (d >= a && d <= b) sumarFila(t, r);
+  }
+  if (!campana) for (const [d, r] of Object.entries(m.datos.b || {})) if (d >= a && d <= b) { t.util += r[0]; t.excl += r[1]; }
+  return t;
+}
+const cpc = (t) => (t.clics ? t.costo / t.clics : 0);
+const porDia = (t, k) => (t.dias ? t[k] / t.dias : 0);
+
+// ---------- periodo («ahora»)
+const PERIODOS = [['arranque', 'Desde el arranque'], ['7', 'Últimos 7 días'], ['14', 'Últimos 14 días']];
+const est = {
+  periodo: INTERNO && PERIODOS.some((p) => p[0] === leerG('periodo')) ? leerG('periodo') : 'arranque',
+  metrica: leerG('metrica') || 'clics',
+};
+function ahora(m) {
+  const hasta = m.datos.hasta, arr = m.datos.arranque;
+  let a = arr;
+  if (est.periodo === '7') a = mas(hasta, -6); else if (est.periodo === '14') a = mas(hasta, -13);
+  if (a < arr) a = arr;
+  return [a, hasta];
+}
+const nombreAhora = () => ({ arranque: 'desde el arranque', '7': 'últimos 7 días', '14': 'últimos 14 días' }[est.periodo]);
+const antesDe = (m) => suma(m, m.datos.desde, mas(m.datos.arranque, -1));
+const ahoraDe = (m, soloNuevas = false) => suma(m, ...ahora(m), soloNuevas);
+// El cierre del mes se proyecta con el gasto diario reciente (desde el arranque, máximo 7 días), no con el promedio del mes,
+// que incluye días en que la cuenta pudo no tener anuncios.
+function mesDe(m) {
+  const hasta = m.datos.hasta, ini = hasta.slice(0, 8) + '01', t = suma(m, ini, hasta), dm = diasMes(hasta), dt = entre(ini, hasta);
+  let r0 = mas(hasta, -6); if (r0 < m.datos.arranque) r0 = m.datos.arranque;
+  const rec = suma(m, r0, hasta), diario = rec.dias ? rec.costo / rec.dias : 0;
+  return { gasto: t.costo, debe: (m.tope * dt) / dm, cierre: t.costo + diario * (dm - dt), diario, dm, dt, hasta };
+}
+
+// ---------- contactos: la medición nueva son las acciones «AB ·»; lo que se contaba antes no es comparable 1 a 1.
+const esNuevaAccion = (n) => n.startsWith('AB ·');
+function medicion(m) {
+  const k = (m.datos && m.datos.k) || {};
+  const fechas = Object.keys(k).filter((d) => Object.keys(k[d]).some(esNuevaAccion)).sort();
+  return fechas[0] || null;
+}
+function acciones(m, a, b, filtro) {
+  const out = {}, k = (m.datos && m.datos.k) || {};
+  for (const [d, x] of Object.entries(k)) if (d >= a && d <= b) for (const [n, v] of Object.entries(x)) if (filtro(n)) out[n] = (out[n] || 0) + v;
+  return out;
+}
+const total = (o) => Object.values(o).reduce((a, b) => a + b, 0);
+function contactosNuevos(m) {
+  const desde = medicion(m); if (!desde) return null;
+  const por = acciones(m, desde, m.datos.hasta, esNuevaAccion);
+  return { desde, dias: entre(desde, m.datos.hasta), total: total(por), por };
+}
+const detalle = (por) => Object.entries(por).sort((a, b) => b[1] - a[1]).map(([n, v]) => `${nf1.format(v)} ${n.replace('AB · ', '').toLowerCase()}`).join(', ');
+function diasConAnuncios(m) {
+  const fin = mas(m.datos.arranque, -1), ds = new Set();
+  for (const c of Object.values(m.datos.c)) for (const [d, r] of Object.entries(c.d)) if (d >= m.datos.desde && d <= fin && r[0] > 0) ds.add(d);
+  return { activos: ds.size, total: entre(m.datos.desde, fin) };
+}
+
+const esChat = (n) => /coudibot/i.test(n);
+function costoContacto(m) {
+  const pre = mas(m.datos.arranque, -1), acc = acciones(m, m.datos.desde, pre, () => true);
+  const conv = total(acc), chat = total(Object.fromEntries(Object.entries(acc).filter(([n]) => esChat(n))));
+  const ca = suma(m, m.datos.desde, pre).costo, cn = contactosNuevos(m);
+  const gastoAhora = cn ? suma(m, cn.desde, m.datos.hasta).costo : 0;
+  return { ca, conv, chat, sinChat: conv - chat, pCon: conv ? ca / conv : null, pSin: conv - chat > 0 ? ca / (conv - chat) : null,
+    cn, gastoAhora, pAhora: cn && cn.total ? gastoAhora / cn.total : null };
+}
+function veredictoCosto(m, cc) {
+  const base = cc.pSin ?? cc.pCon;
+  if (!cc.pAhora) return { nivel: 'off', txt: INTERNO ? 'Sin dato' : 'Por medir',
+    t: 'Todavía no hay contactos con la medición nueva en esta página, así que no se puede comparar.' };
+  if (!base) return { nivel: 'off', txt: 'Sin antes', t: `Ahora: <b>${pesos(cc.pAhora)} por contacto</b>. Antes no se medían contactos.` };
+  const r = cc.pAhora / base - 1, poco = cc.cn.dias < 7 || cc.cn.total < 10, menos = r < 0;
+  const quePct = `${nf0.format(Math.abs(r * 100))}% ${menos ? 'menos' : 'más'}`;
+  if (poco) return { nivel: menos ? 'good' : 'warn', txt: menos ? 'Primera señal: más barato' : 'Primera señal: más caro',
+    t: `${cc.cn.dias === 1 ? 'Primer día' : `Primeros ${cc.cn.dias} días`} con la medición nueva: <b>${pesos(cc.pAhora)} por contacto</b>, ${quePct} que antes (${pesos(base)}${cc.pSin ? ', sin contar el chat' : ''}). Todavía son ${nf0.format(cc.cn.total)} contactos: es una señal, no una conclusión.` };
+  return { nivel: menos ? 'good' : 'bad', txt: menos ? 'Más barato que antes' : 'Más caro que antes',
+    t: `Cada contacto cuesta <b>${quePct}</b> que antes: ${pesos(cc.pAhora)} contra ${pesos(base)}${cc.pSin ? ' (sin contar el chat)' : ''}.` };
+}
+function nuevasVsAnteriores(m) {
+  const [a, b] = ahora(m), nu = suma(m, a, b, true), to = suma(m, a, b);
+  const an = { clics: to.clics - nu.clics, costo: to.costo - nu.costo };
+  return { A: antesDe(m), nu, an, gasto: to.costo };
+}
+// Barras de costo: la más alta llena el ancho; las que no tienen dato dicen por qué.
+function barrasCosto(filas, oscuro) {
+  const cont = h('div', { class: 'cb' }), max = Math.max(1e-9, ...filas.map((f) => f.v || 0));
+  for (const f of filas) {
+    let der;
+    if (!f.v) der = h('span', { class: 'na' }, f.vacio || 'sin dato');
+    else {
+      const w = (f.v / max) * 100, dentro = w > 72;
+      const n = h('span', { class: 'n', style: dentro ? `right:calc(${100 - w}% + 6px);color:${f.claro ? 'var(--ink)' : oscuro ? '#111' : '#fff'}` : `left:calc(${w}% + 6px)` }, f.fmt(f.v));
+      der = h('div', { class: 'tr' }, h('div', { class: 'f', style: `width:${w}%;background:${f.color}` }), n);
+    }
+    cont.append(h('div', { class: 'cb-row' }, h('span', { class: 'l' }, f.lbl, f.sub ? h('small', {}, f.sub) : null), der));
+  }
+  return cont;
+}
+
+// ---------- hallazgos: los mismos datos, dos tonos. tipo: bueno | mejora · nivel: good | warn | bad
+function hallazgos(m) {
+  const A = antesDe(m), N = ahoraDe(m), NN = ahoraDe(m, true), H = [];
+  const add = (tipo, nivel, peso, interno, duenos, accion, medic) => H.push({ tipo, nivel, peso, interno, duenos, accion, medic });
+  const dias = N.dias;
+
+  // 1. Visitas por día
+  const vA = porDia(A, 'clics'), vN = porDia(N, 'clics'), rv = cambio(vN, vA);
+  if (rv === null) { if (vN > 0) add('bueno', 'good', 3, `<b>${nf1.format(vN)} clics por día</b>; antes no había campañas con clics.`, `Ahora llegan <b>${nf1.format(vN)} visitas al día</b> a la página; antes no llegaba ninguna desde Google.`); }
+  else if (rv >= 0.1) add('bueno', 'good', 3, `<b>Clics por día ${signo(rv)}</b>: ${nf1.format(vA)} → ${nf1.format(vN)}.`, `<b>${signo(rv)} visitas al día</b> que antes (${nf1.format(vA)} → ${nf1.format(vN)}).`);
+  else if (rv <= -0.1) add('mejora', 'bad', 3, `<b>Clics por día ${signo(rv)}</b>: ${nf1.format(vA)} → ${nf1.format(vN)}.`, `Las visitas al día todavía están abajo de antes (${nf1.format(vA)} → ${nf1.format(vN)}). Es lo primero que estamos atendiendo.`,
+    'Revisar campañas sin clics, topes de costo por clic y exclusiones demasiado amplias.');
+  else add('mejora', 'warn', 2, `<b>Clics por día sin cambio</b> (${signo(rv)}): la estrategia todavía no mueve el volumen.`, `Las visitas al día se mantienen como antes (${nf1.format(vA)} → ${nf1.format(vN)}); el siguiente paso es aumentarlas.`,
+    'Mover presupuesto a las campañas que pierden búsquedas por presupuesto.');
+
+  // 2. Costo por visita: antes (toda la cuenta) contra las campañas nuevas; las anteriores que siguen se cuentan aparte (6c)
+  const nv = nuevasVsAnteriores(m), c1 = cpc(nv.nu), cA = cpc(A), c0 = nv.an.clics ? nv.an.costo / nv.an.clics : 0;
+  const yAnt = c0 > c1 ? ` (las anteriores que siguen encendidas cuestan ${pesos2(c0)})` : '';
+  if (cA && nv.nu.clics >= 10) {
+    const rc = cambio(c1, cA);
+    if (rc <= -0.05) add('bueno', 'good', 3, `<b>Campañas nuevas ${signo(rc)} por clic</b>: ${pesos2(cA)} antes → ${pesos2(c1)}${yAnt}.`,
+      `<b>Cada visita de las campañas nuevas cuesta ${nf0.format(Math.abs(rc * 100))}% menos</b> que antes (${pesos2(cA)} → ${pesos2(c1)}).`);
+    else if (rc >= 0.2) add('mejora', 'bad', 2, `<b>Campañas nuevas ${signo(rc)} por clic</b>: ${pesos2(cA)} antes → ${pesos2(c1)}.`,
+      `Cada visita de las campañas nuevas cuesta más que antes (${pesos2(cA)} → ${pesos2(c1)}); estamos afinando las palabras para bajarlo.`,
+      'Bajar topes de costo por clic en las campañas más caras y revisar qué búsquedas se llevan el gasto.');
+    else if (rc > 0.05) add('mejora', 'warn', 1, `<b>Campañas nuevas ${signo(rc)} por clic</b>: ${pesos2(cA)} antes → ${pesos2(c1)}.`,
+      `Cada visita de las campañas nuevas cuesta un poco más que antes (${pesos2(cA)} → ${pesos2(c1)}).`, 'Vigilar; si sigue subiendo, revisar topes de costo por clic.');
+    else add('bueno', 'good', 1, `<b>Campañas nuevas al mismo costo por clic</b> que antes (${pesos2(c1)}).`, `Cada visita de las campañas nuevas cuesta lo mismo que antes (${pesos2(c1)}).`);
+  }
+
+  // 3. Ritmo de gasto contra el tope
+  const M = mesDe(m), rr = M.cierre / m.tope;
+  if (rr > 1.05) add('mejora', 'bad', 2, `Al ritmo actual <b>cierra el mes en ${pesos(M.cierre)}</b>, ${pesos(M.cierre - m.tope)} arriba del tope de ${pesos(m.tope)}.`,
+    `La inversión va un poco arriba del ritmo del mes; la estamos cuidando para no pasar el tope de ${pesos(m.tope)}.`, 'Bajar presupuesto diario en las campañas con peor costo por clic.');
+  else if (rr < 0.85) add('mejora', 'warn', 2, `Al ritmo actual <b>usa solo ${pct(rr)} del tope</b>: quedarían ${pesos(m.tope - M.cierre)} sin usar.`,
+    `Se está usando ${pct(rr)} del presupuesto del mes: hay espacio para crecer en lo que funciona.`, 'Subir presupuesto a las campañas que pierden búsquedas por presupuesto.');
+  else add('bueno', 'good', 1, `<b>Gasto al ritmo del tope</b>: cerraría en ${pesos(M.cierre)} de ${pesos(m.tope)}.`, `La inversión va al ritmo del presupuesto del mes.`);
+
+  // 4. Búsquedas perdidas por presupuesto (campañas nuevas)
+  if (NN.elig) {
+    const pp = NN.perdP / NN.elig;
+    if (pp > 0.2) {
+      let peor = null;
+      for (const [n, c] of Object.entries(m.datos.c)) { if (!c.n) continue; const t = suma(m, ...ahora(m), true, n); if (t.elig && (!peor || t.perdP > peor.t.perdP)) peor = { n, t }; }
+      add('mejora', 'warn', 2, `<b>Pierde ${pct(pp)} de las búsquedas por presupuesto</b>${peor ? `; la que más pierde es «${peor.n}» (${pct(peor.t.perdP / peor.t.elig)})` : ''}.`,
+        `Hay más gente buscando de la que alcanzamos con el presupuesto actual (nos falta salir en ${pct(pp)} de las búsquedas).`, 'Pasarle presupuesto de las campañas que no lo gastan.');
+    }
+  }
+
+  // 4b. Búsquedas perdidas por posición o puja (solo interno)
+  if (NN.elig && NN.perdR / NN.elig > 0.4) add('mejora', 'warn', 1, `<b>Pierde ${pct(NN.perdR / NN.elig)} de las búsquedas por posición o puja</b>.`, null,
+    'Subir el tope de costo por clic en las campañas que más pierden, o mejorar anuncios.');
+
+  // 5. Dinero en búsquedas que ya bloqueamos: primeros 3 días contra últimos 3
+  const arr = m.datos.arranque, hasta = m.datos.hasta;
+  if (entre(arr, hasta) >= 5) {
+    const p1 = suma(m, arr, mas(arr, 2), true), p2 = suma(m, mas(hasta, -2), hasta, true);
+    const s1 = p1.util + p1.excl ? p1.excl / (p1.util + p1.excl) : null, s2 = p2.util + p2.excl ? p2.excl / (p2.util + p2.excl) : null;
+    if (s1 !== null && s2 !== null) {
+      if (s2 < s1 - 0.03) add('bueno', 'good', 2, `<b>Desperdicio a la baja</b>: el gasto en búsquedas que bloqueamos pasó de ${pct(s1)} a ${pct(s2)}.`,
+        `Cada vez se gasta menos en búsquedas que no venden (de ${pct(s1)} a ${pct(s2)} del gasto).`);
+      if (s2 >= 0.15) {
+        add('mejora', 'warn', 1, `<b>${pct(s2)} del gasto</b> de los últimos 3 días fue en búsquedas que ya bloqueamos.`, null, 'Ese gasto ya se cortó; revisar que no aparezcan búsquedas parecidas.');
+        add('bueno', 'good', 1, null, `Ya bloqueamos búsquedas que no venden y que se estaban llevando ${pct(s2)} del gasto de los últimos días.`);
+      }
+    }
+  }
+
+  // 6. Llamadas
+  const lA = porDia(A, 'llam') * 7, lN = porDia(N, 'llam') * 7;
+  if (lN > lA && lN >= 1) add('bueno', 'good', 1, `<b>Llamadas desde el anuncio</b>: ${nf1.format(lA)} → ${nf1.format(lN)} por semana.`, `Más llamadas desde el anuncio: <b>${nf1.format(lN)} por semana</b> (antes ${nf1.format(lA)}).`);
+
+  // 6b. Costo por llamada (solo con suficientes llamadas para que no sea ruido)
+  if (A.llam >= 3 && N.llam >= 3) {
+    const rl = cambio(N.costo / N.llam, A.costo / A.llam);
+    if (rl <= -0.1) add('bueno', 'good', 2, `<b>Costo por llamada ${signo(rl)}</b>: ${pesos(A.costo / A.llam)} → ${pesos(N.costo / N.llam)}.`, `<b>Cada llamada cuesta ${nf0.format(Math.abs(rl * 100))}% menos</b> (${pesos(A.costo / A.llam)} → ${pesos(N.costo / N.llam)}).`);
+    else if (rl >= 0.2) add('mejora', 'warn', 1, `<b>Costo por llamada ${signo(rl)}</b>: ${pesos(A.costo / A.llam)} → ${pesos(N.costo / N.llam)}.`, null, 'Revisar horario del botón de llamada y campañas que traen llamadas.');
+  }
+
+  // 6c. Campañas anteriores que siguen encendidas y gastando más caro que las nuevas
+  if (nv.gasto && nv.an.costo / nv.gasto > 0.3 && c0 > c1 * 1.2) add('mejora', 'warn', 2,
+    `<b>Las campañas anteriores siguen gastando</b> ${pesos(nv.an.costo)} (${pct(nv.an.costo / nv.gasto)} del gasto) a ${pesos2(c0)} por clic, contra ${pesos2(c1)} de las nuevas.`,
+    `Las campañas anteriores que siguen encendidas cuestan ${pesos2(c0)} por visita; las nuevas, ${pesos2(c1)}.`, 'Bajar o pausar las anteriores (con tu OK) y pasar ese dinero a las nuevas que pierden por presupuesto.');
+
+  // 7. Campañas nuevas sin clics
+  const sinClics = Object.keys(m.campanas).filter((n) => { const c = m.datos.c[n]; return !c || !suma(m, ...ahora(m), true, n).clics; });
+  if (sinClics.length) add('mejora', sinClics.length >= 2 ? 'bad' : 'warn', 1, `<b>${sinClics.length} campaña(s) nueva(s) sin clics</b>: ${sinClics.join(', ')}.`, null,
+    'Revisar que estén aprobadas y que el tope de costo por clic alcance.');
+
+  // 8. Contactos (medición nueva «AB ·»)
+  const cn = contactosNuevos(m), antesAcc = acciones(m, m.datos.desde, mas(m.datos.arranque, -1), (n) => true);
+  const antesTxt = Object.entries(antesAcc).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([n, v]) => `«${n}» ${nf1.format(v)}`).join(', ');
+  if (cn && cn.total > 0) {
+    add('bueno', 'good', 3, `<b>Medición nueva funcionando desde el ${fecha(cn.desde)}</b>: ${nf1.format(cn.total)} contactos (${detalle(cn.por)}).`,
+      `Ya se cuentan los contactos de la página: <b>${nf1.format(cn.total)} desde el ${fecha(cn.desde)}</b> (${detalle(cn.por)}).`, null, true);
+    if (cn.dias < 14) add('mejora', 'warn', 2, `<b>Costo por contacto: todavía no comparable.</b> La medición nueva lleva ${cn.dias} día(s)${antesTxt ? `; antes se contaba ${antesTxt}` : ''}.`,
+      `En unas semanas podremos decir cuánto cuesta cada contacto; la medición lleva ${cn.dias} día(s).`, 'Esperar 2 semanas de medición nueva. Revisar si lo que se contaba antes eran leads reales.', true);
+    else {
+      const pN = suma(m, cn.desde, m.datos.hasta).costo / cn.total;
+      add('bueno', 'good', 3, `<b>Costo por contacto ${pesos(pN)}</b> con la medición nueva (${cn.dias} días).`, `<b>Cada contacto cuesta ${pesos(pN)}</b>.`, null, true);
+    }
+  } else add('mejora', 'bad', 3, `<b>Sin contactos con la medición nueva</b>${antesTxt ? `; antes se contaba ${antesTxt}` : ''}.`,
+    'Todavía no se registran contactos con la medición nueva de la página; lo estamos revisando con el equipo web.', 'Confirmar con Rodolfo que el formulario y WhatsApp de esta página ya mandan la conversión «AB ·».', true);
+
+  H.sort((x, y) => ({ bad: 0, warn: 1, good: 2 }[x.nivel] - { bad: 0, warn: 1, good: 2 }[y.nivel]) || y.peso - x.peso);
+  return { H, dias };
+}
+function estado(m) {
+  if (!m.datos) return { nivel: 'off', txt: /\d/.test(m.cuenta) ? 'Sin datos' : 'Por arrancar' };
+  const { H } = hallazgos(m);
+  const bad = H.filter((x) => x.nivel === 'bad').length, warn = H.filter((x) => x.nivel === 'warn').length;
+  // El estado no cuenta la medición de contactos: es pendiente de todas las cuentas, no de la marca.
+  const badSinMedicion = H.filter((x) => x.nivel === 'bad' && !x.medic).length;
+  if (INTERNO) return badSinMedicion ? { nivel: 'bad', txt: 'Va mal' } : warn ? { nivel: 'warn', txt: 'Revisar' } : { nivel: 'good', txt: 'Va bien' };
+  return badSinMedicion || warn > 1 ? { nivel: 'warn', txt: 'En ajuste' } : { nivel: 'good', txt: 'Avanzando bien' };
+}
+const ICONO = { good: '✓', warn: '!', bad: '✕', off: '–' };
+const pill = (e) => h('span', { class: 'pill ' + e.nivel }, h('i', {}, ICONO[e.nivel]), e.txt);
+
+// ---------- piezas de gráfica
+function pastel(cont, items, fmt, sinDatos = []) {
+  cont.replaceChildren();
+  const total = items.reduce((a, x) => a + x.value, 0);
+  const R = 100, C = 110;
+  const svg = s('svg', { viewBox: '0 0 220 220', role: 'img' });
+  const lista = h('ul', { class: 'leyenda' });
+  const filas = [], slices = [];
+  if (!total) { cont.append(h('div', { class: 'vacio' }, 'Sin datos en este periodo.')); return; }
+  svg.setAttribute('aria-label', items.map((x) => `${x.label} ${pct(x.value / total)}`).join(', '));
+  let ang = -Math.PI / 2;
+  const encender = (i) => { svg.classList.toggle('apagado', i !== null); slices.forEach((p, j) => p.classList.toggle('on', j === i)); filas.forEach((f, j) => f.classList.toggle('on', j === i)); };
+  items.forEach((x, i) => {
+    const frac = x.value / total, a2 = ang + frac * 2 * Math.PI;
+    let el;
+    if (frac >= 0.9999) el = s('circle', { cx: C, cy: C, r: R, fill: x.color });
+    else {
+      const x1 = C + R * Math.cos(ang), y1 = C + R * Math.sin(ang), x2 = C + R * Math.cos(a2), y2 = C + R * Math.sin(a2);
+      el = s('path', { d: `M${C},${C} L${x1},${y1} A${R},${R} 0 ${frac > 0.5 ? 1 : 0} 1 ${x2},${y2} Z`, fill: x.color });
+    }
+    el.setAttribute('class', 'slice'); el.setAttribute('stroke', 'var(--surface)'); el.setAttribute('stroke-width', '2'); el.setAttribute('stroke-linejoin', 'round');
+    const t = `<b>${x.label}</b><br>${pct(frac)} · ${fmt(x.value)}`;
+    el.addEventListener('pointermove', (ev) => { encender(i); mostrarTip(ev, t); });
+    el.addEventListener('pointerleave', () => { encender(null); ocultarTip(); });
+    svg.append(el); slices.push(el);
+    if (frac >= 0.07) {
+      const mid = (ang + a2) / 2, lx = C + R * 0.62 * Math.cos(mid), ly = C + R * 0.62 * Math.sin(mid);
+      const tx = s('text', { x: lx, y: ly + 5, 'text-anchor': 'middle', 'font-size': 15, 'font-weight': 700, 'font-family': 'var(--body)', fill: x.oscuro ? '#111' : '#fff', 'pointer-events': 'none' });
+      tx.textContent = pct(frac); svg.append(tx);
+    }
+    const li = h('li', { onpointerenter: () => encender(i), onpointerleave: () => encender(null) },
+      h('span', { class: 'dot', style: 'background:' + x.color }), h('span', {}, x.label), h('span', { class: 'pct' }, pct(frac)), h('span', { class: 'val' }, fmt(x.value)));
+    lista.append(li); filas.push(li);
+    ang = a2;
+  });
+  for (const [n, txt] of sinDatos) lista.append(h('li', { class: 'nodata' }, h('span', { class: 'dot', style: 'background:var(--line-2)' }), h('span', {}, n), h('span', {}, txt)));
+  cont.append(svg, lista);
+}
+
+const pasoBonito = (max, n = 4) => { const raw = max / n || 1, p = Math.pow(10, Math.floor(Math.log10(raw))); return [1, 2, 2.5, 5, 10].map((k) => k * p).find((k) => k >= raw); };
+
+function lineas(cont, series, fechas, fmtY, marcaFecha) {
+  cont.replaceChildren();
+  const W = Math.max(300, cont.clientWidth || 700), H = Math.round(Math.min(300, Math.max(200, W * 0.36)));
+  const L = 54, Rm = 12, T = 14, B = 28, iw = W - L - Rm, ih = H - T - B;
+  const max = Math.max(1e-9, ...series.flatMap((x) => x.values.filter((v) => v !== null)));
+  const paso = pasoBonito(max), top = Math.ceil(max / paso) * paso;
+  const X = (i) => L + (fechas.length < 2 ? iw / 2 : (i * iw) / (fechas.length - 1));
+  const Y = (v) => T + ih - (v / top) * ih;
+  const svg = s('svg', { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: 'img', 'aria-label': 'Gráfica por día' });
+  const g = s('g', { class: 'grid' }), ax = s('g', { class: 'axis' });
+  for (let v = 0; v <= top + 1e-9; v += paso) {
+    if (v > 0) g.append(s('line', { x1: L, x2: W - Rm, y1: Y(v), y2: Y(v) }));
+    const t = s('text', { x: L - 8, y: Y(v) + 4, 'text-anchor': 'end' }); t.textContent = fmtY(v); ax.append(t);
+  }
+  const cada = Math.max(1, Math.ceil(fechas.length / Math.max(2, Math.floor(iw / 70))));
+  fechas.forEach((f, i) => {
+    const ult = i === fechas.length - 1;
+    if (!(i % cada === 0 || ult) || (!ult && fechas.length - 1 - i < cada * 0.6)) return;
+    const t = s('text', { x: X(i), y: H - 8, 'text-anchor': i === 0 ? 'start' : ult ? 'end' : 'middle' }); t.textContent = fecha(f); ax.append(t);
+  });
+  svg.append(g, s('line', { class: 'base', x1: L, x2: W - Rm, y1: T + ih, y2: T + ih }), ax);
+  const im = fechas.indexOf(marcaFecha);
+  if (im >= 0) {
+    svg.append(s('line', { x1: X(im), x2: X(im), y1: T, y2: T + ih, stroke: 'var(--line-2)', 'stroke-dasharray': '4 4' }));
+    const t = s('text', { x: X(im) + 6, y: T + 12, class: 'lbl' }); t.textContent = 'Arranque'; svg.append(t);
+  }
+  for (const se of series) {
+    let d = '', abierto = false;
+    se.values.forEach((v, i) => { if (v === null) { abierto = false; return; } d += (abierto ? 'L' : 'M') + X(i) + ',' + Y(v); abierto = true; });
+    svg.append(s('path', { d, fill: 'none', stroke: se.color, 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }));
+    const last = se.values.length - 1;
+    if (se.values[last] !== null) svg.append(s('circle', { cx: X(last), cy: Y(se.values[last]), r: 4, fill: se.color, stroke: 'var(--surface)', 'stroke-width': 2 }));
+  }
+  const cruz = s('line', { y1: T, y2: T + ih, stroke: 'var(--ink-2)', 'stroke-width': 1, visibility: 'hidden' });
+  const puntos = s('g', { visibility: 'hidden' });
+  svg.append(cruz, puntos);
+  const capa = s('rect', { x: L, y: T, width: iw, height: ih, fill: 'transparent' });
+  capa.addEventListener('pointermove', (ev) => {
+    const r = svg.getBoundingClientRect(), px = ((ev.clientX - r.left) / r.width) * W;
+    const i = Math.max(0, Math.min(fechas.length - 1, Math.round(((px - L) / iw) * (fechas.length - 1))));
+    cruz.setAttribute('x1', X(i)); cruz.setAttribute('x2', X(i)); cruz.setAttribute('visibility', 'visible');
+    puntos.replaceChildren(); puntos.setAttribute('visibility', 'visible');
+    let t = `<b>${fecha(fechas[i])}</b>`;
+    for (const se of [...series].sort((a, b) => (b.values[i] || 0) - (a.values[i] || 0))) {
+      const v = se.values[i];
+      if (v !== null) puntos.append(s('circle', { cx: X(i), cy: Y(v), r: 4, fill: se.color, stroke: 'var(--surface)', 'stroke-width': 2 }));
+      t += `<div class="r"><span><span class="dot" style="background:${se.color}"></span>${se.name}</span><span>${v === null ? '—' : fmtY(v, true)}</span></div>`;
+    }
+    mostrarTip(ev, t);
+  });
+  capa.addEventListener('pointerleave', () => { cruz.setAttribute('visibility', 'hidden'); puntos.setAttribute('visibility', 'hidden'); ocultarTip(); });
+  svg.append(capa);
+  cont.append(svg);
+}
+
+// Columnas semana a semana: las de antes en gris, las de después en el color de la marca.
+function columnas(cont, cols, colorDespues, fmt) {
+  const W = Math.max(280, cont.clientWidth || 360), H = 180, T = 34, B = 34, L = 6, Rm = 6, iw = W - L - Rm, ih = H - T - B;
+  const max = Math.max(1e-9, ...cols.map((c) => c.v || 0));
+  const n = cols.length, slot = iw / n, bw = Math.min(40, slot * 0.66);
+  const svg = s('svg', { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: 'img',
+    'aria-label': cols.map((c) => `${c.lbl}: ${c.v === null ? 'sin dato' : fmt(c.v)}`).join(', ') });
+  const Y = (v) => T + ih - (v / max) * ih;
+  const ia = cols.findIndex((c) => !c.antes);
+  if (ia > 0) {
+    const x = L + ia * slot;
+    svg.append(s('line', { x1: x, x2: x, y1: 4, y2: T + ih, stroke: 'var(--line-2)', 'stroke-dasharray': '3 3' }));
+    const t1 = s('text', { x: x - 6, y: 12, class: 'lbl', 'text-anchor': 'end' }); t1.textContent = 'Antes';
+    const t2 = s('text', { x: x + 6, y: 12, class: 'lbl' }); t2.textContent = 'Después';
+    svg.append(t1, t2);
+  }
+  cols.forEach((c, i) => {
+    const cx = L + i * slot + slot / 2;
+    if (c.v !== null) {
+      const y = Y(c.v), alto = T + ih - y;
+      const p = alto > 4
+        ? s('path', { d: `M${cx - bw / 2},${T + ih} V${y + 4} Q${cx - bw / 2},${y} ${cx - bw / 2 + 4},${y} H${cx + bw / 2 - 4} Q${cx + bw / 2},${y} ${cx + bw / 2},${y + 4} V${T + ih} Z`, fill: c.antes ? 'var(--antes)' : colorDespues })
+        : s('rect', { x: cx - bw / 2, y: T + ih - Math.max(alto, 1.5), width: bw, height: Math.max(alto, 1.5), fill: c.antes ? 'var(--antes)' : colorDespues });
+      svg.append(p);
+      if (!c.antes || i === ia - 1 || n <= 6) {
+        const tv = s('text', { x: cx, y: y - 6, 'text-anchor': 'middle', class: c.antes ? 'lbl' : 'vlbl' }); tv.textContent = fmt(c.v); svg.append(tv);
+      }
+    }
+    const tl = s('text', { x: cx, y: H - 16, 'text-anchor': 'middle', class: 'lbl' }); tl.textContent = c.lbl; svg.append(tl);
+    if (c.sub) { const ts = s('text', { x: cx, y: H - 3, 'text-anchor': 'middle', class: 'lbl', 'font-size': 10 }); ts.textContent = c.sub; svg.append(ts); }
+    const hit = s('rect', { x: L + i * slot, y: 0, width: slot, height: H, fill: 'transparent' });
+    conTip(hit, `<b>${c.rango}</b><br>${c.v === null ? 'sin dato' : fmt(c.v, true)}${c.parcial ? '<br>Semana en curso' : ''}`);
+    svg.append(hit);
+  });
+  svg.append(s('line', { class: 'base', x1: L, x2: W - Rm, y1: T + ih, y2: T + ih }));
+  cont.append(svg);
+}
+
+function barras(cont, filas, fmt) {
+  cont.replaceChildren();
+  const max = Math.max(1e-9, ...filas.map((f) => f.value));
+  for (const f of filas) {
+    const row = h('div', { class: 'bar' }, h('span', { class: 'n', title: f.label }, f.label, f.sub ? h('small', {}, ' · ' + f.sub) : null),
+      h('div', { class: 't' }, h('div', { class: 'f', style: `width:${Math.max(0.5, (f.value / max) * 100)}%;background:${f.color}` })), h('span', { class: 'x' }, fmt(f.value)));
+    if (f.tip) conTip(row, f.tip);
+    cont.append(row);
+  }
+}
+
+// Antes contra ahora: dos barras por dato, con el cambio a la derecha.
+function versus(cont, filas, color) {
+  for (const f of filas) {
+    const max = Math.max(1e-9, f.a || 0, f.n || 0, ...(f.extra || []).map((x) => x.v || 0));
+    const barra = (lbl, v, c, txt) => {
+      const w = v ? (v / max) * 100 : 0;
+      const n = h('span', { class: 'n', style: w > 70 ? `right:calc(${100 - w}% + 6px);color:${c === 'var(--antes)' ? 'var(--ink)' : '#fff'}` : `left:calc(${w}% + 6px)` }, txt);
+      if (lbl === 'Anteriores') n.style.fontWeight = '500';
+      if (w > 70 && color.oscuro && c !== 'var(--antes)') n.style.color = '#111';
+      return h('div', { class: 'vs-bar' }, h('span', {}, lbl), h('div', { class: 'tr' }, h('div', { class: 'f', style: `width:${w}%;background:${c}` }), n));
+    };
+    let res;
+    if (f.solo) res = h('div', { class: 'res' }, h('small', {}, f.solo));
+    else if (!f.a) res = h('div', { class: 'res' }, h('span', { class: 'delta up' }, 'Nuevo'), h('small', {}, 'antes no había'));
+    else {
+      const r = f.n / f.a - 1, sube = r > 0.02, baja = r < -0.02, bueno = (sube && f.mejorSube) || (baja && !f.mejorSube);
+      const cls = !sube && !baja || f.neutro ? 'flat' : bueno ? 'up' : INTERNO ? 'down' : 'soft';
+      const pal = !sube && !baja ? 'igual' : f.mejorSube || f.neutro ? (sube ? 'más' : 'menos') : sube ? 'más caro' : 'más barato';
+      res = h('div', { class: 'res' }, h('span', { class: 'delta ' + cls }, (sube ? '▲ ' : baja ? '▼ ' : '= ') + nf0.format(Math.abs(Math.round(r * 100))) + '%'), h('small', {}, pal));
+    }
+    cont.append(h('div', { class: 'vs-row' }, h('div', { class: 'lbl2' }, f.lbl, f.sub ? h('small', {}, f.sub) : null),
+      h('div', { class: 'vs-bars' }, f.solo ? h('div', { class: 'vacio', style: 'padding:8px 12px' }, f.vacio || '') : [barra('Antes', f.a, 'var(--antes)', f.fmt(f.a)), barra(f.nLbl || 'Ahora', f.n, color.color, f.fmt(f.n)),
+        ...(f.extra || []).map((x) => barra(x.lbl, x.v, 'var(--antes)', f.fmt(x.v)))]), res));
+  }
+}
+
+// ---------- secciones
+function semanas(m) {
+  const arr = m.datos.arranque, hasta = m.datos.hasta, out = [];
+  for (let k = -4; ; k++) {
+    const a = mas(arr, 7 * k), b = mas(a, 6);
+    if (a > hasta) break;
+    const t = suma(m, a, b), tn = k < 0 ? t : suma(m, a, b, true);
+    const parcial = b > hasta;
+    out.push({ antes: k < 0, parcial, t, tn, lbl: k < 0 ? fecha(a) : 'Sem ' + (k + 1), sub: k < 0 ? null : parcial ? 'en curso' : fecha(a), rango: `${fecha(a)} al ${fecha(parcial ? hasta : b)}` });
+  }
+  return out;
+}
+
+function apartado(m) {
+  const sec = h('section', { class: 'marca', id: 'm-' + m.id, 'aria-label': m.nombre });
+  const e = estado(m);
+  sec.append(h('div', { class: 'marca-head' },
+    h('div', { class: 't' }, h('h2', {}, h('span', { class: 'dot', style: 'background:' + m.color }), m.nombre),
+      h('span', { class: 'pg' }, m.pagina + (INTERNO ? ` · cuenta ${m.cuenta_nombre}${/\d/.test(m.cuenta) ? ' ' + m.cuenta : ''}` : ''))), pill(e)));
+  const body = h('div', { class: 'marca-body' }); sec.append(body);
+
+  if (!m.datos) {
+    const sinNumero = !/\d/.test(m.cuenta);
+    body.append(h('div', { class: 'vacio' }, sinNumero
+      ? (INTERNO ? `Sin datos: la cuenta todavía no tiene número ni campañas activas. Tope previsto: ${pesos(m.tope)} al mes.`
+        : `Las campañas de ${m.nombre} arrancan en cuanto esté lista su cuenta. Presupuesto previsto: ${pesos(m.tope)} al mes.`)
+      : (INTERNO ? 'Todavía no se cargan los datos de esta cuenta.' : 'Los números de esta marca se agregan en la próxima actualización.')));
+    return sec;
+  }
+  const A = antesDe(m), N = ahoraDe(m), { H } = hallazgos(m);
+
+  // Lo bueno y lo que falta
+  const para = (x) => (INTERNO ? x.interno : x.duenos);
+  const buenos = H.filter((x) => x.tipo === 'bueno' && para(x)), mejoras = H.filter((x) => x.tipo === 'mejora' && para(x));
+  const lista = (clase, titulo, icono, xs, conAccion) => h('div', { class: 'lista ' + clase }, h('h3', {}, h('span', { class: 'ic ' + icono }, ICONO[icono]), titulo),
+    xs.length ? h('ul', {}, ...xs.map((x) => { const li = h('li', {}, h('span', { class: 'ic ' + (INTERNO ? x.nivel : icono) }, ICONO[INTERNO ? x.nivel : icono])); const sp = html('span', {}, INTERNO ? x.interno : x.duenos);
+      if (conAccion && x.accion) sp.append(h('span', { class: 'acc' }, '→ ' + x.accion)); li.append(sp); return li; }))
+      : h('p', { style: 'font-size:14px;color:var(--ink-2)' }, 'Nada por ahora.'));
+  if (INTERNO) body.append(h('div', { class: 'dos' }, lista('critica', 'Problemas y qué haría', 'bad', mejoras, true), lista('buena', 'Lo que funciona', 'good', buenos, false)));
+  else body.append(h('div', { class: 'dos' }, lista('buena', 'Lo bueno', 'good', buenos.slice(0, 3), false),
+    lista('mejora', 'En lo que seguimos trabajando', 'warn', mejoras.filter((x) => x.duenos).slice(0, 2), false)));
+
+  // Antes contra ahora
+  const vs = h('div', { class: 'vs' });
+  const filas = [
+    { lbl: INTERNO ? 'Clics por día' : 'Visitas a la página', sub: INTERNO ? null : 'al día', a: porDia(A, 'clics'), n: porDia(N, 'clics'), fmt: (v) => nf1.format(v), mejorSube: true },
+    (() => {
+      const nv = nuevasVsAnteriores(m), c0 = nv.an.clics ? nv.an.costo / nv.an.clics : 0;
+      return { lbl: INTERNO ? 'Costo por clic' : 'Costo de cada visita', sub: 'antes contra campañas nuevas', a: cpc(A), n: cpc(nv.nu), nLbl: 'Nuevas', fmt: pesos2, mejorSube: false,
+        extra: c0 ? [{ lbl: 'Anteriores', v: c0 }] : [] };
+    })(),
+    { lbl: INTERNO ? 'Impresiones por día' : 'Veces que se vio el anuncio', sub: INTERNO ? null : 'al día', a: porDia(A, 'imp'), n: porDia(N, 'imp'), fmt: (v) => nf0.format(v), mejorSube: true },
+    { lbl: 'Llamadas desde el anuncio', sub: 'por semana', a: porDia(A, 'llam') * 7, n: porDia(N, 'llam') * 7, fmt: (v) => nf1.format(v), mejorSube: true },
+  ];
+  if (INTERNO) filas.splice(2, 0, { lbl: 'Gasto por día', a: porDia(A, 'costo'), n: porDia(N, 'costo'), fmt: pesos, neutro: true });
+  // Un costo por llamada solo existe si hubo llamadas: sin llamadas «ahora», no hay costo que comparar (no es $0).
+  if (A.llam && N.llam) filas.push({ lbl: INTERNO ? 'Costo por llamada' : 'Costo de cada llamada', a: A.costo / A.llam, n: N.costo / N.llam, fmt: pesos, mejorSube: false });
+  else if (A.llam) filas.push({ lbl: INTERNO ? 'Costo por llamada' : 'Costo de cada llamada', solo: 'sin llamadas', vacio: `Antes ${pesos(A.costo / A.llam)} por llamada; desde el arranque no ha entrado ninguna.` });
+  // Contactos solo se comparan cuando «ahora» ya se miden; si no, una caída a cero sería falsa.
+  const cn = contactosNuevos(m);
+  if (cn && cn.total > 0) filas.push({ lbl: 'Contactos', sub: 'medición nueva', solo: cn.dias < 14 ? 'aún no comparable' : '',
+    vacio: `${nf1.format(cn.total)} desde el ${fecha(cn.desde)} (${detalle(cn.por)})` });
+  else filas.push({ lbl: 'Contactos', solo: 'pendiente', vacio: 'Medición nueva sin contactos todavía' });
+  versus(vs, filas, m);
+  const dca = diasConAnuncios(m);
+  if (dca.activos < dca.total * 0.8) vs.append(h('p', { style: 'font-size:13px;color:var(--ink-2)' },
+    `Antes la cuenta tuvo anuncios solo ${dca.activos} de los ${dca.total} días; por eso el cambio por día puede verse más grande o más chico.`));
+  body.append(h('div', { class: 'bloque' }, h('h3', {}, 'Antes y ahora', h('small', {}, `antes: 30 días previos al ${fecha(m.datos.arranque)} · ahora: ${INTERNO ? nombreAhora() : 'desde el arranque'} (${N.dias} días)`)), vs));
+
+  // Campañas nuevas contra anteriores
+  {
+    const nv = nuevasVsAnteriores(m), c1 = cpc(nv.nu), cA = cpc(nv.A), c0 = nv.an.clics ? nv.an.costo / nv.an.clics : 0;
+    const vis = INTERNO ? 'clics' : 'visitas';
+    const filasC = [
+      { lbl: 'Antes', sub: `toda la cuenta · ${nf0.format(nv.A.clics)} ${vis}`, v: cA, color: 'var(--antes)', claro: true, fmt: pesos2 },
+      { lbl: 'Ahora: campañas anteriores', sub: c0 ? `siguen encendidas · ${nf0.format(nv.an.clics)} ${vis} · ${pesos(nv.an.costo)}` : 'ya no gastan', v: c0, color: 'var(--line-2)', claro: true, fmt: pesos2, vacio: 'apagadas' },
+      { lbl: 'Ahora: campañas nuevas', sub: `${nf0.format(nv.nu.clics)} ${vis} · ${pesos(nv.nu.costo)}`, v: c1, color: m.color, fmt: pesos2, vacio: 'sin clics todavía' },
+    ];
+    let txt;
+    if (!c1) txt = 'Las campañas nuevas todavía no traen visitas.';
+    else if (c0 && c0 > c1) txt = `Cada visita de las campañas nuevas cuesta <b>${nf0.format((1 - c1 / c0) * 100)}% menos</b> que la de las anteriores que siguen encendidas${cA ? `, y ${c1 <= cA ? `${nf0.format((1 - c1 / cA) * 100)}% menos` : `${nf0.format((c1 / cA - 1) * 100)}% más`} que antes` : ''}.`;
+    else if (cA) txt = `Cada visita de las campañas nuevas cuesta ${pesos2(c1)}: ${c1 <= cA ? `<b>${nf0.format((1 - c1 / cA) * 100)}% menos</b>` : `${nf0.format((c1 / cA - 1) * 100)}% más`} que antes.`;
+    body.append(h('div', { class: 'bloque' }, h('h3', {}, INTERNO ? 'Campañas nuevas contra anteriores' : 'Las campañas nuevas contra las de antes', h('small', {}, 'costo de cada ' + (INTERNO ? 'clic' : 'visita'))),
+      barrasCosto(filasC, m.oscuro), txt ? html('p', { style: 'font-size:14px;color:var(--ink-2)' }, txt) : null));
+  }
+
+  // Semana a semana
+  const S = semanas(m);
+  const sem = h('div', { class: 'semanas' });
+  const c1 = h('div', { class: 'chart' }, h('span', {}, INTERNO ? 'Clics por día, semana a semana' : 'Visitas al día, semana a semana'));
+  const c2 = h('div', { class: 'chart' }, h('span', {}, (INTERNO ? 'Costo por clic' : 'Costo de cada visita') + ': antes la cuenta, después las campañas nuevas'));
+  sem.append(c1, c2);
+  body.append(h('div', { class: 'bloque' }, h('h3', {}, 'Cómo va avanzando', h('small', {}, 'promedio de cada semana; la última puede ir a medias')), sem));
+  requestAnimationFrame(() => {
+    columnas(c1, S.map((w) => ({ ...w, v: w.t.dias ? w.t.clics / w.t.dias : null })), m.color, (v) => nf1.format(v));
+    columnas(c2, S.map((w) => ({ ...w, v: w.tn.clics ? cpc(w.tn) : null })), m.color, (v, fino) => (fino ? pesos2(v) : '$' + nf1.format(v)));
+  });
+
+  // Inversión del mes
+  const M = mesDe(m), f = Math.min(1, M.gasto / m.tope);
+  body.append(h('div', { class: 'bloque' }, h('h3', {}, `Inversión de ${MESES_L[+M.hasta.slice(5, 7) - 1]}`, h('small', {}, 'la raya marca lo que tocaría llevar a la fecha')),
+    h('div', { class: 'metro' },
+      h('div', { class: 'metro-top' }, h('span', {}, h('strong', {}, pesos(M.gasto)), ` de ${pesos(m.tope)}`), h('span', { style: 'color:var(--ink-2)' }, `${pct(M.gasto / m.tope)} del tope`)),
+      h('div', { class: 'track', role: 'img', 'aria-label': `${pesos(M.gasto)} de ${pesos(m.tope)}` },
+        h('div', { class: 'fill', style: `width:${f * 100}%;background:${m.color}` }), h('div', { class: 'mark', style: `left:calc(${Math.min(100, (M.debe / m.tope) * 100)}% - 1px)` })),
+      h('span', { class: 's' }, `Al ${fecha(M.hasta)} tocaría llevar ${pesos(M.debe)}. Gastando como en los últimos días (${pesos(M.diario)} al día), cerraría el mes en ${pesos(M.cierre)}.`))));
+
+  // Solo interno: cuántas veces salimos, desperdicio y campañas
+  if (INTERNO) {
+    const NN = ahoraDe(m, true);
+    const fila2 = h('div', { class: 'dos' });
+    const cuota = h('div', { class: 'bloque' }, h('h3', {}, '¿Cuántas veces salimos?', h('small', {}, 'campañas nuevas')));
+    if (NN.elig) {
+      const v = [NN.imp / NN.elig, NN.perdP / NN.elig, Math.max(0, 1 - NN.imp / NN.elig - NN.perdP / NN.elig)];
+      const cs = [m.color, 'var(--bad)', 'var(--antes)'], ns = ['Salimos', 'Perdida por presupuesto', 'Perdida por posición o puja'];
+      const st = h('div', { class: 'stack', style: 'height:18px' });
+      v.forEach((x, i) => { if (x > 0.005) st.append(conTip(h('div', { style: `width:${x * 100}%;background:${cs[i]}` }), `${ns[i]}: ${pct(x)}`)); });
+      cuota.append(st, h('div', { class: 'serie-leyenda' }, ...ns.map((n, i) => h('span', {}, h('span', { class: 'dot', style: 'background:' + cs[i] }), `${n} ${pct(v[i])}`))));
+    } else cuota.append(h('div', { class: 'vacio' }, 'Sin dato de cuota en este periodo.'));
+    const tot = NN.util + NN.excl;
+    const desp = h('div', { class: 'bloque' }, h('h3', {}, 'Gasto en búsquedas que ya bloqueamos', h('small', {}, 'campañas nuevas')));
+    if (tot) {
+      const st = h('div', { class: 'stack', style: 'height:18px' }, h('div', { style: `width:${(NN.util / tot) * 100}%;background:${m.color}` }), h('div', { style: `width:${(NN.excl / tot) * 100}%;background:var(--bad)` }));
+      desp.append(st, h('div', { class: 'serie-leyenda' }, h('span', {}, h('span', { class: 'dot', style: 'background:' + m.color }), `Búsquedas útiles ${pesos(NN.util)}`),
+        h('span', {}, h('span', { class: 'dot', style: 'background:var(--bad)' }), `Ya bloqueadas ${pesos(NN.excl)} (${pct(NN.excl / tot)})`)));
+    } else desp.append(h('div', { class: 'vacio' }, 'Sin búsquedas en este periodo.'));
+    fila2.append(cuota, desp);
+    body.append(fila2);
+
+    const rows = [];
+    for (const [n, c] of Object.entries(m.datos.c)) {
+      const t = suma(m, ...ahora(m), false, n);
+      if (!c.n && !t.costo) continue;
+      rows.push({ n, nueva: c.n, t, plan: (m.campanas[n] || {}).cpc });
+    }
+    for (const n of Object.keys(m.campanas)) if (!m.datos.c[n]) rows.push({ n, nueva: 1, t: vacio(), plan: m.campanas[n].cpc });
+    rows.sort((x, y) => y.t.costo - x.t.costo);
+    const tb = h('tbody');
+    for (const r of rows) {
+      const pp = r.t.elig ? r.t.perdP / r.t.elig : null;
+      tb.append(h('tr', {}, h('td', { class: r.nueva ? '' : 'vieja' }, r.n, r.nueva ? null : h('div', { class: 'sub' }, 'anterior')),
+        h('td', {}, pesos(r.t.costo)), h('td', { class: r.nueva && !r.t.clics ? 'ojo' : '' }, nf0.format(r.t.clics)), h('td', {}, r.t.clics ? pesos2(cpc(r.t)) : '—'),
+        h('td', {}, r.plan ? pesos2(r.plan) : '—'), h('td', {}, r.t.elig ? pct(r.t.imp / r.t.elig) : '—'), h('td', { class: pp > 0.2 ? 'ojo' : '' }, pp === null ? '—' : pct(pp)),
+        h('td', {}, nf0.format(r.t.llam)), h('td', {}, r.t.conv ? nf1.format(r.t.conv) : '—')));
+    }
+    body.append(h('div', { class: 'bloque' }, h('h3', {}, 'Por campaña', h('small', {}, nombreAhora() + ' · en rojo, lo que hay que revisar')),
+      h('div', { class: 'tabla' }, h('table', {}, h('thead', {}, h('tr', {}, ...['Campaña', 'Gasto', 'Clics', 'Costo por clic', 'Tope del plan', 'Salimos', 'Pierde por presupuesto', 'Llamadas', 'Contactos'].map((x) => h('th', {}, x)))), tb))));
+  }
+  return sec;
+}
+
+function pintarTiles() {
+  const cont = $('#tiles'); cont.replaceChildren();
+  const A = vacio(), N = vacio();
+  for (const m of CON) { const a = antesDe(m), n = ahoraDe(m); for (const k in A) { A[k] += a[k]; N[k] += n[k]; } }
+  const d = Math.max(...CON.map((m) => ahoraDe(m).dias)), da = Math.max(...CON.map((m) => antesDe(m).dias));
+  const vA = A.clics / da, vN = N.clics / d;
+  const tile = (k, v, sub, deltaEl) => h('div', { class: 'tile' }, h('span', { class: 'k' }, k), h('span', { class: 'v' }, v), h('span', { class: 's' }, sub), deltaEl || null);
+  const dl = (r, mejorSube, txt) => {
+    if (r === null) return h('span', { class: 'delta up' }, 'Nuevo');
+    const bueno = mejorSube ? r > 0.02 : r < -0.02, igual = Math.abs(r) <= 0.02;
+    return h('span', { class: 'delta ' + (igual ? 'flat' : bueno ? 'up' : INTERNO ? 'down' : 'soft') }, (r > 0.02 ? '▲ ' : r < -0.02 ? '▼ ' : '= ') + nf0.format(Math.abs(r * 100)) + '% ' + txt);
+  };
+  cont.append(
+    tile(INTERNO ? 'Clics por día' : 'Visitas al día', nf1.format(vN), `antes ${nf1.format(vA)}`, dl(cambio(vN, vA), true, 'contra antes')),
+    (() => {
+      const NN = vacio(); for (const m of CON) { const x = ahoraDe(m, true); NN.clics += x.clics; NN.costo += x.costo; }
+      return tile(INTERNO ? 'Costo por clic · campañas nuevas' : 'Costo de cada visita · campañas nuevas', NN.clics ? pesos2(cpc(NN)) : '—',
+        `antes ${pesos2(cpc(A))} · toda la cuenta hoy ${pesos2(cpc(N))}`, dl(cambio(cpc(NN), cpc(A)), false, 'contra antes'));
+    })(),
+    tile(INTERNO ? 'Gasto' : 'Inversión', pesos(N.costo), `${INTERNO ? nombreAhora() : 'desde el arranque'} · ${pesos(N.costo / d)} al día`),
+    (() => {
+      const cs = CON.map(contactosNuevos).filter((x) => x && x.total > 0);
+      if (!cs.length) return tile('Contactos', 'En instalación', `Mientras, ${nf0.format(N.llam)} llamadas desde el anuncio`);
+      const desde = cs.map((x) => x.desde).sort()[0];
+      return tile('Contactos', nf1.format(cs.reduce((a, x) => a + x.total, 0)), `desde el ${fecha(desde)}, con la medición nueva`);
+    })());
+  const tv = cont.lastChild.querySelector('.v'); if (!/\d/.test(tv.textContent)) tv.style.cssText = 'font-size:22px;padding-block:4px';
+}
+
+function pintarCosto() {
+  const cont = $('#costo'); cont.replaceChildren();
+  let conv = 0, chat = 0;
+  for (const m of CON) { const cc = costoContacto(m); conv += cc.conv; chat += cc.chat; }
+  $('#p-costo').innerHTML = `Antes, <b>${pct(conv ? chat / conv : 0)} de lo que se contaba como contacto eran conversaciones con el chat de la página</b>; por eso cada «contacto» parecía barato. ` +
+    'Con la medición nueva solo cuentan formularios enviados y clics en WhatsApp. Abajo, el costo de antes con y sin el chat, y el de ahora.';
+  for (const m of MARCAS.filter((x) => x.datos)) {
+    const cc = costoContacto(m), v = veredictoCosto(m, cc);
+    const filas = [
+      { lbl: 'Antes, como se contaba', sub: `${nf0.format(cc.conv)} conversiones, ${nf0.format(cc.chat)} del chat`, v: cc.pCon, color: 'var(--antes)', claro: true, fmt: pesos },
+      { lbl: 'Antes, sin contar el chat', sub: `${nf0.format(cc.sinChat)} formularios, WhatsApp y llamadas`, v: cc.pSin, color: 'var(--antes)', claro: true, fmt: pesos },
+      { lbl: 'Ahora, medición nueva', sub: cc.cn && cc.cn.total ? `${nf0.format(cc.cn.total)} contactos en ${cc.cn.dias} ${cc.cn.dias === 1 ? 'día' : 'días'}` : 'sin contactos todavía', v: cc.pAhora, color: m.color, fmt: pesos, vacio: 'sin contactos todavía' },
+    ];
+    cont.append(h('div', { class: 'cc' }, h('div', { class: 'cc-top' }, h('h3', {}, h('span', { class: 'dot', style: 'background:' + m.color }), m.nombre), pill(v)),
+      barrasCosto(filas, m.oscuro), html('p', {}, v.t)));
+  }
+}
+
+const TIPOS = [['chat', 'Chat de la página', 'var(--antes)'], ['whatsapp', 'WhatsApp', 'var(--m3)'], ['formulario', 'Formulario', 'var(--m1)'], ['llamada', 'Llamada', 'var(--m2)'], ['otro', 'Otro', 'var(--line-2)']];
+const tipoDe = (n) => { const x = llano(n); return /coudibot/.test(x) ? 'chat' : /whatsapp|conversa/.test(x) ? 'whatsapp' : /formulario|form/.test(x) ? 'formulario' : /call|llamada/.test(x) ? 'llamada' : 'otro'; };
+function llano(x) { return x.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+function porTipo(acc) { const o = {}; for (const [n, v] of Object.entries(acc)) o[tipoDe(n)] = (o[tipoDe(n)] || 0) + v; return o; }
+
+function pintarLead() {
+  // Solo las marcas que ya tienen la medición nueva se comparan; antes y ahora con las mismas marcas.
+  const ms = CON.filter((m) => { const c = contactosNuevos(m); return c && c.total > 0; });
+  let ca = 0, conv = 0, chat = 0, gn = 0, nn = 0, desde = '';
+  const antesT = {}, ahoraT = {};
+  for (const m of CON) {
+    const pre = mas(m.datos.arranque, -1), acc = acciones(m, m.datos.desde, pre, () => true);
+    for (const [k, v] of Object.entries(porTipo(acc))) antesT[k] = (antesT[k] || 0) + v;
+  }
+  for (const m of ms) {
+    const cc = costoContacto(m);
+    ca += cc.ca; conv += cc.conv; chat += cc.chat; gn += cc.gastoAhora; nn += cc.cn.total;
+    if (!desde || cc.cn.desde < desde) desde = cc.cn.desde;
+    for (const [k, v] of Object.entries(porTipo(cc.cn.por))) ahoraT[k] = (ahoraT[k] || 0) + v;
+  }
+  const tile = (k, v, s, cls) => h('div', { class: 'tile', style: cls ? 'border-color:var(--m1);box-shadow:inset 0 0 0 1px var(--m1)' : null }, h('span', { class: 'k' }, k), h('span', { class: 'v' }, v), h('span', { class: 's' }, s));
+  const cont = $('#lead-tiles'); cont.replaceChildren();
+  if (!ms.length) { cont.append(h('div', { class: 'vacio' }, 'Todavía no hay contactos con la medición nueva.')); return; }
+  cont.append(
+    tile('Antes, como se contaba', conv ? pesos(ca / conv) : '—', `por contacto · ${nf0.format(conv)} conversiones, ${nf0.format(chat)} del chat`),
+    tile('Antes, sin contar el chat', conv - chat ? pesos(ca / (conv - chat)) : '—', `por contacto · ${nf0.format(conv - chat)} formularios, WhatsApp y llamadas`),
+    tile('Ahora, medición nueva', pesos(gn / nn), `por contacto · ${nf0.format(nn)} contactos desde el ${fecha(desde)}`, true));
+  $('#lead-nota').textContent = `Arriba: ${ms.map((m) => m.nombre).join(' y ')}, las marcas que ya cuentan contactos con la medición nueva. ` +
+    `Es una primera señal: la medición empezó el ${fecha(desde)}. En dos semanas habrá suficientes contactos para una cifra firme.`;
+  const items = (o) => TIPOS.filter(([k]) => o[k]).map(([k, lbl, c]) => ({ label: lbl, value: o[k], color: c, oscuro: false }));
+  const ta = total(antesT);
+  $('#p-antes-tipo').textContent = `En los 30 días antes del arranque, las cuatro cuentas contaron ${nf0.format(ta)} conversiones. ${pct((antesT.chat || 0) / ta)} eran conversaciones con el chat de la página, que no siempre son un cliente interesado.`;
+  pastel($('#pie-antes-tipo'), items(antesT), (v) => nf0.format(v));
+  $('#p-ahora-tipo').textContent = 'Con la medición nueva solo cuenta quien manda el formulario o escribe por WhatsApp desde la página.';
+  pastel($('#pie-ahora-tipo'), items(ahoraT), (v) => nf0.format(v) + (v === 1 ? ' contacto' : ' contactos'));
+}
+
+function pintarIndice() {
+  const nav = $('#indice'); nav.replaceChildren();
+  $('#t-indice').textContent = INTERNO ? 'Marca por marca' : 'Cada marca, antes y ahora';
+  $('#p-indice').textContent = INTERNO ? 'Toca una marca para ver solo esa. Toca de nuevo para ver todas.' : 'Toca una marca para ir a su apartado.';
+  for (const m of MARCAS) {
+    const e = estado(m);
+    let gr = h('span', { class: 'gr' }, '—');
+    if (m.datos) {
+      const r = cambio(porDia(ahoraDe(m), 'clics'), porDia(antesDe(m), 'clics'));
+      gr = h('span', { class: 'gr' }, r === null ? 'Nuevo' : signo(r), h('small', {}, INTERNO ? ' clics/día' : ' visitas'));
+    }
+    const a = h('a', { href: '#m-' + m.id, 'aria-current': String(INTERNO && est.marca === m.id) },
+      h('span', { class: 'nm' }, h('span', { class: 'dot', style: 'background:' + m.color }), m.nombre), gr, pill(e));
+    if (INTERNO) a.addEventListener('click', (ev) => { ev.preventDefault(); est.marca = est.marca === m.id ? 'todas' : m.id; guardar('marca', est.marca); pintarMarcas(); pintarIndice(); });
+    nav.append(a);
+  }
+}
+
+function pintarMarcas() {
+  const cont = $('#marcas'); cont.replaceChildren();
+  const ms = INTERNO && est.marca && est.marca !== 'todas' ? MARCAS.filter((m) => m.id === est.marca) : MARCAS;
+  for (const m of ms) cont.append(apartado(m));
+}
+
+function pintarPasteles() {
+  const items = (campo) => CON.map((m) => ({ label: m.nombre, value: ahoraDe(m)[campo], color: m.color, oscuro: m.oscuro })).filter((x) => x.value > 0);
+  const sin = MARCAS.filter((m) => !m.datos).map((m) => [m.nombre, /\d/.test(m.cuenta) ? 'sin datos' : 'por arrancar']);
+  const cuando = INTERNO ? nombreAhora() : 'desde el arranque';
+  $('#t-gasto').textContent = INTERNO ? 'Reparto del gasto' : '¿En qué marca se invierte?';
+  $('#p-gasto').textContent = `Parte de la inversión en Google Ads que fue a cada marca, ${cuando}.`;
+  $('#t-clics').textContent = INTERNO ? 'Reparto de los clics' : '¿A qué página llegan las visitas?';
+  $('#p-clics').textContent = INTERNO ? 'Si una marca se lleva más gasto que clics, cada clic le cuesta más que a las demás.' : `Parte de las visitas que trajo Google Ads a cada página, ${cuando}.`;
+  pastel($('#pie-gasto'), items('costo'), pesos, sin);
+  pastel($('#pie-clics'), items('clics'), (v) => nf0.format(v) + (INTERNO ? ' clics' : ' visitas'), sin);
+}
+
+function pintarTendencia() {
+  if (!INTERNO || !CON.length) return;
+  const desde = CON.reduce((a, m) => (!a || m.datos.desde < a ? m.datos.desde : a), '');
+  const fechas = []; for (let d = desde; d <= HASTA; d = mas(d, 1)) fechas.push(d);
+  const met = est.metrica;
+  const series = CON.map((m) => ({ name: m.nombre, color: m.color, values: fechas.map((d) => {
+    if (d > m.datos.hasta || d < m.datos.desde) return null;
+    const t = suma(m, d, d);
+    return met === 'clics' ? t.clics : met === 'costo' ? t.costo : t.clics ? cpc(t) : null;
+  }) }));
+  const fmt = met === 'clics' ? (v) => nf0.format(v) : met === 'costo' ? pesos : (v, fino) => (fino ? pesos2(v) : '$' + nf1.format(v));
+  $('#t-tend').textContent = { clics: 'Clics por día', costo: 'Gasto por día', cpc: 'Costo por clic por día' }[met];
+  const ley = $('#leyenda-tend'); ley.replaceChildren();
+  for (const se of series) ley.append(h('span', {}, h('span', { class: 'dot', style: 'background:' + se.color }), se.name));
+  lineas($('#tendencia'), series, fechas, fmt, ARRANQUE);
+}
+
+function pintarLeads() {
+  const cont = $('#leads'); cont.replaceChildren();
+  const P = CON.map((m) => ({ m, cn: contactosNuevos(m), t: ahoraDe(m) }));
+  const con = P.filter((x) => x.cn && x.cn.total > 0);
+  $('#p-leads').textContent = 'Personas que mandaron el formulario o escribieron por WhatsApp desde la página, con la medición nueva.';
+  if (!con.length) {
+    cont.append(h('div', { class: 'vacio' }, h('b', {}, 'Medición en instalación. '),
+      'En cuanto las páginas registren formularios y WhatsApp, aquí saldrán los contactos de cada marca y cuánto cuesta cada uno.'));
+  } else {
+    const desde = con.map((x) => x.cn.desde).sort()[0];
+    const izq = h('div', { class: 'pie-box' }), der = h('div', { style: 'display:grid;gap:10px;align-content:start' });
+    cont.append(h('div', { class: 'grid2' }, izq, der));
+    pastel(izq, con.map((x) => ({ label: x.m.nombre, value: x.cn.total, color: x.m.color, oscuro: x.m.oscuro })), (v) => nf1.format(v) + ' contactos',
+      P.filter((x) => !x.cn || !x.cn.total).map((x) => [x.m.nombre, 'sin contactos aún']));
+    der.append(h('h3', {}, 'Cómo llegaron'));
+    const tot = {}; for (const x of con) for (const [n, v] of Object.entries(x.cn.por)) tot[n] = (tot[n] || 0) + v;
+    const b = h('div', { class: 'bars' }); der.append(b);
+    barras(b, Object.entries(tot).sort((x, y) => y[1] - x[1]).map(([n, v], i) => ({ label: n.replace('AB · ', ''), value: v, color: i ? 'var(--m3)' : 'var(--m1)' })), (v) => nf1.format(v));
+    const dias = entre(desde, HASTA);
+    der.append(h('p', { style: 'font-size:13px;color:var(--ink-2)' }, dias < 14
+      ? `La medición empezó el ${fecha(desde)}. Con ${dias} día(s) todavía no se puede calcular un costo por contacto confiable; saldrá cuando lleve dos semanas.`
+      : 'Costo por contacto en el apartado de cada marca.'));
+  }
+  const filas = P.filter((x) => x.t.llam > 0).map((x) => ({ label: x.m.nombre, value: x.t.llam, color: x.m.color }));
+  if (filas.length) { cont.append(h('h3', { style: 'margin-top:12px' }, 'Llamadas desde el anuncio')); const b = h('div', { class: 'bars' }); cont.append(b); barras(b, filas, (v) => nf0.format(v) + (v === 1 ? ' llamada' : ' llamadas')); }
+  if (INTERNO) {
+    const filasT = [];
+    for (const x of P) {
+      const antesA = acciones(x.m, x.m.datos.desde, mas(x.m.datos.arranque, -1), () => true), ahoraA = acciones(x.m, x.m.datos.arranque, x.m.datos.hasta, () => true);
+      for (const n of new Set([...Object.keys(antesA), ...Object.keys(ahoraA)])) filasT.push(h('tr', {}, h('td', {}, x.m.nombre), h('td', {}, n, esNuevaAccion(n) ? h('div', { class: 'sub' }, 'medición nueva') : null),
+        h('td', {}, nf1.format(antesA[n] || 0)), h('td', {}, nf1.format(ahoraA[n] || 0))));
+    }
+    if (filasT.length) cont.append(h('h3', { style: 'margin-top:12px' }, 'Qué se contaba como conversión, antes y ahora'),
+      h('div', { class: 'tabla' }, h('table', {}, h('thead', {}, h('tr', {}, h('th', {}, 'Marca'), h('th', {}, 'Acción'), h('th', {}, 'Antes (30 días)'), h('th', {}, 'Desde el arranque'))), h('tbody', {}, ...filasT))));
+  }
+}
+
+const ESTADOS = { pendiente: ['Pendiente', 'off'], en_curso: ['En curso', 'warn'], bloqueado: ['Bloqueado', 'bad'], hecho: ['Hecho', 'good'] };
+function pintarPendientes() {
+  const cont = $('#pendientes'); cont.replaceChildren();
+  const P = DATA.pendientes || [];
+  if (INTERNO) {
+    $('#t-pend').textContent = 'Pendientes y bloqueos';
+    $('#p-pend').textContent = 'Lo que falta para que la estrategia rinda y de quién depende.';
+    const k = h('div', { class: 'kanban' });
+    for (const e of ['bloqueado', 'en_curso', 'pendiente', 'hecho']) {
+      const xs = P.filter((x) => x.estado === e);
+      const col = h('div', { class: 'col' }, h('h3', {}, pill({ nivel: ESTADOS[e][1], txt: ESTADOS[e][0] }), h('span', {}, String(xs.length))));
+      for (const x of xs) col.append(h('div', { class: 'tarea' }, h('b', {}, x.titulo),
+        h('div', { class: 'm' }, x.marca ? h('span', {}, x.marca) : null, x.dueno ? h('span', {}, 'Depende de: ' + x.dueno) : null, x.fecha ? h('span', {}, fecha(x.fecha)) : null),
+        x.nota ? h('div', { class: 'nota' }, x.nota) : null));
+      if (!xs.length) col.append(h('div', { class: 'tarea' }, h('span', { class: 'nota' }, 'Nada aquí.')));
+      k.append(col);
+    }
+    cont.append(k);
+  } else {
+    $('#t-pend').textContent = 'Lo que se ha hecho y lo que sigue';
+    $('#p-pend').textContent = '';
+    const ul = h('ul', { class: 'hitos' });
+    const orden = { hecho: 0, en_curso: 1, pendiente: 2, bloqueado: 2 };
+    for (const x of P.filter((x) => x.duenos).sort((a, b) => orden[a.estado] - orden[b.estado])) {
+      // Para los dueños, «bloqueado» se muestra como «En curso»: sigue siendo trabajo abierto, sin el tono de alarma.
+      const [txt, cls] = x.estado === 'bloqueado' ? ESTADOS.en_curso : ESTADOS[x.estado] || ESTADOS.pendiente;
+      ul.append(h('li', {}, h('span', {}, pill({ nivel: cls, txt })), h('span', {}, x.titulo, x.nota_duenos ? h('span', { class: 'nota' }, x.nota_duenos) : null)));
+    }
+    cont.append(ul);
+  }
+}
+
+// ---------- armado
+function chips(cont, opciones, actual, al) {
+  cont.querySelectorAll('button').forEach((b) => b.remove());
+  for (const [v, txt] of opciones) cont.append(h('button', { class: 'chip', type: 'button', id: cont.id + '-' + v, 'aria-pressed': String(v === actual), onclick: () => al(v) }, txt));
+}
+function pintar() {
+  if (INTERNO) {
+    chips($('#f-periodo'), PERIODOS, est.periodo, (v) => { est.periodo = v; guardar('periodo', v); pintar(); });
+    chips($('#f-metrica'), [['clics', 'Clics'], ['costo', 'Gasto'], ['cpc', 'Costo por clic']], est.metrica, (v) => { est.metrica = v; guardar('metrica', v); pintar(); });
+  }
+  pintarTiles(); pintarCosto(); pintarIndice(); pintarMarcas(); pintarPasteles(); pintarTendencia(); pintarLeads(); pintarPendientes();
+}
+
+function iniciar() {
+  document.querySelectorAll('.solo-interno').forEach((e) => { e.hidden = !INTERNO; });
+  document.querySelectorAll('.solo-lead').forEach((e) => { e.hidden = !LEAD; });
+  if (LEAD) {
+    // Tablero solo de costo por contacto: encabezado, resumen, qué se contaba, y la tarjeta por marca.
+    for (const e of document.querySelectorAll('#app > *')) if (!e.matches('.head, .solo-lead, #s-costo')) e.hidden = true;
+    $('#titulo').textContent = 'Costo por contacto';
+    $('#aviso-ejemplo').hidden = !DATA.ejemplo;
+    $('#meta').textContent = CON.length ? `Antes: 30 días previos al ${fecha(ARRANQUE)} · ahora: medición nueva · datos hasta el ${fecha(HASTA)} de ${HASTA.slice(0, 4)}` : 'Todavía no hay datos cargados.';
+    if (CON.length) {
+      pintarLead(); pintarCosto();
+      $('#s-costo h2').textContent = 'Marca por marca';
+      $('#p-costo').textContent = 'El costo de cada contacto antes, con y sin el chat, y con la medición nueva.';
+    }
+    return;
+  }
+  if (INTERNO) est.marca = leerG('marca') || 'todas';
+  $('#titulo').textContent = INTERNO ? '¿Está funcionando la estrategia?' : 'Avance de Google Ads';
+  $('#aviso-ejemplo').hidden = !DATA.ejemplo;
+  $('#meta').textContent = CON.length
+    ? `Campañas nuevas desde el ${fecha(ARRANQUE)} · datos hasta el ${fecha(HASTA)} de ${HASTA.slice(0, 4)} · «antes» son los 30 días previos al arranque`
+    : 'Todavía no hay datos cargados.';
+  if (!CON.length) { document.querySelectorAll('.tiles, .grid2, #s-leads, #s-costo, .seccion-t').forEach((e) => { e.hidden = true; }); pintarIndice(); pintarMarcas(); pintarPendientes(); return; }
+  pintar();
+  let ancho = innerWidth, to;
+  addEventListener('resize', () => { if (innerWidth === ancho) return; ancho = innerWidth; clearTimeout(to); to = setTimeout(() => { pintarMarcas(); pintarTendencia(); }, 150); });
+}
+iniciar();
+</script>

@@ -5,6 +5,7 @@
 Salen dos páginas en tablero/salida/:
   mi-tablero.html      para Atelback: ¿está funcionando la estrategia?, por marca y por campaña, y pendientes.
   tablero-duenos.html  para los dueños: reparto del gasto y de las visitas, gasto contra tope y lo que se ha hecho.
+  costo-por-contacto.html  para los dueños: solo el costo por contacto, antes (con y sin el chat) contra la medición nueva.
 
 Mientras no haya datos reales cargados (ver cargar.py), las dos páginas salen con datos de ejemplo marcados como tales.
 """
@@ -106,7 +107,8 @@ def main():
     js = json.dumps(todo, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/')
     os.makedirs(SALIDA, exist_ok=True)
     for archivo, modo, titulo in [('mi-tablero.html', 'interno', 'Tablero Atelback Supliese'),
-                                  ('tablero-duenos.html', 'duenos', 'Avance Supliese Google Ads')]:
+                                  ('tablero-duenos.html', 'duenos', 'Avance Supliese Google Ads'),
+                                  ('costo-por-contacto.html', 'lead', 'Costo por contacto Supliese')]:
         out = html.replace('__TITULO__', titulo).replace('"__MODO__"', json.dumps(modo)).replace('/*__DATOS__*/null', js)
         with open(os.path.join(SALIDA, archivo), 'w', encoding='utf-8') as f:
             f.write(out)

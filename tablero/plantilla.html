@@ -236,6 +236,20 @@ td .sub { color: var(--muted); font-size: 12px; }
 
   <section class="tiles" id="tiles" aria-label="Resumen del grupo"></section>
 
+  <section class="tiles solo-lead" id="lead-tiles" aria-label="Costo por contacto del grupo"></section>
+  <p class="meta solo-lead" id="lead-nota"></p>
+
+  <div class="grid2 solo-lead">
+    <section class="card">
+      <div class="card-head"><h2>¿Qué se contaba antes como contacto?</h2><p id="p-antes-tipo"></p></div>
+      <div class="pie-box" id="pie-antes-tipo"></div>
+    </section>
+    <section class="card">
+      <div class="card-head"><h2>¿Qué se cuenta ahora?</h2><p id="p-ahora-tipo"></p></div>
+      <div class="pie-box" id="pie-ahora-tipo"></div>
+    </section>
+  </div>
+
   <section class="card" id="s-costo">
     <div class="card-head"><h2>¿Los contactos salen más caros que antes?</h2><p id="p-costo"></p></div>
     <div class="cc-grid" id="costo"></div>
@@ -291,6 +305,7 @@ td .sub { color: var(--muted); font-size: 12px; }
 const DATA = /*__DATOS__*/null;
 const MODO = "__MODO__";
 const INTERNO = MODO === 'interno';
+const LEAD = MODO === 'lead';
 
 // ---------- utilidades
 const $ = (q) => document.querySelector(q);
@@ -942,6 +957,43 @@ function pintarCosto() {
   }
 }
 
+const TIPOS = [['chat', 'Chat de la página', 'var(--antes)'], ['whatsapp', 'WhatsApp', 'var(--m3)'], ['formulario', 'Formulario', 'var(--m1)'], ['llamada', 'Llamada', 'var(--m2)'], ['otro', 'Otro', 'var(--line-2)']];
+const tipoDe = (n) => { const x = llano(n); return /coudibot/.test(x) ? 'chat' : /whatsapp|conversa/.test(x) ? 'whatsapp' : /formulario|form/.test(x) ? 'formulario' : /call|llamada/.test(x) ? 'llamada' : 'otro'; };
+function llano(x) { return x.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+function porTipo(acc) { const o = {}; for (const [n, v] of Object.entries(acc)) o[tipoDe(n)] = (o[tipoDe(n)] || 0) + v; return o; }
+
+function pintarLead() {
+  // Solo las marcas que ya tienen la medición nueva se comparan; antes y ahora con las mismas marcas.
+  const ms = CON.filter((m) => { const c = contactosNuevos(m); return c && c.total > 0; });
+  let ca = 0, conv = 0, chat = 0, gn = 0, nn = 0, desde = '';
+  const antesT = {}, ahoraT = {};
+  for (const m of CON) {
+    const pre = mas(m.datos.arranque, -1), acc = acciones(m, m.datos.desde, pre, () => true);
+    for (const [k, v] of Object.entries(porTipo(acc))) antesT[k] = (antesT[k] || 0) + v;
+  }
+  for (const m of ms) {
+    const cc = costoContacto(m);
+    ca += cc.ca; conv += cc.conv; chat += cc.chat; gn += cc.gastoAhora; nn += cc.cn.total;
+    if (!desde || cc.cn.desde < desde) desde = cc.cn.desde;
+    for (const [k, v] of Object.entries(porTipo(cc.cn.por))) ahoraT[k] = (ahoraT[k] || 0) + v;
+  }
+  const tile = (k, v, s, cls) => h('div', { class: 'tile', style: cls ? 'border-color:var(--m1);box-shadow:inset 0 0 0 1px var(--m1)' : null }, h('span', { class: 'k' }, k), h('span', { class: 'v' }, v), h('span', { class: 's' }, s));
+  const cont = $('#lead-tiles'); cont.replaceChildren();
+  if (!ms.length) { cont.append(h('div', { class: 'vacio' }, 'Todavía no hay contactos con la medición nueva.')); return; }
+  cont.append(
+    tile('Antes, como se contaba', conv ? pesos(ca / conv) : '—', `por contacto · ${nf0.format(conv)} conversiones, ${nf0.format(chat)} del chat`),
+    tile('Antes, sin contar el chat', conv - chat ? pesos(ca / (conv - chat)) : '—', `por contacto · ${nf0.format(conv - chat)} formularios, WhatsApp y llamadas`),
+    tile('Ahora, medición nueva', pesos(gn / nn), `por contacto · ${nf0.format(nn)} contactos desde el ${fecha(desde)}`, true));
+  $('#lead-nota').textContent = `Arriba: ${ms.map((m) => m.nombre).join(' y ')}, las marcas que ya cuentan contactos con la medición nueva. ` +
+    `Es una primera señal: la medición empezó el ${fecha(desde)}. En dos semanas habrá suficientes contactos para una cifra firme.`;
+  const items = (o) => TIPOS.filter(([k]) => o[k]).map(([k, lbl, c]) => ({ label: lbl, value: o[k], color: c, oscuro: false }));
+  const ta = total(antesT);
+  $('#p-antes-tipo').textContent = `En los 30 días antes del arranque, las cuatro cuentas contaron ${nf0.format(ta)} conversiones. ${pct((antesT.chat || 0) / ta)} eran conversaciones con el chat de la página, que no siempre son un cliente interesado.`;
+  pastel($('#pie-antes-tipo'), items(antesT), (v) => nf0.format(v));
+  $('#p-ahora-tipo').textContent = 'Con la medición nueva solo cuenta quien manda el formulario o escribe por WhatsApp desde la página.';
+  pastel($('#pie-ahora-tipo'), items(ahoraT), (v) => nf0.format(v) + (v === 1 ? ' contacto' : ' contactos'));
+}
+
 function pintarIndice() {
   const nav = $('#indice'); nav.replaceChildren();
   $('#t-indice').textContent = INTERNO ? 'Marca por marca' : 'Cada marca, antes y ahora';
@@ -1079,6 +1131,20 @@ function pintar() {
 
 function iniciar() {
   document.querySelectorAll('.solo-interno').forEach((e) => { e.hidden = !INTERNO; });
+  document.querySelectorAll('.solo-lead').forEach((e) => { e.hidden = !LEAD; });
+  if (LEAD) {
+    // Tablero solo de costo por contacto: encabezado, resumen, qué se contaba, y la tarjeta por marca.
+    for (const e of document.querySelectorAll('#app > *')) if (!e.matches('.head, .solo-lead, #s-costo')) e.hidden = true;
+    $('#titulo').textContent = 'Costo por contacto';
+    $('#aviso-ejemplo').hidden = !DATA.ejemplo;
+    $('#meta').textContent = CON.length ? `Antes: 30 días previos al ${fecha(ARRANQUE)} · ahora: medición nueva · datos hasta el ${fecha(HASTA)} de ${HASTA.slice(0, 4)}` : 'Todavía no hay datos cargados.';
+    if (CON.length) {
+      pintarLead(); pintarCosto();
+      $('#s-costo h2').textContent = 'Marca por marca';
+      $('#p-costo').textContent = 'El costo de cada contacto antes, con y sin el chat, y con la medición nueva.';
+    }
+    return;
+  }
   if (INTERNO) est.marca = leerG('marca') || 'todas';
   $('#titulo').textContent = INTERNO ? '¿Está funcionando la estrategia?' : 'Avance de Google Ads';
   $('#aviso-ejemplo').hidden = !DATA.ejemplo;
