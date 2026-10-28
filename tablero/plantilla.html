@@ -427,6 +427,13 @@ function hallazgos(m) {
   const lA = porDia(A, 'llam') * 7, lN = porDia(N, 'llam') * 7;
   if (lN > lA && lN >= 1) add('bueno', 'good', 1, `<b>Llamadas desde el anuncio</b>: ${nf1.format(lA)} → ${nf1.format(lN)} por semana.`, `Más llamadas desde el anuncio: <b>${nf1.format(lN)} por semana</b> (antes ${nf1.format(lA)}).`);
 
+  // 6b. Costo por llamada (solo con suficientes llamadas para que no sea ruido)
+  if (A.llam >= 3 && N.llam >= 3) {
+    const rl = cambio(N.costo / N.llam, A.costo / A.llam);
+    if (rl <= -0.1) add('bueno', 'good', 2, `<b>Costo por llamada ${signo(rl)}</b>: ${pesos(A.costo / A.llam)} → ${pesos(N.costo / N.llam)}.`, `<b>Cada llamada cuesta ${nf0.format(Math.abs(rl * 100))}% menos</b> (${pesos(A.costo / A.llam)} → ${pesos(N.costo / N.llam)}).`);
+    else if (rl >= 0.2) add('mejora', 'warn', 1, `<b>Costo por llamada ${signo(rl)}</b>: ${pesos(A.costo / A.llam)} → ${pesos(N.costo / N.llam)}.`, null, 'Revisar horario del botón de llamada y campañas que traen llamadas.');
+  }
+
   // 7. Campañas nuevas sin clics
   const sinClics = Object.keys(m.campanas).filter((n) => { const c = m.datos.c[n]; return !c || !suma(m, ...ahora(m), true, n).clics; });
   if (sinClics.length) add('mejora', sinClics.length >= 2 ? 'bad' : 'warn', 1, `<b>${sinClics.length} campaña(s) nueva(s) sin clics</b>: ${sinClics.join(', ')}.`, null,
@@ -434,8 +441,10 @@ function hallazgos(m) {
 
   // 8. Contactos
   if (N.conv > 0) {
-    const cA = porDia(A, 'conv') * 7, cN = porDia(N, 'conv') * 7;
-    add('bueno', 'good', 3, `<b>${nf1.format(N.conv)} contactos</b> a ${pesos(N.costo / N.conv)} cada uno.`, `<b>${nf1.format(cN)} contactos por semana</b>${cA ? ` (antes ${nf1.format(cA)})` : ''}.`);
+    const cA = porDia(A, 'conv') * 7, cN = porDia(N, 'conv') * 7, pA = A.conv ? A.costo / A.conv : 0, pN = N.costo / N.conv;
+    if (pA && pN < pA * 0.9) add('bueno', 'good', 3, `<b>Costo por contacto ${signo(pN / pA - 1)}</b>: ${pesos(pA)} → ${pesos(pN)}.`, `<b>Cada contacto cuesta ${nf0.format((1 - pN / pA) * 100)}% menos</b> (${pesos(pA)} → ${pesos(pN)}).`);
+    else if (pA && pN > pA * 1.2) add('mejora', 'bad', 3, `<b>Costo por contacto ${signo(pN / pA - 1)}</b>: ${pesos(pA)} → ${pesos(pN)}.`, `Cada contacto cuesta más que antes (${pesos(pA)} → ${pesos(pN)}); es lo primero que estamos ajustando.`, 'Mover presupuesto a las campañas con menor costo por contacto.');
+    else add('bueno', 'good', 2, `<b>${nf1.format(N.conv)} contactos</b> a ${pesos(pN)} cada uno.`, `<b>${nf1.format(cN)} contactos por semana</b>${cA ? ` (antes ${nf1.format(cA)})` : ''}.`);
   } else add('mejora', 'bad', 3, '<b>Sin medición de contactos</b>: no sabemos cuánto cuesta cada cliente ni qué campaña los trae.',
     'Falta terminar de instalar la medición de contactos en la página para contar cuántos clientes llegan.', 'Cerrar con Rodolfo la instalación del formulario y WhatsApp.');
 
@@ -443,7 +452,7 @@ function hallazgos(m) {
   return { H, dias };
 }
 function estado(m) {
-  if (!m.datos) return { nivel: 'off', txt: 'Por arrancar' };
+  if (!m.datos) return { nivel: 'off', txt: /\d/.test(m.cuenta) ? 'Sin datos' : 'Por arrancar' };
   const { H } = hallazgos(m);
   const bad = H.filter((x) => x.nivel === 'bad').length, warn = H.filter((x) => x.nivel === 'warn').length;
   // El estado no cuenta la medición de contactos: es pendiente de todas las cuentas, no de la marca.
@@ -489,7 +498,7 @@ function pastel(cont, items, fmt, sinDatos = []) {
     lista.append(li); filas.push(li);
     ang = a2;
   });
-  for (const n of sinDatos) lista.append(h('li', { class: 'nodata' }, h('span', { class: 'dot', style: 'background:var(--line-2)' }), h('span', {}, n), h('span', {}, 'por arrancar')));
+  for (const [n, txt] of sinDatos) lista.append(h('li', { class: 'nodata' }, h('span', { class: 'dot', style: 'background:var(--line-2)' }), h('span', {}, n), h('span', {}, txt)));
   cont.append(svg, lista);
 }
 
@@ -645,9 +654,11 @@ function apartado(m) {
   const body = h('div', { class: 'marca-body' }); sec.append(body);
 
   if (!m.datos) {
-    body.append(h('div', { class: 'vacio' }, INTERNO
-      ? `Sin datos: la cuenta todavía no tiene número ni campañas activas. Tope previsto: ${pesos(m.tope)} al mes.`
-      : `Las campañas de ${m.nombre} arrancan en cuanto esté lista su cuenta. Presupuesto previsto: ${pesos(m.tope)} al mes.`));
+    const sinNumero = !/\d/.test(m.cuenta);
+    body.append(h('div', { class: 'vacio' }, sinNumero
+      ? (INTERNO ? `Sin datos: la cuenta todavía no tiene número ni campañas activas. Tope previsto: ${pesos(m.tope)} al mes.`
+        : `Las campañas de ${m.nombre} arrancan en cuanto esté lista su cuenta. Presupuesto previsto: ${pesos(m.tope)} al mes.`)
+      : (INTERNO ? 'Todavía no se cargan los datos de esta cuenta.' : 'Los números de esta marca se agregan en la próxima actualización.')));
     return sec;
   }
   const A = antesDe(m), N = ahoraDe(m), { H } = hallazgos(m);
@@ -671,8 +682,11 @@ function apartado(m) {
     { lbl: 'Llamadas desde el anuncio', sub: 'por semana', a: porDia(A, 'llam') * 7, n: porDia(N, 'llam') * 7, fmt: (v) => nf1.format(v), mejorSube: true },
   ];
   if (INTERNO) filas.splice(2, 0, { lbl: 'Gasto por día', a: porDia(A, 'costo'), n: porDia(N, 'costo'), fmt: pesos, neutro: true });
-  filas.push(N.conv || A.conv ? { lbl: 'Contactos', sub: 'por semana', a: porDia(A, 'conv') * 7, n: porDia(N, 'conv') * 7, fmt: (v) => nf1.format(v), mejorSube: true }
-    : { lbl: 'Contactos', solo: 'pendiente', vacio: 'Medición en instalación' });
+  if (A.llam || N.llam) filas.push({ lbl: INTERNO ? 'Costo por llamada' : 'Costo de cada llamada', a: A.llam ? A.costo / A.llam : 0, n: N.llam ? N.costo / N.llam : 0, fmt: pesos, mejorSube: false });
+  // Contactos solo se comparan cuando «ahora» ya se miden; si no, una caída a cero sería falsa.
+  if (N.conv) filas.push({ lbl: 'Contactos', sub: 'por semana', a: porDia(A, 'conv') * 7, n: porDia(N, 'conv') * 7, fmt: (v) => nf1.format(v), mejorSube: true },
+    { lbl: INTERNO ? 'Costo por contacto' : 'Costo de cada contacto', a: A.conv ? A.costo / A.conv : 0, n: N.costo / N.conv, fmt: pesos, mejorSube: false });
+  else filas.push({ lbl: 'Contactos', solo: 'pendiente', vacio: 'Medición en instalación' });
   versus(vs, filas, m);
   body.append(h('div', { class: 'bloque' }, h('h3', {}, 'Antes y ahora', h('small', {}, `antes: 30 días previos al ${fecha(m.datos.arranque)} · ahora: ${INTERNO ? nombreAhora() : 'desde el arranque'} (${N.dias} días)`)), vs));
 
@@ -788,7 +802,7 @@ function pintarMarcas() {
 
 function pintarPasteles() {
   const items = (campo) => CON.map((m) => ({ label: m.nombre, value: ahoraDe(m)[campo], color: m.color, oscuro: m.oscuro })).filter((x) => x.value > 0);
-  const sin = MARCAS.filter((m) => !m.datos).map((m) => m.nombre);
+  const sin = MARCAS.filter((m) => !m.datos).map((m) => [m.nombre, /\d/.test(m.cuenta) ? 'sin datos' : 'por arrancar']);
   const cuando = INTERNO ? nombreAhora() : 'desde el arranque';
   $('#t-gasto').textContent = INTERNO ? 'Reparto del gasto' : '¿En qué marca se invierte?';
   $('#p-gasto').textContent = `Parte de la inversión en Google Ads que fue a cada marca, ${cuando}.`;

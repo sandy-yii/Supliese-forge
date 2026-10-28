@@ -1,0 +1,43 @@
+AUDITORÍA DE LEADS Y DATOS PARA EL TABLERO · 4 cuentas de Google Ads · SOLO LECTURA
+
+REGLAS (no negociables):
+- No modifiques, pauses, actives, borres ni edites absolutamente nada: campañas, anuncios, palabras clave, presupuestos, conversiones, configuración ni facturación. Solo navegar, cambiar columnas o filtros de la vista, cambiar el rango de fechas y descargar.
+- No aceptes recomendaciones ni "aplicar sugerencias". Si algo te pide confirmar un cambio, detente y pregúntame.
+- Trabaja en una pestaña nueva. Una cuenta a la vez, en este orden. Antes de empezar cada una, confirma el número de cuenta arriba a la derecha:
+
+| Marca | Cuenta | Número | Página |
+| Quick Laundry | Supliese Gómez | 256-397-2201 | quicklaundry.store |
+| Kingstar México | CLM | 993-525-8739 | kingstar.com.mx |
+| Laundry Solutions | Servicio para Lavandería | 265-909-2662 | laundrysolutions.store |
+| Girbau | Girbau | 860-582-6837 | girbaupro.com |
+
+FECHAS:
+- Las campañas nuevas son las que empiezan con «AB ·». Arrancaron el 20 o 21 de octubre de 2026.
+- ANTES = del 20 de septiembre al 19 de octubre de 2026 (30 días).
+- DESPUÉS = del 20 de octubre de 2026 a AYER.
+
+EN CADA CUENTA:
+
+1. CÓMO SE MIDEN LOS LEADS (Objetivos > Conversiones > Resumen). Por cada acción de conversión: nombre, origen (sitio web, llamadas desde anuncios, importada, Google Analytics…), categoría, Principal o Secundaria, si cuenta "Una" o "Todas", estado ("Registrando conversiones", "Sin conversiones recientes", "Sin verificar"…), y conversiones en ANTES y en DESPUÉS. Dime cuáles son un lead de verdad (formulario, WhatsApp, llamada) y cuáles no (por ejemplo visitas a una página o clics en un botón que no mandan nada).
+
+2. NÚMEROS DE ANTES Y DESPUÉS (Campañas). Pon la vista con estas columnas: Campaña, Estado, Impr., Clics, Costo, Conversiones, Costo/conv., Llamadas telefónicas, Cuota de impr. de búsqueda, Cuota de impr. de búsqueda perdida (presupuesto), Cuota de impr. de búsqueda perdida (ranking). Muestra todas las campañas, también pausadas y quitadas si gastaron en las fechas. Anota la tabla completa una vez con el rango ANTES y otra vez con el rango DESPUÉS, con la fila de total.
+
+3. SEMANA A SEMANA PARA EL TABLERO. Mismas columnas, rango del 20 de septiembre de 2026 a AYER, y Segmento > Tiempo > Semana. Copia todas las filas (cada campaña por semana) tal como salen, sin las filas de total. Si la interfaz deja descargar, descarga también esa misma vista en CSV, pero cambiando a Segmento > Tiempo > Día; si no se puede, no pasa nada.
+
+4. COSTO POR LEAD, SIN INVENTAR. Con los números del punto 2, calcula para ANTES y para DESPUÉS, por cuenta y solo campañas nuevas contra las anteriores:
+   - costo por lead = costo ÷ conversiones que SÍ son leads (según el punto 1);
+   - costo por llamada = costo ÷ llamadas telefónicas;
+   - costo por clic.
+   Si en un periodo no hay leads medidos, escribe "sin medición" y NO lo estimes ni lo compares. Si ANTES contaba como conversión algo que no es lead, dilo y calcula también el costo por lead quitando eso. Usa solo números que viste en la pantalla.
+
+ENTREGA: al terminar las 4 cuentas, dame TODO en un solo reporte en formato Markdown, dentro de un único bloque de código, para copiarlo. Un apartado por cuenta con los puntos 1, 2 y 4 en tablas, y una conclusión de dos líneas por cuenta: si el costo por lead o por llamada bajó o subió, y si se puede afirmar o no con lo que está medido.
+
+Además, por cada cuenta, el punto 3 va en un bloque así, exactamente con este formato (fechas como AAAA-MM-DD, números sin el signo $, porcentajes como salen en Google, por ejemplo 45.2% o < 10%):
+
+TABLERO-CSV cuenta=256-397-2201 arranque=AAAA-MM-DD hasta=AAAA-MM-DD
+Semana,Campaña,Impresiones,Clics,Costo,Conversiones,Llamadas,Cuota,PerdidaPresupuesto,PerdidaRanking
+2026-09-14,Nombre exacto de la campaña,1234,56,789.10,0,1,45.2%,30.1%,24.7%
+
+(«arranque» es la fecha de inicio de la primera campaña «AB ·» de esa cuenta; «hasta» es la fecha de AYER. «Semana» es la fecha con la que Google nombra la semana. El nombre de la campaña va completo, con «AB · » si lo tiene; si lleva comas, ponlo entre comillas.)
+
+Al final, una lista de lo que no pudiste ver. Si el texto se corta, dime "continúo" y sigue desde donde quedaste.
