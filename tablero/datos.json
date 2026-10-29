@@ -2888,6 +2888,13 @@
    "nota_duenos": "Se quitan búsquedas que no traen clientes y se pasa dinero a lo que sí funciona."
   },
   {
+   "titulo": "Bajar el costo por clic: pausar «Modelo de Negocio», Search Marcas a la mitad y topes de Kingstar al plan",
+   "estado": "hecho",
+   "fecha": "2026-10-28",
+   "marca": "Quick Laundry y Kingstar",
+   "nota": "Script «bajar-costo-por-clic» ejecutado el 28 oct. Revisar el efecto con datos del 29 oct en adelante."
+  },
+  {
    "titulo": "Medir contactos del formulario y de WhatsApp en las páginas",
    "estado": "en_curso",
    "duenos": true,
@@ -2952,10 +2959,10 @@
    "detalle": "Comparación de las cuatro cuentas contra los 30 días antes del arranque."
   },
   {
-   "cuando": "Esta semana",
+   "cuando": "28 oct",
    "titulo": "Bajar el costo de cada visita",
-   "estado": "en_curso",
-   "detalle": "El dinero de las campañas anteriores más caras pasa a las campañas nuevas que traen visitas más baratas."
+   "estado": "hecho",
+   "detalle": "Se apagó la campaña anterior más cara de Quick Laundry, la otra quedó a la mitad y su dinero pasó a la campaña nueva más barata. En Kingstar, dos campañas regresaron a su tope de costo por clic."
   },
   {
    "cuando": "Esta semana",
