@@ -195,6 +195,7 @@ CUENTAS['gamesail'] = dict(
 
 # ---------------------------------------------------------------- Quick Laundry (cuenta Supliese Gómez)
 CUENTAS['quick-laundry'] = dict(
+    subir_topes=False,  # 28 oct: no subir el costo por clic («más leads» ya no sube topes en esta cuenta)
     nombre='Quick Laundry (cuenta Supliese Gómez)', id='256-397-2201', mensual=12000,
     telefono='33 2601 2237',  # botón de llamada de los anuncios (lista de Rodolfo, 21 oct)
     url='https://quicklaundry.store/',  # desde el 22 oct; antes https://www.supliese.com/
@@ -209,10 +210,11 @@ CUENTAS['quick-laundry'] = dict(
     # 27 oct (3): Equipo se queda sin presupuesto (pierde 33%) con clic a $6; Secadoras y Marcas comerciales no gastaron nada.
     # 28 oct: página de lavadoras de monedas que publicó Rodolfo («página mala» en «lavadora de monedas»).
     paginas={'Autoservicio y monedas > Autoservicio': 'https://quicklaundry.store/lavadoras-de-monedas'},
-    ajustes=dict(presupuesto={'Equipo para lavandería': 160, 'Emprendimiento': 40, 'Autoservicio y monedas': 34,
-                              'Secadoras para lavandería': 3, 'Marcas comerciales': 3, 'Marca Quick Laundry': 14},
+    # 28 oct: se ejecutó «bajar el costo por clic» (sesión del tablero): pausó «Campaña Modelo de Negocio», dejó a la
+    # mitad «Campaña Search Marcas» y pasó ese dinero a Equipo para lavandería. Para no deshacerlo, «ajustes» ya no
+    # enciende Modelo de Negocio ni toca el presupuesto de Equipo, Secadoras y Marcas comerciales.
+    ajustes=dict(presupuesto={'Emprendimiento': 40, 'Autoservicio y monedas': 34, 'Marca Quick Laundry': 14},
                  arriba={'Marca Quick Laundry': dict(cuota=0.8, tope=10)},
-                 activar={'Campaña Modelo de Negocio': 45},
                  presencia=['Campaña Search Marcas']),
     # 27 oct (3): Google califica «anuncio poco relevante» en lavadoras para negocio / para lavanderías / industriales para
     # lavandería / y secadoras para lavandería. Se agrega un segundo anuncio que repite esas búsquedas; el que ya hay se queda.
@@ -351,6 +353,7 @@ CUENTAS['quick-laundry'] = dict(
 
 # ---------------------------------------------------------------- CLM
 CUENTAS['clm'] = dict(
+    subir_topes=False,  # 28 oct: no subir el costo por clic («más leads» ya no sube topes en esta cuenta)
     nombre='CLM', id='993-525-8739', mensual=18700,
     telefono='33 1564 1538',  # botón de llamada de los anuncios (lista de Rodolfo, 21 oct)
     url='https://kingstar.com.mx/',
@@ -386,15 +389,15 @@ CUENTAS['clm'] = dict(
                         'Solicita tu cotización y habla con un asesor sobre tu proyecto.'],
                      p=('lavadoras', 'hotel'))]}),
     # 27 oct (3): Mangles, Hotelera y 20 a 45 kg ya pagan casi su tope por clic y pierden 44-69% de las búsquedas por puja,
-    # gastando menos de la mitad de su presupuesto: se suben los topes (sin pasar del doble del plan). Túnel trajo un
+    # gastando menos de la mitad de su presupuesto (los topes ya no se suben: ver 28 oct abajo). Túnel trajo un
     # WhatsApp con 2 clics y se queda sin presupuesto: recibe $30 de Marca CLM, que casi no tiene búsquedas.
     # 28 oct: páginas por tipo de equipo que publicó Rodolfo («página mala» en Google). Cada grupo lleva a la suya; lo demás, a la de inicio.
     paginas={'Alta capacidad 60 kg o más > Lavadoras de alta capacidad': 'https://kingstar.com.mx/lavadoras-alta-capacidad',
              'Mangles y planchado > Mangles': 'https://kingstar.com.mx/mangles'},
     ajustes=dict(presupuesto={'Alta capacidad 60 kg o más': 222, 'Lavandería hotelera e institucional': 97, 'Marca CLM': 20,
                               'Túnel de lavado': 92},
-                 topes={'Alta capacidad 60 kg o más': 24, 'Lavadoras y secadoras de 20 a 45 kg': 28, 'Mangles y planchado': 24,
-                        'Lavandería hotelera e institucional': 33},
+                 # 28 oct: «bajar el costo por clic» regresó Hotelera a $18 y 20 a 45 kg a $15 (el tope del plan). Ya no se
+                 # suben topes en esta cuenta: el lugar se gana con las páginas nuevas, no pagando más por clic.
                  # 27 oct: quien busca «clm» o «kingstar» ya quiere la marca: sale hasta arriba
                  arriba={'Marca CLM': dict(cuota=0.8, tope=15)}),
     mismo_sitio=['supliese-clm-lavadoras.vercel.app'],  # versión anterior del mismo sitio: se conserva la sección
@@ -530,6 +533,7 @@ CUENTAS['clm'] = dict(
 
 # ---------------------------------------------------------------- Servicio para Lavandería
 CUENTAS['servicio'] = dict(
+    subir_topes=False,  # 28 oct: no subir el costo por clic («más leads» ya no sube topes en esta cuenta)
     nombre='Servicio para Lavandería', id='265-909-2662', mensual=8200,
     telefono='33 1417 2994',  # botón de llamada de los anuncios (lista de Rodolfo, 21 oct)
     url='https://laundrysolutions.store/',
@@ -711,6 +715,7 @@ CUENTAS['servicio'] = dict(
 
 # ---------------------------------------------------------------- Girbau
 CUENTAS['girbau'] = dict(
+    subir_topes=False,  # 28 oct: no subir el costo por clic («más leads» ya no sube topes en esta cuenta)
     nombre='Girbau', id='860-582-6837', mensual=6600,
     telefono='33 2806 8994',  # botón de llamada de los anuncios (lista de Rodolfo, 21 oct)
     url='https://girbaupro.com/',
@@ -720,9 +725,8 @@ CUENTAS['girbau'] = dict(
     # pide salir hasta arriba el 80% de las veces, con máximo $25 por clic (hoy paga unos $10). Solo gasta el 41% de su presupuesto.
     # 27 oct (2): se vuelve a encender «Max Rendimiento - Girbau» (5 conversaciones y llamadas contestadas en 30 días),
     # con dinero de las campañas nuevas que no tienen búsquedas. Total $187 al día, debajo del tope de $217.
-    # 27 oct (3): la marca tiene calidad 7-8 de 10 y aun así sale hasta abajo: no es la calidad, otros pujan más por
-    # «girbau». El tope sube a $35 por clic; el presupuesto no cambia.
-    ajustes=dict(arriba={'Marca Girbau': dict(cuota=0.8, tope=35)},
+    # 28 oct: el tope de la marca se queda en $25 por clic: la prioridad ahora es no subir el costo por clic.
+    ajustes=dict(arriba={'Marca Girbau': dict(cuota=0.8, tope=25)},
                  # 27 oct (3): la marca gastó 188% de su presupuesto ayer (9 clics): sube a $80. Total $205, debajo de $217.
                  presupuesto={'Marca Girbau': 80, 'Girbau Smart Plus': 10, 'Girbau por capacidad y sector': 15, 'Servicio técnico Girbau': 10},
                  activar={'Max Rendimiento - Girbau': 90}),

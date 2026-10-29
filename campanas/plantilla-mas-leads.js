@@ -103,6 +103,7 @@ function main() {
     despues += monto;
     // 2. Tope de CPC
     var c = cuota[x.nombre];
+    if (PLAN.subir_topes === false) return;   // el plan pide no subir el costo por clic en esta cuenta
     if (x.puja !== 'TARGET_SPEND' || !x.tope || !c || !(Number(c.puja) >= 0.5)) return;
     var maximo = k ? k.cpc * 2 : x.tope * 2;
     if (x.tope >= maximo) {
