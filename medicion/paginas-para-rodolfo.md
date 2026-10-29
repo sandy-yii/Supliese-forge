@@ -127,7 +127,13 @@ Cuando cada una esté publicada, manda la dirección exacta. Sandy cambia a dón
    - que `gtag` / `dataLayer` estén en línea desde el inicio;
    - que el evento del clic a WhatsApp y al teléfono se mande con `transport_type: 'beacon'` antes de abrir WhatsApp o marcar.
 3. **Search Console.** Da de alta los 5 sitios (propiedad de dominio por DNS), envía el sitemap con las secciones nuevas y pide su indexación. Mándale una captura a Sandy.
-4. **Consentimiento de cookies.** ¿La etiqueta se bloquea hasta que aceptan, o usas el modo de consentimiento v2 (`denied` por defecto y `update` al aceptar)? Si se bloquea, se pierden casi todos los contactos en la medición. Si el aviso de privacidad lo permite, preferimos el modo de consentimiento v2 avanzado, sin datos personales.
-5. **Clic en el teléfono.** Confirma que el clic en `tel:` dispara la acción «AB · Clic en teléfono de la página» (la etiqueta LLAMADA de cada sitio).
-6. **Medición de laundrysolutions.store.** Se publica en cuanto Sandy confirme que las conversiones avanzadas están apagadas en esa cuenta.
+4. **Consentimiento de cookies: ya está respondido, se queda como está.** La etiqueta solo carga si la persona acepta. Sabemos que Google Ads va a mostrar menos contactos de los que llegan; lo compensamos preguntándole a cada vendedor. El modo de consentimiento v2 solo se considera si el cliente lo autoriza por escrito.
+5. **Clic en el teléfono en los 5 sitios.** El 26 oct solo laundrysolutions.store tenía teléfono. Ahora que los 5 lo tienen escrito con `tel:`, confirma que ese clic dispara la acción «AB · Clic en teléfono de la página» (la etiqueta LLAMADA de cada sitio) en girbaupro.com, kingstar.com.mx, quicklaundry.store y gamesail.mx.
+6. **Medición de laundrysolutions.store.** Se publica en cuanto Sandy confirme que las conversiones avanzadas («datos proporcionados por el usuario») están apagadas en esa cuenta. Ella también lo revisa en las otras tres.
+   - Hoy es el bloqueo más importante de Servicio: sus anuncios ya llevan a `/reparacion-lavadoras-industriales`, pero sin etiqueta Google no ve ningún contacto.
 7. **Gamesail.** Sus etiquetas, cuando se creen las acciones en la cuenta 118-347-6484.
+8. **Confirmado:** WhatsApp y Formulario son **principales** a propósito, en todas las cuentas: son los leads que se reportan. Teléfono y correo son secundarias. En Girbau y Kingstar, el WhatsApp después de usar el cotizador cuenta como Formulario; así está bien, porque en los reportes «Formulario» = cotizador.
+9. **Anclas que usan los enlaces de los anuncios** (las que no existan solo abren arriba, no rompen nada):
+   - kingstar.com.mx: `#lavadoras-y-secadoras` · `#tunel-de-lavado-clm`
+   - laundrysolutions.store: `#cotizar-refacciones` · `#instalacion-y-refacciones` · `#mantenimiento-refacciones` · `#nuestros-equipos` · `#solicitar-mantenimiento` · `#solicitar-poliza-de-mtto`
+   - gamesail.mx: ninguna por ahora.
