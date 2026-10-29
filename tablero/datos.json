@@ -1,5 +1,5 @@
 {
- "_nota": "Lo edita Claude. 'cuentas' se llena con tablero/cargar.py a partir del registro del script de datos; mientras esté vacío, los tableros salen con datos de ejemplo. 'pendientes' es el Kanban del tablero interno; los que llevan duenos: true también salen en el de los dueños. 'nota' es para el tablero interno; 'nota_duenos' es la que ven los dueños.",
+ "_nota": "Lo edita Claude. 'cuentas' se llena con tablero/cargar.py a partir del registro del script de datos; mientras esté vacío, los tableros salen con datos de ejemplo. 'pendientes' es el Kanban del tablero interno; los que llevan duenos: true también salen en el de los dueños. 'nota' es para el tablero interno; 'nota_duenos' es la que ven los dueños. 'hitos' es la línea de tiempo del tablero de avance para los dueños.",
  "cuentas": {
   "265-909-2662": {
    "v": 1,
@@ -2918,6 +2918,68 @@
    "dueno": "Atelback",
    "nota": "Datos al 27 oct de las cuatro cuentas.",
    "fecha": "2026-10-28"
+  }
+ ],
+ "hitos": [
+  {
+   "cuando": "11 oct",
+   "titulo": "Plan por marca",
+   "estado": "hecho",
+   "detalle": "En la junta se definió qué vende cada marca, a quién le habla y cuánto invierte cada cuenta."
+  },
+  {
+   "cuando": "20–21 oct",
+   "titulo": "Arrancan las campañas nuevas",
+   "estado": "hecho",
+   "detalle": "Quick Laundry, Kingstar y Girbau el 20 de octubre; Laundry Solutions el 21. Cada marca con sus propias búsquedas, sin competir entre ellas."
+  },
+  {
+   "cuando": "Primera semana",
+   "titulo": "Se bloquean búsquedas que no venden",
+   "estado": "hecho",
+   "detalle": "Búsquedas de gente que no va a comprar (equipo de casa, empleo, otras marcas) dejan de gastar dinero."
+  },
+  {
+   "cuando": "26–27 oct",
+   "titulo": "Medición nueva de contactos",
+   "estado": "hecho",
+   "detalle": "Quick Laundry y Kingstar ya cuentan cada formulario enviado y cada mensaje de WhatsApp que llega desde los anuncios."
+  },
+  {
+   "cuando": "28 oct",
+   "titulo": "Primer informe con números reales",
+   "estado": "hecho",
+   "detalle": "Comparación de las cuatro cuentas contra los 30 días antes del arranque."
+  },
+  {
+   "cuando": "Esta semana",
+   "titulo": "Bajar el costo de cada visita",
+   "estado": "en_curso",
+   "detalle": "El dinero de las campañas anteriores más caras pasa a las campañas nuevas que traen visitas más baratas."
+  },
+  {
+   "cuando": "Esta semana",
+   "titulo": "Poner a correr las campañas que faltan",
+   "estado": "en_curso",
+   "detalle": "Algunas campañas nuevas todavía no salen en cada marca; al encenderlas suben las visitas."
+  },
+  {
+   "cuando": "Próximas semanas",
+   "titulo": "Medición de contactos en Laundry Solutions y Girbau",
+   "estado": "pendiente",
+   "detalle": "Para contar sus contactos igual que en las otras dos marcas."
+  },
+  {
+   "cuando": "Alrededor del 10 nov",
+   "titulo": "Primer costo por contacto firme",
+   "estado": "pendiente",
+   "detalle": "Con dos semanas de medición nueva habrá suficientes contactos para una cifra confiable."
+  },
+  {
+   "cuando": "Cuando esté su cuenta",
+   "titulo": "Arranque de Gamesail",
+   "estado": "pendiente",
+   "detalle": "Campañas listas para salir en cuanto tenga cuenta propia."
   }
  ]
 }

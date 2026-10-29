@@ -128,6 +128,27 @@ p { margin: 0; }
 .cb-row .n { position: absolute; top: 50%; transform: translateY(-50%); font-weight: 700; font-size: 13px; white-space: nowrap; color: var(--ink); font-variant-numeric: tabular-nums; }
 .cb-row .na { color: var(--muted); font-size: 13px; }
 @media (max-width: 520px) { .cb-row { grid-template-columns: 1fr; gap: 4px; } }
+.logros { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 12px; }
+.logro { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: grid; gap: 6px; align-content: start; }
+.logro .big { font-family: var(--display); font-size: 40px; font-weight: 700; line-height: 1; letter-spacing: -0.02em; display: flex; align-items: center; gap: 10px; }
+.logro .big .dot { width: 12px; height: 12px; }
+.logro h3 { font-size: 16px; }
+.logro .sub { font-size: 14px; color: var(--ink-2); }
+.logro .nota { font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 8px; margin-top: 4px; }
+.linea { list-style: none; margin: 0; padding: 0; display: grid; }
+.linea li { display: grid; grid-template-columns: 128px 20px minmax(0, 1fr); gap: 12px; position: relative; padding-bottom: 18px; }
+.linea li:last-child { padding-bottom: 0; }
+.linea .cu { font-size: 13px; color: var(--ink-2); text-align: right; padding-top: 1px; font-weight: 600; }
+.linea .mk { position: relative; display: flex; justify-content: center; }
+.linea .mk::before { content: ""; position: absolute; top: 18px; bottom: -18px; width: 2px; background: var(--line); }
+.linea li:last-child .mk::before { display: none; }
+.linea .mk i { width: 14px; height: 14px; border-radius: 50%; margin-top: 3px; position: relative; border: 2px solid var(--surface); box-shadow: 0 0 0 1px var(--line-2); }
+.linea .tx { display: grid; gap: 2px; font-size: 14px; color: var(--ink-2); }
+.linea .tx b { color: var(--ink); font-size: 15px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+@media (max-width: 520px) { .linea li { grid-template-columns: 20px minmax(0, 1fr); } .linea .cu { grid-column: 2; text-align: left; order: -1; } .linea .mk { grid-row: 1 / span 2; grid-column: 1; } }
+.cc ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 14px; color: var(--ink-2); }
+.cc li { display: grid; grid-template-columns: 18px 1fr; gap: 6px; align-items: baseline; }
+.cc li b { color: var(--ink); }
 .cc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 14px; }
 .cc { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: grid; gap: 12px; align-content: start; }
 .cc-top { display: flex; justify-content: space-between; gap: 10px; align-items: center; flex-wrap: wrap; }
@@ -236,8 +257,20 @@ td .sub { color: var(--muted); font-size: 12px; }
 
   <section class="tiles" id="tiles" aria-label="Resumen del grupo"></section>
 
-  <section class="tiles solo-lead" id="lead-tiles" aria-label="Costo por contacto del grupo"></section>
-  <p class="meta solo-lead" id="lead-nota"></p>
+  <div class="seccion-t solo-avance"><h2>Lo que ya se logró</h2><p>Con datos de Google Ads, comparando contra los 30 días antes del arranque.</p></div>
+  <section class="logros solo-avance" id="av-logros"></section>
+
+  <div class="seccion-t solo-avance"><h2>¿Cuánto cuesta cada contacto?</h2><p>Antes se contaban como contacto las conversaciones con el chat de la página; ahora solo formularios y WhatsApp.</p></div>
+  <section class="tiles solo-lead solo-avance" id="lead-tiles" aria-label="Costo por contacto del grupo"></section>
+  <p class="meta solo-lead solo-avance" id="lead-nota"></p>
+
+  <section class="card solo-avance" id="av-linea-s">
+    <div class="card-head"><h2>Lo que se ha hecho y lo que sigue</h2></div>
+    <ol class="linea" id="av-linea"></ol>
+  </section>
+
+  <div class="seccion-t solo-avance"><h2>Cómo va cada marca</h2><p>Visitas al día, semana a semana: en gris las semanas antes del arranque, en color las de las campañas nuevas.</p></div>
+  <section class="cc-grid solo-avance" id="av-marcas"></section>
 
   <div class="grid2 solo-lead">
     <section class="card">
@@ -306,6 +339,7 @@ const DATA = /*__DATOS__*/null;
 const MODO = "__MODO__";
 const INTERNO = MODO === 'interno';
 const LEAD = MODO === 'lead';
+const AVANCE = MODO === 'avance';
 
 // ---------- utilidades
 const $ = (q) => document.querySelector(q);
@@ -767,6 +801,7 @@ function semanas(m) {
     if (a > hasta) break;
     const t = suma(m, a, b), tn = k < 0 ? t : suma(m, a, b, true);
     const parcial = b > hasta;
+    if (parcial && entre(a, hasta) < 3) break;  // una semana con 1 o 2 días es ruido: se muestra cuando lleve 3
     out.push({ antes: k < 0, parcial, t, tn, lbl: k < 0 ? fecha(a) : 'Sem ' + (k + 1), sub: k < 0 ? null : parcial ? 'en curso' : fecha(a), rango: `${fecha(a)} al ${fecha(parcial ? hasta : b)}` });
   }
   return out;
@@ -994,6 +1029,61 @@ function pintarLead() {
   pastel($('#pie-ahora-tipo'), items(ahoraT), (v) => nf0.format(v) + (v === 1 ? ' contacto' : ' contactos'));
 }
 
+function pintarAvance() {
+  // Logros: solo lo que sí mejoró, cada uno con su nota honesta.
+  const L = [];
+  for (const m of CON) {
+    const nv = nuevasVsAnteriores(m), c1 = cpc(nv.nu), cA = cpc(nv.A), c0 = nv.an.clics ? nv.an.costo / nv.an.clics : 0;
+    if (cA && nv.nu.clics >= 20 && c1 <= cA * 0.95) L.push({ peso: 1 - c1 / cA, m, big: '−' + nf0.format((1 - c1 / cA) * 100) + '%', t: `Visitas más baratas en ${m.nombre}`,
+      s: `Cada visita de las campañas nuevas cuesta ${pesos2(c1)}; antes, ${pesos2(cA)}.`,
+      n: c0 > c1 ? `Las campañas anteriores que siguen encendidas pagan ${pesos2(c0)} por visita; su dinero pasa a las nuevas.` : 'Todo el gasto ya va a las campañas nuevas.' });
+    const A = antesDe(m), N = ahoraDe(m), vA = porDia(A, 'clics'), vN = porDia(N, 'clics');
+    if (vA && vN / vA - 1 >= 0.1) {
+      const dca = diasConAnuncios(m);
+      L.push({ peso: vN / vA - 1, m, big: '+' + nf0.format((vN / vA - 1) * 100) + '%', t: `Más visitas en ${m.nombre}`, s: `${nf1.format(vN)} visitas al día; antes, ${nf1.format(vA)}.`,
+        n: dca.activos < dca.total * 0.8 ? `Antes la cuenta tuvo anuncios solo ${dca.activos} de los ${dca.total} días.` : `Promedio desde el arranque (${N.dias} días).` });
+    }
+  }
+  L.sort((a, b) => b.peso - a.peso);
+  const ms = CON.map((m) => ({ m, cc: costoContacto(m) })).filter((x) => x.cc.pAhora);
+  if (ms.length) {
+    const ca = ms.reduce((a, x) => a + x.cc.ca, 0), sin = ms.reduce((a, x) => a + x.cc.sinChat, 0), g = ms.reduce((a, x) => a + x.cc.gastoAhora, 0), n = ms.reduce((a, x) => a + x.cc.cn.total, 0);
+    if (sin && g / n < ca / sin) L.unshift({ m: null, big: pesos(g / n), t: 'Por contacto, con la medición nueva', s: `Antes, ${pesos(ca / sin)} por contacto sin contar el chat de la página.`,
+      n: `${nf0.format(n)} contactos en ${ms.map((x) => x.m.nombre).join(' y ')} desde el ${fecha(ms.map((x) => x.cc.cn.desde).sort()[0])}: es una primera señal.` });
+  }
+  const excl = CON.map((m) => ({ m, v: suma(m, m.datos.arranque, m.datos.hasta, true).excl })).filter((x) => x.v > 50).sort((a, b) => b.v - a.v);
+  if (excl.length) L.push({ m: null, big: pesos(excl.reduce((a, x) => a + x.v, 0)), t: 'En búsquedas que no venden, ya bloqueadas',
+    s: 'Es lo que se llevaban en la primera semana; desde que se bloquearon ya no gastan.', n: excl.map((x) => `${x.m.nombre} ${pesos(x.v)}`).join(' · ') });
+  const cont = $('#av-logros'); cont.replaceChildren();
+  for (const x of L.slice(0, 4)) cont.append(h('div', { class: 'logro' },
+    h('div', { class: 'big', style: x.m ? null : 'color:var(--ink)' }, x.m ? h('span', { class: 'dot', style: 'background:' + x.m.color }) : null, x.big),
+    h('h3', {}, x.t), h('p', { class: 'sub' }, x.s), h('p', { class: 'nota' }, x.n)));
+
+  // Línea de tiempo
+  const ol = $('#av-linea'); ol.replaceChildren();
+  const EST = { hecho: ['good', 'Hecho', 'var(--good)'], en_curso: ['warn', 'En curso', 'var(--warn)'], pendiente: ['off', 'Sigue', 'var(--line-2)'] };
+  for (const x of DATA.hitos || []) {
+    const [nv, txt, c] = EST[x.estado] || EST.pendiente;
+    ol.append(h('li', {}, h('span', { class: 'cu' }, x.cuando), h('span', { class: 'mk' }, h('i', { style: 'background:' + c })),
+      h('span', { class: 'tx' }, h('b', {}, x.titulo, pill({ nivel: nv, txt })), x.detalle || null)));
+  }
+
+  // Una tarjeta por marca
+  const mc = $('#av-marcas'); mc.replaceChildren();
+  for (const m of MARCAS) {
+    const e = estado(m), card = h('div', { class: 'cc' }, h('div', { class: 'cc-top' }, h('h3', {}, h('span', { class: 'dot', style: 'background:' + m.color }), m.nombre), pill(e)));
+    mc.append(card);
+    if (!m.datos) { card.append(h('p', {}, `Arranca en cuanto esté lista su cuenta. Presupuesto previsto: ${pesos(m.tope)} al mes.`)); continue; }
+    const { H } = hallazgos(m);
+    const buenos = H.filter((x) => x.tipo === 'bueno' && x.duenos).slice(0, 3), sigue = H.filter((x) => x.tipo === 'mejora' && x.duenos).slice(0, 1);
+    const ch = h('div', { class: 'chart' }); card.append(ch);
+    const S = semanas(m);
+    requestAnimationFrame(() => columnas(ch, S.map((w) => ({ ...w, v: w.t.dias ? w.t.clics / w.t.dias : null })), m.color, (v) => nf1.format(v)));
+    if (buenos.length) card.append(h('ul', {}, ...buenos.map((x) => { const li = h('li', {}, h('span', { class: 'ic good' }, '✓')); li.append(html('span', {}, x.duenos)); return li; })));
+    if (sigue.length) card.append(h('ul', {}, ...sigue.map((x) => { const li = h('li', {}, h('span', { class: 'ic warn' }, '→')); li.append(html('span', {}, x.duenos)); return li; })));
+  }
+}
+
 function pintarIndice() {
   const nav = $('#indice'); nav.replaceChildren();
   $('#t-indice').textContent = INTERNO ? 'Marca por marca' : 'Cada marca, antes y ahora';
@@ -1131,7 +1221,20 @@ function pintar() {
 
 function iniciar() {
   document.querySelectorAll('.solo-interno').forEach((e) => { e.hidden = !INTERNO; });
-  document.querySelectorAll('.solo-lead').forEach((e) => { e.hidden = !LEAD; });
+  // Una sección puede servir a los dos tableros para dueños (costo por contacto y avance).
+  document.querySelectorAll('.solo-lead, .solo-avance').forEach((e) => {
+    e.hidden = !((LEAD && e.classList.contains('solo-lead')) || (AVANCE && e.classList.contains('solo-avance')));
+  });
+  if (AVANCE) {
+    for (const e of document.querySelectorAll('#app > *')) if (!e.matches('.head, .solo-avance')) e.hidden = true;
+    $('#titulo').textContent = 'Avance de Google Ads';
+    $('#aviso-ejemplo').hidden = !DATA.ejemplo;
+    $('#meta').textContent = CON.length ? `Campañas nuevas desde el ${fecha(ARRANQUE)} · datos hasta el ${fecha(HASTA)} de ${HASTA.slice(0, 4)}` : 'Todavía no hay datos cargados.';
+    if (CON.length) { pintarLead(); pintarAvance(); }
+    let ancho = innerWidth, to;
+    addEventListener('resize', () => { if (innerWidth === ancho) return; ancho = innerWidth; clearTimeout(to); to = setTimeout(pintarAvance, 150); });
+    return;
+  }
   if (LEAD) {
     // Tablero solo de costo por contacto: encabezado, resumen, qué se contaba, y la tarjeta por marca.
     for (const e of document.querySelectorAll('#app > *')) if (!e.matches('.head, .solo-lead, #s-costo')) e.hidden = true;
