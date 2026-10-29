@@ -137,3 +137,28 @@ Cuando cada una esté publicada, manda la dirección exacta. Sandy cambia a dón
    - kingstar.com.mx: `#lavadoras-y-secadoras` · `#tunel-de-lavado-clm`
    - laundrysolutions.store: `#cotizar-refacciones` · `#instalacion-y-refacciones` · `#mantenimiento-refacciones` · `#nuestros-equipos` · `#solicitar-mantenimiento` · `#solicitar-poliza-de-mtto`
    - gamesail.mx: ninguna por ahora.
+
+## Resultado de la prueba con Tag Assistant (29 oct, 4:41 a 4:47 p. m.)
+
+Prueba hecha con la extensión: aceptó las cookies y dio un clic de WhatsApp y uno de teléfono en cada página.
+
+| Página | Etiqueta | WhatsApp | Teléfono | Qué falta |
+|---|---|---|---|---|
+| girbaupro.com | AW-18232185431 ✅ | ✅ `KTrkCKmL9aMdENek5PVD` | ❌ no disparó nada | El clic en «o llámanos al 33 2806 8994» (sección final) no manda el evento. Debe mandar `AW-18232185431/ps85CLnf9aMdENek5PVD`. Revisa también el teléfono del pie. |
+| kingstar.com.mx | AW-17632937663 ✅ | ✅ `ZpzdCJH1-qMdEL-NhdhB` | ✅ `kj9uCKCg8aMdEL-NhdhB` | ⚠️ También carga **AW-10938286388**, que recibe la vista de página. No es de ninguna de nuestras cuentas (ver abajo). |
+| quicklaundry.store | AW-11012403016 ✅ | ✅ `fmJJCO2Vq6QdEMjej4Mp` | ✅ `whSMCPKvoKQdEMjej4Mp` | ⚠️ Carga una etiqueta vieja de Universal Analytics, **UA-233360285-1**. ⚠️ Las conversiones mandan **datos de conversiones avanzadas** tomados de `#aviso-privacidad` (probablemente el correo agomez@supliese.com). |
+
+**Para revisar:**
+
+1. **Girbau, teléfono:** conectar el evento LLAMADA a todos los enlaces `tel:`.
+2. **Kingstar, AW-10938286388:** nuestras cuentas son AW-11012403016 (Quick Laundry), AW-17632937663 (CLM/Kingstar), AW-18232185431 (Girbau), AW-10977798087 (Servicio) y AW-18531600046 (Gamesail). Esa no es ninguna.
+   - ¿De dónde viene: plantilla anterior, agencia anterior u otro script?
+   - Si no es nuestra, quitarla. Le está mandando datos de las visitas a una cuenta ajena.
+3. **Quick Laundry, UA-233360285-1:** Universal Analytics ya no funciona desde 2024; quitarla.
+4. **Quick Laundry, conversiones avanzadas:** el aviso de privacidad promete que no se mandan, y además manda un dato de la empresa, no del cliente.
+   - Sandy apaga «datos proporcionados por el usuario» en la cuenta de Quick Laundry.
+   - De tu lado, que la etiqueta no lea datos de la página. Por ejemplo, no configurar `user_data`, y que el correo de `#aviso-privacidad` no quede en un campo que Google detecte como dato del cliente.
+5. **Consentimiento al aceptar:** queda `ad_storage: granted`, pero `ad_user_data: denied` y `analytics_storage: denied` (gcs=G110). Confirma que así lo quieres:
+   - `ad_user_data: denied` es coherente con no mandar datos personales;
+   - `analytics_storage: denied` deja sin datos a los GA4 de las páginas (G-26FWQ5PPVJ en Kingstar, G-69R59Z71PV en Quick Laundry). ¿Esos GA4 son tuyos?
+6. **Quick Laundry:** la página se recorrió sola al cargar, y un clic de prueba cayó en espacio vacío. Revisa el desplazamiento en la página de inicio, como ya se hizo en las secciones.
