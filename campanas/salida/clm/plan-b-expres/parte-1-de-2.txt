@@ -137,6 +137,9 @@ cobertores
 [lavadora grande]
 [lavadoras grandes]
 [lavadora potente]
+domus
+"18 kg"
+"18 kilos"
 
 PASO 2 · Crear cada campaña. Para cada una:
 - Nueva campaña > "Crear una campaña sin la orientación de un objetivo" > Búsqueda.

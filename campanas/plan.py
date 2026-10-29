@@ -435,7 +435,9 @@ CUENTAS['clm'] = dict(
         # 27 oct: buscan un modelo de otra marca (Speed Queen, Dexter, Wascomat) o una lavadora de casa grande
         'Otras marcas y de casa (27 oct)': ['"speed queen"', 'dexter', 'wascomat', 'unimac', 'electrolux', 'primus', 'lorsa',
                                             'alliance', 'ipso', 'cobertor', 'cobertores', '"king size"', '[lavadora grande]',
-                                            '[lavadoras grandes]', '[lavadora potente]'],
+                                            '[lavadoras grandes]', '[lavadora potente]',
+                                            # 29 oct: siguen llegando otra marca y lavadoras chicas
+                                            'domus', '"18 kg"', '"18 kilos"'],
     },
     campanas=[
         dict(nombre='Alta capacidad 60 kg o más', pct=30, cpc=18, origen='Plan', grupos=[
@@ -727,8 +729,9 @@ CUENTAS['girbau'] = dict(
     # con dinero de las campañas nuevas que no tienen búsquedas. Total $187 al día, debajo del tope de $217.
     # 28 oct: el tope de la marca se queda en $25 por clic: la prioridad ahora es no subir el costo por clic.
     ajustes=dict(arriba={'Marca Girbau': dict(cuota=0.8, tope=25)},
-                 # 27 oct (3): la marca gastó 188% de su presupuesto ayer (9 clics): sube a $80. Total $205, debajo de $217.
-                 presupuesto={'Marca Girbau': 80, 'Girbau Smart Plus': 10, 'Girbau por capacidad y sector': 15, 'Servicio técnico Girbau': 10},
+                 # 29 oct: la marca no tuvo impresiones el 28: desde que se encendió «Max Rendimiento - Girbau» (27 oct) esa
+                 # campaña se queda con las búsquedas de «girbau» (5 clics a $6.68 y 1 WhatsApp). La marca se queda en $62.
+                 presupuesto={'Marca Girbau': 62, 'Girbau Smart Plus': 10, 'Girbau por capacidad y sector': 15, 'Servicio técnico Girbau': 10},
                  activar={'Max Rendimiento - Girbau': 90}),
     subir=False, subir_porque='no usa su presupuesto (41%); la marca sale arriba con «ajustes»',
     mismo_sitio=['supliese-girbau-lavadoras.vercel.app'],  # versión anterior del mismo sitio: se conserva la sección
