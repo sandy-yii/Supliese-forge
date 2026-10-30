@@ -1,0 +1,34 @@
+REVISIÓN DE TELÉFONOS DEL BOTÓN DE LLAMADA · 4 cuentas de Google Ads y sus páginas · SOLO LECTURA
+
+REGLAS (no negociables):
+- No modifiques, pauses, actives, borres, apeles ni edites nada en Google Ads: recursos, campañas, anuncios, configuración ni facturación. Ya se apelaron; no vuelvas a apelar ni a pedir verificación. Solo navegar, abrir detalles y leer.
+- No llames ni mandes mensajes a ningún número.
+- Si algo te pide confirmar un cambio, detente y pregúntame.
+- Trabaja en una pestaña nueva. Una cuenta a la vez. Antes de empezar cada una, confirma el número de cuenta arriba a la derecha.
+
+| Marca | Cuenta Google Ads | Número de cuenta | Página | Teléfono del botón de llamada |
+| Quick Laundry | Supliese Gómez | 256-397-2201 | https://quicklaundry.store/ | 33 2601 2237 |
+| Kingstar México | CLM | 993-525-8739 | https://kingstar.com.mx/ | 33 1564 1538 |
+| Girbau | Girbau | 860-582-6837 | https://girbaupro.com/ | 33 2806 8994 |
+| Laundry Solutions | Servicio para Lavandería | 265-909-2662 | https://laundrysolutions.store/ | 33 1417 2994 (ya aprobado; sirve de comparación) |
+
+PARTE A · EN CADA CUENTA DE GOOGLE ADS
+1. Anuncios y recursos > Recursos > Llamadas (o «Recursos» con el filtro de tipo «Llamada»). Muestra también los inactivos. Por cada número: el número tal como aparece, estado («Aprobado», «Rechazado», «En revisión», «Apto (limitado)»…), y si está a nivel de cuenta o de qué campañas.
+2. Del teléfono de la tabla de arriba: pasa el cursor o abre el detalle del estado y copia el texto completo que da Google (motivo, por ejemplo «Número de teléfono no verificado», y lo que pide hacer).
+3. Estado de la apelación: en el mismo detalle o en Herramientas > Administrador de políticas (Policy manager) > Historial de apelaciones. Copia fecha, a qué se refiere la apelación, estado («En curso», «Aprobada», «Rechazada») y el texto de la respuesta si la hay.
+4. Si en el detalle del número aparece una opción para verificar con código, solo dime que existe y qué dice. NO la uses.
+5. Administración > Verificación del anunciante: estado y qué falta, si falta algo.
+
+PARTE B · EN CADA PÁGINA (pestaña nueva; no hace falta iniciar sesión)
+6. Abre la página. ¿Carga bien? ¿Redirige a otro dominio? Copia la dirección final.
+7. Busca en la página el teléfono de la tabla (con Ctrl+F prueba «2601», «1564», «2806» o «1417», según la marca). Dime:
+   - si aparece como texto que se puede seleccionar, y exactamente cómo está escrito;
+   - dónde está (encabezado, pie, sección de contacto, botón flotante…) y si se ve sin bajar;
+   - si al pasar el cursor o tocarlo es un enlace para llamar («tel:»); copia el enlace;
+   - si solo aparece dentro de una imagen, del botón de WhatsApp o de un chat.
+8. ¿Aparece en la página algún OTRO teléfono distinto (por ejemplo 33 2637 3410 u otro)? Dime cuál y dónde.
+9. Abre view-source: de la página (escribe «view-source:» antes de la dirección) y busca otra vez esos 4 dígitos. ¿Aparece el número en el código, o solo se ve cuando la página termina de cargar?
+10. Revisa lo mismo en vista de celular (herramientas de desarrollador > modo dispositivo, o la ventana angosta): ¿se ve el número?
+11. El nombre de la marca de la página (logo, título, pie) ¿coincide con la marca de la cuenta?
+
+ENTREGA: un solo reporte en Markdown dentro de un único bloque de código. Un apartado por marca con: estado del teléfono y texto de Google (puntos 1 a 3), apelación, verificación del anunciante, y una tabla de la página con los puntos 6 a 11 (sí/no y cómo). Al final, por cada marca, una línea con lo que le falta a la página para que Google pueda verificar el número, y una lista de lo que no pudiste ver. Si el texto se corta, dime «continúo» y sigue desde donde quedaste.
