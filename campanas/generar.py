@@ -206,7 +206,7 @@ def plan_auditoria(p):
     c = p['c']
     act = c.get('activacion', {})
     return dict(cuenta=numero(c), anterior=c.get('id_anterior', ''), nombre=c['nombre'], url=c['url'], prefijo=PREFIJO,
-                mensual=c['mensual'], subir=c.get('subir', True), subir_porque=c.get('subir_porque', ''),
+                mensual=c['mensual'], subir=c.get('subir', True), subir_porque=c.get('subir_porque', ''), telefono=c.get('telefono', ''),
                 lista=PREFIJO + 'Negativas de la cuenta', anteriores=act.get('anteriores', 'MITAD'),
                 campanas=[dict(nombre=k['nombre'], arranque=k['arranque'], completo=k['diario'], cpc=k['cpc']) for k in p['campanas']])
 
@@ -226,6 +226,9 @@ def js_corregir(planes, nombre='las cinco cuentas'):
 def js_diagnostico(planes, nombre='las cinco cuentas', archivo='plantilla-diagnostico.js'):
     with open(os.path.join(AQUI, archivo), encoding='utf-8') as f:
         texto = f.read()
+    if '{{PARTE_TABLERO}}' in texto:
+        with open(os.path.join(AQUI, 'parte-tablero.js'), encoding='utf-8') as f:
+            texto = texto.replace('{{PARTE_TABLERO}}', f.read())
     return texto.replace('{{NOMBRE}}', nombre).replace('{{PLANES}}', json.dumps(planes, ensure_ascii=False))
 
 

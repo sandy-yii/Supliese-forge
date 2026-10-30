@@ -4,8 +4,10 @@
  *
  * QUÉ HACE (sirve en cualquiera de las cuentas del plan: reconoce sola en cuál está): SOLO LEE. Resume cómo le fue
  * ayer a cada campaña nueva «AB ·» contra su promedio desde el arranque: estado, presupuesto, clics, costo por clic,
- * cuota de impresiones, conversiones y llamadas, anuncios rechazados, zona (solo México), búsquedas reales de ayer y avisos de qué mover.
- * No cambia nada en la cuenta.
+ * cuota de impresiones, conversiones y llamadas, anuncios rechazados, zona (solo México), búsquedas reales de ayer, recomendaciones
+ * que da Google, el estado del teléfono del botón de llamada y avisos de qué mover. Al final imprime las líneas «TABLERO» con
+ * los datos día por día para los tableros. No cambia nada en la cuenta.
+ * La campanita de notificaciones de Google Ads no se puede leer desde un script; las recomendaciones sí.
  *
  * CÓMO SE USA: cada mañana, pegar completo > Autorizar > VISTA PREVIA > copiar todo el registro y mandarlo.
  */
@@ -239,6 +241,79 @@ function main() {
       num(m.clicks) + ' clics · ' + pesos(num(m.costMicros) / 1e6) + (num(m.conversions) ? ' · ' + uno(num(m.conversions)) + ' conv' : ''));
   });
 
+  // ---- Recomendaciones de Google (solo se listan; ninguna se aplica)
+  Logger.log('');
+  Logger.log('==== RECOMENDACIONES DE GOOGLE (no se aplica ninguna) ====');
+  var REC = {
+    CALL_EXTENSION: 'agregar teléfono (botón de llamada)', CALL_ASSET: 'agregar teléfono (botón de llamada)',
+    SITELINK_EXTENSION: 'agregar enlaces de sitio', SITELINK_ASSET: 'agregar enlaces de sitio', CALLOUT_EXTENSION: 'agregar textos destacados',
+    CALLOUT_ASSET: 'agregar textos destacados', LEAD_FORM_ASSET: 'agregar formulario de contacto en el anuncio', LEAD_FORM_EXTENSION: 'agregar formulario de contacto en el anuncio',
+    IMAGE_ASSET: 'agregar imágenes', IMAGE_EXTENSION: 'agregar imágenes', KEYWORD: 'agregar palabras clave', RESPONSIVE_SEARCH_AD: 'agregar un anuncio',
+    RESPONSIVE_SEARCH_AD_ASSET: 'agregar títulos o descripciones', RESPONSIVE_SEARCH_AD_IMPROVE_AD_STRENGTH: 'mejorar la calidad del anuncio',
+    CAMPAIGN_BUDGET: 'subir presupuesto', FORECASTING_CAMPAIGN_BUDGET: 'subir presupuesto (por temporada)', MARGINAL_ROI_CAMPAIGN_BUDGET: 'subir presupuesto',
+    MOVE_UNUSED_BUDGET: 'mover presupuesto que no se usa', KEYWORD_MATCH_TYPE: 'cambiar concordancia de palabras', MAXIMIZE_CLICKS_OPT_IN: 'pujar por maximizar clics',
+    RAISE_TARGET_CPA_BID_TOO_LOW: 'subir el CPA objetivo', TARGET_CPA_OPT_IN: 'pujar por costo por conversión',
+    CONVERSION_TRACKING_OPT_IN: 'instalar medición de conversiones', UPGRADE_LOCAL_CAMPAIGN_TO_PERFORMANCE_MAX: 'pasar a Máximo rendimiento'
+  };
+  // Las que van contra el plan (amplia, display, socios, Máximo rendimiento, conversiones con pocos datos).
+  var CONTRA = { USE_BROAD_MATCH_KEYWORD: 'usar concordancia amplia', DISPLAY_EXPANSION_OPT_IN: 'salir también en la Red de Display',
+    SEARCH_PARTNERS_OPT_IN: 'salir en socios de búsqueda', PERFORMANCE_MAX_OPT_IN: 'pasar a Máximo rendimiento',
+    MAXIMIZE_CONVERSIONS_OPT_IN: 'pujar por maximizar conversiones', MAXIMIZE_CONVERSION_VALUE_OPT_IN: 'pujar por valor de conversión',
+    ENHANCED_CPC_OPT_IN: 'CPC mejorado', OPTIMIZE_AD_ROTATION: 'rotación optimizada', AI_MAX_OPT_IN: 'activar AI Max' };
+  var nombreDe = {};
+  filas("SELECT campaign.resource_name, campaign.name FROM campaign WHERE campaign.status != 'REMOVED'", 'los nombres de campaña')
+    .forEach(function (f) { nombreDe[f.campaign.resourceName] = f.campaign.name; });
+  var recs = {};
+  filas('SELECT recommendation.type, recommendation.campaign, recommendation.dismissed FROM recommendation', 'las recomendaciones').forEach(function (f) {
+    var r = f.recommendation;
+    if (r.dismissed) return;
+    var tipo = String(r.type), quien = r.campaign ? (nombreDe[r.campaign] || 'una campaña') : 'toda la cuenta';
+    (recs[tipo] = recs[tipo] || []).push(quien.replace(PLAN.prefijo, ''));
+  });
+  var tipos = Object.keys(recs);
+  if (!tipos.length) Logger.log('Ninguna por ahora.');
+  tipos.forEach(function (tipo) {
+    var sms = /MESSAGE|SMS/.test(tipo), txt = CONTRA[tipo] ? CONTRA[tipo] + ' · NO APLICAR: va contra el plan' : sms ? 'agregar mensajes de texto (SMS) para que escriban desde el anuncio' : (REC[tipo] || tipo);
+    var lugares = recs[tipo].filter(function (x, i, a) { return a.indexOf(x) === i; });
+    Logger.log((CONTRA[tipo] ? '🚫 ' : sms ? '💬 ' : '• ') + txt + ' — ' + lugares.slice(0, 6).join(', ') + (lugares.length > 6 ? ' y ' + (lugares.length - 6) + ' más' : '') + ' [' + tipo + ']');
+    if (sms) A.ojo.push('Google recomienda agregar mensajes de texto (SMS): vale la pena para traer contactos; se arma con tu OK.');
+  });
+
+  // ---- Teléfono del botón de llamada
+  Logger.log('');
+  Logger.log('==== TELÉFONO DEL BOTÓN DE LLAMADA ====');
+  var APROB = { APPROVED: 'aprobado', APPROVED_LIMITED: 'aprobado con restricciones', DISAPPROVED: 'RECHAZADO', AREA_OF_INTEREST_ONLY: 'aprobado solo en algunas zonas', UNKNOWN: 'sin dato' };
+  var REVISION = { REVIEW_IN_PROGRESS: 'en revisión', REVIEWED: 'revisado', UNDER_APPEAL: 'en apelación', ELIGIBLE_MAY_SERVE: 'puede salir mientras lo revisan' };
+  function digitos(x) { return String(x || '').replace(/\D/g, '').slice(-10); }
+  var nuestro = digitos(PLAN.telefono);
+  var tels = filas("SELECT asset.resource_name, asset.call_asset.phone_number, asset.policy_summary.approval_status, asset.policy_summary.review_status, " +
+    "asset.policy_summary.policy_topic_entries FROM asset WHERE asset.type = 'CALL'", 'los teléfonos');
+  if (!tels.length) { Logger.log('La cuenta no tiene ningún teléfono para el botón de llamada.'); A.grave.push('No hay teléfono en la cuenta: el anuncio no muestra el botón «Llamar».'); }
+  var esta = false;
+  tels.forEach(function (f) {
+    var a = f.asset, ps = a.policySummary || {}, num_ = digitos((a.callAsset || {}).phoneNumber), propio = nuestro && num_ === nuestro;
+    if (propio) esta = true;
+    var temas = (ps.policyTopicEntries || []).map(function (e) { return e.topic; }).filter(Boolean);
+    Logger.log((propio ? '★ ' : '  ') + (a.callAsset || {}).phoneNumber + ' · ' + (APROB[ps.approvalStatus] || ps.approvalStatus || 'sin dato') + ' · ' +
+      (REVISION[ps.reviewStatus] || ps.reviewStatus || '') + (temas.length ? ' · motivos: ' + temas.join(', ') : '') + (propio ? ' · (el del plan)' : ''));
+    if (propio && ps.approvalStatus === 'DISAPPROVED') A.grave.push('El teléfono del plan está RECHAZADO' + (temas.length ? ' (' + temas.join(', ') + ')' : '') + ': el botón «Llamar» no sale.');
+    else if (propio && ps.reviewStatus === 'REVIEW_IN_PROGRESS') A.ojo.push('El teléfono del plan sigue en revisión de Google.');
+  });
+  if (nuestro && tels.length && !esta) A.ojo.push('El teléfono del plan (' + PLAN.telefono + ') no está en la cuenta.');
+  var conTel = {};
+  filas("SELECT campaign.name, asset.call_asset.phone_number, campaign_asset.status FROM campaign_asset WHERE campaign_asset.field_type = 'CALL' " +
+    "AND campaign.status = 'ENABLED' AND campaign_asset.status = 'ENABLED'", 'los teléfonos por campaña').forEach(function (f) {
+    if (!nuestro || digitos((f.asset.callAsset || {}).phoneNumber) === nuestro) conTel[f.campaign.name] = true;
+  });
+  var cuenta = filas("SELECT asset.call_asset.phone_number FROM customer_asset WHERE customer_asset.field_type = 'CALL' AND customer_asset.status = 'ENABLED'",
+    'el teléfono de la cuenta').some(function (f) { return !nuestro || digitos((f.asset.callAsset || {}).phoneNumber) === nuestro; });
+  var nuevasEnc = Object.keys(C).filter(function (n) { return C[n].nueva; });
+  var sinTel = nuevasEnc.filter(function (n) { return !conTel[n]; });
+  Logger.log(cuenta ? 'Puesto a nivel de cuenta: sale en todas las campañas.' :
+    'En ' + (nuevasEnc.length - sinTel.length) + ' de ' + nuevasEnc.length + ' campañas nuevas encendidas' + (sinTel.length ? '; faltan: ' + sinTel.map(function (n) { return n.replace(PLAN.prefijo, ''); }).join(', ') : '') + '.');
+  if (!cuenta && sinTel.length) A.ojo.push('Campañas nuevas sin botón de llamada: ' + sinTel.map(function (n) { return n.replace(PLAN.prefijo, ''); }).join(', ') + '.');
+  Logger.log('Llamadas desde el anuncio: ayer ' + T.ayer.llamadas + (previos > 0 ? ' · desde el arranque ' + (T.ayer.llamadas + T.antes.llamadas) : '') + '.');
+
   // ---- Avisos
   Logger.log('');
   Logger.log('==== QUÉ MOVER ====');
@@ -246,6 +321,13 @@ function main() {
   A.mover.forEach(function (t) { Logger.log('⬆️ ' + t); });
   A.ojo.forEach(function (t) { Logger.log('⚠️ ' + t); });
   if (!A.grave.length && !A.mover.length && !A.ojo.length) Logger.log('✅ Nada urgente.');
+
+  // ---- Datos para los tableros
   Logger.log('');
-  Logger.log('LISTO. Copia todo el registro y mándalo. Este script no cambió nada.');
+  Logger.log('==== DATOS PARA LOS TABLEROS ====');
+  imprimirTablero(AdsApp.currentAccount().getCustomerId(), ahora);
+  Logger.log('');
+  Logger.log('LISTO. Copia todo el registro (incluidas las líneas TABLERO) y mándalo. Este script no cambió nada.');
 }
+
+{{PARTE_TABLERO}}
