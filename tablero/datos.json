@@ -3173,7 +3173,7 @@
    "marca": "Quick Laundry, Kingstar y Girbau",
    "dueno": "Atelback",
    "fecha": "2026-10-30",
-   "nota": "Revisión diaria del 30 oct: 33 2601 2237, 33 1564 1538 y 33 2806 8994 rechazados (UNVERIFIED_PHONE_NUMBER). Por eso no ha entrado ninguna llamada. Laundry Solutions sí está aprobado."
+   "nota": "Revisión con la extensión, 30 oct: las tres páginas ya muestran su número como texto, con tel: y en el HTML (desde el 27 oct; Google los rechazó el 22 oct). En Kingstar y Girbau NO hay apelación; en Quick Laundry solo un caso de soporte cerrado el 30 oct. Falta: revisar la «URL de verificación» de cada recurso (Quick Laundry y Girbau reutilizan recursos de jul y jun) y apelar en las tres. Girbau está verificada como Nerea Inteligencia Digital y su página dice Supliese Gómez."
   },
   {
    "titulo": "Campañas nuevas encendidas en las cuatro cuentas activas",
