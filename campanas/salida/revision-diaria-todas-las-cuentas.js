@@ -301,7 +301,7 @@ function main() {
   });
   if (nuestro && tels.length && !esta) A.ojo.push('El teléfono del plan (' + PLAN.telefono + ') no está en la cuenta.');
   var conTel = {};
-  filas("SELECT campaign.name, asset.call_asset.phone_number, campaign_asset.status FROM campaign_asset WHERE campaign_asset.field_type = 'CALL' " +
+  filas("SELECT campaign.name, campaign.status, asset.call_asset.phone_number, campaign_asset.status FROM campaign_asset WHERE campaign_asset.field_type = 'CALL' " +
     "AND campaign.status = 'ENABLED' AND campaign_asset.status = 'ENABLED'", 'los teléfonos por campaña').forEach(function (f) {
     if (!nuestro || digitos((f.asset.callAsset || {}).phoneNumber) === nuestro) conTel[f.campaign.name] = true;
   });

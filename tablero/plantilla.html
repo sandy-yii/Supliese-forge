@@ -453,6 +453,7 @@ function acciones(m, a, b, filtro) {
   return out;
 }
 const total = (o) => Object.values(o).reduce((a, b) => a + b, 0);
+const enLista = (xs) => (xs.length < 2 ? xs.join('') : xs.slice(0, -1).join(', ') + ' y ' + xs[xs.length - 1]);
 function contactosNuevos(m) {
   const desde = medicion(m); if (!desde) return null;
   const por = acciones(m, desde, m.datos.hasta, esNuevaAccion);
@@ -1023,7 +1024,7 @@ function pintarLead() {
     tile('Antes, como se contaba', conv ? pesos(ca / conv) : '—', `por contacto · ${nf0.format(conv)} conversiones, ${nf0.format(chat)} del chat`),
     tile('Antes, sin contar el chat', conv - chat ? pesos(ca / (conv - chat)) : '—', `por contacto · ${nf0.format(conv - chat)} formularios, WhatsApp y llamadas`),
     tile('Ahora, medición nueva', pesos(gn / nn), `por contacto · ${nf0.format(nn)} contactos desde el ${fecha(desde)}`, true));
-  $('#lead-nota').textContent = `Arriba: ${ms.map((m) => m.nombre).join(' y ')}, las marcas que ya cuentan contactos con la medición nueva. ` +
+  $('#lead-nota').textContent = `Arriba: ${enLista(ms.map((m) => m.nombre))}, las marcas que ya cuentan contactos con la medición nueva. ` +
     `Es una primera señal: la medición empezó el ${fecha(desde)}. En dos semanas habrá suficientes contactos para una cifra firme.`;
   const items = (o) => TIPOS.filter(([k]) => o[k]).map(([k, lbl, c]) => ({ label: lbl, value: o[k], color: c, oscuro: false }));
   const ta = total(antesT);
@@ -1052,7 +1053,7 @@ function pintarProyeccion() {
   const tc = $('#proy-tiles'); tc.replaceChildren(
     tile('Visitas a las páginas', '≈ ' + nf0.format(Math.round(vis / 10) * 10), `en ${mes}, las cuatro marcas`),
     tile('Inversión', pesos(inv), `de ${pesos(CON.reduce((a, m) => a + m.tope, 0))} de tope`),
-    conC.length ? tile('Contactos', '≈ ' + nf0.format(Math.round(con)), `en ${conC.map((x) => x.m.nombre).join(' y ')}, a ≈ ${pesos(invC / con)} cada uno`)
+    conC.length ? tile('Contactos', '≈ ' + nf0.format(Math.round(con)), `en ${enLista(conC.map((x) => x.m.nombre))}, a ≈ ${pesos(invC / con)} cada uno`)
       : tile('Contactos', 'Por calcular', 'cuando la medición lleve 3 días'));
   const mc = $('#proy-marcas'); mc.replaceChildren();
   for (const { m, p } of P) {
@@ -1088,7 +1089,7 @@ function pintarAvance() {
   if (ms.length) {
     const ca = ms.reduce((a, x) => a + x.cc.ca, 0), sin = ms.reduce((a, x) => a + x.cc.sinChat, 0), g = ms.reduce((a, x) => a + x.cc.gastoAhora, 0), n = ms.reduce((a, x) => a + x.cc.cn.total, 0);
     if (sin && g / n < ca / sin) L.unshift({ m: null, big: pesos(g / n), t: 'Por contacto, con la medición nueva', s: `Antes, ${pesos(ca / sin)} por contacto sin contar el chat de la página.`,
-      n: `${nf0.format(n)} contactos en ${ms.map((x) => x.m.nombre).join(' y ')} desde el ${fecha(ms.map((x) => x.cc.cn.desde).sort()[0])}: es una primera señal.` });
+      n: `${nf0.format(n)} contactos en ${enLista(ms.map((x) => x.m.nombre))} desde el ${fecha(ms.map((x) => x.cc.cn.desde).sort()[0])}: es una primera señal.` });
   }
   const excl = CON.map((m) => ({ m, v: suma(m, m.datos.arranque, m.datos.hasta, true).excl })).filter((x) => x.v > 50).sort((a, b) => b.v - a.v);
   if (excl.length) L.push({ m: null, big: pesos(excl.reduce((a, x) => a + x.v, 0)), t: 'En búsquedas que no venden, ya bloqueadas',

@@ -5,9 +5,9 @@
    "v": 1,
    "cuenta": "265-909-2662",
    "marca": "Servicio para Lavandería",
-   "generado": "2026-10-28 15:38",
+   "generado": "2026-10-30 12:03",
    "desde": "2026-09-21",
-   "hasta": "2026-10-27",
+   "hasta": "2026-10-29",
    "arranque": "2026-10-21",
    "c": {
     "Servicio y mantenimiento Industrial": {
@@ -202,6 +202,26 @@
        0.25,
        0.317,
        0.433
+      ],
+      "2026-10-28": [
+       2,
+       0,
+       0,
+       0,
+       0,
+       0.4,
+       0,
+       0.6
+      ],
+      "2026-10-29": [
+       3,
+       2,
+       12.49,
+       1,
+       0,
+       0.5,
+       0,
+       0.5
       ]
      }
     },
@@ -277,6 +297,26 @@
        0.533,
        0,
        0.467
+      ],
+      "2026-10-28": [
+       1,
+       0,
+       0,
+       0,
+       0,
+       0.167,
+       0,
+       0.833
+      ],
+      "2026-10-29": [
+       14,
+       4,
+       59.67,
+       0,
+       0,
+       0.857,
+       0,
+       0.143
       ]
      }
     },
@@ -350,6 +390,9 @@
     },
     "2026-09-28": {
      "Servicios para Lavanderías - GA4 (web) Coudibot": 1
+    },
+    "2026-10-29": {
+     "AB · Clic en WhatsApp": 1
     }
    }
   },
@@ -357,9 +400,9 @@
    "v": 1,
    "cuenta": "256-397-2201",
    "marca": "Quick Laundry (cuenta Supliese Gómez)",
-   "generado": "2026-10-28 15:39",
+   "generado": "2026-10-30 12:07",
    "desde": "2026-09-20",
-   "hasta": "2026-10-27",
+   "hasta": "2026-10-29",
    "arranque": "2026-10-20",
    "c": {
     "Campaña Search México": {
@@ -759,6 +802,26 @@
        0.158,
        0,
        0.842
+      ],
+      "2026-10-28": [
+       3,
+       1,
+       22.26,
+       0,
+       0,
+       0.1,
+       0,
+       0.9
+      ],
+      "2026-10-29": [
+       21,
+       5,
+       63.27,
+       0,
+       0,
+       0.197,
+       0.408,
+       0.395
       ]
      }
     },
@@ -1084,6 +1147,16 @@
        0.436,
        0.026,
        0.538
+      ],
+      "2026-10-28": [
+       49,
+       3,
+       71.4,
+       1,
+       0,
+       0.45,
+       0.075,
+       0.475
       ]
      }
     },
@@ -1159,6 +1232,26 @@
        0.115,
        0.291,
        0.594
+      ],
+      "2026-10-28": [
+       372,
+       29,
+       230.46,
+       4,
+       0,
+       0.185,
+       0.14,
+       0.675
+      ],
+      "2026-10-29": [
+       272,
+       28,
+       221.83,
+       1,
+       0,
+       0.185,
+       0.281,
+       0.534
       ]
      }
     },
@@ -1279,6 +1372,26 @@
        0.404,
        0.077,
        0.519
+      ],
+      "2026-10-28": [
+       26,
+       3,
+       23.17,
+       0,
+       0,
+       0.311,
+       0,
+       0.689
+      ],
+      "2026-10-29": [
+       33,
+       6,
+       50.23,
+       1,
+       0,
+       0.422,
+       0.031,
+       0.547
       ]
      }
     },
@@ -1354,6 +1467,26 @@
        0.309,
        0.052,
        0.639
+      ],
+      "2026-10-28": [
+       24,
+       7,
+       55.89,
+       0,
+       0,
+       0.244,
+       0.167,
+       0.59
+      ],
+      "2026-10-29": [
+       53,
+       6,
+       45.05,
+       0,
+       0,
+       0.307,
+       0.102,
+       0.591
       ]
      }
     }
@@ -1399,6 +1532,18 @@
      123.96,
      0,
      18,
+     0
+    ],
+    "2026-10-28": [
+     198.85,
+     0,
+     25,
+     0
+    ],
+    "2026-10-29": [
+     196.52,
+     0,
+     25,
      0
     ]
    },
@@ -1487,6 +1632,15 @@
     },
     "2026-10-24": {
      "Conversación iniciada": 1
+    },
+    "2026-10-28": {
+     "Conversación iniciada": 1,
+     "AB · Clic en WhatsApp": 3,
+     "AB · Formulario enviado": 1
+    },
+    "2026-10-29": {
+     "Conversación iniciada": 1,
+     "AB · Formulario enviado": 1
     }
    }
   },
@@ -1494,9 +1648,9 @@
    "v": 1,
    "cuenta": "993-525-8739",
    "marca": "CLM",
-   "generado": "2026-10-28 15:39",
+   "generado": "2026-10-30 12:08",
    "desde": "2026-09-20",
-   "hasta": "2026-10-27",
+   "hasta": "2026-10-29",
    "arranque": "2026-10-20",
    "c": {
     "Campaña CLM General": {
@@ -1766,6 +1920,26 @@
        0.52,
        0.4,
        0.08
+      ],
+      "2026-10-28": [
+       24,
+       5,
+       113.16,
+       0,
+       0,
+       0.714,
+       0.095,
+       0.19
+      ],
+      "2026-10-29": [
+       17,
+       4,
+       71.63,
+       0,
+       0,
+       0.379,
+       0,
+       0.621
       ]
      }
     },
@@ -1831,6 +2005,26 @@
        0.176,
        0,
        0.824
+      ],
+      "2026-10-28": [
+       7,
+       1,
+       17.95,
+       0,
+       0,
+       0.294,
+       0,
+       0.706
+      ],
+      "2026-10-29": [
+       15,
+       4,
+       71.48,
+       3,
+       0,
+       0.37,
+       0,
+       0.63
       ]
      }
     },
@@ -1906,6 +2100,26 @@
        0.65,
        0,
        0.35
+      ],
+      "2026-10-28": [
+       9,
+       2,
+       29.32,
+       0,
+       0,
+       1,
+       0,
+       0
+      ],
+      "2026-10-29": [
+       8,
+       1,
+       14.45,
+       0,
+       0,
+       0.833,
+       0,
+       0.167
       ]
      }
     },
@@ -1961,6 +2175,26 @@
        0.667,
        0,
        0.333
+      ],
+      "2026-10-28": [
+       17,
+       2,
+       53.83,
+       0,
+       0,
+       0.8,
+       0,
+       0.2
+      ],
+      "2026-10-29": [
+       19,
+       2,
+       52.72,
+       0,
+       0,
+       0.765,
+       0,
+       0.235
       ]
      }
     },
@@ -2046,6 +2280,26 @@
        0.431,
        0,
        0.569
+      ],
+      "2026-10-28": [
+       158,
+       27,
+       455.39,
+       3,
+       0,
+       0.591,
+       0.044,
+       0.365
+      ],
+      "2026-10-29": [
+       123,
+       12,
+       213.93,
+       0,
+       0,
+       0.631,
+       0,
+       0.369
       ]
      }
     },
@@ -2108,6 +2362,18 @@
      6,
      0
     ],
+    "2026-10-28": [
+     417.92,
+     0,
+     22,
+     0
+    ],
+    "2026-10-29": [
+     231.75,
+     0,
+     13,
+     0
+    ],
     "2026-10-20": [
      34.86,
      0,
@@ -2149,8 +2415,15 @@
     "2026-10-27": {
      "AB · Clic en WhatsApp": 2
     },
+    "2026-10-29": {
+     "AB · Clic en WhatsApp": 3
+    },
     "2026-10-26": {
      "AB · Clic en WhatsApp": 1
+    },
+    "2026-10-28": {
+     "AB · Clic en WhatsApp": 2,
+     "Conversación iniciada": 1
     }
    }
   },
@@ -2158,9 +2431,9 @@
    "v": 1,
    "cuenta": "860-582-6837",
    "marca": "Girbau",
-   "generado": "2026-10-28 15:40",
+   "generado": "2026-10-30 12:08",
    "desde": "2026-09-20",
-   "hasta": "2026-10-27",
+   "hasta": "2026-10-29",
    "arranque": "2026-10-20",
    "c": {
     "Girbau Búsqueda | Nerea": {
@@ -2703,13 +2976,33 @@
       ],
       "2026-10-27": [
        1130,
-       61,
-       93.64,
+       59,
+       90.28,
        0,
        0,
        null,
        null,
        null
+      ],
+      "2026-10-28": [
+       65,
+       5,
+       33.41,
+       0,
+       0,
+       0.103,
+       0,
+       0.897
+      ],
+      "2026-10-29": [
+       115,
+       7,
+       11.14,
+       0,
+       0,
+       0.1,
+       0,
+       0.9
       ]
      }
     },
@@ -2864,11 +3157,24 @@
     },
     "2026-10-20": {
      "Conversation started": 1
+    },
+    "2026-10-29": {
+     "AB · Clic en WhatsApp": 1
     }
-   }
+   },
+   "nota": "29 oct: 1 «AB · Clic en WhatsApp» agregado a mano desde la revisión diaria (todas las conversiones); en esta cuenta la acción no cuenta como conversión principal."
   }
  },
  "pendientes": [
+  {
+   "titulo": "Teléfono RECHAZADO por «número no verificado» en Quick Laundry, Kingstar y Girbau",
+   "estado": "bloqueado",
+   "duenos": false,
+   "marca": "Quick Laundry, Kingstar y Girbau",
+   "dueno": "Atelback",
+   "fecha": "2026-10-30",
+   "nota": "Revisión diaria del 30 oct: 33 2601 2237, 33 1564 1538 y 33 2806 8994 rechazados (UNVERIFIED_PHONE_NUMBER). Por eso no ha entrado ninguna llamada. Laundry Solutions sí está aprobado."
+  },
   {
    "titulo": "Campañas nuevas encendidas en las cuatro cuentas activas",
    "estado": "hecho",
@@ -2896,12 +3202,13 @@
   },
   {
    "titulo": "Medir contactos del formulario y de WhatsApp en las páginas",
-   "estado": "en_curso",
+   "estado": "hecho",
    "duenos": true,
    "marca": "Todas",
    "dueno": "Rodolfo",
-   "nota": "Ya registra en Quick Laundry (desde el 27 oct) y Kingstar (desde el 26 oct). En Laundry Solutions y Girbau todavía no hay contactos «AB ·».",
-   "nota_duenos": "Ya se cuentan en Quick Laundry y Kingstar; faltan Laundry Solutions y Girbau."
+   "nota": "Las cuatro registran «AB ·». En Girbau «AB · Clic en WhatsApp» no cuenta como conversión principal: hay que marcarla como principal.",
+   "nota_duenos": "Las cuatro marcas ya cuentan sus contactos.",
+   "fecha": "2026-10-29"
   },
   {
    "titulo": "Abrir la cuenta de Gamesail y arrancar sus campañas",
@@ -2947,10 +3254,10 @@
    "detalle": "Búsquedas de gente que no va a comprar (equipo de casa, empleo, otras marcas) dejan de gastar dinero."
   },
   {
-   "cuando": "26–27 oct",
+   "cuando": "26–29 oct",
    "titulo": "Medición nueva de contactos",
    "estado": "hecho",
-   "detalle": "Quick Laundry y Kingstar ya cuentan cada formulario enviado y cada mensaje de WhatsApp que llega desde los anuncios."
+   "detalle": "Las cuatro marcas ya cuentan cada formulario enviado y cada mensaje de WhatsApp que llega desde los anuncios."
   },
   {
    "cuando": "28 oct",
@@ -2966,15 +3273,15 @@
   },
   {
    "cuando": "Esta semana",
+   "titulo": "Botón de llamada en los anuncios",
+   "estado": "en_curso",
+   "detalle": "Google pide verificar el teléfono de Quick Laundry, Kingstar y Girbau para mostrar el botón «Llamar». Mientras, los clientes escriben por WhatsApp y formulario."
+  },
+  {
+   "cuando": "Esta semana",
    "titulo": "Poner a correr las campañas que faltan",
    "estado": "en_curso",
    "detalle": "Algunas campañas nuevas todavía no salen en cada marca; al encenderlas suben las visitas."
-  },
-  {
-   "cuando": "Próximas semanas",
-   "titulo": "Medición de contactos en Laundry Solutions y Girbau",
-   "estado": "pendiente",
-   "detalle": "Para contar sus contactos igual que en las otras dos marcas."
   },
   {
    "cuando": "Alrededor del 10 nov",
