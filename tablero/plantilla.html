@@ -264,6 +264,10 @@ td .sub { color: var(--muted); font-size: 12px; }
   <section class="tiles solo-lead solo-avance" id="lead-tiles" aria-label="Costo por contacto del grupo"></section>
   <p class="meta solo-lead solo-avance" id="lead-nota"></p>
 
+  <div class="seccion-t solo-avance"><h2 id="t-proy">Proyección para el próximo mes</h2><p id="p-proy"></p></div>
+  <section class="tiles solo-avance" id="proy-tiles"></section>
+  <section class="cc-grid solo-avance" id="proy-marcas"></section>
+
   <section class="card solo-avance" id="av-linea-s">
     <div class="card-head"><h2>Lo que se ha hecho y lo que sigue</h2></div>
     <ol class="linea" id="av-linea"></ol>
@@ -1029,7 +1033,42 @@ function pintarLead() {
   pastel($('#pie-ahora-tipo'), items(ahoraT), (v) => nf0.format(v) + (v === 1 ? ' contacto' : ' contactos'));
 }
 
+// Proyección del mes siguiente: si sigue el ritmo de los últimos 7 días (desde el arranque si son menos), sin pasar el tope.
+function proyeccion(m) {
+  let r0 = mas(m.datos.hasta, -6); if (r0 < m.datos.arranque) r0 = m.datos.arranque;
+  const t = suma(m, r0, m.datos.hasta), gd = t.dias ? t.costo / t.dias : 0, cd = t.dias ? t.clics / t.dias : 0;
+  const DIAS = 30, sinTope = gd * DIAS, inv = Math.min(sinTope, m.tope), f = sinTope ? inv / sinTope : 0;
+  const cc = costoContacto(m), cpl = cc.cn && cc.cn.total && cc.cn.dias >= 3 ? cc.gastoAhora / cc.cn.total : null;
+  return { dias: t.dias, inv, vis: cd * DIAS * f, cpc: t.clics ? t.costo / t.clics : 0, cpl, contactos: cpl ? inv / cpl : null, medDias: cc.cn ? cc.cn.dias : 0 };
+}
+function pintarProyeccion() {
+  const mes = HASTA ? MESES_L[(+HASTA.slice(5, 7)) % 12] : 'el próximo mes';
+  $('#t-proy').textContent = `Proyección para ${mes}`;
+  $('#p-proy').textContent = `Si ${mes} sigue al ritmo de los últimos 7 días, sin pasar el tope de cada marca. Es conservadora: no incluye las campañas que todavía faltan por salir ni los ajustes que vienen.`;
+  const P = CON.map((m) => ({ m, p: proyeccion(m) }));
+  const inv = P.reduce((a, x) => a + x.p.inv, 0), vis = P.reduce((a, x) => a + x.p.vis, 0);
+  const conC = P.filter((x) => x.p.contactos), con = conC.reduce((a, x) => a + x.p.contactos, 0), invC = conC.reduce((a, x) => a + x.p.inv, 0);
+  const tile = (k, v, s) => h('div', { class: 'tile' }, h('span', { class: 'k' }, k), h('span', { class: 'v' }, v), h('span', { class: 's' }, s));
+  const tc = $('#proy-tiles'); tc.replaceChildren(
+    tile('Visitas a las páginas', '≈ ' + nf0.format(Math.round(vis / 10) * 10), `en ${mes}, las cuatro marcas`),
+    tile('Inversión', pesos(inv), `de ${pesos(CON.reduce((a, m) => a + m.tope, 0))} de tope`),
+    conC.length ? tile('Contactos', '≈ ' + nf0.format(Math.round(con)), `en ${conC.map((x) => x.m.nombre).join(' y ')}, a ≈ ${pesos(invC / con)} cada uno`)
+      : tile('Contactos', 'Por calcular', 'cuando la medición lleve 3 días'));
+  const mc = $('#proy-marcas'); mc.replaceChildren();
+  for (const { m, p } of P) {
+    const filas = [
+      ['Visitas', '≈ ' + nf0.format(Math.round(p.vis))],
+      ['Inversión', `${pesos(p.inv)} de ${pesos(m.tope)}`],
+      ['Costo de cada visita', p.cpc ? pesos2(p.cpc) : '—'],
+      ['Contactos', p.contactos ? `≈ ${nf0.format(Math.round(p.contactos))} a ${pesos(p.cpl)} cada uno` : p.medDias ? 'cuando la medición lleve 3 días' : 'falta la medición en la página'],
+    ];
+    mc.append(h('div', { class: 'cc' }, h('div', { class: 'cc-top' }, h('h3', {}, h('span', { class: 'dot', style: 'background:' + m.color }), m.nombre)),
+      h('div', { class: 'tabla', style: 'border:0' }, h('table', {}, h('tbody', {}, ...filas.map(([k, v]) => h('tr', {}, h('td', {}, k), h('td', {}, v))))))));
+  }
+}
+
 function pintarAvance() {
+  pintarProyeccion();
   // Logros: solo lo que sí mejoró, cada uno con su nota honesta.
   const L = [];
   for (const m of CON) {
