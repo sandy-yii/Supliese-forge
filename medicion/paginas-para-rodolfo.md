@@ -10,13 +10,22 @@ Actualizado: 31 de octubre de 2026. Reemplaza las versiones anteriores de este d
 
 Decisión de la junta del 30 oct: las páginas nuevas se cuelgan en los dominios que el cliente siempre tuvo y que Google ya conoce.
 
-| Página actual | Dominio de siempre | Vendedor (teléfono escrito en la página) |
-|---|---|---|
-| quicklaundry.store | **supliese.com** (agregar «Quick Laundry by Supliese») | Liliana · 33 2601 2237 |
-| kingstar.com.mx | **clmmexico.com** | Jorge · 33 1564 1538 |
-| girbaupro.com | **girbauoccidente.com** | Eduardo · 33 2806 8994 |
-| laundrysolutions.store | **servicioparalavanderias.com** | Paulina · 33 1417 2994 |
-| gamesail.mx | **¿Cuál es el de siempre?** Si no hay, se queda gamesail.mx | Silvia · 33 1185 9797 |
+**Lo primero que necesita Sandy: la lista exacta de los dominios a los que va cada página.** Los de abajo son los que usaban los anuncios antes del 20 de octubre, pero pueden no ser los que te confirmó sistemas. Llena esta tabla y mándasela. Con ella se preparan los scripts que cambian los anuncios.
+
+| Página actual | Dominio al que pasa (llénalo tú) | Lo que usaban los anuncios antes | Vendedor (teléfono escrito en la página) |
+|---|---|---|---|
+| quicklaundry.store | __________ | supliese.com (agregar «Quick Laundry by Supliese») | Liliana · 33 2601 2237 |
+| kingstar.com.mx | __________ | clmmexico.com | Jorge · 33 1564 1538 |
+| girbaupro.com | __________ | girbauoccidente.com | Eduardo · 33 2806 8994 |
+| laundrysolutions.store | __________ | servicioparalavanderias.com | Paulina · 33 1417 2994 |
+| gamesail.mx | __________ (o «se queda») | — | Silvia · 33 1185 9797 |
+
+Para cada uno, dile a Sandy:
+- la dirección exacta, con `https://` y con o sin `www`, por ejemplo `https://www.supliese.com/`;
+- si el dominio es nuevo o es uno que ya tenía anuncios o visitas antes;
+- desde cuándo va a mostrar las páginas nuevas.
+
+En lo que sigue de este documento se usan los dominios de la columna «antes» como ejemplo. Si cambian, aplica lo mismo al dominio que confirmes.
 
 En cada dominio:
 - [ ] **Las mismas direcciones que hoy**, para que los anuncios no apunten a algo que no existe:
