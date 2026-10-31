@@ -216,8 +216,13 @@ CUENTAS['quick-laundry'] = dict(
     # 28 oct: se ejecutó «bajar el costo por clic» (sesión del tablero): pausó «Campaña Modelo de Negocio», dejó a la
     # mitad «Campaña Search Marcas» y pasó ese dinero a Equipo para lavandería. Para no deshacerlo, «ajustes» ya no
     # enciende Modelo de Negocio ni toca el presupuesto de Equipo, Secadoras y Marcas comerciales.
-    ajustes=dict(presupuesto={'Emprendimiento': 40, 'Autoservicio y monedas': 34, 'Marca Quick Laundry': 14},
+    # 31 oct (vaciado del 20 al 30 oct): «Modelo de Negocio» trajo 6 contactos a $145 cada uno, igual que Equipo ($142):
+    # se vuelve a encender. Emprendimiento cubre lo mismo y trajo 1 a $443: baja a $10. Equipo pierde 29% por presupuesto:
+    # recibe lo que queda hasta el tope. Total $394 al día con Search Marcas ($35, sin cambio) = tope de $12,000.
+    ajustes=dict(presupuesto={'Equipo para lavandería': 250, 'Emprendimiento': 10, 'Autoservicio y monedas': 34,
+                              'Secadoras para lavandería': 3, 'Marcas comerciales': 3, 'Marca Quick Laundry': 14},
                  arriba={'Marca Quick Laundry': dict(cuota=0.8, tope=10)},
+                 activar={'Campaña Modelo de Negocio': 45},
                  presencia=['Campaña Search Marcas']),
     # 27 oct (3): Google califica «anuncio poco relevante» en lavadoras para negocio / para lavanderías / industriales para
     # lavandería / y secadoras para lavandería. Se agrega un segundo anuncio que repite esas búsquedas; el que ya hay se queda.
@@ -400,8 +405,11 @@ CUENTAS['clm'] = dict(
     # 28 oct: páginas por tipo de equipo que publicó Rodolfo («página mala» en Google). Cada grupo lleva a la suya; lo demás, a la de inicio.
     paginas={'Alta capacidad 60 kg o más > Lavadoras de alta capacidad': 'https://kingstar.com.mx/lavadoras-alta-capacidad',
              'Mangles y planchado > Mangles': 'https://kingstar.com.mx/mangles'},
-    ajustes=dict(presupuesto={'Alta capacidad 60 kg o más': 222, 'Lavandería hotelera e institucional': 97, 'Marca CLM': 20,
-                              'Túnel de lavado': 92},
+    # 31 oct (vaciado del 20 al 30 oct): Alta capacidad (5 contactos) y Túnel (2, pierde 24% por presupuesto) sí gastan su
+    # presupuesto; Mangles (3 contactos a $66) gasta unos $18 al día porque lo frena la puja, no el dinero; 20 a 45 kg (0
+    # contactos), Hotelera (1) y Marca (sin gasto) no usan el suyo. Se mueve a las que lo gastan. Total $615 = tope.
+    ajustes=dict(presupuesto={'Alta capacidad 60 kg o más': 280, 'Túnel de lavado': 110, 'Lavandería hotelera e institucional': 80,
+                              'Lavadoras y secadoras de 20 a 45 kg': 50, 'Mangles y planchado': 60, 'Marca CLM': 35},
                  # 28 oct: «bajar el costo por clic» regresó Hotelera a $18 y 20 a 45 kg a $15 (el tope del plan). Ya no se
                  # suben topes en esta cuenta: el lugar se gana con las páginas nuevas, no pagando más por clic.
                  # 27 oct: quien busca «clm» o «kingstar» ya quiere la marca: sale hasta arriba
@@ -743,8 +751,10 @@ CUENTAS['girbau'] = dict(
     ajustes=dict(arriba={'Marca Girbau': dict(cuota=0.8, tope=25)},
                  # 29 oct: la marca no tuvo impresiones el 28: desde que se encendió «Max Rendimiento - Girbau» (27 oct) esa
                  # campaña se queda con las búsquedas de «girbau» (5 clics a $6.68 y 1 WhatsApp). La marca se queda en $62.
-                 presupuesto={'Marca Girbau': 62, 'Girbau Smart Plus': 10, 'Girbau por capacidad y sector': 15, 'Servicio técnico Girbau': 10},
-                 activar={'Max Rendimiento - Girbau': 90}),
+                 # 31 oct (vaciado): Max Rendimiento trajo 5 contactos a $40 y no pierde por presupuesto ($117, sin cambio); la marca
+                 # trajo 2 y pierde 27% por presupuesto: recibe lo de Smart Plus, capacidad y servicio técnico (sin gasto). Total $214.
+                 presupuesto={'Marca Girbau': 88, 'Girbau Smart Plus': 3, 'Girbau por capacidad y sector': 3, 'Servicio técnico Girbau': 3},
+                 activar={'Max Rendimiento - Girbau': 117}),
     subir=False, subir_porque='no usa su presupuesto (41%); la marca sale arriba con «ajustes»',
     mismo_sitio=['supliese-girbau-lavadoras.vercel.app'],  # versión anterior del mismo sitio: se conserva la sección
     nota='Solo búsquedas con la marca Girbau. Nuevo modelo Smart Plus y capacidades de 12 y 14 kg.',

@@ -66,6 +66,9 @@ function main() {
   var ops = [], donde = [], que = [], despues = antes;
   function sitio(url) { var m = /^https?:\/\/([^\/?#]+)/i.exec(url || ''); return m ? m[1].toLowerCase().replace(/^www\./, '') : ''; }
   var nuestra = sitio(PLAN.url), noEncendio = [];
+  // El dominio que se deja al pasar al de siempre sigue siendo nuestro (en la misma corrida, el paso anterior ya los cambia)
+  var tambien = (PLAN.tambien || []).map(function (d) { return d.replace(/^www\./, ''); });
+  function otra(s) { return s !== nuestra && tambien.indexOf(s) < 0; }
 
   // Campañas anteriores que se vuelven a encender: solo si todos sus anuncios ya llevan a la página de la marca
   Object.keys(activar).forEach(function (n) {
@@ -77,16 +80,16 @@ function main() {
     FALLO = false;
     filas("SELECT ad_group_ad.ad.final_urls FROM ad_group_ad WHERE campaign.resource_name = '" + f.campaign.resourceName + "' AND ad_group_ad.status = 'ENABLED' " +
       "AND ad_group.status = 'ENABLED'", 'los anuncios de ' + n).forEach(function (a) {
-      (a.adGroupAd.ad.finalUrls || []).forEach(function (u) { if (sitio(u) !== nuestra) malas[sitio(u) || '(sin dirección)'] = true; });
+      (a.adGroupAd.ad.finalUrls || []).forEach(function (u) { if (otra(sitio(u))) malas[sitio(u) || '(sin dirección)'] = true; });
     });
     filas("SELECT asset_group.final_urls FROM asset_group WHERE campaign.resource_name = '" + f.campaign.resourceName + "' AND asset_group.status = 'ENABLED'",
       'los grupos de recursos de ' + n).forEach(function (a) {
-      (a.assetGroup.finalUrls || []).forEach(function (u) { if (sitio(u) !== nuestra) malas[sitio(u) || '(sin dirección)'] = true; });
+      (a.assetGroup.finalUrls || []).forEach(function (u) { if (otra(sitio(u))) malas[sitio(u) || '(sin dirección)'] = true; });
     });
     // Enlaces de sitio y otros recursos de la campaña que llevan a una página
     filas("SELECT campaign.resource_name, asset.final_urls, campaign_asset.field_type FROM campaign_asset WHERE campaign.resource_name = '" + f.campaign.resourceName + "' " +
       "AND campaign_asset.status = 'ENABLED'", 'los enlaces de ' + n).forEach(function (a) {
-      (a.asset.finalUrls || []).forEach(function (u) { if (sitio(u) !== nuestra) malas[sitio(u) + ' (enlace de sitio u otro recurso)'] = true; });
+      (a.asset.finalUrls || []).forEach(function (u) { if (otra(sitio(u))) malas[sitio(u) + ' (enlace de sitio u otro recurso)'] = true; });
     });
     if (FALLO) {
       que.push('NO SE ENCIENDE «' + n + '»: no se pudo revisar a dónde mandan todos sus anuncios y enlaces (ver arriba). Manda este registro.');
@@ -190,6 +193,11 @@ function main() {
   Logger.log('Presupuesto diario de todas las campañas encendidas: ' + dinero(antes) + ' → ' + dinero(despues) +
     ' (al mes, hasta ' + dinero(antes * DIAS_MES) + ' → ' + dinero(despues * DIAS_MES) + ').');
   if (!ops.length) { Logger.log('Nada que cambiar.'); return; }
+  // Nunca por encima del tope mensual acordado de la cuenta (1% de margen por redondeo)
+  if (PLAN.mensual && despues * DIAS_MES > PLAN.mensual * 1.01) {
+    throw new Error('Con estos cambios la cuenta quedaría en ' + dinero(despues * DIAS_MES) + ' al mes, arriba de su tope de ' +
+      dinero(PLAN.mensual) + '. No se cambió nada: manda el registro.');
+  }
 
   var res = AdsApp.mutateAll(ops, { partialFailure: true });
   var malos = 0;

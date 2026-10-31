@@ -6,6 +6,7 @@
 Sale con código 1 si hay errores (textos fuera de límite o negativas que bloquean palabras propias).
 """
 import copy
+import glob
 import json
 import os
 import shutil
@@ -188,6 +189,7 @@ def migrado(c):
     c2['url'] = m['url']
     c2['paginas'] = {k: u.replace(raiz(c['url']), raiz(m['url']), 1) for k, u in c.get('paginas', {}).items()}
     c2['mismo_sitio'] = c.get('mismo_sitio', []) + [re.sub(r'^https?://(www\.)?', '', raiz(c['url']))]
+    c2['tambien'] = [re.sub(r'^https?://(www\.)?', '', raiz(c['url']))]
     c2.pop('migrar')
     return c2
 
@@ -325,7 +327,8 @@ def plan_llamadas(p):
 
 def plan_ajustes(p):
     c = p['c']
-    return dict(cuenta=numero(c), nombre=c['nombre'], prefijo=PREFIJO, url=c['url'], ajustes=c.get('ajustes', {}))
+    return dict(cuenta=numero(c), nombre=c['nombre'], prefijo=PREFIJO, url=c['url'], ajustes=c.get('ajustes', {}),
+                tambien=c.get('tambien', []), mensual=c['mensual'])
 
 
 def plan_anuncios(p):
@@ -621,10 +624,18 @@ def main():
             continue
         p2 = dict(p, c=migrado(p['c']))
         dominio = re.sub(r'^https?://(www\.)?', '', raiz(p2['c']['url']))
+        pa = plan_anuncios(p2)
+        pa.pop('errores')
+        # Todo el paquete del fin de semana en un solo script: si el dominio todavía no abre, el paso 1 se detiene y no corre nada
         pasos_m = [('ANUNCIOS Y SECCIONES A ' + dominio.upper(), js_pagina(p2)),
-                   ('ENLACES DE SITIO A ' + dominio.upper(), js_corregir([plan_auditoria(p2)], p['c']['nombre']))]
-        with open(os.path.join(SALIDA, p['slug'], 'migrar-a-%s.js' % dominio), 'w', encoding='utf-8') as f:
-            f.write(js_todo_en_uno(pasos_m, 'Pasar los anuncios a %s' % dominio))
+                   ('ENLACES DE SITIO A ' + dominio.upper(), js_corregir([plan_auditoria(p2)], p['c']['nombre'])),
+                   ('EXCLUSIONES Y PALABRAS CLAVE', js_diagnostico([plan_palabras(p2)], p['c']['nombre'], archivo='plantilla-palabras.js')),
+                   ('ANUNCIOS NUEVOS', js_diagnostico([pa], p['c']['nombre'], archivo='plantilla-anuncios.js')),
+                   ('PRESUPUESTOS Y CAMPAÑAS QUE SÍ TRAEN CONTACTOS', js_diagnostico([plan_ajustes(p2)], p['c']['nombre'], archivo='plantilla-ajustes.js'))]
+        for viejo in glob.glob(os.path.join(SALIDA, p['slug'], 'migrar-a-*.js')):
+            os.remove(viejo)
+        with open(os.path.join(SALIDA, p['slug'], 'fin-de-semana-%s.js' % dominio), 'w', encoding='utf-8') as f:
+            f.write(js_todo_en_uno(pasos_m, 'Paquete del fin de semana: %s, presupuestos y anuncios' % dominio))
     for i, p in enumerate(todas):
         if 'preparado' not in p['c'] or p['c']['preparado'].get('aplicado'):
             continue

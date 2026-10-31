@@ -10,7 +10,7 @@
  * CÓMO SE USA: pegar completo > Autorizar > VISTA PREVIA > revisar el registro (dice cuánto se gastaría) > EJECUTAR.
  */
 
-var PLANES = [{"cuenta": "118-347-6484", "nombre": "Gamesail", "prefijo": "AB · ", "url": "https://gamesail.mx/", "ajustes": {}}, {"cuenta": "256-397-2201", "nombre": "Quick Laundry (cuenta Supliese Gómez)", "prefijo": "AB · ", "url": "https://quicklaundry.store/", "ajustes": {"presupuesto": {"Emprendimiento": 40, "Autoservicio y monedas": 34, "Marca Quick Laundry": 14}, "arriba": {"Marca Quick Laundry": {"cuota": 0.8, "tope": 10}}, "presencia": ["Campaña Search Marcas"]}}, {"cuenta": "993-525-8739", "nombre": "CLM", "prefijo": "AB · ", "url": "https://kingstar.com.mx/", "ajustes": {"presupuesto": {"Alta capacidad 60 kg o más": 222, "Lavandería hotelera e institucional": 97, "Marca CLM": 20, "Túnel de lavado": 92}, "arriba": {"Marca CLM": {"cuota": 0.8, "tope": 15}}}}, {"cuenta": "265-909-2662", "nombre": "Servicio para Lavandería", "prefijo": "AB · ", "url": "https://laundrysolutions.store/", "ajustes": {"pausar_palabras": [["Servicio técnico industrial", "Servicio técnico", "técnico lavadoras industriales", "BROAD"], ["Reparación y mantenimiento", "Reparación", "reparación lavadoras industriales", "BROAD"], ["Reparación y mantenimiento", "Mantenimiento preventivo", "mantenimiento lavadoras industriales", "BROAD"]], "presupuesto": {"Reparación y mantenimiento": 156, "Servicio técnico industrial": 75}}}, {"cuenta": "860-582-6837", "nombre": "Girbau", "prefijo": "AB · ", "url": "https://girbaupro.com/", "ajustes": {"arriba": {"Marca Girbau": {"cuota": 0.8, "tope": 25}}, "presupuesto": {"Marca Girbau": 62, "Girbau Smart Plus": 10, "Girbau por capacidad y sector": 15, "Servicio técnico Girbau": 10}, "activar": {"Max Rendimiento - Girbau": 90}}}];
+var PLANES = [{"cuenta": "118-347-6484", "nombre": "Gamesail", "prefijo": "AB · ", "url": "https://gamesail.mx/", "ajustes": {}, "tambien": [], "mensual": 19700}, {"cuenta": "256-397-2201", "nombre": "Quick Laundry (cuenta Supliese Gómez)", "prefijo": "AB · ", "url": "https://quicklaundry.store/", "ajustes": {"presupuesto": {"Equipo para lavandería": 250, "Emprendimiento": 10, "Autoservicio y monedas": 34, "Secadoras para lavandería": 3, "Marcas comerciales": 3, "Marca Quick Laundry": 14}, "arriba": {"Marca Quick Laundry": {"cuota": 0.8, "tope": 10}}, "activar": {"Campaña Modelo de Negocio": 45}, "presencia": ["Campaña Search Marcas"]}, "tambien": [], "mensual": 12000}, {"cuenta": "993-525-8739", "nombre": "CLM", "prefijo": "AB · ", "url": "https://kingstar.com.mx/", "ajustes": {"presupuesto": {"Alta capacidad 60 kg o más": 280, "Túnel de lavado": 110, "Lavandería hotelera e institucional": 80, "Lavadoras y secadoras de 20 a 45 kg": 50, "Mangles y planchado": 60, "Marca CLM": 35}, "arriba": {"Marca CLM": {"cuota": 0.8, "tope": 15}}}, "tambien": [], "mensual": 18700}, {"cuenta": "265-909-2662", "nombre": "Servicio para Lavandería", "prefijo": "AB · ", "url": "https://laundrysolutions.store/", "ajustes": {"pausar_palabras": [["Servicio técnico industrial", "Servicio técnico", "técnico lavadoras industriales", "BROAD"], ["Reparación y mantenimiento", "Reparación", "reparación lavadoras industriales", "BROAD"], ["Reparación y mantenimiento", "Mantenimiento preventivo", "mantenimiento lavadoras industriales", "BROAD"]], "presupuesto": {"Reparación y mantenimiento": 156, "Servicio técnico industrial": 75}}, "tambien": [], "mensual": 8200}, {"cuenta": "860-582-6837", "nombre": "Girbau", "prefijo": "AB · ", "url": "https://girbaupro.com/", "ajustes": {"arriba": {"Marca Girbau": {"cuota": 0.8, "tope": 25}}, "presupuesto": {"Marca Girbau": 88, "Girbau Smart Plus": 3, "Girbau por capacidad y sector": 3, "Servicio técnico Girbau": 3}, "activar": {"Max Rendimiento - Girbau": 117}}, "tambien": [], "mensual": 6600}];
 var PLAN = null;
 
 // Solo para la cuenta nueva de Gamesail: pega aquí su número, por ejemplo '123-456-7890'.
@@ -66,6 +66,9 @@ function main() {
   var ops = [], donde = [], que = [], despues = antes;
   function sitio(url) { var m = /^https?:\/\/([^\/?#]+)/i.exec(url || ''); return m ? m[1].toLowerCase().replace(/^www\./, '') : ''; }
   var nuestra = sitio(PLAN.url), noEncendio = [];
+  // El dominio que se deja al pasar al de siempre sigue siendo nuestro (en la misma corrida, el paso anterior ya los cambia)
+  var tambien = (PLAN.tambien || []).map(function (d) { return d.replace(/^www\./, ''); });
+  function otra(s) { return s !== nuestra && tambien.indexOf(s) < 0; }
 
   // Campañas anteriores que se vuelven a encender: solo si todos sus anuncios ya llevan a la página de la marca
   Object.keys(activar).forEach(function (n) {
@@ -77,16 +80,16 @@ function main() {
     FALLO = false;
     filas("SELECT ad_group_ad.ad.final_urls FROM ad_group_ad WHERE campaign.resource_name = '" + f.campaign.resourceName + "' AND ad_group_ad.status = 'ENABLED' " +
       "AND ad_group.status = 'ENABLED'", 'los anuncios de ' + n).forEach(function (a) {
-      (a.adGroupAd.ad.finalUrls || []).forEach(function (u) { if (sitio(u) !== nuestra) malas[sitio(u) || '(sin dirección)'] = true; });
+      (a.adGroupAd.ad.finalUrls || []).forEach(function (u) { if (otra(sitio(u))) malas[sitio(u) || '(sin dirección)'] = true; });
     });
     filas("SELECT asset_group.final_urls FROM asset_group WHERE campaign.resource_name = '" + f.campaign.resourceName + "' AND asset_group.status = 'ENABLED'",
       'los grupos de recursos de ' + n).forEach(function (a) {
-      (a.assetGroup.finalUrls || []).forEach(function (u) { if (sitio(u) !== nuestra) malas[sitio(u) || '(sin dirección)'] = true; });
+      (a.assetGroup.finalUrls || []).forEach(function (u) { if (otra(sitio(u))) malas[sitio(u) || '(sin dirección)'] = true; });
     });
     // Enlaces de sitio y otros recursos de la campaña que llevan a una página
     filas("SELECT campaign.resource_name, asset.final_urls, campaign_asset.field_type FROM campaign_asset WHERE campaign.resource_name = '" + f.campaign.resourceName + "' " +
       "AND campaign_asset.status = 'ENABLED'", 'los enlaces de ' + n).forEach(function (a) {
-      (a.asset.finalUrls || []).forEach(function (u) { if (sitio(u) !== nuestra) malas[sitio(u) + ' (enlace de sitio u otro recurso)'] = true; });
+      (a.asset.finalUrls || []).forEach(function (u) { if (otra(sitio(u))) malas[sitio(u) + ' (enlace de sitio u otro recurso)'] = true; });
     });
     if (FALLO) {
       que.push('NO SE ENCIENDE «' + n + '»: no se pudo revisar a dónde mandan todos sus anuncios y enlaces (ver arriba). Manda este registro.');
@@ -190,6 +193,11 @@ function main() {
   Logger.log('Presupuesto diario de todas las campañas encendidas: ' + dinero(antes) + ' → ' + dinero(despues) +
     ' (al mes, hasta ' + dinero(antes * DIAS_MES) + ' → ' + dinero(despues * DIAS_MES) + ').');
   if (!ops.length) { Logger.log('Nada que cambiar.'); return; }
+  // Nunca por encima del tope mensual acordado de la cuenta (1% de margen por redondeo)
+  if (PLAN.mensual && despues * DIAS_MES > PLAN.mensual * 1.01) {
+    throw new Error('Con estos cambios la cuenta quedaría en ' + dinero(despues * DIAS_MES) + ' al mes, arriba de su tope de ' +
+      dinero(PLAN.mensual) + '. No se cambió nada: manda el registro.');
+  }
 
   var res = AdsApp.mutateAll(ops, { partialFailure: true });
   var malos = 0;
