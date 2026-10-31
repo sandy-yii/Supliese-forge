@@ -195,6 +195,9 @@ CUENTAS['gamesail'] = dict(
 
 # ---------------------------------------------------------------- Quick Laundry (cuenta Supliese Gómez)
 CUENTAS['quick-laundry'] = dict(
+    # 30 oct (junta): las páginas regresan al dominio de siempre del cliente, que Google ya conoce. Cuando Rodolfo confirme
+    # que ya muestra las páginas nuevas, se corre salida/quick-laundry/migrar-a-….js y luego aplicado=True.
+    migrar=dict(url='https://supliese.com/', aplicado=False),
     subir_topes=False,  # 28 oct: no subir el costo por clic («más leads» ya no sube topes en esta cuenta)
     nombre='Quick Laundry (cuenta Supliese Gómez)', id='256-397-2201', mensual=12000,
     telefono='33 2601 2237',  # botón de llamada de los anuncios (lista de Rodolfo, 21 oct)
@@ -353,6 +356,9 @@ CUENTAS['quick-laundry'] = dict(
 
 # ---------------------------------------------------------------- CLM
 CUENTAS['clm'] = dict(
+    # 30 oct (junta): las páginas regresan al dominio de siempre del cliente, que Google ya conoce. Cuando Rodolfo confirme
+    # que ya muestra las páginas nuevas, se corre salida/clm/migrar-a-….js y luego aplicado=True.
+    migrar=dict(url='https://clmmexico.com/', aplicado=False),
     subir_topes=False,  # 28 oct: no subir el costo por clic («más leads» ya no sube topes en esta cuenta)
     nombre='CLM', id='993-525-8739', mensual=18700,
     telefono='33 1564 1538',  # botón de llamada de los anuncios (lista de Rodolfo, 21 oct)
@@ -535,6 +541,9 @@ CUENTAS['clm'] = dict(
 
 # ---------------------------------------------------------------- Servicio para Lavandería
 CUENTAS['servicio'] = dict(
+    # 30 oct (junta): las páginas regresan al dominio de siempre del cliente, que Google ya conoce. Cuando Rodolfo confirme
+    # que ya muestra las páginas nuevas, se corre salida/servicio/migrar-a-….js y luego aplicado=True.
+    migrar=dict(url='https://servicioparalavanderias.com/', aplicado=False),
     subir_topes=False,  # 28 oct: no subir el costo por clic («más leads» ya no sube topes en esta cuenta)
     nombre='Servicio para Lavandería', id='265-909-2662', mensual=8200,
     telefono='33 1417 2994',  # botón de llamada de los anuncios (lista de Rodolfo, 21 oct)
@@ -717,6 +726,9 @@ CUENTAS['servicio'] = dict(
 
 # ---------------------------------------------------------------- Girbau
 CUENTAS['girbau'] = dict(
+    # 30 oct (junta): las páginas regresan al dominio de siempre del cliente, que Google ya conoce. Cuando Rodolfo confirme
+    # que ya muestra las páginas nuevas, se corre salida/girbau/migrar-a-….js y luego aplicado=True.
+    migrar=dict(url='https://girbauoccidente.com/', aplicado=False),
     subir_topes=False,  # 28 oct: no subir el costo por clic («más leads» ya no sube topes en esta cuenta)
     nombre='Girbau', id='860-582-6837', mensual=6600,
     telefono='33 2806 8994',  # botón de llamada de los anuncios (lista de Rodolfo, 21 oct)

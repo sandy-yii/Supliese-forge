@@ -15,7 +15,7 @@
  * Al cambiar la URL, Google vuelve a revisar los anuncios (suele tardar de unas horas a un día).
  */
 
-var PLAN = {"cuenta": "265-909-2662", "anterior": "", "nombre": "Servicio para Lavandería", "url": "https://laundrysolutions.store/", "prefijo": "AB · ", "paginas": {"AB · Reparación y mantenimiento > Reparación": "https://laundrysolutions.store/reparacion-lavadoras-industriales", "AB · Reparación y mantenimiento > Mantenimiento correctivo": "https://laundrysolutions.store/reparacion-lavadoras-industriales"}, "mismo_sitio": ["laundry-solutions-servicio.vercel.app"]};
+var PLAN = {"cuenta": "265-909-2662", "anterior": "", "nombre": "Servicio para Lavandería", "url": "https://laundrysolutions.store/", "prefijo": "AB · ", "paginas": {"AB · Reparación y mantenimiento > Reparación": "https://laundrysolutions.store/reparacion-lavadoras-industriales", "AB · Reparación y mantenimiento > Mantenimiento correctivo": "https://laundrysolutions.store/reparacion-lavadoras-industriales"}, "telefono": "33 1417 2994", "mismo_sitio": ["laundry-solutions-servicio.vercel.app"]};
 
 // Solo si es una cuenta nueva (el plan no trae su número): pega aquí su número, por ejemplo '123-456-7890'.
 var CUENTA_NUEVA = '';
@@ -76,6 +76,18 @@ function pagina(url) {
 function main() {
   revisarCuenta();
   Logger.log('Página de la marca: ' + PLAN.url);
+  // La página de la marca tiene que abrir antes de mandar anuncios ahí (por ejemplo, al pasar al dominio de siempre)
+  try {
+    var r0 = UrlFetchApp.fetch(PLAN.url, { muteHttpExceptions: true, followRedirects: true });
+    if (r0.getResponseCode() >= 400) throw new Error('responde con error ' + r0.getResponseCode());
+    var digitos = String(PLAN.telefono || '').replace(/\D/g, '').slice(-10);
+    if (digitos && r0.getContentText().replace(/\D/g, '').indexOf(digitos) < 0) {
+      Logger.log('AVISO: en ' + PLAN.url + ' no se ve escrito el teléfono del vendedor (' + PLAN.telefono + '). ' +
+        'Google lo necesita para aprobar el botón de llamada: avísale a Rodolfo.');
+    }
+  } catch (e) {
+    throw new Error('La página ' + PLAN.url + ' no abre todavía (' + e.message + '). No se cambió nada.');
+  }
   revisarPaginas();
   var ops = [], donde = [], yaBien = 0;
   var destino = sitio(PLAN.url);

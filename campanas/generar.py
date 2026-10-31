@@ -176,6 +176,22 @@ def paginas(c):
     return {PREFIJO + k: u for k, u in c.get('paginas', {}).items()}
 
 
+def raiz(url):
+    return re.match(r'https?://[^/?#]+', url).group(0)
+
+
+def migrado(c):
+    """Copia de la cuenta con su dominio de siempre: la página de la marca y las secciones pasan al dominio del plan
+    «migrar». El dominio que se deja (.store, .mx nuevo) queda como «mismo sitio»."""
+    m = c['migrar']
+    c2 = copy.deepcopy(c)
+    c2['url'] = m['url']
+    c2['paginas'] = {k: u.replace(raiz(c['url']), raiz(m['url']), 1) for k, u in c.get('paginas', {}).items()}
+    c2['mismo_sitio'] = c.get('mismo_sitio', []) + [re.sub(r'^https?://(www\.)?', '', raiz(c['url']))]
+    c2.pop('migrar')
+    return c2
+
+
 def revisar_paginas(c):
     """Errores de las páginas por grupo: que el grupo exista en el plan y que la página sea del mismo sitio que la marca."""
     errores = []
@@ -335,6 +351,7 @@ def js_pagina(p):
     c = p['c']
     return plantilla('plantilla-pagina.js', c, dict(cuenta=numero(c), anterior=c.get('id_anterior', ''),
                                                     nombre=c['nombre'], url=c['url'], prefijo=PREFIJO, paginas=paginas(c),
+                                                    telefono=c.get('telefono', ''),
                                                     mismo_sitio=c.get('mismo_sitio', [])))
 
 
@@ -496,6 +513,9 @@ def prompt(p, expres=False):
 def main():
     todas = []
     for slug, c in CUENTAS.items():
+        # Cuando la cuenta ya se pasó a su dominio de siempre, ese dominio es la página de la marca para todos los scripts
+        if c.get('migrar', {}).get('aplicado'):
+            c = migrado(c)
         # Un cambio preparado que ya se aplicó en la cuenta pasa a ser parte del plan de todos los días
         todas.append(preparado(slug, c)[0] if c.get('preparado', {}).get('aplicado') else preparar(slug, c))
     os.makedirs(SALIDA, exist_ok=True)
@@ -566,6 +586,8 @@ def main():
         f.write(js_diagnostico([plan_auditoria(p) for p in todas], archivo='plantilla-calidad.js'))
     with open(os.path.join(SALIDA, 'quienes-dieron-whatsapp-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
         f.write(js_diagnostico([plan_auditoria(p) for p in todas], archivo='plantilla-whatsapp.js'))
+    with open(os.path.join(SALIDA, 'vaciado-para-la-junta-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
+        f.write(js_diagnostico([plan_auditoria(p) for p in todas], archivo='plantilla-vaciado.js'))
     with open(os.path.join(SALIDA, 'ajustes-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
         f.write(js_diagnostico([plan_ajustes(p) for p in todas], archivo='plantilla-ajustes.js'))
     with open(os.path.join(SALIDA, 'subir-presupuesto-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
@@ -593,6 +615,16 @@ def main():
         f.write(js_todo_en_uno(pasos))
     with open(os.path.join(SALIDA, 'boton-llamada-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
         f.write(js_diagnostico([plan_llamadas(p) for p in todas], archivo='plantilla-llamadas.js'))
+    # Migración al dominio de siempre, lista para cuando el dominio ya muestre las páginas nuevas
+    for p in todas:
+        if 'migrar' not in p['c']:
+            continue
+        p2 = dict(p, c=migrado(p['c']))
+        dominio = re.sub(r'^https?://(www\.)?', '', raiz(p2['c']['url']))
+        pasos_m = [('ANUNCIOS Y SECCIONES A ' + dominio.upper(), js_pagina(p2)),
+                   ('ENLACES DE SITIO A ' + dominio.upper(), js_corregir([plan_auditoria(p2)], p['c']['nombre']))]
+        with open(os.path.join(SALIDA, p['slug'], 'migrar-a-%s.js' % dominio), 'w', encoding='utf-8') as f:
+            f.write(js_todo_en_uno(pasos_m, 'Pasar los anuncios a %s' % dominio))
     for i, p in enumerate(todas):
         if 'preparado' not in p['c'] or p['c']['preparado'].get('aplicado'):
             continue
