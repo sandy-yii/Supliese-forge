@@ -217,9 +217,9 @@ CUENTAS['quick-laundry'] = dict(
     # mitad «Campaña Search Marcas» y pasó ese dinero a Equipo para lavandería. Para no deshacerlo, «ajustes» ya no
     # enciende Modelo de Negocio ni toca el presupuesto de Equipo, Secadoras y Marcas comerciales.
     # 31 oct (vaciado del 20 al 30 oct): «Modelo de Negocio» trajo 6 contactos a $145 cada uno, igual que Equipo ($142):
-    # se vuelve a encender. Emprendimiento cubre lo mismo y trajo 1 a $443: baja a $10. Equipo pierde 29% por presupuesto:
-    # recibe lo que queda hasta el tope. Total $394 al día con Search Marcas ($35, sin cambio) = tope de $12,000.
-    ajustes=dict(presupuesto={'Equipo para lavandería': 250, 'Emprendimiento': 10, 'Autoservicio y monedas': 34,
+    # se vuelve a encender. Emprendimiento cubre lo mismo y trajo 1 a $443: baja a $10. Sandy pidió no gastar más: Modelo
+    # se paga con lo que bajan Emprendimiento, Secadoras y Marcas comerciales; Equipo se queda igual. Total $370 al día.
+    ajustes=dict(presupuesto={'Equipo para lavandería': 226, 'Emprendimiento': 10, 'Autoservicio y monedas': 34,
                               'Secadoras para lavandería': 3, 'Marcas comerciales': 3, 'Marca Quick Laundry': 14},
                  arriba={'Marca Quick Laundry': dict(cuota=0.8, tope=10)},
                  activar={'Campaña Modelo de Negocio': 45},
@@ -575,10 +575,12 @@ CUENTAS['servicio'] = dict(
         p=('reparacion', 'industrial'))},
     # 26 oct: las amplias «técnico / reparación / mantenimiento lavadoras industriales» salían en búsquedas de COMPRA
     # («lavadoras industriales», «precio de lavadora industrial») y le subían el precio a Quick Laundry. Se pausan.
+    # 31 oct: sin las amplias, Servicio se quedó sin búsquedas (0 clics el 28 y 29). Se vuelve a encender solo
+    # «reparación lavadoras industriales» (amplia), ahora con más exclusiones de compra; técnico y mantenimiento siguen pausadas.
     ajustes=dict(pausar_palabras=[
         ['Servicio técnico industrial', 'Servicio técnico', 'técnico lavadoras industriales', 'BROAD'],
-        ['Reparación y mantenimiento', 'Reparación', 'reparación lavadoras industriales', 'BROAD'],
         ['Reparación y mantenimiento', 'Mantenimiento preventivo', 'mantenimiento lavadoras industriales', 'BROAD']],
+        encender_palabras=[['Reparación y mantenimiento', 'Reparación', 'reparación lavadoras industriales', 'BROAD']],
         # La cuenta ya está en su tope mensual ($8,200): Reparación sube 20% con dinero que Servicio técnico no usaba
         # antes de las amplias (0 impresiones del 21 al 23 oct).
         # 27 oct: «subir» ya los llevó a 156 y 75; el plan queda igual para que «ajustes» no los regrese.
@@ -614,7 +616,13 @@ CUENTAS['servicio'] = dict(
                                                    '"precio lavadoras industriales"', '"costo lavadora industrial"',
                                                    '"costo de lavadora industrial"', '"costo de lavadoras industriales"',
                                                    '"cuánto cuesta una lavadora industrial"', '"cuánto cuestan las lavadoras industriales"',
-                                                   '"cuánto vale una lavadora industrial"', '"para negocio"', '"commercial washer"'],
+                                                   '"cuánto vale una lavadora industrial"', '"para negocio"', '"commercial washer"',
+                                                   # 31 oct: búsquedas de compra que entraron por la amplia el 26 oct
+                                                   '[lavadora industrial de monedas]', '[lavadoras y secadoras industriales]',
+                                                   '[maquinas lavanderia industrial]', '[lavadora ropa industrial]',
+                                                   '[lavadora para lavanderia]', '[lavadoras para lavanderias autoservicio]',
+                                                   '[maquinas para lavanderia autoservicio]', '"kg precio"',
+                                                   '"comprar lavadora"', '"comprar lavadoras"'],
         'Partes genéricas (junta)': ['"partes para lavadora industrial"', '"partes para lavadoras industriales"',
                                      '"refacciones para lavadora industrial"', '"refacciones para lavadoras industriales"',
                                      '"refacciones para secadora industrial"', '"refacciones para secadoras industriales"',

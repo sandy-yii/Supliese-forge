@@ -37,6 +37,16 @@ Herramientas > Biblioteca compartida > Listas de exclusión (o "Listas de palabr
 "cuanto vale una lavadora industrial"
 "para negocio"
 "commercial washer"
+[lavadora industrial de monedas]
+[lavadoras y secadoras industriales]
+[maquinas lavanderia industrial]
+[lavadora ropa industrial]
+[lavadora para lavanderia]
+[lavadoras para lavanderias autoservicio]
+[maquinas para lavanderia autoservicio]
+"kg precio"
+"comprar lavadora"
+"comprar lavadoras"
 "partes para lavadora industrial"
 "partes para lavadoras industriales"
 "refacciones para lavadora industrial"

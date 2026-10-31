@@ -624,8 +624,9 @@ function main() {
   Logger.log('AJUSTES · ' + PLAN.nombre + (vista ? ' · VISTA PREVIA (no cambia nada)' : ''));
   var aj = PLAN.ajustes || {};
   var pausar = aj.pausar || [], presupuesto = aj.presupuesto || {}, palabras = aj.pausar_palabras || [], topes = aj.topes || {},
+      encender = aj.encender_palabras || [],
       arriba = aj.arriba || {}, activar = aj.activar || {}, presencia = aj.presencia || [];
-  if (!pausar.length && !Object.keys(presupuesto).length && !palabras.length && !Object.keys(topes).length && !Object.keys(arriba).length &&
+  if (!pausar.length && !Object.keys(presupuesto).length && !palabras.length && !encender.length && !Object.keys(topes).length && !Object.keys(arriba).length &&
       !Object.keys(activar).length && !presencia.length) { Logger.log('Nada que ajustar en esta cuenta por ahora.'); return; }
 
   var C = {};
@@ -722,6 +723,23 @@ function main() {
       ops.push({ adGroupCriterionOperation: { update: { resourceName: rn, status: 'PAUSED' }, updateMask: 'status' } });
       donde.push('pausa de la palabra «' + w[2] + '»');
       que.push('PAUSAR PALABRA «' + w[2] + '» en ' + nombre);
+    });
+  }
+  // Palabras clave pausadas que el plan vuelve a encender
+  if (encender.length) {
+    var pausadas = {};
+    filas('SELECT campaign.name, ad_group.name, ad_group_criterion.resource_name, ad_group_criterion.keyword.text, ad_group_criterion.keyword.match_type ' +
+      "FROM ad_group_criterion WHERE ad_group_criterion.type = 'KEYWORD' AND ad_group_criterion.negative = FALSE AND ad_group_criterion.status = 'PAUSED' " +
+      "AND campaign.status != 'REMOVED' AND ad_group.status != 'REMOVED'", 'las palabras clave pausadas').forEach(function (f) {
+      var k = f.adGroupCriterion.keyword;
+      pausadas[[f.campaign.name, f.adGroup.name, k.text.toLowerCase(), k.matchType].join('|')] = f.adGroupCriterion.resourceName;
+    });
+    encender.forEach(function (w) {
+      var nombre = PLAN.prefijo + w[0] + ' > ' + w[1], rn = pausadas[[PLAN.prefijo + w[0], w[1], w[2].toLowerCase(), w[3]].join('|')];
+      if (!rn) { que.push('«' + w[2] + '» en ' + nombre + ': no está pausada (ya encendida o no existe). Se salta.'); return; }
+      ops.push({ adGroupCriterionOperation: { update: { resourceName: rn, status: 'ENABLED' }, updateMask: 'status' } });
+      donde.push('encendido de la palabra «' + w[2] + '»');
+      que.push('ENCENDER PALABRA «' + w[2] + '» en ' + nombre);
     });
   }
   Object.keys(topes).forEach(function (corto) {

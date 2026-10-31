@@ -10,7 +10,7 @@
  * CÓMO SE USA: pegar completo > Autorizar > VISTA PREVIA > revisar el registro (dice cuánto se gastaría) > EJECUTAR.
  */
 
-var PLANES = [{"cuenta": "118-347-6484", "nombre": "Gamesail", "prefijo": "AB · ", "url": "https://gamesail.mx/", "ajustes": {}, "tambien": [], "mensual": 19700}, {"cuenta": "256-397-2201", "nombre": "Quick Laundry (cuenta Supliese Gómez)", "prefijo": "AB · ", "url": "https://quicklaundry.store/", "ajustes": {"presupuesto": {"Equipo para lavandería": 250, "Emprendimiento": 10, "Autoservicio y monedas": 34, "Secadoras para lavandería": 3, "Marcas comerciales": 3, "Marca Quick Laundry": 14}, "arriba": {"Marca Quick Laundry": {"cuota": 0.8, "tope": 10}}, "activar": {"Campaña Modelo de Negocio": 45}, "presencia": ["Campaña Search Marcas"]}, "tambien": [], "mensual": 12000}, {"cuenta": "993-525-8739", "nombre": "CLM", "prefijo": "AB · ", "url": "https://kingstar.com.mx/", "ajustes": {"presupuesto": {"Alta capacidad 60 kg o más": 280, "Túnel de lavado": 110, "Lavandería hotelera e institucional": 80, "Lavadoras y secadoras de 20 a 45 kg": 50, "Mangles y planchado": 60, "Marca CLM": 35}, "arriba": {"Marca CLM": {"cuota": 0.8, "tope": 15}}}, "tambien": [], "mensual": 18700}, {"cuenta": "265-909-2662", "nombre": "Servicio para Lavandería", "prefijo": "AB · ", "url": "https://laundrysolutions.store/", "ajustes": {"pausar_palabras": [["Servicio técnico industrial", "Servicio técnico", "técnico lavadoras industriales", "BROAD"], ["Reparación y mantenimiento", "Reparación", "reparación lavadoras industriales", "BROAD"], ["Reparación y mantenimiento", "Mantenimiento preventivo", "mantenimiento lavadoras industriales", "BROAD"]], "presupuesto": {"Reparación y mantenimiento": 156, "Servicio técnico industrial": 75}}, "tambien": [], "mensual": 8200}, {"cuenta": "860-582-6837", "nombre": "Girbau", "prefijo": "AB · ", "url": "https://girbaupro.com/", "ajustes": {"arriba": {"Marca Girbau": {"cuota": 0.8, "tope": 25}}, "presupuesto": {"Marca Girbau": 88, "Girbau Smart Plus": 3, "Girbau por capacidad y sector": 3, "Servicio técnico Girbau": 3}, "activar": {"Max Rendimiento - Girbau": 117}}, "tambien": [], "mensual": 6600}];
+var PLANES = [{"cuenta": "118-347-6484", "nombre": "Gamesail", "prefijo": "AB · ", "url": "https://gamesail.mx/", "ajustes": {}, "tambien": [], "mensual": 19700}, {"cuenta": "256-397-2201", "nombre": "Quick Laundry (cuenta Supliese Gómez)", "prefijo": "AB · ", "url": "https://quicklaundry.store/", "ajustes": {"presupuesto": {"Equipo para lavandería": 226, "Emprendimiento": 10, "Autoservicio y monedas": 34, "Secadoras para lavandería": 3, "Marcas comerciales": 3, "Marca Quick Laundry": 14}, "arriba": {"Marca Quick Laundry": {"cuota": 0.8, "tope": 10}}, "activar": {"Campaña Modelo de Negocio": 45}, "presencia": ["Campaña Search Marcas"]}, "tambien": [], "mensual": 12000}, {"cuenta": "993-525-8739", "nombre": "CLM", "prefijo": "AB · ", "url": "https://kingstar.com.mx/", "ajustes": {"presupuesto": {"Alta capacidad 60 kg o más": 280, "Túnel de lavado": 110, "Lavandería hotelera e institucional": 80, "Lavadoras y secadoras de 20 a 45 kg": 50, "Mangles y planchado": 60, "Marca CLM": 35}, "arriba": {"Marca CLM": {"cuota": 0.8, "tope": 15}}}, "tambien": [], "mensual": 18700}, {"cuenta": "265-909-2662", "nombre": "Servicio para Lavandería", "prefijo": "AB · ", "url": "https://laundrysolutions.store/", "ajustes": {"pausar_palabras": [["Servicio técnico industrial", "Servicio técnico", "técnico lavadoras industriales", "BROAD"], ["Reparación y mantenimiento", "Mantenimiento preventivo", "mantenimiento lavadoras industriales", "BROAD"]], "encender_palabras": [["Reparación y mantenimiento", "Reparación", "reparación lavadoras industriales", "BROAD"]], "presupuesto": {"Reparación y mantenimiento": 156, "Servicio técnico industrial": 75}}, "tambien": [], "mensual": 8200}, {"cuenta": "860-582-6837", "nombre": "Girbau", "prefijo": "AB · ", "url": "https://girbaupro.com/", "ajustes": {"arriba": {"Marca Girbau": {"cuota": 0.8, "tope": 25}}, "presupuesto": {"Marca Girbau": 88, "Girbau Smart Plus": 3, "Girbau por capacidad y sector": 3, "Servicio técnico Girbau": 3}, "activar": {"Max Rendimiento - Girbau": 117}}, "tambien": [], "mensual": 6600}];
 var PLAN = null;
 
 // Solo para la cuenta nueva de Gamesail: pega aquí su número, por ejemplo '123-456-7890'.
@@ -47,8 +47,9 @@ function main() {
   Logger.log('AJUSTES · ' + PLAN.nombre + (vista ? ' · VISTA PREVIA (no cambia nada)' : ''));
   var aj = PLAN.ajustes || {};
   var pausar = aj.pausar || [], presupuesto = aj.presupuesto || {}, palabras = aj.pausar_palabras || [], topes = aj.topes || {},
+      encender = aj.encender_palabras || [],
       arriba = aj.arriba || {}, activar = aj.activar || {}, presencia = aj.presencia || [];
-  if (!pausar.length && !Object.keys(presupuesto).length && !palabras.length && !Object.keys(topes).length && !Object.keys(arriba).length &&
+  if (!pausar.length && !Object.keys(presupuesto).length && !palabras.length && !encender.length && !Object.keys(topes).length && !Object.keys(arriba).length &&
       !Object.keys(activar).length && !presencia.length) { Logger.log('Nada que ajustar en esta cuenta por ahora.'); return; }
 
   var C = {};
@@ -145,6 +146,23 @@ function main() {
       ops.push({ adGroupCriterionOperation: { update: { resourceName: rn, status: 'PAUSED' }, updateMask: 'status' } });
       donde.push('pausa de la palabra «' + w[2] + '»');
       que.push('PAUSAR PALABRA «' + w[2] + '» en ' + nombre);
+    });
+  }
+  // Palabras clave pausadas que el plan vuelve a encender
+  if (encender.length) {
+    var pausadas = {};
+    filas('SELECT campaign.name, ad_group.name, ad_group_criterion.resource_name, ad_group_criterion.keyword.text, ad_group_criterion.keyword.match_type ' +
+      "FROM ad_group_criterion WHERE ad_group_criterion.type = 'KEYWORD' AND ad_group_criterion.negative = FALSE AND ad_group_criterion.status = 'PAUSED' " +
+      "AND campaign.status != 'REMOVED' AND ad_group.status != 'REMOVED'", 'las palabras clave pausadas').forEach(function (f) {
+      var k = f.adGroupCriterion.keyword;
+      pausadas[[f.campaign.name, f.adGroup.name, k.text.toLowerCase(), k.matchType].join('|')] = f.adGroupCriterion.resourceName;
+    });
+    encender.forEach(function (w) {
+      var nombre = PLAN.prefijo + w[0] + ' > ' + w[1], rn = pausadas[[PLAN.prefijo + w[0], w[1], w[2].toLowerCase(), w[3]].join('|')];
+      if (!rn) { que.push('«' + w[2] + '» en ' + nombre + ': no está pausada (ya encendida o no existe). Se salta.'); return; }
+      ops.push({ adGroupCriterionOperation: { update: { resourceName: rn, status: 'ENABLED' }, updateMask: 'status' } });
+      donde.push('encendido de la palabra «' + w[2] + '»');
+      que.push('ENCENDER PALABRA «' + w[2] + '» en ' + nombre);
     });
   }
   Object.keys(topes).forEach(function (corto) {

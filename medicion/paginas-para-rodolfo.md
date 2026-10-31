@@ -49,7 +49,9 @@ Antes, los formularios de las páginas viejas mandaban los datos a correos viejo
 
 - [ ] Cada formulario manda el lead **por correo** además de WhatsApp.
 - [ ] **Los destinatarios en un solo lugar por sitio** (una variable o un archivo de configuración), para cambiarlos en un minuto cuando el cliente confirme cuáles de sus 7 correos van en cada página.
-- [ ] **Mientras el cliente no confirme**, mandarlos a un correo temporal que te pasa Sandy, para que **ningún lead se pierda**.
+- [ ] **Mientras el cliente no confirme**, mandar **todos los formularios de todas las marcas a `leads.supliese@gmail.com`**, para que **ningún lead se pierda**.
+  - Con la marca y la sección en el asunto, por ejemplo: `[Kingstar] Nuevo lead · lavadora 40 kg · Juan Pérez`.
+  - Cuando el cliente confirme sus correos, se agregan como destinatarios. Cambiar el destinatario no afecta a Google Ads, mientras la conversión «AB · Formulario enviado» siga igual.
 - [ ] Lo que lleva el correo:
   - nombre, teléfono, empresa, ciudad y equipo de interés;
   - mensaje;
