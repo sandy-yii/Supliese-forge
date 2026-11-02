@@ -370,7 +370,7 @@ CUENTAS['quick-laundry'] = dict(
 CUENTAS['clm'] = dict(
     # 30 oct (junta): las páginas regresan al dominio de siempre del cliente, que Google ya conoce. Rodolfo confirmó el
     # 2 nov que ya muestra las páginas nuevas; se corre salida/clm/migrar-a-….js y luego aplicado=True.
-    migrar=dict(url='https://clmmexico.com/', aplicado=False),
+    migrar=dict(url='https://clmmexico.com/', aplicado=True),  # ejecutado el 2 nov; los 3 «errores» fueron las conversiones de Maps
     subir_topes=False,  # 28 oct: no subir el costo por clic («más leads» ya no sube topes en esta cuenta)
     nombre='CLM', id='993-525-8739', mensual=18700,
     telefono='33 1564 1538',  # botón de llamada de los anuncios (lista de Rodolfo, 21 oct)
