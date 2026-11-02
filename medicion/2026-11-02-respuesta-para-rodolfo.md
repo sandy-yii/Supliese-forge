@@ -31,7 +31,7 @@ Lo demás de los formularios se queda como en el documento anterior:
 - anti-spam;
 - nada de datos personales a Google.
 
-**Una pregunta:** en Laundry Solutions el teléfono y el WhatsApp de la página son de **Paulina (33 1417 2994)**, pero el correo es el que usa **Sergio Cervantes**. ¿Así debe quedar o cambiamos el teléfono y el WhatsApp a Sergio? Te confirmo con el cliente.
+**Laundry Solutions es de Sergio Cervantes**: el correo, el teléfono y el WhatsApp. El número 33 1417 2994 es el de Sergio, así que el número no cambia. Donde diga «Paulina» (por ejemplo, en el texto junto al teléfono o en el mensaje de WhatsApp), cambia el nombre a Sergio.
 
 ## 2. Respuestas por número
 

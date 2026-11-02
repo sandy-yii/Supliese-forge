@@ -570,7 +570,7 @@ CUENTAS['servicio'] = dict(
     migrar=dict(url='https://servicioparalavanderias.com/', aplicado=False),
     subir_topes=False,  # 28 oct: no subir el costo por clic («más leads» ya no sube topes en esta cuenta)
     nombre='Servicio para Lavandería', id='265-909-2662', mensual=8200,
-    telefono='33 1417 2994',  # botón de llamada de los anuncios (lista de Rodolfo, 21 oct)
+    telefono='33 1417 2994',  # Sergio Cervantes: llamada, WhatsApp y correo mantenimiento@supliese.com (confirmado 2 nov)
     url='https://laundrysolutions.store/',
     mismo_sitio=['laundry-solutions-servicio.vercel.app'],  # versión anterior del mismo sitio: se conserva la sección
     nota='Servicio técnico, reparación y mantenimiento industrial. Refacciones solo Girbau y Gamesail.',

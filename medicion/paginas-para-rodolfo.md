@@ -17,7 +17,7 @@ Decisión de la junta del 30 oct: las páginas nuevas se cuelgan en los dominios
 | quicklaundry.store | __________ | supliese.com (agregar «Quick Laundry by Supliese») | Liliana · 33 2601 2237 |
 | kingstar.com.mx | __________ | clmmexico.com | Jorge · 33 1564 1538 |
 | girbaupro.com | __________ | girbauoccidente.com | Eduardo · 33 2806 8994 |
-| laundrysolutions.store | __________ | servicioparalavanderias.com | Paulina · 33 1417 2994 |
+| laundrysolutions.store | __________ | servicioparalavanderias.com | Sergio Cervantes · 33 1417 2994 |
 | gamesail.mx | __________ (o «se queda») | — | Silvia · 33 1185 9797 |
 
 Para cada uno, dile a Sandy:
