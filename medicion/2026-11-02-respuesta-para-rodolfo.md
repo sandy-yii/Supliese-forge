@@ -1,37 +1,22 @@
 # Respuesta de Sandy a «los cinco dominios de siempre ya muestran su página nueva»
 
-2026-11-02 · De: Sandy · Para: Rodolfo · Responde a `2026-11-02-para-sandy-dominios-conectados.md`.
+2026-11-02 · De: Sandy · Para: Rodolfo · Responde a `2026-11-02-para-sandy-dominios-conectados.md` (versión 4).
 
 Gracias. Las cinco líneas de comprobación coinciden con lo que esperábamos.
 
-## 1. Formularios: correos de cada página (urgente)
+## 1. Formularios por correo (tu §8, versión 4)
 
-El cliente ya confirmó los correos. **`leads.supliese@gmail.com` ya no se usa: quítalo.**
+**Confirmado: tu §8 coincide con lo que pidió el cliente.** Cada página manda al correo de su vendedor, con las cuatro copias (agomez, kgomez, pgomez y rmaravilla). `leads.supliese@gmail.com` no se usa. Avísame con `S8 · formularios por correo · en vivo` y no mando pruebas cuando ya esté en vivo.
 
-| Página | Para (vendedor) | Usa el correo |
+| Página | Llega a | Vendedor |
 |---|---|---|
-| supliese.com (Quick Laundry) | `llopez@supliese.com` | Liliana López |
-| servicioparalavanderias.com (Laundry Solutions) | `mantenimiento@supliese.com` | Sergio Cervantes |
-| clmmexico.com (Kingstar México) | `asesor@clmmexico.com` | Jorge Ruiz |
-| girbauoccidente.com (Girbau) | `asesor@girbauoccidente.com` | Eduardo Román |
-| gamesail.mx (Gamesail) | `smolina@supliese.com` | Silvia Molina |
+| supliese.com | llopez@supliese.com | Liliana López |
+| servicioparalavanderias.com | mantenimiento@supliese.com | **Sergio Cervantes** |
+| clmmexico.com | asesor@clmmexico.com | Jorge Ruiz |
+| girbauoccidente.com | asesor@girbauoccidente.com | Eduardo Román |
+| gamesail.mx | smolina@supliese.com | Silvia Molina |
 
-**Con copia (CC) en todos los leads de las cinco páginas:**
-- `agomez@supliese.com`
-- `kgomez@supliese.com`
-- `pgomez@supliese.com`
-- `rmaravilla@supliese.com`
-
-Va en copia **todo** lead o mensaje que llegue al vendedor desde las páginas.
-
-Lo demás de los formularios se queda como en el documento anterior:
-- la marca y la sección en el asunto;
-- en el correo: nombre, teléfono, empresa, ciudad, equipo de interés, mensaje, sección de origen, fecha y hora, y `gclid` en un campo oculto;
-- «AB · Formulario enviado» solo cuando el envío salió bien;
-- anti-spam;
-- nada de datos personales a Google.
-
-**Laundry Solutions es de Sergio Cervantes**: el correo, el teléfono y el WhatsApp. El número 33 1417 2994 es el de Sergio, así que el número no cambia. Donde diga «Paulina» (por ejemplo, en el texto junto al teléfono o en el mensaje de WhatsApp), cambia el nombre a Sergio.
+**Corrección a tu §2: Laundry Solutions es de Sergio Cervantes, no de Paulina**: el correo, el teléfono y el WhatsApp. El número 33 1417 2994 es el de Sergio, así que el número no cambia. Donde diga «Paulina» (en tu §2, en el texto junto al teléfono o en el mensaje de WhatsApp), cambia el nombre a Sergio.
 
 ## 2. Respuestas por número
 
@@ -52,7 +37,7 @@ S7 · en proceso (abajo)
 
 **S3.** Las conversiones de formulario de las páginas viejas («Formulario Landing», «Envío de formulario», «Envio de Formulario», «Formulario de contacto…», «Clic WA», «Llamada Landing», etc.) ya no se usan. Los reportes y las campañas nuevas cuentan solo las acciones «AB ·». Que dejen de contar está bien.
 
-**S4.** La cuenta de Gamesail (118-347-6484) sigue sin forma de pago. En cuanto se creen sus acciones «AB ·», te paso el AW y las etiquetas.
+**S4.** Anotado que el AW-18531600046 ya lo tienes. Las etiquetas de sus cuatro acciones «AB ·» te las paso en cuanto se creen en la cuenta de Gamesail (118-347-6484).
 
 **S5. Direcciones que usaban los anuncios antes del 20 de octubre** (sacadas de los registros de las cuentas):
 
@@ -86,7 +71,7 @@ S7 · en proceso (abajo)
 
 ## 3. Lo que sigue de tu lado
 
-1. Correos de los formularios con la copia a los 4 correos de arriba (§1).
+1. Poner en vivo los formularios por correo (§8) y avisarme con `S8 · formularios por correo · en vivo`.
 2. Redirigir `servicioparalavanderias.com/landing/` y `clmmexico.com/contacto` (S5).
 3. El 301 de los dominios comprados (`quicklaundry.store`, `laundrysolutions.store`, `kingstar.com.mx`, `girbaupro.com`), por cada `S2 · <marca> · lista` que te mande Sandy.
 4. `kingstarmexico.com` y `laundrysolutions.com.mx` a su marca: con el S1 de arriba ya puedes moverlos.
