@@ -619,6 +619,7 @@ def main():
     with open(os.path.join(SALIDA, 'boton-llamada-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
         f.write(js_diagnostico([plan_llamadas(p) for p in todas], archivo='plantilla-llamadas.js'))
     # Migración al dominio de siempre, lista para cuando el dominio ya muestre las páginas nuevas
+    paquetes = []
     for p in todas:
         if 'migrar' not in p['c']:
             continue
@@ -634,8 +635,28 @@ def main():
                    ('PRESUPUESTOS Y CAMPAÑAS QUE SÍ TRAEN CONTACTOS', js_diagnostico([plan_ajustes(p2)], p['c']['nombre'], archivo='plantilla-ajustes.js'))]
         for viejo in glob.glob(os.path.join(SALIDA, p['slug'], 'migrar-a-*.js')):
             os.remove(viejo)
+        texto = js_todo_en_uno(pasos_m, 'Paquete del fin de semana: %s, presupuestos y anuncios' % dominio)
         with open(os.path.join(SALIDA, p['slug'], 'fin-de-semana-%s.js' % dominio), 'w', encoding='utf-8') as f:
-            f.write(js_todo_en_uno(pasos_m, 'Paquete del fin de semana: %s, presupuestos y anuncios' % dominio))
+            f.write(texto)
+        paquetes.append((numero(p['c']), p['c']['nombre'], dominio, texto))
+    if paquetes:
+        # Un solo script para todas las cuentas: reconoce en cuál está y corre solo el paquete de esa cuenta
+        o = ['/**', ' * Atelback · Paquete del fin de semana — todas las cuentas',
+             ' * Generado por campanas/generar.py a partir de campanas/plan.py. No se edita a mano: se cambia el plan y se regenera.',
+             ' *', ' * QUÉ HACE: reconoce en qué cuenta se está corriendo y corre SOLO el paquete de esa cuenta:']
+        o += [' *   - %s (%s): pasa los anuncios a %s, enlaces de sitio, exclusiones, anuncios nuevos y presupuestos.' % (n, c, d)
+              for c, n, d, _ in paquetes]
+        o += [' * Si el dominio no abre, se detiene sin cambiar nada. Nunca pasa del tope mensual de la cuenta.',
+              ' * No enciende campañas anteriores ni les mueve el presupuesto.', ' *',
+              ' * CÓMO SE USA: en cada cuenta, pegar completo > Autorizar > VISTA PREVIA > mandar el registro > EJECUTAR.', ' */', '']
+        for i, (c, n, d, t) in enumerate(paquetes):
+            o += ['function paquete%d() {' % i, t, '  main();', '}', '']
+        o += ['function main() {', '  var cid = AdsApp.currentAccount().getCustomerId();']
+        for i, (c, n, d, t) in enumerate(paquetes):
+            o += ["  if (cid === '%s') { Logger.log('Cuenta %s: paquete de %s'); paquete%d(); return; }" % (c, n.replace("'", ""), d, i)]
+        o += ["  throw new Error('La cuenta ' + cid + ' no tiene paquete del fin de semana. No se hizo nada.');", '}', '']
+        with open(os.path.join(SALIDA, 'fin-de-semana-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
+            f.write('\n'.join(o))
     for i, p in enumerate(todas):
         if 'preparado' not in p['c'] or p['c']['preparado'].get('aplicado'):
             continue
