@@ -46,7 +46,7 @@ S2 · <marca> · lista            ← Sandy te manda una línea por cuenta en cu
 S3 · todas · ninguna que usemos
 S4 · pendiente
 S5 · hecho 2026-11-02 (abajo)
-S6 · en proceso (abajo)
+S6 · en parte (abajo): apagado en Girbau y Servicio; CLM y Quick Laundry necesitan al administrador de su etiqueta
 S7 · en proceso (abajo)
 ```
 
@@ -67,11 +67,20 @@ S7 · en proceso (abajo)
 | `https://www.clmmexico.com/` · `https://www.clmmexico.com/tunel` · `https://clmmexico.com/mangles` | ✅ |
 | **`https://www.clmmexico.com/contacto`** | ❌ **Falta: redirígela (301) a la portada** (en el mapa está `contacto.php`, no `/contacto`) |
 
-**S6.** Sandy quita en la configuración de la etiqueta de Google, en Google Ads:
-- **AW-10938286388** (Kingstar) y **UA-233360285-1** (Quick Laundry);
-- la «detección automática de datos proporcionados por el usuario» en las cuatro etiquetas.
+**S6. Revisado en las 4 etiquetas el 2 nov.** Lo que encontramos cambia lo que pedías:
 
-Los dos GA4 (**G-26FWQ5PPVJ** en Kingstar y **G-69R59Z71PV** en Quick Laundry) **se quitan cuando el cliente confirme que no los usa**, porque pueden ser de su encargado de sistemas. Te aviso en cuanto quede.
+| Cuenta | Etiqueta | Destinos | Datos del usuario / detección automática |
+|---|---|---|---|
+| Girbau | «Girbau» | AW-18232185431 | ✅ **Apagado hoy** |
+| Servicio para Lavandería | «Servicio para Lavanderia» | AW-10977798087 | ✅ **Apagado hoy** |
+| CLM (Kingstar) | «Gamesail» (combinada), solo lectura | AW-10938286388 · G-26FWQ5PPVJ · AW-17632937663 | ❌ Sigue encendido (solo correo) |
+| Supliese Gómez (Quick Laundry) | «Untitled tag» (combinada), solo lectura | G-69R59Z71PV · AW-11012403016 | ❌ Sigue encendido (solo correo) |
+
+- **AW-10938286388 no es ajena: es la cuenta de Ads de Gamesail anterior (645-094-0317), del cliente.** La etiqueta de Kingstar está combinada con la de Gamesail, y por eso las visitas de clmmexico.com también le llegan a Gamesail. **No la quitamos por ahora**, para no arriesgar la medición de Kingstar.
+- **G-26FWQ5PPVJ se llama «CLM» y G-69R59Z71PV se llama «https://gamesail.mx/»**: también parecen del cliente. Se quedan.
+- **UA-233360285-1 no está en ninguna etiqueta de Google Ads.** Si sigue saliendo en supliese.com, viene del código de la página: **quítalo tú**.
+- **En CLM y Supliese Gómez, la detección automática no se puede apagar desde Google Ads.** Esas etiquetas están en solo lectura; las administra otra cuenta (probablemente la propiedad de GA4 o un contenedor de Tag Manager). **¿Tú o el encargado de sistemas tienen acceso de administrador** a las propiedades de GA4 «CLM» (G-26FWQ5PPVJ) y «https://gamesail.mx/» (G-69R59Z71PV), o a un contenedor de Tag Manager con esas etiquetas? Desde ahí se apaga la detección automática.
+  - Mientras tanto, de tu lado, confirma que en clmmexico.com y supliese.com no se mande `user_data` y que ningún correo visible (como el de `#aviso-privacidad`) quede donde Google lo detecte.
 
 **S7.** Sandy repite hoy la prueba con Tag Assistant (aceptando cookies): el teléfono de girbauoccidente.com y la etiqueta de servicioparalavanderias.com. Te mando el resultado.
 
