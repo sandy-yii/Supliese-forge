@@ -15,7 +15,7 @@ Presupuesto diario: $79 MXN · Límite de CPC: $8 MXN
   "donde comprar lavadoras industriales"
   "lavadoras para negocio"
   Anuncio adaptable de búsqueda:
-  URL final: https://quicklaundry.store/
+  URL final: https://supliese.com/
   Ruta: equipo / lavanderia
   Títulos:
   - Equipo para Lavanderías
@@ -40,7 +40,7 @@ Presupuesto diario: $79 MXN · Límite de CPC: $8 MXN
   "lavadora semi industrial"
   "lavadora comercial"
   Anuncio adaptable de búsqueda:
-  URL final: https://quicklaundry.store/
+  URL final: https://supliese.com/
   Ruta: lavadoras / comerciales
   Títulos:
   - Lavadoras Semi Industriales

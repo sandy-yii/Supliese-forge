@@ -622,6 +622,9 @@ def main():
     paquetes = []
     for p in todas:
         if 'migrar' not in p['c']:
+            # Ya se pasó a su dominio de siempre: el paquete no se vuelve a ofrecer
+            for viejo in glob.glob(os.path.join(SALIDA, p['slug'], 'fin-de-semana-*.js')):
+                os.remove(viejo)
             continue
         p2 = dict(p, c=migrado(p['c']))
         dominio = re.sub(r'^https?://(www\.)?', '', raiz(p2['c']['url']))

@@ -15,7 +15,7 @@
  * Al cambiar la URL, Google vuelve a revisar los anuncios (suele tardar de unas horas a un día).
  */
 
-var PLAN = {"cuenta": "256-397-2201", "anterior": "", "nombre": "Quick Laundry (cuenta Supliese Gómez)", "url": "https://quicklaundry.store/", "prefijo": "AB · ", "paginas": {"AB · Autoservicio y monedas > Autoservicio": "https://quicklaundry.store/lavadoras-de-monedas", "AB · Equipo para lavandería > Lavadoras para lavandería": "https://quicklaundry.store/lavadoras-para-negocio", "AB · Equipo para lavandería > Semi industrial": "https://quicklaundry.store/lavadoras-para-negocio"}, "telefono": "33 2601 2237", "mismo_sitio": []};
+var PLAN = {"cuenta": "256-397-2201", "anterior": "", "nombre": "Quick Laundry (cuenta Supliese Gómez)", "url": "https://supliese.com/", "prefijo": "AB · ", "paginas": {"AB · Autoservicio y monedas > Autoservicio": "https://supliese.com/lavadoras-de-monedas", "AB · Equipo para lavandería > Lavadoras para lavandería": "https://supliese.com/lavadoras-para-negocio", "AB · Equipo para lavandería > Semi industrial": "https://supliese.com/lavadoras-para-negocio"}, "telefono": "33 2601 2237", "mismo_sitio": ["quicklaundry.store"]};
 
 // Solo si es una cuenta nueva (el plan no trae su número): pega aquí su número, por ejemplo '123-456-7890'.
 var CUENTA_NUEVA = '';
