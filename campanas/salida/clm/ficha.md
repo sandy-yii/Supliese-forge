@@ -30,7 +30,7 @@ Cuenta 993-525-8739 · presupuesto mensual $18,700 · Alta capacidad, lavanderí
 
 **Lavadoras de alta capacidad**
 
-Palabras clave: "lavadoras de 100 kilos" · "lavadora industrial 100 kg" · "lavadora industrial 60 kg" · "lavadoras de alta capacidad" · "lavadora industrial de alta capacidad"
+Palabras clave: "lavadoras de 100 kilos" · "lavadora industrial 100 kg" · "lavadora industrial 60 kg" · "lavadora industrial 80 kg" · "lavadora industrial 120 kg" · "lavadora industrial 150 kg" · "lavadora industrial 200 kg" · "lavadoras de alta capacidad" · "lavadora industrial de alta capacidad"
 
 Títulos: Lavadoras de Alta Capacidad | Lavadora Industrial 100 kg | Lavadora Industrial 60 kg | De 60 kg en Adelante | Lavandería Industrial | Proyectos de Lavandería | Te Ayudamos a Elegir | CLM México | Cotiza con un Asesor | Solicita tu Cotización
 

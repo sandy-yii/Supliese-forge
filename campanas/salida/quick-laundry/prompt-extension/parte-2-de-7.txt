@@ -12,6 +12,8 @@ Presupuesto diario: $79 MXN · Límite de CPC: $8 MXN
   [lavadoras para negocio]
   "lavadoras y secadoras para lavandería"
   "equipo para lavandería"
+  "donde comprar lavadoras industriales"
+  "lavadoras para negocio"
   Anuncio adaptable de búsqueda:
   URL final: https://quicklaundry.store/
   Ruta: equipo / lavanderia

@@ -30,7 +30,7 @@ Cuenta 256-397-2201 · presupuesto mensual $12,000 · Marca nueva Quick Laundry 
 
 **Lavadoras para lavandería**
 
-Palabras clave: "lavadoras para lavanderías" · "lavadoras industriales para lavandería" · [lavadoras para lavandería precios] · [lavadoras para negocio] · "lavadoras y secadoras para lavandería" · "equipo para lavandería"
+Palabras clave: "lavadoras para lavanderías" · "lavadoras industriales para lavandería" · [lavadoras para lavandería precios] · [lavadoras para negocio] · "lavadoras y secadoras para lavandería" · "equipo para lavandería" · "donde comprar lavadoras industriales" · "lavadoras para negocio"
 
 Títulos: Equipo para Lavanderías | Lavadoras para Lavandería | Lavadoras y Secadoras | Equipo Comercial | Precios de Equipo | Equipa tu Lavandería | Te Ayudamos a Elegir | Quick Laundry | Cotiza con un Asesor | Solicita tu Cotización
 
@@ -63,7 +63,7 @@ Negativas de la campaña: "cuanto cuesta", "cuánto cuesta", "cuanto cuestan", "
 
 **Abrir una lavandería**
 
-Palabras clave: "abrir una lavandería" · "poner una lavandería" · "abrir mi lavandería" · "poner mi lavandería"
+Palabras clave: "abrir una lavandería" · "poner una lavandería" · "abrir mi lavandería" · "poner mi lavandería" · quiero poner una lavandería
 
 Títulos: Abre tu Lavandería | Pon tu Propia Lavandería | Asesoría para tu Lavandería | Equipo para tu Lavandería | Te Ayudamos a Planearla | Elige el Equipo Correcto | Lavadoras y Secadoras | Quick Laundry | Cotiza con un Asesor | Solicita tu Cotización
 
@@ -171,7 +171,7 @@ Se carga como una lista compartida, «AB · Negativas de la cuenta», ligada a t
 - **Cadenas de lavandería:** lavax, "lava 1", aquamatic, 5asec, "cerca de mí", "cerca de mi"
 - **Usado y renta:** usada, usadas, usado, usados, seminueva, seminuevas, remate, renta, alquiler
 - **Información, no compra:** empleo, vacante, vacantes, curso, cursos, pdf, manual, gratis
-- **Doméstico:** "para casa", doméstica, domésticas, mabe, samsung, whirlpool, "carga frontal"
+- **Doméstico:** "para casa", doméstica, domésticas, mabe, samsung, whirlpool, "carga frontal", [maquinas para lavar ropa], [máquinas para lavar ropa]
 
 ## Lo que sale del plan anterior
 

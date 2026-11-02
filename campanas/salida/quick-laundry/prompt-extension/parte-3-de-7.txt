@@ -25,6 +25,7 @@ Negativas propias de esta campaña (además de la lista):
   "poner una lavandería"
   "abrir mi lavandería"
   "poner mi lavandería"
+  quiero poner una lavandería
   Anuncio adaptable de búsqueda:
   URL final: https://quicklaundry.store/
   Ruta: lavanderia / abrir

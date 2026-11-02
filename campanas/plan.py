@@ -195,8 +195,8 @@ CUENTAS['gamesail'] = dict(
 
 # ---------------------------------------------------------------- Quick Laundry (cuenta Supliese Gómez)
 CUENTAS['quick-laundry'] = dict(
-    # 30 oct (junta): las páginas regresan al dominio de siempre del cliente, que Google ya conoce. Cuando Rodolfo confirme
-    # que ya muestra las páginas nuevas, se corre salida/quick-laundry/migrar-a-….js y luego aplicado=True.
+    # 30 oct (junta): las páginas regresan al dominio de siempre del cliente, que Google ya conoce. Rodolfo confirmó el
+    # 2 nov que ya muestra las páginas nuevas; se corre salida/quick-laundry/migrar-a-….js y luego aplicado=True.
     migrar=dict(url='https://supliese.com/', aplicado=False),
     subir_topes=False,  # 28 oct: no subir el costo por clic («más leads» ya no sube topes en esta cuenta)
     nombre='Quick Laundry (cuenta Supliese Gómez)', id='256-397-2201', mensual=12000,
@@ -212,17 +212,19 @@ CUENTAS['quick-laundry'] = dict(
     # Cubre lo mismo que Emprendimiento, que baja; Secadoras y Marcas comerciales casi no tienen búsquedas. Total $394 = tope.
     # 27 oct (3): Equipo se queda sin presupuesto (pierde 33%) con clic a $6; Secadoras y Marcas comerciales no gastaron nada.
     # 28 oct: página de lavadoras de monedas que publicó Rodolfo («página mala» en «lavadora de monedas»).
-    paginas={'Autoservicio y monedas > Autoservicio': 'https://quicklaundry.store/lavadoras-de-monedas'},
+    paginas={'Autoservicio y monedas > Autoservicio': 'https://quicklaundry.store/lavadoras-de-monedas',
+             # 2 nov: Rodolfo publicó /lavadoras-para-negocio (en supliese.com)
+             'Equipo para lavandería > Lavadoras para lavandería': 'https://quicklaundry.store/lavadoras-para-negocio',
+             'Equipo para lavandería > Semi industrial': 'https://quicklaundry.store/lavadoras-para-negocio'},
     # 28 oct: se ejecutó «bajar el costo por clic» (sesión del tablero): pausó «Campaña Modelo de Negocio», dejó a la
     # mitad «Campaña Search Marcas» y pasó ese dinero a Equipo para lavandería. Para no deshacerlo, «ajustes» ya no
     # enciende Modelo de Negocio ni toca el presupuesto de Equipo, Secadoras y Marcas comerciales.
-    # 31 oct (vaciado del 20 al 30 oct): «Modelo de Negocio» trajo 6 contactos a $145 cada uno, igual que Equipo ($142):
-    # se vuelve a encender. Emprendimiento cubre lo mismo y trajo 1 a $443: baja a $10. Sandy pidió no gastar más: Modelo
-    # se paga con lo que bajan Emprendimiento, Secadoras y Marcas comerciales; Equipo se queda igual. Total $370 al día.
-    ajustes=dict(presupuesto={'Equipo para lavandería': 226, 'Emprendimiento': 10, 'Autoservicio y monedas': 34,
+    # 2 nov: las campañas anteriores no se encienden ni se les mueve el presupuesto sin autorización del cliente
+    # (Modelo de Negocio se queda pausada). Entre las nuevas: Equipo ($142 por contacto, pierde 29% por presupuesto) recibe
+    # lo de Emprendimiento ($443 por contacto), Secadoras y Marcas comerciales (sin gasto). Total de las nuevas: $334, igual.
+    ajustes=dict(presupuesto={'Equipo para lavandería': 260, 'Emprendimiento': 20, 'Autoservicio y monedas': 34,
                               'Secadoras para lavandería': 3, 'Marcas comerciales': 3, 'Marca Quick Laundry': 14},
                  arriba={'Marca Quick Laundry': dict(cuota=0.8, tope=10)},
-                 activar={'Campaña Modelo de Negocio': 45},
                  presencia=['Campaña Search Marcas']),
     # 27 oct (3): Google califica «anuncio poco relevante» en lavadoras para negocio / para lavanderías / industriales para
     # lavandería / y secadoras para lavandería. Se agrega un segundo anuncio que repite esas búsquedas; el que ya hay se queda.
@@ -250,13 +252,16 @@ CUENTAS['quick-laundry'] = dict(
         'Cadenas de lavandería': ['lavax', '"lava 1"', 'aquamatic', '5asec', '"cerca de mí"', '"cerca de mi"'],
         'Usado y renta': ['usada', 'usadas', 'usado', 'usados', 'seminueva', 'seminuevas', 'remate', 'renta', 'alquiler'],
         'Información, no compra': ['empleo', 'vacante', 'vacantes', 'curso', 'cursos', 'pdf', 'manual', 'gratis'],
-        'Doméstico': ['"para casa"', 'doméstica', 'domésticas', 'mabe', 'samsung', 'whirlpool', '"carga frontal"'],
+        'Doméstico': ['"para casa"', 'doméstica', 'domésticas', 'mabe', 'samsung', 'whirlpool', '"carga frontal"',
+                      '[maquinas para lavar ropa]', '[máquinas para lavar ropa]'],  # 2 nov: 2 clics sin contacto el 28 oct
     },
     campanas=[
         dict(nombre='Equipo para lavandería', pct=40, cpc=8, origen='Plan; recibe parte del presupuesto de Franquicias', grupos=[
             dict(nombre='Lavadoras para lavandería',
                  kw=['"lavadoras para lavanderías"', '"lavadoras industriales para lavandería"', '[lavadoras para lavandería precios]',
-                     '[lavadoras para negocio]', '"lavadoras y secadoras para lavandería"', '"equipo para lavandería"'],
+                     '[lavadoras para negocio]', '"lavadoras y secadoras para lavandería"', '"equipo para lavandería"',
+                     # 2 nov: búsquedas que trajeron contactos del 20 al 30 oct
+                     '"donde comprar lavadoras industriales"', '"lavadoras para negocio"'],
                  h=['Equipo para Lavanderías', 'Lavadoras para Lavandería', 'Lavadoras y Secadoras', 'Equipo Comercial',
                     'Precios de Equipo', 'Equipa tu Lavandería', 'Te Ayudamos a Elegir'],
                  d=['Lavadoras y secadoras para lavandería. Te ayudamos a elegir el equipo. Cotiza hoy.',
@@ -280,7 +285,9 @@ CUENTAS['quick-laundry'] = dict(
                         '"cuánto dinero"', '"cuanto gana"', '"cuánto gana"', '"cuanto deja"', '"cuánto deja"'],
              grupos=[
             dict(nombre='Abrir una lavandería',
-                 kw=['"abrir una lavandería"', '"poner una lavandería"', '"abrir mi lavandería"', '"poner mi lavandería"'],
+                 # 2 nov: «quiero poner una lavandería» (amplia) trajo 6 contactos a $126 en Modelo de Negocio
+                 kw=['"abrir una lavandería"', '"poner una lavandería"', '"abrir mi lavandería"', '"poner mi lavandería"',
+                     'quiero poner una lavandería'],
                  h=['Abre tu Lavandería', 'Pon tu Propia Lavandería', 'Asesoría para tu Lavandería', 'Equipo para tu Lavandería',
                     'Te Ayudamos a Planearla', 'Elige el Equipo Correcto', 'Lavadoras y Secadoras'],
                  d=['Te asesoramos para elegir el equipo de tu lavandería según tu espacio y tu plan.',
@@ -361,8 +368,8 @@ CUENTAS['quick-laundry'] = dict(
 
 # ---------------------------------------------------------------- CLM
 CUENTAS['clm'] = dict(
-    # 30 oct (junta): las páginas regresan al dominio de siempre del cliente, que Google ya conoce. Cuando Rodolfo confirme
-    # que ya muestra las páginas nuevas, se corre salida/clm/migrar-a-….js y luego aplicado=True.
+    # 30 oct (junta): las páginas regresan al dominio de siempre del cliente, que Google ya conoce. Rodolfo confirmó el
+    # 2 nov que ya muestra las páginas nuevas; se corre salida/clm/migrar-a-….js y luego aplicado=True.
     migrar=dict(url='https://clmmexico.com/', aplicado=False),
     subir_topes=False,  # 28 oct: no subir el costo por clic («más leads» ya no sube topes en esta cuenta)
     nombre='CLM', id='993-525-8739', mensual=18700,
@@ -404,7 +411,13 @@ CUENTAS['clm'] = dict(
     # WhatsApp con 2 clics y se queda sin presupuesto: recibe $30 de Marca CLM, que casi no tiene búsquedas.
     # 28 oct: páginas por tipo de equipo que publicó Rodolfo («página mala» en Google). Cada grupo lleva a la suya; lo demás, a la de inicio.
     paginas={'Alta capacidad 60 kg o más > Lavadoras de alta capacidad': 'https://kingstar.com.mx/lavadoras-alta-capacidad',
-             'Mangles y planchado > Mangles': 'https://kingstar.com.mx/mangles'},
+             'Mangles y planchado > Mangles': 'https://kingstar.com.mx/mangles',
+             # 2 nov: Rodolfo publicó las demás secciones (en clmmexico.com)
+             'Lavadoras y secadoras de 20 a 45 kg > 20 a 45 kg': 'https://kingstar.com.mx/lavadoras-40-kg',
+             'Lavandería hotelera e institucional > Lavandería hotelera': 'https://kingstar.com.mx/lavanderia-hotelera',
+             'Lavandería hotelera e institucional > Hospitales e institucional': 'https://kingstar.com.mx/lavanderia-hotelera',
+             'Lavandería hotelera e institucional > Lavadoras para hotel y hospital': 'https://kingstar.com.mx/lavanderia-hotelera',
+             'Túnel de lavado > Túnel de lavado para ropa': 'https://kingstar.com.mx/tunel-de-lavado'},
     # 31 oct (vaciado del 20 al 30 oct): Alta capacidad (5 contactos) y Túnel (2, pierde 24% por presupuesto) sí gastan su
     # presupuesto; Mangles (3 contactos a $66) gasta unos $18 al día porque lo frena la puja, no el dinero; 20 a 45 kg (0
     # contactos), Hotelera (1) y Marca (sin gasto) no usan el suyo. Se mueve a las que lo gastan. Total $615 = tope.
@@ -456,7 +469,10 @@ CUENTAS['clm'] = dict(
     campanas=[
         dict(nombre='Alta capacidad 60 kg o más', pct=30, cpc=18, origen='Plan', grupos=[
             dict(nombre='Lavadoras de alta capacidad',
+                 # 2 nov: las búsquedas por kilos son las más baratas por contacto (60 kg $118, 100 kg $61): se agregan más capacidades
                  kw=['"lavadoras de 100 kilos"', '"lavadora industrial 100 kg"', '"lavadora industrial 60 kg"',
+                     '"lavadora industrial 80 kg"', '"lavadora industrial 120 kg"', '"lavadora industrial 150 kg"',
+                     '"lavadora industrial 200 kg"',
                      '"lavadoras de alta capacidad"', '"lavadora industrial de alta capacidad"'],
                  h=['Lavadoras de Alta Capacidad', 'Lavadora Industrial 100 kg', 'Lavadora Industrial 60 kg',
                     'De 60 kg en Adelante', 'Lavandería Industrial', 'Proyectos de Lavandería', 'Te Ayudamos a Elegir'],
@@ -549,8 +565,8 @@ CUENTAS['clm'] = dict(
 
 # ---------------------------------------------------------------- Servicio para Lavandería
 CUENTAS['servicio'] = dict(
-    # 30 oct (junta): las páginas regresan al dominio de siempre del cliente, que Google ya conoce. Cuando Rodolfo confirme
-    # que ya muestra las páginas nuevas, se corre salida/servicio/migrar-a-….js y luego aplicado=True.
+    # 30 oct (junta): las páginas regresan al dominio de siempre del cliente, que Google ya conoce. Rodolfo confirmó el
+    # 2 nov que ya muestra las páginas nuevas; se corre salida/servicio/migrar-a-….js y luego aplicado=True.
     migrar=dict(url='https://servicioparalavanderias.com/', aplicado=False),
     subir_topes=False,  # 28 oct: no subir el costo por clic («más leads» ya no sube topes en esta cuenta)
     nombre='Servicio para Lavandería', id='265-909-2662', mensual=8200,
@@ -561,7 +577,11 @@ CUENTAS['servicio'] = dict(
     comunes=['Servicio Técnico Industrial', 'Agenda tu Servicio', 'Habla con un Técnico'],
     # 28 oct: página de reparación que publicó Rodolfo («página mala» en «reparación de lavadoras industriales»).
     paginas={'Reparación y mantenimiento > Reparación': 'https://laundrysolutions.store/reparacion-lavadoras-industriales',
-             'Reparación y mantenimiento > Mantenimiento correctivo': 'https://laundrysolutions.store/reparacion-lavadoras-industriales'},
+             'Reparación y mantenimiento > Mantenimiento correctivo': 'https://laundrysolutions.store/reparacion-lavadoras-industriales',
+             # 2 nov: Rodolfo publicó /mantenimiento (en servicioparalavanderias.com)
+             'Reparación y mantenimiento > Mantenimiento preventivo': 'https://laundrysolutions.store/mantenimiento',
+             'Servicio a lavanderías > Pólizas': 'https://laundrysolutions.store/mantenimiento',
+             'Servicio técnico industrial > Servicio técnico': 'https://laundrysolutions.store/reparacion-lavadoras-industriales'},
     # 27 oct (3): «reparación de lavadoras industriales», la búsqueda con más volumen, tiene «anuncio poco relevante».
     # Segundo anuncio en el grupo que repite la búsqueda; el que ya hay se queda.
     anuncios_nuevos={'Reparación y mantenimiento > Reparación': dict(
@@ -742,8 +762,8 @@ CUENTAS['servicio'] = dict(
 
 # ---------------------------------------------------------------- Girbau
 CUENTAS['girbau'] = dict(
-    # 30 oct (junta): las páginas regresan al dominio de siempre del cliente, que Google ya conoce. Cuando Rodolfo confirme
-    # que ya muestra las páginas nuevas, se corre salida/girbau/migrar-a-….js y luego aplicado=True.
+    # 30 oct (junta): las páginas regresan al dominio de siempre del cliente, que Google ya conoce. Rodolfo confirmó el
+    # 2 nov que ya muestra las páginas nuevas; se corre salida/girbau/migrar-a-….js y luego aplicado=True.
     migrar=dict(url='https://girbauoccidente.com/', aplicado=False),
     subir_topes=False,  # 28 oct: no subir el costo por clic («más leads» ya no sube topes en esta cuenta)
     nombre='Girbau', id='860-582-6837', mensual=6600,
@@ -762,7 +782,8 @@ CUENTAS['girbau'] = dict(
                  # 31 oct (vaciado): Max Rendimiento trajo 5 contactos a $40 y no pierde por presupuesto ($117, sin cambio); la marca
                  # trajo 2 y pierde 27% por presupuesto: recibe lo de Smart Plus, capacidad y servicio técnico (sin gasto). Total $214.
                  presupuesto={'Marca Girbau': 88, 'Girbau Smart Plus': 3, 'Girbau por capacidad y sector': 3, 'Servicio técnico Girbau': 3},
-                 activar={'Max Rendimiento - Girbau': 117}),
+                 # 2 nov: «Max Rendimiento - Girbau» (anterior) se queda como está: sin cambios sin autorización del cliente
+                 ),
     subir=False, subir_porque='no usa su presupuesto (41%); la marca sale arriba con «ajustes»',
     mismo_sitio=['supliese-girbau-lavadoras.vercel.app'],  # versión anterior del mismo sitio: se conserva la sección
     nota='Solo búsquedas con la marca Girbau. Nuevo modelo Smart Plus y capacidades de 12 y 14 kg.',

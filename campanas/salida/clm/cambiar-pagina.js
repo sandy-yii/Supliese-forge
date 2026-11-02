@@ -15,7 +15,7 @@
  * Al cambiar la URL, Google vuelve a revisar los anuncios (suele tardar de unas horas a un día).
  */
 
-var PLAN = {"cuenta": "993-525-8739", "anterior": "", "nombre": "CLM", "url": "https://kingstar.com.mx/", "prefijo": "AB · ", "paginas": {"AB · Alta capacidad 60 kg o más > Lavadoras de alta capacidad": "https://kingstar.com.mx/lavadoras-alta-capacidad", "AB · Mangles y planchado > Mangles": "https://kingstar.com.mx/mangles"}, "telefono": "33 1564 1538", "mismo_sitio": ["supliese-clm-lavadoras.vercel.app"]};
+var PLAN = {"cuenta": "993-525-8739", "anterior": "", "nombre": "CLM", "url": "https://kingstar.com.mx/", "prefijo": "AB · ", "paginas": {"AB · Alta capacidad 60 kg o más > Lavadoras de alta capacidad": "https://kingstar.com.mx/lavadoras-alta-capacidad", "AB · Mangles y planchado > Mangles": "https://kingstar.com.mx/mangles", "AB · Lavadoras y secadoras de 20 a 45 kg > 20 a 45 kg": "https://kingstar.com.mx/lavadoras-40-kg", "AB · Lavandería hotelera e institucional > Lavandería hotelera": "https://kingstar.com.mx/lavanderia-hotelera", "AB · Lavandería hotelera e institucional > Hospitales e institucional": "https://kingstar.com.mx/lavanderia-hotelera", "AB · Lavandería hotelera e institucional > Lavadoras para hotel y hospital": "https://kingstar.com.mx/lavanderia-hotelera", "AB · Túnel de lavado > Túnel de lavado para ropa": "https://kingstar.com.mx/tunel-de-lavado"}, "telefono": "33 1564 1538", "mismo_sitio": ["supliese-clm-lavadoras.vercel.app"]};
 
 // Solo si es una cuenta nueva (el plan no trae su número): pega aquí su número, por ejemplo '123-456-7890'.
 var CUENTA_NUEVA = '';

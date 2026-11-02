@@ -87,6 +87,8 @@ mabe
 samsung
 whirlpool
 "carga frontal"
+[maquinas para lavar ropa]
+[máquinas para lavar ropa]
 
 PASO 2 · Crear cada campaña. Para cada una:
 - Nueva campaña > "Crear una campaña sin la orientación de un objetivo" > Búsqueda.

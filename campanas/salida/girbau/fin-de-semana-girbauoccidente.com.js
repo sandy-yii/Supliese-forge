@@ -587,7 +587,7 @@ function paso5() {
  * CÓMO SE USA: pegar completo > Autorizar > VISTA PREVIA > revisar el registro (dice cuánto se gastaría) > EJECUTAR.
  */
 
-var PLANES = [{"cuenta": "860-582-6837", "nombre": "Girbau", "prefijo": "AB · ", "url": "https://girbauoccidente.com/", "ajustes": {"arriba": {"Marca Girbau": {"cuota": 0.8, "tope": 25}}, "presupuesto": {"Marca Girbau": 88, "Girbau Smart Plus": 3, "Girbau por capacidad y sector": 3, "Servicio técnico Girbau": 3}, "activar": {"Max Rendimiento - Girbau": 117}}, "tambien": ["girbaupro.com"], "mensual": 6600}];
+var PLANES = [{"cuenta": "860-582-6837", "nombre": "Girbau", "prefijo": "AB · ", "url": "https://girbauoccidente.com/", "ajustes": {"arriba": {"Marca Girbau": {"cuota": 0.8, "tope": 25}}, "presupuesto": {"Marca Girbau": 88, "Girbau Smart Plus": 3, "Girbau por capacidad y sector": 3, "Servicio técnico Girbau": 3}}, "tambien": ["girbaupro.com"], "mensual": 6600}];
 var PLAN = null;
 
 // Solo para la cuenta nueva de Gamesail: pega aquí su número, por ejemplo '123-456-7890'.

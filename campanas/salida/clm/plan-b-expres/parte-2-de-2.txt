@@ -9,6 +9,10 @@ Presupuesto diario: $92 MXN · Límite de CPC: $18 MXN
   "lavadoras de 100 kilos"
   "lavadora industrial 100 kg"
   "lavadora industrial 60 kg"
+  "lavadora industrial 80 kg"
+  "lavadora industrial 120 kg"
+  "lavadora industrial 150 kg"
+  "lavadora industrial 200 kg"
   "lavadoras de alta capacidad"
   "lavadora industrial de alta capacidad"
   Anuncio adaptable de búsqueda:
