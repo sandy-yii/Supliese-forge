@@ -135,6 +135,7 @@ function main() {
     "FROM asset_group WHERE asset_group.status != 'REMOVED' AND campaign.status != 'REMOVED'", 'los grupos de recursos').forEach(function (f) {
     var url = (f.assetGroup.finalUrls || [])[0] || '(sin URL)';
     if (sitio(url) !== NUEVO) viejos++;
+    if (f.campaign.status === 'ENABLED' && f.assetGroup.primaryStatus === 'PENDING') revisando++;
     Logger.log(f.campaign.name + ' (' + f.campaign.status + ') › ' + f.assetGroup.name + ' · ' + url + ' · ' + (f.assetGroup.primaryStatus || ''));
   });
 
@@ -175,7 +176,7 @@ function main() {
   Logger.log('');
   Logger.log('==== QUÉ SIGUE ====');
   var QUE = {
-    'aprobado': '✅ Google YA APROBÓ ' + NUEVO + '. Siguiente: correr fin-de-semana-girbauoccidente.com.js (Vista previa primero) y avisar a Claude.',
+    'aprobado': '✅ El anuncio de prueba sigue aprobado: Google acepta ' + NUEVO + '.',
     'revisando': '⏳ Google todavía lo está revisando (apelación en proceso). No hay que hacer nada; vuelve a correrlo mañana.',
     'vieja': '⏳ Sigue rechazado con la revisión VIEJA (antes del 1 nov). La apelación no ha llegado. Si el 5 nov sigue así, se escribe a soporte.',
     'nueva': '❌ Google volvió a revisar la página DESPUÉS del 1 nov y la sigue rechazando. Manda este registro a Claude: hay que verlo con Rodolfo.',
@@ -186,7 +187,7 @@ function main() {
   Logger.log(QUE[veredicto]);
   if (viejos) Logger.log('❌ Todavía hay ' + viejos + ' cosa(s) que no van a ' + NUEVO + ' (ver secciones 2, 3 y 4). NO mandes el S2 a Rodolfo.');
   else if (rechazados.length) Logger.log('❌ Todo va a ' + NUEVO + ', pero hay rechazados (sección 2). NO mandes el S2 todavía; manda este registro.');
-  else if (revisando) Logger.log('⏳ Todo va a ' + NUEVO + '; ' + revisando + ' anuncio(s) encendidos siguen en revisión. Espera a que terminen para mandar el S2.');
+  else if (revisando) Logger.log('⏳ Todo va a ' + NUEVO + '; ' + revisando + ' anuncio(s) o grupo(s) de recursos encendidos siguen en revisión (PENDING). Espera a que terminen para mandar el S2.');
   else Logger.log('✅ Todo va a ' + NUEVO + ' y está aprobado. Ya puedes mandarle a Rodolfo: S2 · Girbau · lista');
   Logger.log('');
   Logger.log('LISTO. Copia todo el registro y mándalo. Este script no cambió nada.');

@@ -767,7 +767,7 @@ CUENTAS['servicio'] = dict(
 CUENTAS['girbau'] = dict(
     # 30 oct (junta): las páginas regresan al dominio de siempre del cliente, que Google ya conoce. Rodolfo confirmó el
     # 2 nov que ya muestra las páginas nuevas; se corre salida/girbau/migrar-a-….js y luego aplicado=True.
-    migrar=dict(url='https://girbauoccidente.com/', aplicado=False),
+    migrar=dict(url='https://girbauoccidente.com/', aplicado=True),  # 3 nov: ejecutado; Max Rendimiento pasado con la extensión
     subir_topes=False,  # 28 oct: no subir el costo por clic («más leads» ya no sube topes en esta cuenta)
     nombre='Girbau', id='860-582-6837', mensual=6600,
     telefono='33 2806 8994',  # botón de llamada de los anuncios (lista de Rodolfo, 21 oct)

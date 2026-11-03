@@ -2,7 +2,7 @@
 
 Cuenta 860-582-6837 · presupuesto mensual $6,600 · Solo búsquedas con la marca Girbau. Nuevo modelo Smart Plus y capacidades de 12 y 14 kg.
 
-**Página de destino:** https://girbaupro.com/
+**Página de destino:** https://girbauoccidente.com/
 
 **Configuración de todas las campañas:**
 
