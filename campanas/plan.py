@@ -567,7 +567,7 @@ CUENTAS['clm'] = dict(
 CUENTAS['servicio'] = dict(
     # 30 oct (junta): las páginas regresan al dominio de siempre del cliente, que Google ya conoce. Rodolfo confirmó el
     # 2 nov que ya muestra las páginas nuevas; se corre salida/servicio/migrar-a-….js y luego aplicado=True.
-    migrar=dict(url='https://servicioparalavanderias.com/', aplicado=False),
+    migrar=dict(url='https://servicioparalavanderias.com/', aplicado=True),  # ejecutado el 2 nov; los 4 «errores» fueron las conversiones de Maps
     subir_topes=False,  # 28 oct: no subir el costo por clic («más leads» ya no sube topes en esta cuenta)
     nombre='Servicio para Lavandería', id='265-909-2662', mensual=8200,
     telefono='33 1417 2994',  # Sergio Cervantes: llamada, WhatsApp y correo mantenimiento@supliese.com (confirmado 2 nov)

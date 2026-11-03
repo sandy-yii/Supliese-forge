@@ -22,7 +22,7 @@ girbau
   "instalación de equipo de lavandería"
   instalación lavandería industrial
   Anuncio adaptable de búsqueda:
-  URL final: https://laundrysolutions.store/
+  URL final: https://servicioparalavanderias.com/
   Ruta: instalacion / lavanderia
   Títulos:
   - Instalación de Lavanderías

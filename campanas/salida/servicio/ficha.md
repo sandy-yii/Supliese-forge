@@ -2,7 +2,7 @@
 
 Cuenta 265-909-2662 · presupuesto mensual $8,200 · Servicio técnico, reparación y mantenimiento industrial. Refacciones solo Girbau y Gamesail.
 
-**Página de destino:** https://laundrysolutions.store/
+**Página de destino:** https://servicioparalavanderias.com/
 
 **Configuración de todas las campañas:**
 
