@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Estatus de captación Supliese</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: informe de una columna; arriba el resumen, luego marca por marca, bitácora, qué esperamos y pendientes. */
+:root {
+  --bg: #f5f7f9;
+  --surface: #ffffff;
+  --ink: #17222c;
+  --muted: #5a6875;
+  --line: #d9e0e6;
+  --accent: #1d5f86;
+  --accent-soft: #e3eef5;
+  --ok: #1f7a4d; --ok-bg: #e2f2e9;
+  --wait: #9a6100; --wait-bg: #fbefd9;
+  --todo: #44546a; --todo-bg: #e8ecf1;
+  --bar: #2d7cab;
+  --display: "IBM Plex Sans Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f161c; --surface: #16212a; --ink: #e6edf2; --muted: #9aa9b5; --line: #2a3a47;
+    --accent: #7cbde3; --accent-soft: #1b3344;
+    --ok: #6fd3a0; --ok-bg: #173628; --wait: #f0bd63; --wait-bg: #3a2c12; --todo: #b4c2cf; --todo-bg: #24323e;
+    --bar: #5aa7d6; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f161c; --surface: #16212a; --ink: #e6edf2; --muted: #9aa9b5; --line: #2a3a47;
+  --accent: #7cbde3; --accent-soft: #1b3344;
+  --ok: #6fd3a0; --ok-bg: #173628; --wait: #f0bd63; --wait-bg: #3a2c12; --todo: #b4c2cf; --todo-bg: #24323e;
+  --bar: #5aa7d6; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 56px;
+}
+.wrap { max-width: 980px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.15; }
+h1 { font-size: clamp(28px, 4.2vw, 40px); font-weight: 700; }
+h2 { font-size: 22px; font-weight: 600; }
+h3 { font-size: 17px; font-weight: 600; }
+p { margin: 0; max-width: 68ch; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.lead { color: var(--muted); font-size: 16px; }
+header { display: flex; flex-direction: column; gap: 10px; border-bottom: 2px solid var(--ink); padding-bottom: 20px; }
+section { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* Resumen */
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 16px; display: flex; flex-direction: column; gap: 4px; }
+.kpi b { font-family: var(--display); font-size: 30px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.kpi span { color: var(--muted); font-size: 13px; }
+
+/* Barras */
+.bars { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+.bar-row { display: grid; grid-template-columns: 150px 1fr 120px; gap: 12px; align-items: center; }
+.bar-track { height: 14px; background: var(--todo-bg); border-radius: 3px; overflow: hidden; }
+.bar-fill { height: 100%; background: var(--bar); }
+.bar-row .v { font-family: var(--mono); font-size: 13px; text-align: right; font-variant-numeric: tabular-nums; }
+.bar-note { font-size: 13px; color: var(--muted); }
+
+/* Chips */
+.chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+.chip::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.ok { color: var(--ok); background: var(--ok-bg); }
+.wait { color: var(--wait); background: var(--wait-bg); }
+.todo { color: var(--todo); background: var(--todo-bg); }
+
+/* Marcas */
+.brands { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 14px; }
+.brand { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 18px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.brand-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.brand-head .dom { font-family: var(--mono); font-size: 13px; color: var(--accent); overflow-wrap: anywhere; }
+.facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; border-block: 1px solid var(--line); padding-block: 10px; }
+.facts div { display: flex; flex-direction: column; }
+.facts b { font-family: var(--display); font-size: 20px; font-variant-numeric: tabular-nums; }
+.facts span { font-size: 12px; color: var(--muted); }
+.checks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.checks li { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: start; font-size: 14px; }
+.brand p.small { font-size: 13px; color: var(--muted); }
+
+/* Bitácora */
+.log { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--line); display: flex; flex-direction: column; gap: 16px; }
+.log li { position: relative; padding-left: 20px; display: grid; grid-template-columns: 92px 1fr; gap: 12px; }
+.log li::before { content: ""; position: absolute; left: -6px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+.log time { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.log p { font-size: 14px; }
+
+/* Qué esperamos */
+.phases { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.phase { background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 6px; padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+.phase .when { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.phase p { font-size: 14px; }
+.note { background: var(--accent-soft); border-radius: 6px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; }
+.note p { font-size: 14px; }
+
+/* Tablas */
+.table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 620px; }
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--mono); font-size: 11px; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+tr:last-child td { border-bottom: 0; }
+.who { font-weight: 600; white-space: nowrap; }
+
+footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; }
+
+@media (max-width: 560px) {
+  .bar-row { grid-template-columns: 1fr; gap: 4px; }
+  .bar-row .v { text-align: left; }
+  .log li { grid-template-columns: 1fr; gap: 2px; }
+  .facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="eyebrow">Para el Grupo Supliese · actualizado el 3 de noviembre de 2026</span>
+  <h1>Estatus de captación Supliese</h1>
+  <p class="lead">Qué hicimos desde el 20 de octubre, en qué va cada marca y qué esperamos en la llegada de prospectos las próximas semanas. Todo lo planeado ya quedó hecho y revisado el 3 de noviembre; lo que falta depende sobre todo de revisiones de Google.</p>
+</header>
+
+<section aria-labelledby="resumen">
+  <h2 id="resumen">En resumen</h2>
+  <div class="kpis">
+    <div class="kpi"><b>44</b><span>contactos registrados por Google del 20 al 30 de octubre (11 días)</span></div>
+    <div class="kpi"><b>5 de 5</b><span>páginas ya están en su dirección web de siempre</span></div>
+    <div class="kpi"><b>3 de 4</b><span>marcas ya llevan sus anuncios ahí. Girbau espera una revisión de Google</span></div>
+    <div class="kpi"><b>$0</b><span>de aumento en el presupuesto: se movió dinero hacia lo que sí trae clientes</span></div>
+    <div class="kpi"><b>40</b><span>prospectos buenos al mes es la meta (unos 10 por semana)</span></div>
+  </div>
+  <p>Los 44 contactos son clics a WhatsApp, llamadas y formularios que Google alcanzó a registrar. Llegaron más, porque la página solo cuenta a quien acepta las cookies. Cuántos de ellos fueron prospectos buenos lo confirman los vendedores cada lunes.</p>
+</section>
+
+<section aria-labelledby="contactos">
+  <h2 id="contactos">Contactos por marca, del 20 al 30 de octubre</h2>
+  <div class="bars" role="img" aria-label="Contactos por marca: Quick Laundry 23, Kingstar 11, Girbau 7, Laundry Solutions 3">
+    <div class="bar-row"><span>Quick Laundry</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="v">23 · $162 c/u</span></div>
+    <div class="bar-row"><span>Kingstar</span><div class="bar-track"><div class="bar-fill" style="width:47.8%"></div></div><span class="v">11 · $352 c/u</span></div>
+    <div class="bar-row"><span>Girbau</span><div class="bar-track"><div class="bar-fill" style="width:30.4%"></div></div><span class="v">7 · $73 c/u</span></div>
+    <div class="bar-row"><span>Laundry Solutions</span><div class="bar-track"><div class="bar-fill" style="width:13%"></div></div><span class="v">3 · $368 c/u</span></div>
+    <p class="bar-note">«c/u» es la inversión dividida entre los contactos registrados. Con la agencia anterior el costo comparable rondaba $176 en Quick Laundry y $449 en Kingstar, aunque ellos contaban también acciones de Google Maps y del chat.</p>
+  </div>
+</section>
+
+<section aria-labelledby="marcas">
+  <h2 id="marcas">Marca por marca</h2>
+  <div class="brands">
+
+    <article class="brand">
+      <div class="brand-head"><h3>Quick Laundry</h3><span class="dom">supliese.com</span></div>
+      <div class="facts">
+        <div><b class="num">23</b><span>contactos</span></div>
+        <div><b class="num">$369</b><span>al día</span></div>
+        <div><b class="num">$162</b><span>por contacto</span></div>
+      </div>
+      <ul class="checks">
+        <li><span>Página en supliese.com (Rodolfo) y anuncios ahí, con secciones de lavadoras para negocio y de monedas</span><span class="chip ok">Listo</span></li>
+        <li><span>Botón de WhatsApp en el anuncio, al número de Liliana</span><span class="chip ok">Listo</span></li>
+        <li><span>Botón de llamada (33 2601 2237)</span><span class="chip wait">Google revisa</span></li>
+        <li><span>Medición de WhatsApp, teléfono y formulario en la página</span><span class="chip ok">Listo</span></li>
+        <li><span>Anuncio nuevo con las palabras que busca la gente</span><span class="chip ok">Listo</span></li>
+      </ul>
+      <p class="small">El dinero se movió hacia «Equipo para lavandería», la campaña que trae la mayoría de los contactos. Se agregó «quiero poner una lavandería», la búsqueda que más contactos trajo en octubre.</p>
+    </article>
+
+    <article class="brand">
+      <div class="brand-head"><h3>Kingstar</h3><span class="dom">clmmexico.com</span></div>
+      <div class="facts">
+        <div><b class="num">11</b><span>contactos</span></div>
+        <div><b class="num">$615</b><span>al día</span></div>
+        <div><b class="num">$352</b><span>por contacto</span></div>
+      </div>
+      <ul class="checks">
+        <li><span>Página en clmmexico.com (Rodolfo) y anuncios ahí, cada uno a su sección: alta capacidad, 40 kg, hotelera, mangles y túnel</span><span class="chip ok">Listo</span></li>
+        <li><span>Botón de WhatsApp en el anuncio, al número de Jorge</span><span class="chip ok">Listo</span></li>
+        <li><span>Botón de llamada (33 1564 1538)</span><span class="chip wait">Google revisa</span></li>
+        <li><span>Búsquedas que gastaban sin traer clientes, bloqueadas: otras marcas y lavadoras de casa</span><span class="chip ok">Listo</span></li>
+      </ul>
+      <p class="small">Más presupuesto para alta capacidad y túnel de lavado, que son las que traen contactos. Se agregaron las búsquedas por kilos (80, 120, 150 y 200 kg), las más baratas por contacto.</p>
+    </article>
+
+    <article class="brand">
+      <div class="brand-head"><h3>Girbau</h3><span class="dom">girbaupro.com → girbauoccidente.com</span></div>
+      <div class="facts">
+        <div><b class="num">7</b><span>contactos</span></div>
+        <div><b class="num">$214</b><span>al día</span></div>
+        <div><b class="num">$73</b><span>por contacto</span></div>
+      </div>
+      <ul class="checks">
+        <li><span>Página en girbauoccidente.com (Rodolfo, 1 de noviembre)</span><span class="chip ok">Listo</span></li>
+        <li><span>Anuncios funcionando con normalidad, todavía con la dirección girbaupro.com</span><span class="chip ok">Activo</span></li>
+        <li><span>Pasar los anuncios a girbauoccidente.com: Google tenía una revisión del dominio del 29 de octubre, anterior al cambio de Rodolfo, y ya pedimos que lo revise de nuevo</span><span class="chip wait">Google revisa</span></li>
+        <li><span>Botón de llamada (33 2806 8994)</span><span class="chip todo">Después del dominio</span></li>
+        <li><span>Medición de WhatsApp en la página</span><span class="chip ok">Listo</span></li>
+      </ul>
+      <p class="small">Es la marca con el contacto más barato del grupo. La campaña de máximo rendimiento trae contactos a $40 y se deja como está.</p>
+    </article>
+
+    <article class="brand">
+      <div class="brand-head"><h3>Laundry Solutions</h3><span class="dom">servicioparalavanderias.com</span></div>
+      <div class="facts">
+        <div><b class="num">3</b><span>contactos</span></div>
+        <div><b class="num">$269</b><span>al día</span></div>
+        <div><b class="num">$368</b><span>por contacto</span></div>
+      </div>
+      <ul class="checks">
+        <li><span>Página en servicioparalavanderias.com (Rodolfo) y anuncios ahí, con secciones de reparación y mantenimiento</span><span class="chip ok">Listo</span></li>
+        <li><span>Botón de llamada (33 1417 2994, Sergio)</span><span class="chip ok">Aprobado</span></li>
+        <li><span>Medición en la página</span><span class="chip ok">Publicada</span></li>
+        <li><span>Búsqueda «reparación de lavadoras industriales» encendida de nuevo, con las búsquedas de compra bloqueadas</span><span class="chip ok">Listo</span></li>
+      </ul>
+      <p class="small">El servicio técnico industrial tiene pocas búsquedas por naturaleza. Aquí esperamos pocos contactos, pero de servicio real.</p>
+    </article>
+
+    <article class="brand">
+      <div class="brand-head"><h3>Gamesail</h3><span class="dom">gamesail.mx</span></div>
+      <ul class="checks">
+        <li><span>Página lista en su dominio, con el teléfono de Silvia</span><span class="chip ok">Listo</span></li>
+        <li><span>Cuenta de Google Ads nueva: falta la forma de pago para crear las campañas y la medición</span><span class="chip todo">Pendiente del cliente</span></li>
+      </ul>
+      <p class="small">Mientras tanto, Kingstar cubre las búsquedas de equipo grande para no perder esos prospectos.</p>
+    </article>
+
+  </div>
+</section>
+
+<section aria-labelledby="bitacora">
+  <h2 id="bitacora">Qué se hizo</h2>
+  <ol class="log">
+    <li><time>20–22 oct</time><p><strong>Arranque.</strong> Campañas nuevas por tipo de equipo en las cuatro marcas, solo para México, con exclusiones para no competir entre cuentas.</p></li>
+    <li><time>26 oct</time><p><strong>Medición en las páginas.</strong> Se conectan los clics a WhatsApp, teléfono y formulario con Google Ads en Quick Laundry, Kingstar y Girbau.</p></li>
+    <li><time>27 oct</time><p><strong>Contacto directo desde el anuncio.</strong> Botón de WhatsApp al vendedor de cada marca y se corrige un número equivocado en Girbau. Se revisa la calidad de cada búsqueda y se encuentra el principal freno: todos los anuncios llevaban a la misma página.</p></li>
+    <li><time>28 oct</time><p><strong>Primer día con resultados claros:</strong> 9 contactos registrados en un día. Rodolfo publica las primeras secciones por tipo de equipo.</p></li>
+    <li><time>29 oct</time><p><strong>Prueba de medición.</strong> Se confirma que cada clic a WhatsApp llega a la cuenta correcta. Los anuncios de reparación pasan a su sección nueva.</p></li>
+    <li><time>30 oct</time><p><strong>Junta con el grupo.</strong> Se decide regresar las páginas a los dominios de siempre, que Google ya conoce, y que los formularios lleguen por correo a cada vendedor con copia a dirección.</p></li>
+    <li><time>31 oct</time><p><strong>Revisión de resultados</strong> del 20 al 30 de octubre: qué búsquedas traen clientes y dónde estaba el presupuesto.</p></li>
+    <li><time>31 oct – 2 nov</time><p><strong>Páginas en los dominios de siempre</strong> (Rodolfo): servicioparalavanderias.com el 31 de octubre, clmmexico.com y girbauoccidente.com el 1 de noviembre, y supliese.com el 2. gamesail.mx ya lo estaba. Las direcciones viejas redirigen a la página nueva.</p></li>
+    <li><time>2 nov</time><p><strong>Anuncios a los dominios de siempre</strong> (Google Ads) en Quick Laundry, Kingstar y Laundry Solutions. Cada anuncio va a la sección de su equipo. El presupuesto se mueve hacia lo que funciona, sin aumentar el gasto y sin tocar las campañas anteriores. Se piden las revisiones de los botones de llamada y del dominio de Girbau.</p></li>
+  </ol>
+</section>
+
+<section aria-labelledby="esperamos">
+  <h2 id="esperamos">Cómo repercute en la llegada de prospectos</h2>
+  <div class="phases">
+    <div class="phase">
+      <span class="when">3 a 5 de noviembre</span>
+      <h3>Ajuste</h3>
+      <p>Google vuelve a revisar los anuncios que cambiaron de dirección. Por algunas horas o días pueden salir menos, y los contactos pueden bajar un poco. Es normal y temporal.</p>
+    </div>
+    <div class="phase">
+      <span class="when">Semana del 9 de noviembre</span>
+      <h3>Recuperación</h3>
+      <p>Los anuncios llevan a páginas que Google ya conoce y que hablan del equipo exacto que busca cada persona. Esperamos que salgan más arriba, con un clic igual o más barato, y que se sumen los botones de llamada cuando Google los apruebe.</p>
+    </div>
+    <div class="phase">
+      <span class="when">Desde mediados de noviembre</span>
+      <h3>Ritmo estable</h3>
+      <p>Meta: unos 10 prospectos buenos por semana entre las cuatro marcas. Con una semana completa de datos se decide si conviene invertir más en lo que funciona, siempre con la autorización del cliente.</p>
+    </div>
+  </div>
+  <div class="note">
+    <h3>Por qué los números pueden variar estos días</h3>
+    <p>Google revisa cada anuncio cuando cambia su dirección, y eso puede frenar las impresiones unas horas. Girbau sigue unos días en su dirección actual mientras Google actualiza su revisión del dominio. Los formularios, cuando entren en vivo por correo, contarán solo cuando de verdad lleguen al vendedor, así que el número de formularios puede verse distinto al principio. Y Google solo registra a quien acepta las cookies, por eso el conteo de los vendedores es el dato que manda.</p>
+  </div>
+</section>
+
+<section aria-labelledby="pendientes">
+  <h2 id="pendientes">Lo que falta y de quién depende</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Pendiente</th><th>Depende de</th><th>Estado</th></tr></thead>
+      <tbody>
+        <tr><td>Revisión del dominio girbauoccidente.com</td><td class="who">Google</td><td><span class="chip wait">1 a 2 días</span></td></tr>
+        <tr><td>Aprobación de los botones de llamada de Quick Laundry y Kingstar</td><td class="who">Google</td><td><span class="chip wait">1 a 3 días hábiles</span></td></tr>
+        <tr><td>Pasar los anuncios de Girbau a girbauoccidente.com y apelar su botón de llamada</td><td class="who">Sandy</td><td><span class="chip todo">Cuando Google apruebe</span></td></tr>
+        <tr><td>Formularios por correo a cada vendedor, con copia a dirección</td><td class="who">Rodolfo</td><td><span class="chip wait">Listos, por entrar en vivo</span></td></tr>
+        <tr><td>Que las direcciones provisionales lleven a la página oficial de cada marca</td><td class="who">Rodolfo</td><td><span class="chip wait">En curso</span></td></tr>
+        <tr><td>Ajuste de medición en las páginas de Kingstar y Quick Laundry</td><td class="who">Rodolfo y sistemas</td><td><span class="chip todo">Pendiente</span></td></tr>
+        <tr><td>Forma de pago de la cuenta nueva de Gamesail</td><td class="who">Cliente</td><td><span class="chip todo">Pendiente</span></td></tr>
+        <tr><td>Conteo semanal de prospectos buenos por vendedor (cada lunes)</td><td class="who">Vendedores</td><td><span class="chip todo">Desde el 10 de noviembre</span></td></tr>
+        <tr><td>Autorización para usar el presupuesto de las campañas anteriores en lo que funciona</td><td class="who">Cliente</td><td><span class="chip todo">Cuando lo decidan</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  Cifras de Google Ads del 20 al 30 de octubre de 2026. Los presupuestos son los diarios vigentes al 3 de noviembre, dentro del presupuesto mensual acordado de cada marca. Las campañas anteriores siguen sin cambios en su presupuesto. Atelback · Google Ads.
+</footer>
+
+</div>
+</body>
+</html>

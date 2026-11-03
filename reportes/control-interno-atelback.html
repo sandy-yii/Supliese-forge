@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Control interno Google Ads Supliese</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: tablero de trabajo de una columna; primero lo que hay que hacer, luego la revisión cuenta por cuenta y referencias. */
+:root {
+  --bg: #f3f5f7; --surface: #ffffff; --ink: #18212a; --muted: #5d6a76; --line: #d8dfe5;
+  --accent: #6a3fa0; --accent-soft: #efe8f7;
+  --ok: #1f7a4d; --ok-bg: #e2f2e9; --wait: #9a6100; --wait-bg: #fbefd9; --bad: #b42d2d; --bad-bg: #fbe5e5; --todo: #44546a; --todo-bg: #e8ecf1;
+  --display: "IBM Plex Sans Condensed", "Arial Narrow", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #11161b; --surface: #19212a; --ink: #e5ebf0; --muted: #9ba8b4; --line: #2b3946;
+    --accent: #c4a3ef; --accent-soft: #2d2340;
+    --ok: #6fd3a0; --ok-bg: #173628; --wait: #f0bd63; --wait-bg: #3a2c12; --bad: #f19a9a; --bad-bg: #3d1d1d; --todo: #b4c2cf; --todo-bg: #24323e;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #11161b; --surface: #19212a; --ink: #e5ebf0; --muted: #9ba8b4; --line: #2b3946;
+  --accent: #c4a3ef; --accent-soft: #2d2340;
+  --ok: #6fd3a0; --ok-bg: #173628; --wait: #f0bd63; --wait-bg: #3a2c12; --bad: #f19a9a; --bad-bg: #3d1d1d; --todo: #b4c2cf; --todo-bg: #24323e;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 32px 56px; }
+.wrap { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px; }
+h1, h2, h3 { font-family: var(--display); margin: 0; line-height: 1.15; text-wrap: balance; }
+h1 { font-size: clamp(26px, 4vw, 36px); font-weight: 700; }
+h2 { font-size: 21px; font-weight: 600; }
+h3 { font-size: 16px; font-weight: 600; }
+p { margin: 0; max-width: 70ch; }
+code, .mono { font-family: var(--mono); font-size: 13px; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+header { display: flex; flex-direction: column; gap: 8px; border-bottom: 2px solid var(--ink); padding-bottom: 18px; }
+header p { color: var(--muted); }
+section { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+.chip::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.ok { color: var(--ok); background: var(--ok-bg); } .wait { color: var(--wait); background: var(--wait-bg); }
+.bad { color: var(--bad); background: var(--bad-bg); } .todo { color: var(--todo); background: var(--todo-bg); }
+.actions { display: flex; flex-direction: column; gap: 10px; }
+.action { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--todo); border-radius: 6px; padding: 14px 16px;
+  display: grid; grid-template-columns: 1fr auto; gap: 6px 14px; align-items: start; }
+.action.urgent { border-left-color: var(--bad); } .action.soon { border-left-color: var(--wait); }
+.action h3 { grid-column: 1; } .action .chip { grid-column: 2; grid-row: 1; }
+.action p { grid-column: 1 / -1; font-size: 14px; color: var(--muted); }
+.table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 640px; }
+th, td { text-align: left; padding: 9px 13px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--mono); font-size: 11px; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+tr:last-child td { border-bottom: 0; }
+td:first-child { white-space: nowrap; font-weight: 500; }
+td.st { white-space: nowrap; width: 1%; }
+.accounts { display: flex; flex-direction: column; gap: 22px; }
+.acct { display: flex; flex-direction: column; gap: 10px; }
+.acct-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.acct-head .mono { color: var(--muted); }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+.box { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 16px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.box ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; font-size: 14px; }
+.num { font-variant-numeric: tabular-nums; }
+footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 14px; }
+@media (max-width: 560px) { .action { grid-template-columns: 1fr; } .action .chip { grid-column: 1; grid-row: auto; justify-self: start; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="eyebrow">Interno · Atelback · revisión del 3 de noviembre de 2026</span>
+  <h1>Control interno Google Ads Supliese</h1>
+  <p>Resultado de la revisión de solo lectura en las 4 cuentas después del cambio de dominio, lo que hay que corregir y el estado de cada trámite con Google. No es para el cliente.</p>
+</header>
+
+<section aria-labelledby="hacer">
+  <h2 id="hacer">Qué hay que hacer</h2>
+  <div class="actions">
+    <div class="action urgent">
+      <h3>Quitar la fecha de fin de «AB · Lavadoras y secadoras de 20 a 45 kg» (Kingstar)</h3><span class="chip bad">Antes del 11 nov</span>
+      <p>La campaña tiene fecha de fin el 11 de noviembre de 2026 y ese día deja de salir sola. No fue una decisión del plan. Se quita en Configuración › Fecha de inicio y fin › Ninguna.</p>
+    </div>
+    <div class="action soon">
+      <h3>Apagar la expansión de URL final en «AB · Alta capacidad» y «AB · 20 a 45 kg» (Kingstar)</h3><span class="chip wait">Esta semana</span>
+      <p>Con la expansión encendida, Google puede mandar el clic a otra página del sitio en vez de la sección del equipo (por ejemplo, la portada o el aviso de privacidad). Eso deshace el trabajo de las secciones. En «Campaña Search Marcas» de Quick Laundry también está encendida, pero es campaña anterior y no se toca sin autorización.</p>
+    </div>
+    <div class="action soon">
+      <h3>Girbau: esperar la apelación del dominio y luego correr el script</h3><span class="chip wait">1 a 2 días</span>
+      <p>El anuncio de prueba (Nerea › Barreras sanitarias) sigue «Destino no operativo» con la apelación en proceso. Cuando salga Aprobado: correr <code>campanas/salida/girbau/fin-de-semana-girbauoccidente.com.js</code>, mandar <code>S2 · Girbau · lista</code> a Rodolfo y apelar el teléfono 33 2806 8994.</p>
+    </div>
+    <div class="action">
+      <h3>Botones de llamada de Quick Laundry y Kingstar</h3><span class="chip wait">Google revisa</span>
+      <p>Siguen «Rechazado · número sin verificar», con las apelaciones enviadas el 2 de noviembre. Quick Laundry da seguimiento al caso 29594241700. El caso de Kingstar está en gamesailmx@gmail.com, con la campaña de 20 a 45 kg agregada por correo. Solo esperar.</p>
+    </div>
+    <div class="action">
+      <h3>Girbau: borrador en curso</h3><span class="chip todo">Revisar</span>
+      <p>La cuenta tiene un borrador abierto, probablemente de la prueba del anuncio. Un borrador no se publica solo; conviene descartarlo para que nadie lo aplique por error.</p>
+    </div>
+    <div class="action">
+      <h3>Sin acción por ahora (campañas anteriores pausadas)</h3><span class="chip todo">Anotado</span>
+      <p>Si algún día se reactivan, antes hay que corregir: en «CLM Maximo Rendimiento», un grupo de recursos con <code>http://clmmexico.com/</code> y otro con <code>/tunel/</code>; en «Pmax - Local» de Servicio, <code>/landing/</code>; y 3 anuncios de «Servicio y mantenimiento Industrial» rechazados por «un sitio web por grupo». También la lista de negativas no está aplicada a «Campaña Search Marcas». Todo esto es de campañas que el cliente no ha autorizado mover.</p>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="revision">
+  <h2 id="revision">Revisión cuenta por cuenta</h2>
+  <div class="accounts">
+
+    <div class="acct">
+      <div class="acct-head"><h3>Quick Laundry</h3><span class="mono">Supliese Gómez · 256-397-2201 · supliese.com</span></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Punto</th><th>Qué se encontró</th><th>Estado</th></tr></thead>
+        <tbody>
+          <tr><td>URL final</td><td>31 anuncios en supliese.com; Equipo a /lavadoras-para-negocio y Autoservicio a /lavadoras-de-monedas</td><td class="st"><span class="chip ok">Bien</span></td></tr>
+          <tr><td>Enlaces de sitio</td><td>Todos a supliese.com/#…</td><td class="st"><span class="chip ok">Bien</span></td></tr>
+          <tr><td>Presupuestos</td><td class="num">260 · 20 · 34 · 14 · 3 · 3 · 35 (Search Marcas) = $369 al día</td><td class="st"><span class="chip ok">Bien</span></td></tr>
+          <tr><td>Modelo de Negocio</td><td>Pausada</td><td class="st"><span class="chip ok">Bien</span></td></tr>
+          <tr><td>Keywords nuevas</td><td>«donde comprar lavadoras industriales», «lavadoras para negocio» (frase), «quiero poner una lavandería» (amplia)</td><td class="st"><span class="chip ok">Bien</span></td></tr>
+          <tr><td>Negativas</td><td>«máquinas para lavar ropa» (exactas)</td><td class="st"><span class="chip ok">Bien</span></td></tr>
+          <tr><td>Anuncio nuevo</td><td>«Lavadoras para Negocio» en Equipo, Apto</td><td class="st"><span class="chip ok">Bien</span></td></tr>
+          <tr><td>Search Marcas</td><td>Solo presencia en México</td><td class="st"><span class="chip ok">Bien</span></td></tr>
+          <tr><td>Llamada 33 2601 2237</td><td>Rechazado, número sin verificar; apelación enviada</td><td class="st"><span class="chip wait">Google revisa</span></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="acct">
+      <div class="acct-head"><h3>Kingstar</h3><span class="mono">CLM · 993-525-8739 · clmmexico.com</span></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Punto</th><th>Qué se encontró</th><th>Estado</th></tr></thead>
+        <tbody>
+          <tr><td>URL final</td><td>24 anuncios en clmmexico.com, cada grupo a su sección</td><td class="st"><span class="chip ok">Bien</span></td></tr>
+          <tr><td>Enlaces de sitio</td><td>Los 2 a clmmexico.com/#…</td><td class="st"><span class="chip ok">Bien</span></td></tr>
+          <tr><td>Presupuestos</td><td class="num">280 · 110 · 80 · 50 · 60 · 35 = $615 al día</td><td class="st"><span class="chip ok">Bien</span></td></tr>
+          <tr><td>Campañas anteriores</td><td>Las 4 pausadas</td><td class="st"><span class="chip ok">Bien</span></td></tr>
+          <tr><td>Keywords por kilos</td><td>80, 120, 150 y 200 kg encendidas (150 kg con volumen bajo)</td><td class="st"><span class="chip ok">Bien</span></td></tr>
+          <tr><td>Negativas</td><td>Otras marcas, cobertores, king size, lavadora grande, 18 kg</td><td class="st"><span class="chip ok">Bien</span></td></tr>
+          <tr><td>Llamada 33 1564 1538</td><td>Rechazado en las 6 campañas «AB ·»; apelación enviada</td><td class="st"><span class="chip wait">Google revisa</span></td></tr>
+          <tr><td>Fecha de fin</td><td>«AB · 20 a 45 kg» termina el 11 nov</td><td class="st"><span class="chip bad">Corregir</span></td></tr>
+          <tr><td>Expansión de URL final</td><td>Encendida en «AB · Alta capacidad» y «AB · 20 a 45 kg»</td><td class="st"><span class="chip bad">Corregir</span></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="acct">
+      <div class="acct-head"><h3>Laundry Solutions</h3><span class="mono">Servicio para Lavandería · 265-909-2662 · servicioparalavanderias.com</span></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Punto</th><th>Qué se encontró</th><th>Estado</th></tr></thead>
+        <tbody>
+          <tr><td>URL final</td><td>29 anuncios; reparación y servicio técnico a /reparacion-lavadoras-industriales, preventivo y pólizas a /mantenimiento</td><td class="st"><span class="chip ok">Bien</span></td></tr>
+          <tr><td>Enlaces de sitio</td><td>Todos a servicioparalavanderias.com/#…</td><td class="st"><span class="chip ok">Bien</span></td></tr>
+          <tr><td>Presupuestos</td><td class="num">156 · 75 · 10 · 10 · 8 · 10 = $269 al día</td><td class="st"><span class="chip ok">Bien</span></td></tr>
+          <tr><td>Keywords</td><td>«reparación lavadoras industriales» (amplia) encendida; las amplias de técnico y mantenimiento pausadas en sus grupos</td><td class="st"><span class="chip ok">Bien</span></td></tr>
+          <tr><td>Negativas</td><td>«kg precio», «comprar lavadora», «lavadora industrial de monedas» y las demás de compra</td><td class="st"><span class="chip ok">Bien</span></td></tr>
+          <tr><td>Llamada 33 1417 2994</td><td>Apto en las 6 campañas «AB ·»</td><td class="st"><span class="chip ok">Bien</span></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="acct">
+      <div class="acct-head"><h3>Girbau</h3><span class="mono">860-582-6837 · girbaupro.com (pasa a girbauoccidente.com)</span></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Punto</th><th>Qué se encontró</th><th>Estado</th></tr></thead>
+        <tbody>
+          <tr><td>URL final</td><td>Campañas «AB ·» y Max Rendimiento siguen en girbaupro.com, como debe ser por ahora</td><td class="st"><span class="chip ok">Bien</span></td></tr>
+          <tr><td>Anuncio de prueba</td><td>Nerea › Barreras sanitarias en girbauoccidente.com: Destino no operativo, apelación en proceso</td><td class="st"><span class="chip wait">Google revisa</span></td></tr>
+          <tr><td>Enlaces de sitio</td><td>Siguen en girbaupro.com/#… («Aseo para empresas» y «Limpieza profesional» son de la agencia anterior; revisar su texto después)</td><td class="st"><span class="chip ok">Bien</span></td></tr>
+          <tr><td>Nerea</td><td>Pausada</td><td class="st"><span class="chip ok">Bien</span></td></tr>
+          <tr><td>Presupuestos</td><td class="num">117 · 62 · 10 · 15 · 10 = $214 al día (el cambio a Marca $88 entra con el script)</td><td class="st"><span class="chip ok">Bien</span></td></tr>
+          <tr><td>Llamada 33 2806 8994</td><td>Rechazado, número sin verificar; se apela después del dominio</td><td class="st"><span class="chip todo">Después</span></td></tr>
+          <tr><td>Borrador</td><td>1 borrador en curso</td><td class="st"><span class="chip todo">Revisar</span></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <p>En las 4 cuentas: no hay plantillas de seguimiento ni sufijos con dominio escrito, y las únicas campañas encendidas que no son «AB ·» son «Campaña Search Marcas» y «Max Rendimiento - Girbau», que ya estaban así.</p>
+  </div>
+</section>
+
+<section aria-labelledby="medicion">
+  <h2 id="medicion">Medición y páginas</h2>
+  <div class="grid2">
+    <div class="box">
+      <h3>Hecho</h3>
+      <ul>
+        <li>Las 5 páginas están en su dominio de siempre (Rodolfo, del 31 oct al 2 nov).</li>
+        <li>La etiqueta de cada marca está en su página. Laundry Solutions se publicó el 2 nov.</li>
+        <li>Prueba de Tag Assistant del 29 oct: WhatsApp cuenta en las 3 páginas medidas.</li>
+        <li>Detección automática de datos apagada en Girbau y Servicio.</li>
+        <li>Formularios por correo listos: a cada vendedor con copia a agomez, kgomez, pgomez y rmaravilla.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Pendiente</h3>
+      <ul>
+        <li>Rodolfo: formularios por correo en vivo (te avisa con «S8 · en vivo»).</li>
+        <li>Rodolfo: 301 de los dominios comprados por cada S2 (falta Girbau) y de servicioparalavanderias.com/landing/ y clmmexico.com/contacto.</li>
+        <li>Rodolfo: el clic al teléfono de Girbau no manda la conversión; quitar el UA viejo de supliese.com.</li>
+        <li>Detección automática en Kingstar y Quick Laundry: la etiqueta la administra otra cuenta (GA4 o Tag Manager). Hay que saber quién.</li>
+        <li>Gamesail: forma de pago, y luego sus acciones «AB ·» y su medición.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="reglas">
+  <h2 id="reglas">Reglas acordadas</h2>
+  <div class="box">
+    <ul>
+      <li>Las campañas anteriores no se encienden ni se les mueve el presupuesto sin autorización del cliente.</li>
+      <li>Ninguna cuenta pasa su tope mensual: Quick Laundry $12,000, Kingstar $18,700, Servicio $8,200, Girbau $6,600 y Gamesail $19,700.</li>
+      <li>No se suben topes por clic: el lugar se gana con mejores páginas y con exclusiones.</li>
+      <li>Solo México. Nada se activa, pausa ni edita sin Vista previa y OK, cuenta por cuenta.</li>
+      <li>Los cambios en las campañas salen de una sola sesión; la del tablero es solo para reportes.</li>
+      <li>Próximo paquete de cambios: con una semana completa de datos. Mientras tanto, solo revisión diaria.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>Fuente: revisión de solo lectura con la extensión del 3 de noviembre de 2026 y registros de los scripts del 2 de noviembre. Versión para el cliente: «Estatus de captación Supliese».</footer>
+
+</div>
+</body>
+</html>
