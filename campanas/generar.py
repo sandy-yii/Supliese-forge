@@ -589,6 +589,8 @@ def main():
         f.write(js_diagnostico([plan_auditoria(p) for p in todas], archivo='plantilla-calidad.js'))
     with open(os.path.join(SALIDA, 'quienes-dieron-whatsapp-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
         f.write(js_diagnostico([plan_auditoria(p) for p in todas], archivo='plantilla-whatsapp.js'))
+    with open(os.path.join(SALIDA, 'un-sitio-por-grupo-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
+        f.write(js_diagnostico([plan_auditoria(p) for p in todas], archivo='plantilla-un-sitio.js'))
     with open(os.path.join(SALIDA, 'vaciado-para-la-junta-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
         f.write(js_diagnostico([plan_auditoria(p) for p in todas], archivo='plantilla-vaciado.js'))
     with open(os.path.join(SALIDA, 'ajustes-todas-las-cuentas.js'), 'w', encoding='utf-8') as f:
