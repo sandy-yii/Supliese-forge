@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Plan de campañas Gamesail</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: una columna: lo acordado, reparto del presupuesto por campaña, lo que decidió la junta, cómo arranca y lo que falta. */
+:root {
+  --bg: #f5f7f9;
+  --surface: #ffffff;
+  --ink: #17222c;
+  --muted: #5a6875;
+  --line: #d9e0e6;
+  --accent: #1d5f86;
+  --accent-soft: #e3eef5;
+  --ok: #1f7a4d; --ok-bg: #e2f2e9;
+  --wait: #9a6100; --wait-bg: #fbefd9;
+  --todo: #44546a; --todo-bg: #e8ecf1;
+  --bar: #2d7cab;
+  --display: "IBM Plex Sans Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f161c; --surface: #16212a; --ink: #e6edf2; --muted: #9aa9b5; --line: #2a3a47;
+    --accent: #7cbde3; --accent-soft: #1b3344;
+    --ok: #6fd3a0; --ok-bg: #173628; --wait: #f0bd63; --wait-bg: #3a2c12; --todo: #b4c2cf; --todo-bg: #24323e;
+    --bar: #5aa7d6; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f161c; --surface: #16212a; --ink: #e6edf2; --muted: #9aa9b5; --line: #2a3a47;
+  --accent: #7cbde3; --accent-soft: #1b3344;
+  --ok: #6fd3a0; --ok-bg: #173628; --wait: #f0bd63; --wait-bg: #3a2c12; --todo: #b4c2cf; --todo-bg: #24323e;
+  --bar: #5aa7d6; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 56px;
+}
+.wrap { max-width: 980px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.15; }
+h1 { font-size: clamp(28px, 4.2vw, 40px); font-weight: 700; }
+h2 { font-size: 22px; font-weight: 600; }
+h3 { font-size: 17px; font-weight: 600; }
+p { margin: 0; max-width: 68ch; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.lead { color: var(--muted); font-size: 16px; }
+header { display: flex; flex-direction: column; gap: 10px; border-bottom: 2px solid var(--ink); padding-bottom: 20px; }
+section { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* Resumen */
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 16px; display: flex; flex-direction: column; gap: 4px; }
+.kpi b { font-family: var(--display); font-size: 30px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.kpi span { color: var(--muted); font-size: 13px; }
+
+/* Barras */
+.bars { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+.bar-row { display: grid; grid-template-columns: 150px 1fr 120px; gap: 12px; align-items: center; }
+.bar-track { height: 14px; background: var(--todo-bg); border-radius: 3px; overflow: hidden; }
+.bar-fill { height: 100%; background: var(--bar); }
+.bar-row .v { font-family: var(--mono); font-size: 13px; text-align: right; font-variant-numeric: tabular-nums; }
+.bar-note { font-size: 13px; color: var(--muted); }
+
+/* Chips */
+.chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+.chip::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.ok { color: var(--ok); background: var(--ok-bg); }
+.wait { color: var(--wait); background: var(--wait-bg); }
+.todo { color: var(--todo); background: var(--todo-bg); }
+
+/* Marcas */
+.brands { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 14px; }
+.brand { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 18px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.brand-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.brand-head .dom { font-family: var(--mono); font-size: 13px; color: var(--accent); overflow-wrap: anywhere; }
+.facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; border-block: 1px solid var(--line); padding-block: 10px; }
+.facts div { display: flex; flex-direction: column; }
+.facts b { font-family: var(--display); font-size: 20px; font-variant-numeric: tabular-nums; }
+.facts span { font-size: 12px; color: var(--muted); }
+.checks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.checks li { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: start; font-size: 14px; }
+.brand p.small { font-size: 13px; color: var(--muted); }
+
+/* Bitácora */
+.log { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--line); display: flex; flex-direction: column; gap: 16px; }
+.log li { position: relative; padding-left: 20px; display: grid; grid-template-columns: 92px 1fr; gap: 12px; }
+.log li::before { content: ""; position: absolute; left: -6px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+.log time { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.log p { font-size: 14px; }
+
+/* Qué esperamos */
+.phases { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.phase { background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 6px; padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+.phase .when { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.phase p { font-size: 14px; }
+.note { background: var(--accent-soft); border-radius: 6px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; }
+.note p { font-size: 14px; }
+
+/* Tablas */
+.table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 620px; }
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--mono); font-size: 11px; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+tr:last-child td { border-bottom: 0; }
+.who { font-weight: 600; white-space: nowrap; }
+
+footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; }
+
+@media (max-width: 560px) {
+  .bar-row { grid-template-columns: 1fr; gap: 4px; }
+  .bar-row .v { text-align: left; }
+  .log li { grid-template-columns: 1fr; gap: 2px; }
+  .facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+/* Junta */
+.big { font-family: var(--display); font-size: clamp(22px, 3vw, 28px); font-weight: 600; line-height: 1.25; max-width: 40ch; text-wrap: balance; }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 14px; }
+.box { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.box ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
+.asks { counter-reset: a; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.asks li { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: start; font-size: 14px; }
+.asks b { display: block; font-size: 15px; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header>
+  <span class="eyebrow">Para el Grupo Supliese · Gamesail · noviembre de 2026 · Atelback</span>
+  <h1>Plan de campañas Gamesail</h1>
+  <p class="lead">Cómo se reparte el presupuesto acordado en la junta entre las campañas de Gamesail en Google, qué busca la gente en cada una y cómo arrancan.</p>
+</header>
+
+<section aria-labelledby="resumen">
+  <h2 id="resumen">Lo acordado</h2>
+  <div class="kpis">
+    <div class="kpi"><b>$19,700</b><span>al mes para la cuenta nueva de Gamesail. Nunca se pasa de esa cifra</span></div>
+    <div class="kpi"><b>$648</b><span>al día con las 7 campañas a su presupuesto completo</span></div>
+    <div class="kpi"><b>$324</b><span>al día la primera semana: arrancan a la mitad mientras Google aprende</span></div>
+    <div class="kpi"><b>7</b><span>campañas, solo en búsquedas de Google y solo para personas en México</span></div>
+  </div>
+  <p>Todos los anuncios llevan a <strong>gamesail.mx</strong>. Los contactos llegan por WhatsApp, llamada y formulario a Silvia Molina.</p>
+</section>
+
+<section aria-labelledby="reparto">
+  <h2 id="reparto">Cuánto se le asigna a cada campaña</h2>
+  <div class="bars" role="img" aria-label="Presupuesto mensual por campaña: Lavadoras para ropa y sábanas 5,898; Lavadoras por capacidad y precio 3,557; Secadoras industriales 3,557; Hoteles y hospitales 2,371; Mangles y planchado 1,581; Competencia 1,368; Marca Gamesail 1,368">
+    <div class="bar-row"><span>Ropa y sábanas</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="v">$5,898 · 30%</span></div>
+    <div class="bar-row"><span>Capacidad y precio</span><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div><span class="v">$3,557 · 18%</span></div>
+    <div class="bar-row"><span>Secadoras</span><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div><span class="v">$3,557 · 18%</span></div>
+    <div class="bar-row"><span>Hoteles y hospitales</span><div class="bar-track"><div class="bar-fill" style="width:40%"></div></div><span class="v">$2,371 · 12%</span></div>
+    <div class="bar-row"><span>Mangles y planchado</span><div class="bar-track"><div class="bar-fill" style="width:26.7%"></div></div><span class="v">$1,581 · 8%</span></div>
+    <div class="bar-row"><span>Competencia</span><div class="bar-track"><div class="bar-fill" style="width:23.3%"></div></div><span class="v">$1,368 · 7%</span></div>
+    <div class="bar-row"><span>Marca Gamesail</span><div class="bar-track"><div class="bar-fill" style="width:23.3%"></div></div><span class="v">$1,368 · 7%</span></div>
+    <p class="bar-note">Presupuesto mensual de cada campaña con todas a su presupuesto completo.</p>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Campaña</th><th>Qué busca la gente (ejemplos)</th><th>Al día</th><th>Al mes</th><th>Máximo por clic</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Lavadoras para ropa y sábanas</strong></td><td>lavadoras industriales · lavadora industrial para ropa · lavadoras para sábanas · lavadora industrial para blancos</td><td class="num">$194</td><td class="num">$5,898</td><td class="num">$14</td></tr>
+        <tr><td><strong>Lavadoras por capacidad y precio</strong></td><td>lavadora industrial 20, 30 y 50 kg · lavadora industrial 30 kg precio · lavadoras industriales precio</td><td class="num">$117</td><td class="num">$3,557</td><td class="num">$12</td></tr>
+        <tr><td><strong>Secadoras industriales</strong></td><td>secadoras industriales de ropa · secadora industrial 50, 100, 130 y 200 kg · secadora para sábanas</td><td class="num">$117</td><td class="num">$3,557</td><td class="num">$14</td></tr>
+        <tr><td><strong>Hoteles y hospitales</strong></td><td>lavadora industrial para hotel · secadora para lavandería hotelera · lavadoras para hospitales</td><td class="num">$78</td><td class="num">$2,371</td><td class="num">$16</td></tr>
+        <tr><td><strong>Mangles y planchado</strong></td><td>mangle planchador · mangle para sábanas · dobladora de ropa industrial · calandria industrial</td><td class="num">$52</td><td class="num">$1,581</td><td class="num">$16</td></tr>
+        <tr><td><strong>Competencia</strong></td><td>Solo búsquedas exactas de otras marcas que comparan antes de comprar: Atlika, Servex, Domus, Wascomat, Lorsa, Unimac, Primus</td><td class="num">$45</td><td class="num">$1,368</td><td class="num">$10</td></tr>
+        <tr><td><strong>Marca Gamesail</strong></td><td>gamesail · gamesail méxico · lavadoras Gamesail · secadoras Gamesail</td><td class="num">$45</td><td class="num">$1,368</td><td class="num">$8</td></tr>
+        <tr><td><strong>Total</strong></td><td></td><td class="num"><strong>$648</strong></td><td class="num"><strong>$19,700</strong></td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note">
+    <p><strong>«Máximo por clic»</strong> es lo más que Google puede cobrar por una visita en esa campaña. Normalmente cobra menos. Así el dinero rinde y ningún clic sale caro.</p>
+  </div>
+</section>
+
+<section aria-labelledby="junta">
+  <h2 id="junta">Lo que decidió la junta</h2>
+  <div class="two">
+    <div class="box">
+      <h3>Cambios al plan</h3>
+      <ul>
+        <li><strong>Menos genérico, más ropa y sábanas.</strong> La campaña principal se enfoca en lavadoras para ropa, sábanas y blancos, y se lleva el 30% del presupuesto.</li>
+        <li><strong>Secadoras de 50, 100, 130 y 200 kg</strong>, con su propia campaña.</li>
+        <li><strong>Hoteles y hospitales:</strong> Gamesail ofrece lavadoras y secadoras para su lavandería.</li>
+        <li><strong>Marca Gamesail:</strong> quien busca lavadoras Gamesail o secadoras Gamesail encuentra a Gamesail primero.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Para que las marcas del grupo no compitan entre sí</h3>
+      <ul>
+        <li><strong>Refacciones y reparación</strong> las atiende Laundry Solutions.</li>
+        <li><strong>Poner una lavandería, autoservicio y semi industriales</strong> son de Quick Laundry, igual que Maytag.</li>
+        <li><strong>Túnel de lavado, mangle industrial, 40 a 60 kg y la lavandería hotelera completa</strong> son de Kingstar.</li>
+        <li><strong>Girbau</strong> tiene su propia cuenta.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="arranque">
+  <h2 id="arranque">Cómo arranca</h2>
+  <div class="phases">
+    <div class="phase">
+      <span class="when">Paso 1 · cliente</span>
+      <h3>Forma de pago</h3>
+      <p>Se agrega la forma de pago en la cuenta nueva de Gamesail. Es lo único que falta para encender las campañas.</p>
+    </div>
+    <div class="phase">
+      <span class="when">Paso 2 · primera semana</span>
+      <h3>Arranque a la mitad</h3>
+      <p>Las 7 campañas se encienden con la mitad del presupuesto, $324 al día, mientras Google aprende qué búsquedas traen contactos.</p>
+    </div>
+    <div class="phase">
+      <span class="when">Paso 3 · desde la segunda semana</span>
+      <h3>Presupuesto completo</h3>
+      <p>Si los números van bien, pasan a $648 al día. Cada semana el dinero se mueve hacia las campañas que traen prospectos buenos, sin pasar de $19,700 al mes.</p>
+    </div>
+  </div>
+  <div class="note">
+    <p><strong>La cuenta anterior de Gamesail no se toca</strong> sin su autorización: ni su presupuesto ni sus campañas.</p>
+  </div>
+</section>
+
+<section aria-labelledby="falta">
+  <h2 id="falta">Lo que necesitamos para arrancar</h2>
+  <ol class="asks">
+    <li><span><b>Forma de pago en la cuenta nueva de Gamesail</b>Sin ella Google no enciende ningún anuncio.</span><span class="chip todo">Cliente</span></li>
+    <li><span><b>Confirmar a Silvia Molina como vendedora de Gamesail</b>Su WhatsApp y teléfono, 33 1185 9797, y su correo, smolina@supliese.com, son a donde llegan los contactos.</span><span class="chip todo">Cliente</span></li>
+    <li><span><b>Contestar rápido desde el primer día</b>Los primeros contactos le enseñan a Google qué funciona. Si nadie contesta, se pierden ventas y aprendizaje.</span><span class="chip todo">Vendedora</span></li>
+  </ol>
+</section>
+
+<footer>Fuente: plan de campañas y presupuesto mensual de Gamesail acordados en junta con el cliente (octubre de 2026). Preparado por Atelback.</footer>
+
+</div>
+</body>
+</html>
