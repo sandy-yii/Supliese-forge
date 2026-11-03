@@ -7,8 +7,11 @@
  *      en que Google revisó la página por última vez (si es del 29 oct, sigue siendo la revisión vieja).
  *   2. A qué dominio van todos los anuncios y cuáles están rechazados.
  *   3. Enlaces de sitio y botón de llamada: su dirección y su estado.
- *   4. Que girbauoccidente.com abra y muestre el teléfono de Eduardo.
- *   Al final dice qué sigue.
+ *   4. Grupos de recursos de Máximo rendimiento: su dirección y su estado.
+ *   5. Presupuestos de las campañas encendidas (deben sumar $214 al día).
+ *   6. Los dos anuncios que la extensión vio en datos internos (828610421433 y 828610421442), aunque estén borrados.
+ *   7. Que girbauoccidente.com abra y muestre el teléfono de Eduardo.
+ *   Al final dice qué sigue y si ya se le puede mandar a Rodolfo «S2 · Girbau · lista».
  *
  * CÓMO SE USA: pegar completo > Autorizar > VISTA PREVIA > copiar todo el registro y mandarlo.
  */
@@ -82,7 +85,7 @@ function main() {
   // 2. Anuncios por dominio
   Logger.log('');
   Logger.log('==== 2. ANUNCIOS POR DOMINIO (campañas y grupos no borrados) ====');
-  var cuenta = {}, rechazados = [];
+  var cuenta = {}, rechazados = [], viejos = 0, revisando = 0;
   filas('SELECT campaign.name, campaign.status, ad_group.name, ad_group_ad.status, ad_group_ad.ad.id, ad_group_ad.ad.final_urls, ' +
     'ad_group_ad.policy_summary.approval_status, ad_group_ad.policy_summary.policy_topic_entries FROM ad_group_ad ' +
     "WHERE ad_group_ad.status != 'REMOVED' AND ad_group.status != 'REMOVED' AND campaign.status != 'REMOVED'", 'los anuncios')
@@ -92,6 +95,8 @@ function main() {
       var k = sitio(url) + ' · ' + enc;
       cuenta[k] = (cuenta[k] || 0) + 1;
       var p = f.adGroupAd.policySummary || {};
+      if (sitio(url) !== NUEVO) viejos++;
+      if (f.campaign.status === 'ENABLED' && /IN_PROGRESS|UNDER_APPEAL/.test(p.reviewStatus || '')) revisando++;
       if (p.approvalStatus === 'DISAPPROVED')
         rechazados.push(f.campaign.name + ' › ' + f.adGroup.name + ' (' + enc + ') · ' + url + ' · ' + motivos(p.policyTopicEntries).texto);
     });
@@ -114,6 +119,8 @@ function main() {
         var clave = a.id + '|' + (f.campaign ? f.campaign.name : 'cuenta');
         if (vistos[clave]) return; vistos[clave] = true;
         var p = a.policySummary || {}, m = motivos(p.policyTopicEntries);
+        if (ca.fieldType === 'SITELINK' && (a.finalUrls || []).some(function (u) { return sitio(u) !== NUEVO; })) viejos++;
+        if (ca.fieldType === 'SITELINK' && p.approvalStatus === 'DISAPPROVED') rechazados.push('enlace de sitio ' + a.id);
         var que = ca.fieldType === 'CALL' ? 'Llamada ' + ((a.callAsset || {}).phoneNumber || '') :
           'Enlace «' + ((a.sitelinkAsset || {}).linkText || '') + '» → ' + ((a.finalUrls || [])[0] || '');
         Logger.log((f.campaign ? f.campaign.name : 'Toda la cuenta') + ' · ' + que + ' · ' + apr(p.approvalStatus) +
@@ -121,9 +128,40 @@ function main() {
       });
   });
 
-  // 4. La página
+  // 4. Grupos de recursos (Máximo rendimiento)
   Logger.log('');
-  Logger.log('==== 4. LA PÁGINA ====');
+  Logger.log('==== 4. GRUPOS DE RECURSOS (Máximo rendimiento) ====');
+  filas("SELECT campaign.name, campaign.status, asset_group.name, asset_group.status, asset_group.final_urls, asset_group.primary_status " +
+    "FROM asset_group WHERE asset_group.status != 'REMOVED' AND campaign.status != 'REMOVED'", 'los grupos de recursos').forEach(function (f) {
+    var url = (f.assetGroup.finalUrls || [])[0] || '(sin URL)';
+    if (sitio(url) !== NUEVO) viejos++;
+    Logger.log(f.campaign.name + ' (' + f.campaign.status + ') › ' + f.assetGroup.name + ' · ' + url + ' · ' + (f.assetGroup.primaryStatus || ''));
+  });
+
+  // 5. Presupuestos
+  Logger.log('');
+  Logger.log('==== 5. PRESUPUESTOS (campañas encendidas) ====');
+  var total = 0;
+  filas("SELECT campaign.name, campaign_budget.amount_micros FROM campaign WHERE campaign.status = 'ENABLED'", 'los presupuestos').forEach(function (f) {
+    var m = Number(f.campaignBudget.amountMicros || 0) / 1e6; total += m;
+    Logger.log(f.campaign.name + ': $' + m.toFixed(0) + ' al día');
+  });
+  Logger.log('TOTAL: $' + total.toFixed(0) + ' al día (≈ $' + Math.round(total * 30.4) + ' al mes; tope $6,600)');
+
+  // 6. Los dos anuncios de los datos internos
+  Logger.log('');
+  Logger.log('==== 6. ANUNCIOS 828610421433 Y 828610421442 ====');
+  var dos = filas("SELECT campaign.name, ad_group.name, ad_group_ad.status, ad_group_ad.ad.id, ad_group_ad.ad.final_urls FROM ad_group_ad " +
+    "WHERE ad_group_ad.ad.id IN (828610421433, 828610421442)", 'esos dos anuncios');
+  if (!dos.length) Logger.log('No existen en la cuenta (ni borrados): no cuentan para nada.');
+  dos.forEach(function (f) {
+    Logger.log(f.adGroupAd.ad.id + ' · ' + f.campaign.name + ' › ' + f.adGroup.name + ' · ' + f.adGroupAd.status + ' · ' +
+      ((f.adGroupAd.ad.finalUrls || [])[0] || '') + (f.adGroupAd.status === 'REMOVED' ? ' (borrado: no cuenta)' : ''));
+  });
+
+  // 7. La página
+  Logger.log('');
+  Logger.log('==== 7. LA PÁGINA ====');
   try {
     var r = UrlFetchApp.fetch('https://' + NUEVO + '/', { muteHttpExceptions: true, followRedirects: true });
     var html = r.getContentText().replace(/\D/g, '');
@@ -146,6 +184,10 @@ function main() {
     'no encontrado': '❓ No encontré el anuncio de prueba. Manda este registro a Claude.'
   };
   Logger.log(QUE[veredicto]);
+  if (viejos) Logger.log('❌ Todavía hay ' + viejos + ' cosa(s) que no van a ' + NUEVO + ' (ver secciones 2, 3 y 4). NO mandes el S2 a Rodolfo.');
+  else if (rechazados.length) Logger.log('❌ Todo va a ' + NUEVO + ', pero hay rechazados (sección 2). NO mandes el S2 todavía; manda este registro.');
+  else if (revisando) Logger.log('⏳ Todo va a ' + NUEVO + '; ' + revisando + ' anuncio(s) encendidos siguen en revisión. Espera a que terminen para mandar el S2.');
+  else Logger.log('✅ Todo va a ' + NUEVO + ' y está aprobado. Ya puedes mandarle a Rodolfo: S2 · Girbau · lista');
   Logger.log('');
   Logger.log('LISTO. Copia todo el registro y mándalo. Este script no cambió nada.');
 }
