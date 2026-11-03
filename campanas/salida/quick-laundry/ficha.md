@@ -169,6 +169,7 @@ Se carga como una lista compartida, «AB · Negativas de la cuenta», ligada a t
 - **Territorio de Girbau:** girbau
 - **Territorio de Servicio para Lavandería:** refacciones, refacción, partes, repuestos, reparación, mantenimiento, servicio
 - **Cadenas de lavandería:** lavax, "lava 1", aquamatic, 5asec, "cerca de mí", "cerca de mi"
+- **Otras marcas (3 nov):** "speed queen", wascomat, lorsa, lorza, primus, domus, dexter, unimac, electrolux, alliance, ipso
 - **Usado y renta:** usada, usadas, usado, usados, seminueva, seminuevas, remate, renta, alquiler
 - **Información, no compra:** empleo, vacante, vacantes, curso, cursos, pdf, manual, gratis
 - **Doméstico:** "para casa", doméstica, domésticas, mabe, samsung, whirlpool, "carga frontal", [maquinas para lavar ropa], [máquinas para lavar ropa]

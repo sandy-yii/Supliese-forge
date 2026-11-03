@@ -250,6 +250,9 @@ CUENTAS['quick-laundry'] = dict(
         'Territorio de Servicio para Lavandería': ['refacciones', 'refacción', 'partes', 'repuestos', 'reparación',
                                                    'mantenimiento', 'servicio'],
         'Cadenas de lavandería': ['lavax', '"lava 1"', 'aquamatic', '5asec', '"cerca de mí"', '"cerca de mi"'],
+        # 3 nov: la revisión diaria mostró clics de marcas que Quick Laundry no vende (Maytag y LG sí, no van aquí).
+        'Otras marcas (3 nov)': ['"speed queen"', 'wascomat', 'lorsa', 'lorza', 'primus', 'domus', 'dexter', 'unimac',
+                                 'electrolux', 'alliance', 'ipso'],
         'Usado y renta': ['usada', 'usadas', 'usado', 'usados', 'seminueva', 'seminuevas', 'remate', 'renta', 'alquiler'],
         'Información, no compra': ['empleo', 'vacante', 'vacantes', 'curso', 'cursos', 'pdf', 'manual', 'gratis'],
         'Doméstico': ['"para casa"', 'doméstica', 'domésticas', 'mabe', 'samsung', 'whirlpool', '"carga frontal"',

@@ -59,6 +59,17 @@ aquamatic
 5asec
 "cerca de mí"
 "cerca de mi"
+"speed queen"
+wascomat
+lorsa
+lorza
+primus
+domus
+dexter
+unimac
+electrolux
+alliance
+ipso
 usada
 usadas
 usado
