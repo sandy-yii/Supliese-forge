@@ -20,6 +20,16 @@ CUENTAS['gamesail'] = dict(
     telefono='33 1185 9797',  # botón de llamada de los anuncios (lista de Rodolfo, 21 oct)
     url='https://gamesail.mx/',  # página nueva desde el 22 oct; antes https://gamesail-lavadoras.vercel.app/
     mismo_sitio=['gamesail-lavadoras.vercel.app'],  # versión anterior del mismo sitio: se conserva la sección
+    # 4 nov: Rodolfo publicó las 5 secciones (S4). Competencia y Marca se quedan en la portada.
+    # Pendiente del cliente: no hay secadoras de 130 ni 200 kg ni dobladora en catálogo (la página dice 50 y 100 kg).
+    paginas={'Lavadoras para ropa y sábanas > Lavadoras industriales para ropa': 'https://gamesail.mx/lavadoras-para-ropa',
+             'Lavadoras para ropa y sábanas > Lavadoras para sábanas': 'https://gamesail.mx/lavadoras-para-ropa',
+             'Lavadoras por capacidad y precio > Lavadoras por capacidad': 'https://gamesail.mx/lavadoras-por-capacidad',
+             'Secadoras industriales > Secadoras para ropa': 'https://gamesail.mx/secadoras-industriales',
+             'Secadoras industriales > Secadoras por capacidad': 'https://gamesail.mx/secadoras-industriales',
+             'Hoteles y hospitales > Hoteles': 'https://gamesail.mx/hoteles-y-hospitales',
+             'Hoteles y hospitales > Hospitales': 'https://gamesail.mx/hoteles-y-hospitales',
+             'Mangles y planchado > Mangles': 'https://gamesail.mx/mangles'},
     nota='Cuenta nueva. Equipo industrial: lavadoras para ropa y sábanas, capacidades, secadoras, hoteles y hospitales, mangles.',
     comunes=['Equipo Gamesail', 'Cotiza con un Asesor', 'Solicita tu Cotización'],
     negativas={

@@ -15,7 +15,7 @@
  * Al cambiar la URL, Google vuelve a revisar los anuncios (suele tardar de unas horas a un día).
  */
 
-var PLAN = {"cuenta": "118-347-6484", "anterior": "645-094-0317", "nombre": "Gamesail", "url": "https://gamesail.mx/", "prefijo": "AB · ", "paginas": {}, "telefono": "33 1185 9797", "mismo_sitio": ["gamesail-lavadoras.vercel.app"]};
+var PLAN = {"cuenta": "118-347-6484", "anterior": "645-094-0317", "nombre": "Gamesail", "url": "https://gamesail.mx/", "prefijo": "AB · ", "paginas": {"AB · Lavadoras para ropa y sábanas > Lavadoras industriales para ropa": "https://gamesail.mx/lavadoras-para-ropa", "AB · Lavadoras para ropa y sábanas > Lavadoras para sábanas": "https://gamesail.mx/lavadoras-para-ropa", "AB · Lavadoras por capacidad y precio > Lavadoras por capacidad": "https://gamesail.mx/lavadoras-por-capacidad", "AB · Secadoras industriales > Secadoras para ropa": "https://gamesail.mx/secadoras-industriales", "AB · Secadoras industriales > Secadoras por capacidad": "https://gamesail.mx/secadoras-industriales", "AB · Hoteles y hospitales > Hoteles": "https://gamesail.mx/hoteles-y-hospitales", "AB · Hoteles y hospitales > Hospitales": "https://gamesail.mx/hoteles-y-hospitales", "AB · Mangles y planchado > Mangles": "https://gamesail.mx/mangles"}, "telefono": "33 1185 9797", "mismo_sitio": ["gamesail-lavadoras.vercel.app"]};
 
 // Solo si es una cuenta nueva (el plan no trae su número): pega aquí su número, por ejemplo '123-456-7890'.
 var CUENTA_NUEVA = '';
