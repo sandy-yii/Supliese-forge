@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: guion de junta en una columna: la frase, los números, qué se movió, por qué hubo paros, qué está en proceso, qué esperamos y qué necesitamos. */
+/* Layout: guion de junta en una columna: la frase, los números, qué se movió, por qué hubo paros, qué está en proceso, qué esperamos, preguntas para la junta y qué necesitamos. */
 :root {
   --bg: #f5f7f9;
   --surface: #ffffff;
@@ -258,6 +258,47 @@ footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line)
   </div>
 </section>
 
+<section aria-labelledby="dudas">
+  <h2 id="dudas">Preguntas para resolver en esta junta</h2>
+  <div class="two">
+    <div class="box">
+      <h3>Gamesail: qué equipo se vende</h3>
+      <p style="font-size:14px;margin:0">Los anuncios dicen lo que se pidió en la junta pasada, pero algunas medidas no están en el catálogo ni en la lista de precios. Si un anuncio promete algo que no hay, llegan pedidos que no se pueden surtir.</p>
+      <ul>
+        <li><strong>¿Tienen secadoras de 130 y 200 kg?</strong> Si sí, el modelo y la ficha para Rodolfo. Si no, las quitamos de los anuncios y nos quedamos con 50 y 100 kg.</li>
+        <li><strong>¿Tienen dobladora de ropa?</strong> Mismo caso: modelo y ficha, o la quitamos de los anuncios de mangles.</li>
+        <li><strong>¿La lavadora de 30 kg es solo de barrera sanitaria (hospital)?</strong> Los anuncios la ofrecen como lavadora normal.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Gamesail: el saldo de la cuenta anterior</h3>
+      <p style="font-size:14px;margin:0">La cuenta anterior tiene <strong>$15,293.55</strong> sin usar y ya no gasta. Para pedirle a Google el reembolso a la tarjeta necesitamos:</p>
+      <ul>
+        <li>¿A nombre de quién factura Google esa cuenta (razón social y RFC)?</li>
+        <li>¿Quién es el titular de la tarjeta Visa terminación 5523? Y un estado de cuenta con los cargos de Google.</li>
+        <li>¿A qué correo llegan las facturas de Google?</li>
+        <li>¿Quién es el contacto de la agencia anterior? Solo un administrador de la cuenta puede cancelarla y pedir el reembolso.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Presupuesto</h3>
+      <ul>
+        <li><strong>¿Autorizan subir el presupuesto a las campañas que ya traen contactos a buen costo?</strong> Traemos la propuesta por campaña: cuánto subir, cuánto cuesta al mes y cuántos contactos más esperamos. Solo se aplica con su sí por escrito.</li>
+        <li><strong>Las campañas anteriores:</strong> ¿autorizan usar su presupuesto en lo que trae contactos, o se quedan como están?</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Vendedores y páginas</h3>
+      <ul>
+        <li><strong>Conteo del lunes 10:</strong> ¿quién lo manda por cada marca y a quién?</li>
+        <li><strong>Prueba de los formularios por correo:</strong> ¿qué día puede cada vendedor confirmar que le llegó la prueba? Después de eso se encienden.</li>
+        <li><strong>Reseñas reales:</strong> ¿hay clientes que den permiso de poner su opinión o su logo en la página? Hoy no ponemos ninguna, porque solo van las reales.</li>
+        <li><strong>Dos cuentas viejas de medición de visitas:</strong> las páginas de Quick Laundry y Kingstar todavía mandan sus visitas a dos cuentas de Google Analytics que no son nuestras. ¿Saben de quién son? Si nadie las usa, las desconectamos.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <section aria-labelledby="necesitamos">
   <h2 id="necesitamos">Lo que necesitamos de ustedes para cerrar ventas</h2>
   <ol class="asks">
@@ -265,7 +306,6 @@ footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line)
     <li><span><b>Conteo de cada lunes</b>Cuántos contactos nuevos recibió cada vendedor, cuántos eran clientes reales y cuántas ventas se cerraron. Es lo que nos dice qué funciona.</span><span class="chip todo">Vendedores</span></li>
     <li><span><b>Avisar el mismo día</b>Si un cliente dice que escribió y nadie le contestó, o si un vendedor ve que dejaron de llegar mensajes.</span><span class="chip todo">Vendedores</span></li>
     <li><span><b>Revisar el correo no deseado</b>Los primeros días de los formularios por correo, por si alguno cae ahí. Si pasa, marcarlo como «no es spam».</span><span class="chip todo">Vendedores</span></li>
-    <li><span><b>Gamesail: secadoras de 130 y 200 kg y dobladora</b>Los anuncios las mencionan, como se pidió en la junta, pero no están en el catálogo ni en la lista de precios. Si las manejan, que pasen el modelo y la ficha a Rodolfo. Si no, las quitamos de los anuncios para no atraer pedidos que no se pueden surtir.</span><span class="chip todo">Cliente</span></li>
     <li><span><b>Decisión sobre las campañas anteriores</b>Si autorizan usar su presupuesto en lo que trae contactos.</span><span class="chip todo">Cliente</span></li>
   </ol>
 </section>
