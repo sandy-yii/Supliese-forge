@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Propuesta de presupuesto Supliese</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: propuesta en una columna: la frase y las dos opciones, cómo elegimos, campañas propuestas, nuevo total por marca, lo que no subimos, botones de llamada, cómo se aplica y qué necesitamos. */
+:root {
+  --bg: #f5f7f9;
+  --surface: #ffffff;
+  --ink: #17222c;
+  --muted: #5a6875;
+  --line: #d9e0e6;
+  --accent: #1d5f86;
+  --accent-soft: #e3eef5;
+  --ok: #1f7a4d; --ok-bg: #e2f2e9;
+  --wait: #9a6100; --wait-bg: #fbefd9;
+  --todo: #44546a; --todo-bg: #e8ecf1;
+  --bar: #2d7cab;
+  --display: "IBM Plex Sans Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f161c; --surface: #16212a; --ink: #e6edf2; --muted: #9aa9b5; --line: #2a3a47;
+    --accent: #7cbde3; --accent-soft: #1b3344;
+    --ok: #6fd3a0; --ok-bg: #173628; --wait: #f0bd63; --wait-bg: #3a2c12; --todo: #b4c2cf; --todo-bg: #24323e;
+    --bar: #5aa7d6; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f161c; --surface: #16212a; --ink: #e6edf2; --muted: #9aa9b5; --line: #2a3a47;
+  --accent: #7cbde3; --accent-soft: #1b3344;
+  --ok: #6fd3a0; --ok-bg: #173628; --wait: #f0bd63; --wait-bg: #3a2c12; --todo: #b4c2cf; --todo-bg: #24323e;
+  --bar: #5aa7d6; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 56px;
+}
+.wrap { max-width: 980px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.15; }
+h1 { font-size: clamp(28px, 4.2vw, 40px); font-weight: 700; }
+h2 { font-size: 22px; font-weight: 600; }
+h3 { font-size: 17px; font-weight: 600; }
+p { margin: 0; max-width: 68ch; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.lead { color: var(--muted); font-size: 16px; }
+header { display: flex; flex-direction: column; gap: 10px; border-bottom: 2px solid var(--ink); padding-bottom: 20px; }
+section { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* Resumen */
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 16px; display: flex; flex-direction: column; gap: 4px; }
+.kpi b { font-family: var(--display); font-size: 30px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.kpi span { color: var(--muted); font-size: 13px; }
+
+/* Barras */
+.bars { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+.bar-row { display: grid; grid-template-columns: 150px 1fr 120px; gap: 12px; align-items: center; }
+.bar-track { height: 14px; background: var(--todo-bg); border-radius: 3px; overflow: hidden; }
+.bar-fill { height: 100%; background: var(--bar); }
+.bar-row .v { font-family: var(--mono); font-size: 13px; text-align: right; font-variant-numeric: tabular-nums; }
+.bar-note { font-size: 13px; color: var(--muted); }
+
+/* Chips */
+.chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+.chip::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.ok { color: var(--ok); background: var(--ok-bg); }
+.wait { color: var(--wait); background: var(--wait-bg); }
+.todo { color: var(--todo); background: var(--todo-bg); }
+
+/* Marcas */
+.brands { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 14px; }
+.brand { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 18px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.brand-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.brand-head .dom { font-family: var(--mono); font-size: 13px; color: var(--accent); overflow-wrap: anywhere; }
+.facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; border-block: 1px solid var(--line); padding-block: 10px; }
+.facts div { display: flex; flex-direction: column; }
+.facts b { font-family: var(--display); font-size: 20px; font-variant-numeric: tabular-nums; }
+.facts span { font-size: 12px; color: var(--muted); }
+.checks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.checks li { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: start; font-size: 14px; }
+.brand p.small { font-size: 13px; color: var(--muted); }
+
+/* Bitácora */
+.log { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--line); display: flex; flex-direction: column; gap: 16px; }
+.log li { position: relative; padding-left: 20px; display: grid; grid-template-columns: 92px 1fr; gap: 12px; }
+.log li::before { content: ""; position: absolute; left: -6px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+.log time { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.log p { font-size: 14px; }
+
+/* Qué esperamos */
+.phases { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.phase { background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 6px; padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+.phase .when { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.phase p { font-size: 14px; }
+.note { background: var(--accent-soft); border-radius: 6px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; }
+.note p { font-size: 14px; }
+
+/* Tablas */
+.table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 620px; }
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--mono); font-size: 11px; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+tr:last-child td { border-bottom: 0; }
+.who { font-weight: 600; white-space: nowrap; }
+
+footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; }
+
+@media (max-width: 560px) {
+  .bar-row { grid-template-columns: 1fr; gap: 4px; }
+  .bar-row .v { text-align: left; }
+  .log li { grid-template-columns: 1fr; gap: 2px; }
+  .facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+/* Junta */
+.big { font-family: var(--display); font-size: clamp(22px, 3vw, 28px); font-weight: 600; line-height: 1.25; max-width: 40ch; text-wrap: balance; }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 14px; }
+.box { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.box ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
+.asks { counter-reset: a; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.asks li { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: start; font-size: 14px; }
+.asks b { display: block; font-size: 15px; }
+.fill { color: var(--wait); font-style: italic; }
+.day { display: inline-block; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.box h3 .chip { margin-left: 8px; vertical-align: middle; }
+.opt { display:inline-block; font-family: var(--mono); font-size: 11px; font-weight:600; padding: 2px 8px; border-radius: 4px; background: var(--accent-soft); color: var(--accent); white-space: nowrap; }
+.optb { background: var(--todo-bg); color: var(--todo); }
+tfoot td { font-weight: 600; border-top: 2px solid var(--line); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header>
+  <span class="eyebrow">Propuesta · Grupo Supliese · 4 de noviembre de 2026 · Atelback</span>
+  <h1>Más contactos: subir el presupuesto solo donde ya funciona</h1>
+  <p class="lead">Con los datos de las dos primeras semanas (20 de octubre al 3 de noviembre), proponemos subir el presupuesto a siete campañas que ya traen contactos a buen costo y que se quedan sin dinero antes de que acabe el día. Nada se aplica sin su autorización por escrito.</p>
+</header>
+
+<section aria-labelledby="frase">
+  <h2 id="frase">Dos opciones</h2>
+  <p class="big">Con la opción A recomendamos empezar: 4 campañas, el costo por contacto más bajo y unos 20 a 25 contactos más al mes.</p>
+  <div class="kpis">
+    <div class="kpi"><b>Opción A · +$4,864</b><span>al mes, en las 4 campañas con el contacto más barato. Se esperan unos 20 a 25 contactos más al mes</span></div>
+    <div class="kpi"><b>Opción B · +$9,637</b><span>al mes, en las 7 campañas. Se esperan unos 29 a 34 contactos más al mes</span></div>
+    <div class="kpi"><b>$0</b><span>en Gamesail por ahora: lleva dos días y todavía está aprendiendo</span></div>
+    <div class="kpi"><b>2 semanas</b><span>después de aplicarlo revisamos si cumplió. Lo que no rinda regresa a su presupuesto de hoy</span></div>
+  </div>
+</section>
+
+<section aria-labelledby="como">
+  <h2 id="como">Cómo elegimos las campañas</h2>
+  <div class="note">
+    <p>Una campaña entra a la propuesta solo si cumple las tres cosas:</p>
+    <ol style="margin:0;padding-left:20px;font-size:14px;display:flex;flex-direction:column;gap:6px">
+      <li><strong>Ya trae contactos.</strong> No subimos campañas que no han demostrado nada.</li>
+      <li><strong>Cada contacto sale a buen precio</strong> comparado con el resto de su marca.</li>
+      <li><strong>Se queda sin presupuesto:</strong> hay gente buscando que hoy ya no ve el anuncio porque se acabó el dinero del día.</li>
+    </ol>
+    <p>Así, cada peso adicional va a búsquedas que ya probaron que traen clientes.</p>
+  </div>
+</section>
+
+<section aria-labelledby="campanas">
+  <h2 id="campanas">Las campañas que proponemos subir</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Marca</th><th>Campaña</th><th>Contactos en 2 semanas</th><th>Costo por contacto</th><th>Se queda sin presupuesto</th><th>Presupuesto al día</th><th>Al mes</th><th>Contactos más al mes</th><th>Opción</th></tr></thead>
+      <tbody>
+        <tr><td>Quick Laundry</td><td>Equipo para lavandería</td><td class="num">15</td><td class="num">$168</td><td class="num">35%</td><td class="num">$260 → $338</td><td class="num">+$2,371</td><td class="num">~10</td><td><span class="opt">A y B</span></td></tr>
+        <tr><td>Laundry Solutions</td><td>Servicio técnico industrial</td><td class="num">4</td><td class="num">$188</td><td class="num">43%</td><td class="num">$75 → $98</td><td class="num">+$699</td><td class="num">~3</td><td><span class="opt">A y B</span></td></tr>
+        <tr><td>Girbau</td><td>Máximo rendimiento</td><td class="num">20</td><td class="num">$38</td><td class="num">10%</td><td class="num">$117 → $152</td><td class="num">+$1,064</td><td class="num">5 a 10 (prueba)</td><td><span class="opt">A y B</span></td></tr>
+        <tr><td>Kingstar</td><td>Túnel de lavado</td><td class="num">2</td><td class="num">$261</td><td class="num">23%</td><td class="num">$80 → $104</td><td class="num">+$730</td><td class="num">~2</td><td><span class="opt">A y B</span></td></tr>
+        <tr><td>Kingstar</td><td>Alta capacidad 60 kg o más</td><td class="num">9</td><td class="num">$365</td><td class="num">39%</td><td class="num">$330 → $429</td><td class="num">+$3,010</td><td class="num">~6</td><td><span class="opt optb">Solo B</span></td></tr>
+        <tr><td>Laundry Solutions</td><td>Reparación y mantenimiento</td><td class="num">3</td><td class="num">$366</td><td class="num">38%</td><td class="num">$156 → $203</td><td class="num">+$1,429</td><td class="num">~3</td><td><span class="opt optb">Solo B</span></td></tr>
+        <tr><td>Quick Laundry</td><td>Campaña Search Marcas (anterior)</td><td class="num">5</td><td class="num">$181</td><td class="num">29%</td><td class="num">$35 → $46</td><td class="num">+$334</td><td class="num">~1</td><td><span class="opt optb">Solo B</span></td></tr>
+        </tbody>
+      <tfoot>
+        <tr><td colspan="6">Opción A (las 4 primeras)</td><td class="num">+$4,864</td><td class="num">20 a 25</td><td></td></tr>
+        <tr><td colspan="6">Opción B (las 7)</td><td class="num">+$9,637</td><td class="num">29 a 34</td><td></td></tr>
+      </tfoot>
+    </table>
+  </div>
+  <p style="font-size:13px;color:var(--muted)">«Se queda sin presupuesto» es la parte de las búsquedas en las que el anuncio no salió porque ya no había dinero ese día. Los contactos esperados son estimados con dos semanas de datos y con un margen conservador. Google solo cuenta a quien acepta las cookies de la página, así que los vendedores pueden recibir más. Máximo rendimiento de Girbau es una prueba: es la campaña con el contacto más barato de todas las marcas ($38), pero solo se queda sin presupuesto el 10% del tiempo, así que el resultado es menos seguro.</p>
+</section>
+
+<section aria-labelledby="totales">
+  <h2 id="totales">Nuevo presupuesto al mes, por marca</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Marca</th><th>Hoy</th><th>Con la opción A</th><th>Con la opción B</th></tr></thead>
+      <tbody>
+        <tr><td>Quick Laundry</td><td class="num">$12,000</td><td class="num">$14,371</td><td class="num">$14,706</td></tr>
+        <tr><td>Kingstar</td><td class="num">$18,700</td><td class="num">$19,430</td><td class="num">$22,439</td></tr>
+        <tr><td>Laundry Solutions</td><td class="num">$8,200</td><td class="num">$8,899</td><td class="num">$10,328</td></tr>
+        <tr><td>Girbau</td><td class="num">$6,600</td><td class="num">$7,664</td><td class="num">$7,664</td></tr>
+        <tr><td>Gamesail</td><td class="num">$19,700</td><td class="num">$19,700</td><td class="num">$19,700</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><td>Total</td><td class="num">$65,200</td><td class="num">$70,064</td><td class="num">$74,837</td></tr>
+      </tfoot>
+    </table>
+  </div>
+</section>
+
+<section aria-labelledby="no">
+  <h2 id="no">Lo que no proponemos subir, y por qué</h2>
+  <div class="box">
+    <ul>
+      <li><strong>Kingstar · Lavandería hotelera:</strong> se queda sin presupuesto, pero cada contacto cuesta $792. Primero hay que bajar ese costo.</li>
+      <li><strong>Quick Laundry · Emprendimiento:</strong> cada contacto cuesta $294, más caro que el resto de la marca.</li>
+      <li><strong>Kingstar · Mangles:</strong> es de las más baratas ($105 por contacto), pero casi nunca se queda sin presupuesto. Más dinero no traería más contactos.</li>
+      <li><strong>Gamesail:</strong> lleva dos días. Esta semana pasa a su presupuesto completo, ya acordado, si sus búsquedas salen limpias. Cualquier aumento, después de dos semanas de datos.</li>
+      <li><strong>Campañas anteriores en pausa:</strong> se quedan como están. Su presupuesto no se usa sin su autorización.</li>
+    </ul>
+  </div>
+</section>
+
+<section aria-labelledby="botones">
+  <h2 id="botones">Cómo van los botones del anuncio</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Marca</th><th>WhatsApp en el anuncio</th><th>Llamada en el anuncio</th></tr></thead>
+      <tbody>
+        <tr><td>Quick Laundry</td><td><span class="chip ok">Funciona</span></td><td><span class="chip wait">Rechazado: Google pide verificar el número. En apelación</span></td></tr>
+        <tr><td>Kingstar</td><td><span class="chip ok">Funciona</span></td><td><span class="chip wait">Rechazado: Google pide verificar el número. En apelación</span></td></tr>
+        <tr><td>Laundry Solutions</td><td><span class="chip ok">Funciona</span></td><td><span class="chip ok">Aprobado</span></td></tr>
+        <tr><td>Girbau</td><td><span class="chip ok">Funciona</span></td><td><span class="chip wait">Rechazado: Google pide verificar el número. En apelación</span></td></tr>
+        <tr><td>Gamesail</td><td><span class="chip wait">En revisión de Google</span></td><td><span class="chip wait">En revisión de Google</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:13px;color:var(--muted)">Mientras el botón de llamada esté rechazado, el teléfono de cada vendedor sigue visible en su página y las llamadas desde ahí sí llegan.</p>
+</section>
+
+<section aria-labelledby="aplica">
+  <h2 id="aplica">Cómo se aplica</h2>
+  <ol class="asks">
+    <li><span><b>Ustedes eligen</b>Opción A, opción B, o campaña por campaña. Basta un mensaje por escrito.</span><span class="chip todo">Cliente</span></li>
+    <li><span><b>Lo aplicamos el mismo día</b>Solo cambia el presupuesto de las campañas elegidas. No se tocan anuncios, palabras ni páginas, así que Google no tiene que volver a aprender.</span><span class="chip todo">Atelback</span></li>
+    <li><span><b>Revisamos en dos semanas</b>Contactos y costo por contacto de cada campaña, contra el conteo de los vendedores. Lo que no rinda regresa a su presupuesto de hoy.</span><span class="chip todo">Atelback y vendedores</span></li>
+  </ol>
+</section>
+
+<footer>Fuente: Google Ads de Quick Laundry, Kingstar, Laundry Solutions y Girbau, del 20 de octubre al 3 de noviembre de 2026, con revisiones de solo lectura. Los contactos son los que registró Google. Preparado por Atelback.</footer>
+
+</div>
+</body>
+</html>
