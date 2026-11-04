@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Avance diario Supliese</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: avance diario en una columna: la frase, el trabajo de ayer por marca, los números del día, cómo leerlos, lo que revisamos cada mañana, lo que sigue y las preguntas. */
+:root {
+  --bg: #f5f7f9;
+  --surface: #ffffff;
+  --ink: #17222c;
+  --muted: #5a6875;
+  --line: #d9e0e6;
+  --accent: #1d5f86;
+  --accent-soft: #e3eef5;
+  --ok: #1f7a4d; --ok-bg: #e2f2e9;
+  --wait: #9a6100; --wait-bg: #fbefd9;
+  --todo: #44546a; --todo-bg: #e8ecf1;
+  --bar: #2d7cab;
+  --display: "IBM Plex Sans Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f161c; --surface: #16212a; --ink: #e6edf2; --muted: #9aa9b5; --line: #2a3a47;
+    --accent: #7cbde3; --accent-soft: #1b3344;
+    --ok: #6fd3a0; --ok-bg: #173628; --wait: #f0bd63; --wait-bg: #3a2c12; --todo: #b4c2cf; --todo-bg: #24323e;
+    --bar: #5aa7d6; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f161c; --surface: #16212a; --ink: #e6edf2; --muted: #9aa9b5; --line: #2a3a47;
+  --accent: #7cbde3; --accent-soft: #1b3344;
+  --ok: #6fd3a0; --ok-bg: #173628; --wait: #f0bd63; --wait-bg: #3a2c12; --todo: #b4c2cf; --todo-bg: #24323e;
+  --bar: #5aa7d6; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 56px;
+}
+.wrap { max-width: 980px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.15; }
+h1 { font-size: clamp(28px, 4.2vw, 40px); font-weight: 700; }
+h2 { font-size: 22px; font-weight: 600; }
+h3 { font-size: 17px; font-weight: 600; }
+p { margin: 0; max-width: 68ch; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.lead { color: var(--muted); font-size: 16px; }
+header { display: flex; flex-direction: column; gap: 10px; border-bottom: 2px solid var(--ink); padding-bottom: 20px; }
+section { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* Resumen */
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 16px; display: flex; flex-direction: column; gap: 4px; }
+.kpi b { font-family: var(--display); font-size: 30px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.kpi span { color: var(--muted); font-size: 13px; }
+
+/* Barras */
+.bars { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+.bar-row { display: grid; grid-template-columns: 150px 1fr 120px; gap: 12px; align-items: center; }
+.bar-track { height: 14px; background: var(--todo-bg); border-radius: 3px; overflow: hidden; }
+.bar-fill { height: 100%; background: var(--bar); }
+.bar-row .v { font-family: var(--mono); font-size: 13px; text-align: right; font-variant-numeric: tabular-nums; }
+.bar-note { font-size: 13px; color: var(--muted); }
+
+/* Chips */
+.chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+.chip::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.ok { color: var(--ok); background: var(--ok-bg); }
+.wait { color: var(--wait); background: var(--wait-bg); }
+.todo { color: var(--todo); background: var(--todo-bg); }
+
+/* Marcas */
+.brands { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 14px; }
+.brand { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 18px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.brand-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.brand-head .dom { font-family: var(--mono); font-size: 13px; color: var(--accent); overflow-wrap: anywhere; }
+.facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; border-block: 1px solid var(--line); padding-block: 10px; }
+.facts div { display: flex; flex-direction: column; }
+.facts b { font-family: var(--display); font-size: 20px; font-variant-numeric: tabular-nums; }
+.facts span { font-size: 12px; color: var(--muted); }
+.checks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.checks li { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: start; font-size: 14px; }
+.brand p.small { font-size: 13px; color: var(--muted); }
+
+/* Bitácora */
+.log { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--line); display: flex; flex-direction: column; gap: 16px; }
+.log li { position: relative; padding-left: 20px; display: grid; grid-template-columns: 92px 1fr; gap: 12px; }
+.log li::before { content: ""; position: absolute; left: -6px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+.log time { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.log p { font-size: 14px; }
+
+/* Qué esperamos */
+.phases { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.phase { background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 6px; padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+.phase .when { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.phase p { font-size: 14px; }
+.note { background: var(--accent-soft); border-radius: 6px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; }
+.note p { font-size: 14px; }
+
+/* Tablas */
+.table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 620px; }
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--mono); font-size: 11px; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+tr:last-child td { border-bottom: 0; }
+.who { font-weight: 600; white-space: nowrap; }
+
+footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; }
+
+@media (max-width: 560px) {
+  .bar-row { grid-template-columns: 1fr; gap: 4px; }
+  .bar-row .v { text-align: left; }
+  .log li { grid-template-columns: 1fr; gap: 2px; }
+  .facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+/* Junta */
+.big { font-family: var(--display); font-size: clamp(22px, 3vw, 28px); font-weight: 600; line-height: 1.25; max-width: 40ch; text-wrap: balance; }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 14px; }
+.box { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.box ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
+.asks { counter-reset: a; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.asks li { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: start; font-size: 14px; }
+.asks b { display: block; font-size: 15px; }
+.fill { color: var(--wait); font-style: italic; }
+.day { display: inline-block; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.box h3 .chip { margin-left: 8px; vertical-align: middle; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header>
+  <span class="eyebrow">Avance diario · Grupo Supliese · miércoles 4 de noviembre de 2026 · Atelback</span>
+  <h1>Lo que se hizo ayer, cómo van los contactos y lo que sigue</h1>
+  <p class="lead">Repaso de 10 a 15 minutos. Primero el trabajo de ayer, luego los números del día y al final las preguntas para los vendedores.</p>
+</header>
+
+<section aria-labelledby="frase">
+  <h2 id="frase">En una frase</h2>
+  <p class="big">Ayer encendimos Gamesail, conectamos la medición de visitas en las cinco páginas y movimos dinero de Kingstar y Quick Laundry hacia lo que trae contactos, sin gastar más.</p>
+  <div class="kpis">
+    <div class="kpi"><b>5 de 5</b><span>marcas con anuncios encendidos. Gamesail, desde ayer</span></div>
+    <div class="kpi"><b>5</b><span>secciones nuevas de Gamesail, una por equipo. Sus anuncios ya llevan a la suya</span></div>
+    <div class="kpi"><b>5 de 5</b><span>páginas con medición de visitas propia (Google Analytics)</span></div>
+    <div class="kpi"><b>$0</b><span>de aumento en el gasto: cada marca sigue dentro de su presupuesto acordado</span></div>
+  </div>
+</section>
+
+<section aria-labelledby="ayer">
+  <h2 id="ayer">Lo que se hizo ayer, martes 3, por marca</h2>
+  <div class="two">
+    <div class="box">
+      <h3>Gamesail <span class="chip ok">Encendida</span></h3>
+      <ul>
+        <li><strong>Siete campañas encendidas</strong> con la mitad del presupuesto la primera semana ($324 al día), para que Google aprenda sin gastar de más.</li>
+        <li><strong>Cuatro formas de contar contactos:</strong> WhatsApp, formulario, teléfono de la página y correo.</li>
+        <li><strong>Cinco secciones nuevas</strong> en gamesail.mx: lavadoras para ropa, lavadoras por capacidad, secadoras, hoteles y hospitales, y mangles. Cada anuncio lleva a la sección de su equipo, igual que en las otras marcas, donde el clic salió de 34% a 44% más barato.</li>
+        <li><strong>Cuenta anterior revisada:</strong> todo está en pausa y ya no gasta. Tiene $15,293.55 sin usar; preparamos lo necesario para pedir el reembolso a Google.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Kingstar <span class="chip ok">Reacomodo</span></h3>
+      <ul>
+        <li><strong>Más dinero a lo que trae contactos:</strong> alta capacidad de $280 a $330 al día y lavandería hotelera de $80 a $100.</li>
+        <li><strong>Sale de lo que no lo usaba:</strong> túnel de $110 a $80, mangles de $60 a $50 y marca de $35 a $5.</li>
+        <li>El total no cambia: $615 al día.</li>
+        <li><strong>Botón de llamada:</strong> seguimos el caso con soporte de Google, que ya confirmó que la página cumple.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Quick Laundry <span class="chip ok">Reacomodo</span></h3>
+      <ul>
+        <li><strong>Lavadoras de monedas sube de $34 a $42 al día:</strong> trae contactos y se quedaba sin presupuesto.</li>
+        <li><strong>La campaña de la marca baja de $14 a $6</strong>: no usaba lo que tenía.</li>
+        <li>El total no cambia.</li>
+        <li><strong>Búsquedas bloqueadas:</strong> marcas que no se venden en Quick Laundry, como Speed Queen, Electrolux o Primus, para no pagar clics que no sirven.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Girbau <span class="chip wait">En revisión</span></h3>
+      <ul>
+        <li><strong>Todos sus anuncios ya llevan a girbauoccidente.com</strong>, su dirección de siempre.</li>
+        <li>Google está terminando de revisar la campaña principal tras el cambio. Mientras tanto puede salir un poco menos.</li>
+        <li><strong>Botón de llamada:</strong> en seguimiento con soporte de Google.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Laundry Solutions <span class="chip ok">Estable</span></h3>
+      <ul>
+        <li><strong>Sin cambios a propósito:</strong> está aprendiendo y la dejamos trabajar.</li>
+        <li><strong>Revisión diaria:</strong> gasto, contactos y búsquedas.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>En las cinco páginas</h3>
+      <ul>
+        <li><strong>Medición de visitas propia</strong> (Google Analytics). Nos dice qué sección y qué equipo traen más contactos.</li>
+        <li><strong>Aviso de cookies y de privacidad actualizado.</strong> Vuelve a salir una vez a quien ya lo había aceptado.</li>
+        <li><strong>Formularios:</strong> mientras se prueba el envío por correo a cada vendedor, abren WhatsApp para que ninguno se pierda.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="numeros">
+  <h2 id="numeros">Contactos de ayer</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Marca</th><th>Contactos ayer (3 nov)</th><th>Últimos 7 días</th><th>Gasto ayer</th><th>Nota</th></tr></thead>
+      <tbody>
+        <tr><td>Quick Laundry</td><td class="num fill">se llena en la mañana</td><td class="num fill">—</td><td class="num fill">—</td><td></td></tr>
+        <tr><td>Kingstar</td><td class="num fill">se llena en la mañana</td><td class="num fill">—</td><td class="num fill">—</td><td></td></tr>
+        <tr><td>Laundry Solutions</td><td class="num fill">se llena en la mañana</td><td class="num fill">—</td><td class="num fill">—</td><td></td></tr>
+        <tr><td>Girbau</td><td class="num fill">se llena en la mañana</td><td class="num fill">—</td><td class="num fill">—</td><td></td></tr>
+        <tr><td>Gamesail</td><td class="num fill">se llena en la mañana</td><td class="num fill">—</td><td class="num fill">—</td><td>Primer día, a la mitad del presupuesto</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note">
+    <p><strong>Cómo leer el número de un día.</strong> Un día puede traer 3 contactos y el siguiente 12 sin que haya cambiado nada, porque depende de cuánta gente busca ese día. Además, Google tarda una o dos semanas en aprender cada campaña nueva o cada cambio grande. Por eso:</p>
+    <ul style="margin:0;padding-left:18px;font-size:14px;display:flex;flex-direction:column;gap:6px">
+      <li><strong>Cada día</strong> revisamos que nada se haya detenido y corregimos lo urgente.</li>
+      <li><strong>Cada lunes</strong> movemos el dinero, con los datos de la semana completa y el conteo de los vendedores.</li>
+    </ul>
+    <p>Así no hacemos que Google vuelva a aprender cada día.</p>
+  </div>
+</section>
+
+<section aria-labelledby="diario">
+  <h2 id="diario">Lo que revisamos cada mañana, en las cinco cuentas</h2>
+  <ol class="asks">
+    <li><span><b>Que cada campaña esté saliendo</b>Gasto contra su presupuesto. Si alguna dejó de gastar, se revisa el mismo día.</span><span class="chip ok">Diario</span></li>
+    <li><span><b>Contactos por marca</b>WhatsApp, llamadas y formularios de ayer, contra los días anteriores.</span><span class="chip ok">Diario</span></li>
+    <li><span><b>Anuncios rechazados o en revisión</b>Si Google detiene un anuncio, se corrige o se apela.</span><span class="chip ok">Diario</span></li>
+    <li><span><b>Búsquedas que no sirven</b>Lo que la gente escribió antes de dar clic. Lo que no es cliente (doméstico, empleo, usado, otras marcas) se bloquea.</span><span class="chip ok">Diario</span></li>
+    <li><span><b>Páginas y teléfonos</b>Que cada página abra y que el teléfono del vendedor se vea. Google lo pide para el botón de llamada.</span><span class="chip ok">Diario</span></li>
+  </ol>
+</section>
+
+<section aria-labelledby="sigue">
+  <h2 id="sigue">Lo que sigue</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Cuándo</th><th>Qué</th><th>Quién</th></tr></thead>
+      <tbody>
+        <tr><td><span class="chip wait">Hoy</span></td><td>Gamesail: confirmar que Google aprobó los anuncios en sus secciones, y revisar sus primeras búsquedas para bloquear las que no sirven.</td><td class="who">Atelback</td></tr>
+        <tr><td><span class="chip wait">Hoy</span></td><td>Comprobar que la medición de visitas ya recibe datos en las cinco páginas.</td><td class="who">Atelback</td></tr>
+        <tr><td><span class="chip wait">Hoy</span></td><td>Botones de llamada de Quick Laundry, Kingstar y Girbau: seguimiento con Google.</td><td class="who">Atelback y Google</td></tr>
+        <tr><td><span class="chip wait">Hoy</span></td><td>Propuesta por campaña de cuánto subir a las que traen contactos a buen costo. Solo se aplica si la autorizan por escrito.</td><td class="who">Atelback</td></tr>
+        <tr><td><span class="chip todo">Jueves o viernes</span></td><td>Gamesail pasa a su presupuesto completo ($648 al día) si sus búsquedas salen limpias.</td><td class="who">Atelback</td></tr>
+        <tr><td><span class="chip todo">Esta semana</span></td><td>Formularios por correo a cada vendedor: primero una prueba, luego se encienden.</td><td class="who">Rodolfo y vendedores</td></tr>
+        <tr><td><span class="chip todo">Lunes 10</span></td><td>Primer conteo de los vendedores y primer ajuste semanal con la semana completa.</td><td class="who">Vendedores y Atelback</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section aria-labelledby="preguntas">
+  <h2 id="preguntas">Preguntas</h2>
+  <div class="two">
+    <div class="box">
+      <h3>Para los vendedores, cada día</h3>
+      <p style="font-size:14px;margin:0">Con esto sabemos si los contactos son buenos, no solo cuántos llegan.</p>
+      <ul>
+        <li>¿Cuántos contactos recibió ayer cada uno, y por dónde: WhatsApp, llamada o formulario?</li>
+        <li>¿Alguno parecía cliente real? ¿Qué equipo y qué capacidad pidió?</li>
+        <li>¿Alguien preguntó por algo que no vendemos o que no viene en la página?</li>
+        <li>¿Algún cliente dijo que escribió y no le contestaron?</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Pendientes de la junta del martes</h3>
+      <ul>
+        <li><strong>Gamesail:</strong> ¿tienen secadoras de 130 y 200 kg y dobladora? ¿La lavadora de 30 kg es solo para hospital? Si las manejan, que pasen el modelo y la ficha a Rodolfo. Si no, las quitamos de los anuncios.</li>
+        <li><strong>Reembolso de la cuenta anterior de Gamesail:</strong> razón social y RFC, titular de la Visa terminación 5523 y estado de cuenta, correo de las facturas de Google y contacto de la agencia anterior.</li>
+        <li><strong>Presupuesto:</strong> ¿autorizan subir a las campañas que traen contactos a buen costo?</li>
+        <li><strong>Conteo del lunes 10:</strong> ¿quién lo manda por cada marca?</li>
+        <li><strong>Formularios por correo:</strong> ¿qué día confirma cada vendedor la prueba?</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>Fuente: Google Ads de las cinco cuentas y revisiones de solo lectura del martes 3 de noviembre de 2026. Google cuenta solo a quien acepta las cookies de la página. Preparado por Atelback.</footer>
+
+</div>
+</body>
+</html>
