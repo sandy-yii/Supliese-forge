@@ -61,7 +61,7 @@ function main() {
       lugares.push({ donde: '«' + f.campaign.name + '» (campaña ' + f.campaign.status + ')', estado: f.campaignAsset.status, a: f.asset,
         op: { campaignAssetOperation: { remove: f.campaignAsset.resourceName } } });
     });
-  filas('SELECT campaign.name, ad_group.name, ad_group_asset.resource_name, ad_group_asset.status, ' + datos + ' FROM ad_group_asset ' +
+  filas('SELECT campaign.name, campaign.status, ad_group.name, ad_group.status, ad_group_asset.resource_name, ad_group_asset.status, ' + datos + ' FROM ad_group_asset ' +
     'WHERE ad_group_asset.field_type IN ' + campos + " AND ad_group_asset.status != 'REMOVED' AND ad_group.status != 'REMOVED' " +
     "AND campaign.status != 'REMOVED'", 'los botones de los grupos')
     .forEach(function (f) {
