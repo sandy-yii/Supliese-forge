@@ -127,7 +127,7 @@ La cuenta es **«Supliese» (414517882)** y la administra Atelback con gamesailm
 ```
 S1 · cerrado (dominios viejos con 301 a su marca)
 S2 · Quick Laundry, Kingstar, Laundry Solutions · cerrado
-S2 · Girbau · lista (4 nov): girbaupro.com ya puede redirigir (301) a girbauoccidente.com, mismo camino
+S2 · Girbau · cerrado (4 nov): girbaupro.com ya redirige (301) a girbauoccidente.com
 S3 · ninguna que usemos
 S4 · Gamesail · cerrado y comprobado con Tag Assistant (3 nov)
 S5 · cerrado (2 nov)
