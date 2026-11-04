@@ -19,7 +19,7 @@
  *   4. Si está de acuerdo, EJECUTAR.
  */
 
-var PLAN = {"cuenta": "860-582-6837", "anterior": "", "nombre": "Girbau", "url": "https://girbauoccidente.com/", "prefijo": "AB · ", "mismo_sitio": ["supliese-girbau-lavadoras.vercel.app", "girbaupro.com"], "paginas": {}, "campanas": [{"nombre": "AB · Marca Girbau", "arranque": 49, "completo": 98}, {"nombre": "AB · Girbau Smart Plus", "arranque": 22, "completo": 43}, {"nombre": "AB · Girbau por capacidad y sector", "arranque": 27, "completo": 54}, {"nombre": "AB · Servicio técnico Girbau", "arranque": 11, "completo": 22}], "anteriores": "PAUSAR", "pausar_palabras": [], "pausar_nombres": [], "basura": {"nombre": "PB · Negativas basura", "kw": [["lorsa", "BROAD"], ["lorza", "BROAD"], ["wascomat", "BROAD"], ["unimac", "BROAD"], ["maytag", "BROAD"], ["alliance", "BROAD"], ["speed queen", "PHRASE"], ["primus", "BROAD"], ["electrolux", "BROAD"], ["lg", "BROAD"], ["imesa", "BROAD"], ["sertec", "BROAD"], ["edro", "BROAD"], ["lavartind", "BROAD"], ["whirlpool", "BROAD"], ["braun", "BROAD"], ["gamesail", "BROAD"], ["clm", "BROAD"], ["kingstar", "BROAD"], ["king star", "PHRASE"], ["supliese", "BROAD"], ["quick laundry", "PHRASE"], ["continental girbau", "PHRASE"], ["empleo", "BROAD"], ["curso", "BROAD"], ["cursos", "BROAD"], ["manual", "BROAD"], ["pdf", "BROAD"], ["usada", "BROAD"], ["usadas", "BROAD"], ["renta", "BROAD"]]}};
+var PLAN = {"cuenta": "860-582-6837", "anterior": "", "nombre": "Girbau", "url": "https://girbauoccidente.com/", "prefijo": "AB · ", "mismo_sitio": ["supliese-girbau-lavadoras.vercel.app", "girbaupro.com"], "paginas": {}, "campanas": [{"nombre": "AB · Marca Girbau", "arranque": 49, "completo": 98}, {"nombre": "AB · Girbau Smart Plus", "arranque": 22, "completo": 43}, {"nombre": "AB · Girbau por capacidad y sector", "arranque": 27, "completo": 54}, {"nombre": "AB · Servicio técnico Girbau", "arranque": 11, "completo": 22}], "anteriores": "PAUSAR", "pausar_palabras": [], "pausar_nombres": [], "arranque": false, "basura": {"nombre": "PB · Negativas basura", "kw": [["lorsa", "BROAD"], ["lorza", "BROAD"], ["wascomat", "BROAD"], ["unimac", "BROAD"], ["maytag", "BROAD"], ["alliance", "BROAD"], ["speed queen", "PHRASE"], ["primus", "BROAD"], ["electrolux", "BROAD"], ["lg", "BROAD"], ["imesa", "BROAD"], ["sertec", "BROAD"], ["edro", "BROAD"], ["lavartind", "BROAD"], ["whirlpool", "BROAD"], ["braun", "BROAD"], ["gamesail", "BROAD"], ["clm", "BROAD"], ["kingstar", "BROAD"], ["king star", "PHRASE"], ["supliese", "BROAD"], ["quick laundry", "PHRASE"], ["continental girbau", "PHRASE"], ["empleo", "BROAD"], ["curso", "BROAD"], ["cursos", "BROAD"], ["manual", "BROAD"], ["pdf", "BROAD"], ["usada", "BROAD"], ["usadas", "BROAD"], ["renta", "BROAD"]]}};
 
 // Solo si es una cuenta nueva (el plan no trae su número): pega aquí su número, por ejemplo '123-456-7890'.
 var CUENTA_NUEVA = '';
@@ -106,9 +106,10 @@ function main() {
   function esNueva(nombre) { return nombre.indexOf(PLAN.prefijo) === 0; }
   var anteriores = campanas.filter(function (k) { return !esNueva(k.nombre) && k.estado === 'ENABLED'; });
   var siguen = PLAN.anteriores === 'MITAD' ? anteriores : [];
-  var completo = PLAN.anteriores === 'PAUSAR' || anteriores.length === 0;
+  // «arranque» en el plan: se encienden a la mitad aunque no haya campañas anteriores (cuenta nueva, primera semana).
+  var completo = !PLAN.arranque && (PLAN.anteriores === 'PAUSAR' || anteriores.length === 0);
   Logger.log('Campañas anteriores habilitadas: ' + anteriores.length + '. Presupuesto de las nuevas: ' +
-    (completo ? 'COMPLETO' : 'ARRANQUE (la mitad), porque las anteriores siguen con la otra mitad') + '.');
+    (completo ? 'COMPLETO' : PLAN.arranque ? 'ARRANQUE (la mitad) la primera semana, como dice el plan' : 'ARRANQUE (la mitad), porque las anteriores siguen con la otra mitad') + '.');
 
   // 1. Campañas nuevas
   PLAN.campanas.forEach(function (k) {

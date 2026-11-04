@@ -228,7 +228,7 @@ def js_activar(p):
                 mismo_sitio=c.get('mismo_sitio', []), paginas=paginas(c),
                 campanas=[dict(nombre=k['nombre'], arranque=k['arranque'], completo=k['diario']) for k in p['campanas']],
                 anteriores=act.get('anteriores', 'MITAD'), pausar_palabras=act.get('pausar_palabras', []),
-                pausar_nombres=act.get('pausar_nombres', []),
+                pausar_nombres=act.get('pausar_nombres', []), arranque=act.get('arranque', False),
                 basura=dict(nombre='PB · Negativas basura', kw=basura))
     return plantilla('plantilla-activar.js', c, plan)
 

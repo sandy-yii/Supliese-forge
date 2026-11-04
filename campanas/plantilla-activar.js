@@ -106,9 +106,10 @@ function main() {
   function esNueva(nombre) { return nombre.indexOf(PLAN.prefijo) === 0; }
   var anteriores = campanas.filter(function (k) { return !esNueva(k.nombre) && k.estado === 'ENABLED'; });
   var siguen = PLAN.anteriores === 'MITAD' ? anteriores : [];
-  var completo = PLAN.anteriores === 'PAUSAR' || anteriores.length === 0;
+  // «arranque» en el plan: se encienden a la mitad aunque no haya campañas anteriores (cuenta nueva, primera semana).
+  var completo = !PLAN.arranque && (PLAN.anteriores === 'PAUSAR' || anteriores.length === 0);
   Logger.log('Campañas anteriores habilitadas: ' + anteriores.length + '. Presupuesto de las nuevas: ' +
-    (completo ? 'COMPLETO' : 'ARRANQUE (la mitad), porque las anteriores siguen con la otra mitad') + '.');
+    (completo ? 'COMPLETO' : PLAN.arranque ? 'ARRANQUE (la mitad) la primera semana, como dice el plan' : 'ARRANQUE (la mitad), porque las anteriores siguen con la otra mitad') + '.');
 
   // 1. Campañas nuevas
   PLAN.campanas.forEach(function (k) {

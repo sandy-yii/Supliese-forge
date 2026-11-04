@@ -190,7 +190,8 @@ CUENTAS['gamesail'] = dict(
            '[maytag lavadora industrial]: Maytag la vende Quick Laundry',
            '«mangle industrial»: pasa a CLM'],
     cambios_actuales=[],
-    activacion=dict(anteriores='MITAD'),
+    # 4 nov: cuenta nueva sin campañas anteriores; la primera semana a la mitad ($324 al día), luego completo.
+    activacion=dict(anteriores='MITAD', arranque=True),
 )
 
 # ---------------------------------------------------------------- Quick Laundry (cuenta Supliese Gómez)
