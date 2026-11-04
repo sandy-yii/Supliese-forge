@@ -11,7 +11,7 @@ Lo que sigue de mi lado:
 
 - **Gamesail:** hoy paso cada anuncio a su sección con un script. Competencia y Marca se quedan en la portada.
 - **Tag Assistant:** pruebo gamesail.mx aceptando las cookies primero, y te aviso si algo no sale.
-- **`seccion`:** la registro como dimensión personalizada en las cinco propiedades.
+- **`seccion`:** ya quedó registrada como dimensión «Sección» en las cinco propiedades.
 - **Secadoras de 130 y 200 kg y dobladora:** lo pregunto al cliente en la junta.
   - Si las manejan, te pasan el modelo y la ficha.
   - Si no, quito esas medidas de los anuncios. La página se queda como la dejaste.
@@ -27,5 +27,5 @@ S2 · Girbau espera la aprobación de Google
 S4 · Gamesail · cerrado y comprobado con Tag Assistant (WhatsApp y teléfono, gcs=G111, seccion llega)
 S6 · las propiedades viejas G-69R59Z71PV y G-26FWQ5PPVJ siguen recibiendo visitas por la etiqueta en Google: lo veo yo
 S8 · pendiente (correo en vivo apagado hasta la prueba con vendedores)
-GA4 · cerrado en las cinco (3 nov); falta registrar «seccion» en Analytics (yo)
+GA4 · cerrado en las cinco (3 nov); «seccion» ya registrada como dimensión «Sección» en las cinco propiedades
 ```
