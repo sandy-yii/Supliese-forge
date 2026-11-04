@@ -23,7 +23,7 @@ Lo que sigue de mi lado:
 ## Estado de las líneas S
 
 ```
-S2 · Girbau espera la aprobación de Google
+S2 · Girbau · lista (4 nov)
 S4 · Gamesail · cerrado y comprobado con Tag Assistant (WhatsApp y teléfono, gcs=G111, seccion llega)
 S6 · las propiedades viejas G-69R59Z71PV y G-26FWQ5PPVJ siguen recibiendo visitas por la etiqueta en Google: lo veo yo
 S8 · pendiente (correo en vivo apagado hasta la prueba con vendedores)
