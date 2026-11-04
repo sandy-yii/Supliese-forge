@@ -223,8 +223,10 @@ CUENTAS['quick-laundry'] = dict(
     # 2 nov: las campañas anteriores no se encienden ni se les mueve el presupuesto sin autorización del cliente
     # (Modelo de Negocio se queda pausada). Entre las nuevas: Equipo ($142 por contacto, pierde 29% por presupuesto) recibe
     # lo de Emprendimiento ($443 por contacto), Secadoras y Marcas comerciales (sin gasto). Total de las nuevas: $334, igual.
-    ajustes=dict(presupuesto={'Equipo para lavandería': 260, 'Emprendimiento': 20, 'Autoservicio y monedas': 34,
-                              'Secadoras para lavandería': 3, 'Marcas comerciales': 3, 'Marca Quick Laundry': 14},
+    # 4 nov (paquete A, sin gastar más): Marca Quick Laundry casi no tiene búsquedas (promedio $2 al día de $14); $8 pasan a
+    # Autoservicio, que pierde 41% por presupuesto y trajo contacto el 2 nov. Total $334, igual que antes.
+    ajustes=dict(presupuesto={'Equipo para lavandería': 260, 'Emprendimiento': 20, 'Autoservicio y monedas': 42,
+                              'Secadoras para lavandería': 3, 'Marcas comerciales': 3, 'Marca Quick Laundry': 6},
                  arriba={'Marca Quick Laundry': dict(cuota=0.8, tope=10)},
                  presencia=['Campaña Search Marcas']),
     # 27 oct (3): Google califica «anuncio poco relevante» en lavadoras para negocio / para lavanderías / industriales para
@@ -425,8 +427,11 @@ CUENTAS['clm'] = dict(
     # 31 oct (vaciado del 20 al 30 oct): Alta capacidad (5 contactos) y Túnel (2, pierde 24% por presupuesto) sí gastan su
     # presupuesto; Mangles (3 contactos a $66) gasta unos $18 al día porque lo frena la puja, no el dinero; 20 a 45 kg (0
     # contactos), Hotelera (1) y Marca (sin gasto) no usan el suyo. Se mueve a las que lo gastan. Total $615 = tope.
-    ajustes=dict(presupuesto={'Alta capacidad 60 kg o más': 280, 'Túnel de lavado': 110, 'Lavandería hotelera e institucional': 80,
-                              'Lavadoras y secadoras de 20 a 45 kg': 50, 'Mangles y planchado': 60, 'Marca CLM': 35},
+    # 4 nov (paquete A, sin gastar más): Marca CLM no ha gastado nada desde el arranque ($35 → $5); Túnel gasta en promedio
+    # $23 de $110 y el 2 nov $66 ($110 → $80); Mangles gastó $46 de $60 y lo frena la puja ($60 → $50). Esos $70 van a
+    # Alta capacidad (pierde 81% por presupuesto, $280 → $330) y Hotelera (pierde 42%, $80 → $100). Total $615, igual.
+    ajustes=dict(presupuesto={'Alta capacidad 60 kg o más': 330, 'Túnel de lavado': 80, 'Lavandería hotelera e institucional': 100,
+                              'Lavadoras y secadoras de 20 a 45 kg': 50, 'Mangles y planchado': 50, 'Marca CLM': 5},
                  # 28 oct: «bajar el costo por clic» regresó Hotelera a $18 y 20 a 45 kg a $15 (el tope del plan). Ya no se
                  # suben topes en esta cuenta: el lugar se gana con las páginas nuevas, no pagando más por clic.
                  # 27 oct: quien busca «clm» o «kingstar» ya quiere la marca: sale hasta arriba
