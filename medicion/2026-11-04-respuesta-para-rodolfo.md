@@ -16,9 +16,9 @@ Lo que sigue de mi lado:
   - Si las manejan, te pasan el modelo y la ficha.
   - Si no, quito esas medidas de los anuncios. La página se queda como la dejaste.
 - **«centro de lavado» y la columna de kilos al día:** están bien como quedaron.
-- **El error del cotizador de Gamesail:** gracias por avisar y por corregirlo rápido. Gamesail se encendió el 4 nov, así que pudo tocar pocas visitas.
+- **El error del cotizador de Gamesail:** gracias por avisar y por corregirlo rápido. Gamesail se encendió el 3 nov, así que pudo tocar pocas visitas.
 
-**Una pregunta:** ¿a qué hora del 4 nov quedó bien el cotizador de gamesail.mx? Es para saber qué horas no contar en la revisión.
+**Una pregunta:** ¿a qué hora del 3 nov quedó bien el cotizador de gamesail.mx? Es para saber qué horas no contar en la revisión.
 
 ## Estado de las líneas S
 
@@ -27,5 +27,5 @@ S2 · Girbau espera la aprobación de Google
 S4 · Gamesail · cerrado y comprobado con Tag Assistant (WhatsApp y teléfono, gcs=G111, seccion llega)
 S6 · las propiedades viejas G-69R59Z71PV y G-26FWQ5PPVJ siguen recibiendo visitas por la etiqueta en Google: lo veo yo
 S8 · pendiente (correo en vivo apagado hasta la prueba con vendedores)
-GA4 · cerrado en las cinco (4 nov); falta registrar «seccion» en Analytics (yo)
+GA4 · cerrado en las cinco (3 nov); falta registrar «seccion» en Analytics (yo)
 ```
