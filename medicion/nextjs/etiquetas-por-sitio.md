@@ -46,6 +46,16 @@ NEXT_PUBLIC_GADS_LABEL_LLAMADA=MXulCPnS-6MdEMfPz_Io
 NEXT_PUBLIC_GADS_LABEL_CORREO=tzQpCNjS-6MdEMfPz_Io
 ```
 
-## Gamesail · gamesail.mx · cuenta nueva (AW-18531600046)
+## Gamesail · gamesail.mx · cuenta nueva (118-347-6484)
 
-Pendiente: falta el número de cuenta para crear sus acciones «AB ·» con `conversiones.js`. Todavía no tiene campañas.
+Creadas el 3 nov 2026 con `conversiones.js`. Sus 7 campañas están creadas en pausa.
+
+```
+NEXT_PUBLIC_GADS_ID=AW-18531600046
+NEXT_PUBLIC_GADS_LABEL_WHATSAPP=NPyqCLamzrEdEK6Nx4RF
+NEXT_PUBLIC_GADS_LABEL_FORMULARIO=b-alCJLg1rEdEK6Nx4RF
+NEXT_PUBLIC_GADS_LABEL_LLAMADA=r456CNDP1rEdEK6Nx4RF
+NEXT_PUBLIC_GADS_LABEL_CORREO=iPUqCLGkzrEdEK6Nx4RF
+```
+
+«AB · Llamadas desde anuncios» no se pudo crear por script (error interno de Google en cuenta sin forma de pago); se revisa al encender.
