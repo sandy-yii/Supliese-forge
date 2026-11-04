@@ -6,6 +6,8 @@
  * las campañas nuevas (20 oct) hasta ayer:
  *   1. TODAS las campañas, encendidas y pausadas: presupuesto diario, gasto, clics, contactos, costo por contacto y
  *      cuánto pierden por presupuesto. Así se ve qué presupuesto está en campañas que no sirven.
+ *   1b. Propuesta de aumento para el cliente: qué campañas traen contactos a buen costo y se quedan sin presupuesto,
+ *      cuánto subirles (+30%) y cuántos contactos más se esperan.
  *   2. Las palabras clave y las búsquedas que trajeron contactos (el «vaciado de keywords»).
  *   3. Los formularios del anuncio (formularios de Google Ads): en qué campañas están y a dónde mandan los datos.
  *   4. Los botones de llamada y de WhatsApp: número y si están aprobados.
@@ -103,6 +105,35 @@ function main() {
   Logger.log('Presupuesto de las ENCENDIDAS: ' + dinero(encendidas) + ' al día = ' + dinero(encendidas * DIAS_MES) + ' al mes (tope ' + dinero(PLAN.mensual) + ').');
   Logger.log('Presupuesto escrito en campañas PAUSADAS: ' + dinero(pausadas) + ' al día. No se gasta mientras estén pausadas; ' +
     'el espacio que queda hasta el tope es ' + dinero(Math.max(0, PLAN.mensual / DIAS_MES - encendidas)) + ' al día.');
+
+  // ---- 1b. Propuesta de aumento (para pedir autorización al cliente): campañas encendidas que traen contactos a buen
+  // costo y se quedan sin presupuesto. +30% cada una; los contactos extra se estiman con su costo por contacto,
+  // descontando 30% porque cada contacto extra suele salir más caro.
+  var totG = 0, totC = 0;
+  nombres.forEach(function (n) { if (C[n].estado === 'ENABLED') { totG += C[n].gasto; totC += C[n].contactos; } });
+  var promedio = totC ? totG / totC : 0;
+  Logger.log('');
+  Logger.log('==== 1b. PROPUESTA DE AUMENTO (+30%, solo con autorización del cliente) ====');
+  Logger.log('Costo por contacto de la cuenta: ' + (promedio ? dinero(promedio) : 'sin contactos todavía') + '.');
+  var extraDia = 0, extraContactos = 0, propuestas = 0;
+  nombres.forEach(function (n) {
+    var c = C[n];
+    if (c.estado !== 'ENABLED' || c.contactos < 1 || c.perdido === null || c.perdido < 0.2) return;
+    var cpc = c.gasto / c.contactos;
+    if (promedio && cpc > promedio * 1.5) {
+      Logger.log('NO SUBIR «' + n + '»: pierde ' + Math.round(c.perdido * 100) + '% por presupuesto, pero cada contacto cuesta ' + dinero(cpc) +
+        ' (más caro que el promedio de la cuenta).');
+      return;
+    }
+    var nuevo = Math.round(c.diario * 1.3), mas = nuevo - c.diario, contactosMes = mas * DIAS_MES / cpc * 0.7;
+    extraDia += mas; extraContactos += contactosMes; propuestas++;
+    Logger.log('SUBIR «' + n + '»: ' + dinero(c.diario) + ' → ' + dinero(nuevo) + ' al día (+' + dinero(mas * DIAS_MES) + ' al mes) · trajo ' +
+      uno(c.contactos) + ' contactos a ' + dinero(cpc) + ' c/u y pierde ' + Math.round(c.perdido * 100) + '% por presupuesto · ' +
+      'se esperan ~' + Math.round(contactosMes) + ' contactos más al mes.');
+  });
+  if (!propuestas) Logger.log('Ninguna campaña cumple las tres cosas (trae contactos, buen costo y se queda sin presupuesto). No se propone aumento.');
+  else Logger.log('TOTAL DE LA PROPUESTA: +' + dinero(extraDia) + ' al día = +' + dinero(extraDia * DIAS_MES) + ' al mes · nuevo tope ' +
+    dinero(PLAN.mensual + extraDia * DIAS_MES) + ' al mes · ~' + Math.round(extraContactos) + ' contactos más al mes (estimado).');
 
   // ---- 2. Palabras clave y búsquedas con contactos
   var kw = contactos(filas('SELECT campaign.name, ad_group_criterion.keyword.text, ad_group_criterion.keyword.match_type, segments.conversion_action_name, ' +
