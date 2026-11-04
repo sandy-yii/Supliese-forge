@@ -24,7 +24,7 @@ Lo que sigue de mi lado:
 
 ```
 S2 · Girbau espera la aprobación de Google
-S4 · Gamesail · cerrado (secciones y etiquetas publicadas el 4 nov)
+S4 · Gamesail · cerrado y comprobado con Tag Assistant (WhatsApp y teléfono, gcs=G111, seccion llega)
 S6 · las propiedades viejas G-69R59Z71PV y G-26FWQ5PPVJ siguen recibiendo visitas por la etiqueta en Google: lo veo yo
 S8 · pendiente (correo en vivo apagado hasta la prueba con vendedores)
 GA4 · cerrado en las cinco (4 nov); falta registrar «seccion» en Analytics (yo)
