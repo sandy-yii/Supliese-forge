@@ -1,63 +1,61 @@
-# Para Rodolfo: teléfono en formato +52 y Search Console (botones de llamada)
+# Para Rodolfo: teléfono en formato +52 y verificación de Search Console
 
-**Fecha:** 2026-11-04 · **De:** Sandy · **Para:** Rodolfo · **Prioridad:** alta (hoy, si se puede)
+**Fecha:** 2026-11-04 · **De:** Sandy · **Para:** Rodolfo · **Prioridad:** alta, para hoy
+
+> Este documento reemplaza la versión anterior de esta misma mañana. Ya no hace falta que agregues a nadie en Search Console: Sandy creó las propiedades con gamesailmx@gmail.com y solo falta que publiques las etiquetas de abajo.
 
 ## Por qué
 
-Los botones de llamada de los anuncios de Quick Laundry, Kingstar y Girbau siguen rechazados por «número de teléfono no verificado». Soporte de Google (caso 6-4979000042447) ya revisó clmmexico.com y confirmó que la página cumple. Para que su sistema valide las páginas, nos pide **vincular Search Console** de cada dominio a su cuenta de Google Ads.
+Los botones de llamada de los anuncios de Quick Laundry, Kingstar y Girbau siguen rechazados por «número de teléfono no verificado». Soporte de Google respondió en dos casos (6-4979000042447 y 9-5942000041700), y lo que pide se resume en dos cosas:
 
-Para vincularlo, la cuenta **gamesailmx@gmail.com** tiene que ser **propietaria** de cada sitio en Search Console. Esa es la cuenta con la que se manejan los anuncios.
+1. **El número en formato internacional, como texto HTML** en el código que manda el servidor. Su sistema compara ese texto con el número del botón.
+2. **Search Console vinculado** a cada cuenta de Google Ads. Es una prueba extra de que la página es del anunciante.
 
-## 0. Lo más urgente: el teléfono en formato internacional (antes de lo de Search Console)
+**Kingstar ya está en revisión.** Quick Laundry y Girbau se vuelven a mandar en cuanto publiques esto.
 
-Soporte de Google respondió en otro caso, el 9-5942000041700, sobre supliese.com. Su sistema compara el número del botón con el **texto HTML del código fuente** de la página. Pide dos cosas, y te las pido en los cinco sitios:
+**Sobre el método de verificación:** el método «Google Analytics» no sirvió, porque gtag solo carga después de «Aceptar» y Google revisa sin aceptar cookies. **Eso está bien así; no lo cambies.** Por eso usamos la etiqueta HTML.
 
-- [ ] **El número escrito en formato internacional, como texto visible:** `+52 33 2601 2237`. Puede quedarse también el formato local donde ya está.
-- [ ] **Un enlace `tel:` en formato internacional:** `<a href="tel:+523326012237">+52 33 2601 2237</a>`.
-- [ ] **Que salga en el HTML que manda el servidor.** Es decir, que se vea con «Ver código fuente», no solo después de que cargue JavaScript, ni después de aceptar las cookies, ni dentro de una imagen. Ponlo al menos en la cabecera o en el pie de página.
+---
+
+## 1. Teléfono en formato +52 en los cinco sitios
+
+- [ ] Que se vea como **texto**: `+52 33 2601 2237`. Puede quedarse también el formato local donde ya está.
+- [ ] Que tenga **enlace `tel:` internacional**: `<a href="tel:+523326012237">+52 33 2601 2237</a>`.
+- [ ] Que esté en el **HTML del servidor**: que se vea con «Ver código fuente» y no dependa de JavaScript, de las cookies ni de una imagen. Como mínimo, en la cabecera o en el pie de página de todas las páginas.
 
 | Sitio | Texto | Enlace |
 |---|---|---|
-| supliese.com | +52 33 2601 2237 | tel:+523326012237 |
-| clmmexico.com | +52 33 1564 1538 | tel:+523315641538 |
-| girbauoccidente.com | +52 33 2806 8994 | tel:+523328068994 |
-| servicioparalavanderias.com | +52 33 1417 2994 | tel:+523314172994 |
-| gamesail.mx | +52 33 1185 9797 | tel:+523311859797 |
+| supliese.com | +52 33 2601 2237 | `tel:+523326012237` |
+| clmmexico.com | +52 33 1564 1538 | `tel:+523315641538` |
+| girbauoccidente.com | +52 33 2806 8994 | `tel:+523328068994` |
+| servicioparalavanderias.com | +52 33 1417 2994 | `tel:+523314172994` |
+| gamesail.mx | +52 33 1185 9797 | `tel:+523311859797` |
 
-Esto es lo primero. En cuanto esté publicado, mándame `Teléfonos +52 · publicado` y vuelvo a mandar los botones a revisión.
+## 2. Etiqueta de verificación de Search Console en cada sitio
 
-## Sitios
+- [ ] Pon **cada línea en el `<head>` de su propio sitio**. Cada una es distinta: no las mezcles.
+- [ ] Tiene que estar en el **HTML del servidor de la portada**, por ejemplo `https://supliese.com/`, **sin depender de las cookies**.
+- [ ] **Déjala para siempre.** Si se quita, Search Console deja de estar verificado.
+- [ ] Si te queda más cómodo, en Next.js con App Router puedes usar `metadata.verification.google` con el valor de `content`. El resultado es la misma etiqueta.
 
-Por orden de urgencia:
+| Sitio | Etiqueta |
+|---|---|
+| supliese.com (Quick Laundry) | `<meta name="google-site-verification" content="I0QBGhTTy7pUkGUxwDwc2Opj2OXHrJTF6x_m8C7f6Fc" />` |
+| clmmexico.com (Kingstar) | `<meta name="google-site-verification" content="6ZpYClU99ltHw7TzbdTMDgMHuVb8hijzDn6aNwr_hGk" />` |
+| girbauoccidente.com (Girbau) | `<meta name="google-site-verification" content="D0FJSaiox7PHr2Xo7qui3QBuKwnCKw2G_42-3Ok-i94" />` |
+| servicioparalavanderias.com (Laundry Solutions) | `<meta name="google-site-verification" content="PrZBxiE0NTrW0hix9voubRjme_lkSBCywRpQJeyDdZc" />` |
+| gamesail.mx (Gamesail) | `<meta name="google-site-verification" content="-84Qb1hp4cu2KyF87JroNMP3zl9iaE3ipnE6lhLTUSw" />` |
 
-1. supliese.com (Quick Laundry)
-2. clmmexico.com (Kingstar)
-3. girbauoccidente.com (Girbau)
-4. servicioparalavanderias.com (Laundry Solutions)
-5. gamesail.mx (Gamesail)
+## 3. Lo que no se toca
 
-Los botones de Laundry Solutions y Gamesail no están rechazados. Aun así conviene dejar los cinco de una vez, porque así Google tiene a qué remitirse si algún otro botón vuelve a quedar rechazado.
+- [ ] Las direcciones de los anuncios: ninguna ruta se mueve.
+- [ ] Las etiquetas AW y G- ni las reglas de cookies.
+- [ ] El formulario sigue en modo WhatsApp hasta S8.
 
-## Qué te pido
+## 4. Cuando quede
 
-**Si ya tienes alguno verificado en Search Console:**
-- [ ] Ve a Configuración > Usuarios y permisos > Agregar usuario.
-- [ ] Agrega `gamesailmx@gmail.com` con permiso **Propietario**. Si no te deja ponerlo como propietario, ve a «Propietarios verificados», agrégalo desde ahí y avísame.
+Mándale a Sandy una línea por sitio:
 
-**Si alguno no está verificado:**
-- [ ] Usa la opción que te sea más rápida:
-  - **Propiedad de dominio**, con un registro TXT en el DNS. Cubre www, sin www, http y https.
-  - **Prefijo de URL**, con la etiqueta `<meta name="google-site-verification" …>` en el `<head>`, publicada en Vercel.
-- [ ] Verifícalo y agrega a `gamesailmx@gmail.com` como **Propietario**.
+`dominio · +52 visible en el código fuente (sí/no) · enlace tel:+52 (sí/no) · etiqueta google-site-verification en la portada (sí/no)`
 
-**En cualquiera de los dos casos:**
-- [ ] No cambies las páginas ni el teléfono visible.
-- [ ] Si quieres, aprovecha para enviar el sitemap de cada sitio. No es necesario para los botones.
-
-## Cuando quede
-
-Mándame una línea por sitio:
-
-`Search Console · dominio · tipo (dominio / prefijo) · gamesailmx propietario (sí/no)`
-
-Con eso vinculo Search Console en cada cuenta de Google Ads y le pedimos a Google que vuelva a revisar los botones.
+Con eso Sandy da «Verificar» en Search Console, lo vincula en Google Ads y vuelve a mandar los botones de llamada a revisión. **Lo urgente es supliese.com y girbauoccidente.com**: si puedes, publica esos dos primero.
