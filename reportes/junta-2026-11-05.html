@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: guion de junta en una columna: la frase, los resultados, lo que se hizo, Search Console, lo que esperamos de Google, la propuesta dentro de lo acordado, lo que necesitamos y lo que sigue. */
+/* Layout: guion de junta en una columna: la frase, los resultados, lo que se hizo, Search Console, lo que esperamos de Google, la propuesta de reparto, lo que necesitamos y lo que sigue. */
 :root {
   --bg: #f5f7f9;
   --surface: #ffffff;
@@ -151,7 +151,7 @@ tfoot td { font-weight: 600; border-top: 2px solid var(--line); }
 
 <section aria-labelledby="frase">
   <h2 id="frase">En una frase</h2>
-  <p class="big">Las campañas nuevas ya traen casi tres veces más contactos al día que antes, sin gastar más. Ahora movemos el dinero hacia las que mejor funcionan, sin pasar del presupuesto acordado.</p>
+  <p class="big">Las campañas nuevas ya traen casi tres veces más contactos al día que antes, sin gastar más. Proponemos invertir un poco menos que antes y llevar el dinero a las campañas que mejor funcionan.</p>
   <div class="kpis">
     <div class="kpi"><b>83</b><span>contactos registrados por Google en 15 días (20 oct al 3 nov), en las cuatro marcas que ya tenían campañas</span></div>
     <div class="kpi"><b>1.4 → 4 al día</b><span>en Quick Laundry y Girbau, las dos marcas que ya se medían antes, contra la agencia anterior</span></div>
@@ -251,25 +251,26 @@ tfoot td { font-weight: 600; border-top: 2px solid var(--line); }
 </section>
 
 <section aria-labelledby="propuesta">
-  <h2 id="propuesta">Propuesta: más contactos sin pasar del presupuesto acordado</h2>
-  <p class="big">El presupuesto se queda en lo acordado: $65,200 al mes entre las cinco marcas. Lo que cambia es dónde se usa: sale de lo que no trae contactos y va a lo que sí.</p>
+  <h2 id="propuesta">Propuesta: gastar menos que antes y llevar el dinero a lo que trae clientes</h2>
+  <p class="big">Proponemos que el grupo invierta en total un poco menos de lo que se gastaba con la agencia anterior, y repartirlo según lo que trae contactos en cada marca.</p>
 
-  <h3>1. Reacomodo dentro de cada marca</h3>
+  <h3>1. Nuevo reparto del presupuesto</h3>
   <div class="table-wrap">
     <table>
-      <thead><tr><th>Marca</th><th>Sube</th><th>Sale de</th><th>Total de la marca</th></tr></thead>
+      <thead><tr><th>Marca</th><th>Gasto real con la agencia anterior¹</th><th>Propuesta al mes</th><th>Por qué</th></tr></thead>
       <tbody>
-        <tr><td>Quick Laundry</td><td><strong>Equipo para lavandería</strong> $260 → $285 al día (15 contactos a $168; se queda sin presupuesto 35% del tiempo)</td><td>El espacio que quedaba libre dentro de su presupuesto acordado</td><td class="num">$12,000 al mes (igual)</td></tr>
-        <tr><td>Kingstar</td><td><strong>Túnel de lavado</strong> $80 → $104 · <strong>Alta capacidad</strong> $330 → $336</td><td>Lavadoras y secadoras de 20 a 45 kg, $50 → $20 (27 clics y $496 sin ningún contacto)</td><td class="num">$18,700 al mes (igual)</td></tr>
-        <tr><td>Laundry Solutions</td><td><strong>Servicio técnico industrial</strong> $75 → $98 (4 contactos a $188; se queda sin presupuesto 43% del tiempo)</td><td>Instalación, refacciones, servicio a lavanderías y a secadoras, de $8–10 a $3 cada una: casi no tienen búsquedas y no gastaban</td><td class="num">$8,200 al mes (igual)</td></tr>
-        <tr><td>Girbau</td><td>—</td><td>—</td><td class="num">$6,600 al mes (igual). Ya usa todo su presupuesto; su campaña principal, Máximo rendimiento, es la de contacto más barato ($38).</td></tr>
-        <tr><td>Gamesail</td><td><strong>Pasa a su presupuesto completo</strong>, de $324 a $648 al día, como se acordó al arrancar</td><td>—</td><td class="num">$19,700 al mes (lo acordado)</td></tr>
+        <tr><td>Gamesail</td><td class="num">≈ $20,200</td><td class="num">$19,700</td><td>Su presupuesto completo, ya acordado. En su segundo día trajo 3 contactos.</td></tr>
+        <tr><td>Kingstar</td><td class="num">≈ $9,550</td><td class="num">$12,500</td><td>Es la que más está creciendo: el clic salió a la mitad de precio y los clics se cuadruplicaron. Equipo de alto valor.</td></tr>
+        <tr><td>Quick Laundry</td><td class="num">≈ $10,700</td><td class="num">$10,400</td><td>«Equipo para lavandería» se queda con la mayor parte: 15 contactos a $168.</td></tr>
+        <tr><td>Girbau</td><td class="num">≈ $10,100</td><td class="num">$6,600</td><td>Se queda igual. Es la marca con el contacto más barato ($49).</td></tr>
+        <tr><td>Laundry Solutions</td><td class="num">≈ $2,780</td><td class="num">$3,300</td><td>Se enfoca en servicio técnico y reparación, lo que trae contactos.</td></tr>
       </tbody>
       <tfoot>
-        <tr><td colspan="3">Total de las cinco marcas</td><td class="num">$65,200 al mes · sin aumento</td></tr>
+        <tr><td>Total del grupo</td><td class="num">≈ $53,300</td><td class="num">≈ $52,400</td><td>Un poco menos que antes, con casi 3 veces más contactos al día</td></tr>
       </tfoot>
     </table>
   </div>
+  <p style="font-size:13px;color:var(--muted)">¹ Gasto real de los 30 días antes de que arrancaran las campañas nuevas (20 de septiembre al 19 de octubre). En Gamesail, su campaña principal en septiembre. Dentro de cada marca, el dinero sale de las campañas sin contactos o con el contacto más caro (por ejemplo, lavadoras de 20 a 45 kg en Kingstar, $496 sin ningún contacto) y se queda en las que sí traen.</p>
 
   <h3>2. Topes de costo por clic: salir en las búsquedas que hoy se pierden</h3>
   <div class="table-wrap">
@@ -298,22 +299,21 @@ tfoot td { font-weight: 600; border-top: 2px solid var(--line); }
     <table>
       <thead><tr><th>Cuándo</th><th>Qué se suma</th><th>Contactos al día</th></tr></thead>
       <tbody>
-        <tr><td>Hoy</td><td>Lo que hay</td><td class="num">11 a 13</td></tr>
-        <tr><td>Esta semana</td><td>Gamesail completo, reacomodo y topes</td><td class="num">14 a 17</td></tr>
-        <tr><td>En 1 a 2 semanas</td><td>Botones de llamada aprobados, WhatsApp con mensaje y material nuevo en las páginas</td><td class="num">18 a 22</td></tr>
+        <tr><td>Esta semana</td><td>Nuevo reparto, Gamesail completo y topes</td><td class="num">10 a 13</td></tr>
+        <tr><td>En 1 a 2 semanas</td><td>Botones de llamada aprobados, WhatsApp con mensaje y material nuevo en las páginas</td><td class="num">13 a 17</td></tr>
       </tbody>
     </table>
   </div>
   <div class="note">
-    <p><strong>Cómo lo cuidamos:</strong> revisamos cada noche los resultados del día. Si alguna campaña empieza a pagar demasiado por cada contacto, la frenamos ese mismo día. El presupuesto acordado no se rebasa.</p>
-    <p><strong>Más adelante:</strong> para llegar a 25 o 30 contactos al día haría falta más presupuesto. Solo lo propondríamos cuando el conteo de los vendedores confirme que los contactos son clientes reales, y con su autorización.</p>
+    <p><strong>Cómo lo cuidamos:</strong> revisamos cada noche los resultados del día. Si alguna campaña empieza a pagar demasiado por cada contacto, la frenamos ese mismo día.</p>
+    <p><strong>Más adelante:</strong> con el conteo de los vendedores sabremos qué marcas traen clientes reales. Si conviene crecer más, lo propondremos con números y solo con su autorización.</p>
   </div>
 </section>
 
 <section aria-labelledby="necesitamos">
   <h2 id="necesitamos">Lo que necesitamos de ustedes</h2>
   <ol class="asks">
-    <li><span><b>Autorización de los topes por escrito</b>Un mensaje basta: «autorizamos los 3 topes». El reacomodo no cambia el presupuesto acordado y se aplica hoy.</span><span class="chip todo">Dirección</span></li>
+    <li><span><b>Visto bueno por escrito</b>Un mensaje basta: «autorizamos el nuevo reparto y los 3 topes». Se aplica el mismo día.</span><span class="chip todo">Dirección</span></li>
     <li><span><b>Material para las páginas, esta semana</b>Precios o rangos de precio por equipo, fotos reales de los equipos y clientes que den permiso de poner su opinión o su logo.</span><span class="chip todo">Dirección</span></li>
     <li><span><b>Conteo del lunes 10</b>Cuántos contactos recibió cada vendedor, cuántos eran clientes reales y cuántas ventas se cerraron.</span><span class="chip todo">Vendedores</span></li>
     <li><span><b>Gamesail: el saldo de la cuenta anterior ($15,293.55)</b>Para pedir el reembolso a Google: razón social y RFC, titular de la tarjeta Visa terminación 5523 y estado de cuenta, correo de las facturas y contacto de la agencia anterior.</span><span class="chip todo">Dirección</span></li>
@@ -326,7 +326,7 @@ tfoot td { font-weight: 600; border-top: 2px solid var(--line); }
     <table>
       <thead><tr><th>Cuándo</th><th>Qué</th><th>Quién</th></tr></thead>
       <tbody>
-        <tr><td><span class="chip wait">Hoy</span></td><td>Reacomodo dentro de cada marca y Gamesail a su presupuesto completo. Los topes, con su autorización.</td><td class="who">Atelback</td></tr>
+        <tr><td><span class="chip wait">Hoy</span></td><td>Nuevo reparto del presupuesto, Gamesail completo y los topes, con su visto bueno.</td><td class="who">Atelback</td></tr>
                 <tr><td><span class="chip wait">1 a 3 días</span></td><td>Respuesta de Google a los botones de llamada.</td><td class="who">Google</td></tr>
         <tr><td><span class="chip todo">Lunes 10</span></td><td>Primer conteo de los vendedores y ajuste semanal.</td><td class="who">Todos</td></tr>
         <tr><td><span class="chip todo">En 1 a 2 semanas</span></td><td>Primeros datos de Search Console: cómo los encuentran gratis en Google.</td><td class="who">Atelback</td></tr>
