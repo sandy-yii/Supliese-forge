@@ -137,6 +137,60 @@ footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line)
 .opt { display:inline-block; font-family: var(--mono); font-size: 11px; font-weight:600; padding: 2px 8px; border-radius: 4px; background: var(--accent-soft); color: var(--accent); white-space: nowrap; }
 .optb { background: var(--todo-bg); color: var(--todo); }
 tfoot td { font-weight: 600; border-top: 2px solid var(--line); }
+
+/* ===== Color y gráficas ===== */
+:root {
+  --b-ql: #2a78d6; --b-ks: #eb6834; --b-ls: #1baf7a; --b-gb: #eda100; --b-gs: #e87ba4;
+  --c-blue-bg: #e8f1fc; --c-aqua-bg: #e3f6ee; --c-orange-bg: #fdeee6; --c-pink-bg: #fcebf2; --c-yellow-bg: #fdf3dc;
+  --chart-surface: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --b-ql: #3987e5; --b-ks: #d95926; --b-ls: #199e70; --b-gb: #c98500; --b-gs: #d55181;
+    --c-blue-bg: #16283b; --c-aqua-bg: #12302a; --c-orange-bg: #36211a; --c-pink-bg: #33202a; --c-yellow-bg: #332914;
+    --chart-surface: #16212a;
+  }
+}
+:root[data-theme="dark"] {
+  --b-ql: #3987e5; --b-ks: #d95926; --b-ls: #199e70; --b-gb: #c98500; --b-gs: #d55181;
+  --c-blue-bg: #16283b; --c-aqua-bg: #12302a; --c-orange-bg: #36211a; --c-pink-bg: #33202a; --c-yellow-bg: #332914;
+  --chart-surface: #16212a;
+}
+header { border-bottom: 0; padding: 22px 22px 24px; border-radius: 10px; background: linear-gradient(135deg, var(--c-blue-bg), var(--c-aqua-bg) 55%, var(--c-yellow-bg)); }
+h2 { display: flex; align-items: center; gap: 10px; }
+h2::before { content: ""; width: 6px; height: 1.05em; border-radius: 3px; background: var(--accent); flex: none; }
+#frutos::before { background: var(--b-ls); } #hicimos::before { background: var(--b-ks); } #search::before { background: var(--b-ql); }
+#google::before { background: var(--b-gb); } #propuesta::before { background: var(--b-gs); } #necesitamos::before { background: var(--b-ls); }
+.kpi { border-top: 4px solid var(--accent); }
+.kpi:nth-child(1) { background: var(--c-blue-bg); border-top-color: var(--b-ql); }
+.kpi:nth-child(2) { background: var(--c-aqua-bg); border-top-color: var(--b-ls); }
+.kpi:nth-child(3) { background: var(--c-orange-bg); border-top-color: var(--b-ks); }
+.kpi:nth-child(4) { background: var(--c-pink-bg); border-top-color: var(--b-gs); }
+.dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; vertical-align: 0; flex: none; }
+.d-ql { background: var(--b-ql); } .d-ks { background: var(--b-ks); } .d-ls { background: var(--b-ls); } .d-gb { background: var(--b-gb); } .d-gs { background: var(--b-gs); }
+.charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+.chart-card { background: var(--chart-surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; display: flex; flex-direction: column; gap: 12px; min-width: 0; position: relative; }
+.chart-card h3 { font-size: 16px; }
+.chart-card .sub { font-size: 13px; color: var(--muted); margin: -6px 0 0; }
+.donut-wrap { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+.donut-wrap svg { width: 180px; height: 180px; flex: none; overflow: visible; }
+.donut-wrap svg path { cursor: pointer; transition: opacity .15s; }
+.donut-wrap svg.hovering path:not(.on) { opacity: .35; }
+.donut-center b { font-family: var(--display); font-size: 26px; font-weight: 700; fill: var(--ink); }
+.donut-center span, .donut-center text.s { font-size: 11px; fill: var(--muted); }
+.legend { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; font-size: 13px; flex: 1; min-width: 150px; }
+.legend li { display: flex; align-items: center; gap: 0; }
+.legend .n { flex: 1; }
+.legend .v { font-family: var(--mono); font-variant-numeric: tabular-nums; color: var(--ink); margin-left: 10px; }
+.legend .pc { font-family: var(--mono); color: var(--muted); width: 42px; text-align: right; }
+.tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--bg); font-size: 12px; padding: 6px 9px; border-radius: 6px; white-space: nowrap; opacity: 0; transition: opacity .1s; z-index: 5; }
+.hbars { display: flex; flex-direction: column; gap: 14px; }
+.hbar { display: grid; grid-template-columns: 120px 1fr 64px; gap: 10px; align-items: center; font-size: 14px; }
+.hbar .track { height: 26px; background: var(--todo-bg); border-radius: 4px; overflow: hidden; }
+.hbar .fill { height: 100%; border-radius: 0 4px 4px 0; }
+.hbar .v { font-family: var(--mono); font-weight: 600; text-align: right; }
+.big-x { font-family: var(--display); font-size: 40px; font-weight: 700; color: var(--b-ls); line-height: 1; }
+@media (max-width: 560px) { .donut-wrap { justify-content: center; } .hbar { grid-template-columns: 90px 1fr 54px; } }
 </style>
 </head>
 <body>
@@ -151,7 +205,7 @@ tfoot td { font-weight: 600; border-top: 2px solid var(--line); }
 
 <section aria-labelledby="frase">
   <h2 id="frase">En una frase</h2>
-  <p class="big">Las campañas nuevas ya traen casi tres veces más contactos al día que antes, sin gastar más. Proponemos invertir lo mismo que se gastaba con la agencia anterior, llevando el dinero a las campañas que mejor funcionan.</p>
+  <p class="big">Las campañas nuevas ya traen casi tres veces más contactos al día que antes, con un gasto parecido. Proponemos invertir lo mismo que se gastaba con la agencia anterior, llevando el dinero a las campañas que mejor funcionan.</p>
   <div class="kpis">
     <div class="kpi"><b>83</b><span>contactos registrados por Google en 15 días (20 oct al 3 nov), en las cuatro marcas que ya tenían campañas</span></div>
     <div class="kpi"><b>1.4 → 4 al día</b><span>en Quick Laundry y Girbau, las dos marcas que ya se medían antes, contra la agencia anterior</span></div>
@@ -166,24 +220,40 @@ tfoot td { font-weight: 600; border-top: 2px solid var(--line); }
     <table>
       <thead><tr><th>Marca</th><th>Contactos (20 oct al 3 nov)</th><th>Costo por contacto</th><th>Lo más destacado</th></tr></thead>
       <tbody>
-        <tr><td>Quick Laundry</td><td class="num">32</td><td class="num">$170</td><td>«Equipo para lavandería» trajo 15 contactos. Las búsquedas que más traen son «lavadoras para lavandería» y «lavadoras para negocio».</td></tr>
-        <tr><td>Girbau</td><td class="num">28</td><td class="num">$49</td><td>Es la marca con el contacto más barato. El 3 de noviembre tuvo 8 contactos en un día, ya en girbauoccidente.com.</td></tr>
-        <tr><td>Kingstar</td><td class="num">16</td><td class="num">$345</td><td>Equipo de alto valor (60 kg o más, túnel, mangles). El 3 de noviembre el clic salió a la mitad de precio ($7.50, antes $14.76) y los clics casi se cuadruplicaron.</td></tr>
-        <tr><td>Laundry Solutions</td><td class="num">7</td><td class="num">$265</td><td>Servicio técnico es lo que mejor funciona ($188 por contacto). Los clics se duplicaron el 3 de noviembre.</td></tr>
-        <tr><td>Gamesail</td><td class="num">3 (4 nov)</td><td class="num">—</td><td>Arrancó el 3 de noviembre. En su segundo día ya trajo 3 contactos, con el clic a $4.50. Cerca de 1 de cada 5 personas que ven el anuncio le da clic, una proporción muy alta.</td></tr>
+        <tr><td><span class="dot d-ql"></span>Quick Laundry</td><td class="num">32</td><td class="num">$170</td><td>«Equipo para lavandería» trajo 15 contactos. Las búsquedas que más traen son «lavadoras para lavandería» y «lavadoras para negocio».</td></tr>
+        <tr><td><span class="dot d-gb"></span>Girbau</td><td class="num">28</td><td class="num">$49</td><td>Es la marca con el contacto más barato. El 3 de noviembre tuvo 8 contactos en un día, ya en girbauoccidente.com.</td></tr>
+        <tr><td><span class="dot d-ks"></span>Kingstar</td><td class="num">16</td><td class="num">$345</td><td>Equipo de alto valor (60 kg o más, túnel, mangles). El 3 de noviembre el clic salió a la mitad de precio ($7.50, antes $14.76) y los clics casi se cuadruplicaron.</td></tr>
+        <tr><td><span class="dot d-ls"></span>Laundry Solutions</td><td class="num">7</td><td class="num">$265</td><td>Servicio técnico es lo que mejor funciona ($188 por contacto). Los clics se duplicaron el 3 de noviembre.</td></tr>
+        <tr><td><span class="dot d-gs"></span>Gamesail</td><td class="num">3 (4 nov)</td><td class="num">—</td><td>Arrancó el 3 de noviembre. En su segundo día ya trajo 3 contactos, con el clic a $4.50. Cerca de 1 de cada 5 personas que ven el anuncio le da clic, una proporción muy alta.</td></tr>
         <tr><td><strong>Total</strong></td><td class="num"><strong>86</strong></td><td class="num">—</td><td>Quick Laundry y Girbau, que ya se medían antes: de 23 contactos en 17 días a 60 en 15 días.</td></tr>
       </tbody>
     </table>
+  </div>
+  <div class="charts">
+    <div class="chart-card">
+      <h3>Contactos por marca</h3>
+      <p class="sub">20 de octubre al 3 de noviembre (Gamesail: 4 de noviembre) · 86 contactos</p>
+      <div class="donut-wrap" data-donut='[["Quick Laundry",32,"ql"],["Girbau",28,"gb"],["Kingstar",16,"ks"],["Laundry Solutions",7,"ls"],["Gamesail",3,"gs"]]' data-total-label="contactos" data-fmt="n"></div>
+    </div>
+    <div class="chart-card">
+      <h3>Contactos al día: antes y ahora</h3>
+      <p class="sub">Quick Laundry y Girbau, las marcas que ya se medían con la agencia anterior</p>
+      <div class="hbars" role="img" aria-label="Antes 1.4 contactos al día; ahora 4 contactos al día">
+        <div class="hbar"><span>Agencia anterior</span><div class="track"><div class="fill" style="width:35%;background:var(--muted)"></div></div><span class="v">1.4</span></div>
+        <div class="hbar"><span>Campañas nuevas</span><div class="track"><div class="fill" style="width:100%;background:var(--b-ls)"></div></div><span class="v">4.0</span></div>
+      </div>
+      <p style="font-size:14px;margin:0"><span class="big-x">×3</span> &nbsp;casi tres veces más contactos al día, con un gasto parecido.</p>
+    </div>
   </div>
   <div class="table-wrap">
     <table>
       <thead><tr><th>Ayer, 4 de noviembre (hasta las 8:45 p. m.)</th><th>Contactos</th><th>Clics</th><th>Gasto</th></tr></thead>
       <tbody>
-        <tr><td>Quick Laundry</td><td class="num">4</td><td class="num">31</td><td class="num">$362</td></tr>
-        <tr><td>Kingstar</td><td class="num">4</td><td class="num">67</td><td class="num">$605</td></tr>
-        <tr><td>Gamesail</td><td class="num">3</td><td class="num">59</td><td class="num">$265</td></tr>
-        <tr><td>Laundry Solutions</td><td class="num">0</td><td class="num">33</td><td class="num">$170</td></tr>
-        <tr><td>Girbau*</td><td class="num">0</td><td class="num">4</td><td class="num">$85</td></tr>
+        <tr><td><span class="dot d-ql"></span>Quick Laundry</td><td class="num">4</td><td class="num">31</td><td class="num">$362</td></tr>
+        <tr><td><span class="dot d-ks"></span>Kingstar</td><td class="num">4</td><td class="num">67</td><td class="num">$605</td></tr>
+        <tr><td><span class="dot d-gs"></span>Gamesail</td><td class="num">3</td><td class="num">59</td><td class="num">$265</td></tr>
+        <tr><td><span class="dot d-ls"></span>Laundry Solutions</td><td class="num">0</td><td class="num">33</td><td class="num">$170</td></tr>
+        <tr><td><span class="dot d-gb"></span>Girbau*</td><td class="num">0</td><td class="num">4</td><td class="num">$85</td></tr>
         <tr><td><strong>Total</strong></td><td class="num"><strong>11</strong></td><td class="num"><strong>194</strong></td><td class="num"><strong>$1,487</strong></td></tr>
       </tbody>
     </table>
@@ -239,11 +309,11 @@ tfoot td { font-weight: 600; border-top: 2px solid var(--line); }
     <table>
       <thead><tr><th>Marca</th><th>WhatsApp en el anuncio</th><th>Botón de llamada en el anuncio</th></tr></thead>
       <tbody>
-        <tr><td>Quick Laundry</td><td><span class="chip ok">Funciona</span></td><td><span class="chip wait">Solicitud de revisión enviada el 4 nov</span></td></tr>
-        <tr><td>Kingstar</td><td><span class="chip ok">Funciona</span></td><td><span class="chip wait">En revisión</span></td></tr>
-        <tr><td>Laundry Solutions</td><td><span class="chip ok">Funciona</span></td><td><span class="chip ok">Aprobado</span></td></tr>
-        <tr><td>Girbau</td><td><span class="chip ok">Funciona</span></td><td><span class="chip wait">Solicitud de revisión enviada el 4 nov</span></td></tr>
-        <tr><td>Gamesail</td><td><span class="chip wait">En revisión</span></td><td><span class="chip wait">En revisión</span></td></tr>
+        <tr><td><span class="dot d-ql"></span>Quick Laundry</td><td><span class="chip ok">Funciona</span></td><td><span class="chip wait">Solicitud de revisión enviada el 4 nov</span></td></tr>
+        <tr><td><span class="dot d-ks"></span>Kingstar</td><td><span class="chip ok">Funciona</span></td><td><span class="chip wait">En revisión</span></td></tr>
+        <tr><td><span class="dot d-ls"></span>Laundry Solutions</td><td><span class="chip ok">Funciona</span></td><td><span class="chip ok">Aprobado</span></td></tr>
+        <tr><td><span class="dot d-gb"></span>Girbau</td><td><span class="chip ok">Funciona</span></td><td><span class="chip wait">Solicitud de revisión enviada el 4 nov</span></td></tr>
+        <tr><td><span class="dot d-gs"></span>Gamesail</td><td><span class="chip wait">En revisión</span></td><td><span class="chip wait">En revisión</span></td></tr>
       </tbody>
     </table>
   </div>
@@ -255,15 +325,27 @@ tfoot td { font-weight: 600; border-top: 2px solid var(--line); }
   <p class="big">Proponemos que el grupo invierta en total lo mismo que se gastaba con la agencia anterior, repartido según lo que trae contactos en cada marca.</p>
 
   <h3>1. Nuevo reparto del presupuesto</h3>
+  <div class="charts">
+    <div class="chart-card">
+      <h3>Antes: gasto real con la agencia anterior</h3>
+      <p class="sub">Al mes · total ≈ $53,300</p>
+      <div class="donut-wrap" data-donut='[["Quick Laundry",10700,"ql"],["Kingstar",9550,"ks"],["Laundry Solutions",2780,"ls"],["Girbau",10100,"gb"],["Gamesail",20200,"gs"]]' data-total-label="al mes" data-fmt="$"></div>
+    </div>
+    <div class="chart-card">
+      <h3>Propuesta: mismo total, repartido en lo que trae clientes</h3>
+      <p class="sub">Al mes · total ≈ $53,300</p>
+      <div class="donut-wrap" data-donut='[["Quick Laundry",10900,"ql"],["Kingstar",12100,"ks"],["Laundry Solutions",4100,"ls"],["Girbau",6500,"gb"],["Gamesail",19700,"gs"]]' data-total-label="al mes" data-fmt="$"></div>
+    </div>
+  </div>
   <div class="table-wrap">
     <table>
       <thead><tr><th>Marca</th><th>Gasto real con la agencia anterior¹</th><th>Propuesta al mes</th><th>Por qué</th></tr></thead>
       <tbody>
-        <tr><td>Gamesail</td><td class="num">≈ $20,200</td><td class="num">$19,700</td><td>Su presupuesto completo, ya acordado. En su segundo día trajo 3 contactos.</td></tr>
-        <tr><td>Kingstar</td><td class="num">≈ $9,550</td><td class="num">$12,100</td><td>Es la que más está creciendo: el clic salió a la mitad de precio y los clics se cuadruplicaron. Equipo de alto valor.</td></tr>
-        <tr><td>Quick Laundry</td><td class="num">≈ $10,700</td><td class="num">$10,900</td><td>Se mantiene todo lo que trae contactos, empezando por «Equipo para lavandería»: 15 contactos a $168.</td></tr>
-        <tr><td>Girbau</td><td class="num">≈ $10,100</td><td class="num">$6,500</td><td>Se queda igual. Es la marca con el contacto más barato ($49).</td></tr>
-        <tr><td>Laundry Solutions</td><td class="num">≈ $2,780</td><td class="num">$4,100</td><td>Se mantienen servicio técnico y reparación, que son las que traen contactos.</td></tr>
+        <tr><td><span class="dot d-gs"></span>Gamesail</td><td class="num">≈ $20,200</td><td class="num">$19,700</td><td>Su presupuesto completo, ya acordado. En su segundo día trajo 3 contactos.</td></tr>
+        <tr><td><span class="dot d-ks"></span>Kingstar</td><td class="num">≈ $9,550</td><td class="num">$12,100</td><td>Es la que más está creciendo: el clic salió a la mitad de precio y los clics se cuadruplicaron. Equipo de alto valor.</td></tr>
+        <tr><td><span class="dot d-ql"></span>Quick Laundry</td><td class="num">≈ $10,700</td><td class="num">$10,900</td><td>Se mantiene todo lo que trae contactos, empezando por «Equipo para lavandería»: 15 contactos a $168.</td></tr>
+        <tr><td><span class="dot d-gb"></span>Girbau</td><td class="num">≈ $10,100</td><td class="num">$6,500</td><td>Se queda igual. Es la marca con el contacto más barato ($49).</td></tr>
+        <tr><td><span class="dot d-ls"></span>Laundry Solutions</td><td class="num">≈ $2,780</td><td class="num">$4,100</td><td>Se mantienen servicio técnico y reparación, que son las que traen contactos.</td></tr>
       </tbody>
       <tfoot>
         <tr><td>Total del grupo</td><td class="num">≈ $53,300</td><td class="num">≈ $53,300</td><td>Lo mismo que antes, con casi 3 veces más contactos al día</td></tr>
@@ -277,9 +359,9 @@ tfoot td { font-weight: 600; border-top: 2px solid var(--line); }
     <table>
       <thead><tr><th>Marca</th><th>Campaña</th><th>Búsquedas que pierde por tope bajo</th><th>Tope por clic</th></tr></thead>
       <tbody>
-        <tr><td>Gamesail</td><td>Hoteles y hospitales</td><td class="num">90%</td><td class="num">$16 → $20</td></tr>
-        <tr><td>Laundry Solutions</td><td>Reparación y mantenimiento</td><td class="num">53%</td><td class="num">$15 → $18</td></tr>
-        <tr><td>Girbau</td><td>Por capacidad y sector</td><td class="num">50%</td><td class="num">$20 → $24</td></tr>
+        <tr><td><span class="dot d-gs"></span>Gamesail</td><td>Hoteles y hospitales</td><td class="num">90%</td><td class="num">$16 → $20</td></tr>
+        <tr><td><span class="dot d-ls"></span>Laundry Solutions</td><td>Reparación y mantenimiento</td><td class="num">53%</td><td class="num">$15 → $18</td></tr>
+        <tr><td><span class="dot d-gb"></span>Girbau</td><td>Por capacidad y sector</td><td class="num">50%</td><td class="num">$20 → $24</td></tr>
       </tbody>
     </table>
   </div>
@@ -338,5 +420,66 @@ tfoot td { font-weight: 600; border-top: 2px solid var(--line); }
 <footer>Fuente: Google Ads de Quick Laundry, Kingstar, Laundry Solutions, Girbau y Gamesail, del 20 de octubre al 4 de noviembre de 2026, con revisiones de solo lectura. La comparación con la agencia anterior usa Quick Laundry y Girbau, del 4 al 20 de octubre. Los contactos esperados son estimados conservadores. Preparado por Atelback.</footer>
 
 </div>
+<script>
+(function () {
+  var NS = 'http://www.w3.org/2000/svg';
+  function fmt(v, f) { return f === '$' ? '$' + Math.round(v).toLocaleString('en-US') : String(v); }
+  function corto(v, f) { return f === '$' ? '$' + (Math.round(v / 100) / 10).toLocaleString('en-US') + 'k' : String(v); }
+  function arc(cx, cy, r, r0, a0, a1) {
+    var la = a1 - a0 > Math.PI ? 1 : 0;
+    var p = function (rad, a) { return [cx + rad * Math.sin(a), cy - rad * Math.cos(a)]; };
+    var o0 = p(r, a0), o1 = p(r, a1), i1 = p(r0, a1), i0 = p(r0, a0);
+    return 'M' + o0 + ' A' + r + ',' + r + ' 0 ' + la + ' 1 ' + o1 + ' L' + i1 + ' A' + r0 + ',' + r0 + ' 0 ' + la + ' 0 ' + i0 + ' Z';
+  }
+  document.querySelectorAll('[data-donut]').forEach(function (box) {
+    var data = JSON.parse(box.getAttribute('data-donut')), f = box.getAttribute('data-fmt');
+    var total = data.reduce(function (s, d) { return s + d[1]; }, 0);
+    var card = box.closest('.chart-card');
+    var tip = document.createElement('div'); tip.className = 'tip'; card.appendChild(tip);
+    var svg = document.createElementNS(NS, 'svg'); svg.setAttribute('viewBox', '0 0 180 180');
+    svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', data.map(function (d) { return d[0] + ' ' + fmt(d[1], f); }).join(', '));
+    var a = 0, ul = document.createElement('ul'); ul.className = 'legend';
+    var paths = [];
+    data.forEach(function (d, i) {
+      var a1 = a + 2 * Math.PI * d[1] / total;
+      var path = document.createElementNS(NS, 'path');
+      path.setAttribute('d', arc(90, 90, 86, 54, a, a1));
+      path.setAttribute('fill', 'var(--b-' + d[2] + ')');
+      path.setAttribute('stroke', 'var(--chart-surface)'); path.setAttribute('stroke-width', '2');
+      var pc = Math.round(100 * d[1] / total);
+      function show(ev) {
+        svg.classList.add('hovering'); paths.forEach(function (q) { q.classList.remove('on'); }); path.classList.add('on');
+        tip.textContent = d[0] + ' · ' + fmt(d[1], f) + ' · ' + pc + '%';
+        var r = card.getBoundingClientRect();
+        var x = (ev.touches ? ev.touches[0].clientX : ev.clientX) - r.left, y = (ev.touches ? ev.touches[0].clientY : ev.clientY) - r.top;
+        tip.style.left = Math.min(Math.max(x + 12, 8), r.width - tip.offsetWidth - 8) + 'px'; tip.style.top = (y - 34) + 'px'; tip.style.opacity = 1;
+      }
+      path.addEventListener('mousemove', show); path.addEventListener('touchstart', show, { passive: true });
+      path.addEventListener('mouseleave', function () { tip.style.opacity = 0; svg.classList.remove('hovering'); path.classList.remove('on'); });
+      svg.appendChild(path); paths.push(path);
+      // etiqueta directa (porcentaje) si la rebanada es suficientemente grande
+      if (pc >= 9) {
+        var mid = (a + a1) / 2, tx = document.createElementNS(NS, 'text');
+        tx.setAttribute('x', 90 + 70 * Math.sin(mid)); tx.setAttribute('y', 90 - 70 * Math.cos(mid) + 4);
+        tx.setAttribute('text-anchor', 'middle'); tx.setAttribute('font-size', '11'); tx.setAttribute('font-weight', '600');
+        tx.setAttribute('fill', '#0b0b0b'); tx.setAttribute('pointer-events', 'none'); tx.textContent = pc + '%';
+        svg.appendChild(tx);
+      }
+      var li = document.createElement('li');
+      li.innerHTML = '<span class="dot d-' + d[2] + '"></span><span class="n">' + d[0] + '</span><span class="v">' + fmt(d[1], f) + '</span><span class="pc">' + pc + '%</span>';
+      ul.appendChild(li);
+      a = a1;
+    });
+    var c1 = document.createElementNS(NS, 'text'); c1.setAttribute('x', 90); c1.setAttribute('y', 92); c1.setAttribute('text-anchor', 'middle');
+    c1.setAttribute('font-size', f === '$' ? '19' : '26'); c1.setAttribute('font-weight', '700'); c1.setAttribute('fill', 'var(--ink)'); c1.textContent = f === '$' ? corto(total, f) : total;
+    var c2 = document.createElementNS(NS, 'text'); c2.setAttribute('x', 90); c2.setAttribute('y', 110); c2.setAttribute('text-anchor', 'middle');
+    c2.setAttribute('font-size', '11'); c2.setAttribute('fill', 'var(--muted)'); c2.textContent = box.getAttribute('data-total-label');
+    svg.appendChild(c1); svg.appendChild(c2);
+    box.appendChild(svg); box.appendChild(ul);
+  });
+})();
+</script>
+
 </body>
 </html>
