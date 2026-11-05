@@ -18,7 +18,7 @@ Todos se abrieron y se contestan con **gamesailmx@gmail.com**.
 
 ## 5 nov 2026
 
-- **Girbau:** se hace un cambio real al botón con `campanas/salida/girbau/boton-llamada-cambio-real.js`: el horario queda escrito en dos tramos por día (9–13 y 13–18), con las mismas horas. Después se revisa que «Última actualización» diga la fecha del día. Google tarda de 24 a 48 horas.
+- **Girbau:** se hace un cambio real al botón con `campanas/salida/girbau/boton-llamada-cambio-real.js`: el horario queda escrito en dos tramos por día (9–13 y 13–18), con las mismas horas. **Ejecutado el 5 nov a las 15:55, sin errores.** Después se revisa que «Última actualización» diga la fecha del día. Google tarda de 24 a 48 horas, así que la respuesta se espera hacia el sábado 7.
 - **Quick Laundry:** se espera la revisión manual de Keerthi hasta el martes 10 nov. Si sigue rechazado, se hace el mismo cambio real.
 - **Kingstar:** sigue en revisión.
 - No hace falta contestar los correos. Si Google pide algo, se contesta desde gamesailmx@gmail.com.
