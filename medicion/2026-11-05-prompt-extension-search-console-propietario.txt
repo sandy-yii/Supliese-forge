@@ -1,0 +1,26 @@
+Trabaja solo con la cuenta de Google gamesailmx@gmail.com. Antes de empezar, revisa arriba a la derecha que la sesión abierta sea gamesailmx@gmail.com. Si es otra cuenta, detente y avísame.
+
+TAREA: en Google Search Console, agrega a direccion@atelbackia.com como PROPIETARIO en las 5 propiedades. Ese correo lo autorizó la usuaria hoy, 5 nov. Es el único correo distinto de gamesailmx que se escribe en esta tarea.
+
+Propiedades:
+1. supliese.com
+2. clmmexico.com
+3. servicioparalavanderias.com
+4. girbauoccidente.com
+5. gamesail.mx
+
+Usa la propiedad que ya existe y está verificada para cada dominio. Normalmente es la de prefijo de URL «https://dominio/». Si hay varias del mismo dominio (con y sin www), usa la verificada y dime cuáles viste.
+
+Pasos, en cada propiedad:
+1. Abre https://search.google.com/search-console y elige la propiedad.
+2. Ve a Configuración > Usuarios y permisos.
+3. Si direccion@atelbackia.com ya aparece como Propietario, no hagas nada en esa propiedad y anótala.
+4. Si no aparece, toca «Añadir usuario». Escribe direccion@atelbackia.com, elige el permiso «Propietario» y toca «Añadir».
+5. Revisa que ahora aparezca en la lista como Propietario.
+
+No quites ni cambies ningún otro usuario o permiso. gamesailmx@gmail.com se queda como está.
+
+Al terminar, dame una tabla con estas columnas:
+propiedad | direccion@atelbackia.com (agregado / ya estaba / error) | usuarios que aparecen y su permiso
+
+No modifiques, pauses, actives ni edites nada más. Si Google pide verificar identidad o passkey, detente y avísame; no intentes saltarlo.
