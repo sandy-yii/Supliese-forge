@@ -92,3 +92,9 @@ El cliente aprobó el reparto, pero pidió hacerlo poco a poco para no frenar lo
   El tope no sube el gasto, porque manda el presupuesto diario.
 - **Freno automático:** si una campaña que baja trajo 2 o más contactos en 7 días a un costo por contacto igual o mejor que el de su cuenta, no baja en ese paso.
 - **Un paso por corrida:** cada campaña avanza como máximo un paso cada vez que se corre el script, así que no hay saltos dobles.
+
+**Paso 1 aplicado el jue 5 nov, ~15:40, sin errores**, en Laundry Solutions, Kingstar, Girbau (solo el tope) y Gamesail.
+
+En Quick Laundry no cambió nada: el freno dejó Emprendimiento en $20, porque trajo 2 contactos a $126 cada uno y la cuenta va en $168 por contacto.
+
+El grupo queda en $1,782 al día. El paso 2 toca desde el lunes 9.
