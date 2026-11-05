@@ -10,10 +10,15 @@
  *   - Las que bajan, bajan un tercio en cada paso. Gamesail sube un tercio en cada paso, con el mismo dinero que sale
  *     de las otras, así el gasto total del grupo se queda casi igual mientras dura el cambio.
  *   - Si un paso ya se aplicó, no lo repite. Si todavía no es la fecha del siguiente, no hace nada y lo dice.
+ *     Cada campaña avanza como máximo un paso por corrida: si un día se olvida, no da un salto doble.
  *   - Nunca sube una campaña que va a la baja ni baja una que va a la alza (si alguien ya la movió, la deja).
- *   - Gamesail, en el paso 1: tope de costo por clic de «Hoteles y hospitales» de $16 a $20 (autorizado para Gamesail).
+ *   - Los 3 topes de costo por clic autorizados el 5 nov también suben en tres pasos, un tercio cada vez:
+ *       Gamesail «Hoteles y hospitales» $16 → $20 · Laundry Solutions «Reparación» $15 → $18 · Girbau «Por capacidad» $20 → $24.
+ *     El tope no sube el gasto: el presupuesto diario sigue mandando. Solo deja entrar a más búsquedas.
+ *   - FRENO para no perder contactos: si una campaña que va a la baja trajo 2 o más contactos en los últimos 7 días a un
+ *     costo por contacto igual o mejor que el de su cuenta, ese paso NO la baja y lo dice. Se revisa en el siguiente paso.
  * No toca anuncios, palabras clave, páginas, campañas anteriores ni ninguna otra campaña. No enciende ni pausa nada.
- * Girbau no cambia: no hace falta correrlo ahí.
+ * En Girbau el presupuesto no cambia: solo sube el tope de «Por capacidad y sector».
  *
  * CÓMO SE USA: en cada cuenta, en la fecha del paso > pegar completo > Autorizar > VISTA PREVIA > mandar el registro >
  * EJECUTAR solo con el OK. Mientras dure el cambio NO se corren «ajustes», «subir presupuesto», «más leads» ni «activar».
@@ -33,7 +38,7 @@ var PLANES = [
     { nombre: 'AB · Lavadoras y secadoras de 20 a 45 kg', de: 50, a: 6 }
   ] },
   { cuenta: '265-909-2662', nombre: 'Laundry Solutions', campanas: [
-    { nombre: 'AB · Reparación y mantenimiento', de: 156, a: 55 },
+    { nombre: 'AB · Reparación y mantenimiento', de: 156, a: 55, tope: { de: 15, a: 18 } },
     { nombre: 'AB · Refacciones Girbau y Gamesail', de: 10, a: 1 },
     { nombre: 'AB · Instalación', de: 10, a: 1 },
     { nombre: 'AB · Servicio a lavanderías', de: 8, a: 1 },
@@ -43,12 +48,14 @@ var PLANES = [
     { nombre: 'AB · Lavadoras para ropa y sábanas', de: 97, a: 194 },
     { nombre: 'AB · Lavadoras por capacidad y precio', de: 58, a: 117 },
     { nombre: 'AB · Secadoras industriales', de: 58, a: 117 },
-    { nombre: 'AB · Hoteles y hospitales', de: 39, a: 78, tope: 20 },
+    { nombre: 'AB · Hoteles y hospitales', de: 39, a: 78, tope: { de: 16, a: 20 } },
     { nombre: 'AB · Mangles y planchado', de: 26, a: 52 },
     { nombre: 'AB · Competencia depurada', de: 23, a: 45 },
     { nombre: 'AB · Marca Gamesail', de: 23, a: 45 }
   ] },
-  { cuenta: '860-582-6837', nombre: 'Girbau', campanas: [] }
+  { cuenta: '860-582-6837', nombre: 'Girbau', campanas: [
+    { nombre: 'AB · Girbau por capacidad y sector', tope: { de: 20, a: 24 } }   // sin cambio de presupuesto
+  ] }
 ];
 
 function filas(consulta, que) {
@@ -62,10 +69,16 @@ function filas(consulta, que) {
   return out;
 }
 function dinero(x) { return '$' + Math.round(x).toLocaleString('en-US'); }
-function valor(k, paso) { return paso >= 3 ? k.a : Math.round(k.de + (k.a - k.de) * paso / 3); }
-function baja(k) { return k.a < k.de; }
-// ¿La campaña ya está en el paso (o más allá)?
-function llego(k, actual, paso) { var v = valor(k, paso); return baja(k) ? actual <= v + 0.5 : actual >= v - 0.5; }
+function tercio(de, a, paso) { return paso >= 3 ? a : Math.round(de + (a - de) * paso / 3); }
+function conPresupuesto(k) { return typeof k.de === 'number'; }
+function valor(k, paso) { return tercio(k.de, k.a, paso); }
+function valorTope(k, paso) { return tercio(k.tope.de, k.tope.a, paso); }
+function baja(k) { return conPresupuesto(k) && k.a < k.de; }
+// ¿La campaña ya está en el paso (o más allá)? Un tope solo cuenta si la campaña usa «maximizar clics».
+function llegoPres(k, c, paso) { var v = valor(k, paso); return baja(k) ? c.monto <= v + 0.5 : c.monto >= v - 0.5; }
+function llegoTope(k, c, paso) { return c.tope >= valorTope(k, paso) - 0.005; }
+// En qué paso va (0 a 3) y a cuál le toca ir hoy: uno más, sin pasar del paso que permite la fecha.
+function enPaso(fn) { for (var p = 3; p >= 1; p--) if (fn(p)) return p; return 0; }
 
 function main() {
   var cid = AdsApp.currentAccount().getCustomerId();
@@ -76,7 +89,6 @@ function main() {
   var hoy = Utilities.formatDate(new Date(), AdsApp.currentAccount().getTimeZone(), 'yyyy-MM-dd');
   Logger.log('NUEVO REPARTO POR PASOS · ' + PLAN.nombre + ' · ' + hoy + (vista ? ' · VISTA PREVIA (no cambia nada)' : ' · EJECUTANDO'));
   Logger.log('');
-  if (!PLAN.campanas.length) { Logger.log('En ' + PLAN.nombre + ' el presupuesto no cambia. No se hizo nada.'); return; }
 
   // Campañas de la cuenta
   var C = {}, sumaAntes = 0;
@@ -95,44 +107,76 @@ function main() {
   if (faltan.length) Logger.log('AVISO: no encontré ' + faltan.map(function (n) { return '«' + n + '»'; }).join(', ') + '. Esa(s) no se tocan.');
   var lista = PLAN.campanas.filter(function (k) { return C[k.nombre]; });
 
-  // Qué paso toca: el primero que todavía no está aplicado
-  var paso = 0;
-  for (var p = 1; p <= 3; p++) {
-    if (!lista.every(function (k) { return llego(k, C[k.nombre].monto, p); })) { paso = p; break; }
-  }
+  // Cada campaña avanza como máximo UN paso por corrida (se corre una vez por fecha), y solo hasta el paso que permite la fecha.
+  var pasoFecha = FECHAS.filter(function (f) { return hoy >= f; }).length;
+  var completo = true, toca = false;
+  lista.forEach(function (k) {
+    var c = C[k.nombre];
+    k.enPres = conPresupuesto(k) ? enPaso(function (p) { return llegoPres(k, c, p); }) : 3;
+    k.enTope = (k.tope && c.puja === 'TARGET_SPEND') ? enPaso(function (p) { return llegoTope(k, c, p); }) : 3;
+    k.vaPres = Math.max(k.enPres, Math.min(pasoFecha, k.enPres + 1));
+    k.vaTope = Math.max(k.enTope, Math.min(pasoFecha, k.enTope + 1));
+    if (k.enPres < 3 || k.enTope < 3) completo = false;
+    if (k.vaPres > k.enPres || k.vaTope > k.enTope) toca = true;
+  });
   Logger.log('== CAMINO DE CADA CAMPAÑA (al día) ==');
   lista.forEach(function (k) {
-    Logger.log('«' + k.nombre + '»: hoy ' + dinero(C[k.nombre].monto) + ' · paso 1 ' + dinero(valor(k, 1)) + ' · paso 2 ' + dinero(valor(k, 2)) +
-      ' · paso 3 ' + dinero(valor(k, 3)) + (C[k.nombre].estado !== 'ENABLED' ? ' (campaña ' + C[k.nombre].estado + ')' : ''));
+    var c = C[k.nombre];
+    if (conPresupuesto(k)) Logger.log('«' + k.nombre + '» presupuesto: hoy ' + dinero(c.monto) + ' · paso 1 ' + dinero(valor(k, 1)) +
+      ' · paso 2 ' + dinero(valor(k, 2)) + ' · paso 3 ' + dinero(valor(k, 3)) + (c.estado !== 'ENABLED' ? ' (campaña ' + c.estado + ')' : ''));
+    if (k.tope) Logger.log('«' + k.nombre + '» tope por clic: hoy $' + c.tope + ' · paso 1 $' + valorTope(k, 1) + ' · paso 2 $' + valorTope(k, 2) +
+      ' · paso 3 $' + valorTope(k, 3));
   });
   Logger.log('');
-  if (!paso) { Logger.log('✅ Los tres pasos ya están aplicados en ' + PLAN.nombre + '. No hay nada que cambiar.'); return; }
-  if (hoy < FECHAS[paso - 1]) {
-    Logger.log('El paso ' + paso + ' toca desde el ' + FECHAS[paso - 1] + '. Hoy no hay nada que cambiar en ' + PLAN.nombre + '.');
+  if (completo) { Logger.log('✅ Los tres pasos ya están aplicados en ' + PLAN.nombre + '. No hay nada que cambiar.'); return; }
+  if (!toca) {
+    Logger.log('Hoy no hay nada que cambiar en ' + PLAN.nombre + '. ' + (pasoFecha < 3 ? 'El siguiente paso toca desde el ' + FECHAS[pasoFecha] + '.'
+      : 'Lo que falta se aplica en la siguiente corrida, otro día (un paso por día).'));
     return;
   }
 
+  // Freno: contactos y costo por contacto de los últimos 7 días completos
+  var hace7 = Utilities.formatDate(new Date(Date.now() - 7 * 864e5), AdsApp.currentAccount().getTimeZone(), 'yyyy-MM-dd');
+  var ayer = Utilities.formatDate(new Date(Date.now() - 864e5), AdsApp.currentAccount().getTimeZone(), 'yyyy-MM-dd');
+  var R = {}, cuenta = { costo: 0, contactos: 0 };
+  filas("SELECT campaign.name, metrics.cost_micros, metrics.conversions FROM campaign WHERE segments.date BETWEEN '" + hace7 + "' AND '" + ayer + "'",
+    'los contactos de 7 días').forEach(function (f) {
+    var r = { costo: Number(f.metrics.costMicros || 0) / 1e6, contactos: Number(f.metrics.conversions || 0) };
+    R[f.campaign.name] = r; cuenta.costo += r.costo; cuenta.contactos += r.contactos;
+  });
+  var cpcCuenta = cuenta.contactos ? cuenta.costo / cuenta.contactos : 0;
+  Logger.log('Últimos 7 días (' + hace7 + ' a ' + ayer + '): ' + Math.round(cuenta.contactos * 10) / 10 + ' contactos en la cuenta' +
+    (cpcCuenta ? ' · ' + dinero(cpcCuenta) + ' por contacto' : ''));
+  Logger.log('');
+
   var ops = [], textos = [], sumaDespues = sumaAntes;
   lista.forEach(function (k) {
-    var c = C[k.nombre], v = valor(k, paso);
+    if (!conPresupuesto(k) || k.vaPres === k.enPres) return;
+    var c = C[k.nombre], v = valor(k, k.vaPres), r = R[k.nombre] || { costo: 0, contactos: 0 };
+    if (baja(k) && c.monto > v + 0.5 && r.contactos >= 2 && cpcCuenta && r.costo / r.contactos <= cpcCuenta) {
+      Logger.log('FRENO «' + k.nombre + '»: no baja en este paso. Trajo ' + Math.round(r.contactos * 10) / 10 + ' contactos en 7 días a ' +
+        dinero(r.costo / r.contactos) + ' cada uno (la cuenta va en ' + dinero(cpcCuenta) + '). Se queda en ' + dinero(c.monto) + '.');
+      return;
+    }
     var nuevo = baja(k) ? Math.min(c.monto, v) : Math.max(c.monto, v);
     if (Math.abs(nuevo - c.monto) < 0.5) return;
     if (c.compartido) { Logger.log('AVISO «' + k.nombre + '»: su presupuesto es compartido con otras campañas; no lo toqué.'); return; }
     ops.push({ campaignBudgetOperation: { update: { resourceName: c.presupuesto, amountMicros: Math.round(nuevo * 1e6) }, updateMask: 'amountMicros' } });
-    textos.push((nuevo < c.monto ? 'BAJA' : 'SUBE') + ' «' + k.nombre + '»: ' + dinero(c.monto) + ' → ' + dinero(nuevo) + ' al día');
+    textos.push((nuevo < c.monto ? 'BAJA' : 'SUBE') + ' «' + k.nombre + '» (paso ' + k.vaPres + ' de 3): ' + dinero(c.monto) + ' → ' + dinero(nuevo) + ' al día');
     if (c.estado === 'ENABLED') sumaDespues += nuevo - c.monto;
   });
   lista.forEach(function (k) {
     var c = C[k.nombre];
-    if (!k.tope || paso !== 1) return;
+    if (!k.tope) return;
     if (c.puja !== 'TARGET_SPEND') { Logger.log('AVISO «' + k.nombre + '»: no usa «maximizar clics»; su tope no se cambia.'); return; }
-    if (c.tope >= k.tope) return;
-    ops.push({ campaignOperation: { update: { resourceName: c.rn, targetSpend: { cpcBidCeilingMicros: Math.round(k.tope * 1e6) } },
+    if (k.vaTope === k.enTope) return;
+    var t = valorTope(k, k.vaTope);
+    ops.push({ campaignOperation: { update: { resourceName: c.rn, targetSpend: { cpcBidCeilingMicros: Math.round(t * 1e6) } },
       updateMask: 'targetSpend.cpcBidCeilingMicros' } });
-    textos.push('TOPE «' + k.nombre + '»: costo por clic máximo $' + c.tope + ' → $' + k.tope);
+    textos.push('TOPE «' + k.nombre + '» (paso ' + k.vaTope + ' de 3): costo por clic máximo $' + c.tope + ' → $' + t + ' (no cambia el presupuesto)');
   });
 
-  Logger.log(vista ? '================ PASO ' + paso + ' DE 3 · SE HARÍA ================' : '================ PASO ' + paso + ' DE 3 · CAMBIOS ================');
+  Logger.log(vista ? '================ SE HARÍA ================' : '================ CAMBIOS ================');
   textos.forEach(function (t) { Logger.log(t); });
   if (!ops.length) { Logger.log('Nada que cambiar.'); return; }
   Logger.log('');
@@ -148,5 +192,5 @@ function main() {
   if (vista) Logger.log(malos ? 'VISTA PREVIA CON ' + malos + ' ERROR(ES): manda el registro antes de ejecutar.'
                               : 'VISTA PREVIA SIN ERRORES. Manda el registro; EJECUTAR solo con el OK.');
   else Logger.log(malos ? 'Terminó con ' + malos + ' error(es): manda el registro.'
-                        : 'LISTO. Paso ' + paso + ' de 3 aplicado en ' + PLAN.nombre + (paso < 3 ? '. El paso ' + (paso + 1) + ' toca desde el ' + FECHAS[paso] + '.' : '. Reparto completo.'));
+                        : 'LISTO. Cambios aplicados en ' + PLAN.nombre + (pasoFecha < 3 ? '. El siguiente paso toca desde el ' + FECHAS[pasoFecha] + '.' : '.'));
 }

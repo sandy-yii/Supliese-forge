@@ -81,4 +81,14 @@ El cliente aprobó el reparto, pero pidió hacerlo poco a poco para no frenar lo
 
 - **Antes de cada paso se revisa el reporte diario.** Si una campaña recortada pierde contactos, ese paso se detiene en esa campaña.
 - **No se corren** `ajustes`, `subir presupuesto`, `más leads` ni `activar`, porque usan los presupuestos del plan anterior.
-- **Topes:** el de Gamesail (Hoteles y hospitales, $16 → $20) va en el paso 1. Los de Laundry Solutions y Girbau esperan la autorización por escrito.
+- **Topes:** autorizados los 3 el 5 nov y también por pasos:
+
+  | Marca | Campaña | Paso 1 | Paso 2 | Paso 3 |
+  |---|---|---|---|---|
+  | Gamesail | Hoteles y hospitales | $17 | $19 | $20 |
+  | Laundry Solutions | Reparación | $16 | $17 | $18 |
+  | Girbau | Por capacidad y sector | $21 | $23 | $24 |
+
+  El tope no sube el gasto, porque manda el presupuesto diario.
+- **Freno automático:** si una campaña que baja trajo 2 o más contactos en 7 días a un costo por contacto igual o mejor que el de su cuenta, no baja en ese paso.
+- **Un paso por corrida:** cada campaña avanza como máximo un paso cada vez que se corre el script, así que no hay saltos dobles.
