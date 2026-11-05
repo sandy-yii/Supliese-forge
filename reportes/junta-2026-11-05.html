@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: guion de junta en una columna: la frase, los resultados, lo que se hizo, Search Console, lo que esperamos de Google, la propuesta de presupuesto por etapas, lo que necesitamos y lo que sigue. */
+/* Layout: guion de junta en una columna: la frase, los resultados, lo que se hizo, Search Console, lo que esperamos de Google, la propuesta acelerada, lo que necesitamos y lo que sigue. */
 :root {
   --bg: #f5f7f9;
   --surface: #ffffff;
@@ -251,52 +251,74 @@ tfoot td { font-weight: 600; border-top: 2px solid var(--line); }
 </section>
 
 <section aria-labelledby="propuesta">
-  <h2 id="propuesta">Propuesta: subir el presupuesto, poco a poco y solo donde ya funciona</h2>
-  <p class="big">Ya hay campañas que traen contactos a buen precio y se quedan sin dinero antes de que acabe el día. Hay gente buscando que hoy ya no ve el anuncio. Proponemos empezar ahí.</p>
+  <h2 id="propuesta">Propuesta: acelerar, empezando por lo que ya funciona</h2>
+  <p class="big">Ya hay campañas que traen contactos a buen precio y se quedan sin dinero antes de que acabe el día. Proponemos darles presupuesto desde hoy y empujar al mismo tiempo todo lo que convierte más clics en clientes.</p>
+
+  <h3>1. Presupuesto: seis campañas hoy, una el lunes</h3>
   <div class="table-wrap">
     <table>
       <thead><tr><th>Marca</th><th>Campaña</th><th>Contactos</th><th>Costo por contacto</th><th>Presupuesto al día</th><th>Al mes</th><th>Cuándo</th></tr></thead>
       <tbody>
-        <tr><td>Quick Laundry</td><td>Equipo para lavandería</td><td class="num">15</td><td class="num">$168</td><td class="num">$260 → $338</td><td class="num">+$2,371</td><td><span class="opt">Etapa 1 · hoy</span></td></tr>
-        <tr><td>Laundry Solutions</td><td>Servicio técnico industrial</td><td class="num">4</td><td class="num">$188</td><td class="num">$75 → $98</td><td class="num">+$699</td><td><span class="opt">Etapa 1 · hoy</span></td></tr>
-        <tr><td>Girbau</td><td>Máximo rendimiento</td><td class="num">20</td><td class="num">$38</td><td class="num">$117 → $152</td><td class="num">+$1,064</td><td><span class="opt">Etapa 1 · hoy</span></td></tr>
-        <tr><td>Kingstar</td><td>Túnel de lavado</td><td class="num">2</td><td class="num">$261</td><td class="num">$80 → $104</td><td class="num">+$730</td><td><span class="opt">Etapa 1 · hoy</span></td></tr>
-        <tr><td>Kingstar</td><td>Alta capacidad 60 kg o más</td><td class="num">9</td><td class="num">$365</td><td class="num">$330 → $429</td><td class="num">+$3,010</td><td><span class="opt optb">Etapa 2 · lunes 10</span></td></tr>
-        <tr><td>Laundry Solutions</td><td>Reparación y mantenimiento</td><td class="num">3</td><td class="num">$366</td><td class="num">$156 → $203</td><td class="num">+$1,429</td><td><span class="opt optb">Etapa 2 · lunes 10</span></td></tr>
-        <tr><td>Quick Laundry</td><td>Campaña Search Marcas (anterior)</td><td class="num">5</td><td class="num">$181</td><td class="num">$35 → $46</td><td class="num">+$334</td><td><span class="opt optb">Etapa 2 · lunes 10</span></td></tr>
+        <tr><td>Quick Laundry</td><td>Equipo para lavandería</td><td class="num">15</td><td class="num">$168</td><td class="num">$260 → $338</td><td class="num">+$2,371</td><td><span class="opt">Hoy</span></td></tr>
+        <tr><td>Girbau</td><td>Máximo rendimiento</td><td class="num">20</td><td class="num">$38</td><td class="num">$117 → $152</td><td class="num">+$1,064</td><td><span class="opt">Hoy</span></td></tr>
+        <tr><td>Laundry Solutions</td><td>Servicio técnico industrial</td><td class="num">4</td><td class="num">$188</td><td class="num">$75 → $98</td><td class="num">+$699</td><td><span class="opt">Hoy</span></td></tr>
+        <tr><td>Kingstar</td><td>Túnel de lavado</td><td class="num">2</td><td class="num">$261</td><td class="num">$80 → $104</td><td class="num">+$730</td><td><span class="opt">Hoy</span></td></tr>
+        <tr><td>Laundry Solutions</td><td>Reparación y mantenimiento</td><td class="num">3</td><td class="num">$366</td><td class="num">$156 → $203</td><td class="num">+$1,429</td><td><span class="opt">Hoy</span></td></tr>
+        <tr><td>Quick Laundry</td><td>Campaña Search Marcas (anterior)</td><td class="num">5</td><td class="num">$181</td><td class="num">$35 → $46</td><td class="num">+$334</td><td><span class="opt">Hoy</span></td></tr>
+        <tr><td>Kingstar</td><td>Alta capacidad 60 kg o más</td><td class="num">9</td><td class="num">$365</td><td class="num">$330 → $429</td><td class="num">+$3,010</td><td><span class="opt optb">Lunes 10</span></td></tr>
       </tbody>
       <tfoot>
-        <tr><td colspan="5">Etapa 1 (hoy, con su autorización)</td><td class="num">+$4,864</td><td>20 a 25 contactos más al mes</td></tr>
-        <tr><td colspan="5">Etapas 1 y 2 juntas</td><td class="num">+$9,637</td><td>29 a 34 contactos más al mes</td></tr>
+        <tr><td colspan="5">Hoy, con su autorización (6 campañas)</td><td class="num">+$6,627</td><td>24 a 29 contactos más al mes</td></tr>
+        <tr><td colspan="5">Con Alta capacidad el lunes 10 (7 campañas)</td><td class="num">+$9,637</td><td>29 a 34 contactos más al mes</td></tr>
       </tfoot>
     </table>
   </div>
-  <div class="phases">
-    <div class="phase">
-      <span class="when">Etapa 1 · hoy</span>
-      <h3>Las 4 campañas más seguras</h3>
-      <p>Las de contacto más barato. +$4,864 al mes. Se aplica el mismo día de su autorización, solo cambiando presupuesto, así que Google no vuelve a aprender.</p>
-    </div>
-    <div class="phase">
-      <span class="when">Etapa 2 · lunes 10</span>
-      <h3>Las otras 3</h3>
-      <p>Con una semana de datos de la etapa 1 y el primer conteo de los vendedores. Alta capacidad de Kingstar ya subió el 3 de noviembre; por eso su segundo aumento espera al lunes.</p>
-    </div>
-    <div class="phase">
-      <span class="when">Cada dos semanas</span>
-      <h3>Seguir subiendo lo que rinda</h3>
-      <p>Hasta 30% más cada vez, solo en las campañas que sigan trayendo clientes reales. Así nos vamos acercando al nivel de inversión que tenían antes, si hace falta. Si la meta se alcanza con menos, mejor.</p>
-    </div>
+  <p style="font-size:13px;color:var(--muted)">Alta capacidad de Kingstar ya subió de $280 a $330 el 3 de noviembre; su segundo aumento espera al lunes para no subirla dos veces en la misma semana. Gamesail pasa esta semana a su presupuesto completo ya acordado ($648 al día).</p>
+
+  <h3>2. Topes de costo por clic: salir en las búsquedas que hoy se pierden</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Marca</th><th>Campaña</th><th>Búsquedas que pierde por tope bajo</th><th>Tope por clic</th></tr></thead>
+      <tbody>
+        <tr><td>Gamesail</td><td>Hoteles y hospitales</td><td class="num">90%</td><td class="num">$16 → $20</td></tr>
+        <tr><td>Laundry Solutions</td><td>Reparación y mantenimiento</td><td class="num">53%</td><td class="num">$15 → $18</td></tr>
+        <tr><td>Girbau</td><td>Por capacidad y sector</td><td class="num">50%</td><td class="num">$20 → $24</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:13px;color:var(--muted)">El tope es lo máximo que se puede pagar por un clic. Subirlo no aumenta el gasto del mes: el presupuesto diario sigue siendo el límite. Solo permite aparecer en búsquedas en las que hoy otro anunciante gana.</p>
+
+  <h3>3. Convertir más clics en contactos, sin gastar más</h3>
+  <div class="box">
+    <ul>
+      <li><strong>Botones de llamada aprobados</strong> en Quick Laundry, Kingstar y Girbau: ya está todo enviado a Google.</li>
+      <li><strong>WhatsApp con mensaje ya escrito</strong> según el equipo que la persona está viendo.</li>
+      <li><strong>Páginas más convincentes:</strong> precios o rangos de precio, fotos reales de los equipos y opiniones de clientes reales con su permiso.</li>
+    </ul>
+  </div>
+
+  <h3>Hacia dónde vamos (estimados)</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Cuándo</th><th>Qué se suma</th><th>Contactos al día</th></tr></thead>
+      <tbody>
+        <tr><td>Hoy</td><td>Lo que hay</td><td class="num">11 a 13</td></tr>
+        <tr><td>Esta semana</td><td>Presupuesto de las 6 campañas, Gamesail completo, topes y WhatsApp con mensaje</td><td class="num">16 a 20</td></tr>
+        <tr><td>Próxima semana</td><td>Botones de llamada aprobados, Alta capacidad y material nuevo en las páginas</td><td class="num">22 a 26</td></tr>
+        <tr><td>En 2 a 3 semanas</td><td>Segundo aumento a lo que rinda, con el conteo de los vendedores</td><td class="num">25 a 30</td></tr>
+      </tbody>
+    </table>
   </div>
   <div class="note">
-    <p><strong>Por qué poco a poco:</strong> subir de golpe hace que Google vuelva a aprender y que el costo por contacto suba unos días. Subiendo hasta 30% a la vez, cada peso nuevo va a búsquedas que ya probaron que traen clientes. Lo que no rinda en dos semanas regresa a su presupuesto de hoy. Gamesail pasa esta semana a su presupuesto completo ya acordado ($648 al día) y no sube más hasta tener dos semanas de datos.</p>
+    <p><strong>Cómo lo cuidamos:</strong> revisamos cada noche los resultados del día. Si alguna campaña empieza a pagar demasiado por cada contacto, la frenamos ese mismo día y regresa a su presupuesto anterior. Cada aumento es de hasta 30% para que Google no tenga que volver a aprender. Si llegamos a la meta con menos presupuesto, mejor.</p>
   </div>
 </section>
 
 <section aria-labelledby="necesitamos">
   <h2 id="necesitamos">Lo que necesitamos de ustedes</h2>
   <ol class="asks">
-    <li><span><b>Autorización por escrito para la etapa 1</b>Un mensaje basta: «autorizamos la etapa 1». Si quieren autorizar también la etapa 2 para el lunes 10, mejor.</span><span class="chip todo">Dirección</span></li>
+    <li><span><b>Autorización por escrito</b>Un mensaje basta: «autorizamos el presupuesto de las 7 campañas y los 3 topes». Las 6 campañas y los topes se aplican hoy; Alta capacidad, el lunes 10.</span><span class="chip todo">Dirección</span></li>
+    <li><span><b>Material para las páginas, esta semana</b>Precios o rangos de precio por equipo, fotos reales de los equipos y clientes que den permiso de poner su opinión o su logo.</span><span class="chip todo">Dirección</span></li>
     <li><span><b>Conteo del lunes 10</b>Cuántos contactos recibió cada vendedor, cuántos eran clientes reales y cuántas ventas se cerraron.</span><span class="chip todo">Vendedores</span></li>
     <li><span><b>Gamesail: el saldo de la cuenta anterior ($15,293.55)</b>Para pedir el reembolso a Google: razón social y RFC, titular de la tarjeta Visa terminación 5523 y estado de cuenta, correo de las facturas y contacto de la agencia anterior.</span><span class="chip todo">Dirección</span></li>
   </ol>
@@ -308,10 +330,10 @@ tfoot td { font-weight: 600; border-top: 2px solid var(--line); }
     <table>
       <thead><tr><th>Cuándo</th><th>Qué</th><th>Quién</th></tr></thead>
       <tbody>
-        <tr><td><span class="chip wait">Hoy</span></td><td>Etapa 1 del presupuesto, con su autorización.</td><td class="who">Atelback</td></tr>
+        <tr><td><span class="chip wait">Hoy</span></td><td>Presupuesto de las 6 campañas y los 3 topes, con su autorización.</td><td class="who">Atelback</td></tr>
         <tr><td><span class="chip wait">Esta semana</span></td><td>Gamesail a su presupuesto completo, si sus búsquedas siguen limpias.</td><td class="who">Atelback</td></tr>
         <tr><td><span class="chip wait">1 a 3 días</span></td><td>Respuesta de Google a los botones de llamada.</td><td class="who">Google</td></tr>
-        <tr><td><span class="chip todo">Lunes 10</span></td><td>Primer conteo de los vendedores, etapa 2 y ajuste semanal.</td><td class="who">Todos</td></tr>
+        <tr><td><span class="chip todo">Lunes 10</span></td><td>Primer conteo de los vendedores, Alta capacidad de Kingstar y ajuste semanal.</td><td class="who">Todos</td></tr>
         <tr><td><span class="chip todo">En 1 a 2 semanas</span></td><td>Primeros datos de Search Console: cómo los encuentran gratis en Google.</td><td class="who">Atelback</td></tr>
       </tbody>
     </table>
