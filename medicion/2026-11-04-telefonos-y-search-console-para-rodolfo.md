@@ -59,3 +59,10 @@ Mándale a Sandy una línea por sitio:
 `dominio · +52 visible en el código fuente (sí/no) · enlace tel:+52 (sí/no) · etiqueta google-site-verification en la portada (sí/no)`
 
 Con eso Sandy da «Verificar» en Search Console, lo vincula en Google Ads y vuelve a mandar los botones de llamada a revisión. **Lo urgente es supliese.com y girbauoccidente.com**: si puedes, publica esos dos primero.
+
+## 5 nov 2026: propietarios de Search Console
+
+- direccion@atelbackia.com está agregado como **Propietario** en las 5 propiedades. Lo autorizó Sandy y lo hizo la extensión con gamesailmx@gmail.com.
+- **Propiedades:** solo hay una por dominio, todas con prefijo de URL `https://dominio/`, sin versiones con www.
+- **gamesail.mx:** direccion@atelbackia.com ya aparece como propietario «verificado». Esa cuenta había verificado el sitio por su lado.
+- gamesailmx@gmail.com sigue como propietario verificado en las 5.
