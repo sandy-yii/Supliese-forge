@@ -63,3 +63,22 @@ Pasa a presupuesto completo, que ya estaba acordado.
 
 - **Recortes grandes:** Alta capacidad baja 31%, Reparación 65% y Hotelera 60%. Pueden volver a aprender unos días.
 - **Contactos esperados:** 11 a 14 al día esta semana.
+
+---
+
+## Acordado en la junta del 5 nov: se aplica por pasos
+
+El cliente aprobó el reparto, pero pidió hacerlo poco a poco para no frenar los contactos. Se aplica con `campanas/salida/reparto-por-pasos-todas-las-cuentas.js`. Cada paso mueve un tercio del camino, y Gamesail sube con el mismo dinero que sale de las otras.
+
+| Paso | Desde | Suma al día (5 marcas) | Al mes |
+|---|---|---|---|
+| Hoy | — | $1,791 | ≈ $54,400 |
+| 1 | jue 5 nov | $1,779 | ≈ $54,100 |
+| 2 | lun 9 nov | $1,765 | ≈ $53,700 |
+| 3 | jue 12 nov | $1,753 | ≈ $53,300 |
+
+**Reglas mientras dura el cambio:**
+
+- **Antes de cada paso se revisa el reporte diario.** Si una campaña recortada pierde contactos, ese paso se detiene en esa campaña.
+- **No se corren** `ajustes`, `subir presupuesto`, `más leads` ni `activar`, porque usan los presupuestos del plan anterior.
+- **Topes:** el de Gamesail (Hoteles y hospitales, $16 → $20) va en el paso 1. Los de Laundry Solutions y Girbau esperan la autorización por escrito.
