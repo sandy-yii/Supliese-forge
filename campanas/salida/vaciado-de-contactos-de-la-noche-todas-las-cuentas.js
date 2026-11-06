@@ -106,8 +106,9 @@ function main() {
   Logger.log('==== 1. TOTALES DEL DÍA ====');
   Logger.log('WhatsApp: ' + uno(wa));
   Logger.log('Formulario: ' + uno(form) + '   (hoy el formulario abre WhatsApp al enviar: al vendedor le llega como WhatsApp)');
-  Logger.log('Llamada: ' + uno(tel) + '   (' + Object.keys(T).filter(function (k) { return k.indexOf('Llamada') === 0; })
-    .map(function (k) { return k.replace('Llamada ', '') + ' ' + uno(T[k]); }).join(', ') + ')');
+  var detalle = Object.keys(T).filter(function (k) { return k.indexOf('Llamada') === 0; })
+    .map(function (k) { return k.replace('Llamada ', '') + ' ' + uno(T[k]); }).join(', ');
+  Logger.log('Llamada: ' + uno(tel) + (detalle ? '   (' + detalle + ')' : ''));
   Logger.log('Correo: ' + uno(correo));
   if (T['Otro']) Logger.log('Otro: ' + uno(T['Otro']));
   Logger.log('Total: ' + uno(total) + ' contacto(s) · ' + clics + ' clics · ' + dinero(costo));
@@ -115,6 +116,7 @@ function main() {
 
   // 2. Cada contacto
   Logger.log('==== 2. CADA CONTACTO (hora del clic · tipo · sección · dispositivo) ====');
+  Logger.log('(En Máximo rendimiento Google no siempre da la hora real: si sale 00:00, tómala como «sin hora».)');
   var k = 0;
   lista.forEach(function (c) {
     k++;
