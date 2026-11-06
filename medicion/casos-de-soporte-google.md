@@ -22,3 +22,15 @@ Todos se abrieron y se contestan con **gamesailmx@gmail.com**.
 - **Quick Laundry:** se espera la revisión manual de Keerthi hasta el martes 10 nov. Si sigue rechazado, se hace el mismo cambio real.
 - **Kingstar:** sigue en revisión.
 - No hace falta contestar los correos. Si Google pide algo, se contesta desde gamesailmx@gmail.com.
+
+## 5 nov 2026, 19:08 · el vaciado de la noche muestra los botones aprobados
+
+| Marca | Botón de llamada | Número |
+|---|---|---|
+| Laundry Solutions | APPROVED | Sergio · 33 1417 2994 |
+| Kingstar | APPROVED | Jorge · 33 1564 1538 |
+| Girbau | APPROVED, horas después del cambio real | Eduardo · 33 2806 8994 |
+| Gamesail | APPROVED | Silvia · 33 1185 9797 |
+| Quick Laundry | Sigue DISAPPROVED (UNVERIFIED_PHONE_NUMBER) | Liliana · 33 2601 2237 |
+
+Quick Laundry espera la revisión manual de Keerthi (caso 9-5942000041700) hasta el martes 10.
