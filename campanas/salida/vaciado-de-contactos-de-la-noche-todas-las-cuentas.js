@@ -15,8 +15,8 @@
  * llamadas, y por decisión del 3 nov no le mandamos los datos del formulario. Esos datos solo los tiene el vendedor.
  * Para cruzar se usan la hora, el tipo, la sección (campaña y grupo), la ciudad y, en llamadas, la lada y la duración.
  *
- * QUÉ DÍA: si se corre después de las 8 a. m., da HOY hasta la hora en que se corre (lo normal: en la noche, después
- * de las 9 p. m.). Si se corre antes de las 8 a. m., da AYER completo.
+ * QUÉ DÍA: si se corre después de las 12 del día, da HOY hasta la hora en que se corre (lo normal: en la noche, después
+ * de las 9 p. m.). Si se corre en la mañana (antes de las 12), da AYER completo.
  * La hora de cada contacto es la del clic en el anuncio; el contacto suele ser minutos después.
  *
  * CÓMO SE USA: en cada cuenta > pegar completo > Autorizar > VISTA PREVIA > copiar todo el registro y mandarlo.
@@ -60,7 +60,7 @@ function main() {
   var zona = AdsApp.currentAccount().getTimeZone();
   var ahora = new Date();
   var horaAhora = Number(Utilities.formatDate(ahora, zona, 'H'));
-  var esAyer = horaAhora < 8;
+  var esAyer = horaAhora < 12;
   var dia = Utilities.formatDate(esAyer ? new Date(ahora.getTime() - 864e5) : ahora, zona, 'yyyy-MM-dd');
   var hasta = esAyer ? 'día completo' : 'hasta las ' + Utilities.formatDate(ahora, zona, 'HH:mm');
   var cuando = "segments.date = '" + dia + "'";
