@@ -17,6 +17,8 @@
  *
  * QUÉ DÍA: si se corre después de las 12 del día, da HOY hasta la hora en que se corre (lo normal: en la noche, después
  * de las 9 p. m.). Si se corre en la mañana (antes de las 12), da AYER completo.
+ * VARIOS DÍAS (por ejemplo, el fin de semana): escribe en DESDE la fecha del primer día, como '2026-11-06'. El script da
+ * cada día desde esa fecha hasta hoy (hoy, hasta la hora en que se corre) y al final un resumen por día.
  * La hora de cada contacto es la del clic en el anuncio; el contacto suele ser minutos después.
  *
  * CÓMO SE USA: en cada cuenta > pegar completo > Autorizar > VISTA PREVIA > copiar todo el registro y mandarlo.
@@ -27,6 +29,9 @@ var MARCAS = {
   '860-582-6837': 'Girbau', '118-347-6484': 'Gamesail'
 };
 var CONTACTO = /conversa|conversation|mensaje|message|whats|\bwa\b|llamad|call|tel[eé]fono|phone|formul|lead|contact|correo|mail/i;
+// Vacío = un solo día (hoy en la tarde o noche, ayer en la mañana). Con fecha = desde ese día hasta hoy.
+var DESDE = '';
+
 var DISPOSITIVO = { MOBILE: 'celular', DESKTOP: 'computadora', TABLET: 'tableta', CONNECTED_TV: 'TV', OTHER: 'otro' };
 
 function filas(consulta, que) {
@@ -59,17 +64,35 @@ function main() {
   var marca = MARCAS[cid] || AdsApp.currentAccount().getName();
   var zona = AdsApp.currentAccount().getTimeZone();
   var ahora = new Date();
-  var horaAhora = Number(Utilities.formatDate(ahora, zona, 'H'));
-  var esAyer = horaAhora < 12;
-  var dia = Utilities.formatDate(esAyer ? new Date(ahora.getTime() - 864e5) : ahora, zona, 'yyyy-MM-dd');
-  var hasta = esAyer ? 'día completo' : 'hasta las ' + Utilities.formatDate(ahora, zona, 'HH:mm');
-  var cuando = "segments.date = '" + dia + "'";
-  Logger.log('VACIADO DE CONTACTOS · ' + marca + ' · ' + dia + ' (' + hasta + ') · solo lee');
-  Logger.log('');
-
+  var hoy = Utilities.formatDate(ahora, zona, 'yyyy-MM-dd');
+  var horaTexto = 'hasta las ' + Utilities.formatDate(ahora, zona, 'HH:mm');
   var tiposGoogle = {};
   filas("SELECT conversion_action.name, conversion_action.type FROM conversion_action WHERE conversion_action.status != 'REMOVED'", 'las acciones')
     .forEach(function (f) { tiposGoogle[f.conversionAction.name] = f.conversionAction.type; });
+
+  var dias = [];
+  if (DESDE) {
+    for (var t = new Date(DESDE + 'T12:00:00Z'); t.toISOString().substr(0, 10) <= hoy; t.setUTCDate(t.getUTCDate() + 1)) {
+      var d = t.toISOString().substr(0, 10);
+      dias.push({ dia: d, hasta: d === hoy ? horaTexto : 'día completo' });
+    }
+  } else if (Number(Utilities.formatDate(ahora, zona, 'H')) < 12) {
+    dias.push({ dia: Utilities.formatDate(new Date(ahora.getTime() - 864e5), zona, 'yyyy-MM-dd'), hasta: 'día completo' });
+  } else {
+    dias.push({ dia: hoy, hasta: horaTexto });
+  }
+  var resumen = dias.map(function (x) { return vaciarDia(x.dia, x.hasta, marca, tiposGoogle); });
+  if (dias.length > 1) {
+    Logger.log('################ RESUMEN POR DÍA · ' + marca + ' ################');
+    resumen.forEach(function (r) { Logger.log(r); });
+  }
+  Logger.log('LISTO. Copia todo el registro y mándalo. Este script no cambió nada.');
+}
+
+function vaciarDia(dia, hasta, marca, tiposGoogle) {
+  var cuando = "segments.date = '" + dia + "'";
+  Logger.log('VACIADO DE CONTACTOS · ' + marca + ' · ' + dia + ' (' + hasta + ') · solo lee');
+  Logger.log('');
   function esContacto(n) { return CONTACTO.test(n) || tiposGoogle[n] === 'AD_CALL' || tiposGoogle[n] === 'WEBSITE_CALL'; }
 
   // Cada contacto: campañas de búsqueda por grupo; las demás (Máximo rendimiento, etc.) por campaña
@@ -192,7 +215,9 @@ function main() {
       ', ' + minutos(c.callDurationSeconds) + ', lada ' + (c.callerAreaCode || '?'), f.campaign.name, '', '', 1].join(';'));
   });
   Logger.log('');
-  Logger.log('VACIADO · ' + marca + ' · ' + dia + ' (' + hasta + ') · WhatsApp ' + uno(wa) + ' · formulario ' + uno(form) + ' · llamada ' + uno(tel) +
-    ' · correo ' + uno(correo) + ' · total ' + uno(total) + ' · clics ' + clics + ' · gasto ' + dinero(costo));
-  Logger.log('LISTO. Copia todo el registro y mándalo. Este script no cambió nada.');
+  var linea = 'VACIADO · ' + marca + ' · ' + dia + ' (' + hasta + ') · WhatsApp ' + uno(wa) + ' · formulario ' + uno(form) + ' · llamada ' + uno(tel) +
+    ' · correo ' + uno(correo) + ' · total ' + uno(total) + ' · clics ' + clics + ' · gasto ' + dinero(costo);
+  Logger.log(linea);
+  Logger.log('');
+  return linea;
 }
