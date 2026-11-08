@@ -1,0 +1,45 @@
+TOKEN DE LA API DE GOOGLE ADS · MCC de Atelback · pasos B1 y B2 de la guía «Claude + Google Ads en Windows»
+
+REGLAS (no negociables):
+- Usa SOLO la cuenta de Google gamesailmx@gmail.com. Si se abre otra cuenta o aparece otro correo ya escrito, detente y avísame.
+- No toques campañas, presupuestos, anuncios, usuarios, vínculos de cuentas ni facturación. No entres a las cuentas de las marcas: solo a la cuenta administradora (MCC) de Atelback.
+- Si ya existe un token de desarrollador: NO lo restablezcas ni crees otro (puede estar en uso).
+- No copies el token completo en tu reporte ni en ningún campo de texto: solo sus primeros 4 caracteres.
+- ANTES de aceptar términos y condiciones, de tocar «Crear token» o de enviar cualquier formulario: detente, muéstrame lo que llenaste y espera mi «sí».
+- Si un campo pide algo que no está aquí (sitio web, dirección, teléfono, un documento para subir), déjalo vacío y pregúntame.
+- Trabaja en una pestaña nueva.
+
+PASO 1 · Entrar a la MCC
+1. Abre https://ads.google.com con gamesailmx@gmail.com.
+2. Busca la cuenta administradora (MCC) de Atelback en el selector de cuentas. Dime su nombre y número y espera mi confirmación de que es la correcta.
+3. Revisa en Admin › Acceso y seguridad qué nivel tiene gamesailmx@gmail.com (debe ser Administrador). Dímelo.
+
+PASO 2 · Centro de API (B1)
+4. Admin › Centro de API (API Center).
+5. Si YA hay un token: dime sus primeros 4 caracteres, el «nivel de acceso» que muestra y el correo de contacto de la API. No cambies nada y salta al paso 7.
+6. Si pide un formulario, llénalo así y DETENTE antes de aceptar términos y crear:
+   - Correo de contacto de la API: gamesailmx@gmail.com
+   - Nombre de la empresa: Atelback
+   - URL de la empresa: (pregúntame)
+   - Tipo de empresa: agencia / administrador de anuncios para terceros
+   - Uso previsto: Reportes internos de solo lectura del rendimiento de las cuentas de Google Ads de nuestros clientes. No creamos ni modificamos campañas con la API.
+   Cuando yo diga «sí», acepta y crea. Luego dime los primeros 4 caracteres del token y el nivel de acceso.
+
+PASO 3 · Acceso básico (B2)
+7. Si el nivel de acceso NO es «Básico» ni «Estándar»: toca «Solicitar acceso básico» (Apply for Basic Access).
+8. Llena el formulario con estas respuestas, adaptándolas a lo que pregunte cada campo:
+   - Empresa: Atelback. Correo: gamesailmx@gmail.com.
+   - Modelo de negocio: agencia que administra campañas de búsqueda de Google Ads de 5 marcas de equipo de lavandería en México, cada una con su propia cuenta bajo nuestra administración.
+   - Uso de la API: solo lectura, para reportes internos de rendimiento (gasto, clics, conversiones, términos de búsqueda, estado de anuncios y recursos) consultados por nuestro equipo desde un asistente de IA en la computadora, usando el servidor oficial de Google «google-ads-mcp» en modo de solo lectura.
+   - ¿Crea o modifica campañas? No.
+   - ¿Herramienta para terceros o uso interno? Uso interno de la agencia. No se da acceso a terceros.
+   - Servicios: GoogleAdsService (Search / SearchStream) y CustomerService (ListAccessibleCustomers).
+   - Volumen: menos de 1,000 operaciones al día.
+9. Si pide subir un «documento de diseño» (design document) u otro archivo: no subas nada, dime qué pide exactamente.
+10. DETENTE antes de enviar. Muéstrame todas las respuestas y espera mi «sí».
+
+ENTREGA: un solo reporte en Markdown dentro de un bloque de código con:
+- MCC (nombre y número) y el nivel de acceso de gamesailmx@gmail.com
+- Token: existía o se creó · primeros 4 caracteres · nivel de acceso
+- Acceso básico: enviado (fecha) / pendiente de mi «sí» / ya lo tenía · qué preguntó el formulario y qué se contestó
+- Lo que no pudiste hacer y por qué
