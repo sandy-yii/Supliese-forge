@@ -38,3 +38,8 @@ No se cuentan los renglones «Prospecto en frío» (Teresa Ruiz): no vienen de a
 ## Decisión
 
 - **Kingstar · Display:** con el conteo de Jorge (vie 1 contra 4 de Google, todos de madrugada; jue 1 contra 4) **se recomienda apagarlo**. Se hace con `apagar-display-en-busqueda-todas-las-cuentas.js`, solo en Kingstar, primero con Vista previa.
+
+## Actualización (9 nov, tarde)
+
+- **Kingstar:** Display se apagó en 5 campañas (Sandy lo ejecutó sin errores, ~16:45).
+- **«MALO / EMPRENDEDOR» en la hoja:** según Sandy, quiere decir que **la persona no quiso** (no le interesó), no que el emprendedor sea mal cliente. La estrategia de Quick Laundry no cambia. Sí sirve como señal de calidad: cuando funcione el puente con Go High Level, «Cotización» y «Venta» le enseñan a Google qué contactos sí compran.
