@@ -33,6 +33,7 @@ function REPARTO(Logger) {
  *     de las otras, así el gasto total del grupo se queda casi igual mientras dura el cambio.
  *   - Si un paso ya se aplicó, no lo repite. Si todavía no es la fecha del siguiente, no hace nada y lo dice.
  *     Cada campaña avanza como máximo un paso por corrida: si un día se olvida, no da un salto doble.
+ *     Candado (9 nov): si su presupuesto o su tope ya cambió HOY, no se mueve otra vez hoy aunque se vuelva a correr.
  *   - Nunca sube una campaña que va a la baja ni baja una que va a la alza (si alguien ya la movió, la deja).
  *   - Los 3 topes de costo por clic autorizados el 5 nov también suben en tres pasos, un tercio cada vez:
  *       Gamesail «Hoteles y hospitales» $16 → $20 · Laundry Solutions «Reparación» $15 → $18 · Girbau «Por capacidad» $20 → $24.
@@ -174,10 +175,18 @@ function main() {
     (cpcCuenta ? ' · ' + dinero(cpcCuenta) + ' por contacto' : ''));
   Logger.log('');
 
+  // Candado: si el presupuesto o el tope de una campaña ya se movió HOY (por este u otro script, o a mano), hoy no se vuelve a mover.
+  // Así, correrlo dos veces el mismo día nunca da dos pasos seguidos.
+  var movidoHoy = {};
+  filas("SELECT change_event.change_resource_name, change_event.change_resource_type FROM change_event WHERE change_event.change_date_time >= '" +
+    hoy + " 00:00:00' AND change_event.change_date_time <= '" + hoy + " 23:59:59' AND change_event.change_resource_type IN ('CAMPAIGN_BUDGET', 'CAMPAIGN') LIMIT 2000",
+    'los cambios de hoy').forEach(function (f) { movidoHoy[f.changeEvent.changeResourceName] = true; });
+
   var ops = [], textos = [], sumaDespues = sumaAntes;
   lista.forEach(function (k) {
     if (!conPresupuesto(k) || k.vaPres === k.enPres) return;
     var c = C[k.nombre], v = valor(k, k.vaPres), r = R[k.nombre] || { costo: 0, contactos: 0 };
+    if (movidoHoy[c.presupuesto]) { Logger.log('YA SE MOVIÓ HOY «' + k.nombre + '»: su presupuesto ya cambió hoy; el siguiente paso, en la siguiente fecha.'); return; }
     if (baja(k) && c.monto > v + 0.5 && r.contactos >= 2 && cpcCuenta && r.costo / r.contactos <= cpcCuenta) {
       Logger.log('FRENO «' + k.nombre + '»: no baja en este paso. Trajo ' + Math.round(r.contactos * 10) / 10 + ' contactos en 7 días a ' +
         dinero(r.costo / r.contactos) + ' cada uno (la cuenta va en ' + dinero(cpcCuenta) + '). Se queda en ' + dinero(c.monto) + '.');
@@ -195,6 +204,7 @@ function main() {
     if (!k.tope) return;
     if (c.puja !== 'TARGET_SPEND') { Logger.log('AVISO «' + k.nombre + '»: no usa «maximizar clics»; su tope no se cambia.'); return; }
     if (k.vaTope === k.enTope) return;
+    if (movidoHoy[c.rn]) { Logger.log('YA SE MOVIÓ HOY «' + k.nombre + '»: la campaña ya cambió hoy; su tope sube en la siguiente fecha.'); return; }
     var t = valorTope(k, k.vaTope);
     ops.push({ campaignOperation: { update: { resourceName: c.rn, targetSpend: { cpcBidCeilingMicros: Math.round(t * 1e6) } },
       updateMask: 'targetSpend.cpcBidCeilingMicros' } });

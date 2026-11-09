@@ -41,3 +41,17 @@ El **vaciado de cada noche sí filtra por tipo de contacto** (WhatsApp, llamada,
 | Gamesail | Meta **Llamada desde anuncios** y no hay acción de llamada | Las llamadas del botón no cuentan como conversión. Se ven en call_view. Falta crear «AB · Llamada desde el anuncio» |
 
 Se arregla el **viernes 13** en un solo script de metas, junto con las acciones viejas y el conteo de Girbau, después del paso 3 del jueves 12.
+
+## Resultado de la ejecución (9 nov, ~16:25; comprobado con vistas previas a las 16:26–16:27)
+
+| Cuenta | Paso 2 | Acciones viejas | Display | Lo que quedó sin cambiar |
+|---|---|---|---|---|
+| Laundry Solutions | ✅ Reparación $89, tope $17; chicas $3–4 | ✅ 6 de 11 | ✅ apagado en 2 | 4 «Local actions» y «Formulario de contacto - X»: Google no deja cambiarlas por script. Están en metas que no cuentan, o llevan 0 en el año |
+| Quick Laundry | ✅ Emprendimiento $17 (su paso 1) | ✅ 9 de 13 | ✅ apagado en Equipo | 4 «Local actions»: metas que no cuentan |
+| Kingstar | ✅ Túnel $73, 20 a 45 kg $21; freno en Alta capacidad y Hotelera | ✅ 4 de 8 | en espera (Jorge) | 3 «Local actions» y «Formulario de contacto - Enviar»: metas que no cuentan, o 0 en el año |
+| Girbau | ✅ tope $23 (según Sandy, sin errores) | solo se mostró | no tiene | — |
+| Gamesail | ✅ según Sandy, sin errores | no tiene | no tiene | — |
+
+**Riesgo que se encontró:** la vista previa de Quick Laundry de las 16:27 proponía bajar Emprendimiento otra vez, de $17 a $13, el mismo día. La regla de «un paso por corrida» no impedía dos pasos si se corría dos veces el mismo día.
+
+**Arreglo:** `reparto-por-pasos-todas-las-cuentas.js` ahora tiene un **candado**. Si el presupuesto o el tope ya cambió hoy (lo lee de `change_event`), no lo vuelve a mover. Ya está también en los scripts combinados.
