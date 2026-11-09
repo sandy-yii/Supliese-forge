@@ -11,7 +11,8 @@
  * esas acciones y no se mueve junto con el paso del presupuesto.
  *
  * VISTA PREVIA no cambia nada. EJECUTAR aplica las partes encendidas, solo con el OK de Sandy, cuenta por cuenta.
- * Para dejar fuera una parte, ponla en false aquí abajo antes de Ejecutar.
+ * Ya viene listo para EJECUTAR en las 5 cuentas tal cual (vistas previas revisadas el 9 nov a las 16:18):
+ *   en Kingstar NO apaga Display (espera el conteo de Jorge) y en Girbau solo cambia el tope de clic.
  *
  * CÓMO SE USA: en cada cuenta > borrar todo > pegar completo > Autorizar > VISTA PREVIA > copiar todo el registro.
  */
@@ -21,6 +22,8 @@ var HACER_ACCIONES = true;   // parte 2
 var HACER_DISPLAY = true;    // parte 3
 var HACER_CONTEO = true;     // parte 4
 var GIRBAU_DESDE = '2026-11-13';
+// Cuentas donde Display NO se apaga hoy (revisado con Sandy el 9 nov):
+var DISPLAY_EN_ESPERA = { '993-525-8739': 'en Kingstar Display espera el conteo de Jorge (sale más barato que la búsqueda, pero sus contactos son de madrugada).' };
 
 // ======================= reparto-por-pasos-todas-las-cuentas.js (sin cambios) =======================
 function REPARTO(Logger, AdsApp) {
@@ -543,7 +546,8 @@ function main() {
     AdsApp);
   parte('2. ACCIONES VIEJAS A SECUNDARIAS', HACER_ACCIONES, 'apagado arriba (HACER_ACCIONES = false).', ACCIONES,
     function (x) { return /^(ACCIONES VIEJAS ·|❌)/.test(x); }, girbauEspera ? soloLee() : AdsApp);
-  parte('3. APAGAR DISPLAY EN BÚSQUEDA', HACER_DISPLAY, 'apagado arriba (HACER_DISPLAY = false).', DISPLAY,
+  var displayEspera = DISPLAY_EN_ESPERA[cid];
+  parte('3. APAGAR DISPLAY EN BÚSQUEDA', HACER_DISPLAY && !displayEspera, displayEspera || 'apagado arriba (HACER_DISPLAY = false).', DISPLAY,
     function (x) { return /^(DISPLAY ·|❌)/.test(x); }, AdsApp);
   parte('4. UN CONTACTO POR CLIC Y METAS', HACER_CONTEO, 'apagado arriba (HACER_CONTEO = false).', CONTEO,
     function (x) { return /^(CONTEO ·|❌|⚠️)/.test(x); }, girbauEspera ? soloLee() : AdsApp);
