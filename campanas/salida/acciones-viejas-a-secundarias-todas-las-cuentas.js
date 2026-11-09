@@ -14,13 +14,13 @@
  *   - Las de llamadas desde el anuncio (tipo AD_CALL o CLICK_TO_CALL: «Calls from ads», «Llamadas desde anuncios»…). Con esas cuenta
  *     Google las llamadas del botón de llamada que pusimos; si se vuelven secundarias, las llamadas dejan de contar.
  *   - Las que se cargan desde un sistema de clientes («Lead Calificado», «Cliente potencial de llamada»), mientras
- *     CARGAS_TAMBIEN sea false. Solo se pasan cuando el cliente confirme que ya nadie las sube.
+ *     CARGAS_TAMBIEN sea false. Desde el 9 nov está en true: Sandy confirmó que ya nadie las usa, así que también pasan.
  *
  * CÓMO SE USA: en cada cuenta > borrar todo > pegar completo > Autorizar > VISTA PREVIA > mandar el registro >
  * EJECUTAR solo con el OK.
  */
 
-var CARGAS_TAMBIEN = false;   // true solo cuando el cliente confirme que «Lead Calificado» y las cargas ya no las usa nadie
+var CARGAS_TAMBIEN = true;    // Sandy confirmó el 9 nov que nadie usa las cargas («Lead Calificado», «Cliente potencial de llamada»): también pasan
 var MARCAS = {
   '256-397-2201': 'Quick Laundry', '993-525-8739': 'Kingstar (CLM)', '265-909-2662': 'Laundry Solutions',
   '860-582-6837': 'Girbau', '118-347-6484': 'Gamesail'
