@@ -66,7 +66,7 @@ function main() {
       if (a.type === 'AD_CALL' || a.type === 'CLICK_TO_CALL') { quedan.push(a.name + ' · llamadas del botón del anuncio, se queda principal · ' + hist(a.name)); return; }
       if (CARGAS[a.type] && !CARGAS_TAMBIEN) { quedan.push(a.name + ' · carga desde un sistema de clientes, espera al cliente · ' + hist(a.name)); return; }
       cambiar.push(a.name + ' (' + a.type + ') · ' + hist(a.name));
-      ops.push({ conversionActionOperation: { update: { resourceName: a.resourceName, primaryForGoal: false }, updateMask: 'primary_for_goal' } });
+      ops.push({ conversionActionOperation: { update: { resourceName: a.resourceName, primaryForGoal: false }, updateMask: 'primaryForGoal' } });
       textos.push(a.name);
     });
 

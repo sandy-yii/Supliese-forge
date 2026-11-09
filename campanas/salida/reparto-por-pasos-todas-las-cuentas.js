@@ -47,7 +47,7 @@ var PLANES = [
   { cuenta: '118-347-6484', nombre: 'Gamesail', campanas: [
     { nombre: 'AB · Lavadoras para ropa y sábanas', de: 97, a: 194 },
     { nombre: 'AB · Lavadoras por capacidad y precio', de: 58, a: 117 },
-    { nombre: 'AB · Secadoras industriales', de: 58, a: 117 },
+    { nombre: 'AB · Secadoras industriales', de: 58, a: 117, espera: '0 contactos en 14 días con $468 (26 oct–8 nov): no sube hasta que traiga' },   // 9 nov
     { nombre: 'AB · Hoteles y hospitales', de: 39, a: 78, tope: { de: 16, a: 20 } },
     { nombre: 'AB · Mangles y planchado', de: 26, a: 52 },
     { nombre: 'AB · Competencia depurada', de: 23, a: 45 },
@@ -105,7 +105,10 @@ function main() {
   var faltan = [];
   PLAN.campanas.forEach(function (k) { if (!C[k.nombre]) faltan.push(k.nombre); });
   if (faltan.length) Logger.log('AVISO: no encontré ' + faltan.map(function (n) { return '«' + n + '»'; }).join(', ') + '. Esa(s) no se tocan.');
-  var lista = PLAN.campanas.filter(function (k) { return C[k.nombre]; });
+  PLAN.campanas.forEach(function (k) {
+    if (k.espera && C[k.nombre]) Logger.log('EN ESPERA «' + k.nombre + '»: no se mueve en este paso. ' + k.espera + '.');
+  });
+  var lista = PLAN.campanas.filter(function (k) { return C[k.nombre] && !k.espera; });
 
   // Cada campaña avanza como máximo UN paso por corrida (se corre una vez por fecha), y solo hasta el paso que permite la fecha.
   var pasoFecha = FECHAS.filter(function (f) { return hoy >= f; }).length;
