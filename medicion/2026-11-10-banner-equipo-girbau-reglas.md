@@ -45,7 +45,7 @@ Así lo ve la gente que ya entra por los anuncios. No trae gente nueva, pero tam
 ## Lo que NO debe aparecer en la página
 
 - **Ventanas emergentes** que tapen el contenido o que no se puedan cerrar fácil.
-- **Redirecciones automáticas** a otra página o a otro sitio.
+- **Redirecciones automáticas**: que la página mande sola a otro lado sin que la persona dé clic. Un banner con enlace que la persona decide tocar **sí está permitido** (ver «Si el banner lleva a otra página»).
 - **Contadores de tiempo falsos** o mensajes tipo «3 personas están viendo esto».
 - **Reseñas, testimonios o logos de clientes inventados.** Solo reales y con permiso.
 - **Logos de otras marcas** que el cliente no distribuye.
@@ -54,6 +54,14 @@ Así lo ve la gente que ya entra por los anuncios. No trae gente nueva, pero tam
 - **Formularios que pidan datos de más** (INE, CURP, datos bancarios). Si se agrega un formulario nuevo, debe tener el aviso de privacidad visible.
 - **Enlaces rotos**, secciones vacías o «Próximamente».
 - **Texto o imágenes que cambien de lo que dice el anuncio** en la parte de arriba de cada página. Lo principal sigue siendo lo que anuncia la campaña.
+
+## Si el banner lleva a otra página
+
+Se puede: es un enlace normal y la persona decide darle clic.
+
+- **Mejor a una sección del mismo sitio** (por ejemplo, girbauoccidente.com/[modelo]). Así el WhatsApp de esa sección cuenta en la misma cuenta de Google Ads.
+- **Si va de una página de Quick Laundry a girbauoccidente.com:** está permitido. Pero el contacto que escriba desde allá ya no se cuenta en Quick Laundry. Para saber de dónde vino, el WhatsApp de esa página debe decir «vengo de la página de Quick Laundry (banner Girbau)».
+- La página de destino debe funcionar, cargar rápido y hablar del mismo equipo del banner.
 
 ## Si queremos usar las fotos también en los anuncios
 
