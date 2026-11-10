@@ -43,3 +43,22 @@ No se cuentan los renglones «Prospecto en frío» (Teresa Ruiz): no vienen de a
 
 - **Kingstar:** Display se apagó en 5 campañas (Sandy lo ejecutó sin errores, ~16:45).
 - **«MALO / EMPRENDEDOR» en la hoja:** según Sandy, quiere decir que **la persona no quiso** (no le interesó), no que el emprendedor sea mal cliente. La estrategia de Quick Laundry no cambia. Sí sirve como señal de calidad: cuando funcione el puente con Go High Level, «Cotización» y «Venta» le enseñan a Google qué contactos sí compran.
+
+## Actualización con la hoja completa del lunes (10 nov, mañana)
+
+La hoja tiene más renglones del lunes. Ahí se anotó lo que llegó el fin de semana.
+
+| Marca | Vendedor vie 6 | Vendedor dom 8 + lun 9 | Total vendedor | Google vie–lun | Vendedor / Google |
+|---|---|---|---|---|---|
+| Quick Laundry (Liliana) | 3 (2 WhatsApp, 1 llamada) | 9 (8 WhatsApp, 1 llamada) | **12*** | 22 | 55% |
+| Gamesail (Silvia) | 0 | 5 WhatsApp | **5** | 16 | 31% |
+| Kingstar (Jorge y Liliana) | 1 | 3 WhatsApp | **4*** | 13 | 31% |
+| Girbau (Eduardo) | 1 llamada | 1 WhatsApp | **2** | 8 | 25% |
+| Laundry Solutions (Sergio) | 3 WhatsApp | 0 | **3** | 3 | 100% |
+| **Total** | **8** | **18** | **26 (25 personas)** | **62** | **40%** |
+
+\* Una persona aparece como «Whatsapp/Kingstar» y como «Whatsapp/Quick Laundry», mismo nombre y teléfono.
+
+- **Calidad:** 3 calificados como «BUENO / HOTELES»: uno de Kingstar (un hotel), uno de Gamesail y uno de Girbau (la llamada del viernes).
+- **Doméstico:** las 2 llamadas de Quick Laundry y 1 WhatsApp de Gamesail buscaban equipo para casa.
+- **Llamadas:** los vendedores anotaron 3 (2 de Quick Laundry y 1 de Girbau). Google vio 1, el clic al teléfono de la página de Quick Laundry del lunes. Las demás no pasaron por el botón del anuncio.
