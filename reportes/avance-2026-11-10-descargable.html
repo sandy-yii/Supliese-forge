@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avance 6 al 9 nov</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+/* Layout: una columna de lectura; tarjetas solo para los números y el detalle por marca */
+:root{
+  --bg:#f5f7fa; --surface:#ffffff; --ink:#1b2230; --mute:#5a6475; --line:#e1e5ec;
+  --good:#1a8a52; --good-bg:#e4f4eb; --warn:#a3520c; --warn-bg:#fcefe1;
+  --ql:#2a78d6; --ks:#eb6834; --ls:#1baf7a; --gb:#c98500; --gs:#d55181;
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --body:"Source Sans 3","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12161d; --surface:#1b212b; --ink:#e8ecf2; --mute:#a0a9b8; --line:#2c3441;
+  --good:#4cc786; --good-bg:#183326; --warn:#f0a35e; --warn-bg:#3a2a1a;
+  --ql:#3987e5; --ks:#d95926; --ls:#199e70; --gb:#c98500; --gs:#d55181; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161d; --surface:#1b212b; --ink:#e8ecf2; --mute:#a0a9b8; --line:#2c3441;
+  --good:#4cc786; --good-bg:#183326; --warn:#f0a35e; --warn-bg:#3a2a1a;
+  --ql:#3987e5; --ks:#d95926; --ls:#199e70; --gb:#c98500; --gs:#d55181; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
+.wrap{max-width:860px;margin:0 auto;padding-block:36px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:30px}
+h1,h2{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(28px,5vw,40px)}h2{font-size:24px}
+.lead{color:var(--mute);margin:6px 0 0;max-width:62ch}
+.big{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.n{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.n b{display:block;font-size:34px;font-variant-numeric:tabular-nums;line-height:1.1}
+.n span{color:var(--mute);font-size:15px}
+.n.hi b{color:var(--good)}
+section{display:grid;gap:12px}
+.tbl{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:520px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);font-size:16px}
+th{font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);font-weight:600}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;vertical-align:middle}
+.chip{display:inline-block;font-size:13px;font-weight:700;border-radius:20px;padding:2px 10px;white-space:nowrap}
+.ok{background:var(--good-bg);color:var(--good)}.look{background:var(--warn-bg);color:var(--warn)}
+tfoot td{font-weight:700}
+.note{color:var(--mute);font-size:15px;margin:0;max-width:70ch}
+ul.work{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+ul.work li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+ul.work b{display:block}
+ul.work span{color:var(--mute);font-size:15.5px}
+ol.next{margin:0;padding-left:22px;display:grid;gap:6px}
+ol.next b{font-variant-numeric:tabular-nums}
+@media (max-width:480px){body{font-size:16px}}
+</style></head><body>
+<style>.sm table{min-width:420px}.tbl table{min-width:620px}</style>
+
+<div class="wrap">
+  <header>
+    <h1>Contactos del viernes 6 al lunes 9 de noviembre</h1>
+    <p class="lead">En cuatro días llegaron 62 contactos desde los anuncios, unos 15 por día, también en fin de semana. Ayer hicimos el segundo ajuste del presupuesto y quitamos los anuncios que traían clics de madrugada.</p>
+  </header>
+
+  <div class="big">
+    <div class="n hi"><b>62</b><span>contactos desde los anuncios (vie 16 · sáb 16 · dom 14 · lun 16)</span></div>
+    <div class="n"><b>23</b><span>contactos anotados por los vendedores en esos días</span></div>
+    <div class="n"><b>$115</b><span>costo promedio por contacto</span></div>
+    <div class="n"><b>$7,146</b><span>inversión de los cuatro días en las 5 marcas</span></div>
+  </div>
+
+  <section>
+    <h2>Por marca</h2>
+    <div class="tbl"><table>
+      <thead><tr><th>Marca</th><th class="num">Vie</th><th class="num">Sáb</th><th class="num">Dom</th><th class="num">Lun</th><th class="num">Anuncios</th><th class="num">Vendedor</th><th class="num">Costo por contacto</th></tr></thead>
+      <tbody>
+        <tr><td><span class="dot" style="background:var(--ql)"></span>Quick Laundry</td><td class="num">6</td><td class="num">6</td><td class="num">4</td><td class="num">6</td><td class="num"><b>22</b></td><td class="num">11 · Liliana</td><td class="num">$75</td></tr>
+        <tr><td><span class="dot" style="background:var(--gs)"></span>Gamesail</td><td class="num">4</td><td class="num">5</td><td class="num">5</td><td class="num">2</td><td class="num"><b>16</b></td><td class="num">4 · Silvia</td><td class="num">$107</td></tr>
+        <tr><td><span class="dot" style="background:var(--ks)"></span>Kingstar</td><td class="num">4</td><td class="num">2</td><td class="num">2</td><td class="num">5</td><td class="num"><b>13</b></td><td class="num">3 · Jorge</td><td class="num">$157</td></tr>
+        <tr><td><span class="dot" style="background:var(--gb)"></span>Girbau</td><td class="num">2</td><td class="num">1</td><td class="num">3</td><td class="num">2</td><td class="num"><b>8</b></td><td class="num">2 · Eduardo</td><td class="num">$109</td></tr>
+        <tr><td><span class="dot" style="background:var(--ls)"></span>Laundry Solutions</td><td class="num">0</td><td class="num">2</td><td class="num">0</td><td class="num">1</td><td class="num"><b>3</b></td><td class="num">3 · Sergio</td><td class="num">$293</td></tr>
+      </tbody>
+      <tfoot><tr><td>Total</td><td class="num">16</td><td class="num">16</td><td class="num">14</td><td class="num">16</td><td class="num">62</td><td class="num">23</td><td class="num">$115</td></tr></tfoot>
+    </table></div>
+    <p class="note">Casi todos llegaron por WhatsApp; hubo 2 formularios (Gamesail) y 1 llamada desde la página (Quick Laundry). En la columna «Vendedor» va todo lo anotado del viernes al lunes, porque lo que llegó el fin de semana se anotó el lunes. No contamos «Prospecto en frío», que no viene de anuncios.</p>
+  </section>
+
+  <section>
+    <h2>¿Por qué los vendedores anotaron menos?</h2>
+    <ul class="work">
+      <li><b>En fin de semana nadie contesta</b><span>El sábado y el domingo llegaron 30 contactos, pero no hubo quien respondiera. Cuando se les escribió el lunes, varios ya no contestaron. El jueves, con vendedores atendiendo, el conteo coincidió casi completo: 19 contra 18. Por eso el asistente automático de WhatsApp que prepara Rodolfo es importante.</span></li>
+      <li><b>Laundry Solutions coincide</b><span>3 en los anuncios y 3 anotados por Sergio.</span></li>
+      <li><b>Kingstar: contactos de madrugada</b><span>La mayoría de lo que Google contaba en Kingstar llegaba entre las 12 y las 2 de la mañana y no le llegaba a Jorge. Ayer lo corregimos (abajo).</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>¿Por qué llegaban contactos de madrugada?</h2>
+    <p class="lead" style="margin:0">Varias campañas también salían en apps y páginas, no solo en las búsquedas de Google. Ahí se dan muchos clics de madrugada, a veces por accidente, que casi nunca terminan en un mensaje real. Ayer quitamos esos anuncios en Quick Laundry, Kingstar y Laundry Solutions. Los anuncios siguen saliendo igual cuando alguien busca en Google, y ese dinero ahora se va a esas búsquedas.</p>
+  </section>
+
+  <section>
+    <h2>Lo que se trabajó ayer</h2>
+    <ul class="work">
+      <li><b>Segundo paso del presupuesto</b><span>Pasó más dinero a Gamesail, sobre todo a lavadoras para ropa y por capacidad, que traen contactos y se quedaban cortas. Las campañas de Kingstar que están trayendo contactos no se recortaron. «Secadoras» de Gamesail no sube hasta que empiece a traer contactos.</span></li>
+      <li><b>Quitamos los anuncios en apps</b><span>Eran clics baratos de madrugada que se comían el presupuesto de las búsquedas. Las mejores campañas dejaban de salir en casi la mitad de las búsquedas por falta de presupuesto.</span></li>
+      <li><b>Limpiamos la medición</b><span>Quedaban activas mediciones viejas que ya no se usaban. Ahora Google solo cuenta los contactos reales: WhatsApp, llamadas y formularios.</span></li>
+      <li><b>Revisamos lo del correo</b><span>Los contactos del fin de semana fueron WhatsApp: le llegan al vendedor a su WhatsApp, no al correo. El formulario sí funciona y el botón de WhatsApp de las páginas también.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Lo que les pedimos</h2>
+    <ol class="next">
+      <li><b>Hoja de los vendedores:</b> anotar el día en que llegó el mensaje (aunque se conteste después) y si fue WhatsApp, llamada o correo.</li>
+      <li><b>Kingstar:</b> que Jorge nos diga esta semana si siguen llegando mensajes de madrugada.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Lo que sigue</h2>
+    <ol class="next">
+      <li><b>Martes 10:</b> botón de llamada de Quick Laundry.</li>
+      <li><b>Jueves 12:</b> tercer y último paso del presupuesto, revisando antes que ninguna campaña haya perdido contactos.</li>
+      <li><b>Viernes 13:</b> ajustes de medición en Girbau, Kingstar y Gamesail, para que Google aprenda de los WhatsApp y las llamadas.</li>
+      <li><b>En camino:</b> asistente automático de WhatsApp para fines de semana (Rodolfo).</li>
+    </ol>
+  </section>
+</div>
+
+</body></html>
