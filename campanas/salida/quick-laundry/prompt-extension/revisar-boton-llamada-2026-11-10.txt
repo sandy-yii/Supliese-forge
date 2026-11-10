@@ -2,7 +2,7 @@ Revisa, SIN CAMBIAR NADA, el estado del botón de llamada de Quick Laundry en Go
 
 Cuenta de Google: usa SOLO gamesailmx@gmail.com. Si se abre otra cuenta de Google o aparece otro correo ya escrito, detente y avísame.
 
-1. Abre https://ads.google.com con gamesailmx@gmail.com y entra a la cuenta Quick Laundry, 256-397-2201. Revisa arriba que diga ese número antes de seguir.
+1. Abre https://ads.google.com con gamesailmx@gmail.com y entra a la cuenta 256-397-2201, que en Google Ads se llama «Supliese Gomez» (es la de Quick Laundry). Revisa arriba que diga ese número antes de seguir.
 2. Ve a Campañas → Recursos (en inglés, «Assets»).
    - Si la tabla tiene filtro de estado, quítalo o ponlo en «Todos».
    - Busca los recursos de tipo «Llamada» («Call»). Si no salen, cambia la vista o el nivel de la tabla a «Campaña» y vuelve a buscar.

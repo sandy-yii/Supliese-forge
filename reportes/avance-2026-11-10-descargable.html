@@ -72,10 +72,10 @@ ol.next b{font-variant-numeric:tabular-nums}
       <thead><tr><th>Marca</th><th class="num">Anuncios</th><th class="num">Vendedor</th><th class="num">Costo por contacto</th><th>¿Coincide?</th></tr></thead>
       <tbody>
         <tr><td><span class="dot" style="background:var(--ql)"></span>Quick Laundry</td><td class="num">6</td><td class="num">9 · Liliana</td><td class="num">$71</td><td><span class="chip ok">Vendedor tiene más</span></td></tr>
-        <tr><td><span class="dot" style="background:var(--ks)"></span>Kingstar</td><td class="num">5</td><td class="num">3 · Jorge</td><td class="num">$138</td><td><span class="chip look">Revisar</span></td></tr>
+        <tr><td><span class="dot" style="background:var(--ks)"></span>Kingstar</td><td class="num">5</td><td class="num">3 · Jorge</td><td class="num">$138</td><td><span class="chip look">Anuncios tienen más</span></td></tr>
         <tr><td><span class="dot" style="background:var(--gs)"></span>Gamesail</td><td class="num">2</td><td class="num">5 · Silvia</td><td class="num">$230</td><td><span class="chip ok">Vendedor tiene más</span></td></tr>
-        <tr><td><span class="dot" style="background:var(--gb)"></span>Girbau</td><td class="num">2</td><td class="num">0 · Eduardo</td><td class="num">$108</td><td><span class="chip look">Revisar</span></td></tr>
-        <tr><td><span class="dot" style="background:var(--ls)"></span>Laundry Solutions</td><td class="num">1</td><td class="num">0 · Sergio</td><td class="num">$192</td><td><span class="chip look">Revisar</span></td></tr>
+        <tr><td><span class="dot" style="background:var(--gb)"></span>Girbau</td><td class="num">2</td><td class="num">0 · Eduardo</td><td class="num">$108</td><td><span class="chip look">Anuncios tienen más</span></td></tr>
+        <tr><td><span class="dot" style="background:var(--ls)"></span>Laundry Solutions</td><td class="num">1</td><td class="num">0 · Sergio</td><td class="num">$192</td><td><span class="chip look">Anuncios tienen más</span></td></tr>
       </tbody>
       <tfoot><tr><td>Total</td><td class="num">16</td><td class="num">17</td><td class="num">$124</td><td></td></tr></tfoot>
     </table></div>
@@ -86,7 +86,6 @@ ol.next b{font-variant-numeric:tabular-nums}
     <h2>Por qué no coincide marca por marca</h2>
     <ul class="work">
       <li><b>El lunes se anotó también lo del fin de semana</b><span>En sábado y domingo nadie contesta, así que esos mensajes se respondieron y anotaron el lunes. Por eso Quick Laundry y Gamesail tienen más en la hoja que en los anuncios de ese día.</span></li>
-      <li><b>Kingstar, Girbau y Laundry Solutions</b><span>Los anuncios contaron 5, 2 y 1, y en la hoja del lunes hay 3, 0 y 0. Les pedimos revisar si les llegaron esos mensajes.</span></li>
       <li><b>Calidad</b><span>2 contactos calificados como «BUENO / HOTELES», uno de Kingstar y uno de Gamesail. 2 buscaban equipo para casa.</span></li>
     </ul>
   </section>
@@ -101,11 +100,14 @@ ol.next b{font-variant-numeric:tabular-nums}
   </section>
 
   <section>
-    <h2>Lo que les pedimos</h2>
+    <h2>Para identificar mejor cada contacto</h2>
+    <p class="note" style="margin:0">Proponemos agregar a la hoja de los vendedores tres datos sencillos. Con ellos podemos saber qué anuncio trajo a cada persona y cruzar el conteo uno por uno:</p>
     <ol class="next">
-      <li><b>Hoja de los vendedores:</b> anotar el día en que llegó el mensaje (aunque se conteste después) y si fue WhatsApp, llamada o correo.</li>
-      <li><b>Kingstar, Girbau y Laundry Solutions:</b> revisar si les llegaron mensajes el lunes que no se anotaron.</li>
+      <li><b>Hora en que llegó el mensaje:</b> la del primer mensaje del cliente, aunque se conteste después.</li>
+      <li><b>Ciudad o estado del cliente.</b></li>
+      <li><b>¿Llegó con el mensaje de la página?</b> (sí o no): los botones de WhatsApp de las páginas van a abrir con «Hola, vengo de la página de…». Si el mensaje empieza así, vino de la página o de un anuncio.</li>
     </ol>
+    <p class="note" style="margin:0">Más adelante, cada mensaje de la página llevará un folio corto. Con anotar ese folio, el cruce será exacto.</p>
   </section>
 
   <section>
