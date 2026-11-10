@@ -1,0 +1,18 @@
+Revisa, SIN CAMBIAR NADA, el estado del botón de llamada de Quick Laundry en Google Ads.
+
+Cuenta de Google: usa SOLO gamesailmx@gmail.com. Si se abre otra cuenta de Google o aparece otro correo ya escrito, detente y avísame.
+
+1. Abre https://ads.google.com con gamesailmx@gmail.com y entra a la cuenta Quick Laundry, 256-397-2201. Revisa arriba que diga ese número antes de seguir.
+2. Ve a Campañas → Recursos (en inglés, «Assets»).
+   - Si la tabla tiene filtro de estado, quítalo o ponlo en «Todos».
+   - Busca los recursos de tipo «Llamada» («Call»). Si no salen, cambia la vista o el nivel de la tabla a «Campaña» y vuelve a buscar.
+3. Encuentra el botón de llamada con el número 33 2601 2237 (puede salir como +52 33 2601 2237 o 332 601 2237) y anota:
+   - Estado: Aprobado, Aprobado (limitado), Rechazado, En revisión o Apelación.
+   - Si está rechazado, el motivo exacto que muestra Google (pasa el cursor sobre el estado).
+   - «Última actualización» o «Última modificación»: la fecha. Hoy, 10 nov 2026, se le hizo un cambio por script, así que debería decir hoy.
+   - En qué campañas está puesto.
+   - El horario que muestra.
+4. Ve también a Herramientas → Administrador de políticas («Policy manager») y anota si ese botón aparece ahí y con qué estado y motivo.
+5. Mándame todo eso en una lista corta, con una captura de la fila del botón si se puede.
+
+No modifiques, pauses, actives ni edites nada más. No mandes apelaciones ni formularios. Si Google pide verificar identidad o passkey, detente y avísame; no intentes saltarlo.
