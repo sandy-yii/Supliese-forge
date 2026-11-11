@@ -73,7 +73,7 @@ function main() {
       var que = despues === true ? 'PRENDIÓ Display' : despues === false ? 'apagó Display' : 'cambió la red (' + cf + ')';
       var origen = DESDE_DONDE[ce.clientType] || ce.clientType;
       n++;
-      Logger.log(ce.changeDateTime + ' · «' + ((f.campaign || {}).name || ce.campaign) + '» · ' + que + ' · desde ' + origen +
+      Logger.log(ce.changeDateTime + ' · «' + (nombres[ce.campaign] || ce.campaign) + '» · ' + que + ' · desde ' + origen +
         ' · usuario: ' + (ce.userEmail || '(sin correo)'));
       if (despues === true) { var k = origen + ' · ' + (ce.userEmail || '(sin correo)'); quien[k] = (quien[k] || 0) + 1; }
     });
