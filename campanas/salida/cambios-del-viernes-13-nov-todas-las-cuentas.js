@@ -14,7 +14,7 @@
 
 var HACER_ACCIONES = true;   // parte 1 (solo Girbau)
 var HACER_METAS = true;      // parte 2
-var DESDE = '2026-11-13';
+var DESDE = '2026-11-11';   // adelantado del 13 al 11 nov: Girbau no puede esperar con su meta de WhatsApp sin contar
 
 // ======================= acciones-viejas-a-secundarias-todas-las-cuentas.js (sin cambios) =======================
 function ACCIONES(Logger, AdsApp) {
