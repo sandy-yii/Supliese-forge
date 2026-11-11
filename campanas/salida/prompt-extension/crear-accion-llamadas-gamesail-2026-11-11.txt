@@ -1,0 +1,21 @@
+Crea UNA acción de conversión para las llamadas del botón de los anuncios en la cuenta de Google Ads de Gamesail. Es lo único que vas a crear o cambiar.
+
+Cuenta de Google: usa SOLO gamesailmx@gmail.com. Si se abre otra cuenta de Google o aparece otro correo ya escrito, detente y avísame.
+
+1. Entra a la cuenta «Gamesail nueva» (118-347-6484). Revisa arriba que diga ese número antes de seguir. NO es la cuenta 645-094-0317.
+2. Ve a Objetivos → Conversiones → Resumen («Goals → Conversions → Summary»).
+3. Antes de crear nada, revisa que NO exista ya una acción de llamadas desde anuncios (tipo «Llamadas desde anuncios» o «Calls from ads»). Si ya existe, no crees otra: detente y dime cómo se llama y su estado.
+4. Si no existe: «+ Crear acción de conversión» → «Llamadas telefónicas» → «Llamadas desde anuncios con recursos de llamada» («Calls from ads using call assets»).
+5. Configúrala así:
+   - Nombre: AB · Llamada desde el anuncio
+   - Categoría / objetivo: «Cliente potencial de llamada telefónica» (o «Phone call lead»)
+   - Valor: «No usar un valor» (o el valor 1 si obliga a poner uno)
+   - Recuento: «Una» («One»)
+   - Duración mínima de la llamada: 60 segundos
+   - Ventana de conversión y lo demás: déjalo como venga
+   - Que quede como acción PRINCIPAL («Primary»)
+6. Guarda.
+7. Ve a Administración / Configuración de la cuenta → «Informes de llamadas» («Call reporting»). Si hay una opción de «Conversiones de llamadas» para llamadas desde anuncios, elige «AB · Llamada desde el anuncio». Si ya está así o no aparece esa opción, no cambies nada más ahí.
+8. Mándame: confirmación de que se creó, captura de su configuración, y lo que dice «Informes de llamadas».
+
+No modifiques, pauses, actives ni edites nada más: no toques otras acciones de conversión, campañas, presupuestos, anuncios ni el botón de llamada. Si Google pide verificar identidad o passkey, detente y avísame; no intentes saltarlo.

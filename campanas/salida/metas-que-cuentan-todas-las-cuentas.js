@@ -10,9 +10,8 @@
  * QUÉ HACE:
  *   1. Metas: si una meta de sitio web tiene una acción «AB · …» principal y la meta NO cuenta, la enciende para que cuente
  *      (biddable). No apaga ninguna meta.
- *   2. Llamadas: si la cuenta NO tiene ninguna acción principal de «llamadas desde anuncios», crea «AB · Llamada desde el
- *      anuncio» (llamadas de 60 segundos o más, una por clic) y la pone como la acción de llamadas de la cuenta. También
- *      enciende la meta «Llamada (desde anuncios)» si no cuenta. Si la cuenta ya tiene una, no hace nada.
+ *   2. Llamadas: enciende la meta «Llamada (desde anuncios)» si no cuenta. Si la cuenta NO tiene ninguna acción principal de
+ *      «llamadas desde anuncios», lo avisa: esa acción se crea a mano con la extensión (por script Google la rechaza).
  *   En VISTA PREVIA solo lo dice. Con EJECUTAR lo aplica (solo con el OK de Sandy).
  * No toca presupuestos, campañas, anuncios ni las acciones que ya existen.
  *
@@ -69,8 +68,7 @@ function main() {
   Logger.log('==== 2. LLAMADAS DESDE EL ANUNCIO ====');
   var crear = !hayLlamada;
   if (!crear) Logger.log('✔ Ya tiene acción principal de llamadas desde anuncios: «' + hayLlamada + '». No se crea otra.');
-  else Logger.log('→ No tiene ninguna acción principal de llamadas desde anuncios → se crea «' + NUEVA_LLAMADA + '» (60 s o más, una por clic) ' +
-    'y queda como la acción de llamadas de la cuenta.');
+  else Logger.log('→ No tiene ninguna acción principal de llamadas desde anuncios → falta crear «' + NUEVA_LLAMADA + '» (60 s o más, una por clic).');
   metas.forEach(function (g) {
     if (g.category !== 'PHONE_CALL_LEAD' || g.origin !== 'CALL_FROM_ADS') return;
     if (g.biddable) { Logger.log('✔ La meta ' + nombreMeta(g) + ' ya cuenta.'); return; }
@@ -85,7 +83,7 @@ function main() {
   function aplicar(lista, txt) {
     return lista.map(function (op, i) {
       var r;
-      try { r = AdsApp.mutate(op); }
+      try { r = AdsApp.mutate(op, { partialFailure: false }); }
       catch (e) { malos++; Logger.log('❌ ' + txt[i] + ': ' + e.message); return null; }
       if (r.isSuccessful()) { hechos++; Logger.log((vista ? '✔ (vista previa) se podría: ' : '✅ ') + txt[i]); }
       else { malos++; Logger.log('❌ ' + txt[i] + ': ' + r.getErrorMessages().join('; ')); }
@@ -93,20 +91,11 @@ function main() {
     });
   }
   aplicar(ops, textos);
-  if (crear) {
-    var res = aplicar([{ conversionActionOperation: { create: { name: NUEVA_LLAMADA, type: 'AD_CALL', category: 'PHONE_CALL_LEAD',
-      status: 'ENABLED', countingType: 'ONE_PER_CLICK', phoneCallDurationSeconds: '60' } } }], ['se creó «' + NUEVA_LLAMADA + '»']);
-    var rn = res[0] && res[0].isSuccessful() && res[0].getResourceName ? res[0].getResourceName() : '';
-    if (rn && !vista) {
-      aplicar([{ customerOperation: { update: { resourceName: 'customers/' + cid.replace(/-/g, ''),
-        callReportingSetting: { callReportingEnabled: true, callConversionReportingEnabled: true, callConversionAction: rn } },
-        updateMask: 'callReportingSetting.callReportingEnabled,callReportingSetting.callConversionReportingEnabled,callReportingSetting.callConversionAction' } }],
-        ['«' + NUEVA_LLAMADA + '» quedó como la acción de llamadas de la cuenta']);
-    } else if (vista) Logger.log('(Al ejecutar, después de crearla, la pone como la acción de llamadas de la cuenta.)');
-  }
+  if (crear) Logger.log('→ La acción «' + NUEVA_LLAMADA + '» no se crea por script (Google la rechaza con un error que el script no reconoce). ' +
+    'Se crea a mano con la extensión: prompt crear-accion-llamadas-gamesail.')
   Logger.log('');
-  var cambios = ops.length + (crear ? 2 : 0);
+  var cambios = ops.length;
   Logger.log('METAS · ' + marca + ' · ' + (vista ? 'vista previa' : 'ejecutado') + ' · cambios: ' + cambios + ' · con error: ' + malos +
-    (crear ? ' · se crea la acción de llamadas' : ''));
+    (crear ? ' · falta la acción de llamadas (va con la extensión)' : ''));
   Logger.log(vista ? 'LISTO. Vista previa: no se cambió nada.' : 'LISTO. Copia todo el registro y mándalo.');
 }
