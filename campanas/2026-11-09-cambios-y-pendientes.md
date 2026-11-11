@@ -66,3 +66,17 @@ Se arregla el **viernes 13** en un solo script de metas, junto con las acciones 
 - **Arreglo:**
   1. Volver a apagar Display con `display-quien-lo-prende-y-apagar-todas-las-cuentas.js` (Ejecutar en Kingstar y Laundry Solutions).
   2. Desactivar la aplicación automática de recomendaciones en las 5 cuentas con la extensión: `campanas/salida/prompt-extension/apagar-aplicacion-automatica-recomendaciones-2026-11-11.txt`. No se puede por script.
+
+## 11 nov: metas ejecutadas (adelantadas del viernes 13)
+
+Según Sandy, se ejecutaron sin errores alrededor de las 8:55:
+- **Girbau:** la meta «Contacto» (AB · Clic en WhatsApp) cuenta. Lead Calificado, Clic WhatsApp y Formulario de Contacto pasaron a secundarias.
+- **Kingstar:** la meta «Envío de formulario» (AB · Formulario enviado) cuenta.
+- **Gamesail:** la meta «Llamada desde anuncios» cuenta.
+
+**Pendiente:**
+- Gamesail: crear la acción «AB · Llamada desde el anuncio» con la extensión (`campanas/salida/prompt-extension/crear-accion-llamadas-gamesail-2026-11-11.txt`). Por script, Google la rechaza.
+- Desactivar la aplicación automática de recomendaciones en las 5 cuentas (la extensión está en eso).
+- Notas técnicas para los próximos scripts:
+  - Las metas (`customerConversionGoalOperation`) solo se dejan cambiar con `AdsApp.mutate(op, { partialFailure: false })`.
+  - Crear una acción `AD_CALL` por script da «The error code is not in this version».
