@@ -80,3 +80,16 @@ Según Sandy, se ejecutaron sin errores alrededor de las 8:55:
 - Notas técnicas para los próximos scripts:
   - Las metas (`customerConversionGoalOperation`) solo se dejan cambiar con `AdsApp.mutate(op, { partialFailure: false })`.
   - Crear una acción `AD_CALL` por script da «The error code is not in this version».
+
+## 11 nov: llamadas de Gamesail y aplicación automática (extensión)
+
+- **Aplicación automática de recomendaciones: apagada en las 5 cuentas.**
+  - Kingstar tenía «Red de Display» (se aplicó sola 6 veces).
+  - Laundry Solutions, lo mismo (2 veces).
+  - Quick Laundry tenía «Añade palabras clave nuevas» desde el 1 nov, sin aplicar todavía.
+  - Girbau y Gamesail ya estaban apagadas.
+- **Gamesail ya tenía una acción de llamadas desde anuncios:** «Cualificación de llamadas por IA», creada el 22 oct 2026.
+  - Es principal, con valor 1, 60 segundos y ventana de 30 días. El nombre no se puede editar.
+  - Se cambió el recuento de «Todas» a **«Una»**.
+  - No se creó «AB · Llamada desde el anuncio»: habría contado doble. Con la meta de llamadas encendida hoy, esa acción ya cuenta las llamadas del botón.
+  - Nota: el script de metas no la detectó porque no es de tipo AD_CALL.
