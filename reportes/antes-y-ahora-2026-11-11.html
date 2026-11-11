@@ -1,0 +1,120 @@
+<title>Antes y ahora</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+/* Layout: una columna de lectura; tarjetas solo para los números y el detalle por marca */
+:root{
+  --bg:#f5f7fa; --surface:#ffffff; --ink:#1b2230; --mute:#5a6475; --line:#e1e5ec;
+  --good:#1a8a52; --good-bg:#e4f4eb; --warn:#a3520c; --warn-bg:#fcefe1;
+  --ql:#2a78d6; --ks:#eb6834; --ls:#1baf7a; --gb:#c98500; --gs:#d55181;
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --body:"Source Sans 3","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12161d; --surface:#1b212b; --ink:#e8ecf2; --mute:#a0a9b8; --line:#2c3441;
+  --good:#4cc786; --good-bg:#183326; --warn:#f0a35e; --warn-bg:#3a2a1a;
+  --ql:#3987e5; --ks:#d95926; --ls:#199e70; --gb:#c98500; --gs:#d55181; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161d; --surface:#1b212b; --ink:#e8ecf2; --mute:#a0a9b8; --line:#2c3441;
+  --good:#4cc786; --good-bg:#183326; --warn:#f0a35e; --warn-bg:#3a2a1a;
+  --ql:#3987e5; --ks:#d95926; --ls:#199e70; --gb:#c98500; --gs:#d55181; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
+.wrap{max-width:860px;margin:0 auto;padding-block:36px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:30px}
+h1,h2{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(28px,5vw,40px)}h2{font-size:24px}
+.lead{color:var(--mute);margin:6px 0 0;max-width:62ch}
+.big{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.n{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.n b{display:block;font-size:34px;font-variant-numeric:tabular-nums;line-height:1.1}
+.n span{color:var(--mute);font-size:15px}
+.n.hi b{color:var(--good)}
+section{display:grid;gap:12px}
+.tbl{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:520px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);font-size:16px}
+th{font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);font-weight:600}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;vertical-align:middle}
+.chip{display:inline-block;font-size:13px;font-weight:700;border-radius:20px;padding:2px 10px;white-space:nowrap}
+.ok{background:var(--good-bg);color:var(--good)}.look{background:var(--warn-bg);color:var(--warn)}
+tfoot td{font-weight:700}
+.note{color:var(--mute);font-size:15px;margin:0;max-width:70ch}
+ul.work{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+ul.work li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+ul.work b{display:block}
+ul.work span{color:var(--mute);font-size:15.5px}
+ol.next{margin:0;padding-left:22px;display:grid;gap:6px}
+ol.next b{font-variant-numeric:tabular-nums}
+@media (max-width:480px){body{font-size:16px}}
+</style>
+<style>.sm table{min-width:420px}.tbl table{min-width:620px}</style>
+
+<div class="wrap">
+  <header>
+    <h1>Contactos antes y ahora: comparados con la misma regla</h1>
+    <p class="lead">Con los datos de las propias cuentas de Google Ads comparamos lo que se medía con la administración anterior (octubre 2025 a octubre 2026) con lo que llega hoy. Para que la comparación sea justa, contamos lo mismo en los dos casos: personas que escribieron por WhatsApp, llamaron o mandaron el formulario.</p>
+  </header>
+
+  <div class="big">
+    <div class="n"><b>~6 de 10</b><span>«conversiones» de antes en Quick Laundry eran conversaciones con el chatbot</span></div>
+    <div class="n"><b>~46</b><span>leads calificados al mes entre 4 marcas, según el CRM de antes</span></div>
+    <div class="n hi"><b>~355</b><span>contactos al mes hoy en esas mismas 4 marcas, sin chatbot</span></div>
+    <div class="n"><b>≈ igual</b><span>gasto mensual antes y ahora</span></div>
+  </div>
+
+  <section>
+    <h2>Lo que se medía antes</h2>
+    <div class="tbl"><table>
+      <thead><tr><th>Marca</th><th class="num">Gasto al mes</th><th class="num">«Conversiones» al mes</th><th class="num">Del chatbot</th><th class="num">WhatsApp, llamada y formulario</th><th class="num">Leads calificados (CRM)</th></tr></thead>
+      <tbody>
+        <tr><td><span class="dot" style="background:var(--gs)"></span>Gamesail (cuenta anterior)</td><td class="num">~$19,200</td><td class="num">~228</td><td class="num">por confirmar</td><td class="num">por confirmar</td><td class="num">—</td></tr>
+        <tr><td><span class="dot" style="background:var(--ql)"></span>Quick Laundry</td><td class="num">$11,064</td><td class="num">182</td><td class="num">~107</td><td class="num">~56</td><td class="num">~20</td></tr>
+        <tr><td><span class="dot" style="background:var(--ks)"></span>Kingstar</td><td class="num">$15,015</td><td class="num">83</td><td class="num">~46</td><td class="num">~23</td><td class="num">~14</td></tr>
+        <tr><td><span class="dot" style="background:var(--ls)"></span>Laundry Solutions</td><td class="num">$7,817</td><td class="num">44</td><td class="num">~22</td><td class="num">~15</td><td class="num">~8</td></tr>
+        <tr><td><span class="dot" style="background:var(--gb)"></span>Girbau (jun–oct 2026)</td><td class="num">$6,482</td><td class="num">15</td><td class="num">~13</td><td class="num">~3</td><td class="num">~4</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">Promedios mensuales de octubre 2025 a octubre 2026. Girbau solo tiene datos de junio a octubre. Gamesail se manejaba en otra cuenta (enero a octubre 2026). Los «leads calificados» son los que se subían desde el CRM como clientes reales.</p>
+  </section>
+
+  <section>
+    <h2>Qué significa</h2>
+    <ul class="work">
+      <li><b>Los cerca de 200 al mes eran de Quick Laundry y Gamesail</b><span>En Kingstar, Laundry Solutions y Girbau, las «conversiones» eran entre 15 y 83 al mes.</span></li>
+      <li><b>Una gran parte eran conversaciones con el chatbot</b><span>Google contaba cada conversación con el chatbot de la página como conversión, aunque la persona no dejara sus datos ni llegara a un vendedor.</span></li>
+      <li><b>Clientes calificados: unos 46 al mes</b><span>Es lo que el propio CRM marcaba como lead calificado entre Quick Laundry, Kingstar, Laundry Solutions y Girbau. Ese es el número más cercano a «cliente real».</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Ahora, con la misma regla</h2>
+    <div class="tbl"><table>
+      <thead><tr><th>Marca</th><th class="num">Antes: WhatsApp, llamada y formulario</th><th class="num">Ahora (ritmo de noviembre)</th><th class="num">Gasto al mes ahora</th></tr></thead>
+      <tbody>
+        <tr><td><span class="dot" style="background:var(--ql)"></span>Quick Laundry</td><td class="num">~56</td><td class="num"><b>~160</b></td><td class="num">~$12,200</td></tr>
+        <tr><td><span class="dot" style="background:var(--ks)"></span>Kingstar</td><td class="num">~23</td><td class="num"><b>~90</b></td><td class="num">~$17,200</td></tr>
+        <tr><td><span class="dot" style="background:var(--gb)"></span>Girbau</td><td class="num">~3</td><td class="num"><b>~80</b></td><td class="num">~$6,700</td></tr>
+        <tr><td><span class="dot" style="background:var(--ls)"></span>Laundry Solutions</td><td class="num">~15</td><td class="num"><b>~25</b></td><td class="num">~$6,100</td></tr>
+        <tr><td><span class="dot" style="background:var(--gs)"></span>Gamesail (cuenta nueva)</td><td class="num">por confirmar</td><td class="num"><b>~105</b></td><td class="num">~$11,200</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">Ahora se cuenta a quien toca el botón de WhatsApp, llama desde el anuncio o envía el formulario, y cada día se cruza con la hoja de los vendedores. Las páginas nuevas no tienen chatbot.</p>
+  </section>
+
+  <section>
+    <h2>Lo que hay que reconocerle al chatbot</h2>
+    <p class="lead" style="margin:0">El chatbot de las páginas anteriores atendía de día, de noche y en fin de semana. Aunque Google contaba todas las conversaciones, algunas sí llegaban a los vendedores, y eso explica en parte la sensación de que antes llegaban más contactos. Por eso estamos preparando un asistente automático de WhatsApp para fines de semana y fuera de horario. Cuando esté, sus conversaciones se medirán aparte, para no volver a mezclarlas con los contactos reales.</p>
+  </section>
+
+  <section>
+    <h2>Para cerrar la comparación</h2>
+    <ol class="next">
+      <li><b>Gamesail anterior:</b> ver de qué tipo eran sus ~228 «conversiones» al mes.</li>
+      <li><b>Clientes calificados y ventas de hoy:</b> con el conteo de la hoja de los vendedores o del CRM, compararlos contra los ~46 leads calificados al mes de antes. Esa es la comparación que más importa.</li>
+    </ol>
+  </section>
+
+  <p class="note">Fuente: Google Ads de cada marca, consultado el 11 de noviembre de 2026 con revisiones de solo lectura. Antes: 20 de octubre de 2025 al 19 de octubre de 2026 (Gamesail, cuenta anterior, 1 de enero al 20 de octubre de 2026). Ahora: ritmo de noviembre de 2026. Preparado por Atelback.</p>
+</div>
