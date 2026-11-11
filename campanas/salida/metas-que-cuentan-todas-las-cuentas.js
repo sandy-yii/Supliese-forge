@@ -81,20 +81,21 @@ function main() {
   Logger.log('');
 
   var malos = 0, hechos = 0;
+  // Una operación a la vez y sin «partial_failure»: las metas (customerConversionGoal) no aceptan ese modo.
   function aplicar(lista, txt) {
-    if (!lista.length) return [];
-    var res = AdsApp.mutateAll(lista, { partialFailure: true });
-    res.forEach(function (r, i) {
-      if (r.isSuccessful()) { hechos++; if (!vista) Logger.log('✅ ' + txt[i]); }
+    return lista.map(function (op, i) {
+      var r;
+      try { r = AdsApp.mutate(op); }
+      catch (e) { malos++; Logger.log('❌ ' + txt[i] + ': ' + e.message); return null; }
+      if (r.isSuccessful()) { hechos++; Logger.log((vista ? '✔ (vista previa) se podría: ' : '✅ ') + txt[i]); }
       else { malos++; Logger.log('❌ ' + txt[i] + ': ' + r.getErrorMessages().join('; ')); }
+      return r;
     });
-    return res;
   }
   aplicar(ops, textos);
   if (crear) {
     var res = aplicar([{ conversionActionOperation: { create: { name: NUEVA_LLAMADA, type: 'AD_CALL', category: 'PHONE_CALL_LEAD',
-      status: 'ENABLED', countingType: 'ONE_PER_CLICK', phoneCallDurationSeconds: 60, primaryForGoal: true,
-      valueSettings: { defaultValue: 1, alwaysUseDefaultValue: true } } } }], ['se creó «' + NUEVA_LLAMADA + '»']);
+      status: 'ENABLED', countingType: 'ONE_PER_CLICK', phoneCallDurationSeconds: '60' } } }], ['se creó «' + NUEVA_LLAMADA + '»']);
     var rn = res[0] && res[0].isSuccessful() && res[0].getResourceName ? res[0].getResourceName() : '';
     if (rn && !vista) {
       aplicar([{ customerOperation: { update: { resourceName: 'customers/' + cid.replace(/-/g, ''),
