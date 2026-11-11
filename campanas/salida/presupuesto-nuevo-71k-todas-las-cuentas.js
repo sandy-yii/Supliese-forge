@@ -6,12 +6,18 @@
  * Presupuesto al mes que mandó el cliente: Quick Laundry (Supliese) $12,000 · Gamesail $20,000 · Kingstar (CLM) $20,000 ·
  * Girbau $10,000 · Laundry Solutions $9,000. Total $71,000 (antes del cambio se gastaban ~$53,500).
  *
- * CÓMO SE REPARTE DENTRO DE CADA CUENTA (datos del 26 oct al 8 nov):
- *   - Más dinero a lo que trae contactos baratos y pierde búsquedas por falta de presupuesto
- *     (Equipo de Quick Laundry, lavadoras de Gamesail, Alta capacidad y Hotelera de Kingstar, Marca Girbau,
- *     Servicio técnico de Laundry Solutions).
- *   - Lo que no trae contactos se queda chico o baja poco (Secadoras de Gamesail, «Campaña Search Marcas» vieja de Quick Laundry).
- *   - Topes por clic: solo Kingstar «Mangles y planchado», que pierde casi la mitad de las búsquedas por posición con contactos a $82.
+ * CÓMO SE REPARTE DENTRO DE CADA CUENTA (actualizado el 11 nov con «datos-para-planear», del 20 oct al 10 nov,
+ * contando solo WhatsApp, llamada y formulario):
+ *   - Más dinero a lo que trae contactos baratos y pierde búsquedas por falta de presupuesto:
+ *     Quick Laundry «Equipo» ($129) y «Autoservicio» ($52); Gamesail «Por capacidad» ($66), «Competencia» ($68) y «Para ropa» ($156);
+ *     Kingstar «Alta capacidad» ($233) y «Hotelera» ($242); Girbau «Marca» ($141) y Máximo rendimiento ($50);
+ *     Laundry Solutions «Servicio técnico» ($141).
+ *   - Baja poco (máx. 20%) lo caro: «Campaña Search Marcas» vieja de Quick Laundry ($230) y «Túnel» de Kingstar ($494).
+ *   - Baja lo que no trae contactos (Secadoras de Gamesail: 0 con $643) o lo que no alcanza a gastar su presupuesto
+ *     (Gamesail Hoteles, Mangles y Marca ya salen en 76–83% de las búsquedas: bajarles no les quita nada).
+ *   - Topes por clic donde se pierde por POSICIÓN con contactos baratos: Kingstar Mangles $18→$22 ($114 por contacto),
+ *     Kingstar Hotelera $18→$21, Quick Laundry Autoservicio $14→$17 ($52 por contacto).
+ *   - Girbau Máximo rendimiento sube solo a $140 (+20%) porque aprende de los WhatsApp desde el 11 nov; la semana siguiente, otro +20%.
  *
  * QUÉ HACE:
  *   - VISTA PREVIA: muestra cada campaña con su presupuesto de hoy y el nuevo. No cambia nada.
@@ -25,29 +31,29 @@
 
 var PLANES = {
   '256-397-2201': { marca: 'Quick Laundry', mes: 12000, campanas: [
-    { nombre: 'AB · Equipo para lavandería', dia: 300 },
-    { nombre: 'AB · Autoservicio y monedas', dia: 60 },
+    { nombre: 'AB · Equipo para lavandería', dia: 285 },               // $129 por contacto · pierde 48% por presupuesto
+    { nombre: 'AB · Autoservicio y monedas', dia: 55, tope: 17 },      // $52 por contacto · pierde 44% por posición
     { nombre: 'AB · Emprendimiento', dia: 17 },
-    { nombre: 'AB · Marca Quick Laundry', dia: 6 },
+    { nombre: 'AB · Marca Quick Laundry', dia: 4 },                    // gasta $1 al día: no le falta
     { nombre: 'AB · Secadoras para lavandería', dia: 3 },
     { nombre: 'AB · Marcas comerciales', dia: 3 },
-    { nombre: 'Campaña Search Marcas', dia: 6 }          // vieja: $268 por contacto y compite con «Equipo» por las mismas búsquedas
+    { nombre: 'Campaña Search Marcas', dia: 28 }                       // vieja, $230 por contacto: baja 20%, sin brusquedad
   ] },
   '118-347-6484': { marca: 'Gamesail', mes: 20000, campanas: [
-    { nombre: 'AB · Lavadoras para ropa y sábanas', dia: 220 },
-    { nombre: 'AB · Lavadoras por capacidad y precio', dia: 188 },
-    { nombre: 'AB · Competencia depurada', dia: 60 },
-    { nombre: 'AB · Hoteles y hospitales', dia: 65 },
-    { nombre: 'AB · Mangles y planchado', dia: 45 },
-    { nombre: 'AB · Marca Gamesail', dia: 40 },
-    { nombre: 'AB · Secadoras industriales', dia: 40 }   // 0 contactos con $468 en 14 días: baja mientras Rodolfo revisa su página
+    { nombre: 'AB · Lavadoras para ropa y sábanas', dia: 248 },        // $156 · pierde 53% por presupuesto
+    { nombre: 'AB · Lavadoras por capacidad y precio', dia: 220 },     // $66 · pierde 52% por presupuesto: la mejor de la cuenta
+    { nombre: 'AB · Competencia depurada', dia: 60 },                  // $68 · pierde 39% por presupuesto
+    { nombre: 'AB · Hoteles y hospitales', dia: 40 },                  // gasta ~$29 al día y ya sale en 76%
+    { nombre: 'AB · Mangles y planchado', dia: 30 },                   // gasta ~$21 al día y ya sale en 81%
+    { nombre: 'AB · Marca Gamesail', dia: 20 },                        // gasta ~$5 al día y ya sale en 83%
+    { nombre: 'AB · Secadoras industriales', dia: 40 }                 // 0 contactos con $643: baja mientras Rodolfo revisa su página
   ] },
   '993-525-8739': { marca: 'Kingstar (CLM)', mes: 20000, campanas: [
-    { nombre: 'AB · Alta capacidad 60 kg o más', dia: 360 },
-    { nombre: 'AB · Lavandería hotelera e institucional', dia: 110 },
-    { nombre: 'AB · Mangles y planchado', dia: 70, tope: 22 },
-    { nombre: 'AB · Túnel de lavado', dia: 73 },
-    { nombre: 'AB · Lavadoras y secadoras de 20 a 45 kg', dia: 30 },
+    { nombre: 'AB · Alta capacidad 60 kg o más', dia: 392 },           // $233 · pierde 39% por presupuesto
+    { nombre: 'AB · Lavandería hotelera e institucional', dia: 105, tope: 21 },
+    { nombre: 'AB · Mangles y planchado', dia: 65, tope: 22 },         // $114: la más barata, pierde 45% por posición
+    { nombre: 'AB · Túnel de lavado', dia: 60 },                       // $494 y su página tiene 0 contactos en 96 clics
+    { nombre: 'AB · Lavadoras y secadoras de 20 a 45 kg', dia: 21 },   // $716 por contacto: se queda igual
     { nombre: 'AB · Marca CLM', dia: 15 }
   ] },
   '860-582-6837': { marca: 'Girbau', mes: 10000, campanas: [
@@ -58,8 +64,8 @@ var PLANES = {
     { nombre: 'AB · Servicio técnico Girbau', dia: 3 }
   ] },
   '265-909-2662': { marca: 'Laundry Solutions', mes: 9000, campanas: [
-    { nombre: 'AB · Servicio técnico industrial', dia: 170 },
-    { nombre: 'AB · Reparación y mantenimiento', dia: 100 },
+    { nombre: 'AB · Servicio técnico industrial', dia: 170 },          // $141 · pierde 47% por presupuesto
+    { nombre: 'AB · Reparación y mantenimiento', dia: 100 },           // $402: caro; sube poco
     { nombre: 'AB · Refacciones Girbau y Gamesail', dia: 8 },
     { nombre: 'AB · Instalación', dia: 6 },
     { nombre: 'AB · Servicio a lavanderías', dia: 6 },
