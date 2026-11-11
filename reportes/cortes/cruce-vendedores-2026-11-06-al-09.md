@@ -62,3 +62,17 @@ La hoja tiene más renglones del lunes. Ahí se anotó lo que llegó el fin de s
 - **Calidad:** 3 calificados como «BUENO / HOTELES»: uno de Kingstar (un hotel), uno de Gamesail y uno de Girbau (la llamada del viernes).
 - **Doméstico:** las 2 llamadas de Quick Laundry y 1 WhatsApp de Gamesail buscaban equipo para casa.
 - **Llamadas:** los vendedores anotaron 3 (2 de Quick Laundry y 1 de Girbau). Google vio 1, el clic al teléfono de la página de Quick Laundry del lunes. Las demás no pasaron por el botón del anuncio.
+
+## Martes 10 nov (vaciado del 11 nov, 8:25–8:27; hoja con ingreso del 10)
+
+| Marca | Google | Vendedor | Calidad | Clics · gasto |
+|---|---|---|---|---|
+| Quick Laundry | 3 (2 WhatsApp, 1 formulario) | 2 | 1 BUENO (hotel), 1 MALO | 43 · $442 |
+| Gamesail | 2 | 2 | 2 BUENO | 89 · $465 |
+| Laundry Solutions | 2 | 1 (llamada) | — | 51 · $176 |
+| Kingstar | **0** | 0 | — | **129 · $716** |
+| Girbau | **0** | 0 | — | 78 · $254 |
+| **Total** | **7** | **5** | **3 BUENO** | **390 · $2,053** |
+
+- **Kingstar, a revisar:** 129 clics a ~$5.5 cada uno y 0 contactos. El lunes fueron 75 clics a ~$9. Clics así de baratos parecen de Display, que se apagó el lunes ~16:45. Hay que confirmar con la vista previa de `apagar-display-en-busqueda-todas-las-cuentas.js` en Kingstar que ya no queda Display encendido.
+- **Girbau:** 0 contactos con 78 clics. Su Máximo rendimiento todavía no aprende de los WhatsApp (meta «Contacto» sin contar); se corrige el viernes 13.
