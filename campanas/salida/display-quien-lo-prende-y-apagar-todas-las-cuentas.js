@@ -28,6 +28,7 @@ var DESDE_DONDE = {
   GOOGLE_ADS_EDITOR: 'Google Ads Editor',
   GOOGLE_ADS_MOBILE_APP: 'la app de Google Ads en el celular',
   GOOGLE_ADS_RECOMMENDATIONS: 'RECOMENDACIONES de Google aplicadas solas (aplicación automática)',
+  GOOGLE_ADS_RECOMMENDATIONS_SUBSCRIPTION: 'RECOMENDACIONES de Google aplicadas solas (aplicación automática)',
   SEARCH_ADS_360_SYNC: 'Search Ads 360',
   SEARCH_ADS_360_POST: 'Search Ads 360',
   INTERNAL_TOOL: 'una herramienta interna de Google',

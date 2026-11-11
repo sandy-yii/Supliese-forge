@@ -55,3 +55,14 @@ Se arregla el **viernes 13** en un solo script de metas, junto con las acciones 
 **Riesgo que se encontró:** la vista previa de Quick Laundry de las 16:27 proponía bajar Emprendimiento otra vez, de $17 a $13, el mismo día. La regla de «un paso por corrida» no impedía dos pasos si se corría dos veces el mismo día.
 
 **Arreglo:** `reparto-por-pasos-todas-las-cuentas.js` ahora tiene un **candado**. Si el presupuesto o el tope ya cambió hoy (lo lee de `change_event`), no lo vuelve a mover. Ya está también en los scripts combinados.
+
+## 11 nov: Display volvió a encenderse solo
+
+- El historial de cambios muestra que **«Recommendations Auto-Apply»** (`GOOGLE_ADS_RECOMMENDATIONS_SUBSCRIPTION`), es decir, la aplicación automática de recomendaciones de Google, volvió a prender Display:
+  - en las 2 campañas de Laundry Solutions, el 10 nov a las 19:42;
+  - en las 5 de Kingstar (6 cambios).
+- Lo habíamos apagado el 9 nov por script.
+- Esto explica el martes de Kingstar: 129 clics a ~$5.5 y 0 contactos.
+- **Arreglo:**
+  1. Volver a apagar Display con `display-quien-lo-prende-y-apagar-todas-las-cuentas.js` (Ejecutar en Kingstar y Laundry Solutions).
+  2. Desactivar la aplicación automática de recomendaciones en las 5 cuentas con la extensión: `campanas/salida/prompt-extension/apagar-aplicacion-automatica-recomendaciones-2026-11-11.txt`. No se puede por script.
