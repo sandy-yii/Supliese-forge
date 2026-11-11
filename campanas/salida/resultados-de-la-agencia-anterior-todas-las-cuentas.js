@@ -108,7 +108,7 @@ function main() {
     .forEach(function (f) {
       var x = f.metrics, g = m(x.costMicros);
       t30.gasto += g; t30.conv += Number(x.conversions) || 0; t30.todas += Number(x.allConversions) || 0;
-      Logger.log('«' + f.campaign.name + '» · ' + pesos(g) + ' · ' + x.clics + ' clics · ' + n(x.conversions) + ' conversiones (' +
+      Logger.log('«' + f.campaign.name + '» · ' + pesos(g) + ' · ' + (x.clicks || 0) + ' clics · ' + n(x.conversions) + ' conversiones (' +
         cpa(g, Number(x.conversions)) + ' c/u) · ' + n(x.allConversions) + ' todas');
     });
   Logger.log('TOTAL 30 días · ' + pesos(t30.gasto) + ' · ' + n(t30.conv) + ' conversiones · ' + n(t30.todas) + ' todas');
