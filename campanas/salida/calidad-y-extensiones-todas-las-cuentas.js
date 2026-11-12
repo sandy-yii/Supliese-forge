@@ -109,9 +109,9 @@ function main() {
   var C = {};
   filas("SELECT campaign.name, campaign.advertising_channel_type FROM campaign WHERE campaign.status = 'ENABLED' AND campaign.advertising_channel_type = 'SEARCH'", 'las campañas')
     .forEach(function (f) { C[f.campaign.name] = {}; });
-  filas("SELECT campaign.name, campaign_asset.field_type FROM campaign_asset WHERE campaign.status = 'ENABLED' AND campaign_asset.status = 'ENABLED'", 'las extensiones de campaña')
+  filas("SELECT campaign.name, campaign.status, campaign_asset.field_type FROM campaign_asset WHERE campaign.status = 'ENABLED' AND campaign_asset.status = 'ENABLED'", 'las extensiones de campaña')
     .forEach(function (f) { if (C[f.campaign.name]) C[f.campaign.name][f.campaignAsset.fieldType] = true; });
-  filas("SELECT campaign.name, ad_group_asset.field_type FROM ad_group_asset WHERE campaign.status = 'ENABLED' AND ad_group_asset.status = 'ENABLED'", 'las extensiones de grupo')
+  filas("SELECT campaign.name, campaign.status, ad_group_asset.field_type FROM ad_group_asset WHERE campaign.status = 'ENABLED' AND ad_group_asset.status = 'ENABLED'", 'las extensiones de grupo')
     .forEach(function (f) { if (C[f.campaign.name]) C[f.campaign.name][f.adGroupAsset.fieldType] = true; });
   Logger.log('A nivel cuenta (aplican a todas): ' + (Object.keys(deCuenta).map(function (k) { return EXT[k] || k; }).join(', ') || 'ninguna'));
   var faltantes = 0;
