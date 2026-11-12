@@ -37,3 +37,29 @@
 3. **Para cerrar la comparación:**
    - el desglose por acción de la Gamesail anterior;
    - y, sobre todo, cuántos leads calificados y ventas anota hoy el CRM o la hoja, contra los ~46 al mes de antes.
+
+---
+
+## Hoja de los vendedores «ENTRADA LEADS» (pestaña «LEADS 2026»), solo conteos
+
+**Cómo se obtuvo:** lectura con la extensión el 11 nov 2026, en modo «Solo ver». Es la suma de **todas las marcas y todos los medios**: no solo Google Ads, también llamadas, chatbot, orgánico, etc.
+
+| Mes | Leads en la hoja | Por día |
+|---|---|---|
+| Ene | 617 | 19.9 |
+| Feb | 512 | 18.3 |
+| Mar | 490 | 15.8 |
+| Abr | 493 | 16.4 |
+| May | 392 | 12.6 |
+| Jun | 448 | 14.9 |
+| Jul | 473 | 15.3 |
+| Ago | 466 | 15.0 |
+| Sep | 467 | 15.6 |
+| Oct | 238 | 7.7 |
+| Nov 1–10 | 103 | 10.3 |
+
+- **Promedio de may a sep: ~450 al mes (~15 al día).** Noviembre va a ~10 al día, unos **~310 al mes**: **un tercio menos**.
+- **Octubre se cayó a la mitad.** Fue el mes del cambio de administración.
+- **Columnas de la hoja:** FECHA, TELEFONO, NOMBRE, CORREO, INGRESO, CAMPAÑA, GIRO, ASESOR, MENSAJE DE ENTRADA, SEGUIMIENTO, ESTRELLA FINAL, SUPLIESE, GAMESAIL, CLM, GIRBAU, SERVICIO PARA LAVANDERIA, LLAMADA.
+- **Falta:** el desglose por mes de INGRESO o CAMPAÑA. Con eso se ve qué parte de la baja es por el chatbot, cuál por la cuenta anterior de Gamesail y cuál por otros medios.
+- **Aviso:** la extensión abrió la hoja con una cuenta que no es gamesailmx. La próxima vez, la hoja se debe compartir a gamesailmx@gmail.com.
