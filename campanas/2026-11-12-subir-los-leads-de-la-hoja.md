@@ -47,7 +47,7 @@ Es lo que esperamos, no es una promesa. Nada se cambia en las cuentas sin el OK 
   - Laundry Solutions: Servicio técnico.
 - **Lo que esperamos, sumando las 5 marcas:**
   - plan de $71k: pasar de ~400 a ~450–500 contactos de anuncios al mes;
-  - opción ahorro: pasar de ~400 a ~425–440 al mes.
+  - opción ahorro: pasar de ~400 a ~420–450 al mes.
   - Script de la opción ahorro: `campanas/salida/presupuesto-ahorro-59k-todas-las-cuentas.js`.
 
 ### 5. Que los mismos clics den más contactos (desde la semana que entra)
