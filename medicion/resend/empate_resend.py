@@ -17,7 +17,11 @@ Uso:
         medicion/resend/salida/leads-por-dia.csv   (conteos)
         medicion/resend/salida/leads-por-hora.csv  (un renglón por lead: hora, marca, canal)
 
-La clave de Resend la pone el proxy de la sesión (secreto de red para
+  python3 medicion/resend/empate_resend.py registro --desde 2026-11-01 [--url https://.../api/leads-registro]
+      RECOMENDADO. Lee la ruta de solo lectura que publica Rodolfo (sin datos
+      personales, con su propio token) en lugar de entrar a Resend.
+
+Resend no tiene claves de solo lectura. Para 'reconocer' y 'empate', la clave la pone el proxy de la sesión (secreto de red para
 api.resend.com) o la variable de entorno RESEND_API_KEY.
 """
 import argparse
@@ -234,6 +238,39 @@ def empate(args, ctx):
     print('\nArchivos en medicion/resend/salida/ (solo números y horas, sin datos personales).')
 
 
+def registro(args, ctx):
+    """Lee la ruta de solo lectura de Rodolfo (CSV sin datos personales) y cuenta por día."""
+    base = os.environ.get('LEADS_REGISTRO_URL') or args.url
+    if not base and not args.archivo:
+        sys.exit('Falta la dirección de la ruta: LEADS_REGISTRO_URL o --url.')
+    if args.archivo:
+        with open(args.archivo) as f:
+            texto = f.read()
+    else:
+        url = '%s?desde=%s&hasta=%s' % (base, args.desde, args.hasta or dt.date.today().isoformat())
+        req = urllib.request.Request(url, method='GET', headers={
+            'Authorization': 'Bearer la_pone_el_proxy', 'User-Agent': 'conteo-leads/1.0'})
+        with urllib.request.urlopen(req, context=ctx, timeout=60) as r:
+            texto = r.read().decode('utf-8')
+    filas = list(csv.DictReader(texto.splitlines()))
+    vistos, por_dia = set(), collections.Counter()
+    for f in filas:
+        llave = (f.get('marca'), f.get('lead_id') or f.get('fecha_hora'))
+        if llave in vistos or f.get('canal') == 'chatbot':
+            continue
+        vistos.add(llave)
+        por_dia[(f['fecha_hora'][:10], f['marca'], f['canal'], f.get('origen') or '?')] += 1
+    os.makedirs(SALIDA, exist_ok=True)
+    with open(os.path.join(SALIDA, 'leads-por-dia.csv'), 'w', newline='') as fh:
+        w = csv.writer(fh)
+        w.writerow(['fecha', 'marca', 'canal', 'origen', 'leads'])
+        for k in sorted(por_dia):
+            w.writerow(list(k) + [por_dia[k]])
+    print('Leads únicos (sin chatbot): %d' % len(vistos))
+    for k in sorted(por_dia):
+        print('  %s  %-9s %-11s %-11s %3d' % (k + (por_dia[k],)))
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sp = p.add_subparsers(dest='modo', required=True)
@@ -244,9 +281,14 @@ def main():
     e.add_argument('--desde', required=True)
     e.add_argument('--hasta')
     e.add_argument('--archivo', help=argparse.SUPPRESS)
+    g = sp.add_parser('registro')
+    g.add_argument('--desde', required=True)
+    g.add_argument('--hasta')
+    g.add_argument('--url')
+    g.add_argument('--archivo', help=argparse.SUPPRESS)
     args = p.parse_args()
     ctx = contexto_ssl()
-    (reconocer if args.modo == 'reconocer' else empate)(args, ctx)
+    {'reconocer': reconocer, 'empate': empate, 'registro': registro}[args.modo](args, ctx)
 
 
 if __name__ == '__main__':

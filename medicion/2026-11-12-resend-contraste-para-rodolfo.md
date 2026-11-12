@@ -92,6 +92,24 @@ fecha_hora,marca,canal,origen,lead_id,pagina,producto,estado_envio
 
 **Opción B:** un webhook de Resend (`email.sent` / `email.delivered`) que agregue el renglón al momento.
 
+### Acceso de solo lectura para Claude (importante)
+
+**Resend no tiene claves de solo lectura.** Las claves son de dos tipos:
+
+- «Sending access»: solo sirve para enviar.
+- «Full access»: lee, pero también puede enviar, borrar y crear.
+
+Nosotros solo queremos leer, así que **no le des a Claude una clave de Resend**. En su lugar, publica una ruta de solo lectura en Vercel:
+
+- `GET /api/leads-registro?desde=AAAA-MM-DD&hasta=AAAA-MM-DD`
+- Que **solo** acepte `GET` y devuelva el CSV de esta sección: hora, marca, canal, origen, `lead_id`, página, producto y estado. Nada de nombres, teléfonos, correos ni texto del mensaje.
+- Que pida un token propio en el encabezado `Authorization: Bearer <token>`. Es un token que tú generas, **distinto de la clave de Resend**, y que no sirve para nada más.
+- La clave de Resend se queda solo en el servidor (variable de entorno de Vercel).
+
+Sandy guarda ese token en el entorno de Claude como secreto de red para tu dominio. Así Claude solo puede leer ese registro y no puede tocar Resend. Si algún día hay que quitarle el acceso, cambias el token y listo.
+
+Pásale a Sandy el dominio exacto de la ruta.
+
 ---
 
 ## 3. Preguntas para ti
