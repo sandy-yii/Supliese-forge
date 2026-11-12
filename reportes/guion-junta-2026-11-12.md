@@ -20,6 +20,25 @@ Si preguntan por marca:
 - **Gamesail está abajo** porque la cuenta nueva apenas empezó el 3 de noviembre.
 - **Kingstar está abajo.** Hay un tema de avisos que se resuelve hoy (pregunta 4 abajo).
 
+## 2b. Las campañas sí están llegando a la gente (el embudo)
+
+Los números salen del script `embudo-todas-las-cuentas.js` (Vista previa en las 5 cuentas, del 1 de noviembre a ayer). Llena los corchetes con los renglones «EMBUDO ·»:
+
+| | Del 1 de noviembre a ayer, suma de las 5 marcas |
+|---|---|
+| Veces que se mostraron los anuncios (impresiones) | [ ] |
+| Personas que dieron clic y entraron a la página | [ ] |
+| Personas que escribieron, llamaron o mandaron formulario | [ ] |
+| De cada 100 que entraron, cuántas escribieron o llamaron | [ ] |
+
+> «Los anuncios se están mostrando [impresiones] veces y [clics] personas entraron a ver los equipos. O sea, la gente sí está buscando y sí está llegando. De cada 100 que entran, unas [X] escriben o llaman. Eso es normal en equipo industrial: es una compra grande, y mucha gente primero compara precios, ve modelos o todavía no tiene el dinero o el local.
+>
+> Hay semanas en que la gente busca, entra, pregunta, pero no está lista para comprar. Eso ya no depende del anuncio. Depende del momento de cada cliente, del precio y del seguimiento. Nuestro trabajo es que los vean, que entren y que escriban. Y que cada uno que escriba le llegue al asesor a tiempo, para que tenga la mejor oportunidad de cerrar.»
+
+**Cuidado:** no lo digas como excusa. Dilo como explicación, y enseguida lo que sí hacemos:
+
+> «Por eso, además de traer más gente, estamos trabajando en que de cada 100 que entran escriban más: mejores páginas, el chatbot de vuelta y que ningún aviso se pierda.»
+
 ## 3. Qué hacemos esta semana (sin costo extra)
 
 > «Con esto terminamos el ajuste para volver al nivel de inversión de antes. Este jueves hacemos el último paso, y en Gamesail empezamos a subir por etapas, solo en las campañas que ya están trayendo contactos.»
@@ -72,6 +91,9 @@ Y como respaldo:
 > - personas que tocan WhatsApp y al final no mandan el mensaje.
 >
 > Con el cruce diario vamos a ver exactamente cuántos de cada uno.»
+
+**«Entonces, ¿por qué no se vende más?»**
+> «Los anuncios sí traen gente: [clics] personas entraron a las páginas y [contactos] escribieron o llamaron. De ahí a la venta influyen el precio, el momento del cliente y el seguimiento. Para ayudarles en esa parte, les proponemos anotar en la hoja qué pasó con cada lead: si se contestó, si cotizó y si compró. Así sabemos qué búsquedas traen clientes que sí compran, y les damos más presupuesto a esas.»
 
 **«¿Cuándo vemos resultados?»**
 > «Lo que se arregla en avisos y formularios se nota de inmediato. Lo de Gamesail necesita de dos a tres semanas, porque la cuenta es nueva. Diciembre suele bajar por las fiestas, así que conviene comparar semana contra semana.»
