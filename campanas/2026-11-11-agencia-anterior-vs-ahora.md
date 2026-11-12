@@ -63,3 +63,38 @@
 - **Columnas de la hoja:** FECHA, TELEFONO, NOMBRE, CORREO, INGRESO, CAMPAÑA, GIRO, ASESOR, MENSAJE DE ENTRADA, SEGUIMIENTO, ESTRELLA FINAL, SUPLIESE, GAMESAIL, CLM, GIRBAU, SERVICIO PARA LAVANDERIA, LLAMADA.
 - **Falta:** el desglose por mes de INGRESO o CAMPAÑA. Con eso se ve qué parte de la baja es por el chatbot, cuál por la cuenta anterior de Gamesail y cuál por otros medios.
 - **Aviso:** la extensión abrió la hoja con una cuenta que no es gamesailmx. La próxima vez, la hoja se debe compartir a gamesailmx@gmail.com.
+
+### Desglose por CAMPAÑA (medio/marca) de la hoja: septiembre contra 1–10 de noviembre
+
+Contado fila por fila por la extensión, solo leyendo. Los totales cuadran: 467 y 103. La columna INGRESO trae fechas, no medios.
+
+| Medio | Septiembre | Nov 1–10 | Nov llevado a 30 días |
+|---|---|---|---|
+| Chatbot Coudibot | 242 | 0 | 0 |
+| WhatsApp | 123 | 74 | ~222 |
+| Formulario | 75 | **0** | 0 |
+| Llamada | 27 | 6 | ~18 |
+| Prospecto en frío (no viene de anuncios) | 0 | 23 | ~69 |
+| **Total** | 467 | 103 | ~309 |
+
+En la hoja, «Supliese» = Quick Laundry, «CLM» = Kingstar y «Servicio para lavanderías» = Laundry Solutions.
+
+**Por marca, sin chatbot y sin prospecto en frío** (WhatsApp + formulario + llamada):
+
+| Marca | Septiembre | Nov 1–10 | Nov llevado a 30 días |
+|---|---|---|---|
+| Quick Laundry | 81 | 34 | ~102 ⬆ |
+| Girbau | 17 | 15 | ~45 ⬆ |
+| Laundry Solutions | 19 | 9 | ~27 ⬆ |
+| Gamesail | 60 | 15 | ~45 ⬇ (la cuenta nueva empezó el 3 nov) |
+| Kingstar | 45 | 7 | ~21 ⬇⬇ |
+| Teléfono fijo | 3 | 0 | 0 |
+| **Total** | **225** | **80** | **~240** |
+
+**Conclusiones:**
+
+1. **Toda la baja de la hoja es el chatbot.** Era 242 de 467 en septiembre (52%). Sin chatbot, noviembre va igual o un poco arriba de septiembre: ~240 contra 225.
+2. **En noviembre no hay ningún «Formulario» en la hoja**, pero Resend sí mandó avisos de formulario, sobre todo de Gamesail. Los formularios llegan por correo y no se están anotando, o se anotan como WhatsApp.
+3. **Kingstar es la marca que más bajó** (45 → ~21 al mes en la hoja), aunque Google cuenta ~40 contactos en 22 días. Además, el correo del asesor rebota.
+4. **Gamesail está abajo por ser cuenta nueva** (desde el 3 nov).
+5. **«Prospecto en frío» (23 en noviembre) no viene de anuncios.** Se debe ver aparte.
