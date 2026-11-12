@@ -62,17 +62,17 @@ function main() {
   Logger.log('==== 1. HOY CONTRA EL PROMEDIO, HASTA LAS ' + hora + ':00 ====');
   var hasta = ' AND segments.hour < ' + hora;
   var H = { imp: 0, clics: 0 }, P = { imp: 0, clics: 0 };
-  filas('SELECT metrics.impressions, metrics.clicks FROM customer WHERE ' + deHoy + hasta, 'hoy').forEach(function (f) { H.imp += +f.metrics.impressions || 0; H.clics += +f.metrics.clicks || 0; });
-  filas('SELECT metrics.impressions, metrics.clicks FROM customer WHERE ' + antes + hasta, 'los 7 días').forEach(function (f) { P.imp += +f.metrics.impressions || 0; P.clics += +f.metrics.clicks || 0; });
-  var ch = contactos(filas('SELECT segments.conversion_action_name, metrics.all_conversions FROM customer WHERE ' + deHoy + hasta, 'contactos de hoy'));
-  var cp = contactos(filas('SELECT segments.conversion_action_name, metrics.all_conversions FROM customer WHERE ' + antes + hasta, 'contactos de 7 días'));
+  filas('SELECT segments.hour, metrics.impressions, metrics.clicks FROM customer WHERE ' + deHoy + hasta, 'hoy').forEach(function (f) { H.imp += +f.metrics.impressions || 0; H.clics += +f.metrics.clicks || 0; });
+  filas('SELECT segments.hour, metrics.impressions, metrics.clicks FROM customer WHERE ' + antes + hasta, 'los 7 días').forEach(function (f) { P.imp += +f.metrics.impressions || 0; P.clics += +f.metrics.clicks || 0; });
+  var ch = contactos(filas('SELECT segments.hour, segments.conversion_action_name, metrics.all_conversions FROM customer WHERE ' + deHoy + hasta, 'contactos de hoy'));
+  var cp = contactos(filas('SELECT segments.hour, segments.conversion_action_name, metrics.all_conversions FROM customer WHERE ' + antes + hasta, 'contactos de 7 días'));
   Logger.log('Impresiones: hoy ' + miles(H.imp) + ' · promedio ' + miles(P.imp / 7));
   Logger.log('Clics: hoy ' + miles(H.clics) + ' · promedio ' + n(P.clics / 7));
   Logger.log('Contactos: hoy ' + n(ch) + ' · promedio ' + n(cp / 7) + (P.clics ? ' · de cada 100 clics: hoy ' + (H.clics ? n(ch / H.clics * 100) : 0) + ', promedio ' + n(cp / P.clics * 100) : ''));
   Logger.log('');
 
   // 2. Red
-  Logger.log('==== 2. DE QUÉ RED VIENEN LOS CLICS ====');
+  Logger.log('==== 2. DE QUÉ RED VIENEN LOS CLICS (hoy hasta ahora · promedio de un día COMPLETO) ====');
   var R = {};
   [[deHoy, 'h'], [antes, 'p']].forEach(function (x) {
     filas('SELECT segments.ad_network_type, metrics.clicks, metrics.cost_micros FROM customer WHERE ' + x[0], 'la red').forEach(function (f) {
