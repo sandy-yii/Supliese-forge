@@ -1,10 +1,10 @@
 /**
- * Atelback · Presupuesto nuevo de $71,000 al mes (lo que invertía el cliente con la administración anterior) — las cinco cuentas
+ * Atelback · Presupuesto nuevo de $71,000 al mes (presupuesto que mandó el cliente; en las cuentas, la administración anterior gastaba en promedio ~$59,500 al mes) — las cinco cuentas
  * Escrito a mano el 11 nov 2026 (no lo genera generar.py). REEMPLAZA el paso 3 del reparto: ya no se recorta ninguna
  * campaña que traiga contactos.
  *
  * Presupuesto al mes que mandó el cliente: Quick Laundry (Supliese) $12,000 · Gamesail $20,000 · Kingstar (CLM) $20,000 ·
- * Girbau $10,000 · Laundry Solutions $9,000. Total $71,000 (antes del cambio se gastaban ~$53,500).
+ * Girbau $10,000 · Laundry Solutions $9,000. Total $71,000 (hoy, con nosotros, se gastan ~$53,500 al mes).
  *
  * CÓMO SE REPARTE DENTRO DE CADA CUENTA (actualizado el 11 nov con «datos-para-planear», del 20 oct al 10 nov,
  * contando solo WhatsApp, llamada y formulario):
