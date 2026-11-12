@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Opciones de inversión Supliese</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+/* Layout: una columna de lectura; tres tarjetas para comparar opciones, tabla por marca, listas de acciones */
+:root{
+  --bg:#f5f7fa; --surface:#ffffff; --ink:#1b2230; --mute:#5a6475; --line:#e1e5ec;
+  --good:#1a8a52; --good-bg:#e4f4eb; --warn:#a3520c; --warn-bg:#fcefe1; --info:#2a5fa8; --info-bg:#e6eefa;
+  --ql:#2a78d6; --ks:#eb6834; --ls:#1baf7a; --gb:#c98500; --gs:#d55181;
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --body:"Source Sans 3","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12161d; --surface:#1b212b; --ink:#e8ecf2; --mute:#a0a9b8; --line:#2c3441;
+  --good:#4cc786; --good-bg:#183326; --warn:#f0a35e; --warn-bg:#3a2a1a; --info:#8db4ec; --info-bg:#1b2840;
+  --ql:#3987e5; --ks:#d95926; --ls:#199e70; --gb:#c98500; --gs:#d55181; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161d; --surface:#1b212b; --ink:#e8ecf2; --mute:#a0a9b8; --line:#2c3441;
+  --good:#4cc786; --good-bg:#183326; --warn:#f0a35e; --warn-bg:#3a2a1a; --info:#8db4ec; --info-bg:#1b2840;
+  --ql:#3987e5; --ks:#d95926; --ls:#199e70; --gb:#c98500; --gs:#d55181; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
+.wrap{max-width:900px;margin:0 auto;padding-block:36px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:34px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(28px,5vw,40px)}h2{font-size:24px}h3{font-size:19px}
+.eyebrow{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);font-weight:700;margin:0 0 6px}
+.lead{color:var(--mute);margin:8px 0 0;max-width:64ch}
+section{display:grid;gap:12px}
+.promise{background:var(--warn-bg);border:1px solid var(--warn);border-radius:12px;padding:16px 18px;display:grid;gap:6px}
+.promise p{margin:0}
+.promise .t{font-family:var(--display);font-size:21px;color:var(--warn);font-weight:700}
+.callout{background:var(--info-bg);border-radius:12px;padding:14px 16px;display:grid;gap:6px}
+.callout p{margin:0}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:12px}
+.opt{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:10px;align-content:start;min-width:0}
+.opt.main{border:2px solid var(--good)}
+.opt h3{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.opt dl{margin:0;display:grid;gap:8px}
+.opt dt{font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);font-weight:600}
+.opt dd{margin:0;font-size:26px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.15}
+.opt dd small{display:block;font-size:14.5px;font-weight:400;color:var(--mute);line-height:1.4}
+.opt.main dd.esp{color:var(--good)}
+.chip{display:inline-block;font-size:12.5px;font-weight:700;border-radius:20px;padding:2px 10px;white-space:nowrap;font-family:var(--body)}
+.ok{background:var(--good-bg);color:var(--good)}.inf{background:var(--info-bg);color:var(--info)}.mute{background:var(--bg);color:var(--mute);border:1px solid var(--line)}
+.tbl{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:680px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);font-size:16px;vertical-align:top}
+th{font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);font-weight:600}
+th.grp{text-align:center;border-bottom:1px solid var(--line)}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;white-space:nowrap}
+td.sep,th.sep{border-left:1px solid var(--line)}
+tfoot td{font-weight:700;border-top:1px solid var(--line)}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;vertical-align:middle}
+.note{color:var(--mute);font-size:15px;margin:0;max-width:72ch}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:14px}
+.two article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:8px;align-content:start;min-width:0}
+.two ul{margin:0;padding-left:20px;display:grid;gap:6px}
+.two li span{color:var(--mute)}
+ul.list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+ul.list li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+ul.list b{display:block}
+ul.list span{color:var(--mute);font-size:15.5px}
+ol.steps{list-style:none;margin:0;padding:0;display:grid;gap:12px;counter-reset:s}
+ol.steps>li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px 14px 58px;position:relative;counter-increment:s}
+ol.steps>li::before{content:counter(s);position:absolute;left:16px;top:14px;width:28px;height:28px;border-radius:50%;background:var(--info-bg);color:var(--info);font-weight:700;display:grid;place-items:center;font-size:15px}
+ol.steps b{display:block}
+ol.steps span{color:var(--mute);font-size:15.5px}
+.kw{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:14px}
+.kw article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:8px;align-content:start;min-width:0}
+.kw table{min-width:0}
+.kw th,.kw td{padding:6px 0;font-size:15.5px}
+.kw td.num,.kw th.num{padding-left:12px}
+.kw .sub{color:var(--mute);font-size:14.5px;margin:0}
+.kw h3{display:flex;align-items:center}
+.look{background:var(--warn-bg);color:var(--warn)}
+.neg{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}
+.neg article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px;display:grid;gap:6px;align-content:start;min-width:0}
+.neg b{display:block}
+.neg span{color:var(--mute);font-size:15px}
+@media (max-width:480px){body{font-size:16px}.opt dd{font-size:24px}}
+
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Grupo Supliese · Google Ads · 12 de noviembre de 2026</p>
+    <h1>Dos opciones de inversión</h1>
+    <p class="lead">Una opción de ahorro y una opción completa para las cinco marcas, con lo que esperamos de cada una. Las cifras salen de las propias cuentas de Google Ads, del 20 de octubre al 10 de noviembre.</p>
+  </header>
+
+  <div class="promise" role="note">
+    <p class="t">Esto no es una promesa</p>
+    <p>Los contactos que aparecen como «esperamos» son una estimación hecha con los resultados de estas semanas. Google Ads cambia con la temporada, la competencia y el tiempo que tarda cada campaña en aprender. Puede salir por arriba o por abajo. Lo revisamos cada semana contra la hoja de los vendedores y ajustamos.</p>
+  </div>
+
+  <section>
+    <h2>Las opciones, lado a lado</h2>
+    <div class="opts">
+      <div class="opt">
+        <h3>Hoy <span class="chip mute">ritmo actual</span></h3>
+        <dl>
+          <div><dt>Inversión al mes</dt><dd>~$53,500</dd></div>
+          <div><dt>Contactos al mes</dt><dd>~400<small>suma de las 5 marcas</small></dd></div>
+        </dl>
+      </div>
+      <div class="opt main">
+        <h3>Opción ahorro <span class="chip ok">+$6,000</span></h3>
+        <dl>
+          <div><dt>Inversión al mes</dt><dd>~$59,500</dd></div>
+          <div><dt>Esperamos al mes</dt><dd class="esp">420–450<small>contactos, suma de las 5 marcas</small></dd></div>
+          <div><dt>Cada contacto extra</dt><dd>~$120–300<small>porque las búsquedas más baratas ya se están ganando</small></dd></div>
+        </dl>
+      </div>
+      <div class="opt">
+        <h3>Opción completa <span class="chip inf">+$17,500</span></h3>
+        <dl>
+          <div><dt>Inversión al mes</dt><dd>$71,000</dd></div>
+          <div><dt>Esperamos al mes</dt><dd>450–500<small>contactos, suma de las 5 marcas</small></dd></div>
+          <div><dt>Cada contacto extra</dt><dd>~$175–350<small>crece más, pero cada contacto adicional sale más caro</small></dd></div>
+        </dl>
+      </div>
+    </div>
+    <div class="callout">
+      <p><b>Qué contamos como contacto:</b> una persona que escribió por WhatsApp, llamó o mandó el formulario desde un anuncio. No sumamos visitas a Google Maps ni conversaciones con el chatbot.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>¿Antes llegaban más leads con el mismo presupuesto?</h2>
+    <p class="note" style="color:var(--ink)">Lo revisamos en la propia hoja de entrada de leads, medio por medio. <b>Por anuncios hoy llega lo mismo o un poco más que antes, invirtiendo menos.</b> La diferencia está en el chatbot que tenían las páginas, que ya no está activo.</p>
+    <div class="tbl"><table style="min-width:520px">
+      <thead><tr><th>Registros en la hoja</th><th class="num">Septiembre</th><th class="num">Noviembre<br>(ritmo de 30 días)</th></tr></thead>
+      <tbody>
+        <tr><td>WhatsApp, formulario y llamada</td><td class="num">225</td><td class="num"><b>~240</b></td></tr>
+        <tr><td>Conversaciones del chatbot</td><td class="num">242</td><td class="num">0</td></tr>
+        <tr><td>Inversión en Google Ads al mes</td><td class="num">~$59,500*</td><td class="num"><b>~$53,500</b></td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">* Promedio mensual de las cinco cuentas con la administración anterior. Noviembre, del 1 al 10, llevado a 30 días. Sin contar los prospectos en frío, que no vienen de anuncios. Por marca, suben Quick Laundry (81 → ~102), Girbau (17 → ~45) y Laundry Solutions (19 → ~27). Gamesail está abajo porque su cuenta nueva empezó el 3 de noviembre. El chatbot nuevo ya está en preparación y se medirá aparte.</p>
+  </section>
+
+  <section>
+    <h2>Avisos de las páginas contra la hoja de los vendedores</h2>
+    <p class="note" style="color:var(--ink)">Cada formulario y cada WhatsApp de las páginas manda un aviso por correo al asesor, a través de Resend. Comparamos esos avisos con lo que anotaron los vendedores en la hoja de entrada de leads el <b>lunes 10 de noviembre</b>, el último día completo en la hoja:</p>
+    <div class="tbl"><table style="min-width:560px">
+      <thead><tr><th>Marca</th><th class="num">Avisos enviados (Resend)</th><th class="num">Anotados por los vendedores en la hoja</th></tr></thead>
+      <tbody>
+        <tr><td><span class="dot" style="background:var(--gs)"></span>Gamesail</td><td class="num">8</td><td class="num">2</td></tr>
+        <tr><td><span class="dot" style="background:var(--ql)"></span>Quick Laundry (Supliese)</td><td class="num">4</td><td class="num">2</td></tr>
+        <tr><td><span class="dot" style="background:var(--ks)"></span>Kingstar (CLM)</td><td class="num">2</td><td class="num">0</td></tr>
+        <tr><td><span class="dot" style="background:var(--ls)"></span>Laundry Solutions</td><td class="num">2</td><td class="num">1</td></tr>
+        <tr><td><span class="dot" style="background:var(--gb)"></span>Girbau</td><td class="num">0</td><td class="num">0</td></tr>
+      </tbody>
+      <tfoot><tr><td>Suma de las 5 marcas</td><td class="num">16</td><td class="num">5</td></tr></tfoot>
+    </table></div>
+    <div class="callout">
+      <p>Vamos a seguir revisando la manera de asegurarnos de que <b>todos los avisos sí les estén llegando al correo de los asesores</b>, y lo compararemos con la hoja día por día.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Campañas buenas que se quedan cortas</h2>
+    <p class="note" style="color:var(--ink)">Varias campañas traen contactos a buen precio, pero <b>no aparecen en todas las búsquedas</b>, por dos razones:</p>
+    <ul class="list">
+      <li><b>Se quedan sin presupuesto a media tarde</b><span>Cuando se acaba su dinero del día, el anuncio deja de salir y esas búsquedas se las llevan otras empresas.</span></li>
+      <li><b>Otras empresas pagan más por cada clic</b><span>En algunas búsquedas, la competencia puja más alto y su anuncio sale primero.</span></li>
+    </ul>
+    <div class="tbl"><table>
+      <thead><tr><th>Campaña</th><th class="num">Costo por contacto</th><th class="num">Búsquedas perdidas por presupuesto</th><th class="num">Búsquedas perdidas por la puja de la competencia</th></tr></thead>
+      <tbody>
+        <tr><td><span class="dot" style="background:var(--gb)"></span>Girbau · Máximo rendimiento</td><td class="num">$50</td><td class="num"><b>38%</b></td><td class="num">—</td></tr>
+        <tr><td><span class="dot" style="background:var(--ql)"></span>Quick Laundry · Autoservicio y monedas</td><td class="num">$52</td><td class="num">16%</td><td class="num"><b>44%</b></td></tr>
+        <tr><td><span class="dot" style="background:var(--gs)"></span>Gamesail · Lavadoras por capacidad y precio</td><td class="num">$66</td><td class="num"><b>52%</b></td><td class="num">—</td></tr>
+        <tr><td><span class="dot" style="background:var(--gs)"></span>Gamesail · Marcas de la competencia</td><td class="num">$68</td><td class="num"><b>39%</b></td><td class="num">—</td></tr>
+        <tr><td><span class="dot" style="background:var(--ks)"></span>Kingstar · Mangles y planchado</td><td class="num">$114</td><td class="num">6%</td><td class="num"><b>45%</b></td></tr>
+        <tr><td><span class="dot" style="background:var(--ql)"></span>Quick Laundry · Equipo para lavandería</td><td class="num">$129</td><td class="num"><b>48%</b></td><td class="num">—</td></tr>
+        <tr><td><span class="dot" style="background:var(--gb)"></span>Girbau · Marca Girbau</td><td class="num">$141</td><td class="num"><b>40%</b></td><td class="num">—</td></tr>
+        <tr><td><span class="dot" style="background:var(--ls)"></span>Laundry Solutions · Servicio técnico</td><td class="num">$141</td><td class="num"><b>47%</b></td><td class="num">—</td></tr>
+        <tr><td><span class="dot" style="background:var(--gs)"></span>Gamesail · Lavadoras para ropa y sábanas</td><td class="num">$156</td><td class="num"><b>53%</b></td><td class="num">—</td></tr>
+        <tr><td><span class="dot" style="background:var(--ks)"></span>Kingstar · Alta capacidad 60 kg o más</td><td class="num">$233</td><td class="num"><b>39%</b></td><td class="num">27%</td></tr>
+        <tr><td><span class="dot" style="background:var(--ks)"></span>Kingstar · Lavandería hotelera</td><td class="num">$242</td><td class="num">17%</td><td class="num"><b>39%</b></td></tr>
+      </tbody>
+    </table></div>
+    <div class="callout">
+      <p><b>Con el presupuesto actual ya se usa todo el dinero.</b> Para darles más a estas campañas tendríamos que quitárselo a otras que también traen clientes. Lo que se podía acomodar sin perder contactos ya se acomodó. Para que estas campañas salgan en más búsquedas, y para pagar lo que cobra la competencia por cada clic, hace falta más inversión. Por eso son las primeras que suben en las dos opciones.</p>
+    </div>
+    <p class="note">Datos del 20 de octubre al 10 de noviembre. «—» quiere decir que esa campaña casi no pierde por la puja de la competencia, o que Google no da el dato.</p>
+  </section>
+
+  <section>
+    <h2>Por marca</h2>
+    <div class="tbl"><table>
+      <thead>
+        <tr><th></th><th class="grp sep" colspan="3">Inversión al mes</th><th class="grp sep" colspan="3">Contactos al mes</th></tr>
+        <tr><th>Marca</th><th class="num sep">Hoy</th><th class="num">Ahorro</th><th class="num">Completa</th><th class="num sep">Hoy</th><th class="num">Esperamos (ahorro)</th><th class="num">Esperamos (completa)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="dot" style="background:var(--gs)"></span>Gamesail</td><td class="num sep">~$11,200</td><td class="num"><b>~$15,800</b></td><td class="num">$20,000</td><td class="num sep">~100</td><td class="num"><b>110–120</b></td><td class="num">130–150</td></tr>
+        <tr><td><span class="dot" style="background:var(--gb)"></span>Girbau</td><td class="num sep">~$6,700</td><td class="num"><b>~$8,900</b></td><td class="num">$10,000</td><td class="num sep">~100</td><td class="num"><b>105–120</b></td><td class="num">110–130</td></tr>
+        <tr><td><span class="dot" style="background:var(--ql)"></span>Quick Laundry (Supliese)</td><td class="num sep">~$12,200</td><td class="num"><b>~$12,000</b></td><td class="num">$12,000</td><td class="num sep">~100</td><td class="num"><b>100–110</b></td><td class="num">100–110</td></tr>
+        <tr><td><span class="dot" style="background:var(--ks)"></span>Kingstar (CLM)</td><td class="num sep">~$17,200</td><td class="num"><b>~$16,700</b></td><td class="num">$20,000</td><td class="num sep">~73</td><td class="num"><b>73–80</b></td><td class="num">80–90</td></tr>
+        <tr><td><span class="dot" style="background:var(--ls)"></span>Laundry Solutions</td><td class="num sep">~$6,100</td><td class="num"><b>~$6,000</b></td><td class="num">$9,000</td><td class="num sep">~26</td><td class="num"><b>26–30</b></td><td class="num">30–40</td></tr>
+      </tbody>
+      <tfoot><tr><td>Suma de las 5 marcas</td><td class="num sep">~$53,500</td><td class="num">~$59,500</td><td class="num">$71,000</td><td class="num sep">~400</td><td class="num">420–450</td><td class="num">450–500</td></tr></tfoot>
+    </table></div>
+    <p class="note">«Hoy» es el ritmo actual llevado a un mes completo. En la opción ahorro, la inversión es el máximo que puede gastar cada cuenta en el mes. Kingstar queda casi igual: lo que crece ahí viene de quitar dinero a lo que no trae contactos y dárselo a lo que sí. El primer mes completo con cualquiera de las dos opciones es diciembre, que suele bajar por las fiestas.</p>
+  </section>
+
+  <section>
+    <h2>Cómo reparte cada opción</h2>
+    <div class="two">
+      <article>
+        <h3>Opción ahorro</h3>
+        <ul>
+          <li>Sube <b>solo donde el contacto sale barato</b> y se pierden búsquedas por falta de presupuesto. <span>Girbau, Quick Laundry «Equipo» y «Autoservicio», Gamesail «Por capacidad» y «Competencia», Kingstar «Mangles».</span></li>
+          <li><b>No sube lo caro.</b> <span>Kingstar «Alta capacidad» apenas +5%. Laundry Solutions «Reparación» no sube.</span></li>
+          <li><b>Baja lo que no trae contactos.</b> <span>Gamesail «Secadoras» y Kingstar «Túnel», mientras se revisan sus páginas.</span></li>
+          <li><b>Sin cambios bruscos:</b> <span>ninguna campaña baja más de 20% de un día para otro.</span></li>
+        </ul>
+      </article>
+      <article>
+        <h3>Opción completa</h3>
+        <ul>
+          <li><b>Todo lo de la opción ahorro, y además:</b></li>
+          <li>Gamesail sube a $20,000. <span>Más presupuesto para «Para ropa y sábanas» y «Por capacidad».</span></li>
+          <li>Kingstar sube a $20,000. <span>Más presupuesto para «Alta capacidad» y «Hotelera».</span></li>
+          <li>Laundry Solutions sube a $9,000. <span>Más presupuesto para «Servicio técnico».</span></li>
+          <li>Girbau sube a $10,000. <span>Su «Máximo rendimiento» sube de a poco, 20% por semana.</span></li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Palabras clave: cuáles traen contactos y cuáles no</h2>
+    <p class="note">Búsquedas de nuestras campañas con al menos un contacto registrado por Google, del 20 de octubre al 10 de noviembre. Los decimales salen porque Google reparte un contacto entre varias palabras cuando la persona buscó más de una vez. Como Google solo ve a quien acepta las cookies, los contactos reales son más.</p>
+    <div class="kw">
+      <article>
+        <h3><span class="dot" style="background:var(--ql)"></span>Quick Laundry</h3>
+        <table><thead><tr><th>Palabra</th><th class="num">Contactos</th><th class="num">C/u</th></tr></thead><tbody>
+          <tr><td>lavadoras para lavanderías</td><td class="num">19</td><td class="num">$99</td></tr>
+          <tr><td>lavadoras para negocio</td><td class="num">6</td><td class="num">$79</td></tr>
+          <tr><td>lavadoras de monedas</td><td class="num">5</td><td class="num">$24</td></tr>
+          <tr><td>lavadora para lavandería autoservicio</td><td class="num">4</td><td class="num">$38</td></tr>
+          <tr><td>lavadora de monedas</td><td class="num">3</td><td class="num">$44</td></tr>
+          <tr><td>lavadoras y secadoras para lavandería</td><td class="num">3</td><td class="num">$83</td></tr>
+          <tr><td>quiero poner una lavandería</td><td class="num">2</td><td class="num">$37</td></tr>
+          <tr><td>lavadoras de autoservicio</td><td class="num">2</td><td class="num">$127</td></tr>
+          <tr><td>equipo para lavandería</td><td class="num">2</td><td class="num">$253</td></tr>
+          <tr><td>poner una lavandería</td><td class="num">2</td><td class="num">$301</td></tr>
+        </tbody></table>
+        <p class="sub">La que más trae, «lavadoras para lavanderías», tiene calificación de Google 4 de 10: mejorando el anuncio y la página puede salir más barata.</p>
+      </article>
+      <article>
+        <h3><span class="dot" style="background:var(--gs)"></span>Gamesail</h3>
+        <table><thead><tr><th>Palabra</th><th class="num">Contactos</th><th class="num">C/u</th></tr></thead><tbody>
+          <tr><td>lavadoras industriales precio</td><td class="num">9</td><td class="num">$58</td></tr>
+          <tr><td>lavadoras y secadoras industriales</td><td class="num">5.5</td><td class="num">$114</td></tr>
+          <tr><td>gamesail</td><td class="num">2</td><td class="num">$8</td></tr>
+          <tr><td>wascomat lavadora industrial</td><td class="num">2</td><td class="num">$38</td></tr>
+          <tr><td>lavadoras industriales</td><td class="num">1.5</td><td class="num">$257</td></tr>
+          <tr><td>lavadora industrial 30 kg precio</td><td class="num">1</td><td class="num">$67</td></tr>
+          <tr><td>mangle planchador</td><td class="num">1</td><td class="num">$85</td></tr>
+          <tr><td>lorsa lavadora industrial</td><td class="num">1</td><td class="num">$103</td></tr>
+          <tr><td>lavadora industrial para hotel</td><td class="num">1</td><td class="num">$201</td></tr>
+        </tbody></table>
+        <p class="sub">Quien busca «precio» es quien más escribe. Las búsquedas de marcas de la competencia también traen contactos baratos.</p>
+      </article>
+      <article>
+        <h3><span class="dot" style="background:var(--ks)"></span>Kingstar (CLM)</h3>
+        <table><thead><tr><th>Palabra</th><th class="num">Contactos</th><th class="num">C/u</th></tr></thead><tbody>
+          <tr><td>lavadoras de alta capacidad</td><td class="num">6</td><td class="num">$365</td></tr>
+          <tr><td>lavadora industrial 60 kg</td><td class="num">4</td><td class="num">$171</td></tr>
+          <tr><td>lavadora industrial de alta capacidad</td><td class="num">3</td><td class="num">$365</td></tr>
+          <tr><td>lavadora industrial 50 kg</td><td class="num">3</td><td class="num">$103</td></tr>
+          <tr><td>lavadora industrial 100 kg</td><td class="num">2</td><td class="num">$125</td></tr>
+          <tr><td>mangle industrial</td><td class="num">2</td><td class="num">$119</td></tr>
+          <tr><td>túnel de lavado industrial</td><td class="num">1</td><td class="num">$87</td></tr>
+          <tr><td>mangle de planchado</td><td class="num">1</td><td class="num">$104</td></tr>
+          <tr><td>lavadora industrial para hotel</td><td class="num">1</td><td class="num">$162</td></tr>
+          <tr><td>lavadora de túnel</td><td class="num">1</td><td class="num">$382</td></tr>
+        </tbody></table>
+        <p class="sub">Las búsquedas con kilos exactos (50, 60, 100 kg) salen más baratas que las generales de «alta capacidad».</p>
+      </article>
+      <article>
+        <h3><span class="dot" style="background:var(--gb)"></span>Girbau</h3>
+        <table><thead><tr><th>Palabra</th><th class="num">Contactos</th><th class="num">C/u</th></tr></thead><tbody>
+          <tr><td>girbau</td><td class="num">8</td><td class="num">$140</td></tr>
+          <tr><td>distribuidor girbau</td><td class="num">1</td><td class="num">$8</td></tr>
+          <tr><td>lavadora industrial girbau</td><td class="num">1</td><td class="num">$17</td></tr>
+        </tbody></table>
+        <p class="sub">La mayoría de los contactos de Girbau (33, a $50 cada uno) llegan por la campaña de Máximo rendimiento, que no usa palabras clave: Google busca solo a quién mostrarle el anuncio.</p>
+      </article>
+      <article>
+        <h3><span class="dot" style="background:var(--ls)"></span>Laundry Solutions</h3>
+        <table><thead><tr><th>Palabra</th><th class="num">Contactos</th><th class="num">C/u</th></tr></thead><tbody>
+          <tr><td>técnico de lavadoras industriales</td><td class="num">5</td><td class="num">$104</td></tr>
+          <tr><td>mantenimiento preventivo lavadoras industriales</td><td class="num">2</td><td class="num">$15</td></tr>
+          <tr><td>reparación lavadoras industriales</td><td class="num">1</td><td class="num">$501</td></tr>
+        </tbody></table>
+        <p class="sub">Quien busca un «técnico» escribe mucho más que quien busca «reparación». Vamos a agregar más variantes de técnico y mantenimiento.</p>
+      </article>
+      <article>
+        <h3>Palabras que gastan sin traer (todavía)</h3>
+        <table><thead><tr><th>Palabra</th><th class="num">Gasto</th><th>Qué hacemos</th></tr></thead><tbody>
+          <tr><td>secadoras industriales (Gamesail)</td><td class="num">$511</td><td><span class="chip look">revisar página</span></td></tr>
+          <tr><td>reparación de lavadoras industriales (LS)</td><td class="num">$273</td><td><span class="chip look">revisar</span></td></tr>
+          <tr><td>lavadora industrial 40 kg (Kingstar)</td><td class="num">$244</td><td><span class="chip look">revisar</span></td></tr>
+          <tr><td>lavandería para hotel (Kingstar)</td><td class="num">$146</td><td><span class="chip look">revisar</span></td></tr>
+          <tr><td>lavadora semi industrial (Quick Laundry)</td><td class="num">$126</td><td><span class="chip look">revisar</span></td></tr>
+          <tr><td>planchadora de rodillo industrial (Kingstar)</td><td class="num">$106</td><td><span class="chip look">pausar</span></td></tr>
+        </tbody></table>
+        <p class="sub">Una palabra general puede gastar sin contacto y aun así ser buena. Se revisan una por una antes de quitarlas.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Palabras negativas: búsquedas que bloqueamos</h2>
+    <p class="note" style="color:var(--ink)">Son búsquedas en las que <b>no queremos que salga el anuncio</b>, porque quien las hace no va a comprar equipo o porque le toca a otra de las cinco marcas. Así no se paga por clics que no sirven y <b>las cinco marcas no compiten entre ellas</b>, lo que haría más caro cada clic.</p>
+    <div class="neg">
+      <article><b>Equipo de casa</b><span>doméstica, casera, «para casa», carga frontal, Mabe, Samsung, Whirlpool, LG, capacidades chicas (8 a 28 kg)</span></article>
+      <article><b>Usado y renta</b><span>usada, seminueva, segunda mano, remate, renta, alquiler, arrendamiento</span></article>
+      <article><b>Información, no compra</b><span>empleo, vacante, curso, manual, pdf, «cómo hacer»</span></article>
+      <article><b>Lavado por encargo o de autos</b><span>tintorería, «cerca de mí», precio por kilo, servicio de lavado, autolavado, car wash, autos</span></article>
+      <article><b>Cada marca en su terreno</b><span>Quick Laundry: abrir una lavandería, autoservicio y monedas. Kingstar: túnel, 40 a 100 kg y mangles. Gamesail: 20 a 30 kg. Laundry Solutions: refacciones, reparación y mantenimiento. Girbau: su propia marca.</span></article>
+      <article><b>Marcas que no se venden en cada cuenta</b><span>Por ejemplo, Speed Queen, Alliance, Fagor, Milnor y Huebsch en Gamesail, y las marcas de la competencia (Wascomat, Unimac, Lorsa y otras) en Girbau.</span></article>
+    </div>
+    <p class="note">Son las listas principales que se cargaron al crear las campañas. Cada semana revisamos lo que la gente buscó y agregamos las que no sirven. Una palabra que gasta sin traer contactos no se quita de inmediato: primero se revisa si el problema es la página o el anuncio.</p>
+  </section>
+
+  <section>
+    <h2>Lo que hacemos en las dos opciones, sin costo extra</h2>
+    <p class="note" style="color:var(--ink)">Para que lleguen más clientes a la hoja de los vendedores, esto pesa tanto como el presupuesto:</p>
+    <ul class="list">
+      <li><b>Chatbot de vuelta en las páginas</b><span>Atiende de día, de noche y en fin de semana, pide nombre y teléfono, y avisa al vendedor. Se mide aparte para no inflar los números.</span></li>
+      <li><b>Que cada aviso llegue a su asesor</b><span>Revisamos con ustedes que el aviso de cada formulario y WhatsApp llegue al correo correcto. En una marca, el correo del asesor está rechazando los avisos.</span></li>
+      <li><b>Cruce diario con la hoja de los vendedores</b><span>Comparamos cada día lo que registra Google, los avisos que salieron y lo que se anotó, para que ningún contacto se quede sin atender.</span></li>
+      <li><b>Mejores páginas y mejores palabras</b><span>Mandar más anuncios a las páginas que convierten mejor, y mover dinero poco a poco a búsquedas más precisas (por ejemplo, por kilos), que traen contactos más baratos.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Qué necesitamos de ustedes</h2>
+    <ol class="steps">
+      <li><b>Elegir una de las dos opciones</b><span>Se aplica al día siguiente de su aprobación, cuenta por cuenta.</span></li>
+      <li><b>Revisar el límite de pago de cada cuenta de Google Ads</b><span>Con más inversión, el saldo aprobado se acaba antes. Si se acaba, los anuncios se detienen.</span></li>
+      <li><b>Confirmar el correo de cada asesor</b><span>Para que todos los avisos de formulario y WhatsApp lleguen a quien los atiende.</span></li>
+      <li><b>Decidir quién pasa a la hoja los formularios que llegan por correo</b><span>Una persona que revise ese correo cada día y anote cada formulario, también los del fin de semana.</span></li>
+      <li><b>Aclarar qué fecha se anota en la hoja</b><span>Si es el día en que llegó el lead o el día en que se anotó. Así podemos cruzar la hoja día por día con lo que registra Google.</span></li>
+    </ol>
+  </section>
+
+  <div class="promise" role="note">
+    <p class="t">De nuevo: es lo que esperamos, no lo que prometemos</p>
+    <p>Con cualquiera de las dos opciones, les presentamos cada semana lo que realmente llegó, por marca, para decidir juntos si seguimos igual, subimos o ajustamos.</p>
+  </div>
+</div>
+
+</body>
+</html>
