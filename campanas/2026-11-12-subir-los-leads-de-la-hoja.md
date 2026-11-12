@@ -31,13 +31,13 @@ Es lo que esperamos, no es una promesa. Nada se cambia en las cuentas sin el OK 
 - **Que pida nombre y teléfono, y mande el aviso por Resend** al vendedor, con el canal «chatbot».
 - **Que se mida aparte en Google, como secundaria.** No cuenta para las pujas, para no inflar el número.
 
-### 3. Gamesail a su nivel (empieza el jueves 12)
+### 3. Gamesail a su nivel
 
-- **Presupuesto nuevo:** de ~$11,000 a ~$20,000 al mes. Con eso queda arriba de lo que gastaba la cuenta anterior.
+- **Presupuesto:** con el plan de $71k, de ~$11,000 a ~$20,000 al mes. Con la opción ahorro se queda en ~$15,800, acomodado hacia «Por capacidad» y «Competencia».
 - **Página de secadoras** (Rodolfo).
 - **Darle 2 a 3 semanas** para que la cuenta nueva aprenda. Una cuenta nueva no rinde igual el primer mes.
 
-### 4. Plan de $71k (empieza el jueves 12)
+### 4. Presupuesto: plan de $71k u opción ahorro (~$59,500); se corre solo la que el cliente apruebe
 
 - **Cada marca recibe más dinero en lo que sí trae contactos:**
   - Gamesail: Ropa y Capacidad.
@@ -45,7 +45,10 @@ Es lo que esperamos, no es una promesa. Nada se cambia en las cuentas sin el OK 
   - Quick Laundry: Equipo.
   - Girbau: Marca y PMax.
   - Laundry Solutions: Servicio técnico.
-- **Lo que esperamos con el plan:** pasar de ~400 a ~450–500 contactos de anuncios al mes, **sumando las 5 marcas**.
+- **Lo que esperamos, sumando las 5 marcas:**
+  - plan de $71k: pasar de ~400 a ~450–500 contactos de anuncios al mes;
+  - opción ahorro: pasar de ~400 a ~425–440 al mes.
+  - Script de la opción ahorro: `campanas/salida/presupuesto-ahorro-59k-todas-las-cuentas.js`.
 
 ### 5. Que los mismos clics den más contactos (desde la semana que entra)
 
