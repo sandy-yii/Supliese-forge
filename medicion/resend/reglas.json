@@ -1,0 +1,4 @@
+{
+  "_nota": "Se llena después de correr 'reconocer'. Cada regla: si TODOS los textos de 'si' aparecen en ese campo (from, to, subject), asigna marca/canal. 'para_vendedor': false para la copia al cliente o al asesor (no se cuenta dos veces). 'ignorar': true para correos que no son leads. Los asuntos con código [KS·WA·folio] no necesitan regla.",
+  "reglas": []
+}
