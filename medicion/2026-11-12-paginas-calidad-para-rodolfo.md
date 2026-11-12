@@ -266,6 +266,43 @@ Todas sus páginas tienen el mismo patrón: buenos títulos, pero las frases exa
 - esos tres datos, con lo que confirme el cliente;
 - la frase «técnico de lavadoras industriales» en un H2 (es la búsqueda que más contactos trae en esta marca).
 
+### `/mantenimiento` · «AB · Reparación y mantenimiento» (grupos de mantenimiento) · 29 clics en 7 días, 0 contactos
+
+**Qué falta:**
+
+- «mantenimiento de lavadoras industriales» y «mantenimiento de secadoras industriales» no aparecen como frase. El H1 dice «mantenimiento preventivo y correctivo de lavadoras y secadoras industriales».
+- No hay precio de la póliza ni de la visita.
+
+**Qué agregar:**
+
+- **H2:** «Mantenimiento de lavadoras industriales».
+- **H2:** «Mantenimiento de secadoras industriales».
+- **Precio «desde»** de la póliza o de la visita de valoración.
+- Ciudades que atienden y en cuánto tiempo llegan.
+
+### `/` (portada) · «AB · Servicio técnico industrial»
+
+«técnico de lavadoras industriales» es **la búsqueda que más contactos trae** en esta marca (5 contactos).
+
+**Qué falta:** la frase no aparece en la portada; solo «servicio técnico».
+
+**Qué agregar:**
+
+- **H2:** «Técnico de lavadoras industriales».
+- Una línea con las ciudades y el tiempo de llegada.
+
+---
+
+## Gamesail (complemento)
+
+### `/lavadoras-por-capacidad` · «AB · Lavadoras por capacidad y precio» (prioridad baja)
+
+La calificación ya es buena (8/10). Es la campaña que trae contactos más baratos.
+
+**Qué falta:** «lavadora industrial 20 kg», «30 kg» y «50 kg» no aparecen como frase completa (dice «lavadoras industriales de 20, 30 y 50 kg»).
+
+**Qué agregar:** en la sección de capacidades, un subtítulo por capacidad («Lavadora industrial 20 kg», «Lavadora industrial 30 kg», «Lavadora industrial 50 kg»), cada uno con su precio «desde» cuando lo tengamos.
+
 ---
 
 ## Girbau (girbauoccidente.com)
@@ -273,6 +310,18 @@ Todas sus páginas tienen el mismo patrón: buenos títulos, pero las frases exa
 La página está bien calificada (8 a 10). **No hay que cambiar nada.** Solo la ventana de WhatsApp opcional, como en todas.
 
 ---
+
+## Qué cubre esta revisión
+
+- Se revisaron las **40 palabras con más gasto de cada cuenta** (últimos 30 días) y **todas las páginas que recibieron clics** en los últimos 7 días.
+- **Las palabras con poco tráfico todavía no tienen calificación de Google.** Si aparecen nuevas con calificación baja, se agregan en la revisión de la siguiente semana.
+
+## Otros pendientes de Rodolfo (están en otros documentos)
+
+- **Ventana de WhatsApp opcional** (lo más urgente).
+- **Modo de consentimiento avanzado** (cookies): `medicion/2026-11-12-cookies-y-conversiones-para-rodolfo.md`.
+- **Etiquetas de origen en Resend:** `medicion/2026-11-12-resend-contraste-para-rodolfo.md`.
+- **Chatbot nuevo** en las 5 marcas, medido aparte.
 
 ## Lo que hacemos nosotros en Google (no es para Rodolfo)
 
