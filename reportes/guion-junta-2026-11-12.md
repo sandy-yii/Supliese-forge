@@ -46,8 +46,8 @@ Responde **en este orden**. Primero sus datos, luego lo que estamos arreglando.
 **a) Su propia hoja:**
 > «Lo revisamos en su hoja, medio por medio. En septiembre hubo 467 registros, pero 242 eran conversaciones del chatbot que tenían las páginas. Sin el chatbot, llegaron 225 por WhatsApp, formulario y llamada. En noviembre vamos a un ritmo de unos 240. O sea, por anuncios llega lo mismo o un poco más, y hoy se invierte menos: unos $53,500 contra unos $59,500 de antes. La diferencia es el chatbot, que ya no está activo y que estamos reemplazando.»
 
-**b) Leads que llegan y no se anotan:**
-> «Además, revisamos el lunes 10: salieron 16 avisos a los asesores y en la hoja se anotaron 5. Los 4 formularios de ese día, con nombre y teléfono, no están en la hoja. No es culpa de nadie: los formularios llegan por correo y hoy nadie tiene la tarea de pasarlos. Si eso se arregla, la hoja sube sin gastar un peso más.»
+**b) Avisos de las páginas contra la hoja:**
+> «Además, cada formulario y cada WhatsApp de las páginas le manda un aviso por correo al asesor, a través de Resend. Comparamos esos avisos con la hoja del lunes 10: salieron 16 avisos y en la hoja se anotaron 5. Vamos a seguir revisando la manera de asegurarnos de que todos los avisos sí les estén llegando al correo de los asesores, y lo vamos a comparar con la hoja día por día.»
 
 **c) Gamesail:**
 > «La cuenta anterior de Gamesail tenía años de historial. La nueva empezó el 3 de noviembre, desde cero. Google tarda unas semanas en aprender una cuenta nueva. Por eso la subimos por etapas, solo en lo que ya da resultados.»
@@ -73,14 +73,14 @@ Responde **en este orden**. Primero sus datos, luego lo que estamos arreglando.
 > «Lo de los avisos y los formularios se nota de inmediato. Gamesail necesita de dos a tres semanas. Diciembre suele bajar por las fiestas, así que conviene comparar semana contra semana.»
 
 **«¿Qué pasa con Kingstar?»**
-> «El correo del asesor está rechazando los avisos desde el 9 de noviembre. Hoy confirmamos el correo correcto. Además, vamos a mandar más anuncios a la página que mejor convierte.»
+> «Estamos revisando que todos los avisos de Kingstar le lleguen al correo del asesor. Además, vamos a mandar más anuncios a la página que mejor convierte.»
 
 ## 8. Cierre: lo que les pides
 
 > «Para avanzar les pido cuatro cosas:
 >
 > 1. Que elijan una de las dos opciones.
-> 2. El correo correcto del asesor de Kingstar.
+> 2. Que nos confirmen el correo correcto de cada asesor.
 > 3. Quién va a pasar a la hoja los formularios que llegan por correo, también los del fin de semana.
 > 4. Que nos digan si la fecha de la hoja es cuando llega el lead o cuando se anota.
 >
