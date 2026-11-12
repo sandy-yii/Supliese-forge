@@ -66,6 +66,18 @@ ol.steps>li{background:var(--surface);border:1px solid var(--line);border-radius
 ol.steps>li::before{content:counter(s);position:absolute;left:16px;top:14px;width:28px;height:28px;border-radius:50%;background:var(--info-bg);color:var(--info);font-weight:700;display:grid;place-items:center;font-size:15px}
 ol.steps b{display:block}
 ol.steps span{color:var(--mute);font-size:15.5px}
+.kw{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:14px}
+.kw article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:8px;align-content:start;min-width:0}
+.kw table{min-width:0}
+.kw th,.kw td{padding:6px 0;font-size:15.5px}
+.kw td.num,.kw th.num{padding-left:12px}
+.kw .sub{color:var(--mute);font-size:14.5px;margin:0}
+.kw h3{display:flex;align-items:center}
+.look{background:var(--warn-bg);color:var(--warn)}
+.neg{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}
+.neg article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px;display:grid;gap:6px;align-content:start;min-width:0}
+.neg b{display:block}
+.neg span{color:var(--mute);font-size:15px}
 @media (max-width:480px){body{font-size:16px}.opt dd{font-size:24px}}
 </style>
 
@@ -222,6 +234,104 @@ ol.steps span{color:var(--mute);font-size:15.5px}
         </ul>
       </article>
     </div>
+  </section>
+
+  <section>
+    <h2>Palabras clave: cuáles traen contactos y cuáles no</h2>
+    <p class="note">Búsquedas de nuestras campañas con al menos un contacto registrado por Google, del 20 de octubre al 10 de noviembre. Los decimales salen porque Google reparte un contacto entre varias palabras cuando la persona buscó más de una vez. Como Google solo ve a quien acepta las cookies, los contactos reales son más.</p>
+    <div class="kw">
+      <article>
+        <h3><span class="dot" style="background:var(--ql)"></span>Quick Laundry</h3>
+        <table><thead><tr><th>Palabra</th><th class="num">Contactos</th><th class="num">C/u</th></tr></thead><tbody>
+          <tr><td>lavadoras para lavanderías</td><td class="num">19</td><td class="num">$99</td></tr>
+          <tr><td>lavadoras para negocio</td><td class="num">6</td><td class="num">$79</td></tr>
+          <tr><td>lavadoras de monedas</td><td class="num">5</td><td class="num">$24</td></tr>
+          <tr><td>lavadora para lavandería autoservicio</td><td class="num">4</td><td class="num">$38</td></tr>
+          <tr><td>lavadora de monedas</td><td class="num">3</td><td class="num">$44</td></tr>
+          <tr><td>lavadoras y secadoras para lavandería</td><td class="num">3</td><td class="num">$83</td></tr>
+          <tr><td>quiero poner una lavandería</td><td class="num">2</td><td class="num">$37</td></tr>
+          <tr><td>lavadoras de autoservicio</td><td class="num">2</td><td class="num">$127</td></tr>
+          <tr><td>equipo para lavandería</td><td class="num">2</td><td class="num">$253</td></tr>
+          <tr><td>poner una lavandería</td><td class="num">2</td><td class="num">$301</td></tr>
+        </tbody></table>
+        <p class="sub">La que más trae, «lavadoras para lavanderías», tiene calificación de Google 4 de 10: mejorando el anuncio y la página puede salir más barata.</p>
+      </article>
+      <article>
+        <h3><span class="dot" style="background:var(--gs)"></span>Gamesail</h3>
+        <table><thead><tr><th>Palabra</th><th class="num">Contactos</th><th class="num">C/u</th></tr></thead><tbody>
+          <tr><td>lavadoras industriales precio</td><td class="num">9</td><td class="num">$58</td></tr>
+          <tr><td>lavadoras y secadoras industriales</td><td class="num">5.5</td><td class="num">$114</td></tr>
+          <tr><td>gamesail</td><td class="num">2</td><td class="num">$8</td></tr>
+          <tr><td>wascomat lavadora industrial</td><td class="num">2</td><td class="num">$38</td></tr>
+          <tr><td>lavadoras industriales</td><td class="num">1.5</td><td class="num">$257</td></tr>
+          <tr><td>lavadora industrial 30 kg precio</td><td class="num">1</td><td class="num">$67</td></tr>
+          <tr><td>mangle planchador</td><td class="num">1</td><td class="num">$85</td></tr>
+          <tr><td>lorsa lavadora industrial</td><td class="num">1</td><td class="num">$103</td></tr>
+          <tr><td>lavadora industrial para hotel</td><td class="num">1</td><td class="num">$201</td></tr>
+        </tbody></table>
+        <p class="sub">Quien busca «precio» es quien más escribe. Las búsquedas de marcas de la competencia también traen contactos baratos.</p>
+      </article>
+      <article>
+        <h3><span class="dot" style="background:var(--ks)"></span>Kingstar (CLM)</h3>
+        <table><thead><tr><th>Palabra</th><th class="num">Contactos</th><th class="num">C/u</th></tr></thead><tbody>
+          <tr><td>lavadoras de alta capacidad</td><td class="num">6</td><td class="num">$365</td></tr>
+          <tr><td>lavadora industrial 60 kg</td><td class="num">4</td><td class="num">$171</td></tr>
+          <tr><td>lavadora industrial de alta capacidad</td><td class="num">3</td><td class="num">$365</td></tr>
+          <tr><td>lavadora industrial 50 kg</td><td class="num">3</td><td class="num">$103</td></tr>
+          <tr><td>lavadora industrial 100 kg</td><td class="num">2</td><td class="num">$125</td></tr>
+          <tr><td>mangle industrial</td><td class="num">2</td><td class="num">$119</td></tr>
+          <tr><td>túnel de lavado industrial</td><td class="num">1</td><td class="num">$87</td></tr>
+          <tr><td>mangle de planchado</td><td class="num">1</td><td class="num">$104</td></tr>
+          <tr><td>lavadora industrial para hotel</td><td class="num">1</td><td class="num">$162</td></tr>
+          <tr><td>lavadora de túnel</td><td class="num">1</td><td class="num">$382</td></tr>
+        </tbody></table>
+        <p class="sub">Las búsquedas con kilos exactos (50, 60, 100 kg) salen más baratas que las generales de «alta capacidad».</p>
+      </article>
+      <article>
+        <h3><span class="dot" style="background:var(--gb)"></span>Girbau</h3>
+        <table><thead><tr><th>Palabra</th><th class="num">Contactos</th><th class="num">C/u</th></tr></thead><tbody>
+          <tr><td>girbau</td><td class="num">8</td><td class="num">$140</td></tr>
+          <tr><td>distribuidor girbau</td><td class="num">1</td><td class="num">$8</td></tr>
+          <tr><td>lavadora industrial girbau</td><td class="num">1</td><td class="num">$17</td></tr>
+        </tbody></table>
+        <p class="sub">La mayoría de los contactos de Girbau (33, a $50 cada uno) llegan por la campaña de Máximo rendimiento, que no usa palabras clave: Google busca solo a quién mostrarle el anuncio.</p>
+      </article>
+      <article>
+        <h3><span class="dot" style="background:var(--ls)"></span>Laundry Solutions</h3>
+        <table><thead><tr><th>Palabra</th><th class="num">Contactos</th><th class="num">C/u</th></tr></thead><tbody>
+          <tr><td>técnico de lavadoras industriales</td><td class="num">5</td><td class="num">$104</td></tr>
+          <tr><td>mantenimiento preventivo lavadoras industriales</td><td class="num">2</td><td class="num">$15</td></tr>
+          <tr><td>reparación lavadoras industriales</td><td class="num">1</td><td class="num">$501</td></tr>
+        </tbody></table>
+        <p class="sub">Quien busca un «técnico» escribe mucho más que quien busca «reparación». Vamos a agregar más variantes de técnico y mantenimiento.</p>
+      </article>
+      <article>
+        <h3>Palabras que gastan sin traer (todavía)</h3>
+        <table><thead><tr><th>Palabra</th><th class="num">Gasto</th><th>Qué hacemos</th></tr></thead><tbody>
+          <tr><td>secadoras industriales (Gamesail)</td><td class="num">$511</td><td><span class="chip look">revisar página</span></td></tr>
+          <tr><td>reparación de lavadoras industriales (LS)</td><td class="num">$273</td><td><span class="chip look">revisar</span></td></tr>
+          <tr><td>lavadora industrial 40 kg (Kingstar)</td><td class="num">$244</td><td><span class="chip look">revisar</span></td></tr>
+          <tr><td>lavandería para hotel (Kingstar)</td><td class="num">$146</td><td><span class="chip look">revisar</span></td></tr>
+          <tr><td>lavadora semi industrial (Quick Laundry)</td><td class="num">$126</td><td><span class="chip look">revisar</span></td></tr>
+          <tr><td>planchadora de rodillo industrial (Kingstar)</td><td class="num">$106</td><td><span class="chip look">pausar</span></td></tr>
+        </tbody></table>
+        <p class="sub">Una palabra general puede gastar sin contacto y aun así ser buena. Se revisan una por una antes de quitarlas.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Palabras negativas: búsquedas que bloqueamos</h2>
+    <p class="note" style="color:var(--ink)">Son búsquedas en las que <b>no queremos que salga el anuncio</b>, porque quien las hace no va a comprar equipo o porque le toca a otra de las cinco marcas. Así no se paga por clics que no sirven y <b>las cinco marcas no compiten entre ellas</b>, lo que haría más caro cada clic.</p>
+    <div class="neg">
+      <article><b>Equipo de casa</b><span>doméstica, casera, «para casa», carga frontal, Mabe, Samsung, Whirlpool, LG, capacidades chicas (8 a 28 kg)</span></article>
+      <article><b>Usado y renta</b><span>usada, seminueva, segunda mano, remate, renta, alquiler, arrendamiento</span></article>
+      <article><b>Información, no compra</b><span>empleo, vacante, curso, manual, pdf, «cómo hacer»</span></article>
+      <article><b>Lavado por encargo o de autos</b><span>tintorería, «cerca de mí», precio por kilo, servicio de lavado, autolavado, car wash, autos</span></article>
+      <article><b>Cada marca en su terreno</b><span>Quick Laundry: abrir una lavandería, autoservicio y monedas. Kingstar: túnel, 40 a 100 kg y mangles. Gamesail: 20 a 30 kg. Laundry Solutions: refacciones, reparación y mantenimiento. Girbau: su propia marca.</span></article>
+      <article><b>Marcas que no se venden en cada cuenta</b><span>Por ejemplo, Speed Queen, Alliance, Fagor, Milnor y Huebsch en Gamesail, y las marcas de la competencia (Wascomat, Unimac, Lorsa y otras) en Girbau.</span></article>
+    </div>
+    <p class="note">Son las listas principales que se cargaron al crear las campañas. Cada semana revisamos lo que la gente buscó y agregamos las que no sirven. Una palabra que gasta sin traer contactos no se quita de inmediato: primero se revisa si el problema es la página o el anuncio.</p>
   </section>
 
   <section>
