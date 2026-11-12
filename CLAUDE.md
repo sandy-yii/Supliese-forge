@@ -4,3 +4,8 @@
 - Nada se activa, pausa ni edita en las cuentas sin el OK explícito de la usuaria, cuenta por cuenta.
 - En los prompts de la extensión se usa **solo la cuenta de Google gamesailmx@gmail.com**. Nunca las cuentas personales de la usuaria (ni para Ads, Analytics, Search Console, soporte, apelaciones o formularios). Todo correo de contacto que se escriba en un formulario o apelación es gamesailmx@gmail.com. Si un paso abre otra cuenta o trae otro correo ya escrito, la extensión se detiene y avisa.
 - **Script primero.** Todo lo que se pueda hacer con un script de Google Ads (leer, cambiar URL, presupuestos, negativas, grupos de recursos, etc.) se entrega como script (Vista previa y luego Ejecutar con OK). La extensión solo para lo que forzosamente es a mano (apelaciones, formularios de soporte, Analytics, ajustes que la API no permite).
+
+## Tablero de Supliese (fuente única)
+- Al empezar: `bash sup hoy` y lee TABLERO.md. Lo que dice gana sobre notas viejas de este repositorio.
+- Al terminar: por cada tarea mía que cambió, `bash sup cierre C108 hecha "qué quedó y dónde se comprueba"`; lo demás, `bash sup cierre "nota"`.
+- Nunca montos de dinero, llaves ni contraseñas en las notas. TABLERO.md no se sube a git.

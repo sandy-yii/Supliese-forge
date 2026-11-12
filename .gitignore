@@ -1,3 +1,7 @@
 __pycache__/
 *.pyc
 auditoria-salida/
+
+# Tablero de Supliese (bash sup): el comando y lo que trae no se suben
+sup
+TABLERO.md
