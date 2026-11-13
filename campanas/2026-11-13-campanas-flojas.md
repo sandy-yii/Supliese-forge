@@ -13,4 +13,11 @@ Regla de oro: nada se apaga ni se cambia de golpe. Solo se suma (página mejor, 
 
 **Búsquedas marcadas «revisar si es negativa»:** ninguna se pone como negativa. Todas son de compradores («lavadoras para lavandería», «túnel de lavado», «lavadora de 40 kilos», «lavadora girbau precio»). Gastaron sin traer en Google, pero Google solo ve a ~1 de cada 3.
 
-Laundry Solutions: el script falló (fila sin métricas). Corregido; falta correrlo.
+## Laundry Solutions (corrido de nuevo a las 9:52)
+
+| Campaña | Google 30 días | Lo que se ve | Qué hacemos (sin frenar) |
+|---|---|---|---|
+| Reparación y mantenimiento | 360 clics, 6 contactos ($356 c/u; cuenta $231) | Las búsquedas con más clics son de gente que quiere **comprar** («lavadora industrial», «lavadoras industriales precios», «costo lavadora industrial», «grupo lorsa»), no reparar. Pierde 34% por presupuesto. `/mantenimiento` 40 clics y 0. | **Lunes 16:** `negativas-compradores-laundry-solutions.js` (negativas EXACTAS solo de compradores, sin palabras de servicio y sin ninguna conversión; trae deshacer). |
+| Servicio técnico industrial | 200 clics, 9 contactos ($148 c/u) | La mejor de la cuenta. | Nada. |
+
+Aquí sí hay negativas: en Laundry Solutions (servicio) la gente que busca comprar equipo no es su cliente.
