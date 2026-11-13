@@ -21,3 +21,27 @@ Regla de oro: nada se apaga ni se cambia de golpe. Solo se suma (página mejor, 
 | Servicio técnico industrial | 200 clics, 9 contactos ($148 c/u) | La mejor de la cuenta. | Nada. |
 
 Aquí sí hay negativas: en Laundry Solutions (servicio) la gente que busca comprar equipo no es su cliente.
+
+## Fotos que ya están en las cuentas (revisadas a ojo el 13 nov)
+
+`fotos-buenas-todas-las-cuentas.js` (solo lee) encontró campañas de búsqueda sin fotos. Se vieron las fotos una por una y se escogieron las que muestran el producto de cada campaña, sin texto ni logo encima, sin paquetes ni promociones (por ejemplo, se dejan fuera las de Gamesail con teléfono que están en la biblioteca de Laundry Solutions, los «Paquete Tower/Platino» y «Buen Fin» de Quick Laundry y los logos).
+
+| Marca | Campaña sin fotos | Fotos que se agregan |
+|---|---|---|
+| Kingstar | Mangles y planchado | 3 de mangles |
+| Kingstar | Marca CLM | 3 de lavadoras Kingstar |
+| Quick Laundry | Secadoras para lavandería | 3 de lavadora y secadora |
+| Quick Laundry | Marcas comerciales | 3 de LG comercial |
+| Girbau | Smart Plus | 3 (pantalla y app, lavadora con pantalla) |
+| Girbau | Por capacidad y sector | 4 (lavanderías, hotel, planchadora) |
+| Girbau | Servicio técnico | 2 (piezas, técnico) |
+| Laundry Solutions | Refacciones, Servicio a lavanderías, Instalación | 2 cada una (campañas en $1: aporte chico) |
+
+Script: `fotos-a-campanas-sin-fotos-todas-las-cuentas.js` (solo agrega; candado de un cambio por cuenta al día; `DESHACER = true` las quita). **Martes 17 nov.** Gamesail: hasta el ~25 dic.
+
+## Calendario (un cambio por cuenta al día)
+
+- **Vie 13 (tarde, después de las 6–7):** anuncios y extensiones nuevos, las 5 cuentas.
+- **Lun 16:** negativas de compradores en Laundry Solutions; topes por clic (Vista previa → OK); Gamesail por pasos.
+- **Mar 17:** fotos a campañas sin fotos (Kingstar, Quick Laundry, Girbau, Laundry Solutions).
+- **Mié 18 en adelante:** anuncio nuevo al lado hacia la página que mejor convierte (Túnel de Kingstar, Search Marcas de Quick Laundry).
