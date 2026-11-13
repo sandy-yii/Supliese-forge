@@ -42,6 +42,7 @@ Script: `fotos-a-campanas-sin-fotos-todas-las-cuentas.js` (solo agrega; candado 
 ## Calendario (un cambio por cuenta al día)
 
 - **Vie 13 (tarde, después de las 6–7):** anuncios y extensiones nuevos, las 5 cuentas.
-- **Lun 16:** negativas de compradores en Laundry Solutions; topes por clic (Vista previa → OK); Gamesail por pasos.
-- **Mar 17:** fotos a campañas sin fotos (Kingstar, Quick Laundry, Girbau, Laundry Solutions).
-- **Mié 18 en adelante:** anuncio nuevo al lado hacia la página que mejor convierte (Túnel de Kingstar, Search Marcas de Quick Laundry).
+- **Lun 16:** Laundry Solutions → negativas de compradores · Kingstar, Quick Laundry y Girbau → topes por clic · Gamesail → subir por pasos.
+- **Mar 17:** Kingstar, Quick Laundry, Girbau y Laundry Solutions → fotos a campañas sin fotos · Gamesail → topes por clic.
+- **Mié 18:** Laundry Solutions → topes por clic (si sale alguna) · anuncio nuevo al lado hacia la página que mejor convierte (Túnel de Kingstar, Search Marcas de Quick Laundry), un día distinto para cada cuenta.
+- Cada mañana: vaciado + Resend; cada marca contra su promedio antes del siguiente paso.
