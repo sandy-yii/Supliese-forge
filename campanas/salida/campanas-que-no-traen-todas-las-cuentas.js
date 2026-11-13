@@ -35,7 +35,7 @@ var DISP = { MOBILE: 'celular', DESKTOP: 'computadora', TABLET: 'tableta' };
 
 function filas(q, que) {
   var out = [];
-  try { var it = AdsApp.search(q); while (it.hasNext()) out.push(it.next()); }
+  try { var it = AdsApp.search(q); while (it.hasNext()) { var r = it.next(); r.metrics = r.metrics || {}; r.segments = r.segments || {}; out.push(r); } }
   catch (e) { Logger.log('(No se pudo revisar ' + que + ': ' + e.message + ')'); }
   return out;
 }
@@ -201,7 +201,7 @@ function main() {
     if (conQs && (fallaAnuncio + fallaCtr) / conQs >= 0.5) { hacer.push('ANUNCIOS: fallan en «anuncio» o «clics esperados». Lo cubre el script de anuncios y extensiones nuevos.'); causas.anuncios = (causas.anuncios || 0) + 1; }
 
     // d) Cuántas veces sale
-    if (c.is !== null) {
+    if (c.is != null) {
       Logger.log('  d) SALE en ' + pct(c.is) + ' de las búsquedas · pierde ' + pct(c.rank) + ' por puja/calidad y ' + pct(c.budget) + ' por presupuesto');
       if (c.rank >= 0.5) { hacer.push('SALE POCO por puja/calidad (' + pct(c.rank) + '). Primero calidad (anuncios y página); subir puja solo si ya trae contactos.'); causas.rank = (causas.rank || 0) + 1; }
     }
