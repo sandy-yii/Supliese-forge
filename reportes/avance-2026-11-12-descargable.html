@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Avance Supliese 12 nov</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+/* Layout: una columna de lectura; tres tarjetas para comparar opciones, tabla por marca, listas de acciones */
+:root{
+  --bg:#f5f7fa; --surface:#ffffff; --ink:#1b2230; --mute:#5a6475; --line:#e1e5ec;
+  --good:#1a8a52; --good-bg:#e4f4eb; --warn:#a3520c; --warn-bg:#fcefe1; --info:#2a5fa8; --info-bg:#e6eefa;
+  --ql:#2a78d6; --ks:#eb6834; --ls:#1baf7a; --gb:#c98500; --gs:#d55181;
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --body:"Source Sans 3","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12161d; --surface:#1b212b; --ink:#e8ecf2; --mute:#a0a9b8; --line:#2c3441;
+  --good:#4cc786; --good-bg:#183326; --warn:#f0a35e; --warn-bg:#3a2a1a; --info:#8db4ec; --info-bg:#1b2840;
+  --ql:#3987e5; --ks:#d95926; --ls:#199e70; --gb:#c98500; --gs:#d55181; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161d; --surface:#1b212b; --ink:#e8ecf2; --mute:#a0a9b8; --line:#2c3441;
+  --good:#4cc786; --good-bg:#183326; --warn:#f0a35e; --warn-bg:#3a2a1a; --info:#8db4ec; --info-bg:#1b2840;
+  --ql:#3987e5; --ks:#d95926; --ls:#199e70; --gb:#c98500; --gs:#d55181; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
+.wrap{max-width:900px;margin:0 auto;padding-block:36px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:34px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(28px,5vw,40px)}h2{font-size:24px}h3{font-size:19px}
+.eyebrow{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);font-weight:700;margin:0 0 6px}
+.lead{color:var(--mute);margin:8px 0 0;max-width:64ch}
+section{display:grid;gap:12px}
+.promise{background:var(--warn-bg);border:1px solid var(--warn);border-radius:12px;padding:16px 18px;display:grid;gap:6px}
+.promise p{margin:0}
+.promise .t{font-family:var(--display);font-size:21px;color:var(--warn);font-weight:700}
+.callout{background:var(--info-bg);border-radius:12px;padding:14px 16px;display:grid;gap:6px}
+.callout p{margin:0}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:12px}
+.opt{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:10px;align-content:start;min-width:0}
+.opt.main{border:2px solid var(--good)}
+.opt h3{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.opt dl{margin:0;display:grid;gap:8px}
+.opt dt{font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);font-weight:600}
+.opt dd{margin:0;font-size:26px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.15}
+.opt dd small{display:block;font-size:14.5px;font-weight:400;color:var(--mute);line-height:1.4}
+.opt.main dd.esp{color:var(--good)}
+.chip{display:inline-block;font-size:12.5px;font-weight:700;border-radius:20px;padding:2px 10px;white-space:nowrap;font-family:var(--body)}
+.ok{background:var(--good-bg);color:var(--good)}.inf{background:var(--info-bg);color:var(--info)}.mute{background:var(--bg);color:var(--mute);border:1px solid var(--line)}
+.tbl{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:680px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);font-size:16px;vertical-align:top}
+th{font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);font-weight:600}
+th.grp{text-align:center;border-bottom:1px solid var(--line)}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;white-space:nowrap}
+td.sep,th.sep{border-left:1px solid var(--line)}
+tfoot td{font-weight:700;border-top:1px solid var(--line)}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;vertical-align:middle}
+.note{color:var(--mute);font-size:15px;margin:0;max-width:72ch}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:14px}
+.two article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:8px;align-content:start;min-width:0}
+.two ul{margin:0;padding-left:20px;display:grid;gap:6px}
+.two li span{color:var(--mute)}
+ul.list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+ul.list li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+ul.list b{display:block}
+ul.list span{color:var(--mute);font-size:15.5px}
+ol.steps{list-style:none;margin:0;padding:0;display:grid;gap:12px;counter-reset:s}
+ol.steps>li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px 14px 58px;position:relative;counter-increment:s}
+ol.steps>li::before{content:counter(s);position:absolute;left:16px;top:14px;width:28px;height:28px;border-radius:50%;background:var(--info-bg);color:var(--info);font-weight:700;display:grid;place-items:center;font-size:15px}
+ol.steps b{display:block}
+ol.steps span{color:var(--mute);font-size:15.5px}
+.kw{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:14px}
+.kw article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:8px;align-content:start;min-width:0}
+.kw table{min-width:0}
+.kw th,.kw td{padding:6px 0;font-size:15.5px}
+.kw td.num,.kw th.num{padding-left:12px}
+.kw .sub{color:var(--mute);font-size:14.5px;margin:0}
+.kw h3{display:flex;align-items:center}
+.look{background:var(--warn-bg);color:var(--warn)}
+.neg{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}
+.neg article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px;display:grid;gap:6px;align-content:start;min-width:0}
+.neg b{display:block}
+.neg span{color:var(--mute);font-size:15px}
+@media (max-width:480px){body{font-size:16px}.opt dd{font-size:24px}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Grupo Supliese · Google Ads · jueves 12 de noviembre de 2026</p>
+    <h1>Así fue el jueves 12 de noviembre</h1>
+    <p class="lead">Unas 15 personas escribieron o llamaron desde las páginas, sumando las 5 marcas. Hicimos opcional el formulario antes de abrir WhatsApp y desde ese momento llegaron 9 de los 14 avisos del día. Además, terminamos el ajuste de presupuesto acordado.</p>
+  </header>
+
+  <div class="opts">
+    <div class="opt main"><dl><div><dt>Personas que escribieron o llamaron</dt><dd class="esp">~15<small>suma de las 5 marcas</small></dd></div></dl></div>
+    <div class="opt"><dl><div><dt>Personas que entraron a las páginas</dt><dd>181<small>clics en los anuncios</small></dd></div></dl></div>
+    <div class="opt"><dl><div><dt>Inversión del día</dt><dd>$1,287<small>unos $86 por contacto</small></dd></div></dl></div>
+  </div>
+
+  <section>
+    <h2>Por marca</h2>
+    <div class="tbl"><table style="min-width:560px">
+      <thead><tr><th>Marca</th><th class="num">Clics</th><th class="num">Inversión</th><th class="num">Contactos</th></tr></thead>
+      <tbody>
+        <tr><td><span class="dot" style="background:var(--gs)"></span>Gamesail</td><td class="num">75</td><td class="num">$389</td><td class="num"><b>4</b></td></tr>
+        <tr><td><span class="dot" style="background:var(--ql)"></span>Quick Laundry (Supliese)</td><td class="num">30</td><td class="num">$325</td><td class="num"><b>4</b></td></tr>
+        <tr><td><span class="dot" style="background:var(--ls)"></span>Laundry Solutions</td><td class="num">12</td><td class="num">$84</td><td class="num"><b>3</b></td></tr>
+        <tr><td><span class="dot" style="background:var(--gb)"></span>Girbau</td><td class="num">41</td><td class="num">$238</td><td class="num"><b>3</b></td></tr>
+        <tr><td><span class="dot" style="background:var(--ks)"></span>Kingstar (CLM)</td><td class="num">23</td><td class="num">$251</td><td class="num"><b>1</b></td></tr>
+      </tbody>
+      <tfoot><tr><td>Suma de las 5 marcas</td><td class="num">181</td><td class="num">$1,287</td><td class="num">~15</td></tr></tfoot>
+    </table></div>
+    <p class="note">Contactos = avisos de formulario y de WhatsApp que salieron de las páginas a los asesores (Resend), más una llamada de Girbau. Datos hasta las 8:20 p. m. De los 14 avisos, 6 dejaron nombre y teléfono y 8 abrieron WhatsApp directo; que hayan mandado el mensaje se confirma con la hoja de los vendedores.</p>
+  </section>
+
+  <section>
+    <h2>Lo que se hizo hoy</h2>
+    <ul class="list">
+      <li><b>WhatsApp más directo</b><span>El formulario que aparecía antes de abrir WhatsApp ahora es opcional: la persona puede escribir de inmediato. Desde que se cambió, a las 3:20 p. m., llegaron 9 de los 14 avisos del día.</span></li>
+      <li><b>Terminó el ajuste de presupuesto acordado</b><span>Tercer y último paso: más presupuesto a Gamesail en las campañas que traen contactos. En Kingstar, «Alta capacidad» y «Hotelera» se quedaron igual porque están trayendo contactos a buen costo.</span></li>
+      <li><b>Revisión de calidad de anuncios y páginas</b><span>Preparamos con el equipo de las páginas los cambios para que Google califique mejor cada página: frases que busca la gente, precios «desde» y preguntas frecuentes.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Por qué Google marca menos contactos</h2>
+    <div class="callout">
+      <p>Google solo cuenta a quien acepta las cookies de la página. Hoy registró 5 de las ~15 personas; las demás sí les llegaron a los asesores. Estamos activando una opción de Google para que también las tome en cuenta, sin guardar datos de nadie. Así Google aprende mejor a quién mostrar los anuncios.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Lo que necesitamos de ustedes</h2>
+    <ol class="steps">
+      <li><b>Revisar el correo de supliese.com</b><span>Desde las 12:57 p. m. los avisos a los correos @supliese.com (Gamesail, Quick Laundry y Laundry Solutions) no se están entregando: el servidor los está deteniendo. Entre ellos hay 2 formularios de Gamesail con nombre y teléfono. Los WhatsApp sí llegan directo al celular.</span></li>
+      <li><b>Elegir una de las dos propuestas de presupuesto</b><span>Opción ahorro o completa.</span></li>
+      <li><b>Fotos de los equipos</b><span>O permiso para usar las de las páginas, para agregarlas a los anuncios de Kingstar y Girbau.</span></li>
+      <li><b>Laundry Solutions: ciudades y tiempo de llegada</b><span>Para mostrar los anuncios solo donde se puede dar servicio.</span></li>
+      <li><b>Precios «desde» por equipo</b><span>Para las páginas y los anuncios.</span></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Lo que sigue</h2>
+    <ul class="list">
+      <li><b>Viernes 13</b><span>Pagar un poco más por clic solo en las campañas que traen contactos baratos y pierden subastas contra la competencia (por ejemplo, Kingstar «Mangles»), sin subir el presupuesto del día.</span></li>
+      <li><b>Anuncios nuevos y extensiones</b><span>Anuncios más completos junto a los actuales, botón de llamada donde falte y textos destacados. Se agregan sin quitar nada.</span></li>
+      <li><b>Lunes 16</b><span>Gamesail sigue subiendo por etapas, solo en lo que da resultados.</span></li>
+    </ul>
+  </section>
+
+  <p class="note">Fuentes: Google Ads de las cinco cuentas (revisión de solo lectura) y los avisos de Resend del 12 de noviembre de 2026. Sin datos personales. Preparado por Atelback.</p>
+</div>
+
+</body>
+</html>
