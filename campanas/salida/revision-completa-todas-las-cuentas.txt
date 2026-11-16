@@ -348,11 +348,9 @@ function main() {
   Logger.log('');
 
   // 2. Ciudades de madrugada
-  Logger.log('==== 2. DESDE QUÉ CIUDAD FUERON LOS CLICS DE 12 A 6 A.M. ====');
-  var G = filas('SELECT segments.geo_target_city, segments.ad_network_type, segments.hour, metrics.clicks, metrics.cost_micros, metrics.all_conversions ' +
-    'FROM geographic_view WHERE segments.date DURING LAST_7_DAYS AND segments.hour < 6 AND metrics.clicks > 0', 'las ciudades', true);
-  if (G === null) G = filas('SELECT segments.geo_target_city, segments.ad_network_type, segments.hour, metrics.clicks, metrics.cost_micros, metrics.all_conversions ' +
-    'FROM user_location_view WHERE segments.date DURING LAST_7_DAYS AND segments.hour < 6 AND metrics.clicks > 0', 'las ciudades');
+  Logger.log('==== 2. DESDE QUÉ CIUDAD FUERON LOS CLICS DE DISPLAY (7 días; Google no da la hora por ciudad) ====');
+  var G = filas('SELECT segments.geo_target_city, segments.ad_network_type, metrics.clicks, metrics.cost_micros, metrics.all_conversions ' +
+    "FROM user_location_view WHERE segments.date DURING LAST_7_DAYS AND segments.ad_network_type = 'CONTENT' AND metrics.clicks > 0", 'las ciudades');
   var C = {};
   G.forEach(function (f) {
     var c = f.segments.geoTargetCity || '(sin ciudad)', k = c + '|' + (RED[f.segments.adNetworkType] || f.segments.adNetworkType);
