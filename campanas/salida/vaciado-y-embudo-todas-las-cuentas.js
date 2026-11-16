@@ -17,7 +17,9 @@
  * Si se pega en una cuenta normal, hace solo esa cuenta (como siempre).
  *
  * QUÉ DÍA: si se corre después de las 12 del día, da HOY hasta la hora en que se corre. Si se corre antes de las 12,
- * da AYER completo. VARIOS DÍAS: escribe en DESDE la fecha del primer día, por ejemplo '2026-11-06'.
+ * da AYER completo. LUNES antes de las 12: da VIERNES, SÁBADO y DOMINGO completos, cada uno por separado (solo).
+ * VARIOS DÍAS: escribe en DESDE la fecha del primer día, por ejemplo '2026-11-06'.
+ *   7. Clics de MEDIANOCHE A LAS 6 A.M. por hora y campaña, para ver ráfagas raras (robots o competencia).
  * La hora de cada contacto es la del clic en el anuncio; el contacto suele ser minutos después.
  *
  * CÓMO SE USA: pegar completo > Autorizar > VISTA PREVIA > copiar todo el registro y mandarlo.
@@ -113,6 +115,10 @@ function unaCuenta() {
       var d = t.toISOString().substr(0, 10);
       dias.push({ dia: d, hasta: d === hoy ? horaTexto : 'día completo' });
     }
+  } else if (Number(Utilities.formatDate(ahora, zona, 'H')) < 12 && Utilities.formatDate(ahora, zona, 'u') === '1') {
+    [3, 2, 1].forEach(function (n) {   // lunes en la mañana: viernes, sábado y domingo
+      dias.push({ dia: Utilities.formatDate(new Date(ahora.getTime() - n * 864e5), zona, 'yyyy-MM-dd'), hasta: 'día completo' });
+    });
   } else if (Number(Utilities.formatDate(ahora, zona, 'H')) < 12) {
     dias.push({ dia: Utilities.formatDate(new Date(ahora.getTime() - 864e5), zona, 'yyyy-MM-dd'), hasta: 'día completo' });
   } else {
@@ -251,6 +257,21 @@ function vaciarDia(dia, hasta, marca, tiposGoogle) {
       (c.callStatus === 'MISSED' ? 'NO CONTESTADA' : 'contestada') + ' · lada ' + (c.callerAreaCode || '?') + ' · ' + f.campaign.name);
   });
   if (!llamadas.length) Logger.log('Ninguna llamada del botón del anuncio (o Google no da el detalle en esta cuenta).');
+  Logger.log('');
+
+  // 7. Madrugada
+  Logger.log('==== 7. CLICS DE LAS 12 A LAS 6 A.M. (para ver ráfagas raras) ====');
+  var M = {}, mClics = 0, mGasto = 0;
+  filas('SELECT campaign.name, segments.hour, metrics.clicks, metrics.cost_micros FROM campaign WHERE ' + cuando +
+    ' AND segments.hour < 6 AND metrics.clicks > 0', 'los clics de la madrugada').forEach(function (f) {
+      var h = Number(f.segments.hour), c = Number(f.metrics.clicks || 0), g = Number(f.metrics.costMicros || 0) / 1e6;
+      var m = M[h] = M[h] || { clics: 0, gasto: 0, camps: [] };
+      m.clics += c; m.gasto += g; m.camps.push(f.campaign.name + ' ' + c); mClics += c; mGasto += g;
+    });
+  Object.keys(M).sort(function (a, b) { return a - b; }).forEach(function (h) {
+    Logger.log(tramo(Number(h)) + ' · ' + M[h].clics + ' clics · ' + dinero(M[h].gasto) + ' · ' + M[h].camps.join(', ') + (M[h].clics >= 8 ? ' ⚠️ muchos para esa hora' : ''));
+  });
+  Logger.log(mClics ? 'Madrugada: ' + mClics + ' clics y ' + dinero(mGasto) + ' de ' + miles(clics) + ' clics del día.' : 'Sin clics de 12 a 6 a.m.');
   Logger.log('');
 
   // 6. Para pegar en una hoja
