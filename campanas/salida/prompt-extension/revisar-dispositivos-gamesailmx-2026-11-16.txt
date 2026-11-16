@@ -1,0 +1,20 @@
+TAREA: SOLO LEER los dispositivos y la actividad reciente de la cuenta de Google gamesailmx@gmail.com. NO CAMBIAR NADA.
+
+Reglas (obligatorias):
+- Usa SOLO la cuenta de Google gamesailmx@gmail.com. Si la página abre otra cuenta, o aparece otro correo ya escrito, DETENTE y avísame. No cambies de cuenta tú.
+- Si Google pide la contraseña, un código o confirmar que soy yo: DETENTE y avísame. NO escribas contraseñas ni códigos.
+- NO le des clic a «Salir», «Cerrar sesión», «Eliminar», «Cambiar contraseña», «No fui yo», «Proteger cuenta» ni a nada que cambie algo. Solo lees y me cuentas.
+- No copies números de teléfono, correos de recuperación ni direcciones IP completas en tu respuesta.
+
+Pasos:
+1. Abre https://myaccount.google.com/device-activity (en el menú: Seguridad > Tus dispositivos > Administrar todos los dispositivos). Confirma arriba a la derecha que la cuenta es gamesailmx@gmail.com.
+2. Haz una lista de TODOS los dispositivos con sesión abierta. Para cada uno: tipo y modelo (por ejemplo «iPhone 13», «Samsung Galaxy A54», «Windows», «Mac»), sistema, ciudad aproximada que muestre Google y «última actividad».
+3. Abre cada dispositivo que sea CELULAR o TABLETA y anota: primera vez que inició sesión, última actividad, y si menciona la app «Google Ads».
+4. Abre https://myaccount.google.com/notifications (Seguridad > Actividad de seguridad reciente) y anota los eventos del 12 al 16 de noviembre de 2026: tipo de evento, fecha y hora, dispositivo y ciudad aproximada.
+5. Busca en especial cualquier dispositivo activo el VIERNES 13 DE NOVIEMBRE DE 2026 ENTRE LAS 10:30 P.M. Y LA 1:00 A.M. (hora del centro de México). A esa hora alguien prendió la Red de Display desde la app de Google Ads del celular.
+
+Entrégame:
+- La tabla de dispositivos (pasos 2 y 3).
+- Los eventos del paso 4.
+- Cuál o cuáles dispositivos estuvieron activos el viernes 13 entre 10:30 p.m. y 1:00 a.m., y si alguno no lo reconocerías como del equipo (por ejemplo, ciudad o modelo raro).
+- Confirma al final: «No cambié nada».
