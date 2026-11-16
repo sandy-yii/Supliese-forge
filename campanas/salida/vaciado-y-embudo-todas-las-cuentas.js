@@ -262,12 +262,21 @@ function vaciarDia(dia, hasta, marca, tiposGoogle) {
   // 7. Madrugada
   Logger.log('==== 7. CLICS DE LAS 12 A LAS 6 A.M. (para ver ráfagas raras) ====');
   var M = {}, mClics = 0, mGasto = 0;
-  filas('SELECT campaign.name, segments.hour, metrics.clicks, metrics.cost_micros FROM campaign WHERE ' + cuando +
+  var RED = { SEARCH: 'búsqueda de Google', SEARCH_PARTNERS: 'SOCIOS de búsqueda', CONTENT: 'DISPLAY', YOUTUBE_SEARCH: 'YouTube', YOUTUBE_WATCH: 'YouTube', MIXED: 'Máximo rendimiento', UNKNOWN: '?' };
+  filas('SELECT campaign.name, segments.hour, segments.ad_network_type, metrics.clicks, metrics.cost_micros FROM campaign WHERE ' + cuando +
     ' AND segments.hour < 6 AND metrics.clicks > 0', 'los clics de la madrugada').forEach(function (f) {
       var h = Number(f.segments.hour), c = Number(f.metrics.clicks || 0), g = Number(f.metrics.costMicros || 0) / 1e6;
       var m = M[h] = M[h] || { clics: 0, gasto: 0, camps: [] };
-      m.clics += c; m.gasto += g; m.camps.push(f.campaign.name + ' ' + c); mClics += c; mGasto += g;
+      m.clics += c; m.gasto += g; m.camps.push(f.campaign.name + ' ' + c + ' (' + (RED[f.segments.adNetworkType] || f.segments.adNetworkType) + ')'); mClics += c; mGasto += g;
     });
+  var prendidas = [];
+  filas("SELECT campaign.name, campaign.network_settings.target_content_network, campaign.network_settings.target_partner_search_network FROM campaign " +
+    "WHERE campaign.status = 'ENABLED' AND campaign.advertising_channel_type = 'SEARCH'", 'las redes de las campañas').forEach(function (f) {
+      var n = f.campaign.networkSettings || {}, r = [];
+      if (n.targetContentNetwork) r.push('Display'); if (n.targetPartnerSearchNetwork) r.push('socios de búsqueda');
+      if (r.length) prendidas.push(f.campaign.name + ' (' + r.join(' y ') + ')');
+    });
+  Logger.log(prendidas.length ? '⚠️ Campañas de búsqueda con Display o socios PRENDIDOS hoy: ' + prendidas.join('; ') : 'Display y socios de búsqueda: apagados en todas las campañas de búsqueda. ✅');
   Object.keys(M).sort(function (a, b) { return a - b; }).forEach(function (h) {
     Logger.log(tramo(Number(h)) + ' · ' + M[h].clics + ' clics · ' + dinero(M[h].gasto) + ' · ' + M[h].camps.join(', ') + (M[h].clics >= 8 ? ' ⚠️ muchos para esa hora' : ''));
   });
