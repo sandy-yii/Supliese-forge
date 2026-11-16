@@ -11,8 +11,8 @@
  *      solas, script, reglas automáticas, API…).
  *   2. VISTA PREVIA: lista las campañas «AB · …» de búsqueda con Display encendido. EJECUTAR (solo con el OK): lo apaga.
  *
- * CÓMO SE USA: en Kingstar y Laundry Solutions (sirve en las 5) > borrar todo > pegar completo > Autorizar > VISTA PREVIA >
- * mandar el registro > EJECUTAR con el OK.
+ * CÓMO SE USA: en la cuenta de ADMINISTRADOR (recorre Kingstar, Laundry Solutions y Gamesail sola) o en cada cuenta >
+ * borrar todo > pegar completo > Autorizar > VISTA PREVIA > mandar el registro > EJECUTAR con el OK.
  */
 
 var MARCAS = {
@@ -49,7 +49,19 @@ function campos(cf) {
 }
 function display(r) { return r && r.campaign && r.campaign.networkSettings ? r.campaign.networkSettings.targetContentNetwork : undefined; }
 
+var CUENTAS_CON_DISPLAY = ['993-525-8739', '265-909-2662', '118-347-6484'];   // Kingstar, Laundry Solutions, Gamesail
+
 function main() {
+  if (typeof AdsManagerApp !== 'undefined') {   // cuenta de ADMINISTRADOR: recorre las 3 cuentas
+    var it = AdsManagerApp.accounts().withIds(CUENTAS_CON_DISPLAY).get(), n = 0;
+    while (it.hasNext()) { AdsManagerApp.select(it.next()); n++; unaCuenta(); Logger.log('------------------------------------------------------------'); }
+    if (!n) Logger.log('AVISO: esta cuenta de administrador no tiene Kingstar, Laundry Solutions ni Gamesail.');
+    return;
+  }
+  unaCuenta();
+}
+
+function unaCuenta() {
   var cuenta = AdsApp.currentAccount(), cid = cuenta.getCustomerId(), tz = cuenta.getTimeZone();
   var marca = MARCAS[cid] || cuenta.getName();
   var vista = AdsApp.getExecutionInfo().isPreview();
