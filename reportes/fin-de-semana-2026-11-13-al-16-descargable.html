@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Leads fin de semana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+/* Layout: una columna de lectura; tres tarjetas para comparar opciones, tabla por marca, listas de acciones */
+:root{
+  --bg:#f5f7fa; --surface:#ffffff; --ink:#1b2230; --mute:#5a6475; --line:#e1e5ec;
+  --good:#1a8a52; --good-bg:#e4f4eb; --warn:#a3520c; --warn-bg:#fcefe1; --info:#2a5fa8; --info-bg:#e6eefa;
+  --ql:#2a78d6; --ks:#eb6834; --ls:#1baf7a; --gb:#c98500; --gs:#d55181;
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --body:"Source Sans 3","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12161d; --surface:#1b212b; --ink:#e8ecf2; --mute:#a0a9b8; --line:#2c3441;
+  --good:#4cc786; --good-bg:#183326; --warn:#f0a35e; --warn-bg:#3a2a1a; --info:#8db4ec; --info-bg:#1b2840;
+  --ql:#3987e5; --ks:#d95926; --ls:#199e70; --gb:#c98500; --gs:#d55181; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161d; --surface:#1b212b; --ink:#e8ecf2; --mute:#a0a9b8; --line:#2c3441;
+  --good:#4cc786; --good-bg:#183326; --warn:#f0a35e; --warn-bg:#3a2a1a; --info:#8db4ec; --info-bg:#1b2840;
+  --ql:#3987e5; --ks:#d95926; --ls:#199e70; --gb:#c98500; --gs:#d55181; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
+.wrap{max-width:900px;margin:0 auto;padding-block:36px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:34px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(28px,5vw,40px)}h2{font-size:24px}h3{font-size:19px}
+.eyebrow{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);font-weight:700;margin:0 0 6px}
+.lead{color:var(--mute);margin:8px 0 0;max-width:64ch}
+section{display:grid;gap:12px}
+.promise{background:var(--warn-bg);border:1px solid var(--warn);border-radius:12px;padding:16px 18px;display:grid;gap:6px}
+.promise p{margin:0}
+.promise .t{font-family:var(--display);font-size:21px;color:var(--warn);font-weight:700}
+.callout{background:var(--info-bg);border-radius:12px;padding:14px 16px;display:grid;gap:6px}
+.callout p{margin:0}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:12px}
+.opt{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:10px;align-content:start;min-width:0}
+.opt.main{border:2px solid var(--good)}
+.opt h3{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.opt dl{margin:0;display:grid;gap:8px}
+.opt dt{font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);font-weight:600}
+.opt dd{margin:0;font-size:26px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.15}
+.opt dd small{display:block;font-size:14.5px;font-weight:400;color:var(--mute);line-height:1.4}
+.opt.main dd.esp{color:var(--good)}
+.chip{display:inline-block;font-size:12.5px;font-weight:700;border-radius:20px;padding:2px 10px;white-space:nowrap;font-family:var(--body)}
+.ok{background:var(--good-bg);color:var(--good)}.inf{background:var(--info-bg);color:var(--info)}.mute{background:var(--bg);color:var(--mute);border:1px solid var(--line)}
+.tbl{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:680px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);font-size:16px;vertical-align:top}
+th{font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);font-weight:600}
+th.grp{text-align:center;border-bottom:1px solid var(--line)}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;white-space:nowrap}
+td.sep,th.sep{border-left:1px solid var(--line)}
+tfoot td{font-weight:700;border-top:1px solid var(--line)}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;vertical-align:middle}
+.note{color:var(--mute);font-size:15px;margin:0;max-width:72ch}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:14px}
+.two article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:8px;align-content:start;min-width:0}
+.two ul{margin:0;padding-left:20px;display:grid;gap:6px}
+.two li span{color:var(--mute)}
+ul.list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+ul.list li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+ul.list b{display:block}
+ul.list span{color:var(--mute);font-size:15.5px}
+ol.steps{list-style:none;margin:0;padding:0;display:grid;gap:12px;counter-reset:s}
+ol.steps>li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px 14px 58px;position:relative;counter-increment:s}
+ol.steps>li::before{content:counter(s);position:absolute;left:16px;top:14px;width:28px;height:28px;border-radius:50%;background:var(--info-bg);color:var(--info);font-weight:700;display:grid;place-items:center;font-size:15px}
+ol.steps b{display:block}
+ol.steps span{color:var(--mute);font-size:15.5px}
+.kw{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:14px}
+.kw article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:8px;align-content:start;min-width:0}
+.kw table{min-width:0}
+.kw th,.kw td{padding:6px 0;font-size:15.5px}
+.kw td.num,.kw th.num{padding-left:12px}
+.kw .sub{color:var(--mute);font-size:14.5px;margin:0}
+.kw h3{display:flex;align-items:center}
+.look{background:var(--warn-bg);color:var(--warn)}
+.neg{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}
+.neg article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px;display:grid;gap:6px;align-content:start;min-width:0}
+.neg b{display:block}
+.neg span{color:var(--mute);font-size:15px}
+@media (max-width:480px){body{font-size:16px}.opt dd{font-size:24px}}
+</style>
+<style>
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.kpi .n{font-family:var(--display);font-size:34px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.1}
+.kpi .l{color:var(--mute);font-size:15px}
+ul{margin:0;padding-left:20px;display:grid;gap:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<p class="eyebrow">Grupo Supliese · leads de la página</p>
+<h1>Fin de semana: viernes 13 al lunes 16 de noviembre</h1>
+<p class="lead">Avisos que llegaron a los asesores desde las 5 páginas, contados por persona. El lunes va hasta las 9:45 a.m. No incluye pruebas internas ni visitas automáticas (ver abajo).</p>
+</header>
+
+<section class="kpis">
+<div class="kpi"><div class="n">~71</div><div class="l">personas que pidieron información (suma de las 5 marcas)</div></div>
+<div class="kpi"><div class="n">9</div><div class="l">dejaron nombre y teléfono (formulario o WhatsApp con datos)</div></div>
+<div class="kpi"><div class="n">~62</div><div class="l">abrieron el WhatsApp del asesor desde la página</div></div>
+</section>
+
+<section>
+<h2>Por marca y por día</h2>
+<div class="tbl"><table>
+<thead><tr><th>Marca</th><th class="num">Vie 13</th><th class="num">Sáb 14</th><th class="num">Dom 15</th><th class="num">Lun 16<br><span style="text-transform:none;font-weight:400">hasta 9:45</span></th><th class="num sep">Total</th><th class="num">Con nombre y teléfono</th></tr></thead>
+<tbody>
+<tr><td><span class="dot" style="background:var(--ql)"></span>Quick Laundry</td><td class="num">8</td><td class="num">6</td><td class="num">13</td><td class="num">3</td><td class="num sep"><b>30</b></td><td class="num">3</td></tr>
+<tr><td><span class="dot" style="background:var(--gs)"></span>Gamesail</td><td class="num">9</td><td class="num">9</td><td class="num">8</td><td class="num">3</td><td class="num sep"><b>29</b></td><td class="num">6</td></tr>
+<tr><td><span class="dot" style="background:var(--ks)"></span>Kingstar</td><td class="num">3</td><td class="num">2</td><td class="num">3</td><td class="num">0</td><td class="num sep"><b>8</b></td><td class="num">0</td></tr>
+<tr><td><span class="dot" style="background:var(--ls)"></span>Laundry Solutions</td><td class="num">1</td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num sep"><b>2</b></td><td class="num">0</td></tr>
+<tr><td><span class="dot" style="background:var(--gb)"></span>Girbau</td><td class="num">2</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num sep"><b>2</b></td><td class="num">0</td></tr>
+</tbody>
+<tfoot><tr><td>Suma de las 5 marcas</td><td class="num">23</td><td class="num">18</td><td class="num">24</td><td class="num">6</td><td class="num sep">~71</td><td class="num">9</td></tr></tfoot>
+</table></div>
+<p class="note">Cuando una misma persona tocó varios botones en pocos minutos, se cuenta una sola vez. «Abrió WhatsApp» quiere decir que se le abrió el chat del asesor con el mensaje ya escrito; si lo envió, le llega directo al WhatsApp del asesor. Por eso conviene que cada asesor confirme en su WhatsApp y anote en la hoja.</p>
+</section>
+
+<section>
+<h2>Lo que no se contó</h2>
+<div class="two">
+<div class="callout"><p><b>11 pruebas internas</b> (viernes en la noche). Se mandan a un correo de pruebas y no le llegan a los asesores.</p></div>
+<div class="callout"><p><b>36 visitas automáticas</b>, que no son personas: muchos clics seguidos en pocos minutos, brincando entre marcas y páginas. Venían de anuncios mostrados en páginas ajenas a la búsqueda de Google. <b>Esa configuración se quitó el lunes 16</b>, así que desde hoy deben dejar de aparecer.</p></div>
+</div>
+</section>
+
+<section>
+<h2>Para revisar</h2>
+<ul>
+<li><b>Girbau:</b> la página girbauoccidente.com no abre desde la noche del viernes 13. Google detiene los anuncios que llevan a una página que no abre, por eso Girbau no tuvo avisos el fin de semana. Esperamos su indicación para que la página vuelva o para usar otra.</li>
+<li><b>Kingstar:</b> el correo del asesor no está recibiendo los avisos (rebotan). Los avisos llegan en copia a otros correos del equipo, pero conviene revisar ese buzón o indicarnos otro.</li>
+<li><b>Quick Laundry y Gamesail</b> traen la mayoría de los contactos. Laundry Solutions va lento; esta semana ajustamos sus búsquedas para que el dinero vaya a quien busca reparación.</li>
+</ul>
+</section>
+
+<p class="note">Fuente: avisos de la página (Resend), revisados el lunes 16 a las 9:45 a.m. Son contactos que pidieron información; la venta depende del seguimiento de cada asesor.</p>
+</div>
+</body>
+</html>
