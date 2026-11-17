@@ -18,10 +18,10 @@ var CUENTA = '265-909-2662';
 var MIN_CLICS = 2, MIN_GASTO = 20, MAX_NEGATIVAS = 60;
 var LISTA_DESHACER = [];
 
-var SERVICIO = /repar|arregl|manten|servic|t[eé]cnic|refacc|pieza|repuest|instal|falla|no (centrifug|enciend|calient|gir|prend|drena|seca)|error|c[oó]digo|tarjeta|motor|bomba|empaque|balero|rodamient|banda|resistencia|v[aá]lvula|p[oó]liza|diagn|garant|soporte|taller|laundry solutions|revisi|calibr|limpieza de|desarm|ajust/i;
-var PRODUCTO = /lavadora|lavadoras|secadora|secadoras|lavander[ií]a|centro de lavado|planchador|mangle|lorsa|girbau|speed ?queen|maytag|lg |wascomat|dexter|electrolux|alliance|primus|unimac|ipso|huebsch/i;
+var SERVICIO = /repar|arregl|manten|servic|t[e\u00e9]cnic|refacc|pieza|repuest|instal|falla|no (centrifug|enciend|calient|gir|prend|drena|seca)|error|c[o\u00f3]digo|tarjeta|motor|bomba|empaque|balero|rodamient|banda|resistencia|v[a\u00e1]lvula|p[o\u00f3]liza|diagn|garant|soporte|taller|laundry solutions|revisi|calibr|limpieza de|desarm|ajust/i;
+var PRODUCTO = /lavadora|lavadoras|secadora|secadoras|lavander[i\u00ed]a|centro de lavado|planchador|mangle|lorsa|girbau|speed ?queen|maytag|lg |wascomat|dexter|electrolux|alliance|primus|unimac|ipso|huebsch/i;
 var MARCA = /girbau|gamesail|speed ?queen|maytag|lg |wascomat|dexter|electrolux|alliance|primus|unimac|ipso|huebsch/i;
-var COMPRA = /precio|costo|cuesta|cuanto|venta|vendo|vende|comprar|compra |cotiz|nueva|nuevo|barat|mercado libre|usad|segunda mano|renta|distribuid|proveedor|catalogo|catálogo/i;
+var COMPRA = /precio|costo|cuesta|cuanto|venta|vendo|vende|comprar|compra |cotiz|nueva|nuevo|barat|mercado libre|usad|segunda mano|renta|distribuid|proveedor|catalogo|cat\u00e1logo/i;
 
 function main() {
   if (typeof AdsManagerApp !== 'undefined') {
