@@ -28,3 +28,11 @@
 **Por qué:** el historial muestra que la app de Google Ads del celular (gamesailmx) prendió Display en esa campaña el 4 nov (Display y socios) y otra vez el **lunes 16 a las 6:06 p.m.**, horas después de apagarlo en las otras cuentas. Entre medio, un script nuestro lo apagó el 9 nov. Display no alcanzó a gastar ($0).
 
 **Pendiente urgente:** encontrar quién tiene la app con gamesailmx y que cierre sesión o no acepte recomendaciones.
+
+| ~tarde | Girbau | **Apelación** «Destino no operativo» (la página `girbauoccidente.com` ya abre, revisado 14:10): 11 anuncios (5 campañas, incl. «Girbau Búsqueda \| Nerea», en pausa) y los 6 grupos de recursos de «Max Rendimiento - Girbau». Motivo: «He hecho cambios para cumplir las políticas». | Extensión Chrome, `prompt-extension/girbau-pedir-revision-anuncios-2026-11-17.txt` | Historial de apelaciones: 2 apelaciones «En curso». No se editó ni pausó nada. |
+
+**Girbau, pendientes de la apelación:**
+- 3 extensiones también rechazadas por «Destino no operativo» (no apeladas aún).
+- 1 extensión de imagen rechazada por «Superposiciones gráficas o de texto» y 1 de nombre de empresa por «Irrelevancia del nombre de empresa»: se arreglan aparte (agregando una correcta, sin quitar nada).
+- `girbau-cambiar-pagina-caida.js` ya no se usa: la página volvió.
+- Miércoles 18: confirmar con «revision diaria» (rechazos) y el vaciado (impresiones de Girbau). Esta semana no se mueve nada más en Girbau; sus fotos pasan a la semana del 24.
