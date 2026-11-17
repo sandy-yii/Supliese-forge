@@ -53,10 +53,12 @@ function revisarYApagar() {
   // 2. Quien lo prendio (ultimos 14 dias)
   Logger.log('==== 2. QUIEN CAMBIO LA RED DE LAS CAMPANAS (14 dias) ====');
   var desde = Utilities.formatDate(new Date(Date.now() - 14 * 864e5), tz, 'yyyy-MM-dd');
+  var hoy = Utilities.formatDate(new Date(), tz, 'yyyy-MM-dd');
   var hay = 0;
   try {
     var ch = AdsApp.search("SELECT change_event.change_date_time, change_event.client_type, change_event.user_email, " +
-      "change_event.changed_fields, change_event.campaign FROM change_event WHERE change_event.change_date_time >= '" + desde + "' " +
+      "change_event.changed_fields, change_event.campaign FROM change_event WHERE change_event.change_date_time >= '" + desde + " 00:00:00' " +
+      "AND change_event.change_date_time <= '" + hoy + " 23:59:59' " +
       "AND change_event.change_resource_type = 'CAMPAIGN' ORDER BY change_event.change_date_time DESC LIMIT 200");
     while (ch.hasNext()) {
       var e = ch.next().changeEvent, f = String(e.changedFields || '');
@@ -70,19 +72,20 @@ function revisarYApagar() {
   Logger.log('');
 
   // 3. Lo que trajo Display (7 dias, por dia)
-  Logger.log('==== 3. DISPLAY EN QUICK LAUNDRY, ULTIMOS 7 DIAS ====');
-  var d = AdsApp.search("SELECT segments.date, campaign.name, metrics.impressions, metrics.clicks, metrics.cost_micros, metrics.conversions " +
-    "FROM campaign WHERE segments.date DURING LAST_7_DAYS AND segments.ad_network_type = 'CONTENT' AND metrics.impressions > 0 " +
+  Logger.log('==== 3. DISPLAY Y SOCIOS EN QUICK LAUNDRY, ULTIMOS 7 DIAS ====');
+  var RED = { CONTENT: 'DISPLAY', SEARCH_PARTNERS: 'SOCIOS' };
+  var d = AdsApp.search("SELECT segments.date, segments.ad_network_type, campaign.name, metrics.impressions, metrics.clicks, metrics.cost_micros, metrics.conversions " +
+    "FROM campaign WHERE segments.date DURING LAST_7_DAYS AND segments.ad_network_type IN ('CONTENT', 'SEARCH_PARTNERS') AND metrics.impressions > 0 " +
     "ORDER BY segments.date");
   var tc = 0, tg = 0, tv = 0;
   while (d.hasNext()) {
     var r = d.next(), m = r.metrics;
     var g = (Number(m.costMicros) || 0) / 1e6;
     tc += Number(m.clicks) || 0; tg += g; tv += Number(m.conversions) || 0;
-    Logger.log('  ' + r.segments.date + ' - ' + r.campaign.name + ' - ' + m.impressions + ' impresiones - ' + m.clicks +
+    Logger.log('  ' + r.segments.date + ' - ' + (RED[r.segments.adNetworkType] || r.segments.adNetworkType) + ' - ' + r.campaign.name + ' - ' + m.impressions + ' impresiones - ' + m.clicks +
       ' clics - $' + Math.round(g) + ' - ' + (Math.round((Number(m.conversions) || 0) * 10) / 10) + ' contactos');
   }
-  Logger.log('  TOTAL Display 7 dias: ' + tc + ' clics - $' + Math.round(tg) + ' - ' + (Math.round(tv * 10) / 10) + ' contactos');
+  Logger.log('  TOTAL Display + socios 7 dias: ' + tc + ' clics - $' + Math.round(tg) + ' - ' + (Math.round(tv * 10) / 10) + ' contactos');
   Logger.log('');
 
   // 4. Apagar (o deshacer)
