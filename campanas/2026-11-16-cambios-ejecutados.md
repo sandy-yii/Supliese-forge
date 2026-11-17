@@ -36,3 +36,10 @@
 - 1 extensión de imagen rechazada por «Superposiciones gráficas o de texto» y 1 de nombre de empresa por «Irrelevancia del nombre de empresa»: se arreglan aparte (agregando una correcta, sin quitar nada).
 - `girbau-cambiar-pagina-caida.js` ya no se usa: la página volvió.
 - Miércoles 18: confirmar con «revision diaria» (rechazos) y el vaciado (impresiones de Girbau). Esta semana no se mueve nada más en Girbau; sus fotos pasan a la semana del 24.
+
+| ~16:00 | Laundry Solutions | **18 negativas EXACTAS de compradores** (13 en «Reparación y mantenimiento», 5 en «Servicio técnico industrial»). $590 en 30 días sin contactos. Se quedan: «reparacion de lavadoras industriales», «unimac mexico» (trajo contacto), «unimac lavadora». | `campanas/salida/negativas-compradores-laundry-solutions.js` (versión corta ASCII) | Ejecutado con éxito, según Sandy. |
+
+Deshacer Laundry Solutions (pegar en `LISTA_DESHACER` y Ejecutar):
+`['lavadoras industriales', 'lavadora industrial', 'lavadora y secadora industrial precio', 'lavadoras industriales para negocio', 'lavadoras industriales para lavandería', 'lavadoras industriales precios', 'lorsa cdmx lavadoras industriales fracc industrial san antonio', 'lavadora para lavanderia', 'lavadoras para lavanderia', 'grupo lorsa', 'precio de lavadora industrial', 'lavadora industrial uso rudo', 'lavadora de ropa industrial', 'centro de lavado industrial', 'lavadora industrial para lavanderia', 'precio de una lavadora industrial']`
+
+Medir: semana del 17 al 23 contra la semana anterior (contactos de Laundry Solutions en Google y Resend, mismo gasto).
