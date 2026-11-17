@@ -1,0 +1,21 @@
+TAREA: En Google Ads de GIRBAU (860-582-6837), pedir que Google vuelva a revisar los anuncios y grupos de recursos rechazados por «Destino no operativo». La página girbauoccidente.com ya abre otra vez. NO EDITAR NADA MÁS.
+
+Reglas (obligatorias):
+- Usa SOLO la cuenta de Google gamesailmx@gmail.com. Si se abre otra cuenta o aparece otro correo ya escrito, DETENTE y avísame. No cambies de cuenta tú.
+- Si Google pide contraseña, código o confirmar identidad: DETENTE y avísame.
+- Si un formulario pide correo de contacto, escribe gamesailmx@gmail.com.
+- NO edites anuncios, textos, URLs, presupuestos, pujas ni palabras. NO pauses ni actives nada. NO aceptes ninguna «Recomendación». Solo pides la revisión.
+- Si el motivo del rechazo NO es «Destino no operativo» (por ejemplo «Un sitio web por grupo de anuncios»), NO apeles ese: solo anótalo y me lo dices.
+
+Pasos:
+1. Abre https://ads.google.com y entra a la cuenta Girbau 860-582-6837 (confirma el número arriba).
+2. Antes de apelar, abre https://girbauoccidente.com/ en otra pestaña y confirma que carga la página de lavadoras Girbau. Si no carga, DETENTE y avísame.
+3. Ve a Campañas > Anuncios. Filtra por Estado = «Rechazado» (o «Inhabilitado»/«Disapproved»). Anota cuántos hay y el motivo de cada uno.
+4. Selecciona solo los rechazados por «Destino no operativo». En el estado de uno, pasa el mouse y usa «Apelar» (o el menú «Política» > «Apelar»). Motivo: «Hice cambios para cumplir con la política» / «Corregí el problema». Si pide explicación escribe: «La página de destino girbauoccidente.com ya funciona correctamente.» Envía.
+5. Ve a la campaña de Máximo rendimiento > Grupos de recursos. Para cada grupo con estado rechazado/limitado por «Destino no operativo», haz la misma apelación.
+6. Si Google dice que ya se están revisando o que ya están aprobados, no hagas nada más con esos.
+
+Entrégame:
+- Lista de anuncios y grupos de recursos: campaña, nombre, motivo, y si se apeló (sí / no y por qué).
+- Cualquier rechazo con otro motivo (solo anotado).
+- Confirma al final: «Solo pedí revisión; no edité ni pausé nada».
