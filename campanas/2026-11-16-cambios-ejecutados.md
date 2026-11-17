@@ -18,3 +18,13 @@
 - Correo del asesor de Kingstar sigue rebotando.
 - Mar 17: negativas de compradores en Laundry Solutions, topes por clic en Kingstar, Gamesail por pasos; fotos pasan al miércoles 18.
 - Quien tenga la app de Google Ads con la cuenta de trabajo: no aceptar recomendaciones desde la app.
+
+# Cambios ejecutados · martes 17 nov 2026
+
+| Hora | Cuenta | Cambio | Script | Resultado |
+|---|---|---|---|---|
+| ~9:50 | Quick Laundry | **Display apagado** en «AB · Equipo para lavandería» (socios se quedan prendidos: 2 clics, $4, 0 contactos en 7 días) | `campanas/salida/quick-laundry-display-revisar-y-apagar.js` | Ejecutado con éxito, según Sandy. Deshacer: `DESHACER = true`. |
+
+**Por qué:** el historial muestra que la app de Google Ads del celular (gamesailmx) prendió Display en esa campaña el 4 nov (Display y socios) y otra vez el **lunes 16 a las 6:06 p.m.**, horas después de apagarlo en las otras cuentas. Entre medio, un script nuestro lo apagó el 9 nov. Display no alcanzó a gastar ($0).
+
+**Pendiente urgente:** encontrar quién tiene la app con gamesailmx y que cierre sesión o no acepte recomendaciones.
