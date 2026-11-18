@@ -9,7 +9,7 @@ Esa tabla no es la lista completa de palabras con las que trabajan las cuentas. 
 
 No pusimos la lista completa en ese documento por tres razones:
 
-- **Es muy larga.** Entre las 5 marcas son cientos de palabras, y muchas casi no tienen clics. En un documento para decidir el presupuesto, esa lista habría escondido lo importante: qué trae clientes y qué no.
+- **Es muy larga.** Entre las 5 marcas son muchas palabras (en total, [NÚMERO]), y una buena parte casi no tiene clics. En un documento para decidir el presupuesto, esa lista habría escondido lo importante: qué trae clientes y qué no.
 - **Una palabra con pocos clics todavía no dice nada.** Muchas son variantes que salen pocas veces al mes; no conviene sacar conclusiones de ellas hasta que tengan más datos.
 - **Girbau trae la mayoría de sus contactos por una campaña que no usa palabras clave** (Máximo rendimiento): Google decide solo a quién mostrarle el anuncio. Por eso en Girbau la lista se ve corta.
 
