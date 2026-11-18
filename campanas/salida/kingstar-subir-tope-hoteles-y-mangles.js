@@ -61,7 +61,7 @@ function correr() {
       if (rank < 0.25) { Logger.log('   Pierde menos de 25% por puja: no hace falta.'); continue; }
       if (bud > 0.20) { Logger.log('   Pierde mas de 20% por presupuesto: subir el tope daria menos clics. No se toca.'); continue; }
       if ((C14[nombre] || 0) < 1) { Logger.log('   Sin contactos en 14 dias: no se toca.'); continue; }
-      nuevo = Math.min(Math.round(actual * (1 + SUBE) / 1e6) * 1e6, TOPE_MAX * 1e6);
+      nuevo = Math.min(Math.floor(actual * (1 + SUBE) / 1e6) * 1e6, TOPE_MAX * 1e6);
       if (nuevo <= actual) { Logger.log('   Ya esta en el maximo ($' + TOPE_MAX + ').'); continue; }
     }
     Logger.log('   ' + (vista ? 'subiria' : 'sube') + ' el tope: $' + pesos(actual) + ' -> $' + pesos(nuevo));
