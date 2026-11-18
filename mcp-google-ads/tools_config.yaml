@@ -1,0 +1,5 @@
+# Configuración del MCP oficial de Google Ads (googleads/google-ads-mcp) para Supliese.
+# SOLO LECTURA: se apagan las herramientas que cambian cuentas (crear recursos y etiquetas).
+# Regla del repo: nada se activa, pausa ni edita sin el OK de Sandy; los cambios siguen siendo con script (Vista previa > OK > Ejecutar).
+assets: false
+labels: false
