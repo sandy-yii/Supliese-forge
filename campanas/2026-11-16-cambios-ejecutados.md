@@ -61,3 +61,5 @@ Medir: semana del 17 al 23 contra la semana anterior (contactos de Laundry Solut
 
 Medir el viernes 20: contactos de Gamesail (Google y Resend) y gasto contra el promedio de la marca. Riesgo dicho: con 20% perdido por presupuesto, el dinero del día puede acabarse un poco antes (mismos contactos, clic hasta $2 más caro).
 No se aplicó `empujon-de-hoy-una-por-cuenta.js` (Sandy prefirió un solo cambio).
+
+**Girbau, revisión 10:05 (`girbau-revisar-aprobacion.js`, solo lee):** los **3 anuncios nuevos del miércoles están APROBADOS** (Marca › Girbau, Capacidad, Sector). Ya hay un anuncio aprobado en cada grupo de Búsqueda. Los 3 viejos siguen rechazados (se quedan como están: no salen, no estorban). Faltan 3 sitelinks de «Max Rendimiento - Girbau» con «Destino no operativo» y 2 grupos de recursos «limitados» (Secadora Industrial, Proveedores y Distribuidores). No se apela de nuevo los anuncios.
