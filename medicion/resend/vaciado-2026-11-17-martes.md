@@ -34,4 +34,5 @@
 - Revisado el código de las 5 páginas (11:15): el botón de WhatsApp abre WhatsApp primero, cuenta la conversión en Google y ofrece la ventanita opcional. **Solo manda aviso por Resend si la persona deja nombre y teléfono** (o llena el formulario). Igual en las 5 páginas; `/api/contacto` responde en las 5.
 - Además, desde las 8:53 cada aviso sale en correos separados (vendedor + 4 copias).
 - **Consecuencia:** desde el jueves, Resend cuenta solo contactos con datos. No se puede comparar con lunes a miércoles (ahí ~2/3 eran «abrieron WhatsApp»). Para el conteo diario: conversiones de Google (`como-van-hoy-5-cuentas.js`) + hoja de vendedores.
+- **Confirmado por Sandy (11:25): fue a propósito**, porque esos avisos eran de gente que no mandaba mensaje.
 - Hasta las 11:11: 1 aviso real (Quick Laundry, formulario 9:43). Google contaba 4 contactos a las 9:56.
