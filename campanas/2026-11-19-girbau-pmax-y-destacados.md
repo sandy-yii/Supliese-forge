@@ -29,3 +29,5 @@ Datos leídos con el conector TrueClicks (solo lectura). No se movió nada en ni
 - Nuevo script **solo de textos destacados**: `salida/textos-destacados-3-cuentas.js` (Gamesail, Quick Laundry y Laundry Solutions). Usa los mismos textos que se revisaron el 12 nov, solo agrega, se salta una cuenta si ya tuvo un cambio hoy y tiene `DESHACER = true`.
 - Girbau va la semana del 24 nov, separado de lo de Máximo rendimiento, que es otro día.
 - Se mide del 20 al 26 nov contra la semana anterior: contactos (Google y Resend) y porcentaje de clics por cuenta.
+
+- 19 nov: por indicación de Sandy, se quitó «Antes Supliese» de los textos de Quick Laundry (quedan 5).

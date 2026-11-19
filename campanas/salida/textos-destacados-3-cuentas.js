@@ -24,7 +24,7 @@ var PLAN = {
   '118-347-6484': { marca: 'Gamesail',
     textos: ['Cotiza por WhatsApp', 'Te Ayudamos a Elegir', 'De 17 a 130 kg', 'Montaje Suave', 'Para Ropa y S\u00e1banas', 'Equipo para Hoteles'] },
   '256-397-2201': { marca: 'Quick Laundry',
-    textos: ['Cotiza por WhatsApp', 'Te Ayudamos a Elegir', 'Equipo LG y Maytag', 'Con o sin Fichero', 'Para tu Lavander\u00eda', 'Antes Supliese'] },
+    textos: ['Cotiza por WhatsApp', 'Te Ayudamos a Elegir', 'Equipo LG y Maytag', 'Con o sin Fichero', 'Para tu Lavander\u00eda'] },
   '265-909-2662': { marca: 'Laundry Solutions',
     textos: ['Agenda tu Servicio', 'Habla con un T\u00e9cnico', 'Diagn\u00f3stico de tu Equipo', 'Mantenimiento Preventivo', 'Mantenimiento Correctivo', 'Lavadoras y Secadoras'] }
 };
