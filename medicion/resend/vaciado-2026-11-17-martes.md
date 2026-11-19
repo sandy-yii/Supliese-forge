@@ -16,3 +16,14 @@
 - **Laundry Solutions:** casi no sale (52 impresiones). Contacto desde Fresnillo, Zac. (¿zona de servicio?).
 - **Gamesail:** 0 en Google. Sin Display, sus impresiones bajaron de 3,041 a 480. Sus contactos de Google del lunes fueron casi todos en horas con Display. Riesgo: parte de sus leads reales venía de Display. Se mide un día más antes de decidir.
 - Diagnóstico de puja vs presupuesto: `campanas/salida/por-que-salen-poco-kingstar-ls-gamesail.js` (solo lee).
+
+# Vaciado miércoles 18 nov (hasta las 22:39)
+
+| Marca | Google contactos | Resend personas | Gasto | Nota |
+|---|---|---|---|---|
+| Gamesail | 4 (+1 llamada del anuncio NO contestada, 15:08, secadoras) | 9 (4 con datos) | $392 | «lavadoras industriales precios» trajo formulario, llamada y WhatsApp (CDMX, 19 h) |
+| Laundry Solutions | 2 (llamada y correo, Toluca, Servicio técnico) | 1 | $71 | La llamada está en la hoja: servicio a 3 equipos industriales |
+| Girbau | 2 (Máximo rendimiento) | 10 | $234 | 4 clics de madrugada en YouTube/Discover ($5) |
+| Kingstar | 1 (hotelera, «lavadora industrial 50 kg precio», 17 h) | 2 | $248 | Tope de hotelera $18 → $21 a las ~16:20 (falta el registro de Ejecutar) |
+| Quick Laundry | 1 (Emprendimiento) | 2 | $316 | «Equipo para lavandería» $246 y 0 contactos hoy; pierde ~90% por presupuesto |
+| **Suma** | **10** | **~24** | **$1,261** | |
