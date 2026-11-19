@@ -58,8 +58,11 @@ Medir: semana del 17 al 23 contra la semana anterior (contactos de Laundry Solut
 | Hora | Cuenta | Cambio | Script | Resultado |
 |---|---|---|---|---|
 | ~10:05 | Gamesail | Tope por clic de «AB · Lavadoras para ropa y sábanas» **$14 → $16** (+14%). Vista previa: pierde 54% por puja y 20% por presupuesto en 7 días; 24 contactos en 14 días. | `campanas/salida/gamesail-subir-tope-lavadoras-para-ropa.js` | Ejecutado sin errores, según Sandy. Deshacer: `var DESHACER = {'AB · Lavadoras para ropa y sábanas': 14};` |
+| ~10:30 | Girbau | **3 enlaces nuevos** (copia, mismo texto y sección) en «Max Rendimiento - Girbau»: Proveedores Nacionales, Limpieza Profesional, Aseo Para Empresas. Los viejos (rechazados por «Destino no operativo» de cuando la página estaba caída) se quedan. Las 3 secciones existen y abren (200). | `campanas/salida/girbau-enlaces-nuevos-y-revisar-grupos.js` | Ejecutado con éxito, según Sandy. Deshacer: lista «PARA DESHACER» del registro (pendiente de copiar aquí). |
 
 Medir el viernes 20: contactos de Gamesail (Google y Resend) y gasto contra el promedio de la marca. Riesgo dicho: con 20% perdido por presupuesto, el dinero del día puede acabarse un poco antes (mismos contactos, clic hasta $2 más caro).
 No se aplicó `empujon-de-hoy-una-por-cuenta.js` (Sandy prefirió un solo cambio).
 
 **Girbau, revisión 10:05 (`girbau-revisar-aprobacion.js`, solo lee):** los **3 anuncios nuevos del miércoles están APROBADOS** (Marca › Girbau, Capacidad, Sector). Ya hay un anuncio aprobado en cada grupo de Búsqueda. Los 3 viejos siguen rechazados (se quedan como están: no salen, no estorban). Faltan 3 sitelinks de «Max Rendimiento - Girbau» con «Destino no operativo» y 2 grupos de recursos «limitados» (Secadora Industrial, Proveedores y Distribuidores). No se apela de nuevo los anuncios.
+
+**Girbau, grupos limitados (Secadora Industrial, Proveedores y Distribuidores):** el script no encontró fotos ni textos rechazados; hay piezas de tipo desconocido (5 y 2), probablemente nombre de empresa o logo. Falta captura de la interfaz con la pieza «Limitado». Secadora tiene solo 2 fotos horizontales (pedir 2–3 más de secadoras, 1200×628, sin texto encima).
