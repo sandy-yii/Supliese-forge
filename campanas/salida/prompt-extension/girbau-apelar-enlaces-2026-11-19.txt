@@ -1,0 +1,24 @@
+TAREA: En Google Ads de GIRBAU (860-582-6837), pedir que Google vuelva a revisar los 6 ENLACES (sitelinks) de la campaña «Max Rendimiento - Girbau» rechazados por «Destino no operativo». La página y sus secciones ya funcionan. NO EDITAR NADA MÁS.
+
+Reglas (obligatorias):
+- Usa SOLO la cuenta de Google gamesailmx@gmail.com. Si se abre otra cuenta o aparece otro correo ya escrito, DETENTE y avísame. No cambies de cuenta tú.
+- Si Google pide contraseña, código o confirmar identidad: DETENTE y avísame.
+- Si un formulario pide correo de contacto, escribe gamesailmx@gmail.com.
+- NO edites enlaces, anuncios, textos, URLs, presupuestos, pujas ni palabras. NO pauses, quites ni actives nada. NO aceptes ninguna «Recomendación». Solo pides la revisión.
+- Si el motivo de un rechazo NO es «Destino no operativo», NO lo apeles: solo anótalo y me lo dices.
+
+Pasos:
+1. Abre https://ads.google.com y entra a la cuenta Girbau 860-582-6837 (confirma el número arriba).
+2. Antes de apelar, abre en otra pestaña estas 3 direcciones y confirma que cada una carga la página de Girbau:
+   - https://girbauoccidente.com/#proveedores-nacionales
+   - https://girbauoccidente.com/#limpieza-profesional
+   - https://girbauoccidente.com/#aseo-para-empresas
+   Si alguna no carga, DETENTE y avísame.
+3. Ve a la campaña «Max Rendimiento - Girbau» > Recursos (o «Recursos» > «Enlaces de sitio» / «Sitelinks»). Filtra o busca los que tengan estado «Rechazado» / «Inhabilitado». Deben ser 6: «Proveedores Nacionales», «Limpieza Profesional» y «Aseo Para Empresas», dos de cada uno.
+4. Selecciona los 6 rechazados por «Destino no operativo». En el estado de uno, pasa el mouse y usa «Apelar» (o «Política» > «Apelar»). Motivo: «Hice cambios para cumplir con la política» / «Corregí el problema». Si pide explicación escribe: «La página girbauoccidente.com y sus secciones #proveedores-nacionales, #limpieza-profesional y #aseo-para-empresas funcionan correctamente; otros 3 enlaces de la misma página ya están aprobados.» Envía.
+5. Si Google dice que ya se están revisando o que ya están aprobados, no hagas nada más con esos.
+
+Entrégame:
+- Lista de los enlaces: texto, estado, motivo y si se apeló (sí / no y por qué).
+- Cualquier rechazo con otro motivo (solo anotado).
+- Confirma al final: «Solo pedí revisión; no edité, quité ni pausé nada».
