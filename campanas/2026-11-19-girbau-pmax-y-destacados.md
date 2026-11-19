@@ -31,3 +31,15 @@ Datos leídos con el conector TrueClicks (solo lectura). No se movió nada en ni
 - Se mide del 20 al 26 nov contra la semana anterior: contactos (Google y Resend) y porcentaje de clics por cuenta.
 
 - 19 nov: por indicación de Sandy, se quitó «Antes Supliese» de los textos de Quick Laundry (quedan 5).
+
+## Ejecutado · 19 nov, ~14:00
+
+| Cuenta | Resultado | Comprobado con TrueClicks |
+|---|---|---|
+| Quick Laundry | 5 textos destacados agregados | Sí, los 5 en revisión de Google |
+| Laundry Solutions | 6 textos destacados agregados | Sí, los 6 en revisión de Google |
+| Gamesail | **No se agregó nada:** el candado de «un cambio por cuenta al día» la saltó, porque a las 10:03 un script ya había cambiado el tope de puja por clic de una campaña | Sin textos destacados |
+
+- **Gamesail: correr el mismo script mañana, 20 nov.** Quick Laundry y Laundry Solutions solo dirán «ya tiene» y no cambian nada.
+- Deshacer el mismo día: `DESHACER = true` y Ejecutar.
+- Medir del 20 al 26 nov contra la semana anterior.
