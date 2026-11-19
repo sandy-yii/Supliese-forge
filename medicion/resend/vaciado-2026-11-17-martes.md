@@ -27,3 +27,11 @@
 | Kingstar | 1 (hotelera, «lavadora industrial 50 kg precio», 17 h) | 2 | $248 | Tope de hotelera $18 → $21 a las ~16:20 (falta el registro de Ejecutar) |
 | Quick Laundry | 1 (Emprendimiento) | 2 | $316 | «Equipo para lavandería» $246 y 0 contactos hoy; pierde ~90% por presupuesto |
 | **Suma** | **10** | **~24** | **$1,261** | |
+
+## Jueves 19 nov: ya no sale el aviso «Abrieron WhatsApp sin dejar datos»
+
+- Desde ~00:07 (pruebas de Rodolfo) no hay ningún aviso «Abrieron WhatsApp sin dejar datos» en ninguna marca. El último fue el miércoles 23:29 (Quick Laundry).
+- Revisado el código de las 5 páginas (11:15): el botón de WhatsApp abre WhatsApp primero, cuenta la conversión en Google y ofrece la ventanita opcional. **Solo manda aviso por Resend si la persona deja nombre y teléfono** (o llena el formulario). Igual en las 5 páginas; `/api/contacto` responde en las 5.
+- Además, desde las 8:53 cada aviso sale en correos separados (vendedor + 4 copias).
+- **Consecuencia:** desde el jueves, Resend cuenta solo contactos con datos. No se puede comparar con lunes a miércoles (ahí ~2/3 eran «abrieron WhatsApp»). Para el conteo diario: conversiones de Google (`como-van-hoy-5-cuentas.js`) + hoja de vendedores.
+- Hasta las 11:11: 1 aviso real (Quick Laundry, formulario 9:43). Google contaba 4 contactos a las 9:56.
