@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Leads del miércoles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+/* Layout: una columna de lectura; tres tarjetas para comparar opciones, tabla por marca, listas de acciones */
+:root{
+  --bg:#f5f7fa; --surface:#ffffff; --ink:#1b2230; --mute:#5a6475; --line:#e1e5ec;
+  --good:#1a8a52; --good-bg:#e4f4eb; --warn:#a3520c; --warn-bg:#fcefe1; --info:#2a5fa8; --info-bg:#e6eefa;
+  --ql:#2a78d6; --ks:#eb6834; --ls:#1baf7a; --gb:#c98500; --gs:#d55181;
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --body:"Source Sans 3","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12161d; --surface:#1b212b; --ink:#e8ecf2; --mute:#a0a9b8; --line:#2c3441;
+  --good:#4cc786; --good-bg:#183326; --warn:#f0a35e; --warn-bg:#3a2a1a; --info:#8db4ec; --info-bg:#1b2840;
+  --ql:#3987e5; --ks:#d95926; --ls:#199e70; --gb:#c98500; --gs:#d55181; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161d; --surface:#1b212b; --ink:#e8ecf2; --mute:#a0a9b8; --line:#2c3441;
+  --good:#4cc786; --good-bg:#183326; --warn:#f0a35e; --warn-bg:#3a2a1a; --info:#8db4ec; --info-bg:#1b2840;
+  --ql:#3987e5; --ks:#d95926; --ls:#199e70; --gb:#c98500; --gs:#d55181; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
+.wrap{max-width:900px;margin:0 auto;padding-block:36px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:34px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(28px,5vw,40px)}h2{font-size:24px}h3{font-size:19px}
+.eyebrow{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);font-weight:700;margin:0 0 6px}
+.lead{color:var(--mute);margin:8px 0 0;max-width:64ch}
+section{display:grid;gap:12px}
+.promise{background:var(--warn-bg);border:1px solid var(--warn);border-radius:12px;padding:16px 18px;display:grid;gap:6px}
+.promise p{margin:0}
+.promise .t{font-family:var(--display);font-size:21px;color:var(--warn);font-weight:700}
+.callout{background:var(--info-bg);border-radius:12px;padding:14px 16px;display:grid;gap:6px}
+.callout p{margin:0}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:12px}
+.opt{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:10px;align-content:start;min-width:0}
+.opt.main{border:2px solid var(--good)}
+.opt h3{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.opt dl{margin:0;display:grid;gap:8px}
+.opt dt{font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);font-weight:600}
+.opt dd{margin:0;font-size:26px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.15}
+.opt dd small{display:block;font-size:14.5px;font-weight:400;color:var(--mute);line-height:1.4}
+.opt.main dd.esp{color:var(--good)}
+.chip{display:inline-block;font-size:12.5px;font-weight:700;border-radius:20px;padding:2px 10px;white-space:nowrap;font-family:var(--body)}
+.ok{background:var(--good-bg);color:var(--good)}.inf{background:var(--info-bg);color:var(--info)}.mute{background:var(--bg);color:var(--mute);border:1px solid var(--line)}
+.tbl{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:680px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);font-size:16px;vertical-align:top}
+th{font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);font-weight:600}
+th.grp{text-align:center;border-bottom:1px solid var(--line)}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;white-space:nowrap}
+td.sep,th.sep{border-left:1px solid var(--line)}
+tfoot td{font-weight:700;border-top:1px solid var(--line)}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;vertical-align:middle}
+.note{color:var(--mute);font-size:15px;margin:0;max-width:72ch}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:14px}
+.two article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:8px;align-content:start;min-width:0}
+.two ul{margin:0;padding-left:20px;display:grid;gap:6px}
+.two li span{color:var(--mute)}
+ul.list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+ul.list li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+ul.list b{display:block}
+ul.list span{color:var(--mute);font-size:15.5px}
+ol.steps{list-style:none;margin:0;padding:0;display:grid;gap:12px;counter-reset:s}
+ol.steps>li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px 14px 58px;position:relative;counter-increment:s}
+ol.steps>li::before{content:counter(s);position:absolute;left:16px;top:14px;width:28px;height:28px;border-radius:50%;background:var(--info-bg);color:var(--info);font-weight:700;display:grid;place-items:center;font-size:15px}
+ol.steps b{display:block}
+ol.steps span{color:var(--mute);font-size:15.5px}
+.kw{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:14px}
+.kw article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:8px;align-content:start;min-width:0}
+.kw table{min-width:0}
+.kw th,.kw td{padding:6px 0;font-size:15.5px}
+.kw td.num,.kw th.num{padding-left:12px}
+.kw .sub{color:var(--mute);font-size:14.5px;margin:0}
+.kw h3{display:flex;align-items:center}
+.look{background:var(--warn-bg);color:var(--warn)}
+.neg{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}
+.neg article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px;display:grid;gap:6px;align-content:start;min-width:0}
+.neg b{display:block}
+.neg span{color:var(--mute);font-size:15px}
+@media (max-width:480px){body{font-size:16px}.opt dd{font-size:24px}}
+</style>
+<style>
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.kpi .n{font-family:var(--display);font-size:34px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.1}
+.kpi .l{color:var(--mute);font-size:15px}
+ul{margin:0;padding-left:20px;display:grid;gap:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<p class="eyebrow">Grupo Supliese · leads de la página</p>
+<h1>Miércoles 18 de noviembre</h1>
+<p class="lead">Personas que pidieron información desde las 5 páginas, contadas una vez aunque hayan tocado varios botones. Corte a las 10:45 p.m. No incluye pruebas internas.</p>
+</header>
+
+<section class="kpis">
+<div class="kpi"><div class="n">~24</div><div class="l">personas que pidieron información (suma de las 5 marcas)</div></div>
+<div class="kpi"><div class="n">6</div><div class="l">confirmadas: dejaron nombre y teléfono, llamaron o ya están en la hoja de vendedores</div></div>
+<div class="kpi"><div class="n">~18</div><div class="l">abrieron el WhatsApp del asesor (no sabemos si enviaron el mensaje)</div></div>
+<div class="kpi"><div class="n">10</div><div class="l">contactos que registró Google Ads</div></div>
+</section>
+
+<section>
+<h2>Por marca</h2>
+<div class="tbl"><table>
+<thead><tr><th>Marca</th><th class="num">Personas</th><th class="num">Confirmadas</th><th class="num">Registrados por Google</th><th class="sep">Qué pidieron</th></tr></thead>
+<tbody>
+<tr><td><span class="dot" style="background:var(--gb)"></span>Girbau</td><td class="num"><b>10</b></td><td class="num">0</td><td class="num">2</td><td class="sep">Lavadoras industriales Girbau y centro de lavado Smart Plus</td></tr>
+<tr><td><span class="dot" style="background:var(--gs)"></span>Gamesail</td><td class="num"><b>9</b></td><td class="num">4</td><td class="num">4</td><td class="sep">Lavadoras industriales para ropa y sábanas, secadoras industriales. 3 formularios completos y 1 llamada</td></tr>
+<tr><td><span class="dot" style="background:var(--ks)"></span>Kingstar</td><td class="num"><b>2</b></td><td class="num">0</td><td class="num">1</td><td class="sep">Lavadoras para hotel («lavadora industrial 50 kg precio») y equipo Kingstar</td></tr>
+<tr><td><span class="dot" style="background:var(--ql)"></span>Quick Laundry</td><td class="num"><b>2</b></td><td class="num">1</td><td class="num">1</td><td class="sep">Equipo para negocio y para abrir una lavandería</td></tr>
+<tr><td><span class="dot" style="background:var(--ls)"></span>Laundry Solutions</td><td class="num"><b>1</b></td><td class="num">1</td><td class="num">2</td><td class="sep">Servicio técnico para 3 equipos industriales (llamó)</td></tr>
+</tbody>
+<tfoot><tr><td>Suma de las 5 marcas</td><td class="num">~24</td><td class="num">6</td><td class="num">10</td><td class="sep"></td></tr></tfoot>
+</table></div>
+<p class="note">«Confirmadas» = dejaron nombre y teléfono en la página, llamaron, o el vendedor ya las anotó en la hoja. Las demás tocaron el botón de WhatsApp: se les abrió el chat del asesor con el mensaje ya escrito, pero la página no puede ver si lo enviaron. Google registra menos que la página porque solo cuenta a quien acepta cookies.</p>
+</section>
+
+<section>
+<h2>La semana hasta hoy</h2>
+<div class="tbl"><table>
+<thead><tr><th>Día</th><th class="num">Personas (página)</th><th class="num">Registrados por Google</th><th class="sep">Lo que pasó</th></tr></thead>
+<tbody>
+<tr><td>Lunes 16</td><td class="num">~16</td><td class="num">11</td><td class="sep">Se quitó la configuración que traía visitas automáticas</td></tr>
+<tr><td>Martes 17</td><td class="num">~29</td><td class="num">15</td><td class="sep">Se reactivan los anuncios de Girbau (7:48 p.m.). Kingstar, su mejor día</td></tr>
+<tr><td>Miércoles 18</td><td class="num">~24</td><td class="num">10</td><td class="sep">Girbau todo el día. Gamesail, su mejor día con datos</td></tr>
+</tbody>
+</table></div>
+</section>
+
+<section>
+<h2>Lo más destacado</h2>
+<ul>
+<li><b>Gamesail:</b> 9 personas y 3 formularios completos. La página de secadoras industriales ya trajo 2 formularios esta semana.</li>
+<li><b>Girbau:</b> 10 personas en su primer día completo con anuncios, de la mañana a la noche.</li>
+<li><b>Laundry Solutions:</b> llamó un cliente que necesita servicio para 3 equipos industriales. Es justo el tipo de cliente que buscamos tras ajustar sus búsquedas el martes.</li>
+<li><b>Kingstar:</b> el contacto del día llegó de la campaña de lavandería hotelera, la que trajo sus mejores prospectos esta semana. El miércoles ajustamos esa campaña para que salga más.</li>
+</ul>
+</section>
+
+<section>
+<h2>Lo que necesitamos para no perder clientes</h2>
+<ol class="steps">
+<li><b>Correos de los asesores de Girbau y Kingstar</b><span>Siguen rebotando: el miércoles no les llegaron 14 avisos por correo (llegan en copia a otros correos del equipo). Necesitamos que se arreglen esos buzones o que nos indiquen otro correo.</span></li>
+<li><b>Quién atiende Girbau</b><span>Girbau fue la marca con más personas y no aparece en la hoja de vendedores. Necesitamos saber quién le da seguimiento.</span></li>
+<li><b>Llamada sin contestar en Gamesail</b><span>A las 3:08 p.m. alguien llamó desde el anuncio de secadoras y no le contestaron. Conviene revisar quién contesta ese número.</span></li>
+<li><b>Anotar en la hoja a quien sí escribe</b><span>Solo 3 de ~24 personas quedaron anotadas. Estamos preparando con el equipo de la página un código en el mensaje de WhatsApp para saber quién escribió y de qué anuncio llegó.</span></li>
+<li><b>Zonas de servicio</b><span>Hay contactos de todo el país. ¿Hasta dónde da servicio cada marca, sobre todo Laundry Solutions y Girbau?</span></li>
+</ol>
+</section>
+
+<p class="note">Fuente: avisos de la página (Resend), Google Ads y hoja de vendedores, revisados el miércoles 18 a las 10:45 p.m. Son personas que pidieron información; la venta depende del seguimiento de cada asesor.</p>
+</div>
+</body>
+</html>
