@@ -43,3 +43,12 @@ Deshacer Laundry Solutions (pegar en `LISTA_DESHACER` y Ejecutar):
 `['lavadoras industriales', 'lavadora industrial', 'lavadora y secadora industrial precio', 'lavadoras industriales para negocio', 'lavadoras industriales para lavandería', 'lavadoras industriales precios', 'lorsa cdmx lavadoras industriales fracc industrial san antonio', 'lavadora para lavanderia', 'lavadoras para lavanderia', 'grupo lorsa', 'precio de lavadora industrial', 'lavadora industrial uso rudo', 'lavadora de ropa industrial', 'centro de lavado industrial', 'lavadora industrial para lavanderia', 'precio de una lavadora industrial']`
 
 Medir: semana del 17 al 23 contra la semana anterior (contactos de Laundry Solutions en Google y Resend, mismo gasto).
+
+# Cambios ejecutados · miércoles 18 nov 2026
+
+| Hora | Cuenta | Cambio | Script | Resultado |
+|---|---|---|---|---|
+| ~16:20 | Kingstar | Tope por clic de «AB · Lavandería hotelera e institucional» **$18 → $21** (+17%). Mangles no pasó el candado (22% por puja en 7 días). | `campanas/salida/kingstar-subir-tope-hoteles-y-mangles.js` | Vista previa correcta; falta el registro de Ejecutar. Deshacer: `var DESHACER = {'AB · Lavandería hotelera e institucional': 18};` |
+| ~23:00 | Girbau | **3 anuncios nuevos** (copia con ruta distinta) al lado de los rechazados por «destino no operativo»: Marca Girbau › Girbau, Por capacidad y sector › Capacidad y › Sector. La página `girbauoccidente.com/` abre (200 desde Google) y otros 2 anuncios con la misma página ya estaban aprobados. | `campanas/salida/girbau-copiar-anuncios-rechazados.js` | 3 creados con éxito, según Sandy. Deshacer: la lista «PARA DESHACER» del registro (pendiente de copiar aquí). |
+
+**Siguiente en Girbau (cuando los anuncios nuevos estén aprobados):** fotos a Por capacidad y sector, Smart Plus y Servicio técnico (`fotos-a-campanas-sin-fotos-todas-las-cuentas.js`, solo Girbau).
