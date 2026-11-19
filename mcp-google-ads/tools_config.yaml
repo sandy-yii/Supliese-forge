@@ -1,5 +1,13 @@
 # Configuración del MCP oficial de Google Ads (googleads/google-ads-mcp) para Supliese.
 # SOLO LECTURA: se apagan las herramientas que cambian cuentas (crear recursos y etiquetas).
 # Regla del repo: nada se activa, pausa ni edita sin el OK de Sandy; los cambios siguen siendo con script (Vista previa > OK > Ejecutar).
-assets: false
-labels: false
+#
+# OJO: todo va debajo de "namespaces:". Sin esa clave el servidor ignora el archivo y PRENDE TODAS
+# las herramientas, incluidas las que escriben (verificado en ads_mcp/config.py, 19 nov 2026).
+# Una categoría que no aparece aquí queda apagada; si Google agrega una nueva, no se prende sola.
+namespaces:
+  customers: true   # listar cuentas (lectura)
+  search: true      # consultas GAQL (lectura)
+  metadata: true    # ver campos disponibles (lectura)
+  labels: false     # crear/poner etiquetas (ESCRIBE) -> apagado
+  assets: false     # crear textos, imágenes, enlaces, videos (ESCRIBE) -> apagado
