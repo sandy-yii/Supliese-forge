@@ -4,12 +4,6 @@ Hoy el aviso de Resend sale cuando alguien toca el botón de WhatsApp («Abriero
 
 Te propongo dos opciones. ¿Me dices cuánto tardarías en cada una y si ves algún problema?
 
-## Antes de todo: correos que rebotan (urgente)
-
-`asesor@girbauoccidente.com` y `asesor@clmmexico.com` rebotan todos los avisos. Ayer fueron 12, incluido un contacto de Girbau con nombre y teléfono.
-- ¿Se puede mandar los avisos de esas dos marcas a otro correo que sí funcione, mientras el cliente arregla los buzones?
-- ¿Y que, si un aviso rebota, se reenvíe solo a un correo de respaldo del equipo?
-
 ## Opción 1: código en el mensaje de WhatsApp (la más rápida)
 
 - Al tocar el botón, se genera un código corto por clic, por ejemplo `GS-4821` (marca y 4 caracteres).
