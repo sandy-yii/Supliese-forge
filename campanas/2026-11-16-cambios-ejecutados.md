@@ -48,7 +48,7 @@ Medir: semana del 17 al 23 contra la semana anterior (contactos de Laundry Solut
 
 | Hora | Cuenta | Cambio | Script | Resultado |
 |---|---|---|---|---|
-| ~16:20 | Kingstar | Tope por clic de «AB · Lavandería hotelera e institucional» **$18 → $21** (+17%). Mangles no pasó el candado (22% por puja en 7 días). | `campanas/salida/kingstar-subir-tope-hoteles-y-mangles.js` | Vista previa correcta; falta el registro de Ejecutar. Deshacer: `var DESHACER = {'AB · Lavandería hotelera e institucional': 18};` |
+| ~16:20 | Kingstar | Tope por clic de «AB · Lavandería hotelera e institucional» **$18 → $21** (+17%). Mangles no pasó el candado (22% por puja en 7 días). | `campanas/salida/kingstar-subir-tope-hoteles-y-mangles.js` | **Aplicado** (confirmado a las 23:06: «tope actual: $21»). Deshacer: `var DESHACER = {'AB · Lavandería hotelera e institucional': 18};` |
 | ~23:00 | Girbau | **3 anuncios nuevos** (copia con ruta distinta) al lado de los rechazados por «destino no operativo»: Marca Girbau › Girbau, Por capacidad y sector › Capacidad y › Sector. La página `girbauoccidente.com/` abre (200 desde Google) y otros 2 anuncios con la misma página ya estaban aprobados. | `campanas/salida/girbau-copiar-anuncios-rechazados.js` | 3 creados con éxito, según Sandy. Deshacer: la lista «PARA DESHACER» del registro (pendiente de copiar aquí). |
 
 **Siguiente en Girbau (cuando los anuncios nuevos estén aprobados):** fotos a Por capacidad y sector, Smart Plus y Servicio técnico (`fotos-a-campanas-sin-fotos-todas-las-cuentas.js`, solo Girbau).
