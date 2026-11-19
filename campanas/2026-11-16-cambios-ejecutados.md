@@ -52,3 +52,12 @@ Medir: semana del 17 al 23 contra la semana anterior (contactos de Laundry Solut
 | ~23:00 | Girbau | **3 anuncios nuevos** (copia con ruta distinta) al lado de los rechazados por «destino no operativo»: Marca Girbau › Girbau, Por capacidad y sector › Capacidad y › Sector. La página `girbauoccidente.com/` abre (200 desde Google) y otros 2 anuncios con la misma página ya estaban aprobados. | `campanas/salida/girbau-copiar-anuncios-rechazados.js` | 3 creados con éxito, según Sandy. Deshacer: la lista «PARA DESHACER» del registro (pendiente de copiar aquí). |
 
 **Siguiente en Girbau (cuando los anuncios nuevos estén aprobados):** fotos a Por capacidad y sector, Smart Plus y Servicio técnico (`fotos-a-campanas-sin-fotos-todas-las-cuentas.js`, solo Girbau).
+
+# Cambios ejecutados · jueves 19 nov 2026
+
+| Hora | Cuenta | Cambio | Script | Resultado |
+|---|---|---|---|---|
+| ~10:05 | Gamesail | Tope por clic de «AB · Lavadoras para ropa y sábanas» **$14 → $16** (+14%). Vista previa: pierde 54% por puja y 20% por presupuesto en 7 días; 24 contactos en 14 días. | `campanas/salida/gamesail-subir-tope-lavadoras-para-ropa.js` | Ejecutado sin errores, según Sandy. Deshacer: `var DESHACER = {'AB · Lavadoras para ropa y sábanas': 14};` |
+
+Medir el viernes 20: contactos de Gamesail (Google y Resend) y gasto contra el promedio de la marca. Riesgo dicho: con 20% perdido por presupuesto, el dinero del día puede acabarse un poco antes (mismos contactos, clic hasta $2 más caro).
+No se aplicó `empujon-de-hoy-una-por-cuenta.js` (Sandy prefirió un solo cambio).

@@ -50,7 +50,7 @@ function revisar() {
   Logger.log('');
   Logger.log('==== 4. EXTENSIONES RECHAZADAS ====');
   var n = 0;
-  leer("SELECT campaign.name, asset.name, asset.type, campaign_asset.field_type, asset.policy_summary.approval_status, asset.policy_summary.policy_topic_entries " +
+  leer("SELECT campaign.name, campaign.status, asset.name, asset.type, campaign_asset.field_type, asset.policy_summary.approval_status, asset.policy_summary.policy_topic_entries " +
     "FROM campaign_asset WHERE campaign.status = 'ENABLED' AND campaign_asset.status = 'ENABLED'", 'las extensiones', function (r) {
       var ps = (r.asset || {}).policySummary || {};
       if (ps.approvalStatus !== 'DISAPPROVED') return;
