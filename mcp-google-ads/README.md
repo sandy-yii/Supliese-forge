@@ -1,48 +1,39 @@
-# MCP de Google Ads · plan de instalación (rama `claude/mcp-google-ads`, 18 nov 2026)
+# Leer Google Ads desde Claude · conector TrueClicks (19 nov 2026)
 
-**Qué es:** un «conector» que deja que Claude lea directo las cuentas de Google Ads (campañas, clics, gasto, búsquedas, rechazos) sin que Sandy tenga que correr un script y copiar el registro.
+**Qué es:** un conector que deja que Claude lea directo las 5 cuentas de Google Ads de Supliese (campañas, clics, gasto, conversiones, búsquedas, auditorías) sin que Sandy corra un script y copie el registro.
 
-**Cuál:** el oficial de Google, `googleads/google-ads-mcp` (GitHub).
+**Regla (de Sandy): SOLO LEER.** Con el conector nunca se edita, pausa, activa ni mueve nada. Los cambios siguen siendo con script: Vista previa → OK de Sandy → Ejecutar (ver `CLAUDE.md`).
 
-## Lo que puede y no puede hacer
+## Lo que quedó funcionando
 
-| Puede | Cómo lo dejamos |
-|---|---|
-| Consultar cualquier dato con GAQL (`search`), ver campos, listar cuentas | **Prendido** |
-| Crear recursos (textos, imágenes, enlaces, fragmentos) | **Apagado** en `tools_config.yaml` |
-| Crear y poner etiquetas | **Apagado** en `tools_config.yaml` |
+- Conector **TrueClicks** agregado en claude.ai → Configuración → Conectores → conector personalizado, con la dirección `https://data.trueclicks.com/mcp/`.
+- Inicio de sesión en TrueClicks y Google Ads con **gamesailmx@gmail.com**.
+- No pide token de desarrollador, proyecto de Google Cloud ni instalar nada. Funciona en las sesiones en la nube de Claude Code.
+- El propio conector se declara de solo lectura. Sus herramientas (revisadas el 19 nov 2026) solo consultan: lista de cuentas, consultas GAQL (`google_ads_execute_report`), auditorías, alertas, metas de ritmo y tareas. Ninguna cambia campañas, presupuestos ni pujas.
 
-Así queda **solo lectura**. Los cambios en las cuentas se siguen haciendo con script (Vista previa → OK de Sandy → Ejecutar), como dice `CLAUDE.md`. Aunque el servidor tiene un paso de «proponer y confirmar» para cambios, no se usa.
+## Cuentas que ve (prueba del 19 nov 2026, datos del 18 nov)
 
-## Qué se necesita (todo con **gamesailmx@gmail.com**, nunca con cuentas personales)
+| Cuenta en Google Ads | Número | Id en TrueClicks | Leyó |
+|---|---|---|---|
+| Supliese Gomez (Quick Laundry) | 256-397-2201 | 221454 | Sí |
+| Gamesail nueva | 118-347-6484 | 221457 | Sí |
+| CLM Equipos de Lavado (Kingstar/CLM) | 993-525-8739 | 221455 | Sí |
+| Servicio para Lavanderia (Laundry Solutions) | 265-909-2662 | 221453 | Sí |
+| Girbau | 860-582-6837 | 221456 | Sí |
 
-1. **Proyecto de Google Cloud** con la **Google Ads API** habilitada.
-2. **Cliente OAuth** de tipo «Escritorio» en ese proyecto (se descarga un JSON).
-3. **Token de desarrollador de Google Ads** (cuenta de administrador → Administración → Centro de API). El README del MCP no lo menciona, pero la Google Ads API siempre lo pide: lo confirmamos al instalar. Con nivel de prueba solo funciona con cuentas de prueba; hace falta un nivel que permita cuentas reales.
-4. **Iniciar sesión** con gcloud:
-   `gcloud auth application-default login --scopes=https://www.googleapis.com/auth/adwords,https://www.googleapis.com/auth/cloud-platform --client-id-file=ARCHIVO_DEL_CLIENTE.json`
-   Eso guarda un archivo de credenciales; su ruta va en `GOOGLE_APPLICATION_CREDENTIALS`.
-5. **Python 3.11+ y pipx** en la computadora donde corra.
-6. **Número de la cuenta de administrador** (MCC) en `GOOGLE_ADS_LOGIN_CUSTOMER_ID`, para ver las 5 cuentas.
+Las herramientas piden el **Id de TrueClicks**, no el número de Google Ads.
 
-La configuración de ejemplo está en `mcp.ejemplo.json` (sin ningún dato real).
+Consulta de prueba: reporte `customer`, campos `metrics.clicks`, `metrics.cost_micros` (gasto × 1,000,000) y `metrics.conversions`, con fecha de inicio y fin el mismo día.
 
-## Dónde instalarlo (decisión pendiente)
+## Lo que no se usó: el conector oficial de Google (`googleads/google-ads-mcp`)
 
-| Opción | A favor | En contra |
-|---|---|---|
-| **A. En la computadora de Sandy** (Claude Code o la app de escritorio) — *recomendada* | El inicio de sesión de Google se queda en su máquina; se hace una vez | Hay que instalar Python, pipx y gcloud una vez |
-| B. En las sesiones en la nube como esta | No instala nada en su compu | El archivo de credenciales tendría que guardarse como secreto del entorno; las sesiones se borran y el acceso de Google caduca cada hora, así que es más frágil |
+Queda como plan B. Lo que se verificó en su código (17 nov 2026), por si algún día se instala:
+- `tools_config.yaml` lleva todo debajo de `namespaces:`. Sin esa clave **prende todas las herramientas, también las que escriben**. El de esta carpeta ya está corregido y deja solo lectura.
+- El token de desarrollador va en la variable `GOOGLE_ADS_DEVELOPER_TOKEN`, aunque su README no lo menciona. La cuenta de administrador va en `GOOGLE_ADS_LOGIN_CUSTOMER_ID`.
+- Necesita Python 3.11+, pipx, gcloud, proyecto de Google Cloud con la Google Ads API, cliente OAuth de escritorio y token de desarrollador con nivel que lea cuentas reales.
+- Ejemplo de configuración, sin datos reales: `mcp.ejemplo.json`.
 
 ## Seguridad
 
-- El archivo de credenciales y el token de desarrollador **nunca** se suben a este repositorio ni se pegan en el chat.
-- Quien tenga el MCP conectado puede **leer** los datos de las 5 cuentas.
-- `tools_config.yaml` se revisa antes de cada actualización del MCP, por si Google agrega herramientas nuevas que cambien cuentas.
-
-## Pasos siguientes
-
-1. Sandy decide dónde se instala (A o B).
-2. Revisar en el Centro de API de la cuenta de administrador si ya hay token de desarrollador y su nivel.
-3. Crear o reutilizar el proyecto de Google Cloud con gamesailmx (puede servir el de Analytics, si existe).
-4. Instalar y probar con una consulta de solo lectura, por ejemplo los clics de ayer de las 5 cuentas.
+- Ningún token, archivo de credenciales ni contraseña se sube a este repositorio ni se pega en el chat.
+- Los datos de las cuentas pasan por TrueClicks, una empresa externa. Para quitarle el acceso: claude.ai → Configuración → Conectores, y en la cuenta de Google de gamesailmx → Seguridad → Apps con acceso.

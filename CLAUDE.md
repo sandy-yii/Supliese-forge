@@ -5,6 +5,8 @@
 - En los prompts de la extensión se usa **solo la cuenta de Google gamesailmx@gmail.com**. Nunca las cuentas personales de la usuaria (ni para Ads, Analytics, Search Console, soporte, apelaciones o formularios). Todo correo de contacto que se escriba en un formulario o apelación es gamesailmx@gmail.com. Si un paso abre otra cuenta o trae otro correo ya escrito, la extensión se detiene y avisa.
 - **Script primero.** Todo lo que se pueda hacer con un script de Google Ads (leer, cambiar URL, presupuestos, negativas, grupos de recursos, etc.) se entrega como script (Vista previa y luego Ejecutar con OK). La extensión solo para lo que forzosamente es a mano (apelaciones, formularios de soporte, Analytics, ajustes que la API no permite).
 
+- **Conector TrueClicks (Google Ads): SOLO LEER, siempre.** Regla de Sandy (19 nov 2026): con el conector nunca se edita, pausa, activa ni mueve nada en las cuentas. Se usa para consultar datos (clics, gasto, conversiones, búsquedas, auditorías, alertas). Cualquier cambio sigue el camino de siempre: script con Vista previa → OK de Sandy → Ejecutar. Si algún día el conector ofrece herramientas que escriben, no se usan.
+
 ## Regla de oro: que nunca dejen de llegar leads
 Toda estrategia, script o cambio se diseña para que **ningún lead se frene**. Antes de proponer algo, revisar:
 - **Agregar antes que quitar.** Anuncios, extensiones, palabras o páginas nuevas se suman; lo viejo que trae se queda encendido hasta que lo nuevo demuestre que funciona.
