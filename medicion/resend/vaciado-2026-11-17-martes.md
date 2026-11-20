@@ -36,3 +36,24 @@
 - **Consecuencia:** desde el jueves, Resend cuenta solo contactos con datos. No se puede comparar con lunes a miércoles (ahí ~2/3 eran «abrieron WhatsApp»). Para el conteo diario: conversiones de Google (`como-van-hoy-5-cuentas.js`) + hoja de vendedores.
 - **Confirmado por Sandy (11:25): fue a propósito**, porque esos avisos eran de gente que no mandaba mensaje.
 - Hasta las 11:11: 1 aviso real (Quick Laundry, formulario 9:43). Google contaba 4 contactos a las 9:56.
+
+## Jueves 19 nov · cierre (21:15, Google con algunas horas de retraso)
+
+**Resend, contactos con nombre y teléfono: 3 seguros + 1 dudoso.**
+- 9:43 Quick Laundry, formulario: 2 lavadoras + 2 secadoras, lavandería nueva (Puebla).
+- 12:49 Gamesail, formulario («Por capacidad»): lavadora 17 kg (León).
+- 16:09 Gamesail, formulario («Por capacidad»): lavadora 20 kg.
+- 20:53 Kingstar, WhatsApp con nombre («Alta capacidad»): **dudoso** (nombre de broma; el miércoles 18 hubo otro igual en Gamesail con otro teléfono). El original al asesor rebotó; las 4 copias sí llegaron.
+
+**Google (conversiones = tocó WhatsApp o formulario):**
+
+| Marca | Clics | Contactos |
+|---|---|---|
+| Gamesail | 134 | 3 |
+| Quick Laundry | 34 | 5 |
+| Girbau | 63 | 2 |
+| Kingstar | 22 | 1 |
+| Laundry Solutions | 16 | 0 |
+| Total | 269 | 11 |
+
+Gamesail con el tope en $16: 134 clics (miércoles 75) y gasto por encima del presupuesto del día; contactos parecidos al miércoles (2 formularios buenos, ambos en «Por capacidad»). Se mide el viernes completo antes de subir presupuesto.
