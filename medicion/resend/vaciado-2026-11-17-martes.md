@@ -57,3 +57,9 @@
 | Total | 269 | 11 |
 
 Gamesail con el tope en $16: 134 clics (miércoles 75) y gasto por encima del presupuesto del día; contactos parecidos al miércoles (2 formularios buenos, ambos en «Por capacidad»). Se mide el viernes completo antes de subir presupuesto.
+
+**Hoja de vendedores del 19 (sin datos personales):**
+- 3 renglones de prospección en frío (LinkedIn): no son de anuncios, no se cuentan.
+- **Kingstar: 2 por WhatsApp, los dos BUENOS** (uno pide equipo para hospitales, otro es un hotel). No pasaron por Resend: escribieron directo. Coincide con «Hotelera», la del tope subido el 18.
+- Quick Laundry: el formulario de Puebla quedó **MALO** (busca equipo para departamentos).
+- Gamesail: se llamó al formulario del miércoles 19:33 (doméstico). **Faltan en la hoja los 2 formularios de Gamesail de hoy** (17 kg y 20 kg).
