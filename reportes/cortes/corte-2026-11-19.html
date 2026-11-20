@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Corte del jueves</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+/* Layout: una columna de lectura; tres tarjetas para comparar opciones, tabla por marca, listas de acciones */
+:root{
+  --bg:#f5f7fa; --surface:#ffffff; --ink:#1b2230; --mute:#5a6475; --line:#e1e5ec;
+  --good:#1a8a52; --good-bg:#e4f4eb; --warn:#a3520c; --warn-bg:#fcefe1; --info:#2a5fa8; --info-bg:#e6eefa;
+  --ql:#2a78d6; --ks:#eb6834; --ls:#1baf7a; --gb:#c98500; --gs:#d55181;
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --body:"Source Sans 3","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12161d; --surface:#1b212b; --ink:#e8ecf2; --mute:#a0a9b8; --line:#2c3441;
+  --good:#4cc786; --good-bg:#183326; --warn:#f0a35e; --warn-bg:#3a2a1a; --info:#8db4ec; --info-bg:#1b2840;
+  --ql:#3987e5; --ks:#d95926; --ls:#199e70; --gb:#c98500; --gs:#d55181; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161d; --surface:#1b212b; --ink:#e8ecf2; --mute:#a0a9b8; --line:#2c3441;
+  --good:#4cc786; --good-bg:#183326; --warn:#f0a35e; --warn-bg:#3a2a1a; --info:#8db4ec; --info-bg:#1b2840;
+  --ql:#3987e5; --ks:#d95926; --ls:#199e70; --gb:#c98500; --gs:#d55181; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
+.wrap{max-width:900px;margin:0 auto;padding-block:36px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:34px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(28px,5vw,40px)}h2{font-size:24px}h3{font-size:19px}
+.eyebrow{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);font-weight:700;margin:0 0 6px}
+.lead{color:var(--mute);margin:8px 0 0;max-width:64ch}
+section{display:grid;gap:12px}
+.promise{background:var(--warn-bg);border:1px solid var(--warn);border-radius:12px;padding:16px 18px;display:grid;gap:6px}
+.promise p{margin:0}
+.promise .t{font-family:var(--display);font-size:21px;color:var(--warn);font-weight:700}
+.callout{background:var(--info-bg);border-radius:12px;padding:14px 16px;display:grid;gap:6px}
+.callout p{margin:0}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:12px}
+.opt{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:10px;align-content:start;min-width:0}
+.opt.main{border:2px solid var(--good)}
+.opt h3{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.opt dl{margin:0;display:grid;gap:8px}
+.opt dt{font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);font-weight:600}
+.opt dd{margin:0;font-size:26px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.15}
+.opt dd small{display:block;font-size:14.5px;font-weight:400;color:var(--mute);line-height:1.4}
+.opt.main dd.esp{color:var(--good)}
+.chip{display:inline-block;font-size:12.5px;font-weight:700;border-radius:20px;padding:2px 10px;white-space:nowrap;font-family:var(--body)}
+.ok{background:var(--good-bg);color:var(--good)}.inf{background:var(--info-bg);color:var(--info)}.mute{background:var(--bg);color:var(--mute);border:1px solid var(--line)}
+.tbl{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:680px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);font-size:16px;vertical-align:top}
+th{font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);font-weight:600}
+th.grp{text-align:center;border-bottom:1px solid var(--line)}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;white-space:nowrap}
+td.sep,th.sep{border-left:1px solid var(--line)}
+tfoot td{font-weight:700;border-top:1px solid var(--line)}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;vertical-align:middle}
+.note{color:var(--mute);font-size:15px;margin:0;max-width:72ch}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:14px}
+.two article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:8px;align-content:start;min-width:0}
+.two ul{margin:0;padding-left:20px;display:grid;gap:6px}
+.two li span{color:var(--mute)}
+ul.list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+ul.list li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+ul.list b{display:block}
+ul.list span{color:var(--mute);font-size:15.5px}
+ol.steps{list-style:none;margin:0;padding:0;display:grid;gap:12px;counter-reset:s}
+ol.steps>li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px 14px 58px;position:relative;counter-increment:s}
+ol.steps>li::before{content:counter(s);position:absolute;left:16px;top:14px;width:28px;height:28px;border-radius:50%;background:var(--info-bg);color:var(--info);font-weight:700;display:grid;place-items:center;font-size:15px}
+ol.steps b{display:block}
+ol.steps span{color:var(--mute);font-size:15.5px}
+.kw{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:14px}
+.kw article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:8px;align-content:start;min-width:0}
+.kw table{min-width:0}
+.kw th,.kw td{padding:6px 0;font-size:15.5px}
+.kw td.num,.kw th.num{padding-left:12px}
+.kw .sub{color:var(--mute);font-size:14.5px;margin:0}
+.kw h3{display:flex;align-items:center}
+.look{background:var(--warn-bg);color:var(--warn)}
+.neg{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}
+.neg article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px;display:grid;gap:6px;align-content:start;min-width:0}
+.neg b{display:block}
+.neg span{color:var(--mute);font-size:15px}
+@media (max-width:480px){body{font-size:16px}.opt dd{font-size:24px}}
+</style>
+<style>
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.kpi .n{font-family:var(--display);font-size:34px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.1}
+.kpi .l{color:var(--mute);font-size:15px}
+ul{margin:0;padding-left:20px;display:grid;gap:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<p class="eyebrow">Grupo Supliese · corte interno</p>
+<h1>Corte del jueves 19 de noviembre</h1>
+<p class="lead">Google Ads con el día ya cerrado (leído el viernes 20), avisos de la página con nombre y teléfono, y hoja de vendedores. «Google» = tocó WhatsApp, el teléfono o envió el formulario desde un anuncio.</p>
+</header>
+
+<section class="kpis">
+<div class="kpi"><div class="n">290</div><div class="l">clics desde anuncios</div></div>
+<div class="kpi"><div class="n">$2,181</div><div class="l">gasto del día, 5 marcas</div></div>
+<div class="kpi"><div class="n">12</div><div class="l">contactos que registró Google</div></div>
+<div class="kpi"><div class="n">3 <small style="font-size:16px;color:var(--mute)">+1 dudoso</small></div><div class="l">dejaron nombre y teléfono</div></div>
+<div class="kpi"><div class="n">2</div><div class="l">clientes buenos confirmados (Kingstar)</div></div>
+</section>
+
+<section>
+<h2>Por marca</h2>
+<div class="tbl"><table>
+<thead><tr><th>Marca</th><th class="num">Clics</th><th class="num">Gasto</th><th class="num">Google</th><th class="num">Con datos</th><th class="sep">Hoja de vendedores</th></tr></thead>
+<tbody>
+<tr><td><span class="dot" style="background:var(--gs)"></span>Gamesail</td><td class="num">142</td><td class="num">$798</td><td class="num">4</td><td class="num">2</td><td class="sep"><span class="chip look">faltan anotar</span></td></tr>
+<tr><td><span class="dot" style="background:var(--gb)"></span>Girbau</td><td class="num">64</td><td class="num">$406</td><td class="num">2</td><td class="num">0</td><td class="sep"><span class="chip mute">no aparece</span></td></tr>
+<tr><td><span class="dot" style="background:var(--ql)"></span>Quick Laundry</td><td class="num">38</td><td class="num">$425</td><td class="num">5</td><td class="num">1</td><td class="sep"><span class="chip mute">1 malo (departamentos)</span></td></tr>
+<tr><td><span class="dot" style="background:var(--ks)"></span>Kingstar</td><td class="num">23</td><td class="num">$350</td><td class="num">1</td><td class="num">1 dudoso</td><td class="sep"><span class="chip ok">2 buenos</span> hotel y hospitales</td></tr>
+<tr><td><span class="dot" style="background:var(--ls)"></span>Laundry Solutions</td><td class="num">23</td><td class="num">$202</td><td class="num">0</td><td class="num">0</td><td class="sep">—</td></tr>
+</tbody>
+<tfoot><tr><td>Suma de las 5 marcas</td><td class="num">290</td><td class="num">$2,181</td><td class="num">12</td><td class="num">3 +1</td><td class="sep">2 buenos</td></tr></tfoot>
+</table></div>
+</section>
+
+<section>
+<h2><span class="dot" style="background:var(--ks)"></span>Kingstar</h2>
+<div class="tbl"><table><thead><tr><th>Campaña</th><th class="num">Clics</th><th class="num">Gasto</th><th class="num">Google</th><th class="sep">Notas</th></tr></thead><tbody>
+<tr><td>Alta capacidad 60 kg o más</td><td class="num">11</td><td class="num">$145</td><td class="num">0</td><td class="sep">Sale en 73% de las búsquedas. De aquí vino el aviso dudoso de las 8:53 p.m.</td></tr>
+<tr><td>Mangles y planchado</td><td class="num">6</td><td class="num">$93</td><td class="num">0</td><td class="sep"></td></tr>
+<tr><td><b>Lavandería hotelera e institucional</b></td><td class="num">5</td><td class="num">$90</td><td class="num">1</td><td class="sep">Tope en $21 desde el 18. <b>Ahora pierde 50% por presupuesto.</b> Los 2 buenos encajan aquí.</td></tr>
+<tr><td>Túnel de lavado</td><td class="num">1</td><td class="num">$22</td><td class="num">0</td><td class="sep"></td></tr>
+</tbody></table></div>
+</section>
+
+<section>
+<h2><span class="dot" style="background:var(--gs)"></span>Gamesail</h2>
+<div class="tbl"><table><thead><tr><th>Campaña</th><th class="num">Clics</th><th class="num">Gasto</th><th class="num">Google</th><th class="sep">Notas</th></tr></thead><tbody>
+<tr><td>Lavadoras para ropa y sábanas (tope $16)</td><td class="num">70</td><td class="num">$361</td><td class="num">2</td><td class="sep">2 toques de WhatsApp</td></tr>
+<tr><td><b>Lavadoras por capacidad y precio</b></td><td class="num">50</td><td class="num">$234</td><td class="num">1</td><td class="sep"><b>2 formularios</b> (17 kg y 20 kg) + 1 clic al teléfono: ~$78 por contacto</td></tr>
+<tr><td>Secadoras industriales</td><td class="num">11</td><td class="num">$80</td><td class="num">0</td><td class="sep"></td></tr>
+<tr><td>Competencia depurada</td><td class="num">5</td><td class="num">$48</td><td class="num">1</td><td class="sep"></td></tr>
+<tr><td>Mangles y planchado</td><td class="num">3</td><td class="num">$36</td><td class="num">0</td><td class="sep"></td></tr>
+<tr><td>Hoteles y hospitales</td><td class="num">2</td><td class="num">$39</td><td class="num">0</td><td class="sep"></td></tr>
+<tr><td>Marca Gamesail</td><td class="num">1</td><td class="num">$0</td><td class="num">0</td><td class="sep"></td></tr>
+</tbody></table></div>
+<div class="callout"><p><b>El tope de $16 no dio más contactos.</b> Miércoles (tope $14): 75 clics, $415, 4 contactos. Jueves (tope $16): 142 clics, $798, 4 contactos. <b>Hoy se regresa a $14.</b> Google no registró los 2 formularios: solo cuenta a quien acepta cookies.</p></div>
+</section>
+
+<section>
+<h2><span class="dot" style="background:var(--ql)"></span>Quick Laundry</h2>
+<div class="tbl"><table><thead><tr><th>Campaña</th><th class="num">Clics</th><th class="num">Gasto</th><th class="num">Google</th><th class="sep">Notas</th></tr></thead><tbody>
+<tr><td>Equipo para lavandería</td><td class="num">12</td><td class="num">$308</td><td class="num">1</td><td class="sep">Sigue perdiendo 90% de las búsquedas por presupuesto</td></tr>
+<tr><td><b>Autoservicio y monedas</b></td><td class="num">16</td><td class="num">$59</td><td class="num">3</td><td class="sep">La más barata: ~$20 por toque de WhatsApp. Hoy le sube el tope.</td></tr>
+<tr><td>Campaña Search Marcas</td><td class="num">5</td><td class="num">$42</td><td class="num">1</td><td class="sep">El formulario de Puebla (el vendedor lo marcó malo)</td></tr>
+<tr><td>Emprendimiento</td><td class="num">5</td><td class="num">$16</td><td class="num">0</td><td class="sep"></td></tr>
+</tbody></table></div>
+</section>
+
+<section>
+<h2><span class="dot" style="background:var(--gb)"></span>Girbau</h2>
+<div class="tbl"><table><thead><tr><th>Campaña</th><th class="num">Clics</th><th class="num">Gasto</th><th class="num">Google</th><th class="sep">Notas</th></tr></thead><tbody>
+<tr><td>Máximo rendimiento</td><td class="num">56</td><td class="num">$234</td><td class="num">2</td><td class="sep">2 toques de WhatsApp</td></tr>
+<tr><td>Marca Girbau</td><td class="num">8</td><td class="num">$172</td><td class="num">0</td><td class="sep">Volvió a salir con los anuncios nuevos: 55% de las búsquedas, $21 por clic</td></tr>
+</tbody></table></div>
+</section>
+
+<section>
+<h2><span class="dot" style="background:var(--ls)"></span>Laundry Solutions</h2>
+<div class="tbl"><table><thead><tr><th>Campaña</th><th class="num">Clics</th><th class="num">Gasto</th><th class="num">Google</th><th class="sep">Notas</th></tr></thead><tbody>
+<tr><td>Servicio técnico industrial</td><td class="num">8</td><td class="num">$102</td><td class="num">0</td><td class="sep">Pierde 58% por puja y 7% por presupuesto</td></tr>
+<tr><td>Reparación y mantenimiento</td><td class="num">15</td><td class="num">$99</td><td class="num">0</td><td class="sep">Pierde 67% por puja</td></tr>
+</tbody></table></div>
+</section>
+
+<section>
+<h2>Qué cambia para hoy, viernes 20</h2>
+<ol class="steps">
+<li><b>Gamesail: regresar el tope de «Para ropa» a $14</b><span>Gastó casi el doble por los mismos contactos. Ya no se sube su presupuesto el lunes.</span></li>
+<li><b>Quick Laundry: tope de «Autoservicio» $14 → $16</b><span>La campaña más barata de todas las marcas.</span></li>
+<li><b>Kingstar: anuncio nuevo en «Túnel» hacia kingstar.com.mx</b><span>El martes, en lugar de subir el tope de «Hotelera», se sube su presupuesto +20% ($80 → $96), porque ahora se queda sin dinero.</span></li>
+<li><b>Laundry Solutions: presupuesto de «Servicio técnico» $75 → $90</b><span>Pierde más por puja que por dinero: el efecto puede ser chico. Se mide el lunes.</span></li>
+<li><b>Girbau: agregar «temas de búsqueda» a Máximo rendimiento</b><span>Para que también salga cuando alguien busca.</span></li>
+</ol>
+</section>
+
+<p class="note">Fuentes: Google Ads (conector TrueClicks, solo lectura), avisos de la página (Resend) y hoja de vendedores del 19. Sin datos personales.</p>
+</div>
+</body>
+</html>
