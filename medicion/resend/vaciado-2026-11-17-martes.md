@@ -63,3 +63,16 @@ Gamesail con el tope en $16: 134 clics (miércoles 75) y gasto por encima del pr
 - **Kingstar: 2 por WhatsApp, los dos BUENOS** (uno pide equipo para hospitales, otro es un hotel). No pasaron por Resend: escribieron directo. Coincide con «Hotelera», la del tope subido el 18.
 - Quick Laundry: el formulario de Puebla quedó **MALO** (busca equipo para departamentos).
 - Gamesail: se llamó al formulario del miércoles 19:33 (doméstico). **Faltan en la hoja los 2 formularios de Gamesail de hoy** (17 kg y 20 kg).
+
+## Viernes 20 nov · cierre (leído a las 00:21 del sábado)
+
+**Resend, con nombre y teléfono: 4 reales + 1 broma.**
+- 11:15 Gamesail, formulario («Por capacidad»): emprendedor en Puebla, 3 lavadoras de 20 kg, pregunta por crédito, lavandería nueva.
+- 16:12 Quick Laundry, formulario: lavandería de autoservicio nueva, 50–100 m², 5 lavadoras + 5 secadoras (estimado ~19,700 USD).
+- 18:26 Gamesail, formulario («Por capacidad»): hotel en Hermosillo, lavadora de 100 kg.
+- 21:16 Quick Laundry, WhatsApp con nombre («Para negocio»): precio de lavadora para su negocio.
+- 13:59 Kingstar, WhatsApp con nombre de broma (no se cuenta).
+- Desde el viernes los avisos de Quick Laundry le llegan a otro vendedor (rperez@) en lugar de llopez@.
+
+**Google (puede ajustarse unas horas):** Gamesail 114 clics y 9 contactos («Por capacidad» 49 clics, 5; «Para ropa» con tope $16, 40 clics, 2); Kingstar 34 clics y 4 («Alta capacidad» 3, gastó el doble de su presupuesto); Quick Laundry 29 y 1; Laundry Solutions 15 y 1; Girbau 65 y 1. Total ~257 clics, ~16 contactos.
+Los cambios del viernes del plan no se aplicaron (el tope de Gamesail sigue en $16).
