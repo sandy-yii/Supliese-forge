@@ -1,5 +1,5 @@
 // TEXTOS DESTACADOS Y FRAGMENTOS QUE FALTAN - Laundry Solutions, Gamesail y Girbau (23 nov 2026)
-// Pegar en la cuenta de ADMINISTRADOR.
+// Pegar en la cuenta de ADMINISTRADOR (o dentro de cada cuenta: entonces solo cambia esa).
 // POR QUE: los anuncios salen mas grandes y con mas razones para escribir cuando tienen textos destacados
 //   ("Certificaci\u00f3n ISO 9001", "Cotiza por WhatsApp"...) y fragmentos (lista de servicios o equipos).
 //   Gamesail solo los tiene en 3 grupos de Marca y Competencia; Girbau no los tiene en sus campanas de busqueda;

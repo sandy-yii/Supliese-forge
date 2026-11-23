@@ -1,5 +1,5 @@
 // ENLACES QUE YA NO SIRVEN - Gamesail y Kingstar (23 nov 2026)
-// Pegar en la cuenta de ADMINISTRADOR.
+// Pegar en la cuenta de ADMINISTRADOR (o dentro de cada cuenta: entonces solo cambia esa).
 // POR QUE: el 18-21 nov cambiaron las paginas (nota de Rodolfo del 22-nov):
 //   Gamesail: #tamanos y #modelos ya no existen (abren la portada arriba).
 //   Kingstar: "12 Modelos" lleva a #modelos, que ya no muestra la tabla de 12 modelos.
@@ -25,12 +25,19 @@ function main() {
   var vista = AdsApp.getExecutionInfo().isPreview(), salida = [];
   Logger.log('ENLACES NUEVOS' + (DESHACER.length ? ' - DESHACER' : '') + (vista ? ' (VISTA PREVIA: no cambia nada)' : ' (EJECUTAR)'));
   Logger.log('');
-  var it = AdsManagerApp.accounts().withIds(Object.keys(CAMBIOS)).get();
-  while (it.hasNext()) {
-    var a = it.next(); AdsManagerApp.select(a);
-    try { salida = salida.concat(DESHACER.length ? deshacer(a.getCustomerId(), vista) : cuenta(a.getCustomerId(), vista)); }
-    catch (e) { Logger.log('  ERROR: ' + e.message); }
-    Logger.log('');
+  if (typeof AdsManagerApp !== 'undefined') {
+    var it = AdsManagerApp.accounts().withIds(Object.keys(CAMBIOS)).get();
+    while (it.hasNext()) {
+      var a = it.next(); AdsManagerApp.select(a);
+      try { salida = salida.concat(DESHACER.length ? deshacer(a.getCustomerId(), vista) : cuenta(a.getCustomerId(), vista)); }
+      catch (e) { Logger.log('  ERROR: ' + e.message); }
+      Logger.log('');
+    }
+  } else {
+    // Pegado dentro de una sola cuenta: solo trabaja en esa cuenta.
+    var cidG = AdsApp.currentAccount().getCustomerId();
+    if (!CAMBIOS[cidG]) { Logger.log('Esta cuenta (' + cidG + ') no esta en la lista. No se hizo nada.'); return; }
+    salida = DESHACER.length ? deshacer(cidG, vista) : cuenta(cidG, vista);
   }
   if (!vista && salida.length) Logger.log('PARA DESHACER: var DESHACER = [' + salida.join(', ') + '];');
   Logger.log(vista ? 'FIN. Vista previa: no se cambio nada. Mandame el registro.' : 'FIN. Mandame el registro.');
