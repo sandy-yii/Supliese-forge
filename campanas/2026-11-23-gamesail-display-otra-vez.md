@@ -8,3 +8,11 @@ Leído con TrueClicks (solo lectura) a las 9:30 a.m.
 - **Leads:** el último aviso real de Gamesail en Resend fue el sábado 21 a las 17:13, antes de que se prendiera Display. Desde entonces hay 0 avisos, aunque Google cuenta 9 «conversiones» de Gamesail; la mayoría salen de banners.
 - **Arreglo:** `salida/gamesail-apagar-display-otra-vez.js` (solo Gamesail, con Vista previa, candado y `DESHACER`). Además, a mano: Recomendaciones → Aplicar automáticamente → apagar «Expandir tu alcance con la Red de Display», y revisar esa pantalla en las 5 cuentas.
 - Hoy es el único cambio de Gamesail. El «todo en uno» se corrió el domingo 22 a las 22:58.
+
+## Ejecutado · 23 nov, ~9:40
+
+- Display apagado en las 7 campañas de Gamesail (registro de Sandy: «APAGADO» en las 7, 0 errores).
+- Comprobado con TrueClicks: las 7 siguen encendidas, con búsqueda de Google sí y Display no.
+- Pendiente a mano: apagar «Aplicar automáticamente» en Recomendaciones (Gamesail y revisar las 5).
+- Medir mañana: clics de Gamesail solo de búsqueda y avisos en Resend contra su promedio (jue 20 a sáb 21: 2 a 4 avisos al día).
+- Deshacer el mismo día: `DESHACER = true` en el script.
