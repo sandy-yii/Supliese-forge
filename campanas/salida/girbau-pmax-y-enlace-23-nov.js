@@ -2,8 +2,8 @@
 // Pegar en la cuenta de ADMINISTRADOR o dentro de Girbau. Solo trabaja Girbau (860-582-6837).
 // POR QUE: la pagina ya no da precios, las lavadoras van de 9 a 32 kg y "garantia" esta vetada (nota de Rodolfo del 22-nov).
 //   Los 6 grupos de Maximo rendimiento estan llenos (Google ya no deja agregar), asi que en cada grupo se cambia en UN paso:
-//   se quitan los textos con "precio", "20 a 50 kg" o "garantia" y, si hace falta espacio, los que Google califica "Bajo"
-//   (nunca los "Bueno" ni "Optimo"), y se ponen los nuevos. Todo o nada por grupo: si algo falla, ese grupo sigue igual.
+//   se quitan los textos con "precio", "20 a 50 kg" o "garantia" y, si hace falta espacio, los que MENOS se han mostrado
+//   en los ultimos 30 dias (nunca los que mas salen), y se ponen los nuevos. Todo o nada por grupo: si algo falla, sigue igual.
 // ENLACE: "Conoce Nuestras Lavadoras" decia "15 a 110 kg"; el nuevo dice "Lavadoras De 9 A 32 Kg". Primero se pone el nuevo.
 // NO toca presupuestos, pujas, campanas ni anuncios de busqueda.
 // VISTA PREVIA: muestra que quitaria y que pondria. EJECUTAR (con el OK): lo hace.
@@ -22,8 +22,6 @@ var DESCRIPCION = {
   '*': 'Lavadoras Girbau De 9 A 32 Kg, Secadoras Y Planchadoras. Pide Tu Cotizaci\u00f3n Por WhatsApp.'
 };
 var ENLACE = { viejo: 'Conoce Nuestras Lavadoras', texto: 'Conoce Nuestras Lavadoras', d1: 'Lavadoras De 9 A 32 Kg', d2: 'Series GS Y RMS Girbau' };
-// Orden para hacer espacio: primero "Bajo"; despues los que aun no tienen calificacion. Nunca "Bueno" ni "Optimo".
-var ORDEN = { LOW: 1, UNKNOWN: 2, UNSPECIFIED: 2, PENDING: 3, LEARNING: 3 };
 
 var DESHACER = [];
 
@@ -94,13 +92,23 @@ function pmax(cid, vista, quitarL, ponerL) {
       grupos[r.assetGroup.resourceName] = { nombre: r.assetGroup.name, HEADLINE: [], DESCRIPTION: [] };
     });
   leer("SELECT asset_group.resource_name, asset_group.status, campaign.status, asset_group_asset.resource_name, asset_group_asset.field_type, " +
-    "asset_group_asset.status, asset_group_asset.performance_label, asset.resource_name, asset.text_asset.text FROM asset_group_asset " +
+    "asset_group_asset.status, asset.resource_name, asset.text_asset.text FROM asset_group_asset " +
     "WHERE asset_group_asset.status = 'ENABLED' AND asset_group.status = 'ENABLED' AND campaign.status = 'ENABLED' " +
     "AND asset_group_asset.field_type IN ('HEADLINE', 'DESCRIPTION')").forEach(function (r) {
       var g = grupos[r.assetGroup.resourceName]; if (!g || !r.asset.textAsset) return;
-      g[r.assetGroupAsset.fieldType].push({ rn: r.assetGroupAsset.resourceName, asset: r.asset.resourceName, texto: r.asset.textAsset.text,
-        label: r.assetGroupAsset.performanceLabel || 'UNKNOWN' });
+      g[r.assetGroupAsset.fieldType].push({ rn: r.assetGroupAsset.resourceName, asset: r.asset.resourceName, texto: r.asset.textAsset.text, imp: 0 });
     });
+  // cuantas veces se mostro cada texto en los ultimos 30 dias (para hacer espacio quitando los que menos salen)
+  var imp = {};
+  try {
+    leer("SELECT asset_group_asset.resource_name, asset_group.status, campaign.status, metrics.impressions FROM asset_group_asset " +
+      "WHERE asset_group.status = 'ENABLED' AND campaign.status = 'ENABLED' AND asset_group_asset.field_type IN ('HEADLINE', 'DESCRIPTION') " +
+      "AND segments.date DURING LAST_30_DAYS").forEach(function (r) {
+        imp[r.assetGroupAsset.resourceName] = (imp[r.assetGroupAsset.resourceName] || 0) + Number(r.metrics.impressions || 0);
+      });
+  } catch (e) { Logger.log('  (No pude leer las impresiones: ' + e.message + '. Solo se quitan los textos con precio, 20 a 50 kg o garantia.)'); imp = null; }
+  Object.keys(grupos).forEach(function (k) { ['HEADLINE', 'DESCRIPTION'].forEach(function (t) {
+    grupos[k][t].forEach(function (x) { x.imp = imp ? (imp[x.rn] || 0) : 0; }); }); });
   var creados = {};
   Object.keys(grupos).forEach(function (grn) {
     var g = grupos[grn];
@@ -116,8 +124,8 @@ function pmax(cid, vista, quitarL, ponerL) {
       var nuevos = quiero[tipo].filter(function (t) { return !tiene[t.toLowerCase()]; });
       var esQuerido = function (x) { return quiero[tipo].some(function (t) { return t.toLowerCase() === x.texto.toLowerCase(); }); };
       var fuera = lista.filter(function (x) { return MALOS.test(x.texto) && !esQuerido(x); });
-      var resto = lista.filter(function (x) { return fuera.indexOf(x) < 0 && !esQuerido(x) && ORDEN[x.label]; })
-        .sort(function (a, b) { return ORDEN[a.label] - ORDEN[b.label]; });
+      var resto = imp ? lista.filter(function (x) { return fuera.indexOf(x) < 0 && !esQuerido(x); })
+        .sort(function (a, b) { return a.imp - b.imp; }) : [];
       // hacer espacio: quitar de "resto" lo justo; si no alcanza, se ponen menos nuevos
       while (lista.length - fuera.length + nuevos.length > LIMITE[tipo] && resto.length) fuera.push(resto.shift());
       while (lista.length - fuera.length + nuevos.length > LIMITE[tipo] && nuevos.length) nuevos.pop();
@@ -126,7 +134,7 @@ function pmax(cid, vista, quitarL, ponerL) {
     });
     if (!quitar.length && !poner.length) { Logger.log('    Ya esta limpio. Nada que cambiar.'); return; }
     var ops = [], txt = [];
-    quitar.forEach(function (q) { ops.push({ assetGroupAssetOperation: { remove: q.x.rn } }); txt.push('quitar "' + q.x.texto + '"' + (MALOS.test(q.x.texto) ? '' : ' (Google lo califica ' + q.x.label + ', para hacer espacio)')); });
+    quitar.forEach(function (q) { ops.push({ assetGroupAssetOperation: { remove: q.x.rn } }); txt.push('quitar "' + q.x.texto + '"' + (MALOS.test(q.x.texto) ? '' : ' (se mostro ' + q.x.imp + ' veces en 30 dias; para hacer espacio)')); });
     poner.forEach(function (p) {
       if (!creados[p.t]) { creados[p.t] = tmp(cid); ops.push({ assetOperation: { create: { resourceName: creados[p.t], textAsset: { text: p.t } } } }); txt.push(null); }
       ops.push({ assetGroupAssetOperation: { create: { assetGroup: grn, asset: creados[p.t], fieldType: p.tipo } } }); txt.push('poner "' + p.t + '"');
