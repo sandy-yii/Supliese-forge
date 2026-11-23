@@ -67,7 +67,7 @@ function buscar(info) {
     "AND campaign_asset.field_type IN ('CALL', 'BUSINESS_MESSAGE')").forEach(function (r) {
       revisar(r, 'campana', r.campaignAsset, r.campaign.resourceName, r.campaign.name + (r.campaign.status === 'PAUSED' ? ' (en pausa)' : ''));
     });
-  leer("SELECT ad_group.resource_name, ad_group.name, campaign.name, ad_group_asset.resource_name, ad_group_asset.field_type, " + sel +
+  leer("SELECT ad_group.resource_name, ad_group.name, ad_group.status, campaign.name, ad_group_asset.resource_name, ad_group_asset.field_type, " + sel +
     " FROM ad_group_asset WHERE ad_group_asset.status = 'ENABLED' AND ad_group.status != 'REMOVED' " +
     "AND ad_group_asset.field_type IN ('CALL', 'BUSINESS_MESSAGE')").forEach(function (r) {
       revisar(r, 'grupo', r.adGroupAsset, r.adGroup.resourceName, r.campaign.name + ' > ' + r.adGroup.name);
