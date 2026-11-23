@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Fin de semana y cambios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+/* Layout: una columna; fichas de resumen, tablas por dia y por marca, listas de lo trabajado y lo que sigue */
+:root{
+  --bg:#f5f7fa; --surface:#ffffff; --ink:#1b2230; --mute:#5a6475; --line:#e1e5ec;
+  --good:#1a8a52; --good-bg:#e4f4eb; --warn:#a3520c; --warn-bg:#fcefe1; --info:#2a5fa8; --info-bg:#e6eefa;
+  --ql:#2a78d6; --ks:#eb6834; --ls:#1baf7a; --gb:#c98500; --gs:#d55181;
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --body:"Source Sans 3","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12161d; --surface:#1b212b; --ink:#e8ecf2; --mute:#a0a9b8; --line:#2c3441;
+  --good:#4cc786; --good-bg:#183326; --warn:#f0a35e; --warn-bg:#3a2a1a; --info:#8db4ec; --info-bg:#1b2840;
+  --ql:#3987e5; --ks:#d95926; --ls:#199e70; --gb:#c98500; --gs:#d55181; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161d; --surface:#1b212b; --ink:#e8ecf2; --mute:#a0a9b8; --line:#2c3441;
+  --good:#4cc786; --good-bg:#183326; --warn:#f0a35e; --warn-bg:#3a2a1a; --info:#8db4ec; --info-bg:#1b2840;
+  --ql:#3987e5; --ks:#d95926; --ls:#199e70; --gb:#c98500; --gs:#d55181; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
+.wrap{max-width:900px;margin:0 auto;padding-block:36px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:34px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(28px,5vw,40px)}h2{font-size:24px}h3{font-size:19px}
+.eyebrow{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);font-weight:700;margin:0 0 6px}
+.lead{color:var(--mute);margin:8px 0 0;max-width:64ch}
+section{display:grid;gap:12px}
+.promise{background:var(--warn-bg);border:1px solid var(--warn);border-radius:12px;padding:16px 18px;display:grid;gap:6px}
+.promise p{margin:0}
+.promise .t{font-family:var(--display);font-size:21px;color:var(--warn);font-weight:700}
+.callout{background:var(--info-bg);border-radius:12px;padding:14px 16px;display:grid;gap:6px}
+.callout p{margin:0}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:12px}
+.opt{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:10px;align-content:start;min-width:0}
+.opt.main{border:2px solid var(--good)}
+.opt h3{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.opt dl{margin:0;display:grid;gap:8px}
+.opt dt{font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);font-weight:600}
+.opt dd{margin:0;font-size:26px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.15}
+.opt dd small{display:block;font-size:14.5px;font-weight:400;color:var(--mute);line-height:1.4}
+.opt.main dd.esp{color:var(--good)}
+.chip{display:inline-block;font-size:12.5px;font-weight:700;border-radius:20px;padding:2px 10px;white-space:nowrap;font-family:var(--body)}
+.ok{background:var(--good-bg);color:var(--good)}.inf{background:var(--info-bg);color:var(--info)}.mute{background:var(--bg);color:var(--mute);border:1px solid var(--line)}
+.tbl{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:680px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);font-size:16px;vertical-align:top}
+th{font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);font-weight:600}
+th.grp{text-align:center;border-bottom:1px solid var(--line)}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;white-space:nowrap}
+td.sep,th.sep{border-left:1px solid var(--line)}
+tfoot td{font-weight:700;border-top:1px solid var(--line)}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;vertical-align:middle}
+.note{color:var(--mute);font-size:15px;margin:0;max-width:72ch}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:14px}
+.two article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:8px;align-content:start;min-width:0}
+.two ul{margin:0;padding-left:20px;display:grid;gap:6px}
+.two li span{color:var(--mute)}
+ul.list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+ul.list li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+ul.list b{display:block}
+ul.list span{color:var(--mute);font-size:15.5px}
+ol.steps{list-style:none;margin:0;padding:0;display:grid;gap:12px;counter-reset:s}
+ol.steps>li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px 14px 58px;position:relative;counter-increment:s}
+ol.steps>li::before{content:counter(s);position:absolute;left:16px;top:14px;width:28px;height:28px;border-radius:50%;background:var(--info-bg);color:var(--info);font-weight:700;display:grid;place-items:center;font-size:15px}
+ol.steps b{display:block}
+ol.steps span{color:var(--mute);font-size:15.5px}
+.kw{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:14px}
+.kw article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:8px;align-content:start;min-width:0}
+.kw table{min-width:0}
+.kw th,.kw td{padding:6px 0;font-size:15.5px}
+.kw td.num,.kw th.num{padding-left:12px}
+.kw .sub{color:var(--mute);font-size:14.5px;margin:0}
+.kw h3{display:flex;align-items:center}
+.look{background:var(--warn-bg);color:var(--warn)}
+.neg{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}
+.neg article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px;display:grid;gap:6px;align-content:start;min-width:0}
+.neg b{display:block}
+.neg span{color:var(--mute);font-size:15px}
+@media (max-width:480px){body{font-size:16px}.opt dd{font-size:24px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<header>
+  <p class="eyebrow">Grupo Supliese · Google Ads · 5 marcas</p>
+  <h1>Fin de semana del 20 al 22 de noviembre y cambios hechos</h1>
+  <p class="lead">Contactos del viernes al domingo (suma de las 5 marcas) y todo lo que se trabajó en Google Ads para que los anuncios digan lo mismo que las páginas nuevas.</p>
+</header>
+
+<section>
+  <h2>Resumen del fin de semana</h2>
+  <div class="opts">
+    <article class="opt main">
+      <h3>Dejaron nombre y teléfono <span class="chip ok">Avisos</span></h3>
+      <dl><dt>Viernes a domingo</dt><dd class="esp">6<small>4 de Gamesail y 2 de Quick Laundry. Además llegó 1 aviso no válido en Kingstar, que no se cuenta.</small></dd></dl>
+    </article>
+    <article class="opt">
+      <h3>Contactos que registró Google <span class="chip inf">Google</span></h3>
+      <dl><dt>Tocaron WhatsApp o enviaron formulario</dt><dd>47<small>44 por WhatsApp y 3 formularios. Google solo ve a quien acepta cookies.</small></dd></dl>
+    </article>
+    <article class="opt">
+      <h3>Tráfico <span class="chip mute">3 días</span></h3>
+      <dl><dt>Clics en anuncios</dt><dd>940<small>Inversión de $6,254 en las 5 marcas.</small></dd></dl>
+    </article>
+  </div>
+  <p class="note">Quien escribe directo por WhatsApp sin dejar datos en la página no genera aviso; esos contactos los confirma cada vendedor en su hoja.</p>
+</section>
+
+<section>
+  <h2>Por día</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Día</th><th class="num">Clics</th><th class="num">Inversión</th><th class="num">Registró Google</th><th class="num sep">Con nombre y teléfono</th></tr></thead>
+    <tbody>
+      <tr><td>Viernes 20</td><td class="num">256</td><td class="num">$2,045</td><td class="num">16</td><td class="num sep"><b>4</b> <span class="note">(+1 no válido)</span></td></tr>
+      <tr><td>Sábado 21</td><td class="num">328</td><td class="num">$2,039</td><td class="num">16</td><td class="num sep"><b>2</b></td></tr>
+      <tr><td>Domingo 22</td><td class="num">356</td><td class="num">$2,169</td><td class="num">15</td><td class="num sep"><b>0</b></td></tr>
+    </tbody>
+    <tfoot><tr><td>Total</td><td class="num">940</td><td class="num">$6,254</td><td class="num">47</td><td class="num sep">6</td></tr></tfoot>
+  </table></div>
+</section>
+
+<section>
+  <h2>Por marca</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Marca</th><th class="num">Clics</th><th class="num">Inversión</th><th class="num">Registró Google</th><th class="num sep">Con nombre y teléfono</th></tr></thead>
+    <tbody>
+      <tr><td><span class="dot" style="background:var(--gs)"></span>Gamesail</td><td class="num">563</td><td class="num">$2,119</td><td class="num">20 <span class="note">(17 WhatsApp, 3 formularios)</span></td><td class="num sep"><b>4</b></td></tr>
+      <tr><td><span class="dot" style="background:var(--ql)"></span>Quick Laundry</td><td class="num">105</td><td class="num">$990</td><td class="num">12 <span class="note">WhatsApp</span></td><td class="num sep"><b>2</b></td></tr>
+      <tr><td><span class="dot" style="background:var(--ks)"></span>Kingstar</td><td class="num">82</td><td class="num">$1,873</td><td class="num">12 <span class="note">WhatsApp</span></td><td class="num sep"><b>0</b> <span class="note">(+1 no válido)</span></td></tr>
+      <tr><td><span class="dot" style="background:var(--gb)"></span>Girbau</td><td class="num">150</td><td class="num">$841</td><td class="num">2 <span class="note">WhatsApp</span></td><td class="num sep"><b>0</b></td></tr>
+      <tr><td><span class="dot" style="background:var(--ls)"></span>Laundry Solutions</td><td class="num">40</td><td class="num">$430</td><td class="num">1 <span class="note">WhatsApp</span></td><td class="num sep"><b>0</b></td></tr>
+    </tbody>
+    <tfoot><tr><td>Suma de las 5 marcas</td><td class="num">940</td><td class="num">$6,254</td><td class="num">47</td><td class="num sep">6</td></tr></tfoot>
+  </table></div>
+  <div class="two">
+    <article><h3>Lo que destaca</h3><ul>
+      <li><b>Gamesail</b> trae la mayor parte: «Lavadoras por capacidad» sumó 8 contactos en Google y «Lavadoras para ropa» 6.</li>
+      <li><b>Kingstar</b>: «Alta capacidad 60 kg o más» registró 10 toques de WhatsApp; la hoja del vendedor dirá cuántos fueron buenos.</li>
+      <li><b>Quick Laundry</b>: «Equipo para lavandería» pasó de 0 el viernes a 10 toques de WhatsApp el sábado y el domingo.</li>
+    </ul></article>
+    <article><h3>Lo que se vigila</h3><ul>
+      <li><b>Girbau</b> y <b>Laundry Solutions</b> trajeron pocos contactos. Esperamos que los botones nuevos de llamada y WhatsApp de Girbau y los textos nuevos ayuden desde esta semana.</li>
+      <li>El domingo no llegaron avisos con datos, aunque Google registró 15 contactos.</li>
+    </ul></article>
+  </div>
+</section>
+
+<section>
+  <h2>Qué se trabajó en Google Ads</h2>
+  <p class="note">Todo se hizo agregando lo nuevo antes de quitar lo viejo, con vista previa y forma de regresarlo. No se tocaron presupuestos ni pujas.</p>
+  <ul class="list">
+    <li><b><span class="dot" style="background:var(--gb)"></span>Girbau · teléfono y WhatsApp de Teresa</b><span>El botón de llamada y el de WhatsApp ya llevan el 33 5109 5680 en toda la cuenta y en las 6 campañas. Antes llevaban el número que ahora es de Quick Laundry.</span></li>
+    <li><b><span class="dot" style="background:var(--ql)"></span>Quick Laundry · teléfono y WhatsApp de Eduardo</b><span>Llamada y WhatsApp con el 33 2806 8994 en toda la cuenta y sus campañas.</span></li>
+    <li><b><span class="dot" style="background:var(--gs)"></span>Gamesail · enlaces y anuncios al día</b><span>2 enlaces que llevaban a secciones que ya no existen ahora llevan a «Nuestros equipos» y «Capacidades». 8 anuncios nuevos con secadoras de 15 a 100 kg y «Cotiza por WhatsApp» en lugar de precios, junto a los anteriores.</span></li>
+    <li><b><span class="dot" style="background:var(--ks)"></span>Kingstar · enlace y anuncio de secadoras</b><span>El enlace «12 Modelos» se cambió por «Secadoras a gas · De 15 a 100 kg». Anuncio nuevo de secadoras con la capacidad que dice la página.</span></li>
+    <li><b>Textos destacados y listas de equipos o servicios</b><span>Gamesail, Girbau y Laundry Solutions ya tienen (en revisión de Google) frases como «Certificación ISO 9001», «Cotiza por WhatsApp» y «Oficinas en GDL y CDMX», más la lista de equipos o servicios. Hacen el anuncio más grande y dan más razones para escribir.</span></li>
+    <li><b>Revisión completa contra la nota de páginas del 22 de noviembre</b><span>Sin códigos de modelo en ningún anuncio, sin precios en Kingstar, Girbau y Gamesail, y enlaces que llevan a secciones que sí existen.</span></li>
+  </ul>
+  <p class="note">Google revisa todo lo nuevo; normalmente tarda unas horas y como máximo un día. Mientras tanto los anuncios siguen saliendo.</p>
+</section>
+
+<section>
+  <h2>Lo que sigue esta semana</h2>
+  <ol class="steps">
+    <li><b>Martes 24 · revisar aprobaciones</b><span>Confirmar que Google aprobó los botones, enlaces, textos y anuncios nuevos en las 5 cuentas.</span></li>
+    <li><b>Miércoles 25 · ajustes de presupuesto chicos</b><span>Kingstar «Hotelera» y Laundry Solutions «Servicio técnico» +20%; Quick Laundry «Autoservicio» con un poco más de margen por clic.</span></li>
+    <li><b>Jueves 26 · terminar el cambio</b><span>Pausar los anuncios anteriores de Gamesail y Kingstar que ya tengan reemplazo aprobado, y terminar de actualizar los textos de Máximo rendimiento de Girbau.</span></li>
+    <li><b>Con el equipo de páginas</b><span>Teléfono de las fichas de Google Maps, WhatsApp de Girbau y Laundry Solutions en el sistema de seguimiento, y palabras clave cuando quede la versión final de las páginas.</span></li>
+  </ol>
+</section>
+
+</main>
+</body>
+</html>

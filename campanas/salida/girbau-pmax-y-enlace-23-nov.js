@@ -3,7 +3,7 @@
 // POR QUE: la pagina ya no da precios, las lavadoras van de 9 a 32 kg y "garantia" esta vetada (nota de Rodolfo del 22-nov).
 //   Los 6 grupos de Maximo rendimiento estan llenos (Google ya no deja agregar), asi que en cada grupo se cambia en UN paso:
 //   se quitan los textos con "precio", "20 a 50 kg" o "garantia" y, si hace falta espacio, los que MENOS se han mostrado
-//   en los ultimos 30 dias (nunca los que mas salen), y se ponen los nuevos. Todo o nada por grupo: si algo falla, sigue igual.
+//   en los ultimos 30 dias (nunca los que mas salen), y se ponen los nuevos. Todo o nada por grupo (titulos y descripciones por separado).
 // ENLACE: "Conoce Nuestras Lavadoras" decia "15 a 110 kg"; el nuevo dice "Lavadoras De 9 A 32 Kg". Primero se pone el nuevo.
 // NO toca presupuestos, pujas, campanas ni anuncios de busqueda.
 // VISTA PREVIA: muestra que quitaria y que pondria. EJECUTAR (con el OK): lo hace.
@@ -133,31 +133,39 @@ function pmax(cid, vista, quitarL, ponerL) {
       nuevos.forEach(function (t) { poner.push({ tipo: tipo, t: t }); });
     });
     if (!quitar.length && !poner.length) { Logger.log('    Ya esta limpio. Nada que cambiar.'); return; }
-    var ops = [], txt = [];
-    quitar.forEach(function (q) { ops.push({ assetGroupAssetOperation: { remove: q.x.rn } }); txt.push('quitar "' + q.x.texto + '"' + (MALOS.test(q.x.texto) ? '' : ' (se mostro ' + q.x.imp + ' veces en 30 dias; para hacer espacio)')); });
-    poner.forEach(function (p) {
-      if (!creados[p.t]) { creados[p.t] = tmp(cid); ops.push({ assetOperation: { create: { resourceName: creados[p.t], textAsset: { text: p.t } } } }); txt.push(null); }
-      ops.push({ assetGroupAssetOperation: { create: { assetGroup: grn, asset: creados[p.t], fieldType: p.tipo } } }); txt.push('poner "' + p.t + '"');
+    // Titulos y descripciones van en pasos separados (cada uno todo o nada): si Google no deja cambiar
+    // las descripciones de un grupo, los titulos de ese grupo si se cambian.
+    ['HEADLINE', 'DESCRIPTION'].forEach(function (tipo) {
+      Object.keys(creados).forEach(function (k) { if (/assets\/-/.test(creados[k])) delete creados[k]; });
+      var qq = quitar.filter(function (q) { return q.tipo === tipo; }), pp = poner.filter(function (p) { return p.tipo === tipo; });
+      if (!qq.length && !pp.length) return;
+      var ops = [], txt = [];
+      qq.forEach(function (q) { ops.push({ assetGroupAssetOperation: { remove: q.x.rn } }); txt.push('quitar "' + q.x.texto + '"' + (MALOS.test(q.x.texto) ? '' : ' (se mostro ' + q.x.imp + ' veces en 30 dias; para hacer espacio)')); });
+      pp.forEach(function (p) {
+        if (!creados[p.t]) { creados[p.t] = tmp(cid); ops.push({ assetOperation: { create: { resourceName: creados[p.t], textAsset: { text: p.t } } } }); txt.push(null); }
+        ops.push({ assetGroupAssetOperation: { create: { assetGroup: grn, asset: creados[p.t], fieldType: tipo } } }); txt.push('poner "' + p.t + '"');
+      });
+      var nombreTipo = tipo === 'HEADLINE' ? 'titulos' : 'descripciones';
+      var res = null;
+      try { res = AdsApp.mutateAll(ops); } catch (e) { Logger.log('    ERROR: ' + e.message); }
+      var bien = !!res;
+      if (res) res.forEach(function (r) { if (!r.isSuccessful()) bien = false; });
+      if (!bien) {
+        var primero = null;
+        if (res) res.forEach(function (r) { if (!primero && !r.isSuccessful() && r.getErrorMessages().length) primero = msg(r); });
+        Logger.log('    ' + nombreTipo + ': Google no lo acepto (' + (primero || 'error') + '). Las ' + nombreTipo + ' de este grupo siguen igual.');
+        return;
+      }
+      res.forEach(function (r, i) {
+        if (txt[i] === null) return;
+        Logger.log('    ' + (vista ? 'se puede: ' : 'LISTO: ') + txt[i]);
+        if (vista) return;
+        var o = ops[i].assetGroupAssetOperation;
+        if (o && o.create) quitarL.push("{n: 'pmax', rn: '" + r.getResourceName() + "'}");
+      });
+      if (!vista) qq.forEach(function (q) { ponerL.push("{n: 'pmax', t: '" + grn + "', a: '" + q.x.asset + "', f: '" + q.tipo + "'}"); });
+      if (!vista) res.forEach(function (r, i) { var a = ops[i].assetOperation; if (a && a.create) creados[a.create.textAsset.text] = r.getResourceName(); });
     });
-    var res = null;
-    try { res = AdsApp.mutateAll(ops); } catch (e) { Logger.log('    ERROR: ' + e.message); }
-    var bien = !!res;
-    if (res) res.forEach(function (r) { if (!r.isSuccessful()) bien = false; });
-    if (!bien) {
-      if (res) res.forEach(function (r, i) { if (!r.isSuccessful() && r.getErrorMessages().length) Logger.log('    ERROR ' + (txt[i] || 'crear texto') + ': ' + msg(r)); });
-      Logger.log('    No se cambio nada en este grupo (todo o nada): sigue igual.');
-      return;
-    }
-    res.forEach(function (r, i) {
-      if (txt[i] === null) return;
-      Logger.log('    ' + (vista ? 'se puede: ' : 'LISTO: ') + txt[i]);
-      if (vista) return;
-      var o = ops[i].assetGroupAssetOperation;
-      if (o && o.create) quitarL.push("{n: 'pmax', rn: '" + r.getResourceName() + "'}");
-    });
-    if (!vista) quitar.forEach(function (q) { ponerL.push("{n: 'pmax', t: '" + grn + "', a: '" + q.x.asset + "', f: '" + q.tipo + "'}"); });
-    // los textos creados en este grupo ya existen: los siguientes grupos los reusan
-    if (!vista) res.forEach(function (r, i) { var a = ops[i].assetOperation; if (a && a.create) creados[a.create.textAsset.text] = r.getResourceName(); });
   });
 }
 
