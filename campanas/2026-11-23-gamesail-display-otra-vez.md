@@ -21,3 +21,4 @@ Leído con TrueClicks (solo lectura) a las 9:30 a.m.
 
 - Gamesail: «Expandir alcance con Display» (`DISPLAY_EXPANSION_OPT_IN`) seguía **ENCENDIDA** después de que Sandy dijo haberla apagado. Se prendió el **sáb 21 nov a las 9:52 a.m.**; Google la aplicó a las 19:47. Volver a revisar.
 - Quick Laundry, Kingstar y Laundry Solutions: todas pausadas (la de Display, desde el 11 nov). Girbau: no tiene ninguna.
+- **9:54: Sandy la apagó y guardó.** Comprobado con TrueClicks: `DISPLAY_EXPANSION_OPT_IN` = PAUSED. Las 5 cuentas quedan sin recomendaciones automáticas de Display.
