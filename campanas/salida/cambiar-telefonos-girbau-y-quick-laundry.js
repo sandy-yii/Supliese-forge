@@ -12,6 +12,7 @@
 // VISTA PREVIA: muestra donde esta cada numero viejo y lo que haria. No cambia nada.
 // EJECUTAR (con el OK): hace el cambio. Google revisa el boton nuevo (normalmente unas horas).
 // DESHACER: copia en DESHACER lo que imprime "PARA DESHACER" y Ejecutar: quita los nuevos y vuelve a poner los viejos.
+// WHATSAPP: Google solo admite uno por lugar, asi que se cambia en un solo paso (todo o nada).
 
 var CAMBIOS = {
   '860-582-6837': { nombre: 'Girbau', viejo: '3328068994', nuevo: '33 5109 5680' },
@@ -101,54 +102,77 @@ function cuenta(cidGuiones, vista) {
     if (ch.length) { Logger.log('  ALTO: ya hubo un cambio HOY en ' + info.nombre + '. No se aplico nada. Avisame.'); return []; }
   }
 
-  // Fase 1: crear los botones nuevos y ponerlos en los mismos lugares
-  var ops = [], txt = [], grupo = [], n = 0, tmp = {};
-  ['CALL', 'MSG'].forEach(function (t) {
-    if (!porTipo[t].length) return;
-    n++; tmp[t] = 'customers/' + cid + '/assets/-' + n;
-    var base = porTipo[t][0].a, nuevo = { resourceName: tmp[t] };
-    if (t === 'CALL') nuevo.callAsset = { countryCode: 'MX', phoneNumber: info.nuevo };
-    else {
-      var b = base.businessMessageAsset || {};
-      nuevo.businessMessageAsset = { messageProvider: 'WHATSAPP', starterMessage: b.starterMessage || 'Hola, quiero una cotizacion',
-        whatsappInfo: { countryCode: 'MX', phoneNumber: info.nuevo } };
-      if (b.callToAction && b.callToAction.callToActionSelection) nuevo.businessMessageAsset.callToAction = { callToActionSelection: b.callToAction.callToActionSelection };
-    }
-    ops.push({ assetOperation: { create: nuevo } }); txt.push('crear ' + (t === 'CALL' ? 'llamada' : 'WhatsApp') + ' ' + info.nuevo); grupo.push(t);
-    var vistos = {};
-    porTipo[t].forEach(function (l) {
+  // Fase 1: boton de LLAMADA nuevo en los mismos lugares (se agrega junto al viejo)
+  var nuevosLinks = [], viejos = [];
+  if (porTipo.CALL.length) {
+    var tmpC = 'customers/' + cid + '/assets/-1', vistos = {};
+    var ops = [{ assetOperation: { create: { resourceName: tmpC, callAsset: { countryCode: 'MX', phoneNumber: info.nuevo } } } }];
+    var txt = ['crear llamada ' + info.nuevo];
+    porTipo.CALL.forEach(function (l) {
       var k = l.nivel + '|' + l.target; if (vistos[k]) return; vistos[k] = 1;
-      ops.push(enlace(l.nivel, l.target, tmp[t], l.campo)); txt.push('  ponerlo en ' + l.nivel + ': ' + l.nombre); grupo.push(t);
+      ops.push(enlace(l.nivel, l.target, tmpC, l.campo)); txt.push('  ponerlo en ' + l.nivel + ': ' + l.nombre);
     });
-  });
-  var res = AdsApp.mutateAll(ops, { partialFailure: true }), ok = { CALL: true, MSG: true }, nuevosLinks = [];
-  for (var i = 0; i < res.length; i++) {
-    if (!res[i].isSuccessful()) { ok[grupo[i]] = false; Logger.log('  ERROR ' + txt[i] + ': ' + res[i].getErrorMessages().join('; ')); }
+    var res = AdsApp.mutateAll(ops, { partialFailure: true }), okCall = true;
+    for (var i = 0; i < res.length; i++) {
+      if (!res[i].isSuccessful()) { okCall = false; Logger.log('  ERROR ' + txt[i] + ': ' + res[i].getErrorMessages().join('; ')); }
+      else {
+        Logger.log('  ' + (vista ? 'se puede: ' : 'LISTO: ') + txt[i]);
+        if (!vista && i > 0) nuevosLinks.push(quitarTexto(ops[i], res[i].getResourceName()));
+      }
+    }
+    // Fase 2: quitar la llamada vieja, solo si la nueva quedo bien
+    if (!okCall) Logger.log('  El boton de llamada nuevo no quedo: el viejo se queda puesto.');
     else {
-      Logger.log('  ' + (vista ? 'se puede: ' : 'LISTO: ') + txt[i]);
-      if (!vista && !ops[i].assetOperation) nuevosLinks.push(quitarTexto(ops[i], res[i].getResourceName()));
+      var ops2 = porTipo.CALL.map(function (l) { return quitar(l.nivel, l.rn); });
+      var res2 = AdsApp.mutateAll(ops2, { partialFailure: true });
+      for (var j = 0; j < res2.length; j++) {
+        var l2 = porTipo.CALL[j];
+        Logger.log('  ' + (res2[j].isSuccessful() ? (vista ? 'se puede: ' : 'LISTO: ') : 'ERROR ') + 'quitar llamada vieja de ' + l2.nivel + ': ' + l2.nombre +
+          (res2[j].isSuccessful() ? '' : ': ' + res2[j].getErrorMessages().join('; ')));
+        if (!vista && res2[j].isSuccessful()) viejos.push(viejoTexto(l2));
+      }
     }
   }
 
-  // Fase 2: quitar los viejos, solo si su reemplazo quedo bien
-  var ops2 = [], txt2 = [], viejos = [];
-  ['CALL', 'MSG'].forEach(function (t) {
-    if (!porTipo[t].length) return;
-    if (!ok[t]) { Logger.log('  El ' + (t === 'CALL' ? 'boton de llamada' : 'WhatsApp') + ' nuevo no quedo: el viejo se queda puesto.'); return; }
-    porTipo[t].forEach(function (l) {
-      ops2.push(quitar(l.nivel, l.rn)); txt2.push('quitar ' + (t === 'CALL' ? 'llamada' : 'WhatsApp') + ' viejo de ' + l.nivel + ': ' + l.nombre);
-      viejos.push("{n: '" + l.nivel + "', t: " + (l.target ? "'" + l.target + "'" : 'null') + ", a: '" + l.asset + "', f: '" + l.campo + "'}");
+  // Fase 3: WHATSAPP. Google permite uno solo por lugar, asi que se cambia en UN solo paso, todo o nada:
+  // crea el nuevo, quita el viejo y pone el nuevo. Si algo falla, no se cambia nada y el viejo sigue.
+  if (porTipo.MSG.length) {
+    var b = porTipo.MSG[0].a.businessMessageAsset || {}, tmpM = 'customers/' + cid + '/assets/-2', vistosM = {};
+    var opsM = [{ assetOperation: { create: { resourceName: tmpM, businessMessageAsset: { messageProvider: 'WHATSAPP',
+      starterMessage: b.starterMessage || 'Hola, quiero una cotizacion', whatsappInfo: { countryCode: 'MX', phoneNumber: info.nuevo } } } } }];
+    var txtM = ['crear WhatsApp ' + info.nuevo];
+    porTipo.MSG.forEach(function (l) { opsM.push(quitar(l.nivel, l.rn)); txtM.push('  quitar el WhatsApp viejo de ' + l.nivel + ': ' + l.nombre); });
+    porTipo.MSG.forEach(function (l) {
+      var k = l.nivel + '|' + l.target; if (vistosM[k]) return; vistosM[k] = 1;
+      opsM.push(enlace(l.nivel, l.target, tmpM, l.campo)); txtM.push('  poner el WhatsApp nuevo en ' + l.nivel + ': ' + l.nombre);
     });
-  });
-  if (ops2.length) {
-    var res2 = AdsApp.mutateAll(ops2, { partialFailure: true });
-    for (var j = 0; j < res2.length; j++)
-      Logger.log('  ' + (res2[j].isSuccessful() ? (vista ? 'se puede: ' : 'LISTO: ') : 'ERROR ') + txt2[j] + (res2[j].isSuccessful() ? '' : ': ' + res2[j].getErrorMessages().join('; ')));
+    var resM = null;
+    try { resM = AdsApp.mutateAll(opsM); } catch (e) { Logger.log('  ERROR WhatsApp: ' + e.message); }
+    var okM = !!resM;
+    if (resM) for (var m = 0; m < resM.length; m++) if (!resM[m].isSuccessful()) okM = false;
+    if (!okM) {
+      if (resM) for (var m2 = 0; m2 < resM.length; m2++)
+        if (!resM[m2].isSuccessful() && resM[m2].getErrorMessages().length) Logger.log('  ERROR ' + txtM[m2] + ': ' + resM[m2].getErrorMessages().join('; '));
+      Logger.log('  No se cambio nada del WhatsApp (todo o nada): el viejo sigue puesto.');
+    } else {
+      for (var m3 = 0; m3 < resM.length; m3++) {
+        Logger.log('  ' + (vista ? 'se puede: ' : 'LISTO: ') + txtM[m3]);
+        if (!vista && esCrearEnlace(opsM[m3])) nuevosLinks.push(quitarTexto(opsM[m3], resM[m3].getResourceName()));
+      }
+      if (!vista) porTipo.MSG.forEach(function (l) { viejos.push(viejoTexto(l)); });
+    }
   }
   if (vista) return [];
   return ["{c: '" + cidGuiones + "', quitar: [" + nuevosLinks.join(', ') + "], poner: [" + viejos.join(', ') + "]}"];
 }
 
+function esCrearEnlace(op) {
+  var o = op.customerAssetOperation || op.campaignAssetOperation || op.adGroupAssetOperation;
+  return !!(o && o.create);
+}
+function viejoTexto(l) {
+  return "{n: '" + l.nivel + "', t: " + (l.target ? "'" + l.target + "'" : 'null') + ", a: '" + l.asset + "', f: '" + l.campo + "'}";
+}
 function quitarTexto(op, rn) {
   var nivel = op.customerAssetOperation ? 'cuenta' : (op.campaignAssetOperation ? 'campana' : 'grupo');
   return "{n: '" + nivel + "', rn: '" + rn + "'}";
@@ -158,12 +182,13 @@ function deshacer(cidGuiones, vista) {
   var ops = [], txt = [];
   DESHACER.forEach(function (d) {
     if (d.c !== cidGuiones) return;
-    (d.poner || []).forEach(function (p) { ops.push(enlace(p.n, p.t, p.a, p.f)); txt.push('volver a poner el viejo en ' + p.n); });
     (d.quitar || []).forEach(function (q) { ops.push(quitar(q.n, q.rn)); txt.push('quitar el nuevo de ' + q.n); });
+    (d.poner || []).forEach(function (p) { ops.push(enlace(p.n, p.t, p.a, p.f)); txt.push('volver a poner el viejo en ' + p.n); });
   });
   Logger.log('==== ' + CAMBIOS[cidGuiones].nombre + ' (' + cidGuiones + ') ====');
   if (!ops.length) { Logger.log('  Nada que deshacer aqui.'); return []; }
-  var res = AdsApp.mutateAll(ops, { partialFailure: true });
+  // Todo o nada: primero quita los nuevos y luego vuelve a poner los viejos (el WhatsApp solo admite uno por lugar)
+  var res = AdsApp.mutateAll(ops);
   for (var i = 0; i < res.length; i++)
     Logger.log('  ' + (res[i].isSuccessful() ? (vista ? 'se puede: ' : 'LISTO: ') : 'ERROR ') + txt[i] + (res[i].isSuccessful() ? '' : ': ' + res[i].getErrorMessages().join('; ')));
   return [];
