@@ -55,21 +55,20 @@ Ningún anuncio activo usa códigos de modelo (SHS, XGQ, Giant, SPW12, etc.).
 
 El botón de Gamesail está igual que el de Kingstar, que sí sale. Google no da el motivo en los datos. Hay que revisarlo en la pantalla de Google Ads: Recursos → Mensajes.
 
-## Calendario (un cambio por cuenta al día)
+## Calendario (excepción autorizada por Sandy el 23 nov: hoy va todo lo que agrega)
+
+Un solo script para las 5 cuentas: `campanas/salida/todo-en-uno-23-nov.js` (se pega en la cuenta de administrador).
 
 | Día | Girbau | Quick Laundry | Gamesail | Kingstar | Laundry Solutions |
 |---|---|---|---|---|---|
-| **Lun 23** | Teléfonos | Teléfonos | Enlaces | Enlace | Textos destacados y fragmento de servicios |
-| Mar 24 | Textos de Máximo rendimiento (agregar) | Revisar que el botón nuevo esté aprobado | Anuncios nuevos (secadoras 15–100 kg y cotización) | Anuncio nuevo de secadoras | — |
-| Mié 25 | Textos destacados y fragmento de modelos (agregar). Revisar apelaciones | «Autoservicio» tope $14 → $16 | Textos destacados y fragmento de equipos (agregar) | «Hotelera» presupuesto +20% | «Servicio técnico» presupuesto +20% |
-| Jue 26 | Quitar de Máximo rendimiento los textos con «precio» | — | Pausar los anuncios viejos que ya tengan reemplazo aprobado (si no trajeron contactos) | Pausar el anuncio viejo de secadoras (igual) | — |
+| **Lun 23** (todo en uno) | Teléfono y WhatsApp; textos destacados y fragmento; textos nuevos en Máximo rendimiento | Teléfono y WhatsApp | Enlaces; textos destacados y fragmento; anuncios nuevos (secadoras 15–100 kg, sin «precios») | Enlace; anuncio nuevo de secadoras | Textos destacados y fragmento |
+| Mar 24 | Revisar aprobaciones | Revisar que el botón nuevo esté aprobado | Revisar aprobaciones | Revisar aprobaciones | — |
+| Mié 25 | — | «Autoservicio» tope $14 → $16 | — | «Hotelera» presupuesto +20% | «Servicio técnico» presupuesto +20% |
+| Jue 26 | Quitar de Máximo rendimiento los textos con «precio», «20 a 50 kg» y «garantía» (si lo nuevo ya está aprobado) | — | Pausar los anuncios viejos que ya tengan reemplazo aprobado y no hayan traído contactos | Pausar el anuncio viejo de secadoras (igual) | — |
 
-Scripts del lunes:
-- `campanas/salida/cambiar-telefonos-girbau-y-quick-laundry.js`
-- `campanas/salida/enlaces-nuevos-gamesail-y-kingstar.js`
-- `campanas/salida/textos-destacados-ls-gamesail-girbau.js` (lunes Laundry Solutions; miércoles Gamesail y Girbau)
+Presupuestos y topes, y quitar o pausar, quedaron fuera del lunes por decisión de Sandy.
 
-Los tres llevan Vista previa, OK y deshacer.
+Los scripts sueltos del lunes (`cambiar-telefonos-…`, `enlaces-nuevos-…`, `textos-destacados-…`) quedan como respaldo; el de todo en uno hace lo mismo y además los anuncios nuevos y los textos de Máximo rendimiento.
 
 ## Pendientes de Rodolfo (no son de Google Ads)
 
