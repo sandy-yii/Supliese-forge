@@ -75,3 +75,13 @@ Los scripts sueltos del lunes (`cambiar-telefonos-…`, `enlaces-nuevos-…`, `t
 - Teléfono de las fichas de Google Maps: lo cambia él.
 - Igualar palabras clave con las páginas: espera la versión final de Pau.
 - GoHighLevel de Girbau y Laundry Solutions: falta verificarlos en Meta.
+
+## Girbau Máximo rendimiento y enlace (ejecutado el 22 nov en la noche, hora de México)
+
+Lo revisé después con TrueClicks:
+- **Enlace «Conoce Nuestras Lavadoras»:** ahora dice «Lavadoras De 9 A 32 Kg» en Nerea y en Máximo rendimiento. El de «15 a 110 kg» ya no está.
+- **Títulos:** ningún grupo tiene ya títulos con «precio». Los 6 grupos tienen «Pide Tu Cotización Girbau», «Distribuidor Exclusivo Girbau» y «Cotiza Por WhatsApp».
+- **Descripciones de «Lavadoras industriales»:** ya no tienen «20 a 50 kg», «precios» ni «garantía». Tienen 3 descripciones.
+- **Descripciones de los otros 5 grupos:** el cambio salió a medias, y eso explica los 20 errores. En cada grupo sí salieron «… De 20 A 50 Kg …» y «Maquinaria De Lavado Industrial … Pide Tu Presupuesto Hoy.», con 0 impresiones en esos grupos. Las descripciones nuevas no entraron. Cada grupo quedó con 5 descripciones.
+- **Lo que queda pendiente:** «Descubre El Precio De Nuestros Túneles…» (Túnel) y «…Con Garantía De Fabrica» (Proveedores).
+- **Lección:** `AdsApp.mutateAll` sin `partialFailure` **no** fue todo o nada al ejecutar en grupos de recursos. En scripts futuros hay que comprobar el resultado y no fiarse de que sea atómico.
