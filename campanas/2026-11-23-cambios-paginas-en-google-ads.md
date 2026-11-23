@@ -43,20 +43,33 @@ Ningún anuncio activo usa códigos de modelo (SHS, XGQ, Giant, SPW12, etc.).
 | Anuncios nuevos | Los viejos siguen saliendo hasta que se aprueben los nuevos; después se pausan los viejos | Hasta 1 día hábil |
 | Textos de Máximo rendimiento | Los grupos siguen saliendo con los textos que ya tienen | Horas a 1 día |
 
+## Botón de WhatsApp en los anuncios (revisado el 23 nov)
+
+| Cuenta | ¿Lo tiene? | ¿Sale? (16 al 22 nov) | Número |
+|---|---|---|---|
+| Kingstar | Sí, en toda la cuenta | Sí: 619 veces, 62 clics | Jorge, correcto |
+| Quick Laundry | Sí, en la cuenta y en 2 campañas | Sí: 310 veces, 42 clics | **Viejo**: se cambia con el script de teléfonos |
+| Laundry Solutions | Sí, en toda la cuenta | Sí: 239 veces, 26 clics | Sergio, correcto |
+| Girbau | Sí, en la cuenta y en Máximo rendimiento | Sí: 101 veces, 17 clics | **Viejo**: se cambia con el script de teléfonos |
+| Gamesail | Sí, desde el 3 nov, «apto» | **Nunca ha salido** (0 veces en 4 semanas) | Silvia, correcto |
+
+El botón de Gamesail está igual que el de Kingstar, que sí sale. Google no da el motivo en los datos. Hay que revisarlo en la pantalla de Google Ads: Recursos → Mensajes.
+
 ## Calendario (un cambio por cuenta al día)
 
 | Día | Girbau | Quick Laundry | Gamesail | Kingstar | Laundry Solutions |
 |---|---|---|---|---|---|
-| **Lun 23** | Teléfonos | Teléfonos | Enlaces | Enlace | — |
+| **Lun 23** | Teléfonos | Teléfonos | Enlaces | Enlace | Textos destacados y fragmento de servicios |
 | Mar 24 | Textos de Máximo rendimiento (agregar) | Revisar que el botón nuevo esté aprobado | Anuncios nuevos (secadoras 15–100 kg y cotización) | Anuncio nuevo de secadoras | — |
-| Mié 25 | Revisar las apelaciones de enlaces | — | Pausar los anuncios viejos que ya tengan reemplazo aprobado | Pausar el anuncio viejo de secadoras | — |
-| Jue 26 | Quitar de Máximo rendimiento los textos con «precio» | — | — | — | — |
+| Mié 25 | Textos destacados y fragmento de modelos (agregar). Revisar apelaciones | «Autoservicio» tope $14 → $16 | Textos destacados y fragmento de equipos (agregar) | «Hotelera» presupuesto +20% | «Servicio técnico» presupuesto +20% |
+| Jue 26 | Quitar de Máximo rendimiento los textos con «precio» | — | Pausar los anuncios viejos que ya tengan reemplazo aprobado (si no trajeron contactos) | Pausar el anuncio viejo de secadoras (igual) | — |
 
 Scripts del lunes:
 - `campanas/salida/cambiar-telefonos-girbau-y-quick-laundry.js`
 - `campanas/salida/enlaces-nuevos-gamesail-y-kingstar.js`
+- `campanas/salida/textos-destacados-ls-gamesail-girbau.js` (lunes Laundry Solutions; miércoles Gamesail y Girbau)
 
-Los dos llevan Vista previa, OK y deshacer.
+Los tres llevan Vista previa, OK y deshacer.
 
 ## Pendientes de Rodolfo (no son de Google Ads)
 
