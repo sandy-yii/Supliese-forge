@@ -16,3 +16,8 @@ Leído con TrueClicks (solo lectura) a las 9:30 a.m.
 - Pendiente a mano: apagar «Aplicar automáticamente» en Recomendaciones (Gamesail y revisar las 5).
 - Medir mañana: clics de Gamesail solo de búsqueda y avisos en Resend contra su promedio (jue 20 a sáb 21: 2 a 4 avisos al día).
 - Deshacer el mismo día: `DESHACER = true` en el script.
+
+## Recomendaciones automáticas (revisado ~9:50)
+
+- Gamesail: «Expandir alcance con Display» (`DISPLAY_EXPANSION_OPT_IN`) seguía **ENCENDIDA** después de que Sandy dijo haberla apagado. Se prendió el **sáb 21 nov a las 9:52 a.m.**; Google la aplicó a las 19:47. Volver a revisar.
+- Quick Laundry, Kingstar y Laundry Solutions: todas pausadas (la de Display, desde el 11 nov). Girbau: no tiene ninguna.
