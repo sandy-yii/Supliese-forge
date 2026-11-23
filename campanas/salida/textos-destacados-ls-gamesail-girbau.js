@@ -33,12 +33,19 @@ function main() {
   var ids = DESHACER.length ? DESHACER.map(function (d) { return d.c; }) : HOY;
   ids = ids.filter(function (id) { return CAMBIOS[id]; });
   if (!ids.length) { Logger.log('No hay cuentas para hoy. No se hizo nada.'); return; }
-  var it = AdsManagerApp.accounts().withIds(ids).get();
-  while (it.hasNext()) {
-    var a = it.next(); AdsManagerApp.select(a);
-    try { salida = salida.concat(DESHACER.length ? deshacer(a.getCustomerId(), vista) : cuenta(a.getCustomerId(), vista)); }
-    catch (e) { Logger.log('  ERROR: ' + e.message); }
-    Logger.log('');
+  if (typeof AdsManagerApp !== 'undefined') {
+    var it = AdsManagerApp.accounts().withIds(ids).get();
+    while (it.hasNext()) {
+      var a = it.next(); AdsManagerApp.select(a);
+      try { salida = salida.concat(DESHACER.length ? deshacer(a.getCustomerId(), vista) : cuenta(a.getCustomerId(), vista)); }
+      catch (e) { Logger.log('  ERROR: ' + e.message); }
+      Logger.log('');
+    }
+  } else {
+    // Pegado dentro de una sola cuenta: solo trabaja en esa cuenta, y solo si le toca hoy.
+    var cidG = AdsApp.currentAccount().getCustomerId();
+    if (ids.indexOf(cidG) < 0) { Logger.log('Esta cuenta (' + cidG + ') no toca hoy. No se hizo nada.'); return; }
+    salida = DESHACER.length ? deshacer(cidG, vista) : cuenta(cidG, vista);
   }
   if (!vista && salida.length) Logger.log('PARA DESHACER: var DESHACER = [' + salida.join(', ') + '];');
   Logger.log(vista ? 'FIN. Vista previa: no se cambio nada. Mandame el registro.' : 'FIN. Mandame el registro.');
