@@ -20,7 +20,7 @@
 //   - No toca pujas, estrategias, anuncios ni pausa nada.
 // DESHACER: copia en DESHACER lo que imprime "PARA DESHACER" y Ejecutar: regresa los presupuestos y quita las negativas.
 
-var CON_EXTRAS = false;   // <-- true SOLO si Sandy dio el OK para Kingstar "Alta capacidad" y Quick Laundry "Search Marcas"
+var CON_EXTRAS = true;    // OK de Sandy del 25-nov. <-- true SOLO si Sandy dio el OK para Kingstar "Alta capacidad" y Quick Laundry "Search Marcas"
 var PCT = 20, MIN_PERDIDA = 0.10;
 var CUENTAS = {
   '860-582-6837': { nombre: 'Girbau', subir: 'AB \u00b7 Marca Girbau' },
