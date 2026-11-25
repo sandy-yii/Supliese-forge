@@ -1,7 +1,8 @@
 // MIERCOLES 25 NOV 2026 - un cambio por cuenta, con el OK de Sandy del 24-nov
 // Pegar en la cuenta de ADMINISTRADOR. Correr el MIERCOLES 25 (Vista previa, OK y Ejecutar).
 // QUE HACE:
-//   Gamesail:          "AB \u00b7 Lavadoras para ropa y s\u00e1banas" presupuesto +20% (la que mas contactos trae y se queda sin dinero).
+//   Gamesail:          SE QUITO (corte del 24-nov): desde el 23 ya no sale en Display, el martes gasto 11% de su presupuesto
+//                      y perdio busquedas por puja, no por dinero. Subirle presupuesto no le sirve hoy.
 //   Girbau:            "AB \u00b7 Marca Girbau" presupuesto +20% (se queda sin dinero).
 //   Kingstar:          "AB \u00b7 Lavander\u00eda hotelera e institucional" presupuesto +20% (se queda sin dinero).
 //   Laundry Solutions: palabras NEGATIVAS de compra en sus 2 campanas (paga por gente que quiere comprar maquinas,
@@ -16,7 +17,6 @@
 
 var PCT = 20, MIN_PERDIDA = 0.10;
 var CUENTAS = {
-  '118-347-6484': { nombre: 'Gamesail', subir: 'AB \u00b7 Lavadoras para ropa y s\u00e1banas' },
   '860-582-6837': { nombre: 'Girbau', subir: 'AB \u00b7 Marca Girbau' },
   '993-525-8739': { nombre: 'Kingstar', subir: 'AB \u00b7 Lavander\u00eda hotelera e institucional' },
   '265-909-2662': { nombre: 'Laundry Solutions', negativas: {
