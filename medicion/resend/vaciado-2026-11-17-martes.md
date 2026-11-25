@@ -43,7 +43,7 @@
 - 9:43 Quick Laundry, formulario: 2 lavadoras + 2 secadoras, lavandería nueva (Puebla).
 - 12:49 Gamesail, formulario («Por capacidad»): lavadora 17 kg (León).
 - 16:09 Gamesail, formulario («Por capacidad»): lavadora 20 kg.
-- 20:53 Kingstar, WhatsApp con nombre («Alta capacidad»): **dudoso** (nombre de broma; el miércoles 18 hubo otro igual en Gamesail con otro teléfono). El original al asesor rebotó; las 4 copias sí llegaron.
+- 20:53 Kingstar, WhatsApp con nombre («Alta capacidad»): **dudoso** (registro no válido: nombre ofensivo; el miércoles 18 hubo otro igual en Gamesail con otro teléfono). El original al asesor rebotó; las 4 copias sí llegaron.
 
 **Google (conversiones = tocó WhatsApp o formulario):**
 
@@ -66,12 +66,12 @@ Gamesail con el tope en $16: 134 clics (miércoles 75) y gasto por encima del pr
 
 ## Viernes 20 nov · cierre (leído a las 00:21 del sábado)
 
-**Resend, con nombre y teléfono: 4 reales + 1 broma.**
+**Resend, con nombre y teléfono: 4 reales + 1 registro no válido.**
 - 11:15 Gamesail, formulario («Por capacidad»): emprendedor en Puebla, 3 lavadoras de 20 kg, pregunta por crédito, lavandería nueva.
 - 16:12 Quick Laundry, formulario: lavandería de autoservicio nueva, 50–100 m², 5 lavadoras + 5 secadoras (estimado ~19,700 USD).
 - 18:26 Gamesail, formulario («Por capacidad»): hotel en Hermosillo, lavadora de 100 kg.
 - 21:16 Quick Laundry, WhatsApp con nombre («Para negocio»): precio de lavadora para su negocio.
-- 13:59 Kingstar, WhatsApp con nombre de broma (no se cuenta).
+- 13:59 Kingstar, WhatsApp, registro no válido (nombre ofensivo; no se cuenta).
 - Desde el viernes los avisos de Quick Laundry le llegan a otro vendedor (rperez@) en lugar de llopez@.
 
 **Google (puede ajustarse unas horas):** Gamesail 114 clics y 9 contactos («Por capacidad» 49 clics, 5; «Para ropa» con tope $16, 40 clics, 2); Kingstar 34 clics y 4 («Alta capacidad» 3, gastó el doble de su presupuesto); Quick Laundry 29 y 1; Laundry Solutions 15 y 1; Girbau 65 y 1. Total ~257 clics, ~16 contactos.

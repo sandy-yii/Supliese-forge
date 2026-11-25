@@ -17,6 +17,9 @@ Toda estrategia, script o cambio se diseña para que **ningún lead se frene**. 
 - **Se mide contra el promedio de la marca, no contra un solo día,** al día siguiente del cambio.
 - Si una opción tiene riesgo de bajar leads, se dice claro y se ofrece la versión más segura.
 
+## Lenguaje profesional en cortes y reportes
+- Un aviso que no es de un cliente real (nombre ofensivo, datos falsos, prueba) se llama **«registro no válido»** con la razón breve: «nombre ofensivo, no es cliente», «datos incompletos», «uso doméstico». **Nunca** «de broma» ni otras palabras coloquiales, tampoco en el chat.
+
 ## Tablero de Supliese (fuente única)
 - Al empezar: `bash sup hoy` y lee TABLERO.md. Lo que dice gana sobre notas viejas de este repositorio.
 - Al terminar: por cada tarea mía que cambió, `bash sup cierre C108 hecha "qué quedó y dónde se comprueba"`; lo demás, `bash sup cierre "nota"`.
