@@ -1,4 +1,5 @@
 // MIERCOLES 25 NOV 2026 - un cambio por cuenta, con el OK de Sandy del 24-nov
+// 25-NOV 10:40: Sandy no quiere gastar mas. Se quitaron TODAS las subidas de presupuesto. Solo quedan las negativas de Laundry Solutions.
 // Pegar en la cuenta de ADMINISTRADOR. Correr el MIERCOLES 25 (Vista previa, OK y Ejecutar).
 // QUE HACE:
 //   Gamesail:          SE QUITO (corte del 24-nov): desde el 23 ya no sale en Display, el martes gasto 11% de su presupuesto
@@ -20,12 +21,9 @@
 //   - No toca pujas, estrategias, anuncios ni pausa nada.
 // DESHACER: copia en DESHACER lo que imprime "PARA DESHACER" y Ejecutar: regresa los presupuestos y quita las negativas.
 
-var CON_EXTRAS = true;    // OK de Sandy del 25-nov. <-- true SOLO si Sandy dio el OK para Kingstar "Alta capacidad" y Quick Laundry "Search Marcas"
+var CON_EXTRAS = false;   // 25-nov: Sandy NO quiere gastar mas. <-- true SOLO si Sandy dio el OK para Kingstar "Alta capacidad" y Quick Laundry "Search Marcas"
 var PCT = 20, MIN_PERDIDA = 0.10;
 var CUENTAS = {
-  '860-582-6837': { nombre: 'Girbau', subir: 'AB \u00b7 Marca Girbau' },
-  '993-525-8739': { nombre: 'Kingstar', subir: ['AB \u00b7 Lavander\u00eda hotelera e institucional'], extra: ['AB \u00b7 Alta capacidad 60 kg o m\u00e1s'] },
-  '256-397-2201': { nombre: 'Quick Laundry', extra: ['Campa\u00f1a Search Marcas'] },
   '265-909-2662': { nombre: 'Laundry Solutions', negativas: {
     campanas: ['AB \u00b7 Servicio t\u00e9cnico industrial', 'AB \u00b7 Reparaci\u00f3n y mantenimiento'],
     palabras: [
