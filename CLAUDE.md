@@ -17,6 +17,12 @@ Toda estrategia, script o cambio se diseña para que **ningún lead se frene**. 
 - **Se mide contra el promedio de la marca, no contra un solo día,** al día siguiente del cambio.
 - Si una opción tiene riesgo de bajar leads, se dice claro y se ofrece la versión más segura.
 
+## Cortes de leads: siempre cruzar las tres fuentes
+- Todo corte o conteo de leads cruza **siempre** las tres fuentes: **Google Ads** (conector TrueClicks), **Resend** (avisos con nombre y teléfono, solo lectura) y la **hoja de vendedores** (captura que manda Sandy).
+- La hoja es la que ve los WhatsApp directos: en las páginas, WhatsApp se abre primero y dejar datos es opcional, así que Resend no ve a la mayoría.
+- Si falta una fuente, el corte lo dice claro («falta la hoja de vendedores») y se pide; nunca se da un total como completo sin las tres.
+- En los archivos del repositorio, la hoja se resume sin nombres ni teléfonos (marca, canal, campaña probable y calificación).
+
 ## Lenguaje profesional en cortes y reportes
 - Un aviso que no es de un cliente real (nombre ofensivo, datos falsos, prueba) se llama **«registro no válido»** con la razón breve: «nombre ofensivo, no es cliente», «datos incompletos», «uso doméstico». **Nunca** «de broma» ni otras palabras coloquiales, tampoco en el chat.
 
