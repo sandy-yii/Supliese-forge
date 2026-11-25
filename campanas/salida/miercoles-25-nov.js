@@ -4,10 +4,15 @@
 //   Gamesail:          SE QUITO (corte del 24-nov): desde el 23 ya no sale en Display, el martes gasto 11% de su presupuesto
 //                      y perdio busquedas por puja, no por dinero. Subirle presupuesto no le sirve hoy.
 //   Girbau:            "AB \u00b7 Marca Girbau" presupuesto +20% (se queda sin dinero).
-//   Kingstar:          "AB \u00b7 Lavander\u00eda hotelera e institucional" presupuesto +20% (se queda sin dinero).
+//   Kingstar:          "AB \u00b7 Lavander\u00eda hotelera e institucional" presupuesto +20% si se queda sin dinero
+//                      (del 20 al 24 casi no perdio por presupuesto: lo mas seguro es que se salte sola).
 //   Laundry Solutions: palabras NEGATIVAS de compra en sus 2 campanas (paga por gente que quiere comprar maquinas,
 //                      no reparar). Ninguna de esas busquedas trajo contactos. No se bloquea "venta" ni "comprar"
 //                      porque la gente tambien busca venta de refacciones, que si vende.
+// EXTRAS (SOLO CON EL OK DE SANDY): cambia CON_EXTRAS a true para agregar:
+//   Kingstar:          "AB \u00b7 Alta capacidad 60 kg o m\u00e1s" +20%, solo si "Hotelera" no subio (un cambio por cuenta).
+//   Quick Laundry:     "Campa\u00f1a Search Marcas" +20%.
+//   Con CON_EXTRAS = false esas dos no se tocan y Quick Laundry ni se abre.
 // SEGUROS:
 //   - El presupuesto solo sube si en los ultimos 3 dias la campana perdio 10% o mas de busquedas por presupuesto.
 //   - Si el presupuesto es compartido con otras campanas, no se toca.
@@ -15,10 +20,12 @@
 //   - No toca pujas, estrategias, anuncios ni pausa nada.
 // DESHACER: copia en DESHACER lo que imprime "PARA DESHACER" y Ejecutar: regresa los presupuestos y quita las negativas.
 
+var CON_EXTRAS = false;   // <-- true SOLO si Sandy dio el OK para Kingstar "Alta capacidad" y Quick Laundry "Search Marcas"
 var PCT = 20, MIN_PERDIDA = 0.10;
 var CUENTAS = {
   '860-582-6837': { nombre: 'Girbau', subir: 'AB \u00b7 Marca Girbau' },
-  '993-525-8739': { nombre: 'Kingstar', subir: 'AB \u00b7 Lavander\u00eda hotelera e institucional' },
+  '993-525-8739': { nombre: 'Kingstar', subir: ['AB \u00b7 Lavander\u00eda hotelera e institucional'], extra: ['AB \u00b7 Alta capacidad 60 kg o m\u00e1s'] },
+  '256-397-2201': { nombre: 'Quick Laundry', extra: ['Campa\u00f1a Search Marcas'] },
   '265-909-2662': { nombre: 'Laundry Solutions', negativas: {
     campanas: ['AB \u00b7 Servicio t\u00e9cnico industrial', 'AB \u00b7 Reparaci\u00f3n y mantenimiento'],
     palabras: [
@@ -44,13 +51,14 @@ function main() {
   var vista = AdsApp.getExecutionInfo().isPreview(), salida = [];
   Logger.log('MIERCOLES 25' + (DESHACER.length ? ' - DESHACER' : '') + (vista ? ' (VISTA PREVIA: no cambia nada)' : ' (EJECUTAR)'));
   Logger.log('');
-  var ids = Object.keys(CUENTAS);
+  var ids = Object.keys(CUENTAS).filter(function (id) { var c = CUENTAS[id]; return DESHACER.length || CON_EXTRAS || c.subir || c.negativas; });
+  Logger.log(CON_EXTRAS ? 'CON EXTRAS: Kingstar Alta capacidad y Quick Laundry Search Marcas incluidas.' : 'SIN EXTRAS (Quick Laundry no se toca).');
   if (typeof AdsManagerApp !== 'undefined') {
     var it = AdsManagerApp.accounts().withIds(ids).get();
     while (it.hasNext()) { var a = it.next(); AdsManagerApp.select(a); salida = salida.concat(unaCuenta(a.getCustomerId(), vista)); }
   } else {
     var cidG = AdsApp.currentAccount().getCustomerId();
-    if (!CUENTAS[cidG]) { Logger.log('Esta cuenta no esta en la lista. Pegalo en la cuenta de administrador.'); return; }
+    if (ids.indexOf(cidG) < 0) { Logger.log('Esta cuenta no esta en la lista. Pegalo en la cuenta de administrador.'); return; }
     salida = unaCuenta(cidG, vista);
   }
   if (!vista && salida.length) Logger.log('PARA DESHACER: var DESHACER = [' + salida.join(', ') + '];');
@@ -68,7 +76,12 @@ function unaCuenta(cidG, vista) {
       Logger.log('  ALTO: ya hubo un cambio HOY en ' + info.nombre + '. No se aplico nada (asi no se cambia dos veces). Avisame.');
       Logger.log(''); return [];
     }
-    if (info.subir) out = out.concat(subir(cidG, info.subir, vista, tz));
+    var lista = [].concat(info.subir || [], CON_EXTRAS ? (info.extra || []) : []);
+    for (var k = 0; k < lista.length; k++) {
+      var r = subir(cidG, lista[k], vista, tz);
+      out = out.concat(r.deshacer);
+      if (r.hecho) { if (k < lista.length - 1) Logger.log('  (Ya hubo un cambio en esta cuenta: lo demas se queda para otro dia.)'); break; }
+    }
     if (info.negativas) out = out.concat(negativas(cidG, info.negativas, vista));
   } catch (e) { Logger.log('  ERROR: ' + e.message + ' (no se cambio nada en esta cuenta)'); }
   Logger.log('');
@@ -80,17 +93,17 @@ function subir(cidG, nombre, vista, tz) {
   var f = leer("SELECT campaign.name, campaign.status, campaign_budget.resource_name, campaign_budget.amount_micros, campaign_budget.explicitly_shared, " +
     "metrics.search_budget_lost_impression_share, metrics.clicks, metrics.conversions FROM campaign WHERE campaign.name = " + q(nombre) +
     " AND campaign.status = 'ENABLED' AND segments.date BETWEEN '" + d(3) + "' AND '" + d(1) + "'");
-  if (!f.length) { Logger.log('  No encontre la campana activa "' + nombre + '". No se toca.'); return []; }
+  if (!f.length) { Logger.log('  No encontre la campana activa "' + nombre + '". No se toca.'); return { hecho: false, deshacer: [] }; }
   var r = f[0], b = r.campaignBudget, perdida = Number(r.metrics.searchBudgetLostImpressionShare || 0);
   var antes = Number(b.amountMicros) / 1e6, nuevo = Math.round(antes * (1 + PCT / 100) * 100) / 100;
   Logger.log('  "' + nombre + '": presupuesto $' + antes.toFixed(2) + ' al dia; ultimos 3 dias: pierde ' + Math.round(perdida * 100) +
     '% de busquedas por presupuesto, ' + r.metrics.clicks + ' clics, ' + Number(r.metrics.conversions).toFixed(0) + ' contactos.');
-  if (b.explicitlyShared) { Logger.log('  El presupuesto es compartido con otras campanas. No se toca.'); return []; }
-  if (perdida < MIN_PERDIDA) { Logger.log('  Ya casi no se queda sin dinero (menos de 10%). No hace falta subirlo; se queda igual.'); return []; }
+  if (b.explicitlyShared) { Logger.log('  El presupuesto es compartido con otras campanas. No se toca.'); return { hecho: false, deshacer: [] }; }
+  if (perdida < MIN_PERDIDA) { Logger.log('  Ya casi no se queda sin dinero (menos de 10%). No hace falta subirlo; se queda igual.'); return { hecho: false, deshacer: [] }; }
   var res = AdsApp.mutateAll([{ campaignBudgetOperation: { update: { resourceName: b.resourceName, amountMicros: Math.round(nuevo * 1e6) }, updateMask: 'amountMicros' } }]);
-  if (!res[0].isSuccessful()) { Logger.log('  ERROR al subir: ' + msg(res[0])); return []; }
+  if (!res[0].isSuccessful()) { Logger.log('  ERROR al subir: ' + msg(res[0])); return { hecho: false, deshacer: [] }; }
   Logger.log('  ' + (vista ? 'se puede: ' : 'LISTO: ') + 'presupuesto $' + antes.toFixed(2) + ' -> $' + nuevo.toFixed(2) + ' (+' + PCT + '%)');
-  return vista ? [] : ["{c: '" + cidG + "', presupuesto: '" + b.resourceName + "', monto: " + antes.toFixed(2) + "}"];
+  return { hecho: true, deshacer: vista ? [] : ["{c: '" + cidG + "', presupuesto: '" + b.resourceName + "', monto: " + antes.toFixed(2) + "}"] };
 }
 
 function negativas(cidG, cfg, vista) {
