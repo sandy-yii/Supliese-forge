@@ -87,8 +87,9 @@ function main() {
 
   if (DESHACER.length) { deshacer(vista); return; }
   var tz = AdsApp.currentAccount().getTimeZone(), hoy = Utilities.formatDate(new Date(), tz, 'yyyy-MM-dd');
-  if (!vista && leer("SELECT change_event.change_resource_name FROM change_event WHERE change_event.change_date_time >= '" + hoy +
-    " 00:00:00' AND change_event.change_date_time <= '" + hoy + " 23:59:59' LIMIT 20").length) {
+  // Las fotos que se subieron a mano hoy son parte de este mismo cambio: no cuentan para el seguro de "un cambio al dia".
+  if (!vista && leer("SELECT change_event.change_resource_name, change_event.change_resource_type FROM change_event WHERE change_event.change_date_time >= '" + hoy +
+    " 00:00:00' AND change_event.change_date_time <= '" + hoy + " 23:59:59' AND change_event.change_resource_type NOT IN ('ASSET', 'AD_GROUP_ASSET', 'CAMPAIGN_ASSET', 'CUSTOMER_ASSET') LIMIT 20").length) {
     Logger.log('ALTO: ya hubo un cambio HOY en Gamesail. No se aplic\u00f3 nada. Av\u00edsame.'); return;
   }
   var cidN = NUEVA.replace(/-/g, ''), quitar = [];
