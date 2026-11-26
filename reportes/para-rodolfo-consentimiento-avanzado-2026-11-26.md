@@ -2,7 +2,6 @@
 
 **Fecha:** 26 nov 2026
 **Pide:** Sandy
-**Aprueba el texto del aviso de cookies:** Pau
 
 ## El problema (comprobado el 25 y 26 de noviembre)
 
@@ -69,7 +68,7 @@ El `gtag('event', 'conversion', { send_to: … })` de WhatsApp y del formulario 
 - Los avisos por Resend a los vendedores.
 - Los botones, los textos de venta y los formularios.
 
-## Texto del aviso de cookies (para que Pau lo apruebe)
+## Texto nuevo del aviso de cookies
 
 **Hoy dice:**
 > «Si las rechazas, no se cargan y la página funciona igual.»
