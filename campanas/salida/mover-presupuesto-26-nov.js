@@ -1,9 +1,9 @@
-// MOVER PRESUPUESTO SIN GASTAR MAS - Quick Laundry y Girbau (jueves 26 nov 2026)
-// Pegar en la cuenta de ADMINISTRADOR (o dentro de Quick Laundry y de Girbau, una por una). Vista previa, OK y Ejecutar.
+// MOVER PRESUPUESTO SIN GASTAR MAS - Quick Laundry (jueves 26 nov 2026)
+// Pegar en la cuenta de ADMINISTRADOR (o dentro de Quick Laundry). Vista previa, OK y Ejecutar.
 // QUE HACE (el gasto diario total de cada marca queda IGUAL):
 //   Quick Laundry: le quita a "AB \u00b7 Equipo para lavander\u00eda" ($29 por clic) lo mismo que les sube a
 //                  "Campa\u00f1a Search Marcas" y "AB \u00b7 Autoservicio y monedas" (traen contactos mucho mas baratos y se quedan sin dinero).
-//   Girbau:        le quita a "Max Rendimiento - Girbau" lo mismo que le sube a "AB \u00b7 Marca Girbau" (se quedo sin dinero el 25).
+//   Girbau:        SE QUITO (Sandy no quiere arriesgar Girbau).
 // SEGUROS:
 //   - Cada campana que recibe sube como maximo +20%, y solo si en los ultimos 3 dias perdio 10% o mas de busquedas por presupuesto.
 //   - La que da baja como maximo -20%. Nada se pausa ni se apaga.
@@ -14,8 +14,7 @@
 var PCT = 20, MIN_PERDIDA = 0.10;
 var CUENTAS = {
   '256-397-2201': { nombre: 'Quick Laundry', quitar: 'AB \u00b7 Equipo para lavander\u00eda',
-    dar: ['Campa\u00f1a Search Marcas', 'AB \u00b7 Autoservicio y monedas'] },
-  '860-582-6837': { nombre: 'Girbau', quitar: 'Max Rendimiento - Girbau', dar: ['AB \u00b7 Marca Girbau'] }
+    dar: ['Campa\u00f1a Search Marcas', 'AB \u00b7 Autoservicio y monedas'] }
 };
 var DESHACER = [];
 
