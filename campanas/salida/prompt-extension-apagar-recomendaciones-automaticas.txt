@@ -1,0 +1,29 @@
+Vas a APAGAR la aplicación automática de recomendaciones en 5 cuentas de Google Ads. Trabaja en una pestaña nueva.
+
+REGLAS (no negociables):
+- Usa solo la cuenta de Google gamesailmx@gmail.com. Si aparece otra cuenta de Google o un correo distinto ya escrito, detente y avísame.
+- Cuentas, una por una y en este orden:
+  1. Gamesail nueva 118-347-6484
+  2. Kingstar / CLM 993-525-8739
+  3. Quick Laundry 256-397-2201
+  4. Laundry Solutions 265-909-2662
+  5. Girbau 860-582-6837
+  NO entres a la cuenta Gamesail 645-094-0317 (la vieja).
+- En cada cuenta, confirma el número en el menú de la cuenta antes de tocar nada. Si no coincide, detente y pregúntame.
+- SOLO apagas la aplicación automática. No apliques, descartes ni aceptes ninguna recomendación. No cambies campañas, anuncios, presupuestos, pujas ni nada más.
+- Si una cuenta no te deja entrar a esa sección por permisos, anótalo y sigue con la siguiente.
+- Si algo te pide confirmar un cambio distinto a apagar la aplicación automática, cancélalo y avísame.
+
+PASOS EN CADA CUENTA:
+1. En el menú de la izquierda, entra a "Recomendaciones".
+2. Arriba a la derecha, abre "Aplicación automática" (o "Aplicar automáticamente").
+3. Si aparece la pestaña "Recomendaciones" dentro de esa ventana, revisa TODAS las secciones y DESMARCA todas las casillas que estén marcadas.
+4. Guarda.
+5. Vuelve a abrir "Aplicación automática" y confirma que no quedó ninguna casilla marcada.
+
+AL TERMINAR, mándame una tabla con:
+- cuenta;
+- cuántas casillas estaban marcadas y cuáles eran (copia el nombre exacto, por ejemplo "Añadir palabras clave", "Usar concordancia amplia", "Ampliar a la Red de Display");
+- si quedó todo desmarcado (sí/no);
+- cualquier aviso o error, con el texto exacto.
+No hagas nada más.
