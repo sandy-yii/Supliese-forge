@@ -1,0 +1,34 @@
+Vas a agregar IMÁGENES a los anuncios de búsqueda de la cuenta de Google Ads Gamesail (118-347-6484), tomándolas de la página gamesail.mx. Trabaja en una pestaña nueva.
+
+REGLAS (no negociables):
+- Usa solo la cuenta de Google gamesailmx@gmail.com. Si aparece otra cuenta de Google o un correo distinto ya escrito, detente y avísame.
+- Antes de empezar, confirma que el número de cuenta de Google Ads, arriba a la derecha, sea 118-347-6484. Si no lo es, detente y pregúntame.
+- Solo puedes AGREGAR imágenes. No modifiques, pauses, actives, borres ni edites nada de lo que ya existe: campañas, anuncios, palabras clave, presupuestos, pujas, recursos, configuración ni facturación.
+- Si Google ofrece generar imágenes con IA, crear recursos automáticamente, aplicar recomendaciones o "aplicar sugerencias", recházalo.
+- Si algo te pide confirmar un cambio distinto a agregar estas imágenes, o aparece un error que no entiendes, detente y pregúntame.
+
+QUÉ IMÁGENES SÍ:
+- Solo fotos de los equipos de Gamesail que aparecen en gamesail.mx: lavadoras, secadoras, mangles o una lavandería con esos equipos.
+- Máximo 10 imágenes en total, sin repetir la misma foto.
+- Cada foto, si Google lo permite, en dos recortes: horizontal (1.91:1) y cuadrado (1:1). Que el equipo quede completo y centrado en el recorte.
+
+QUÉ IMÁGENES NO:
+- Nada con precios, porcentajes, promociones, números de teléfono o mucho texto encima.
+- Ni logotipos solos, íconos, capturas de pantalla, mapas, banderas, sellos (como ISO) ni fotos de personas.
+- Ni fotos borrosas, muy oscuras o donde el equipo se vea cortado.
+
+PASOS:
+1. En Google Ads, cuenta 118-347-6484, ve a Campañas > Recursos (o Herramientas > Biblioteca de recursos).
+2. Agrega un recurso de tipo "Imagen" con "+" y, cuando pregunte a qué nivel, elige "Cuenta" (que aplique a todas las campañas de búsqueda). Si no aparece la opción de cuenta, detente y dime qué opciones te da.
+3. En la ventana de imágenes elige "Escanear sitio web" (o "Sitio web") y escribe: https://gamesail.mx
+   Si con la portada salen pocas fotos de equipos, escanea también:
+   https://gamesail.mx/lavadoras-para-ropa
+   https://gamesail.mx/hoteles-y-hospitales
+   https://gamesail.mx/secadoras-industriales
+4. Antes de guardar, mándame la lista de las imágenes que elegiste (de qué página salió cada una y qué equipo muestra) y ESPERA mi OK.
+5. Con mi OK, guarda.
+6. Al terminar, dime:
+   - cuántas imágenes quedaron;
+   - en qué nivel quedaron (cuenta o campaña);
+   - si Google marcó alguna como "En revisión" o "Rechazada", y por qué.
+   - Si Google dice que la cuenta todavía no puede usar imágenes, no insistas: copia el mensaje exacto y detente.
