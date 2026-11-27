@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Corte del jueves</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+/* Layout: una columna de lectura; tres tarjetas para comparar opciones, tabla por marca, listas de acciones */
+:root{
+  --bg:#f5f7fa; --surface:#ffffff; --ink:#1b2230; --mute:#5a6475; --line:#e1e5ec;
+  --good:#1a8a52; --good-bg:#e4f4eb; --warn:#a3520c; --warn-bg:#fcefe1; --info:#2a5fa8; --info-bg:#e6eefa;
+  --ql:#2a78d6; --ks:#eb6834; --ls:#1baf7a; --gb:#c98500; --gs:#d55181;
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --body:"Source Sans 3","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12161d; --surface:#1b212b; --ink:#e8ecf2; --mute:#a0a9b8; --line:#2c3441;
+  --good:#4cc786; --good-bg:#183326; --warn:#f0a35e; --warn-bg:#3a2a1a; --info:#8db4ec; --info-bg:#1b2840;
+  --ql:#3987e5; --ks:#d95926; --ls:#199e70; --gb:#c98500; --gs:#d55181; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161d; --surface:#1b212b; --ink:#e8ecf2; --mute:#a0a9b8; --line:#2c3441;
+  --good:#4cc786; --good-bg:#183326; --warn:#f0a35e; --warn-bg:#3a2a1a; --info:#8db4ec; --info-bg:#1b2840;
+  --ql:#3987e5; --ks:#d95926; --ls:#199e70; --gb:#c98500; --gs:#d55181; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
+.wrap{max-width:900px;margin:0 auto;padding-block:36px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:34px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(28px,5vw,40px)}h2{font-size:24px}h3{font-size:19px}
+.eyebrow{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);font-weight:700;margin:0 0 6px}
+.lead{color:var(--mute);margin:8px 0 0;max-width:64ch}
+section{display:grid;gap:12px}
+.promise{background:var(--warn-bg);border:1px solid var(--warn);border-radius:12px;padding:16px 18px;display:grid;gap:6px}
+.promise p{margin:0}
+.promise .t{font-family:var(--display);font-size:21px;color:var(--warn);font-weight:700}
+.callout{background:var(--info-bg);border-radius:12px;padding:14px 16px;display:grid;gap:6px}
+.callout p{margin:0}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:12px}
+.opt{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:10px;align-content:start;min-width:0}
+.opt.main{border:2px solid var(--good)}
+.opt h3{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.opt dl{margin:0;display:grid;gap:8px}
+.opt dt{font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);font-weight:600}
+.opt dd{margin:0;font-size:26px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.15}
+.opt dd small{display:block;font-size:14.5px;font-weight:400;color:var(--mute);line-height:1.4}
+.opt.main dd.esp{color:var(--good)}
+.chip{display:inline-block;font-size:12.5px;font-weight:700;border-radius:20px;padding:2px 10px;white-space:nowrap;font-family:var(--body)}
+.ok{background:var(--good-bg);color:var(--good)}.inf{background:var(--info-bg);color:var(--info)}.mute{background:var(--bg);color:var(--mute);border:1px solid var(--line)}
+.tbl{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:680px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);font-size:16px;vertical-align:top}
+th{font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);font-weight:600}
+th.grp{text-align:center;border-bottom:1px solid var(--line)}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;white-space:nowrap}
+td.sep,th.sep{border-left:1px solid var(--line)}
+tfoot td{font-weight:700;border-top:1px solid var(--line)}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;vertical-align:middle}
+.note{color:var(--mute);font-size:15px;margin:0;max-width:72ch}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:14px}
+.two article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:8px;align-content:start;min-width:0}
+.two ul{margin:0;padding-left:20px;display:grid;gap:6px}
+.two li span{color:var(--mute)}
+ul.list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+ul.list li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+ul.list b{display:block}
+ul.list span{color:var(--mute);font-size:15.5px}
+ol.steps{list-style:none;margin:0;padding:0;display:grid;gap:12px;counter-reset:s}
+ol.steps>li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px 14px 58px;position:relative;counter-increment:s}
+ol.steps>li::before{content:counter(s);position:absolute;left:16px;top:14px;width:28px;height:28px;border-radius:50%;background:var(--info-bg);color:var(--info);font-weight:700;display:grid;place-items:center;font-size:15px}
+ol.steps b{display:block}
+ol.steps span{color:var(--mute);font-size:15.5px}
+.kw{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:14px}
+.kw article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:8px;align-content:start;min-width:0}
+.kw table{min-width:0}
+.kw th,.kw td{padding:6px 0;font-size:15.5px}
+.kw td.num,.kw th.num{padding-left:12px}
+.kw .sub{color:var(--mute);font-size:14.5px;margin:0}
+.kw h3{display:flex;align-items:center}
+.look{background:var(--warn-bg);color:var(--warn)}
+.neg{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}
+.neg article{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px;display:grid;gap:6px;align-content:start;min-width:0}
+.neg b{display:block}
+.neg span{color:var(--mute);font-size:15px}
+@media (max-width:480px){body{font-size:16px}.opt dd{font-size:24px}}
+</style>
+<style>
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.kpi .n{font-family:var(--display);font-size:34px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.1}
+.kpi .l{color:var(--mute);font-size:15px}
+ul{margin:0;padding-left:20px;display:grid;gap:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<p class="eyebrow">Grupo Supliese · corte interno</p>
+<h1>Corte del jueves 26 de noviembre</h1>
+<p class="lead">Cruce de las tres fuentes: Google Ads (día cerrado, leído el viernes 27), avisos de la página (Resend) y hoja de vendedores (solo conteo, sin calificación). Sin datos personales.</p>
+</header>
+
+<section class="kpis">
+<div class="kpi"><div class="n">16</div><div class="l">leads en la hoja de vendedores</div></div>
+<div class="kpi"><div class="n">17</div><div class="l">leads seguros (hoja + 1 formulario que no está)</div></div>
+<div class="kpi"><div class="n">10</div><div class="l">contactos que registró Google</div></div>
+<div class="kpi"><div class="n">230</div><div class="l">clics · miércoles 194</div></div>
+<div class="kpi"><div class="n">$2,133</div><div class="l">gasto · miércoles $1,773</div></div>
+</section>
+<p class="note">Si las llamadas y WhatsApp que Google vio y no están en la hoja fueron conversaciones reales, el día llega a unos 22. <b>El miércoles se actualizó:</b> la hoja final dice 16 leads (no 9): 3 más de Kingstar, 1 más de Gamesail y 2 más de Girbau.</p>
+
+<section>
+<h2>Por marca</h2>
+<div class="tbl"><table>
+<thead><tr><th>Marca</th><th class="num">Hoja</th><th class="num">Resend</th><th class="num">Google</th><th class="num">Clics</th><th class="num">Gasto</th></tr></thead>
+<tbody>
+<tr><td><span class="dot" style="background:var(--gs)"></span>Gamesail</td><td class="num"><b>8</b></td><td class="num">2</td><td class="num">2</td><td class="num">132</td><td class="num">$916</td></tr>
+<tr><td><span class="dot" style="background:var(--ql)"></span>Quick Laundry</td><td class="num"><b>7</b></td><td class="num">0</td><td class="num"><b>0</b></td><td class="num">38</td><td class="num">$362</td></tr>
+<tr><td><span class="dot" style="background:var(--ks)"></span>Kingstar</td><td class="num">1</td><td class="num">0</td><td class="num">3</td><td class="num">32</td><td class="num">$522</td></tr>
+<tr><td><span class="dot" style="background:var(--ls)"></span>Laundry Solutions</td><td class="num">0</td><td class="num">1</td><td class="num">4</td><td class="num">11</td><td class="num">$131</td></tr>
+<tr><td><span class="dot" style="background:var(--gb)"></span>Girbau</td><td class="num">0</td><td class="num">0 <span class="chip mute">1 no válido</span></td><td class="num">1</td><td class="num">17</td><td class="num">$202</td></tr>
+</tbody>
+<tfoot><tr><td>Suma de las 5 marcas</td><td class="num">16</td><td class="num">3</td><td class="num">10</td><td class="num">230</td><td class="num">$2,133</td></tr></tfoot>
+</table></div>
+</section>
+
+<section>
+<h2>Avisos de Resend del jueves</h2>
+<div class="tbl"><table>
+<thead><tr><th>Hora</th><th>Marca</th><th>Qué pidió</th><th>Origen</th><th>Hoja</th></tr></thead>
+<tbody>
+<tr><td>11:09 a.m.</td><td><span class="dot" style="background:var(--gs)"></span>Gamesail</td><td>Lavandería industrial, Edomex · lavadora y secadora 30 kg («Por capacidad»)</td><td>Anuncio de Google</td><td><span class="chip mute">por confirmar</span></td></tr>
+<tr><td>2:00 p.m.</td><td><span class="dot" style="background:var(--gs)"></span>Gamesail</td><td>Otro negocio, CDMX · lavadora 17 kg + secadora («Por capacidad»)</td><td>Anuncio de Google</td><td><span class="chip mute">por confirmar</span></td></tr>
+<tr><td>4:56 p.m.</td><td><span class="dot" style="background:var(--ls)"></span>Laundry Solutions</td><td>Reparación de secadora Cissell · compras de una empresa</td><td>Anuncio de Google</td><td><span class="chip look">falta</span></td></tr>
+<tr><td>5:02 p.m.</td><td><span class="dot" style="background:var(--gb)"></span>Girbau</td><td><b>Registro no válido:</b> prueba interna (correo de recepción de Supliese)</td><td>Búsqueda o directo</td><td>no aplica</td></tr>
+</tbody></table></div>
+</section>
+
+<section>
+<h2>Lo que dice el día</h2>
+<div class="callout"><p><b>Quick Laundry no está flojo: Google no lo ve.</b> 7 leads en la hoja y 0 en Google. Es el caso más claro del problema de cookies que arregla el consentimiento avanzado de Rodolfo.</p></div>
+<ul class="list">
+<li><b><span class="dot" style="background:var(--gs)"></span>Gamesail: su mejor día, 8 en la hoja.</b><span>Primer día con palabras y anuncios para empresas; no frenaron nada.</span></li>
+<li><b><span class="dot" style="background:var(--ks)"></span>Kingstar: Google vio 3 WhatsApp, la hoja tiene 1.</b><span>«Mangles», «20 a 45 kg» y «Alta capacidad». Preguntar a Jorge por los otros 2.</span></li>
+<li><b><span class="dot" style="background:var(--ls)"></span>Laundry Solutions: la hoja dice 0.</b><span>Pero llegó 1 formulario de empresa y Google vio 2 llamadas y 2 contactos más. «Reparación y mantenimiento» trajo 2: se queda encendida.</span></li>
+<li><b><span class="dot" style="background:var(--gb)"></span>Girbau: el aviso fue una prueba interna.</b><span>Google vio 1 contacto en «Por capacidad y sector» que no está en la hoja: preguntar a Teresa.</span></li>
+</ul>
+</section>
+
+<section>
+<h2>Qué sigue</h2>
+<ol class="steps">
+<li><b>Vendedores</b><span>Jorge, Teresa y Sergio/Doris: revisar WhatsApp y llamadas sin anotar. Eduardo: cuáles de sus 7 vinieron de anuncios. Todos: calificar.</span></li>
+<li><b>Rodolfo: consentimiento avanzado</b><span>Quick Laundry (7 en la hoja, 0 en Google) es la prueba más clara.</span></li>
+<li><b>Gamesail hoy, con OK</b><span>Mismo total: «Secadoras» −20%, ese dinero a «Por capacidad», y tope de «Hoteles y hospitales» de $20 a $24.</span></li>
+<li><b>Quick Laundry: negativas en «Equipo» no se hacen</b><span>Las búsquedas son de negocio; lo dudoso suma unos $80 en 30 días. Con 7 leads ayer, no vale el riesgo.</span></li>
+</ol>
+</section>
+</div>
+</body>
+</html>
